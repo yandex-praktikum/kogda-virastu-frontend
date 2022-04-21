@@ -2,7 +2,7 @@ import agent from '../agent';
 import Header from './Header';
 import React from 'react';
 import { connect } from 'react-redux';
-import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
+import { APP_LOAD, REDIRECT } from '../constants/actionTypes.ts';
 import { Route, Switch } from 'react-router-dom';
 import Article from '../components/Article';
 import Editor from '../components/Editor';

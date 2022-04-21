@@ -1,12 +1,12 @@
-import article from './reducers/article';
-import articleList from './reducers/articleList';
-import auth from './reducers/auth';
+import article from './reducers/article.ts';
+import articleList from './reducers/articleList.ts';
+import auth from './reducers/auth.ts';
 import { combineReducers } from 'redux';
-import common from './reducers/common';
-import editor from './reducers/editor';
-import home from './reducers/home';
-import profile from './reducers/profile';
-import settings from './reducers/settings';
+import common from './reducers/common.ts';
+import editor from './reducers/editor.ts';
+import home from './reducers/home.ts';
+import profile from './reducers/profile.ts';
+import settings from './reducers/settings.ts';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
