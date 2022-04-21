@@ -12,7 +12,26 @@ import {
   PROFILE_FAVORITES_PAGE_UNLOADED
 } from '../constants/actionTypes';
 
-export default (state = {}, action) => {
+type TInitialState = {
+  articles: {
+    slug: string,
+    title: string,
+    description: string,
+    body: string,
+    createdAt: string,
+    updatedAt: string,
+    tagList: string[],
+    favorited: string,
+    favoritesCount: number,
+    author: string
+  }[]
+}
+
+const initialState: TInitialState = {
+  articles: []
+}
+
+export default (state = initialState, action: any) => {
   switch (action.type) {
     case ARTICLE_FAVORITED:
     case ARTICLE_UNFAVORITED:
