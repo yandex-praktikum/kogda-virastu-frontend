@@ -7,9 +7,8 @@ import editor from './reducers/editor.ts';
 import home from './reducers/home.ts';
 import profile from './reducers/profile.ts';
 import settings from './reducers/settings.ts';
-import { routerReducer } from 'react-router-redux';
-
-export default combineReducers({
+export const  reducer = () => 
+combineReducers({
   article,
   articleList,
   auth,
@@ -18,5 +17,5 @@ export default combineReducers({
   home,
   profile,
   settings,
-  router: routerReducer
 });
+export default reducer
