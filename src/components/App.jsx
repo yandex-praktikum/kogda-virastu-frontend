@@ -58,7 +58,6 @@ export const App = () => {
   useEffect(() => {
     if (location) {
       // this.context.router.replace(nextProps.redirectTo);
-      store.dispatch(navigate('/'));
       dispatch({ type: REDIRECT })
     }
   }, [])
