@@ -4,7 +4,7 @@ import React from 'react';
 import {useState, useEffect} from 'react'
 import { connect,  useSelector, useDispatch } from 'react-redux';
 import { APP_LOAD, REDIRECT } from '../constants/actionTypes.ts';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Article from './Article';
 import Editor from './Editor';
 import Home from './Home';
@@ -33,12 +33,13 @@ const mapDispatchToProps = dispatch => ({
 });*/
 export const App = () => {
   const dispatch = useDispatch();
-  /*
-  const appLoaded = useState(true);
+  const navigate = useNavigate();
+  
+  const appLoaded = useState(false);
   const appName = useState({toLowerCase:'test'});
-  const currentUser = useState('test')*/
-  const {appLoaded, appName, currentUser, redirectTo } = useSelector(state => state.common)
-  /*
+  const currentUser = useState('test')
+  //const {appLoaded, appName, currentUser, redirectTo } = useSelector(state => state.common)
+  const location = useLocation();
   useEffect(() => {
     const token = window.localStorage.getItem('jwt');
     if (token) {
@@ -47,21 +48,21 @@ export const App = () => {
     const onLoad = (payload, token) => {
       dispatch({ type: APP_LOAD, payload, token, skipTracking: true })
     }
+    onLoad(token ? agent.Auth.current() : null, token)
     
-        onLoad(token ? agent.Auth.current() : null, token);
-  }, []);*/
-  console.log(appLoaded)
+        //onLoad(token ? agent.Auth.current() : null, token);
+  }, []);
+  console.log(location)
 
-
-  /*
+  
   useEffect(() => {
-    /*
-    if (nextProps.redirectTo) {
+    if (location) {
       // this.context.router.replace(nextProps.redirectTo);
-      store.dispatch(navigate(redirectTo));
-      this.props.onRedirect();
+      store.dispatch(navigate('/'));
+      dispatch({ type: REDIRECT })
     }
-  }, [])*/
+  }, [])
+
   /*
   <Header
   appName={appName}
@@ -69,7 +70,7 @@ export const App = () => {
 
 
 
-  if (appLoaded) {
+  if (appLoaded=== true) {
     return (
       <div>
         <Header
@@ -108,7 +109,9 @@ export const App = () => {
     );
   }
     else {
-      <p>загрузка...</p>
+      return(
+        <div>загрузка...</div>
+      )
     }
 }
 
