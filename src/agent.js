@@ -23,42 +23,42 @@ const requests = {
 };
 
 const Auth = {
-  current: () => requests.get('/user'),
-  login: (email, password) => requests.post('/users/login', { user: { email, password } }),
-  register: (username, email, password) => requests.post('/users', { user: { username, email, password } }),
-  save: (user) => requests.put('/user', { user }),
+  current: () => requests.get('/user'), //getCurrentUser
+  login: (email, password) => requests.post('/users/login', { user: { email, password } }), // loginUser
+  register: (username, email, password) => requests.post('/users', { user: { username, email, password } }), // registerUser
+  save: (user) => requests.put('/user', { user }), // patchUser
 };
 
 const Tags = {
-  getAll: () => requests.get('/tags'),
+  getAll: () => requests.get('/tags'), // fetchTags
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = (article) => ({ ...article, slug: undefined });
 const Articles = {
-  all: (page) => requests.get(`/articles?${limit(10, page)}`),
-  byAuthor: (author, page) => requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  byTag: (tag, page) => requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
-  del: (slug) => requests.del(`/articles/${slug}`),
-  favorite: (slug) => requests.post(`/articles/${slug}/favorite`),
-  favoritedBy: (author, page) => requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
-  feed: () => requests.get('/articles/feed?limit=10&offset=0'),
-  get: (slug) => requests.get(`/articles/${slug}`),
-  unfavorite: (slug) => requests.del(`/articles/${slug}/favorite`),
-  update: (article) => requests.put(`/articles/${article.slug}`, { article: omitSlug(article) }),
-  create: (article) => requests.post('/articles', { article }),
+  all: (page) => requests.get(`/articles?${limit(10, page)}`), // fetchArticles
+  byAuthor: (author, page) => requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`), // fetchArticles
+  byTag: (tag, page) => requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`), // fetchArticles
+  del: (slug) => requests.del(`/articles/${slug}`), // deleteArticle
+  favorite: (slug) => requests.post(`/articles/${slug}/favorite`), // postLikeArticle
+  favoritedBy: (author, page) => requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`), // fetchArticle
+  feed: () => requests.get('/articles/feed?limit=10&offset=0'), // fetchFeed
+  get: (slug) => requests.get(`/articles/${slug}`), // getArticle
+  unfavorite: (slug) => requests.del(`/articles/${slug}/favorite`), // deleteLikeArticle
+  update: (article) => requests.put(`/articles/${article.slug}`, { article: omitSlug(article) }), // patchArticle
+  create: (article) => requests.post('/articles', { article }), // postArticle
 };
 
 const Comments = {
-  create: (slug, comment) => requests.post(`/articles/${slug}/comments`, { comment }),
-  delete: (slug, commentId) => requests.del(`/articles/${slug}/comments/${commentId}`),
-  forArticle: (slug) => requests.get(`/articles/${slug}/comments`),
+  create: (slug, comment) => requests.post(`/articles/${slug}/comments`, { comment }), // postComment
+  delete: (slug, commentId) => requests.del(`/articles/${slug}/comments/${commentId}`),  // deleteComment
+  forArticle: (slug) => requests.get(`/articles/${slug}/comments`), // fetchComments
 };
 
 const Profile = {
-  follow: (username) => requests.post(`/profiles/${username}/follow`),
-  get: (username) => requests.get(`/profiles/${username}`),
-  unfollow: (username) => requests.del(`/profiles/${username}/follow`),
+  follow: (username) => requests.post(`/profiles/${username}/follow`), // postFollowProfile
+  get: (username) => requests.get(`/profiles/${username}`), // fetchProfile
+  unfollow: (username) => requests.del(`/profiles/${username}/follow`), // deleteFollowProfile
 };
 
 export default {

@@ -4,28 +4,41 @@ export type TUser = {
     email: string;
     token: string;
     username: string;
+    bio?: string;
+    image?:string;
 }
 
-export type TAuthor = {
+
+// Исправлено и переименовано по модели данных сервера
+export type TProfile = {
     following: boolean;
     image: string;
     username: string;
+    bio?: string;
 }
 
+export type TTags = Array<string>;
+
 export type TArticle = {
-    author: TAuthor;
+    author: TProfile;
     body: string;
     createdAt: string;
     description: string;
     favorited: boolean;
     favoritesCount: number;
     slug: string;
-    tagList: any;
+    // Тип tagList в ответе сервера: Array<string>
+    tagList: TTags;
     title: string;
     updatedAt: string;
-    articlesCount: number;
+    // Это поле присутствует **только** в ответе сервера, отдельным полем на одном уровне с articles
+    //  articlesCount: number;
 }
 
+// Исправлено по модели данных сервера
 export type TComment = {
+    id: string;
     body: string;
+    createdAt: string;
+    author: TProfile;
 }
