@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from "react";
-import { TAuthor } from "../../services/types";
+import { TAuthor } from "../../types/types";
 
 
 export const FollowUserButton: FC<{ isUser: boolean, user: TAuthor, follow: (key: string) => void, unfollow: (key: string) => void }> = ({ isUser, user, follow, unfollow }) => {
