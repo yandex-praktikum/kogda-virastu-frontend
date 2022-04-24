@@ -4,6 +4,7 @@ import { FollowUserButton } from "./ui_lib/follow-user-button";
 import React from "react";
 
 import { ListErrors } from "./ui_lib/list-error";
+import { SettingsForm } from "./settings-form";
 
 
 
@@ -21,4 +22,5 @@ import { ListErrors } from "./ui_lib/list-error";
 
 
 
-export { EditProfileSettings, FollowUserButton, Profile, ListErrors }
+export { EditProfileSettings, FollowUserButton, Profile, ListErrors, SettingsForm }
+
