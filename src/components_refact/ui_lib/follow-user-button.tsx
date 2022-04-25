@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from "react";
-import { TAuthor } from "../../types/types";
+import { TProfile } from "../../types/types";
 
 
-export const FollowUserButton: FC<{ isUser: boolean, user: TAuthor, follow: (key: string) => void, unfollow: (key: string) => void }> = ({ isUser, user, follow, unfollow }) => {
+export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: (key: string) => void, unfollow: (key: string) => void }> = ({ isUser, user, follow, unfollow }) => {
     if (isUser) {
         return null;
     }

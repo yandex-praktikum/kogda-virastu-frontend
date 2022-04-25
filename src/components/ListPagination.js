@@ -9,6 +9,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const ListPagination = props => {
+
+ 
   if (props.articlesCount <= 10) {
     return null;
   }

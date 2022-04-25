@@ -1,28 +1,48 @@
 import React, { FC, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { EditProfileSettings, FollowUserButton } from "./index";
-import ArticleList from "../components/ArticleList";
+import { EditProfileSettings, FollowUserButton, ArticleList } from "../index";
 import { useSelector, useDispatch } from 'react-redux';
-import { FOLLOW_USER, UNFOLLOW_USER } from "../constants/actionTypes";
-import agent from "../agent";
+import { FOLLOW_USER, UNFOLLOW_USER } from "../../constants/actionTypes";
+import agent from "../../agent";
+import { useEffect } from "react";
+import { fetchProfile, fetchArticles, postFollowProfile, deleteFollowProfile} from "../../services/api";
+import { PROFILE_PAGE_LOADED, PROFILE_PAGE_UNLOADED } from "../../constants";
+
+
+
 
 export const Profile: FC = () => {
     const dispatch = useDispatch()
     const { username, profile } = useSelector((state: any) => state.profile)
     const { currentUser } = useSelector((state: any) => state.common)
-    const {pager, articles, articlesCount, currentPage} = useSelector((state:any) => state.articleList)
+    const { pager, articles, articlesCount, currentPage } = useSelector((state: any) => state.articleList)
+    
+
+    const onLoad = React.useCallback((payload: Promise<any>) => {
+        dispatch({ type: PROFILE_PAGE_LOADED, payload })
+   },[])
+
+    useEffect(() => {
+        const author = username
+        onLoad(Promise.all([fetchProfile(username), fetchArticles(5,0,author)]))
+        return () => {
+            dispatch({ type: PROFILE_PAGE_UNLOADED })
+        }
+    })
+
+  
 
     const onFollow = () => {
         dispatch({
             type: FOLLOW_USER,
-            payload: agent.Profile.follow(username)
+            payload: postFollowProfile(username)
         })
     }
 
     const onUnfollow = () => {
         dispatch({
             type: UNFOLLOW_USER,
-            payload: agent.Profile.unfollow(username)
+            payload:deleteFollowProfile(username)
           })
     }
 
