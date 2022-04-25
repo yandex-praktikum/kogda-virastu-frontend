@@ -1,14 +1,15 @@
-import article from './reducers/article.ts';
-import articleList from './reducers/articleList.ts';
-import auth from './reducers/auth.ts';
-import { combineReducers } from 'redux';
-import common from './reducers/common.ts';
-import editor from './reducers/editor.ts';
-import home from './reducers/home.ts';
-import profile from './reducers/profile.ts';
-import settings from './reducers/settings.ts';
-export const  reducer = () => 
-combineReducers({
+import { combineReducers } from "redux";
+import article from "./reducers/article";
+import articleList from "./reducers/articleList";
+import auth from "./reducers/auth";
+
+import common from "./reducers/common";
+import editor from "./reducers/editor";
+import home from "./reducers/home";
+import profile from "./reducers/profile";
+import settings from "./reducers/settings";
+
+export default combineReducers({
   article,
   articleList,
   auth,
@@ -18,4 +19,3 @@ combineReducers({
   profile,
   settings,
 });
-export default reducer
