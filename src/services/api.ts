@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
   API_ROOT, LOGIN_ROUTE, REGISTER_ROUTE, USER_ROUTE,
@@ -99,7 +100,11 @@ const injectBearerToken = (requestConfig : AxiosRequestConfig) : AxiosRequestCon
 
 const blogAPI : AxiosInstance = axios.create(defaultRequestConfig);
 
-export const registerUser : IRegisterUser = (username: string, email: string, password: string) : AxiosPromise<TAPIUser> => {
+export const registerUser : IRegisterUser = (
+  username: string,
+  email: string,
+  password: string,
+) : AxiosPromise<TAPIUser> => {
   const registerData : TAPINewUser = {
     user: { username, email, password },
   };
@@ -108,6 +113,7 @@ export const registerUser : IRegisterUser = (username: string, email: string, pa
     data: registerData,
     method: 'post',
   };
+  // eslint-disable @typescript-eslint/no-unsafe-return
   return blogAPI(requestConfig);
 };
 
@@ -119,7 +125,10 @@ export const fetchCurrentUser : IFetchUser = () : AxiosPromise<TAPIUser> => {
   return blogAPI(requestConfig);
 };
 
-export const loginUser : ILoginUser = (email: string, password: string) : AxiosPromise<TAPIUser> => {
+export const loginUser : ILoginUser = (
+  email: string,
+  password: string,
+) : AxiosPromise<TAPIUser> => {
   const loginData : TAPILoginUser = {
     user: { email, password },
   };
@@ -131,7 +140,13 @@ export const loginUser : ILoginUser = (email: string, password: string) : AxiosP
   return blogAPI(requestConfig);
 };
 
-export const patchCurrentUser : IPatchUser = (username?: string, email?: string, password?: string, bio?: string, image?: string) : AxiosPromise<TAPIUser> => {
+export const patchCurrentUser : IPatchUser = (
+  username?: string,
+  email?: string,
+  password?: string,
+  bio?: string,
+  image?: string,
+) : AxiosPromise<TAPIUser> => {
   const patchData : TAPIPatchUser = {
     user: {
       username, email, password, bio, image,
@@ -148,7 +163,13 @@ export const patchCurrentUser : IPatchUser = (username?: string, email?: string,
   return blogAPI(requestConfig);
 };
 
-export const fetchArticles : IFetchArticles = (limit?: number, offset?: number, tag?: string, author?: string, favorited?: string) : AxiosPromise<TAPIArticles> => {
+export const fetchArticles : IFetchArticles = (
+  limit?: number,
+  offset?: number,
+  tag?: string,
+  author?: string,
+  favorited?: string,
+) : AxiosPromise<TAPIArticles> => {
   const requestConfig : AxiosRequestConfig = {
     url: ARTICLES_ROUTE,
     params: makeParams(limit, offset, tag, author, favorited),
@@ -157,7 +178,11 @@ export const fetchArticles : IFetchArticles = (limit?: number, offset?: number, 
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchFeed : IFetchFeed = (limit?: number, offset?: number, tag?: string) : AxiosPromise<TAPIArticles> => {
+export const fetchFeed : IFetchFeed = (
+  limit?: number,
+  offset?: number,
+  tag?: string,
+) : AxiosPromise<TAPIArticles> => {
   const requestConfig : AxiosRequestConfig = {
     url: FEED_ROUTE,
     params: makeParams(limit, offset, tag),
@@ -174,7 +199,12 @@ export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIAr
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const postArticle : IPostArticle = (title: string, description: string, body: string, tagList: TTags) : AxiosPromise<TAPIArticle> => {
+export const postArticle : IPostArticle = (
+  title: string,
+  description: string,
+  body: string,
+  tagList: TTags,
+) : AxiosPromise<TAPIArticle> => {
   const postData = {
     article: {
       body, description, tagList, title,
@@ -198,7 +228,13 @@ export const deleteArticle : IDeleteArticle = (slug: string) : AxiosPromise<null
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const patchArticle : IPatchArticle = (slug: string, title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle> => {
+export const patchArticle : IPatchArticle = (
+  slug: string,
+  title: string,
+  description: string,
+  body: string,
+  tagList: Array<string>,
+) : AxiosPromise<TAPIArticle> => {
   const patchData = {
     article: {
       body, description, tagList, title,
@@ -246,7 +282,10 @@ export const fetchComments : IFetchComments = (slug: string) : AxiosPromise<TAPI
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const postComment : IPostComment = (slug: string, body: string) : AxiosPromise<TAPIComment> => {
+export const postComment : IPostComment = (
+  slug: string,
+  body: string,
+) : AxiosPromise<TAPIComment> => {
   const postData = {
     comment: { body },
   };
