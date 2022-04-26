@@ -35,9 +35,9 @@ export type TArticleCore = {
   body: string;
   tagList: TTags;
 };
+
 export type TArticles = Array<TArticle>;
 
-// Исправлено по модели данных сервера
 export type TComment = {
   id: string;
   body: string;
