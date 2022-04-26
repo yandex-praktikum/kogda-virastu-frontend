@@ -5,9 +5,10 @@ import {
     LOGIN,
     LOGOUT,
     REGISTER
-} from './constants/actionTypes';
+} from './constants/actionTypes.ts';
 
 const promiseMiddleware = store => next => action => {
+
     if (isPromise(action.payload)) {
         store.dispatch({ type: ASYNC_START, subtype: action.type });
 
@@ -47,22 +48,21 @@ const promiseMiddleware = store => next => action => {
 };
 
 const localStorageMiddleware = store => next => action => {
+    console.log('test')
+
     if (action.type === REGISTER || action.type === LOGIN) {
+
         if (!action.error) {
             window.localStorage.setItem('jwt', action.payload.user.token);
             agent.setToken(action.payload.user.token);
         }
-    } else if (action.type === LOGOUT) {
-        window.localStorage.setItem('jwt', '');
-        agent.setToken(null);
+
+        next(action);
+    };
+
+    function isPromise(v) {
+        return v && typeof v.then === 'function';
     }
 
-    next(action);
-};
-
-function isPromise(v) {
-    return v && typeof v.then === 'function';
 }
-
-
 export { promiseMiddleware, localStorageMiddleware }

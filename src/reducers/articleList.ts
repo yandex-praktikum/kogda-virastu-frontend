@@ -12,7 +12,27 @@ import {
   PROFILE_FAVORITES_PAGE_UNLOADED
 } from '../constants/actionTypes';
 
-export default (state = {}, action) => {
+type TInitialState = {
+  articles: {
+    slug: string,
+    title: string,
+    description: string,
+    body: string,
+    createdAt: string,
+    updatedAt: string,
+    tagList: string[],
+    favorited: string,
+    favoritesCount: number,
+    author: string, 
+    tags: any
+  }[]
+}
+
+const initialState: TInitialState = {
+  articles: []
+}
+
+export default (state = initialState, action: any) => {
   switch (action.type) {
     case ARTICLE_FAVORITED:
     case ARTICLE_UNFAVORITED:
@@ -50,9 +70,9 @@ export default (state = {}, action) => {
       return {
         ...state,
         pager: action.pager,
-        tags: action.payload[0].tags,
-        articles: action.payload[1].articles,
-        articlesCount: action.payload[1].articlesCount,
+        tags: action.payload[0]?.tags,
+        articles: action.payload[1]?.articles,
+        articlesCount: action.payload[1]?.articlesCount,
         currentPage: 0,
         tab: action.tab
       };

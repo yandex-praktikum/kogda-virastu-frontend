@@ -8,7 +8,26 @@ import {
   UPDATE_FIELD_EDITOR
 } from '../constants/actionTypes';
 
-export default (state = {}, action) => {
+type TInitialState = {
+  articleSlug: string | null,
+  title: string | null,
+  description: string | null,
+  body: string | null,
+  tagInput: string | null,
+  tagList: string[],
+  [key: string]: any
+};
+
+const initialState: TInitialState = {
+  articleSlug: null,
+  title: null,
+  description: null,
+  body: null,
+  tagInput: null,
+  tagList: []
+};
+
+export default (state = initialState, action: any) => {
   switch (action.type) {
     case EDITOR_PAGE_LOADED:
       return {
@@ -36,7 +55,7 @@ export default (state = {}, action) => {
     case ADD_TAG:
       return {
         ...state,
-        tagList: state.tagList.concat([state.tagInput]),
+        tagList: state.tagList.concat([state.tagInput!]),
         tagInput: ''
       };
     case REMOVE_TAG:
