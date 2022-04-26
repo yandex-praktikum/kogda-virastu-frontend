@@ -32,7 +32,7 @@ module.exports = {
     },
     "ecmaVersion": 12, // Версия стандарта JavaScript. Последний 12 (2021).
     "sourceType": "module", // Позволяет использовать import/export
-    project: '../tsconfig.json'
+    project: './tsconfig.json'
   },
   ignorePatterns: ['*.cjs', 'src/reportWebVitals.js', 'src/reportWebVitals.ts', 'src/index.js'],
   rules: {
@@ -67,7 +67,6 @@ module.exports = {
         },
       ],
     'default-param-last': 'off',
-    '@typescript-eslint/rule-name': 'error',
   },
 }
 ;
