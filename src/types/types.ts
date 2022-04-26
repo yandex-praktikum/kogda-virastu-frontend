@@ -44,3 +44,5 @@ export type TComment = {
   createdAt: string;
   author: TProfile;
 };
+
+export type TComments = Array<TComment>;

@@ -36,6 +36,24 @@ import {
 
 import { setUser, clearUser } from './userSlice';
 
+import {
+  setViewFeed,
+  clearViewFeed,
+  setViewTags,
+  clearViewTags,
+  setViewArticle,
+  clearViewArticle,
+  setSelectedTags,
+  clearSelectedTags,
+  setViewCommentsFeed,
+  clearViewCommentsFeed,
+  selectViewComment,
+  clearViewComment,
+  setPage,
+  setPageLimit,
+  clearView,
+} from './viewSlice';
+
 export {
   setTitle,
   setDescription,
@@ -60,4 +78,19 @@ export {
   clearAll,
   setUser,
   clearUser,
+  setViewFeed,
+  clearViewFeed,
+  setViewTags,
+  clearViewTags,
+  setViewArticle,
+  clearViewArticle,
+  setSelectedTags,
+  clearSelectedTags,
+  setViewCommentsFeed,
+  clearViewCommentsFeed,
+  selectViewComment,
+  clearViewComment,
+  setPage,
+  setPageLimit,
+  clearView,
 };
