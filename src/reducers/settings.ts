@@ -4,7 +4,17 @@ import {
   ASYNC_START
 } from '../constants/actionTypes';
 
-export default (state = {}, action) => {
+type TInitialState = {
+  inProgress: boolean,
+  errors: string[] | null
+};
+
+const initialState: TInitialState = {
+  inProgress: false,
+  errors: null
+};
+
+export default (state = initialState, action: any) => {
   switch (action.type) {
     case SETTINGS_SAVED:
       return {

@@ -8,7 +8,7 @@ import {
   UNFOLLOW_USER,
   PROFILE_PAGE_LOADED,
   PROFILE_PAGE_UNLOADED
-} from '../constants/actionTypes';
+} from '../constants/actionTypes.ts';
 
 const EditProfileSettings = props => {
   if (props.isUser) {

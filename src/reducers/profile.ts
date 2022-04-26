@@ -5,7 +5,23 @@ import {
   UNFOLLOW_USER
 } from '../constants/actionTypes';
 
-export default (state = {}, action) => {
+type TInitialState = {
+  username: string | null,
+  email: string | null,
+  token: string | null,
+  bio: string | null,
+  image: string | null
+};
+
+const initialState: TInitialState = {
+  username: null,
+  email: null,
+  token: null,
+  bio: null,
+  image: null
+};
+
+export default (state = initialState, action: any) => {
   switch (action.type) {
     case PROFILE_PAGE_LOADED:
       return {
