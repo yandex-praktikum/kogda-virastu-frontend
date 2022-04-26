@@ -23,7 +23,8 @@ type TInitialState = {
     tagList: string[],
     favorited: string,
     favoritesCount: number,
-    author: string
+    author: string, 
+    tags: any
   }[]
 }
 
@@ -69,9 +70,9 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         pager: action.pager,
-        tags: action.payload[0].tags,
-        articles: action.payload[1].articles,
-        articlesCount: action.payload[1].articlesCount,
+        tags: action.payload[0]?.tags,
+        articles: action.payload[1]?.articles,
+        articlesCount: action.payload[1]?.articlesCount,
         currentPage: 0,
         tab: action.tab
       };

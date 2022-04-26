@@ -6,7 +6,7 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { APP_LOAD, REDIRECT } from "../constants/actionTypes.ts";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Article from "./Article";
-import Editor from "./Editor";
+import { Editor } from "../components_refact";
 import Home from "./Home";
 import Login from "./Login";
 import Profile from "./Profile";
@@ -41,7 +41,7 @@ export const App = () => {
   // const currentUser = useState('test')
   const common = useSelector((state) => state.common);
   console.log(common)
-  const { appLoaded, appName } = useSelector((state) => state.common);
+  const { appLoaded, appName, currentUser } = useSelector((state) => state.common);
   const location = useLocation();
   useEffect(() => {
     const token = window.localStorage.getItem("jwt");

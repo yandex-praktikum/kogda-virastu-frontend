@@ -14,6 +14,7 @@ export const ArticleList:FC<{pager: (page: number) => void, articlesCount: numbe
   }
 
   if (articles.length === 0) {
+    
     return (
       <div className="article-preview">
         No articles are here... yet.
