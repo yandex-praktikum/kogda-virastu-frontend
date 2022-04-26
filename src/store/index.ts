@@ -26,6 +26,15 @@ import {
   setImageProfile,
 } from './profileFormSubSlice';
 
+import {
+  setAllArticles,
+  setAllTags,
+  clearArticles,
+  clearTags,
+  clearAll,
+} from './allSlice';
+import { setUser, clearUser } from './userSlice';
+
 export {
   setTitle,
   setDescription,
@@ -43,4 +52,11 @@ export {
   setEmailProfile,
   setBioProfile,
   setImageProfile,
+  setAllArticles,
+  setAllTags,
+  clearArticles,
+  clearTags,
+  clearAll,
+  setUser,
+  clearUser,
 };
