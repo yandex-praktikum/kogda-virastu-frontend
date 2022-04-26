@@ -15,7 +15,9 @@ import { Tags } from "./tags/Tags";
 import Header from "./header";
 import HeaderLoggedInView from "./header-logged-in-view";
 import HeaderLoggedOutView from "./header-logged-out-view";
+import CommentList from "./comment-list";
 
+CommentList;
 export {
   EditProfileSettings,
   TagFilterTab,
@@ -34,4 +36,5 @@ export {
   ListPagination,
   ArticlePreview,
   CommentInput,
+  CommentList,
 };
