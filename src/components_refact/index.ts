@@ -7,7 +7,10 @@ import { Editor } from "./editor/Editor";
 import { ArticlePreview } from "./articleprevview/articlepreview";
 import { ListPagination } from "./listPagination/ListPagination";
 import { ArticleList } from "./articleList/ArticleList";
-
+import Banner from "./banner";
+import TagFilterTab from "./tag-filter-tab";
+import Comment from "./comment";
+import { Tags } from "./tags/Tags";
 import  Header  from './header';
 import HeaderLoggedInView from "./header-logged-in-view";
 import HeaderLoggedOutView from "./header-logged-out-view";
@@ -28,6 +31,6 @@ import HeaderLoggedOutView from "./header-logged-out-view";
 
 
 
-export { EditProfileSettings,Editor, FollowUserButton, Profile, ListErrors, SettingsForm, Header, HeaderLoggedInView, HeaderLoggedOutView, ArticleList, ListPagination, ArticlePreview }
+export { EditProfileSettings,TagFilterTab,Comment, Editor,Banner,Tags, FollowUserButton, Profile, ListErrors, SettingsForm, Header, HeaderLoggedInView, HeaderLoggedOutView, ArticleList, ListPagination, ArticlePreview }
 
 
