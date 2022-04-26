@@ -24,14 +24,17 @@ export type TArticle = {
   favorited: boolean;
   favoritesCount: number;
   slug: string;
-  // Тип tagList в ответе сервера: Array<string>
   tagList: TTags;
   title: string;
   updatedAt: string;
-  // Это поле присутствует **только** в ответе сервера, отдельным полем на одном уровне с articles
-  //  articlesCount: number;
 };
 
+export type TArticleCore = {
+  title: string;
+  description: string;
+  body: string;
+  tagList: TTags;
+};
 export type TArticles = Array<TArticle>;
 
 // Исправлено по модели данных сервера
