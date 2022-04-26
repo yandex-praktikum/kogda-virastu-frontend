@@ -1,38 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TUser } from '../types/types';
 
-type TInitialState = {
+type TProfileState = {
   username: string | null,
   email: string | null,
-  bio: string | null,
-  image: string | null
-}
+  bio?: string | null,
+  image?: string | null
+};
 
-const initialState:TInitialState = {
+const initialState: TProfileState = {
   username: null,
   email: null,
   bio: null,
-  image: null
-}
+  image: null,
+};
 
 const profileSlice = createSlice({
-  name: "profile",
-  initialState: initialState,
+  name: 'profile',
+  initialState,
   reducers: {
-    loginSuccess(state, action) {
-      const { username, email, bio, image } = action.payload;
-      state.username = username;
-      state.email = email;
-      state.bio =  bio;
-      state.image = image;
-    },
-    logoutUser(state) {
-      state.username = null;
-      state.email = null;
-      state.bio =  null;
-      state.image = null;
-    }
-  }
-})
+    setUser: (
+      state : TProfileState,
+      action: PayloadAction<TUser>,
+    ) => ({ ...state, ...action.payload }),
+    clearUser: (state : TProfileState) => ({
+      ...initialState,
+    }),
+  },
+});
 
 export const profileReducer = profileSlice.reducer;
-export const { loginSuccess, logoutUser } = profileSlice.actions; 
+export const { setUser, clearUser } = profileSlice.actions;
+export default profileReducer;
