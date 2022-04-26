@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import { promiseMiddleware, localStorageMiddleware } from './middleware';
-import reducer from './reducer';
+import reducer from '../reducer';
 
 const store = configureStore({
   reducer,

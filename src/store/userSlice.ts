@@ -1,34 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUser } from '../types/types';
 
-type TProfileState = {
+type TUserState = {
   username: string | null,
   email: string | null,
   bio?: string | null,
   image?: string | null
 };
 
-const initialState: TProfileState = {
+const initialState: TUserState = {
   username: null,
   email: null,
   bio: null,
   image: null,
 };
 
-const profileSlice = createSlice({
-  name: 'profile',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     setUser: (
-      state : TProfileState,
+      state : TUserState,
       action: PayloadAction<TUser>,
     ) => ({ ...state, ...action.payload }),
-    clearUser: (state : TProfileState) => ({
-      ...initialState,
+    clearUser: (state : TUserState) => ({
+      ...state, ...initialState,
     }),
   },
 });
 
-export const profileReducer = profileSlice.reducer;
-export const { setUser, clearUser } = profileSlice.actions;
-export default profileReducer;
+const userReducer = userSlice.reducer;
+export const { setUser, clearUser } = userSlice.actions;
+export default userReducer;
