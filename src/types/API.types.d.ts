@@ -8,6 +8,7 @@ import {
   TAPITags,
   TAPIUser,
 } from '../services/api.types';
+import { TTags } from './types';
 
 export interface IRegisterUser {
   (username: string, email: string, password: string) : AxiosPromise<TAPIUser>;
@@ -22,11 +23,19 @@ export interface IFetchUser {
 }
 
 export interface IPatchUser {
-  (username?: string, email?: string, password?: string, bio?: string, image?:string) : AxiosPromise<TAPIUser>;
+  (username?: string,
+    email?: string,
+    password?: string,
+    bio?: string,
+    image?:string) : AxiosPromise<TAPIUser>;
 }
 
 export interface IFetchArticles {
-  (limit?: number, offset?: number, tag?: string, author?: string, favorited?: string) : AxiosPromise<TAPIArticles>;
+  (limit?: number,
+    offset?: number,
+    tag?: string,
+    author?: string,
+    favorited?: string) : AxiosPromise<TAPIArticles>;
 }
 
 export interface IFetchFeed {
@@ -38,7 +47,12 @@ export interface IFetchArticle {
 }
 
 export interface IPostArticle {
-  (title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle>;
+  (title: string,
+    description: string,
+    body: string,
+    tagList: TTags,
+    link?: string,
+  ) : AxiosPromise<TAPIArticle>;
 }
 
 export interface IDeleteArticle {
@@ -46,7 +60,12 @@ export interface IDeleteArticle {
 }
 
 export interface IPatchArticle {
-  (slug: string, title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle>;
+  (slug: string,
+    title: string,
+    description: string,
+    body: string,
+    tagList: TTags,
+    link?: string,) : AxiosPromise<TAPIArticle>;
 }
 
 export interface ILikeArticle {

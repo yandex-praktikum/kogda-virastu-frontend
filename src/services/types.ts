@@ -1,31 +1,48 @@
-import { ServerStreamFileResponseOptionsWithError } from 'http2';
-
 export type TUser = {
   email: string;
-  token: string;
   username: string;
+  bio?: string;
+  image?:string;
 };
 
-export type TAuthor = {
+export type TProfile = {
   following: boolean;
-  image: string;
+  image?: string;
   username: string;
+  email: string;
+  bio?: string;
 };
+
+export type TTags = Array<string>;
 
 export type TArticle = {
-  author: TAuthor;
+  author: TProfile;
   body: string;
   createdAt: string;
   description: string;
+  link?: string;
   favorited: boolean;
   favoritesCount: number;
   slug: string;
-  tagList: any;
+  tagList: TTags;
   title: string;
   updatedAt: string;
-  articlesCount: number;
 };
 
-export type TComment = {
+export type TArticleCore = {
+  title: string;
+  description: string;
   body: string;
+  tagList: TTags;
 };
+
+export type TArticles = Array<TArticle>;
+
+export type TComment = {
+  id: string;
+  body: string;
+  createdAt: string;
+  author: TProfile;
+};
+
+export type TComments = Array<TComment>;
