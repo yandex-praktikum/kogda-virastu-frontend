@@ -204,10 +204,11 @@ export const postArticle : IPostArticle = (
   description: string,
   body: string,
   tagList: TTags,
+  link?: string,
 ) : AxiosPromise<TAPIArticle> => {
   const postData = {
     article: {
-      body, description, tagList, title,
+      body, description, tagList, title, link,
     },
   };
 
@@ -233,11 +234,12 @@ export const patchArticle : IPatchArticle = (
   title: string,
   description: string,
   body: string,
-  tagList: Array<string>,
+  tagList: TTags,
+  link?:string,
 ) : AxiosPromise<TAPIArticle> => {
   const patchData = {
     article: {
-      body, description, tagList, title,
+      body, description, tagList, title, link,
     },
   };
 

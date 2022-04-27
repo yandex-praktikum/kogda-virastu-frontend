@@ -34,6 +34,7 @@ export type TArticleCore = {
   description: string;
   body: string;
   tagList: TTags;
+  link?: string,
 };
 
 export type TArticles = Array<TArticle>;
