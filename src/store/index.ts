@@ -54,6 +54,32 @@ import {
   clearView,
 } from './viewSlice';
 
+import {
+  setSuccessMessage,
+  setErrorMessage,
+  userRegistered,
+  userLogged,
+  currentUserFetched,
+  currentUserPatched,
+  articlesFetched,
+  articleFetched,
+  feedFetched,
+  articlePosted,
+  articleDeleted,
+  articlePatched,
+  likeArticlePosted,
+  likeArticleDeleted,
+  tagsFetched,
+  commentsFetched,
+  commentPosted,
+  commentDeleted,
+  profileFetched,
+  followProfilePosted,
+  followProfileDeleted
+} from './apiSlice';
+
+import { setSelectedLanguage } from './system';
+
 export {
   setTitle,
   setDescription,
@@ -93,4 +119,26 @@ export {
   setPage,
   setPageLimit,
   clearView,
+  setSuccessMessage,
+  setErrorMessage,
+  userRegistered,
+  userLogged,
+  currentUserFetched,
+  currentUserPatched,
+  articlesFetched,
+  articleFetched,
+  feedFetched,
+  articlePosted,
+  articleDeleted,
+  articlePatched,
+  likeArticlePosted,
+  likeArticleDeleted,
+  tagsFetched,
+  commentsFetched,
+  commentPosted,
+  commentDeleted,
+  profileFetched,
+  followProfilePosted,
+  followProfileDeleted,
+  setSelectedLanguage
 };

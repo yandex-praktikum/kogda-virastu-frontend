@@ -46,3 +46,18 @@ export type TComment = {
 };
 
 export type TComments = Array<TComment>;
+
+export type TLanguage = {
+  [elName: string]: string;
+}
+
+export type TLanguagesData = {
+  ru: TLanguage,
+  en: TLanguage,
+  be?: TLanguage,
+  uk?: TLanguage,
+  zh?: TLanguage,
+  kk?: TLanguage,
+  fr?: TLanguage,
+  de?: TLanguage
+}
