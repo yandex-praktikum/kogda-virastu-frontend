@@ -163,7 +163,7 @@ export const patchCurrentUser : IPatchUser = (
   return blogAPI(requestConfig);
 };
 
-export const fetchArticles : IFetchArticles = (
+export const fetchPublicFeed : IFetchArticles = (
   limit?: number,
   offset?: number,
   tag?: string,
@@ -178,7 +178,7 @@ export const fetchArticles : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchFeed : IFetchFeed = (
+export const fetchPrivateFeed : IFetchFeed = (
   limit?: number,
   offset?: number,
   tag?: string,
