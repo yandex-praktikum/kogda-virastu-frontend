@@ -95,4 +95,5 @@ export const {
   setPageLimit,
   clearView,
 } = viewSlice.actions;
-export default viewSlice.reducer;
+const viewReducer = viewSlice.reducer;
+export default viewReducer;

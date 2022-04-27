@@ -34,7 +34,7 @@ module.exports = {
     "sourceType": "module", // Позволяет использовать import/export
     project: './tsconfig.json'
   },
-  ignorePatterns: ['*.cjs', 'src/reportWebVitals.js', 'src/reportWebVitals.ts', 'src/index.js'],
+  ignorePatterns: ['*.cjs', 'src/reportWebVitals.js', 'src/reportWebVitals.ts'],
   rules: {
     'no-underscore-dangle': [
       'error',
