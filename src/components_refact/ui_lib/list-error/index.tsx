@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 export const ListErrors: FC<{
   errors: {
@@ -7,17 +7,16 @@ export const ListErrors: FC<{
 }> = ({ errors }) => {
   if (errors) {
     return (
-      <ul className="error-messages">
-        {Object.keys(errors).map((key) => {
-          return (
-            <li key={key}>
-              {key} {errors[key]}
-            </li>
-          );
-        })}
+      <ul className='error-messages'>
+        {Object.keys(errors).map((key) => (
+          <li key={key}>
+            {key}
+            {' '}
+            {errors[key]}
+          </li>
+        ))}
       </ul>
     );
-  } else {
-    return null;
   }
+  return null;
 };

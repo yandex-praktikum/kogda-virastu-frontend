@@ -1,18 +1,17 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-const TagFilterTab : FC<{tag: string}> = ({tag}) => {
-
-  return (
-    tag
-     ?
-      <li className="nav-item">
-        <a href="" className="nav-link active">
-          <i className="ion-pound"></i> {tag}
+const TagFilterTab : FC<{ tag: string }> = ({ tag }) => (
+  tag
+    ? (
+      <li className='nav-item'>
+        <a href='' className='nav-link active'>
+          <i className='ion-pound' />
+          {' '}
+          {tag}
         </a>
       </li>
-    :
-      null
-  );
-};
+    )
+    : null
+);
 
 export default TagFilterTab;

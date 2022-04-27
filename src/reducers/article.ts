@@ -3,7 +3,7 @@ import {
   ARTICLE_PAGE_UNLOADED,
   ADD_COMMENT,
   DELETE_COMMENT,
-  TArticleActions
+  TArticleActions,
 } from '../constants/actionTypes';
 
 type TInitialState = {
@@ -14,13 +14,13 @@ type TInitialState = {
     createdAt: string,
     author: string }[],
   commentErrors: string
-}
+};
 
 const initialState: TInitialState = {
   article: null,
   comments: [],
-  commentErrors: ''
-}
+  commentErrors: '',
+};
 
 export default (state = initialState, action: any) => {
   switch (action.type) {
@@ -28,7 +28,7 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         article: action.payload[0].article,
-        comments: action.payload[1].comments
+        comments: action.payload[1].comments,
       };
     case ARTICLE_PAGE_UNLOADED:
       return {};
@@ -36,15 +36,15 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         commentErrors: action.error ? action.payload.errors : null,
-        comments: action.error ?
-          null :
-          (state.comments || []).concat([action.payload.comment])
+        comments: action.error
+          ? null
+          : (state.comments || []).concat([action.payload.comment]),
       };
     case DELETE_COMMENT:
-      const commentId = action.commentId
+      const { commentId } = action;
       return {
         ...state,
-        comments: state.comments.filter(comment => comment.id !== commentId)
+        comments: state.comments.filter((comment) => comment.id !== commentId),
       };
     default:
       return state;

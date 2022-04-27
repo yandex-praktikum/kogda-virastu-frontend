@@ -1,22 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   all: [],
-  tags: []
-}
+  tags: [],
+};
 
 const articlesSlice = createSlice({
   name: 'articles',
-  initialState: initialState,
+  initialState,
   reducers: {
     getArticlesSuccess(state, action) {
       state.all = action.payload;
     },
     getTagsSuccess(state, action) {
       state.tags = action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
 export const articlesReducer = articlesSlice.reducer;
-export const { getArticlesSuccess, getTagsSuccess } = articlesSlice.actions; 
+export const { getArticlesSuccess, getTagsSuccess } = articlesSlice.actions;

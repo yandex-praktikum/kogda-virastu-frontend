@@ -14,7 +14,7 @@ import {
   PROFILE_FAVORITES_PAGE_UNLOADED,
   SETTINGS_PAGE_UNLOADED,
   LOGIN_PAGE_UNLOADED,
-  REGISTER_PAGE_UNLOADED
+  REGISTER_PAGE_UNLOADED,
 } from '../constants/actionTypes';
 
 type TInitialState = {
@@ -23,12 +23,12 @@ type TInitialState = {
   viewChangeCounter: number,
   redirectTo?: string,
   currentUser?: {}
-}
+};
 
 const initialState: TInitialState = {
   appName: 'Practicum Project Kitchen',
   token: null,
-  viewChangeCounter: 0
+  viewChangeCounter: 0,
 };
 
 export default (state = initialState, action: any) => {
@@ -38,12 +38,14 @@ export default (state = initialState, action: any) => {
         ...state,
         token: action.token || null,
         appLoaded: true,
-        currentUser: action.payload ? action.payload.user : null
+        currentUser: action.payload ? action.payload.user : null,
       };
     case REDIRECT:
       return { ...state, redirectTo: null };
     case LOGOUT:
-      return { ...state, redirectTo: '/', token: null, currentUser: null };
+      return {
+        ...state, redirectTo: '/', token: null, currentUser: null,
+      };
     case ARTICLE_SUBMITTED:
       const redirectUrl = `/article/${action.payload.article.slug}`;
       return { ...state, redirectTo: redirectUrl };
@@ -52,7 +54,7 @@ export default (state = initialState, action: any) => {
         ...state,
         redirectTo: action.error ? null : '/',
         // Зачем удаляем данные о юзере? если например ошибка в незаполненном поле
-        currentUser: action.error ? null : action.payload.user
+        currentUser: action.error ? null : action.payload.user,
       };
     case LOGIN:
     case REGISTER:
@@ -60,7 +62,7 @@ export default (state = initialState, action: any) => {
         ...state,
         redirectTo: action.error ? null : '/',
         token: action.error ? null : action.payload?.user.token,
-        currentUser: action.error ? null : action.payload.user
+        currentUser: action.error ? null : action.payload.user,
       };
     case DELETE_ARTICLE:
       return { ...state, redirectTo: '/' };

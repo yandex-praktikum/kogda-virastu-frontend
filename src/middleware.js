@@ -1,14 +1,14 @@
 import agent from './agent';
 import {
-    ASYNC_START,
-    ASYNC_END,
-    LOGIN,
-    LOGOUT,
-    REGISTER
+  ASYNC_START,
+  ASYNC_END,
+  LOGIN,
+  LOGOUT,
+  REGISTER,
 } from './constants/actionTypes.ts';
 
-const promiseMiddleware = store => next => action => {
-    /*
+const promiseMiddleware = (store) => (next) => (action) => {
+  /*
     if (isPromise(action.payload)) {
       store.dispatch({ type: ASYNC_START, subtype: action.type });
 
@@ -44,27 +44,24 @@ const promiseMiddleware = store => next => action => {
           return;
       }
 
-    next(action);*/
+    next(action); */
 };
 
-const localStorageMiddleware = store => next => action => {
-    console.log('test')
-        /*
+const localStorageMiddleware = (store) => (next) => (action) => {
+  console.log('test');
+  /*
         if (action.type === REGISTER || action.type === LOGIN) {
-          
+
           if (!action.error) {
             window.localStorage.setItem('jwt', action.payload.user.token);
             agent.setToken(action.payload.user.token);
           }
 
-        next(action);*/
+        next(action); */
 
-
-    next(action);
+  next(action);
 };
 
-function isPromise(v) {
-    return v && typeof v.then === 'function';
-}
+const isPromise = (v) => v && typeof v.then === 'function';
 
-export { promiseMiddleware, localStorageMiddleware }
+export { promiseMiddleware, localStorageMiddleware };

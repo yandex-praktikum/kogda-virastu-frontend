@@ -1,13 +1,12 @@
-import React, { FC } from "react";
-import { fetchArticles } from "../../services/api";
+import React, { FC } from 'react';
+import { fetchArticles } from '../../services/api';
 
-export const Tags: FC<{tags:string[], onClickTag:(key:string)=> void }> = ({tags, onClickTag}) => {
-   
+export const Tags: FC<{ tags:string[], onClickTag:(key:string)=> void }> = ({ tags, onClickTag }) => {
   if (tags) {
     return (
-      <div className="tag-list">
+      <div className='tag-list'>
         {
-          tags.map(tag => {
+          tags.map((tag) => {
             const handleClick = (ev:React.MouseEvent) => {
               ev.preventDefault();
               onClickTag(tag);
@@ -15,8 +14,8 @@ export const Tags: FC<{tags:string[], onClickTag:(key:string)=> void }> = ({tags
 
             return (
               <a
-                href=""
-                className="tag-default tag-pill"
+                href=''
+                className='tag-default tag-pill'
                 key={tag}
                 onClick={handleClick}>
                 {tag}
@@ -26,11 +25,8 @@ export const Tags: FC<{tags:string[], onClickTag:(key:string)=> void }> = ({tags
         }
       </div>
     );
-  } else {
-    return (
-      <div>Loading Tags...</div>
-    );
   }
+  return (
+    <div>Loading Tags...</div>
+  );
 };
-  
-

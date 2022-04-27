@@ -188,9 +188,9 @@ export type TArticleActions =
   | IArticlePageLoadedAction
   | IArticlePageUnloadedAction
   | IAddCommentAction
-  | IDeleteCommentAction
+  | IDeleteCommentAction;
 
-export type TAppActions = 
+export type TAppActions =
   | IAppLoadAction
   | IRedirectAction
   | IArticleSubmittedAction
@@ -221,5 +221,4 @@ export type TAppActions =
   | IFollowUserAction
   | IUnfollowUserAction
   | IProfileFavoritesPageUnloadedAction
-  | IProfileFavoritesPageLoadedAction
-
+  | IProfileFavoritesPageLoadedAction;

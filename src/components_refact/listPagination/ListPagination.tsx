@@ -10,7 +10,7 @@ export const ListPagination: FC<{ pager: (page: number) => void, articlesCount: 
     return null;
   }
 
-    const range = [];
+  const range = [];
   for (let i = 0; i < Math.ceil(articlesCount / 10); ++i) {
     range.push(i);
   }

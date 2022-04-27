@@ -1,16 +1,4 @@
-import ListErrors from "../../components/ListErrors";
-import React from "react";
-import agent from "../../agent";
-import { connect } from "react-redux";
-import {
-  ADD_TAG,
-  EDITOR_PAGE_LOADED,
-  REMOVE_TAG,
-  ARTICLE_SUBMITTED,
-  EDITOR_PAGE_UNLOADED,
-  UPDATE_FIELD_EDITOR,
-} from "../../constants/actionTypes";
-import {
+import React, {
   useEffect,
   useMemo,
   useState,
@@ -18,7 +6,18 @@ import {
   KeyboardEvent,
   SyntheticEvent,
   FC,
-} from "react";
+} from 'react';
+import { connect } from 'react-redux';
+import ListErrors from '../../components/ListErrors';
+import agent from '../../agent';
+import {
+  ADD_TAG,
+  EDITOR_PAGE_LOADED,
+  REMOVE_TAG,
+  ARTICLE_SUBMITTED,
+  EDITOR_PAGE_UNLOADED,
+  UPDATE_FIELD_EDITOR,
+} from '../../constants/actionTypes';
 
 const mapStateToProps = (state: any) => ({
   ...state.editor,
@@ -82,7 +81,7 @@ export const Editor: FC<IEditorProps> = (props: any) => {
   };
 
   const watchForEnter = (e: KeyboardEvent) => {
-    if (e.key === "Enter" && state.tags) {
+    if (e.key === 'Enter' && state.tags) {
       e.preventDefault();
       setState({ ...state, tagsList: [...state.tagsList, state.tags] });
     }
@@ -126,75 +125,67 @@ export const Editor: FC<IEditorProps> = (props: any) => {
   }, [props.match.params.slug]);
 
   return (
-    <div className="editor-page">
-      <div className="container page">
-        <div className="row">
-          <div className="col-md-10 offset-md-1 col-xs-12">
-            <ListErrors errors={props.errors}></ListErrors>
+    <div className='editor-page'>
+      <div className='container page'>
+        <div className='row'>
+          <div className='col-md-10 offset-md-1 col-xs-12'>
+            <ListErrors errors={props.errors} />
 
             <form>
               <fieldset>
-                <fieldset className="form-group">
+                <fieldset className='form-group'>
                   <input
-                    className="form-control form-control-lg"
-                    type="text"
-                    placeholder="Article Title"
+                    className='form-control form-control-lg'
+                    type='text'
+                    placeholder='Article Title'
                     value={state.title}
-                    onChange={onChangeTitle}
-                  />
+                    onChange={onChangeTitle} />
                 </fieldset>
 
-                <fieldset className="form-group">
+                <fieldset className='form-group'>
                   <input
-                    className="form-control"
-                    type="text"
+                    className='form-control'
+                    type='text'
                     placeholder="What's this article about?"
                     value={state.description}
-                    onChange={onChangeDescription}
-                  />
+                    onChange={onChangeDescription} />
                 </fieldset>
 
-                <fieldset className="form-group">
+                <fieldset className='form-group'>
                   <textarea
-                    className="form-control"
+                    className='form-control'
                     rows={8}
-                    placeholder="Write your article (in markdown)"
+                    placeholder='Write your article (in markdown)'
                     value={state.body}
-                    onChange={() => onChangeBody}
-                  ></textarea>
+                    onChange={() => onChangeBody} />
                 </fieldset>
 
-                <fieldset className="form-group">
+                <fieldset className='form-group'>
                   <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Enter tags"
+                    className='form-control'
+                    type='text'
+                    placeholder='Enter tags'
                     value={state.tags}
                     onChange={onChangeTags}
-                    onKeyUp={watchForEnter}
-                  />
+                    onKeyUp={watchForEnter} />
 
-                  <div className="tag-list">
-                    {(state.tagsList || []).map((tag: string) => {
-                      return (
-                        <span className="tag-default tag-pill" key={tag}>
-                          <i
-                            className="ion-close-round"
-                            onClick={removeTagHandler(tag)}
-                          ></i>
-                          {tag}
-                        </span>
-                      );
-                    })}
+                  <div className='tag-list'>
+                    {(state.tagsList || []).map((tag: string) => (
+                      <span className='tag-default tag-pill' key={tag}>
+                        <i
+                          className='ion-close-round'
+                          onClick={removeTagHandler(tag)} />
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </fieldset>
 
                 <button
-                  className="btn btn-lg pull-xs-right btn-primary"
-                  type="button"
+                  className='btn btn-lg pull-xs-right btn-primary'
+                  type='button'
                   disabled={props.inProgress}
-                  onClick={submitForm}
-                >
+                  onClick={submitForm}>
                   Publish Article
                 </button>
               </fieldset>

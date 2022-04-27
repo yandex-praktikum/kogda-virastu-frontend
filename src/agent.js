@@ -23,7 +23,7 @@ const requests = {
 };
 
 const Auth = {
-  current: () => requests.get('/user'), //getCurrentUser
+  current: () => requests.get('/user'), // getCurrentUser
   login: (email, password) => requests.post('/users/login', { user: { email, password } }), // loginUser
   register: (username, email, password) => requests.post('/users', { user: { username, email, password } }), // registerUser
   save: (user) => requests.put('/user', { user }), // patchUser
@@ -51,7 +51,7 @@ const Articles = {
 
 const Comments = {
   create: (slug, comment) => requests.post(`/articles/${slug}/comments`, { comment }), // postComment
-  delete: (slug, commentId) => requests.del(`/articles/${slug}/comments/${commentId}`),  // deleteComment
+  delete: (slug, commentId) => requests.del(`/articles/${slug}/comments/${commentId}`), // deleteComment
   forArticle: (slug) => requests.get(`/articles/${slug}/comments`), // fetchComments
 };
 

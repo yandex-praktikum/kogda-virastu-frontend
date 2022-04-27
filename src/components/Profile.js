@@ -1,29 +1,31 @@
-import ArticleList from './ArticleList';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import agent from '../agent';
 import { connect } from 'react-redux';
+import agent from '../agent';
+import ArticleList from './ArticleList';
 import {
   FOLLOW_USER,
   UNFOLLOW_USER,
   PROFILE_PAGE_LOADED,
-  PROFILE_PAGE_UNLOADED
+  PROFILE_PAGE_UNLOADED,
 } from '../constants/actionTypes.ts';
 
-const EditProfileSettings = props => {
+const EditProfileSettings = (props) => {
   if (props.isUser) {
     return (
       <Link
-        to="/settings"
-        className="btn btn-sm btn-outline-secondary action-btn">
-        <i className="ion-gear-a"></i> Edit Profile Settings
+        to='/settings'
+        className='btn btn-sm btn-outline-secondary action-btn'>
+        <i className='ion-gear-a' />
+        {' '}
+        Edit Profile Settings
       </Link>
     );
   }
   return null;
 };
 
-const FollowUserButton = props => {
+const FollowUserButton = (props) => {
   if (props.isUser) {
     return null;
   }
@@ -35,12 +37,12 @@ const FollowUserButton = props => {
     classes += ' btn-outline-secondary';
   }
 
-  const handleClick = ev => {
+  const handleClick = (ev) => {
     ev.preventDefault();
     if (props.user.following) {
-      props.unfollow(props.user.username)
+      props.unfollow(props.user.username);
     } else {
-      props.follow(props.user.username)
+      props.follow(props.user.username);
     }
   };
 
@@ -48,37 +50,39 @@ const FollowUserButton = props => {
     <button
       className={classes}
       onClick={handleClick}>
-      <i className="ion-plus-round"></i>
+      <i className='ion-plus-round' />
       &nbsp;
-      {props.user.following ? 'Unfollow' : 'Follow'} {props.user.username}
+      {props.user.following ? 'Unfollow' : 'Follow'}
+      {' '}
+      {props.user.username}
     </button>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state.articleList,
   currentUser: state.common.currentUser,
-  profile: state.profile
+  profile: state.profile,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onFollow: username => dispatch({
+const mapDispatchToProps = (dispatch) => ({
+  onFollow: (username) => dispatch({
     type: FOLLOW_USER,
-    payload: agent.Profile.follow(username)
+    payload: agent.Profile.follow(username),
   }),
-  onLoad: payload => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
-  onUnfollow: username => dispatch({
+  onLoad: (payload) => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
+  onUnfollow: (username) => dispatch({
     type: UNFOLLOW_USER,
-    payload: agent.Profile.unfollow(username)
+    payload: agent.Profile.unfollow(username),
   }),
-  onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED })
+  onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED }),
 });
 
 class Profile extends React.Component {
   componentWillMount() {
     this.props.onLoad(Promise.all([
       agent.Profile.get(this.props.match.params.username),
-      agent.Articles.byAuthor(this.props.match.params.username)
+      agent.Articles.byAuthor(this.props.match.params.username),
     ]));
   }
 
@@ -88,18 +92,18 @@ class Profile extends React.Component {
 
   renderTabs() {
     return (
-      <ul className="nav nav-pills outline-active">
-        <li className="nav-item">
+      <ul className='nav nav-pills outline-active'>
+        <li className='nav-item'>
           <Link
-            className="nav-link active"
+            className='nav-link active'
             to={`/@${this.props.profile.username}`}>
             My Articles
           </Link>
         </li>
 
-        <li className="nav-item">
+        <li className='nav-item'>
           <Link
-            className="nav-link"
+            className='nav-link'
             to={`/@${this.props.profile.username}/favorites`}>
             Favorited Articles
           </Link>
@@ -109,23 +113,23 @@ class Profile extends React.Component {
   }
 
   render() {
-    const profile = this.props.profile;
+    const { profile } = this.props;
     if (!profile) {
       return null;
     }
 
-    const isUser = this.props.currentUser &&
-      this.props.profile.username === this.props.currentUser.username;
+    const isUser = this.props.currentUser
+      && this.props.profile.username === this.props.currentUser.username;
 
     return (
-      <div className="profile-page">
+      <div className='profile-page'>
 
-        <div className="user-info">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-md-10 offset-md-1">
+        <div className='user-info'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-xs-12 col-md-10 offset-md-1'>
 
-                <img src={profile.image} className="user-img" alt={profile.username} />
+                <img src={profile.image} className='user-img' alt={profile.username} />
                 <h4>{profile.username}</h4>
                 <p>{profile.bio}</p>
 
@@ -134,20 +138,19 @@ class Profile extends React.Component {
                   isUser={isUser}
                   user={profile}
                   follow={this.props.onFollow}
-                  unfollow={this.props.onUnfollow}
-                  />
+                  unfollow={this.props.onUnfollow} />
 
               </div>
             </div>
           </div>
         </div>
 
-        <div className="container">
-          <div className="row">
+        <div className='container'>
+          <div className='row'>
 
-            <div className="col-xs-12 col-md-10 offset-md-1">
+            <div className='col-xs-12 col-md-10 offset-md-1'>
 
-              <div className="articles-toggle">
+              <div className='articles-toggle'>
                 {this.renderTabs()}
               </div>
 

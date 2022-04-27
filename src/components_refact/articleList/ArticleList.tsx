@@ -1,22 +1,19 @@
-import React, { FC } from "react";
-import { TArticle } from "../../types/types";
-import { ArticlePreview,ListPagination } from "../index";
+import React, { FC } from 'react';
+import { TArticle } from '../../types/types';
+import { ArticlePreview, ListPagination } from '../index';
 
-export const ArticleList:FC<{pager: (page: number) => void, articlesCount: number, state: number,articles:TArticle[] }> = ({pager, articlesCount, articles, state}) => {
-
-
-
-    
-       if (!articles) {
+export const ArticleList:FC<{ pager: (page: number) => void, articlesCount: number, state: number, articles:TArticle[] }> = ({
+  pager, articlesCount, articles, state,
+}) => {
+  if (!articles) {
     return (
-      <div className="article-preview">Loading...</div>
+      <div className='article-preview'>Loading...</div>
     );
   }
 
   if (articles.length === 0) {
-    
     return (
-      <div className="article-preview">
+      <div className='article-preview'>
         No articles are here... yet.
       </div>
     );
@@ -25,11 +22,9 @@ export const ArticleList:FC<{pager: (page: number) => void, articlesCount: numbe
   return (
     <div>
       {
-        articles.map(article => {
-         return (
-            <ArticlePreview article={article} key={article.slug} />
-          );
-        })
+        articles.map((article) => (
+          <ArticlePreview article={article} key={article.slug} />
+        ))
       }
 
       <ListPagination
@@ -38,6 +33,4 @@ export const ArticleList:FC<{pager: (page: number) => void, articlesCount: numbe
         currentPage={state} />
     </div>
   );
-        
-   
-}
+};

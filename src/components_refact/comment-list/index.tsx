@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { TComment } from "../../types/types";
-import Comment from "../../components/Article/Comment";
-import { TAuthor } from "../../services/types";
+import React, { FC } from 'react';
+import { TComment } from '../../types/types';
+import Comment from '../../components/Article/Comment';
+import { TAuthor } from '../../services/types';
 
 const CommentList: FC<{
   comments: [comment: TComment];
@@ -9,18 +9,16 @@ const CommentList: FC<{
   slug: string;
 }> = (props) => {
   1;
+
   return (
     <div>
-      {props.comments.map((comment) => {
-        return (
-          <Comment
-            comment={comment}
-            currentUser={props.currentUser}
-            slug={props.slug}
-            key={comment.id}
-          />
-        );
-      })}
+      {props.comments.map((comment) => (
+        <Comment
+          comment={comment}
+          currentUser={props.currentUser}
+          slug={props.slug}
+          key={comment.id} />
+      ))}
     </div>
   );
 };
