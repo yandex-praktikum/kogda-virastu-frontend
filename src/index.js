@@ -6,17 +6,13 @@ import store from './store/store';
 
 import App from './components/App';
 
-ReactDOM.render( <
-    React.StrictMode >
-    <
-    Provider store = { store } >
-    <
-    BrowserRouter >
-    <
-    App / >
-    <
-    /BrowserRouter> <
-    /Provider> <
-    /React.StrictMode>,
-    document.getElementById('root'),
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root'),
 );

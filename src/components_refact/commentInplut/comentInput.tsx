@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import agent from '../../agent';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
-import { ADD_COMMENT } from '../../constants/actionTypes.ts';
+import { ADD_COMMENT } from '../../constants/actionTypes';
 export const CommentInput = (props: any) => {
     const [body, setBody] = useState('');
     const dispatch = useDispatch();
