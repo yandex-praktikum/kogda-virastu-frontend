@@ -15,28 +15,23 @@ import { Tags } from "./tags/Tags";
 import Header from "./header";
 import HeaderLoggedInView from "./header-logged-in-view";
 import HeaderLoggedOutView from "./header-logged-out-view";
-import CommentList from "./comment-list";
-import { ArticleActions } from "./articleActions/ArticleActions";
 
 
-export {
-  EditProfileSettings,
-  TagFilterTab,
-  Comment,
-  Editor,
-  Banner,
-  Tags,
-  FollowUserButton,
-  Profile,
-  ListErrors,
-  SettingsForm,
-  Header,
-  HeaderLoggedInView,
-  HeaderLoggedOutView,
-  ArticleList,
-  ListPagination,
-  ArticlePreview,
-  CommentInput,
-  CommentList,
-  ArticleActions
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export { EditProfileSettings,Editor, FollowUserButton, Profile, ListErrors, SettingsForm, Header, HeaderLoggedInView, HeaderLoggedOutView, ArticleList, ListPagination, ArticlePreview }
+
+

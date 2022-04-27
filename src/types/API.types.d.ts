@@ -1,84 +1,84 @@
-import {AxiosPromise} from "axios";
+import { AxiosPromise } from 'axios';
 import {
-    TAPIArticle,
-    TAPIArticles,
-    TAPIComment,
-    TAPIComments,
-    TAPIProfile,
-    TAPITags,
-    TAPIUser
-} from "../services/api.types";
+  TAPIArticle,
+  TAPIArticles,
+  TAPIComment,
+  TAPIComments,
+  TAPIProfile,
+  TAPITags,
+  TAPIUser,
+} from '../services/api.types';
 
 export interface IRegisterUser {
-    (username: string, email: string, password: string) : AxiosPromise<TAPIUser>;
+  (username: string, email: string, password: string) : AxiosPromise<TAPIUser>;
 }
 
 export interface ILoginUser {
-    (email: string, password: string) : AxiosPromise<TAPIUser>;
+  (email: string, password: string) : AxiosPromise<TAPIUser>;
 }
 
 export interface IFetchUser {
-    () : AxiosPromise<TAPIUser>;
+  () : AxiosPromise<TAPIUser>;
 }
 
 export interface IPatchUser {
-    (username?: string, email?: string, password?: string, bio?: string, image?:string) : AxiosPromise<TAPIUser>;
- }
+  (username?: string, email?: string, password?: string, bio?: string, image?:string) : AxiosPromise<TAPIUser>;
+}
 
 export interface IFetchArticles {
-     (limit?: number, offset?: number, tag?: string, author?: string, favorited?: string) : AxiosPromise<TAPIArticles>;
- }
+  (limit?: number, offset?: number, tag?: string, author?: string, favorited?: string) : AxiosPromise<TAPIArticles>;
+}
 
 export interface IFetchFeed {
-     (limit?: number, offset?: number, tag?: string) : AxiosPromise<TAPIArticles>;
- }
+  (limit?: number, offset?: number, tag?: string) : AxiosPromise<TAPIArticles>;
+}
 
 export interface IFetchArticle {
-     (slug: string) : AxiosPromise<TAPIArticle>;
- }
+  (slug: string) : AxiosPromise<TAPIArticle>;
+}
 
- export interface IPostArticle {
-     (title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle>;
- }
+export interface IPostArticle {
+  (title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle>;
+}
 
- export interface IDeleteArticle {
-    (slug: string) : AxiosPromise<null>;
+export interface IDeleteArticle {
+  (slug: string) : AxiosPromise<null>;
 }
 
 export interface IPatchArticle {
-    (slug: string, title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle>;
+  (slug: string, title: string, description: string, body: string, tagList: Array<string>) : AxiosPromise<TAPIArticle>;
 }
 
 export interface ILikeArticle {
-    (slug: string) : AxiosPromise<TAPIArticle>;
+  (slug: string) : AxiosPromise<TAPIArticle>;
 }
 
 export interface IFetchTags {
-    () : AxiosPromise<TAPITags>
+  () : AxiosPromise<TAPITags>
 }
 
 export interface IFetchComments {
-    (slug: string) : AxiosPromise<TAPIComments>;
+  (slug: string) : AxiosPromise<TAPIComments>;
 }
 
 export interface IPostComment {
-    (slug: string, body: string ) : AxiosPromise<TAPIComment>;
+  (slug: string, body: string) : AxiosPromise<TAPIComment>;
 }
 
 export interface IDeleteComment {
-    (slug: string, id: string ) : AxiosPromise<null>;
+  (slug: string, id: string) : AxiosPromise<null>;
 }
 
 export interface IProfile {
-    (username: string) : AxiosPromise<TAPIProfile | null>
+  (username: string) : AxiosPromise<TAPIProfile | null>
 }
 
 export {
-    TAPIArticle,
-    TAPIArticles,
-    TAPIComment,
-    TAPIComments,
-    TAPIProfile,
-    TAPITags,
-    TAPIUser
+  TAPIArticle,
+  TAPIArticles,
+  TAPIComment,
+  TAPIComments,
+  TAPIProfile,
+  TAPITags,
+  TAPIUser,
 };
