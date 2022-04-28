@@ -1,15 +1,18 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import { TArticle } from '../../types/types';
-import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from '../../constants/actionTypes';
-import { postLikeArticle, deleteLikeArticle } from '../../services/api';
+import { deleteLikeThunk, addLikeThunk} from '../../thunks';
+
+
+
+const FAVORITED_CLASS = 'btn btn-sm btn-primary';
+const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
 export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
   const dispatch = useDispatch();
 
-  const FAVORITED_CLASS = 'btn btn-sm btn-primary';
-  const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
+
 
   const favoriteButtonClass = article.favorited
     ? FAVORITED_CLASS
@@ -18,11 +21,13 @@ export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
   const handleClick = (ev: React.MouseEvent) => {
     ev.preventDefault();
     if (article.favorited) {
-      dispatch({ type: ARTICLE_UNFAVORITED, payload: deleteLikeArticle(article.slug) });
+      dispatch(deleteLikeThunk(article.slug));
     } else {
-      dispatch({ type: ARTICLE_FAVORITED, payload: postLikeArticle(article.slug) });
+      dispatch(addLikeThunk(article.slug));
     }
   };
+
+
 
   return (
     <div className='article-preview'>
@@ -55,12 +60,12 @@ export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
         <span>Read more...</span>
         <ul className='tag-list'>
           {
-                        article.tagList.map((tag: any) => (
-                          <li className='tag-default tag-pill tag-outline' key={tag}>
-                            {tag}
-                          </li>
-                        ))
-                    }
+            article.tagList.map((tag: any) => (
+              <li className='tag-default tag-pill tag-outline' key={tag}>
+                {tag}
+              </li>
+            ))
+          }
         </ul>
       </Link>
     </div>
