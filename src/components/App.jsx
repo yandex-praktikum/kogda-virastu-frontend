@@ -32,23 +32,26 @@ const App = () => {
 
   }, [dispatch]);
 
-  /*  return (
-    <div>
-      <Header appName='test' currentUser={} />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/editor/:slug' element={<Editor />} />
-        <Route path='/editor' element={<Editor />} />
-        <Route path='/article/:id' element={<Article />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/@:username/favorites' element={<ProfileFavorites />} />
-        <Route path='/@:username' element={<Profile />} />
-      </Routes>
-    </div>
-  ); */
-  return (<div>загрузка...</div>);
+ const makeContent() => {
+
+  }
+
+  return (
+    {isLoggedIn ? (
+        <><><Header appName='test' currentUser/><Routes>
+          <Route exact path='/' element={<Home/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/editor/:slug' element={<Editor/>}/>
+          <Route path='/editor' element={<Editor/>}/>
+          <Route path='/article/:id' element={<Article/>}/>
+          <Route path='/settings' element={<Settings/>}/>
+          <Route path='/@:username/favorites' element={<ProfileFavorites/>}/>
+          <Route path='/@:username' element={<Profile/>}/>
+        </Routes></></>
+    ) : (return (<div>загрузка...</div>);)}
+  );
+  // return (<div>загрузка...</div>);
 };
 
 /*
