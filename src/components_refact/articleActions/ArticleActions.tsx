@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import { TArticle } from '../../types/types';
-import { DELETE_ARTICLE } from '../../constants';
-import { deleteArticle } from '../../services/api';
+
+import { deleteArticleThunk } from '../../thunks';
 
 export const ArticleActions: FC<{ article: TArticle, canModify: boolean }> = ({ article, canModify }) => {
   const dispatch = useDispatch();
   const del = () => {
-    dispatch({ type: DELETE_ARTICLE, payload: deleteArticle(article.slug) });
+    dispatch(deleteArticleThunk(article.slug));
   };
 
   if (canModify) {

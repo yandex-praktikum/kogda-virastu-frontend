@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import ArticleActions from './ArticleActions';
+import { ArticleActions } from '../../components_refact';
 
 const ArticleMeta = (props) => {
   const { article } = props;
