@@ -5,14 +5,18 @@ type TArticleFormState = {
   title: string | null,
   description: string | null,
   body: string | null,
-  tagList: string | null,
+  tags: string | null,
+  tagList: string[] | [],
+  image: string | null
 };
 
 const initialState : TArticleFormState = {
   title: null,
   description: null,
   body: null,
-  tagList: null,
+  tags: null,
+  image: null,
+  tagList: []
 };
 
 const articleSubSlice = createSlice({
@@ -28,10 +32,19 @@ const articleSubSlice = createSlice({
     setBody: (state : TArticleFormState, action: PayloadAction<string>) => ({
       ...state, body: action.payload,
     }),
-    setTags: (state : TArticleFormState, action: PayloadAction<string>) => ({
-      ...state, tagList: action.payload,
+    setImage: (state : TArticleFormState, action: PayloadAction<string>) => ({
+      ...state, image: action.payload,
     }),
-    setArticle: (state : TArticleFormState, action : PayloadAction<Omit<TArticleCore, 'tagList'> & { tagList: string }>) => ({
+    setTags: (state : TArticleFormState, action: PayloadAction<string>) => ({
+      ...state, tags: action.payload,
+    }),
+    setTaglist: (state : TArticleFormState, action: PayloadAction<string>) => ({
+      ...state, tagList: [...state.tagList!, action.payload],
+    }),
+    deleteTag: (state: TArticleFormState, action: any) => ({
+      ...state, tagList: state.tagList.filter((tag) => tag !== action.payload)
+    }),
+    setArticle: (state : TArticleFormState, action : PayloadAction<Omit<TArticleCore, 'tagList'>>) => ({
       ...state, ...action.payload,
     }),
     resetArticle: (state :TArticleFormState) => ({
@@ -46,6 +59,10 @@ export const {
   setDescription,
   setBody,
   setTags,
+  setTaglist,
+  setArticle,
   resetArticle,
+  deleteTag,
+  setImage
 } = articleSubSlice.actions;
 export default articleReducer;
