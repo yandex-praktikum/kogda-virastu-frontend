@@ -61,3 +61,9 @@ export type TAPIComments = {
 export type TAPIProfile = {
   profile: TProfile;
 };
+
+export type TAPIError = {
+  errors: {
+    [error: string]: string;
+  }
+};

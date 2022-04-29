@@ -21,6 +21,7 @@ export type TArticle = {
   body: string;
   createdAt: string;
   description: string;
+  link?: string;
   favorited: boolean;
   favoritesCount: number;
   slug: string;
@@ -29,13 +30,13 @@ export type TArticle = {
   updatedAt: string;
 };
 
-export type TArticleCore = {
-  title: string;
-  description: string;
-  body: string;
-  tagList: TTags;
-  link?: string,
-};
+export type TArticleCore = Omit<TArticle,
+'author' |
+'createdAt' |
+'favorited' |
+'favoritesCount' |
+'slug' |
+'updatedAt'>;
 
 export type TArticles = Array<TArticle>;
 
