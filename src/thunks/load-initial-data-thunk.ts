@@ -1,13 +1,17 @@
 import { batch } from 'react-redux';
+import { AxiosError } from 'axios';
 import { fetchPublicFeed, fetchTags } from '../services/api';
 import {
+  publicFeedFailed,
   publicFeedRequested,
   publicFeedSucceeded,
-  setAllArticles, setAllTags,
+  setAllArticles, setAllTags, tagsFetchFailed,
   tagsFetchRequested,
   tagsFetchSucceeded,
 } from '../store';
 import { AppDispatch } from '../store/store.types';
+import makeErrorMessage from '../services/helpers/make-error-message';
+import { TAPIError } from '../services/api.types';
 
 const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
   try {
@@ -25,7 +29,11 @@ const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
       dispatch(tagsFetchSucceeded());
     });
   } catch (error) {
-    console.dir(error);
+    const msg = makeErrorMessage(error as AxiosError<TAPIError>);
+    batch(() => {
+      dispatch(publicFeedFailed(msg));
+      dispatch(tagsFetchFailed(msg));
+    });
   }
 };
 
