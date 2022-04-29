@@ -7,7 +7,7 @@ import {
   setTaglist,
   resetArticle,
   deleteTag,
-  setImage
+  setImage,
 } from './articleFormSubSlice';
 
 import {
@@ -40,8 +40,6 @@ import {
 
 import { setUser, clearUser, setCurrentUser } from './userSlice';
 
-
-
 import {
   setViewFeed,
   clearViewFeed,
@@ -58,6 +56,8 @@ import {
   setPage,
   setPageLimit,
   clearView,
+  setViewProfile,
+  clearViewProfile,
 } from './viewSlice';
 
 import {
@@ -165,6 +165,8 @@ export {
   clearViewCommentsFeed,
   selectViewComment,
   clearViewComment,
+  setViewProfile,
+  clearViewProfile,
   setPage,
   setPageLimit,
   clearView,
@@ -232,5 +234,5 @@ export {
   setArticle,
   setTaglist,
   deleteTag,
-  setImage
+  setImage,
 };

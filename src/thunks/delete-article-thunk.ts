@@ -1,25 +1,30 @@
-import { AppThunk } from "../store/store.types"
-import { articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles } from '../store'
-import { deleteArticle } from "../services/api"
-import { batch } from "react-redux"
+import { batch } from 'react-redux';
+import { AxiosError } from 'axios';
+import { AppThunk, AppDispatch, RootState } from '../store/store.types';
+import {
+  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles,
+} from '../store';
+import { deleteArticle } from '../services/api';
+import { TAPIError } from '../services/api.types';
+import makeErrorMessage from '../services/helpers/make-error-message';
 
-export const deleteArticleThunk: AppThunk = (slug: string) => {
-    return function (dispatch, getState) {
-        dispatch(articleDeleteRequested())
-        deleteArticle(slug).then(res => {
-            if (res.status === 200) {
-                const { all } = getState()
-                const newArray = all.articles?.filter(item => {
-                    item.slug !== slug
-                })
-                batch(() => {
-                    dispatch(setAllArticles(newArray!));
-                    dispatch(articleDeleteSucceeded());
-                })
-            }
-        })
-            .catch((error: any) => {
-                dispatch(articleDeleteFailed(error))
-            })
-    }
-}
+const deleteArticleThunk: AppThunk = (slug: string) => async (
+  dispatch : AppDispatch,
+  getState : () => RootState,
+) => {
+  dispatch(articleDeleteRequested());
+  try {
+    const { status } = await deleteArticle(slug);
+    if (status === 204) {
+      const articles = getState().all.articles ?? [];
+      batch(() => {
+        dispatch(setAllArticles(articles?.filter((item) => item.slug !== slug)));
+        dispatch(articleDeleteSucceeded());
+      });
+    } else dispatch(articleDeleteFailed(`Произошла неизвестная ошибка! Код ответа сервера: ${status}`));
+  } catch (error) {
+    dispatch(articleDeleteFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+  }
+};
+
+export default deleteArticleThunk;

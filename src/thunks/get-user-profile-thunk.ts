@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { AppThunk } from '../store/store.types';
 import {
   userFetchRequested, userFetchSucceeded, userFetchFailed, setUser,
@@ -10,11 +10,13 @@ import makeErrorMessage from '../services/helpers/make-error-message';
 const getUserProfileThunk: AppThunk = (user: string) => async (dispatch) => {
   try {
     dispatch(userFetchRequested());
-    const res = await fetchProfile(user);
-    const { profile } = res.data as TAPIProfile;
     const {
-      username = '', email = '', bio, image,
-    } = profile;
+      data: {
+        profile: {
+          username = '', email = '', bio, image,
+        },
+      },
+    } = await fetchProfile(user) as AxiosResponse<TAPIProfile>;
     dispatch(setUser({
       username, email, bio, image,
     }));
