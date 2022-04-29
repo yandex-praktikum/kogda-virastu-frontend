@@ -6,7 +6,7 @@ type TProfileFormState = {
   email: string | null;
   bio: string | null;
   image: string | null;
-  password?: string | null;
+  password: string | null;
 };
 
 const initialState: TProfileFormState = {
