@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-  TArticle, TArticles, TComment, TComments, TTags,
+  TArticle, TArticles, TComment, TComments, TTags, TProfile,
 } from '../types/types';
 
 type TViewState = {
@@ -13,6 +13,7 @@ type TViewState = {
   comment: TComment | null;
   page: number;
   perPage: number;
+  profile: TProfile | null;
 };
 
 const initialState: TViewState = {
@@ -24,6 +25,7 @@ const initialState: TViewState = {
   comment: null,
   page: 1,
   perPage: 10,
+  profile: null,
 };
 
 const viewSlice = createSlice({
@@ -75,6 +77,12 @@ const viewSlice = createSlice({
     clearView: (state: TViewState) => ({
       ...state, ...initialState,
     }),
+    setViewProfile: (state: TViewState, action: PayloadAction<TProfile>) => ({
+      ...state, profile: action.payload,
+    }),
+    clearViewProfile: (state: TViewState) => ({
+      ...state, profile: null,
+    }),
   },
 });
 
@@ -94,6 +102,8 @@ export const {
   setPage,
   setPageLimit,
   clearView,
+  setViewProfile,
+  clearViewProfile,
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

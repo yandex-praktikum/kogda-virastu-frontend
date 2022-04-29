@@ -1,8 +1,10 @@
 import loadInitialDataThunk from './load-initial-data-thunk';
-import { deleteLikeThunk, addLikeThunk } from './delete-add-likes-thunks';
+import addLikeThunk from './add-likes-thunks';
+import deleteLikeThunk from './delete-like-thunk';
 import getUserProfileThunk from './get-user-profile-thunk';
-import { followProfileThunk, unfollowProfileThunk } from './post-follow-unfollow--profile-thunk';
-import { deleteArticleThunk } from './delete-article-thunk';
+import followProfileThunk from './follow-profile-thunk';
+import unfollowProfileThunk from './unfollow-profile-thunk';
+import deleteArticleThunk from './delete-article-thunk';
 
 export {
   loadInitialDataThunk,
@@ -11,4 +13,5 @@ export {
   getUserProfileThunk,
   unfollowProfileThunk,
   followProfileThunk,
+  deleteArticleThunk,
 };
