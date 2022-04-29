@@ -6,7 +6,6 @@ import {
 import {
   TAPINewUser,
   TAPILoginUser,
-  TAPIUser,
   TAPIPatchUser,
   TAPIArticles,
   TAPIParamsObject,
@@ -15,6 +14,7 @@ import {
   TAPIComments,
   TAPIComment,
   TAPIProfile,
+  TAPIAuth,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -104,7 +104,7 @@ export const registerUser : IRegisterUser = (
   username: string,
   email: string,
   password: string,
-) : AxiosPromise<TAPIUser> => {
+) : AxiosPromise<TAPIAuth> => {
   const registerData : TAPINewUser = {
     user: { username, email, password },
   };
@@ -117,7 +117,7 @@ export const registerUser : IRegisterUser = (
   return blogAPI(requestConfig);
 };
 
-export const fetchCurrentUser : IFetchUser = () : AxiosPromise<TAPIUser> => {
+export const fetchCurrentUser : IFetchUser = () : AxiosPromise<TAPIAuth> => {
   const requestConfig: AxiosRequestConfig = {
     url: USER_ROUTE,
     method: 'get',
@@ -128,7 +128,7 @@ export const fetchCurrentUser : IFetchUser = () : AxiosPromise<TAPIUser> => {
 export const loginUser : ILoginUser = (
   email: string,
   password: string,
-) : AxiosPromise<TAPIUser> => {
+) : AxiosPromise<TAPIAuth> => {
   const loginData : TAPILoginUser = {
     user: { email, password },
   };
@@ -146,7 +146,7 @@ export const patchCurrentUser : IPatchUser = (
   password?: string,
   bio?: string,
   image?: string,
-) : AxiosPromise<TAPIUser> => {
+) : AxiosPromise<TAPIAuth> => {
   const patchData : TAPIPatchUser = {
     user: {
       username, email, password, bio, image,

@@ -10,6 +10,15 @@ export type TAPINewUser = {
   }
 };
 
+export type TAPIAuth = {
+  user : {
+    email: string;
+    username: string;
+    bio?: string;
+    image?:string;
+    token: string };
+};
+
 export type TAPILoginUser = {
   user: {
     email: string;

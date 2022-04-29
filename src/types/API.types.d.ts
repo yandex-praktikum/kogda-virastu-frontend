@@ -1,7 +1,7 @@
 import { AxiosPromise } from 'axios';
 import {
   TAPIArticle,
-  TAPIArticles,
+  TAPIArticles, TAPIAuth,
   TAPIComment,
   TAPIComments,
   TAPIProfile,
@@ -11,15 +11,15 @@ import {
 import { TTags } from './types';
 
 export interface IRegisterUser {
-  (username: string, email: string, password: string) : AxiosPromise<TAPIUser>;
+  (username: string, email: string, password: string) : AxiosPromise<TAPIAuth>;
 }
 
 export interface ILoginUser {
-  (email: string, password: string) : AxiosPromise<TAPIUser>;
+  (email: string, password: string) : AxiosPromise<TAPIAuth>;
 }
 
 export interface IFetchUser {
-  () : AxiosPromise<TAPIUser>;
+  () : AxiosPromise<TAPIAuth>;
 }
 
 export interface IPatchUser {
@@ -27,7 +27,7 @@ export interface IPatchUser {
     email?: string,
     password?: string,
     bio?: string,
-    image?:string) : AxiosPromise<TAPIUser>;
+    image?:string) : AxiosPromise<TAPIAuth>;
 }
 
 export interface IFetchArticles {
