@@ -1,41 +1,48 @@
-import { AppThunk } from '../store/store.types'
+import { AxiosError } from 'axios';
+import { AppDispatch, AppThunk, RootState } from '../store/store.types';
 import { postLikeArticle, deleteLikeArticle } from '../services/api';
-import { setAllArticles,likeArticleDeleteRequested,likeArticleDeleteSucceeded,likeArticleDeleteFailed,likeArticlePostRequested,likeArticlePostSucceeded,likeArticlePostFailed} from '../store'
+import {
+  setAllArticles,
+  likeArticleDeleteRequested,
+  likeArticleDeleteSucceeded,
+  likeArticleDeleteFailed,
+  likeArticlePostRequested,
+  likeArticlePostSucceeded,
+  likeArticlePostFailed,
+} from '../store';
+import { TAPIError } from '../services/api.types';
+import makeErrorMessage from '../services/helpers/make-error-message';
 
+export const deleteLikeThunk: AppThunk = (slug: string) => async (
+  dispatch : AppDispatch,
+  getState: () => RootState,
+) => {
+  try {
+    dispatch(likeArticleDeleteRequested());
+    const { data: { article } } = await deleteLikeArticle(slug);
+    // Type Guard - в TAllState допускается null,  в TArticles - нет
+    const articles = getState().all.articles ?? [];
+    dispatch(setAllArticles(articles?.filter((item) => (item.slug !== article.slug))));
+    dispatch(likeArticleDeleteSucceeded());
+  } catch (error) {
+    dispatch(likeArticleDeleteFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+  }
+};
 
-export const deleteLikeThunk: AppThunk = (slug: string) => {
-    return async function (dispatch, getState) {
-      try {
-        dispatch(likeArticleDeleteRequested());
-        const response = await deleteLikeArticle(slug);
-        const { all } = getState();
-        const filteredArticlesArray = all.articles?.map(item => {
-         return item.slug !== response.data.article.slug ? item : {...item,favorited: false}
-        })
-        dispatch(setAllArticles(filteredArticlesArray!))
-        dispatch(likeArticleDeleteSucceeded())
-      }
-      catch (error: any) {   
-        dispatch(likeArticleDeleteFailed(error))
-      }
-    } 
+export const addLikeThunk: AppThunk = (slug: string) => async (
+  dispatch : AppDispatch,
+  getState: () => RootState,
+) => {
+  try {
+    dispatch(likeArticlePostRequested());
+    const { data: { article } } = await postLikeArticle(slug);
+    const articles = getState().all.articles ?? [];
+    dispatch(setAllArticles(articles.map(
+      (item) => (item.slug === article.slug ? article : item
+      ),
+    )));
+    dispatch(likeArticlePostSucceeded());
+  } catch (error) {
+    dispatch(likeArticlePostFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
   }
-  
-  export const addLikeThunk: AppThunk = (slug: string) => {
-    return async function (dispatch, getState) {
-      try {
-        dispatch(likeArticlePostRequested());
-        const response = await postLikeArticle(slug);
-        const { all } = getState();
-        const filteredArticlesArray = all.articles?.map(item => {
-          return item.slug !== response.data.article.slug ? item : { ...item, favorited: true }
-        })
-        dispatch(setAllArticles(filteredArticlesArray!))
-        dispatch(likeArticlePostSucceeded())
-      } catch (error: any) {
-        dispatch(likeArticlePostFailed(error))
-      }
-      
-     
-    }
-  }
+};
