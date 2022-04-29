@@ -3,6 +3,7 @@ import { deleteLikeThunk, addLikeThunk } from './delete-add-likes-thunks';
 import getUserProfileThunk from './get-user-profile-thunk';
 import { followProfileThunk, unfollowProfileThunk } from './post-follow-unfollow--profile-thunk';
 import { deleteArticleThunk } from './delete-article-thunk';
+import patchCurrentUserThunk from './patch-current-user-thunk';
 
 export {
   loadInitialDataThunk,
@@ -11,4 +12,5 @@ export {
   getUserProfileThunk,
   unfollowProfileThunk,
   followProfileThunk,
+  patchCurrentUserThunk,
 };

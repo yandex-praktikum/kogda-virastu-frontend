@@ -23,11 +23,15 @@ export interface IFetchUser {
 }
 
 export interface IPatchUser {
-  (username?: string,
+  ({
+    username, email, password, bio, image,
+  }: {
+    username?: string,
     email?: string,
     password?: string,
     bio?: string,
-    image?:string) : AxiosPromise<TAPIAuth>;
+    image?:string,
+  }) : AxiosPromise<TAPIAuth>;
 }
 
 export interface IFetchArticles {

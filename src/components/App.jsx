@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from '../services/hooks';
 import { Profile } from '../components_refact';
 import Header from './Header';
 import { Editor } from './Editor';
+import Settings from './Settings/Settings';
 
 import {
   Route, Routes, useNavigate, useLocation,
@@ -31,9 +32,9 @@ const App = () => {
         <Route path='/editor/:slug' element={<Editor />} />
         <Route path='/editor' element={<Editor />} />
         <Route path='/article/:id' element={<Article />} />
-        <Route path='/settings' element={<Settings />} />
         '/editor/:slug'
         <Route path='/@:username/favorites' element={<ProfileFavorites />} />  */}
+        <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />
         <Route path='/@:username' element={<Profile />} />
       </Routes>

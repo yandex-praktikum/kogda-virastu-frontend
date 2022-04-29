@@ -6,35 +6,43 @@ type TProfileFormState = {
   email: string | null;
   bio: string | null;
   image: string | null;
+  password?: string | null;
 };
 
-const initialState : TProfileFormState = {
+const initialState: TProfileFormState = {
   username: null,
   email: null,
   bio: null,
   image: null,
+  password: null,
 };
 
 const profileSubSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    setUsernameProfile: (state : TProfileFormState, action: PayloadAction<string>) => ({
+    setUsernameProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
       ...state, username: action.payload,
     }),
-    setEmailProfile: (state : TProfileFormState, action: PayloadAction<string>) => ({
+    setEmailProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
       ...state, email: action.payload,
     }),
-    setBioProfile: (state : TProfileFormState, action: PayloadAction<string>) => ({
+    setBioProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
       ...state, bio: action.payload,
     }),
-    setImageProfile: (state : TProfileFormState, action: PayloadAction<string>) => ({
+    setImageProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
       ...state, image: action.payload,
     }),
-    setFormProfile: (state : TProfileFormState, action : PayloadAction<TUser>) => ({
+    setPasswordProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+      ...state, password: action.payload,
+    }),
+    setFormProfile: (
+      state: TProfileFormState,
+      action: PayloadAction<TUser & { password: string }>,
+    ) => ({
       ...state, ...action.payload,
     }),
-    resetFormProfile: (state :TProfileFormState) => ({
+    resetFormProfile: (state: TProfileFormState) => ({
       ...state, ...initialState,
     }),
   },
@@ -46,5 +54,8 @@ export const {
   setEmailProfile,
   setBioProfile,
   setImageProfile,
+  setPasswordProfile,
+  setFormProfile,
+  resetFormProfile,
 } = profileSubSlice.actions;
 export default profileReducer;
