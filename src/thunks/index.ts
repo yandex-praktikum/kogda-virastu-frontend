@@ -3,5 +3,12 @@ import { deleteLikeThunk, addLikeThunk } from './delete-add-likes-thunks';
 import { userDataThunk } from './load-user-data-thunk';
 import { followProfileThunk, unfollowProfileThunk } from './post-follow-unfollow--profile-thunk';
 import { deleteArticleThunk } from './delete-article-thunk';
-// eslint-disable-next-line import/prefer-default-export
-export { loadInitialDataThunk, deleteLikeThunk, addLikeThunk, userDataThunk, unfollowProfileThunk, followProfileThunk, deleteArticleThunk };
+
+export {
+  loadInitialDataThunk,
+  deleteLikeThunk,
+  addLikeThunk,
+  userDataThunk,
+  unfollowProfileThunk,
+  followProfileThunk,
+};
