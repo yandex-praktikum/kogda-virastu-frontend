@@ -6,6 +6,7 @@ import Header from './Header';
 import { Editor } from './Editor';
 import Login from './Login';
 import Settings from './Settings/Settings';
+import ProfileFavorites from './ProfileFavorites';
 
 import {
   Route, Routes, useNavigate, useLocation,
@@ -32,7 +33,8 @@ const App = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/article/:id' element={<Article />} />
         '/editor/:slug'
-        <Route path='/@:username/favorites' element={<ProfileFavorites />} />  */}
+         */}
+        <Route path='/@:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />
