@@ -147,13 +147,8 @@ export const patchCurrentUser : IPatchUser = ({
   email?: string,
   password?: string,
   bio?: string,
-<<<<<<< HEAD
   image?:string,
 }) : AxiosPromise<TAPIAuth> => {
-=======
-  image?: string,
-) : AxiosPromise<TAPIAuth> => {
->>>>>>> 85467f7... refact Login full
   const patchData : TAPIPatchUser = {
     user: {
       username, email, password, bio, image,

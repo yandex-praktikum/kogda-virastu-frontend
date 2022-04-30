@@ -6,6 +6,7 @@ import {
     userLoginFailed, setUser, onLogin, resetFormLogin,
 } from '../store';
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+
 export const loginUserThunk = () => async (dispatch: AppDispatch, getState: () => RootState) => {
     const { email, password } = getState().forms.login;
     try {
