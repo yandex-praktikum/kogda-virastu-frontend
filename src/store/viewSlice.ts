@@ -32,46 +32,52 @@ const viewSlice = createSlice({
   name: 'view',
   initialState,
   reducers: {
-    setViewFeed: (state: TViewState, action:PayloadAction<TArticles>) => ({
+    setViewedProfile: (state: TViewState, action: PayloadAction<TProfile>) => ({
+      ...state, viewedprofile: action.payload
+    }),
+    clearViewprofile: (state: TViewState) => ({
+      ...state,viewedprofile: null
+    }),
+    setViewFeed: (state: TViewState, action: PayloadAction<TArticles>) => ({
       ...state, feed: action.payload,
     }),
     clearViewFeed: (state: TViewState) => ({
       ...state, feed: null,
     }),
-    setViewTags: (state: TViewState, action:PayloadAction<TTags>) => ({
+    setViewTags: (state: TViewState, action: PayloadAction<TTags>) => ({
       ...state, tagsList: action.payload,
     }),
     clearViewTags: (state: TViewState) => ({
       ...state, tagsList: null, selectedTags: null,
     }),
-    setViewArticle: (state: TViewState, action:PayloadAction<TArticle>) => ({
+    setViewArticle: (state: TViewState, action: PayloadAction<TArticle>) => ({
       ...state, article: action.payload,
     }),
     clearViewArticle: (state: TViewState) => ({
       ...state, article: null,
     }),
-    setSelectedTags: (state: TViewState, action:PayloadAction<TTags>) => ({
+    setSelectedTags: (state: TViewState, action: PayloadAction<TTags>) => ({
       ...state, selectedTags: action.payload,
     }),
     clearSelectedTags: (state: TViewState) => ({
       ...state, selectedTags: null,
     }),
-    setViewCommentsFeed: (state: TViewState, action:PayloadAction<TComments>) => ({
+    setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
       ...state, commentsFeed: action.payload,
     }),
     clearViewCommentsFeed: (state: TViewState) => ({
       ...state, commentsFeed: null,
     }),
-    selectViewComment: (state: TViewState, action:PayloadAction<TComment>) => ({
+    selectViewComment: (state: TViewState, action: PayloadAction<TComment>) => ({
       ...state, comment: action.payload,
     }),
     clearViewComment: (state: TViewState) => ({
       ...state, comment: null,
     }),
-    setPage: (state: TViewState, action:PayloadAction<number>) => ({
+    setPage: (state: TViewState, action: PayloadAction<number>) => ({
       ...state, page: action.payload,
     }),
-    setPageLimit: (state: TViewState, action:PayloadAction<number>) => ({
+    setPageLimit: (state: TViewState, action: PayloadAction<number>) => ({
       ...state, perPage: action.payload,
     }),
     clearView: (state: TViewState) => ({
@@ -87,6 +93,8 @@ const viewSlice = createSlice({
 });
 
 export const {
+  setViewedProfile,
+  clearViewprofile,
   setViewFeed,
   clearViewFeed,
   setViewTags,

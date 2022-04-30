@@ -41,6 +41,8 @@ import {
 import { setUser, clearUser, setCurrentUser } from './userSlice';
 
 import {
+  setViewedProfile,
+  clearViewprofile,
   setViewFeed,
   clearViewFeed,
   setViewTags,
@@ -129,6 +131,8 @@ import {
 } from './systemSlice';
 
 export {
+  setViewedProfile,
+  clearViewprofile,
   setCurrentUser,
   setTitle,
   setDescription,
