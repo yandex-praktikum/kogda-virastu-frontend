@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from '../../services/hooks';
 import { EditProfileSettings, FollowUserButton, ArticleList } from '../index';
 
-import { userDataThunk } from '../../thunks';
-import { unfollowProfileThunk, followProfileThunk } from '../../thunks'
+import { getUserProfileThunk } from '../../thunks';
+import { unfollowProfileThunk,
+  followProfileThunk,} from '../../thunks'
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
-  const { username, image, bio, userobject } = useSelector((state) => state.profile);
+  const { username, image, bio } = useSelector((state) => state.profile);
+  const{profile} = useSelector(state=> state.view)
   const { isLoggedIn } = useSelector(state => state.system)
   const { articles } = useSelector(state => state.all)
   const {isUserFetching} = useSelector(state=> state.api)
@@ -16,16 +18,16 @@ console.log(isUserFetching)
 
   useEffect(() => {
     if (true) {
-      dispatch(userDataThunk())
+      dispatch(getUserProfileThunk())
     }
   },[dispatch]);
 
   const onFollow = () => {
-    dispatch(followProfileThunk(username));
+    dispatch(followProfileThunk());
   };
 
   const onUnfollow = () => {
-    dispatch(unfollowProfileThunk(username));
+    dispatch(unfollowProfileThunk());
   };
 
   const renderTabs = useCallback(() => (
@@ -69,7 +71,7 @@ console.log(isUserFetching)
               <EditProfileSettings isUser={isLoggedIn} />
               <FollowUserButton
                 isUser={isLoggedIn}
-                user={userobject!} 
+                user={profile!} 
                 follow={onFollow}
                 unfollow={onUnfollow} />
 

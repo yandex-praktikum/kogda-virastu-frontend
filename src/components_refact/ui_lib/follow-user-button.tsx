@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { TProfile } from '../../types/types';
 
-export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: (key: string) => void, unfollow: (key: string) => void }> = ({
+export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: () => void, unfollow: () => void }> = ({
   isUser, user, follow, unfollow,
 }) => {
   if (isUser) {
@@ -9,7 +9,7 @@ export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: (ke
   }
 
   let classes = 'btn btn-sm action-btn';
-  if (/* user.following */true) {
+  if ( user.following ) {
     classes += ' btn-secondary';
   } else {
     classes += ' btn-outline-secondary';
@@ -17,10 +17,10 @@ export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: (ke
 
   const handleClick = useCallback((ev: React.MouseEvent) => {
     ev.preventDefault();
-    if (/* user.following */true) {
-      unfollow('test');
+    if ( user.following ) {
+      unfollow();
     } else {
-      follow('test');
+      follow();
     }
   }, []);
 
@@ -30,9 +30,9 @@ export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: (ke
       onClick={handleClick}>
       <i className='ion-plus-round' />
       &nbsp;
-      {/* user.following */true ? 'Unfollow' : 'Follow'}
+      { user.following ? 'Unfollow' : 'Follow'}
       {' '}
-      {/* user.username */'user'}
+      { user.username }
     </button>
   );
 };
