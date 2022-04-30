@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from '../../services/hooks';
+import { useSelector} from '../services/hooks'
 import {useNavigate} from 'react-router-dom'
+import React, {FC} from 'react';
 
-export const ProfileFavorites = () => {
+export const ProfileFavorites:FC = () => {
     const { isLoggedIn } = useSelector((state) => state.system);
     const { username } = useSelector((state) => state.profile);
     const navigate = useNavigate()
@@ -11,7 +12,6 @@ export const ProfileFavorites = () => {
         if(isLoggedIn){
             navigate('/')
         }
-      //  dispatch({ type: PROFILE_PAGE_UNLOADED })
     }, [isLoggedIn])
     return (
         <ul className="nav nav-pills outline-active">
