@@ -29,13 +29,12 @@ const App = () => {
         {/*   <Route exact path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/editor/:slug' element={<Editor />} />
-        <Route path='/editor' element={<Editor />} />
         <Route path='/article/:id' element={<Article />} />
         '/editor/:slug'
         <Route path='/@:username/favorites' element={<ProfileFavorites />} />  */}
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />
+        <Route path='/editor' element={<Editor />} />
         <Route path='/@:username' element={<Profile />} />
       </Routes>
     </div>

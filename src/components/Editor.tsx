@@ -12,21 +12,29 @@ import {
   setTitle, setDescription, setBody, setTags, resetArticle, setTaglist, deleteTag, setImage
 } from '../store';
 import { postArticle, patchArticle } from '../services/api';
-import { articleDataThunk } from '../thunks/load-article-data-thunk';
+import getArticleThunk from '../thunks/get-article-thunk';
 
 export const Editor: FC = () => {
+
+  const dispatch = useDispatch();
   const {
     title, description, body, tags, tagList, image
   } = useSelector((state) => state.forms.article);
   const { isArticleFetching } = useSelector((state) => state.api);
   const { slug } = useParams();
-  const dispatch = useDispatch();
+  const initialArticle = useSelector((state) => state.view.article);
+
+  useEffect(() => {
+    initialArticle?.tagList.forEach((el) => {
+      dispatch(setTaglist(el))
+    })
+  }, [initialArticle])
 
   useEffect(() => {
     if (slug) {
-      dispatch(articleDataThunk(slug));
+      dispatch(getArticleThunk(slug));
     }
-
+    
     return () => {
       dispatch(resetArticle());
     };
@@ -101,7 +109,7 @@ export const Editor: FC = () => {
                     className='form-control form-control-lg'
                     type='text'
                     placeholder='Article Title'
-                    value={title || ''}
+                    value={title === '' ? '' : title || initialArticle?.title}
                     onChange={onChangeTitle} />
                 </fieldset>
 
@@ -110,7 +118,7 @@ export const Editor: FC = () => {
                     className='form-control'
                     type='text'
                     placeholder="What's this article about?"
-                    value={description || ''}
+                    value={description === '' ? '' : description || initialArticle?.description}
                     onChange={onChangeDescription} />
                 </fieldset>
 
@@ -119,7 +127,7 @@ export const Editor: FC = () => {
                     className='form-control'
                     type='url'
                     placeholder="Article Image"
-                    value={image || ''}
+                    value={image === '' ? '' : image || initialArticle?.link}
                     onChange={onChangeImage} />
                 </fieldset>
 
@@ -128,7 +136,7 @@ export const Editor: FC = () => {
                     className='form-control'
                     rows={8}
                     placeholder='Write your article (in markdown)'
-                    value={body || ''}
+                    value={body === '' ? '' : body || initialArticle?.body}
                     onChange={onChangeBody} />
                 </fieldset>
 
@@ -168,3 +176,4 @@ export const Editor: FC = () => {
     </div>
   );
 };
+
