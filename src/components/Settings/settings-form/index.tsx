@@ -18,21 +18,7 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
 
   const submitForm = (ev: React.FormEvent) => {
     ev.preventDefault();
-    const userData: {
-      username: string | null;
-      email: string | null;
-      bio: string | null;
-      image: string | null;
-      password?: string | null;
-    } = {
-      bio, email, image, username,
-    };
-    if (password) {
-      userData.password = password;
-    }
-    dispatch(patchCurrentUserThunk({
-      ...userData,
-    }));
+    dispatch(patchCurrentUserThunk());
   };
 
   return (
