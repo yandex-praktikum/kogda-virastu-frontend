@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from '../services/hooks';
-import { Profile } from '../components_refact';
+import { Profile } from './Profile';
 import Header from './Header';
 import { Editor } from './Editor';
-import Register from './Register'; 
+import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
@@ -39,7 +39,7 @@ const App = () => {
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />
         <Route path='/editor' element={<Editor />} />
-        <Route path='/@:username' element={<Profile />} />
+        <Route path='/:username' element={<Profile />} />
       </Routes>
     </div>
   );
