@@ -38,9 +38,10 @@ import {
   clearAll,
 } from './allSlice';
 
-import { setUser, clearUser, setCurrentUser } from './userSlice';
+import { setUser, clearUser} from './userSlice';
 
 import {
+  changePositionFeed,
   setViewedProfile,
   clearViewprofile,
   setViewFeed,
@@ -132,9 +133,9 @@ import {
 } from './systemSlice';
 
 export {
+  changePositionFeed,
   setViewedProfile,
   clearViewprofile,
-  setCurrentUser,
   setTitle,
   setDescription,
   setBody,

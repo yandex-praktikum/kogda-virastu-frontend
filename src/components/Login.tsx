@@ -7,12 +7,14 @@ import React, {
     FC,
 } from 'react';
 import { useSelector, useDispatch } from '../services/hooks';
-import { changeEmailLogin, changePasswordLogin } from '../store';
+import { changeEmailLogin, changePasswordLogin} from '../store';
 import { loginUserThunk } from '../thunks/thunkLogin';
+
 
 
 const Login: FC = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const { isLoggedIn } = useSelector((state) => state.system);
     const { email, password } = useSelector((state) => state.forms.login);
     const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,11 +26,15 @@ const Login: FC = () => {
     const submitForm = (e: SyntheticEvent<Element>) => {
         e.preventDefault();
         dispatch(loginUserThunk());
+
         //  props.onSubmit(email, password);
     };
     useEffect(() => {
-        //   props.onUnload()
-    }, []);
+        if(isLoggedIn) {
+            navigate('/')
+
+        }
+    }, [isLoggedIn]);
     return (
         <div className='auth-page'>
             <div className='container page'>

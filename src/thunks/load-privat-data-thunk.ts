@@ -1,10 +1,10 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
-import { fetchPublicFeed, fetchTags } from '../services/api';
+import { fetchPrivateFeed, fetchTags } from '../services/api';
 import {
-  publicFeedFailed,
-  publicFeedRequested,
-  publicFeedSucceeded,
+    privateFeedFailed,
+    privateFeedRequested,
+  privateFeedSucceeded,
   setAllArticles, setAllTags, tagsFetchFailed,
   tagsFetchRequested,
   tagsFetchSucceeded,
@@ -13,28 +13,28 @@ import { AppDispatch } from '../store/store.types';
 import makeErrorMessage from '../services/helpers/make-error-message';
 import { TAPIError } from '../services/api.types';
 
-export const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
+export const loadPrivatFeedThunk:any = () => async (dispatch : AppDispatch) => {
   try {
     batch(() => {
-      dispatch(publicFeedRequested());
+      dispatch(privateFeedRequested());
       dispatch(tagsFetchRequested());
     });
     const [
       { data: { articles } },
-      { data: { tags } }] = await Promise.all([fetchPublicFeed(), fetchTags()]);
+      { data: { tags } }] = await Promise.all([fetchPrivateFeed(), fetchTags()]);
     dispatch(setAllArticles(articles));
     dispatch(setAllTags(tags));
     batch(() => {
-      dispatch(publicFeedSucceeded());
+      dispatch(privateFeedSucceeded());
       dispatch(tagsFetchSucceeded());
     });
   } catch (error) {
     const msg = makeErrorMessage(error as AxiosError<TAPIError>);
     batch(() => {
-      dispatch(publicFeedFailed(msg));
+      dispatch(privateFeedFailed(msg));
       dispatch(tagsFetchFailed(msg));
     });
   }
 };
 
-export default loadInitialDataThunk;
+export default loadPrivatFeedThunk;

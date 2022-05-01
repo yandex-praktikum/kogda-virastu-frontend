@@ -14,6 +14,7 @@ type TViewState = {
   page: number;
   perPage: number;
   profile: TProfile | null;
+  positionFeed: 'global' | 'privat';
 };
 
 const initialState: TViewState = {
@@ -26,6 +27,7 @@ const initialState: TViewState = {
   page: 1,
   perPage: 10,
   profile: null,
+  positionFeed: 'global'
 };
 
 const viewSlice = createSlice({
@@ -92,6 +94,10 @@ const viewSlice = createSlice({
     clearViewProfile: (state: TViewState) => ({
       ...state, profile: null,
     }),
+    changePositionFeed: (state: TViewState, action: PayloadAction<'global' | 'privat'>) => ({
+      ...state, positionFeed: action.payload,
+    }),
+
   },
 });
 
@@ -116,6 +122,7 @@ export const {
   clearView,
   setViewProfile,
   clearViewProfile,
+  changePositionFeed
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;
