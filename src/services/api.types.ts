@@ -74,8 +74,9 @@ export type TAPIProfile = {
   profile: TProfile;
 };
 
+export type TAPIErrors = {
+  [error: string]: string;
+};
 export type TAPIError = {
-  errors: {
-    [error: string]: string;
-  }
+  errors: TAPIErrors;
 };
