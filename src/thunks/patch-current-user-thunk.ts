@@ -31,7 +31,6 @@ const patchCurrentUserThunk: AppThunk = () => async (
   if (profile.password) {
     userData.password = profile.password
   }
-
   try {
     const {
       data: {
