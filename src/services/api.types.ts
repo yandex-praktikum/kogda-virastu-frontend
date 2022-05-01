@@ -29,22 +29,17 @@ export type TAPILoginUser = {
 export type TAPIUser = {
   user : TUser;
 };
-export type TAPIAuth = {
-  user : {
-    email: string;
-    username: string;
-    bio?: string;
-    image?:string;
-    token: string };
+
+export type TAPIPatchUserData = {
+  email?: string;
+  username?: string;
+  bio?: string;
+  image?:string;
+  password?: string;
 };
 
 export type TAPIPatchUser = {
-  user: {
-    email?: string;
-    username?: string;
-    bio?: string;
-    image?:string;
-    password?: string; }
+  user: TAPIPatchUserData;
 };
 
 export type TAPIArticles = {
