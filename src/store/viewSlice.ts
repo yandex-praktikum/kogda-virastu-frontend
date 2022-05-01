@@ -36,7 +36,7 @@ const viewSlice = createSlice({
       ...state, viewedprofile: action.payload
     }),
     clearViewprofile: (state: TViewState) => ({
-      ...state,viewedprofile: null
+      ...state, viewedprofile: null
     }),
     setViewFeed: (state: TViewState, action: PayloadAction<TArticles>) => ({
       ...state, feed: action.payload,
@@ -65,6 +65,9 @@ const viewSlice = createSlice({
     setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
       ...state, commentsFeed: action.payload,
     }),
+    setViewCommentFeed: (state: TViewState, action: PayloadAction<TComment>) => {
+      { state.commentsFeed?.push(action.payload) }
+    },
     clearViewCommentsFeed: (state: TViewState) => ({
       ...state, commentsFeed: null,
     }),
@@ -104,6 +107,7 @@ export const {
   setSelectedTags,
   clearSelectedTags,
   setViewCommentsFeed,
+  setViewCommentFeed,
   clearViewCommentsFeed,
   selectViewComment,
   clearViewComment,
