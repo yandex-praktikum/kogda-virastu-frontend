@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import DeleteButton from './DeleteButton';
+import DeleteButton from '../Article/DeleteButton';
 
 const Comment = (props) => {
   const { comment } = props;
