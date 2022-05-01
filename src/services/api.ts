@@ -14,7 +14,8 @@ import {
   TAPIComments,
   TAPIComment,
   TAPIProfile,
-  TAPIAuth
+  TAPIAuth,
+  TAPIPatchUserData,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -140,28 +141,45 @@ export const loginUser : ILoginUser = (
   return blogAPI(requestConfig);
 };
 
-export const patchCurrentUser : IPatchUser = ({
-  username, email, password, bio, image,
-}: {
-  username?: string,
-  email?: string,
-  password?: string,
-  bio?: string,
-  image?:string,
-}) : AxiosPromise<TAPIAuth> => {
-  const patchData : TAPIPatchUser = {
-    user: {
+export const patchCurrentUser : IPatchUser = (
+  user: TAPIPatchUserData,
+) : AxiosPromise<TAPIAuth> => {
+  const makePatchData = (data : TAPIPatchUserData) : TAPIPatchUserData => {
+    const {
       username, email, password, bio, image,
-    },
+    } = data;
+    let res = {};
+    if (username) {
+      res = { ...res, username };
+    }
+    if (email) {
+      res = { ...res, email };
+    }
+    if (password) {
+      res = { ...res, password };
+    }
+    if (bio) {
+      res = { ...res, bio };
+    }
+    if (image) {
+      res = { ...res, image };
+    }
+    return res;
   };
+  const userData: TAPIPatchUserData = makePatchData(user);
+  if (userData === {}) {
+    return fetchCurrentUser();
+  }
+  const patchData : TAPIPatchUser = {
+    user: userData,
+  };
+
   const requestConfig: AxiosRequestConfig = {
     url: USER_ROUTE,
     data: patchData,
     method: 'put',
   };
-  if (!username && !email && !bio && !image) {
-    return fetchCurrentUser();
-  }
+
   return blogAPI(injectBearerToken(requestConfig));
 };
 

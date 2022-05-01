@@ -6,7 +6,7 @@ import { resetFormProfile } from '../store/profileFormSubSlice';
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
 import makeErrorMessage from '../services/helpers/make-error-message';
 import { setUser } from '../store';
-import { TAPIError } from '../services/api.types';
+import { TAPIError, TAPIPatchUserData } from '../services/api.types';
 
 const patchCurrentUserThunk: AppThunk = () => async (
   dispatch: AppDispatch,
@@ -15,21 +15,15 @@ const patchCurrentUserThunk: AppThunk = () => async (
   dispatch(settingsPatchRequested());
   const profile = getState().forms.profile ?? {};
   // Type Guards
-  const userData: {
-    username?: string;
-    email?: string;
-    bio?: string;
-    image?: string;
-    password?: string;
-  } = {
+  const userData: TAPIPatchUserData = {
     username: profile.username || '',
     email: profile.email || '',
     bio: profile.bio || '',
-    image: profile.image || ''
-  }
+    image: profile.image || '',
+  };
 
   if (profile.password) {
-    userData.password = profile.password
+    userData.password = profile.password;
   }
   try {
     const {
@@ -38,9 +32,7 @@ const patchCurrentUserThunk: AppThunk = () => async (
           username, email, bio, image,
         },
       },
-    } = await patchCurrentUser({
-      ...userData
-    });
+    } = await patchCurrentUser(userData);
     batch(() => {
       dispatch(setUser({
         username, email, bio, image,
