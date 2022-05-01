@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import { TAPIError } from '../services/api.types';
 
 type TAPIState = {
   successMessage: string | null,
   errorMessage: string | null,
+  errorObject: TAPIError | null,
   isUserRegistering: boolean,
   isUserFetching: boolean,
   isUserLoggingIn: boolean,
@@ -29,6 +30,7 @@ type TAPIState = {
 const initialState: TAPIState = {
   successMessage: null,
   errorMessage: null,
+  errorObject: null,
   isUserRegistering: false,
   isUserLoggingIn: false,
   isUserFetching: false,
@@ -58,8 +60,20 @@ const apiSlice = createSlice({
     setSuccessMessage: (state: TAPIState, action: PayloadAction<string>) => ({
       ...state, successMessage: action.payload,
     }),
+    clearSuccessMessage: (state:TAPIState) => ({
+      ...state, successMessage: null,
+    }),
     setErrorMessage: (state: TAPIState, action: PayloadAction<string>) => ({
       ...state, errorMessage: action.payload,
+    }),
+    clearErrorMessage: (state: TAPIState) => ({
+      ...state, errorMessage: null,
+    }),
+    setErrorObject: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, errorObject: action.payload,
+    }),
+    clearErrorObject: (state: TAPIState) => ({
+      ...state, errorObject: null,
     }),
     userRegistrationRequested: (state: TAPIState) => ({
       ...state, isUserRegistering: true,
@@ -310,6 +324,3 @@ export const {
   settingsPatchSucceeded,
 } = apiSlice.actions;
 export default apiReducer;
-
-
-
