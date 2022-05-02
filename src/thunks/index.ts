@@ -8,6 +8,8 @@ import followProfileThunk from './follow-profile-thunk';
 import unfollowProfileThunk from './unfollow-profile-thunk';
 import deleteArticleThunk from './delete-article-thunk';
 import deleteCommentThunk from './delete-comment-thunk';
+import registerThunk from './register-thunk';
+import loginUserThunk from './login-thunk';
 
 export {
   loadInitialDataThunk,
@@ -19,4 +21,6 @@ export {
   patchCurrentUserThunk,
   deleteArticleThunk,
   deleteCommentThunk,
+  registerThunk,
+  loginUserThunk,
 };

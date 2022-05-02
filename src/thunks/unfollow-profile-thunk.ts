@@ -9,7 +9,7 @@ import {
 import { deleteFollowProfile } from '../services/api';
 import { AppThunk, AppDispatch, RootState } from '../store/store.types';
 import { TAPIProfile, TAPIError } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 
 const unfollowProfileThunk: AppThunk = () => async (
   dispatch : AppDispatch,
@@ -25,7 +25,7 @@ const unfollowProfileThunk: AppThunk = () => async (
       dispatch(followProfileDeleteSucceeded());
     });
   } catch (error) {
-    dispatch(followProfileDeleteFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(followProfileDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 

@@ -5,7 +5,7 @@ import {
 } from '../store';
 import { fetchProfile } from '../services/api';
 import { TAPIError, TAPIProfile } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 
 const getUserProfileThunk: AppThunk = (user: string) => async (dispatch) => {
   try {
@@ -22,7 +22,7 @@ const getUserProfileThunk: AppThunk = (user: string) => async (dispatch) => {
     }));
     dispatch(userFetchSucceeded());
   } catch (error) {
-    dispatch(userFetchFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(userFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 export default getUserProfileThunk;
