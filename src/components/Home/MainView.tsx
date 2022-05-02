@@ -2,7 +2,7 @@ import ArticleList from '../ArticleList';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from '../../services/hooks';
 import { changePositionFeed } from '../../store'
-import { loadPrivatFeedThunk } from '../../thunks/load-privat-data-thunk';
+import { loadPrivateFeedThunk } from '../../thunks/load-private-feed-thunk';
 import { loadInitialDataThunk } from '../../thunks/load-initial-data-thunk';
 const YourFeedTab = () => {
     const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const YourFeedTab = () => {
     const { positionFeed } = useSelector((state) => state.view)
 
     const clickHandler = (e: any) => {
-        dispatch(loadPrivatFeedThunk())
+        dispatch(loadPrivateFeedThunk())
         dispatch(changePositionFeed('privat'))
         e.preventDefault()
 
