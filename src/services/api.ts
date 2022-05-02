@@ -184,12 +184,11 @@ export const patchCurrentUser : IPatchUser = (
 };
 
 export const fetchPublicFeed : IFetchArticles = (
-  limit?: number,
-  offset?: number,
-  tag?: string,
-  author?: string,
-  favorited?: string,
+  queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
+  const {
+    limit, offset, tag, author, favorited,
+  } = queryParams ?? {};
   const requestConfig : AxiosRequestConfig = {
     url: ARTICLES_ROUTE,
     params: makeParams(limit, offset, tag, author, favorited),
