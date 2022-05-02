@@ -5,7 +5,7 @@ import { fetchArticle } from '../services/api';
 import {
   articleFetchRequested, articleFetchSucceeded, articleFetchFailed, setViewArticle,
 } from '../store';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
 const getArticleThunk: AppThunk = (slug: string) => async (dispatch: AppDispatch) => {
@@ -17,7 +17,7 @@ const getArticleThunk: AppThunk = (slug: string) => async (dispatch: AppDispatch
       dispatch(articleFetchSucceeded());
     });
   } catch (error) {
-    dispatch(articleFetchFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(articleFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 
