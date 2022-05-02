@@ -14,6 +14,7 @@ import loginUserThunk from './login-user-thunk';
 import getCommentsThunk from './get-comments-thunk';
 import getPublicFeedThunk from './get-public-feed-thunk';
 import getPrivateFeedThunk from './get-private-feed-thunk';
+import getUserThunk from './get-user-thunk';
 
 export {
   createCommentThunk,
@@ -32,4 +33,5 @@ export {
   deleteCommentThunk,
   registerThunk,
   loginUserThunk,
+  getUserThunk,
 };
