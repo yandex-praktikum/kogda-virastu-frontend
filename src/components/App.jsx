@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from '../services/hooks';
 import { Profile } from '../components_refact';
 import Header from './Header';
 import { Editor } from './Editor';
-import Register from './Register'; 
+import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
@@ -14,14 +14,14 @@ import {
   Route, Routes, useNavigate, useLocation,
 } from 'react-router-dom';
 
-import { loadInitialDataThunk } from '../thunks';
+import { getAllTagsThunk } from '../thunks';
 
 const App = () => {
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    dispatch(loadInitialDataThunk());
+    dispatch(getAllTagsThunk());
 
   }, [dispatch]);
 

@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { useSelector, useDispatch } from '../services/hooks';
 import { changeEmailLogin, changePasswordLogin} from '../store';
-import { loginUserThunk } from '../thunks/thunkLogin';
+import { loginUserThunk } from '../thunks';
 
 
 
@@ -35,7 +35,7 @@ const Login: FC = () => {
 
         }
     }, [isLoggedIn]);
-  
+
     return (
         <div className='auth-page'>
             <div className='container page'>
@@ -76,7 +76,7 @@ const Login: FC = () => {
                 </div>
             </div>
         </div>
-     
+
   );
 };
 export default Login;

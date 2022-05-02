@@ -12,7 +12,7 @@ import {
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const createComment: AppThunk = (slug: string) => async (
+const createCommentThunk: AppThunk = (slug: string) => async (
   dispatch: AppDispatch,
   getState: () => RootState,
 ) => {
@@ -29,4 +29,4 @@ const createComment: AppThunk = (slug: string) => async (
     dispatch(commentPostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
-export default createComment;
+export default createCommentThunk;
