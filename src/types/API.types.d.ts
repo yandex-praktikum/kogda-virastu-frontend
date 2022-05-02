@@ -39,10 +39,6 @@ export interface IFetchArticles {
   (queryParams?: TAPIParamsObject) : AxiosPromise<TAPIArticles>;
 }
 
-export interface IFetchFeed {
-  (limit?: number, offset?: number, tag?: string) : AxiosPromise<TAPIArticles>;
-}
-
 export interface IFetchArticle {
   (slug: string) : AxiosPromise<TAPIArticle>;
 }
