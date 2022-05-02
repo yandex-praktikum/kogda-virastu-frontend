@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { TArticle } from '../types/types';
 import ArticlePreview from './ArticlePreview';
 import ListPagination from './ListPagination';
+import { useSelector } from '../services/hooks';
 
-const ArticleList = (props) => {
-  if (!props.articles) {
+const ArticleList:FC = () => {
+  const { feed } = useSelector((state) => state.view);
+  if (!feed) {
     return (
       <div className='article-preview'>Loading...</div>
     );
   }
 
-  if (props.articles.length === 0) {
+  if (feed.length === 0) {
     return (
       <div className='article-preview'>
         No articles are here... yet.
@@ -20,15 +23,12 @@ const ArticleList = (props) => {
   return (
     <div>
       {
-        props.articles.map((article) => (
+        feed.map((article : TArticle) => (
           <ArticlePreview article={article} key={article.slug} />
         ))
       }
 
-      <ListPagination
-        pager={props.pager}
-        articlesCount={props.articlesCount}
-        currentPage={props.currentPage} />
+      <ListPagination />
     </div>
   );
 };

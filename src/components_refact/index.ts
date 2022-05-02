@@ -5,9 +5,9 @@ import { ListErrors } from './ui_lib/list-error';
 import CommentInput from './comment-input';
 import { SettingsForm } from './settings-form';
 
-import { ArticlePreview } from './articleprevview/articlepreview';
-import { ListPagination } from './listPagination/ListPagination';
-import { ArticleList } from './articleList/ArticleList';
+import { ArticlePreview } from '../components/ArticlePreview';
+import { ListPagination } from '../components/ListPagination';
+import { ArticleList } from '../components/ArticleList';
 import { ArticleActions } from './articleActions/ArticleActions';
 import Banner from './banner';
 import TagFilterTab from './tag-filter-tab';
