@@ -1,16 +1,20 @@
 import { Link } from 'react-router-dom';
 import React, {
-  ChangeEvent, FC, SyntheticEvent, useEffect
+  ChangeEvent, FC, SyntheticEvent, useEffect,
 } from 'react';
 import ListErrors from './ListErrors';
 import { useSelector, useDispatch } from '../services/hooks';
-import { changeUsernameRegister, changeEmailRegister, changePasswordRegister, resetFormRegister } from '../store';
-import registerThunk from '../thunks/register-thunk';
+import {
+  changeUsernameRegister,
+  changeEmailRegister,
+  changePasswordRegister,
+  resetFormRegister,
+} from '../store';
+import { registerThunk } from '../thunks';
 
 const Register: FC = () => {
-
   const { username, email, password } = useSelector((state) => state.forms.register);
-  const { isUserRegistering } = useSelector((state) => state.api)
+  const { isUserRegistering } = useSelector((state) => state.api);
   const dispatch = useDispatch();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,14 +31,12 @@ const Register: FC = () => {
 
   const submitForm = () => (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(registerThunk(username!, email!, password!));
+    dispatch(registerThunk());
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetFormRegister());
-    }
-  }, []);
+  useEffect(() => () => {
+    dispatch(resetFormRegister());
+  }, [dispatch]);
 
   return (
     <div className='auth-page'>
