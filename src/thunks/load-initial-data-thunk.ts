@@ -10,8 +10,8 @@ import {
   tagsFetchSucceeded,
 } from '../store';
 import { AppDispatch } from '../store/store.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
 import { TAPIError } from '../services/api.types';
+import { makeErrorObject } from '../services/helpers';
 
 const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
   try {
@@ -29,10 +29,10 @@ const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
       dispatch(tagsFetchSucceeded());
     });
   } catch (error) {
-    const msg = makeErrorMessage(error as AxiosError<TAPIError>);
+    const err = makeErrorObject(error as AxiosError<TAPIError>);
     batch(() => {
-      dispatch(publicFeedFailed(msg));
-      dispatch(tagsFetchFailed(msg));
+      dispatch(publicFeedFailed(err));
+      dispatch(tagsFetchFailed(err));
     });
   }
 };
