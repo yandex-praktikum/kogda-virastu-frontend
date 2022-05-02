@@ -9,6 +9,7 @@ import unfollowProfileThunk from './unfollow-profile-thunk';
 import deleteArticleThunk from './delete-article-thunk';
 import deleteCommentThunk from './delete-comment-thunk';
 import registerThunk from './register-thunk';
+import loginUserThunk from './login-thunk';
 
 export {
   loadInitialDataThunk,
@@ -21,4 +22,5 @@ export {
   deleteArticleThunk,
   deleteCommentThunk,
   registerThunk,
+  loginUserThunk,
 };
