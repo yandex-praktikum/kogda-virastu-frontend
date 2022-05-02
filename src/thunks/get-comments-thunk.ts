@@ -5,7 +5,7 @@ import { fetchComments } from '../services/api';
 import {
   setViewCommentsFeed, commentsFetchSucceeded, commentsFetchFailed, commentsFetchRequested,
 } from '../store';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
 const getComments: AppThunk = (slug: string) => async (dispatch: AppDispatch) => {
@@ -17,7 +17,7 @@ const getComments: AppThunk = (slug: string) => async (dispatch: AppDispatch) =>
       dispatch(commentsFetchSucceeded());
     });
   } catch (error) {
-    dispatch(commentsFetchFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(commentsFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 
