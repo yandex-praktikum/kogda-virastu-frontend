@@ -6,7 +6,7 @@ import {
 } from '../store';
 import { deleteArticle } from '../services/api';
 import { TAPIError } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 
 const deleteArticleThunk: AppThunk = (slug: string) => async (
   dispatch : AppDispatch,
@@ -20,10 +20,11 @@ const deleteArticleThunk: AppThunk = (slug: string) => async (
       batch(() => {
         dispatch(setAllArticles(articles?.filter((item) => item.slug !== slug)));
         dispatch(articleDeleteSucceeded());
+        // TODO: Надо перезапросить текущие статьи, или на странице будет меньше статей чем надо
       });
-    } else dispatch(articleDeleteFailed(`Произошла неизвестная ошибка! Код ответа сервера: ${status}`));
+    } else dispatch(articleDeleteFailed({ errors: { 'Unexpected error': `Server replied with code ${status}` } }));
   } catch (error) {
-    dispatch(articleDeleteFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(articleDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 
