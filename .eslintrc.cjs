@@ -50,7 +50,7 @@ module.exports = {
     'jsx-quotes': ['error', 'prefer-single'],
     'react/jsx-closing-bracket-location': ['error', 'after-props'],
     'class-methods-use-this': ['error'],
-    'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx']}],
+    'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx','.ts','.tsx']}],
     'react/forbid-prop-types': [0],
     "react/function-component-definition": ['error', {
       'namedComponents': 'arrow-function',
