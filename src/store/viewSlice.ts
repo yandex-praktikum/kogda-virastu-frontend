@@ -6,6 +6,7 @@ import {
 
 type TViewState = {
   feed: TArticles | null;
+  feedCount: number;
   article: TArticle | null;
   tagsList: TTags | null;
   selectedTags: TTags | null;
@@ -18,6 +19,7 @@ type TViewState = {
 
 const initialState: TViewState = {
   feed: null,
+  feedCount: 0,
   article: null,
   tagsList: null,
   selectedTags: null,
@@ -37,6 +39,9 @@ const viewSlice = createSlice({
     }),
     clearViewFeed: (state: TViewState) => ({
       ...state, feed: null,
+    }),
+    setFeedCount: (state: TViewState, action : PayloadAction<number>) => ({
+      ...state, feedCount: action.payload,
     }),
     setViewTags: (state: TViewState, action: PayloadAction<TTags>) => ({
       ...state, tagsList: action.payload,
