@@ -95,7 +95,7 @@ export const Profile: FC = () => {
             <ArticleList
               /*   pager={pager} */
               articles={articles!}
-              articlesCount={5}
+              articlesCount={11}
              /*  state={currentPage}  */ />
           </div>
 
