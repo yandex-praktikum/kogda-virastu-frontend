@@ -1,16 +1,16 @@
 import { AxiosError } from 'axios';
+import { batch } from 'react-redux';
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
-import { postComment, postLikeArticle } from '../services/api';
+import { postComment } from '../services/api';
 import {
   commentPostRequested,
   commentPostSucceeded,
   commentPostFailed,
+  setViewCommentFeed,
+  resetComment,
 } from '../store';
 import { TAPIError } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
-import { batch } from 'react-redux';
-import { resetComment } from '../store/commentFormSubSlice';
-import { setViewCommentFeed } from '../store/viewSlice';
+import { makeErrorObject } from '../services/helpers';
 
 const createComment: AppThunk = (slug: string) => async (
   dispatch: AppDispatch,
@@ -21,12 +21,12 @@ const createComment: AppThunk = (slug: string) => async (
     dispatch(commentPostRequested());
     const { data } = await postComment(slug, comment);
     batch(() => {
-      dispatch(setViewCommentFeed(data.comment))
-      dispatch(resetComment())
+      dispatch(setViewCommentFeed(data.comment));
+      dispatch(resetComment());
       dispatch(commentPostSucceeded());
-    })
+    });
   } catch (error) {
-    dispatch(commentPostFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(commentPostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 export default createComment;

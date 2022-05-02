@@ -38,11 +38,11 @@ import {
   clearAll,
 } from './allSlice';
 
-import { setUser, clearUser, setCurrentUser } from './userSlice';
+import { setUser, clearUser } from './userSlice';
+
+import { setComment, resetComment } from './commentFormSubSlice';
 
 import {
-  setViewedProfile,
-  clearViewprofile,
   setViewFeed,
   clearViewFeed,
   setViewTags,
@@ -132,9 +132,6 @@ import {
 } from './systemSlice';
 
 export {
-  setViewedProfile,
-  clearViewprofile,
-  setCurrentUser,
   setTitle,
   setDescription,
   setBody,
@@ -241,4 +238,6 @@ export {
   setTaglist,
   deleteTag,
   setImage,
+  setComment,
+  resetComment,
 };

@@ -81,8 +81,8 @@ const apiSlice = createSlice({
     userRegistrationSucceeded: (state: TAPIState) => ({
       ...state, isUserRegistering: false,
     }),
-    userRegistrationFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isUserRegistering: false, errorMessage: action.payload,
+    userRegistrationFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserRegistering: false, errorObject: action.payload,
     }),
     userLoginRequested: (state: TAPIState) => ({
       ...state, isUserLoggingIn: true,
@@ -90,8 +90,8 @@ const apiSlice = createSlice({
     userLoginSucceeded: (state: TAPIState) => ({
       ...state, isUserLoggingIn: false,
     }),
-    userLoginFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isUserLoggingIn: false, errorMessage: action.payload,
+    userLoginFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserLoggingIn: false, errorObject: action.payload,
     }),
     userFetchRequested: (state: TAPIState) => ({
       ...state, isUserFetching: true,
@@ -99,8 +99,8 @@ const apiSlice = createSlice({
     userFetchSucceeded: (state: TAPIState) => ({
       ...state, isUserFetching: false,
     }),
-    userFetchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isUserFetching: false, errorMessage: action.payload,
+    userFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserFetching: false, errorObject: action.payload,
     }),
     userPatchRequested: (state: TAPIState) => ({
       ...state, isUserPatching: true,
@@ -108,8 +108,8 @@ const apiSlice = createSlice({
     userPatchSucceeded: (state: TAPIState) => ({
       ...state, isUserPatching: false,
     }),
-    userPatchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isUserPatching: false, errorMessage: action.payload,
+    userPatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserPatching: false, errorObject: action.payload,
     }),
     publicFeedRequested: (state: TAPIState) => ({
       ...state, isPublicFeedFetching: true,
@@ -117,8 +117,8 @@ const apiSlice = createSlice({
     publicFeedSucceeded: (state: TAPIState) => ({
       ...state, isPublicFeedFetching: false,
     }),
-    publicFeedFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isPublicFeedFetching: false, errorMessage: action.payload,
+    publicFeedFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isPublicFeedFetching: false, errorObject: action.payload,
     }),
     articleFetchRequested: (state: TAPIState) => ({
       ...state, isArticleFetching: true,
@@ -126,8 +126,8 @@ const apiSlice = createSlice({
     articleFetchSucceeded: (state: TAPIState) => ({
       ...state, isArticleFetching: false,
     }),
-    articleFetchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isArticleFetching: false, errorMessage: action.payload,
+    articleFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticleFetching: false, errorObject: action.payload,
     }),
     privateFeedRequested: (state: TAPIState) => ({
       ...state, isPrivateFeedFetching: true,
@@ -135,8 +135,8 @@ const apiSlice = createSlice({
     privateFeedSucceeded: (state: TAPIState) => ({
       ...state, isPrivateFeedFetching: false,
     }),
-    privateFeedFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isPrivateFeedFetching: false, errorMessage: action.payload,
+    privateFeedFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isPrivateFeedFetching: false, errorObject: action.payload,
     }),
     articlePostRequested: (state: TAPIState) => ({
       ...state, isArticlePosting: true,
@@ -144,8 +144,8 @@ const apiSlice = createSlice({
     articlePostSucceeded: (state: TAPIState) => ({
       ...state, isArticlePosting: false,
     }),
-    articlePostFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isArticlePosting: false, errorMessage: action.payload,
+    articlePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticlePosting: false, errorObject: action.payload,
     }),
     articleDeleteRequested: (state: TAPIState) => ({
       ...state, isArticleDeleting: true,
@@ -153,8 +153,8 @@ const apiSlice = createSlice({
     articleDeleteSucceeded: (state: TAPIState) => ({
       ...state, isArticleDeleting: false,
     }),
-    articleDeleteFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isArticleDeleting: false, errorMessage: action.payload,
+    articleDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticleDeleting: false, errorObject: action.payload,
     }),
     articlePatchRequested: (state: TAPIState) => ({
       ...state, isArticlePatching: true,
@@ -162,8 +162,8 @@ const apiSlice = createSlice({
     articlePatchSucceeded: (state: TAPIState) => ({
       ...state, isArticlePatching: false,
     }),
-    articlePatchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isArticlePatching: false, errorMessage: action.payload,
+    articlePatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticlePatching: false, errorObject: action.payload,
     }),
     likeArticlePostRequested: (state: TAPIState) => ({
       ...state, isLikeArticlePosting: true,
@@ -171,8 +171,8 @@ const apiSlice = createSlice({
     likeArticlePostSucceeded: (state: TAPIState) => ({
       ...state, isLikeArticlePosting: false,
     }),
-    likeArticlePostFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isLikeArticlePosting: false, errorMessage: action.payload,
+    likeArticlePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isLikeArticlePosting: false, errorObject: action.payload,
     }),
     likeArticleDeleteRequested: (state: TAPIState) => ({
       ...state, isLikeArticleDeleting: true,
@@ -180,8 +180,8 @@ const apiSlice = createSlice({
     likeArticleDeleteSucceeded: (state: TAPIState) => ({
       ...state, isLikeArticleDeleting: false,
     }),
-    likeArticleDeleteFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isLikeArticleDeleting: false, errorMessage: action.payload,
+    likeArticleDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isLikeArticleDeleting: false, errorObject: action.payload,
     }),
     tagsFetchRequested: (state: TAPIState) => ({
       ...state, isTagsFetching: true,
@@ -189,8 +189,8 @@ const apiSlice = createSlice({
     tagsFetchSucceeded: (state: TAPIState) => ({
       ...state, isTagsFetching: false,
     }),
-    tagsFetchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isTagsFetching: false, errorMessage: action.payload,
+    tagsFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagsFetching: false, errorObject: action.payload,
     }),
     commentsFetchRequested: (state: TAPIState) => ({
       ...state, isCommentsFetching: true,
@@ -198,8 +198,8 @@ const apiSlice = createSlice({
     commentsFetchSucceeded: (state: TAPIState) => ({
       ...state, isCommentsFetching: false,
     }),
-    commentsFetchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isCommentsFetching: false, errorMessage: action.payload,
+    commentsFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isCommentsFetching: false, errorObject: action.payload,
     }),
     commentPostRequested: (state: TAPIState) => ({
       ...state, isCommentPosting: true,
@@ -207,8 +207,8 @@ const apiSlice = createSlice({
     commentPostSucceeded: (state: TAPIState) => ({
       ...state, isCommentPosting: false,
     }),
-    commentPostFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isCommentPosting: false, errorMessage: action.payload,
+    commentPostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isCommentPosting: false, errorObject: action.payload,
     }),
     commentDeleteRequested: (state: TAPIState) => ({
       ...state, isCommentDeleting: true,
@@ -216,8 +216,8 @@ const apiSlice = createSlice({
     commentDeleteSucceeded: (state: TAPIState) => ({
       ...state, isCommentDeleting: false,
     }),
-    commentDeleteFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isCommentDeleting: false, errorMessage: action.payload,
+    commentDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isCommentDeleting: false, errorObject: action.payload,
     }),
     profileFetchRequested: (state: TAPIState) => ({
       ...state, isProfileFetching: true,
@@ -225,8 +225,8 @@ const apiSlice = createSlice({
     profileFetchSucceeded: (state: TAPIState) => ({
       ...state, isProfileFetching: false,
     }),
-    profileFetchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isProfileFetching: false, errorMessage: action.payload,
+    profileFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isProfileFetching: false, errorObject: action.payload,
     }),
     followProfilePostRequested: (state: TAPIState) => ({
       ...state, isFollowProfilePosting: true,
@@ -234,8 +234,8 @@ const apiSlice = createSlice({
     followProfilePostSucceeded: (state: TAPIState) => ({
       ...state, isFollowProfilePosting: false,
     }),
-    followProfilePostFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isFollowProfilePosting: false, errorMessage: action.payload,
+    followProfilePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isFollowProfilePosting: false, errorObject: action.payload,
     }),
     followProfileDeleteRequested: (state: TAPIState) => ({
       ...state, isFollowProfileDeleting: true,
@@ -243,8 +243,8 @@ const apiSlice = createSlice({
     followProfileDeleteSucceeded: (state: TAPIState) => ({
       ...state, isFollowProfileDeleting: false,
     }),
-    followProfileDeleteFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isFollowProfileDeleting: false, errorMessage: action.payload,
+    followProfileDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isFollowProfileDeleting: false, errorObject: action.payload,
     }),
     settingsPatchRequested: (state: TAPIState) => ({
       ...state, isSettingsPatching: true,
@@ -252,8 +252,8 @@ const apiSlice = createSlice({
     settingsPatchSucceeded: (state: TAPIState) => ({
       ...state, isSettingsPatching: false,
     }),
-    settingsPatchFailed: (state: TAPIState, action: PayloadAction<string>) => ({
-      ...state, isSettingsPatching: false, errorMessage: action.payload,
+    settingsPatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isSettingsPatching: false, errorObject: action.payload,
     }),
   },
 });
