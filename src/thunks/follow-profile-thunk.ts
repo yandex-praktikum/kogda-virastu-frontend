@@ -9,7 +9,7 @@ import {
 import { postFollowProfile } from '../services/api';
 import { AppThunk, AppDispatch, RootState } from '../store/store.types';
 import { TAPIProfile, TAPIError } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 
 const followProfileThunk: AppThunk = () => async (
   dispatch : AppDispatch,
@@ -25,7 +25,7 @@ const followProfileThunk: AppThunk = () => async (
       dispatch(followProfilePostSucceeded());
     });
   } catch (error) {
-    dispatch(followProfilePostFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(followProfilePostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 
