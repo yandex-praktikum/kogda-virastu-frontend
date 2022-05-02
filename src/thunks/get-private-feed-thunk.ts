@@ -10,15 +10,17 @@ import {
 } from '../store';
 import { AppDispatch, AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
-import { TAPIError } from '../services/api.types';
+import { TAPIError, TAPIParamsObject } from '../services/api.types';
 
-const loadPrivateFeedThunk: AppThunk = () => async (dispatch : AppDispatch) => {
+const getPrivateFeedThunk: AppThunk = (
+  params: TAPIParamsObject,
+) => async (dispatch : AppDispatch) => {
   try {
     batch(() => {
       dispatch(privateFeedRequested());
     });
     const
-      { data: { articles, articlesCount } } = await fetchPrivateFeed();
+      { data: { articles, articlesCount } } = await fetchPrivateFeed(params);
     batch(() => {
       dispatch(setViewFeed(articles));
       dispatch(setFeedCount(articlesCount));
@@ -29,4 +31,4 @@ const loadPrivateFeedThunk: AppThunk = () => async (dispatch : AppDispatch) => {
   }
 };
 
-export default loadPrivateFeedThunk;
+export default getPrivateFeedThunk;

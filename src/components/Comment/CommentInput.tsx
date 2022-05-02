@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { setComment } from '../../store/commentFormSubSlice';
-import createComment from '../../thunks/create-comment-thunk';
+import createCommentThunk from '../../thunks/create-comment-thunk';
 
 const CommentInput = () => {
   const { id: slug } = useParams();
@@ -16,7 +16,7 @@ const CommentInput = () => {
 
   const handlerForm = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(createComment(slug));
+    dispatch(createCommentThunk(slug));
   };
 
   return (
