@@ -7,13 +7,12 @@ import {
 } from '../store';
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
 
-export const loginUserThunk = () => async (dispatch: AppDispatch, getState: () => RootState) => {
+export const loginUserThunk:any = () => async (dispatch: AppDispatch, getState: () => RootState) => {
     const { email, password } = getState().forms.login;
     try {
         dispatch(userLoginRequested());
         const { data: { user } } = await loginUser(email ?? '', password ?? '');
         jwt.set(user.token);
-        delete user.token;
         batch(() => {
             dispatch(userLoginSucceeded());
             dispatch(setUser(user));

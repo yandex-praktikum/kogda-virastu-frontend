@@ -7,28 +7,25 @@ import Comment from './Comment';
 const CommentList: FC = () => {
   const { id: slug } = useParams();
   const dispatch = useDispatch();
-  const comments = useSelector((store) => store.view.commentsFeed)
+  const comments = useSelector((store) => store.view.commentsFeed);
   useEffect(() => {
-    dispatch(getComments(slug))
-  }, [dispatch, comments?.length])
+    dispatch(getComments(slug));
+  }, [dispatch, comments.length, slug]);
 
-  if (!comments) {
-    return <p>Пусто</p>
-  } else {
-    return (
-      <div>
-        {comments.map((comment) => (
-          <Comment
-            comment={comment}
-            // currentUser={props.currentUser}
-            slug={slug}
-            key={comment.id}
-          />
-        ))}
-      </div>
-    );
+  if (Array.isArray(comments) && !comments.length) {
+    return null;
   }
-
+  return (
+    <div>
+      {comments.map((comment) => (
+        <Comment
+          comment={comment}
+          // currentUser={props.currentUser}
+          slug={slug}
+          key={comment.id} />
+      ))}
+    </div>
+  );
 };
 
 export default CommentList;

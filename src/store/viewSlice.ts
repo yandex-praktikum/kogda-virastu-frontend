@@ -6,43 +6,44 @@ import {
 
 type TViewState = {
   feed: TArticles | null;
+  feedCount: number;
   article: TArticle | null;
   tagsList: TTags | null;
   selectedTags: TTags | null;
-  commentsFeed: TComments | null;
+  commentsFeed: TComments;
   comment: TComment | null;
   page: number;
   perPage: number;
   profile: TProfile | null;
+  positionFeed: 'global' | 'privat';
 };
 
 const initialState: TViewState = {
   feed: null,
+  feedCount: 0,
   article: null,
   tagsList: null,
   selectedTags: null,
-  commentsFeed: null,
+  commentsFeed: [],
   comment: null,
   page: 1,
   perPage: 10,
   profile: null,
+  positionFeed: 'global'
 };
 
 const viewSlice = createSlice({
   name: 'view',
   initialState,
   reducers: {
-    setViewedProfile: (state: TViewState, action: PayloadAction<TProfile>) => ({
-      ...state, viewedprofile: action.payload
-    }),
-    clearViewprofile: (state: TViewState) => ({
-      ...state, viewedprofile: null
-    }),
     setViewFeed: (state: TViewState, action: PayloadAction<TArticles>) => ({
       ...state, feed: action.payload,
     }),
     clearViewFeed: (state: TViewState) => ({
       ...state, feed: null,
+    }),
+    setFeedCount: (state: TViewState, action : PayloadAction<number>) => ({
+      ...state, feedCount: action.payload,
     }),
     setViewTags: (state: TViewState, action: PayloadAction<TTags>) => ({
       ...state, tagsList: action.payload,
@@ -65,11 +66,11 @@ const viewSlice = createSlice({
     setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
       ...state, commentsFeed: action.payload,
     }),
-    setViewCommentFeed: (state: TViewState, action: PayloadAction<TComment>) => {
-      { state.commentsFeed?.push(action.payload) }
-    },
+    setViewCommentFeed: (state: TViewState, action: PayloadAction<TComment>) => ({
+      ...state, commentsFeed: [...state.commentsFeed, action.payload],
+    }),
     clearViewCommentsFeed: (state: TViewState) => ({
-      ...state, commentsFeed: null,
+      ...state, commentsFeed: [],
     }),
     selectViewComment: (state: TViewState, action: PayloadAction<TComment>) => ({
       ...state, comment: action.payload,
@@ -92,12 +93,14 @@ const viewSlice = createSlice({
     clearViewProfile: (state: TViewState) => ({
       ...state, profile: null,
     }),
+    changePositionFeed: (state: TViewState, action: PayloadAction<'global' | 'privat'>) => ({
+      ...state, positionFeed: action.payload,
+    }),
+
   },
 });
 
 export const {
-  setViewedProfile,
-  clearViewprofile,
   setViewFeed,
   clearViewFeed,
   setViewTags,
@@ -116,6 +119,7 @@ export const {
   clearView,
   setViewProfile,
   clearViewProfile,
+  changePositionFeed
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

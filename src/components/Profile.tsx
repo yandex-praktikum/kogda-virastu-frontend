@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
 import { EditProfileSettings, FollowUserButton, ArticleList } from '../components_refact/index';
+import { calculateOffset } from '../services/helpers';
 
 import { getUserProfileThunk } from '../thunks';
 import {
@@ -11,16 +12,47 @@ import {
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
-  const {username} = useSelector(state => state.profile)
+  const { username } = useSelector(state => state.profile)
   const { profile } = useSelector(state => state.view)
   const { isLoggedIn } = useSelector(state => state.system)
   const { articles } = useSelector(state => state.all)
-  
+
   const params = useParams<{ username: string }>()
 
+  /* const calculateOffset = (page : number, qty : number) : number => qty * (page - 1); 
+  
+  export const fetchPublicFeed : IFetchArticles = (
+  limit?: number,
+  offset?: number,
+  tag?: string,
+  author?: string,
+  favorited?: string,
+) : AxiosPromise<TAPIArticles> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: ARTICLES_ROUTE,
+    params: makeParams(limit, offset, tag, author, favorited),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchPrivateFeed : IFetchFeed = (
+  limit?: number,
+  offset?: number,
+  tag?: string,
+) : AxiosPromise<TAPIArticles> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: FEED_ROUTE,
+    params: makeParams(limit, offset, tag),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+  
+  
+  */
 
   useEffect(() => {
-
     dispatch(getUserProfileThunk(params.username))
 
   }, [dispatch]);
@@ -92,11 +124,7 @@ export const Profile: FC = () => {
               {username === profile?.username && renderTabs()}
             </div>
 
-            <ArticleList
-              /*   pager={pager} */
-              articles={articles!}
-              articlesCount={11}
-             /*  state={currentPage}  */ />
+            <ArticleList/>
           </div>
 
         </div>
@@ -105,6 +133,6 @@ export const Profile: FC = () => {
     </div>
   );
 };
-  
+
 
 ///в артикал лист нужно танк, и настроить лист пагинатион, сделать артикл компонент

@@ -8,7 +8,7 @@ import {
   likeArticlePostFailed,
 } from '../store';
 import { TAPIError } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
+import { makeErrorObject } from '../services/helpers';
 
 const addLikeThunk: AppThunk = (slug: string) => async (
   dispatch : AppDispatch,
@@ -24,7 +24,7 @@ const addLikeThunk: AppThunk = (slug: string) => async (
     )));
     dispatch(likeArticlePostSucceeded());
   } catch (error) {
-    dispatch(likeArticlePostFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(likeArticlePostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 export default addLikeThunk;

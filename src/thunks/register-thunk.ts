@@ -1,31 +1,46 @@
-import { AppDispatch, AppThunk } from "../store/store.types";
-import { registerUser } from "../services/api";
+import { AxiosError } from 'axios';
+import { batch } from 'react-redux';
+import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { registerUser, jwt } from '../services/api';
 import {
   userRegistrationRequested,
   userRegistrationSucceeded,
   userRegistrationFailed,
-} from "../store";
-import makeErrorMessage from "../services/helpers/make-error-message";
-import { AxiosError } from "axios";
-import { TAPIError } from "../services/api.types";
+  setUser,
+} from '../store';
+import { makeErrorObject } from '../services/helpers';
+import { TAPIError } from '../services/api.types';
 
-const registerThunk: AppThunk =
-  (usernameReg: string, emailReg: string, passwordReg: string) =>
-  async (dispatch: AppDispatch) => {
-    dispatch(userRegistrationRequested());
-    try {
-      const {
-        data: {
-          user: { username, email, token },
+const registerThunk: AppThunk = () => async (dispatch: AppDispatch, getState: () => RootState) => {
+  const reg = getState().forms.register || {};
+  const usernameReg = reg.username ?? '';
+  const emailReg = reg.email ?? '';
+  const passwordReg = reg.password ?? '';
+  dispatch(userRegistrationRequested());
+  try {
+    const {
+      data: {
+        user: {
+          username, email, token, bio = '', image = '',
         },
-      } = await registerUser(usernameReg, emailReg, passwordReg);
-      console.log(username, email, token);
-      dispatch(userRegistrationSucceeded);
-    } catch (error) {
-      dispatch(
-        userRegistrationFailed(makeErrorMessage(error as AxiosError<TAPIError>))
-      );
-    }
-  };
+      },
+    } = await registerUser(usernameReg, emailReg, passwordReg);
+    jwt.set(token);
+    batch(() => {
+      dispatch(setUser({
+        username,
+        email,
+        bio,
+        image,
+      }));
+      dispatch(userRegistrationSucceeded());
+    });
+    jwt.set(token);
+  } catch (error) {
+    dispatch(
+      userRegistrationFailed(makeErrorObject(error as AxiosError<TAPIError>)),
+    );
+  }
+};
 
 export default registerThunk;

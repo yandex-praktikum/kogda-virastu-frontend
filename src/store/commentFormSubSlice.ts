@@ -24,7 +24,7 @@ const commentSubSlice = createSlice({
 const commentReducer = commentSubSlice.reducer;
 export const {
   setComment,
-  resetComment
+  resetComment,
 } = commentSubSlice.actions;
 
 export default commentReducer;
