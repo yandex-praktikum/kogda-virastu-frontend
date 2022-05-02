@@ -1,13 +1,13 @@
 import { AxiosPromise } from 'axios';
 import {
   TAPIArticle,
-  TAPIArticles, TAPIAuth,
+  TAPIArticles,
+  TAPIAuth,
   TAPIComment,
-  TAPIComments,
+  TAPIComments, TAPIParamsObject,
   TAPIProfile,
   TAPITags,
   TAPIUser,
-  TAPIAuth
 } from '../services/api.types';
 import { TTags } from './types';
 
@@ -36,11 +36,7 @@ export interface IPatchUser {
 }
 
 export interface IFetchArticles {
-  (limit?: number,
-    offset?: number,
-    tag?: string,
-    author?: string,
-    favorited?: string) : AxiosPromise<TAPIArticles>;
+  (queryParams?: TAPIParamsObject) : AxiosPromise<TAPIArticles>;
 }
 
 export interface IFetchFeed {
