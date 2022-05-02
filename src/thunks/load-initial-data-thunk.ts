@@ -13,7 +13,7 @@ import { AppDispatch } from '../store/store.types';
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
+export const loadInitialDataThunk = () => async (dispatch : AppDispatch) => {
   try {
     batch(() => {
       dispatch(publicFeedRequested());

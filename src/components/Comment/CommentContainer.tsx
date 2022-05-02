@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom';
 import React, { FC } from 'react';
 import { useSelector } from '../../services/hooks';
 import CommentInput from './CommentInput';
-import { useParams } from 'react-router-dom';
 import CommentList from './CommentList';
 
 const CommentContainer: FC = () => {
-  const { isLoggedIn } = useSelector((state) => state.system)
+  const { isLoggedIn } = useSelector((state) => state.system);
 
   if (isLoggedIn) {
     return (
@@ -27,7 +26,6 @@ const CommentContainer: FC = () => {
         <Link to='/register'>sign up</Link>
         &nbsp;to add comments on this article.
       </p>
-
       <CommentList />
     </div>
   );

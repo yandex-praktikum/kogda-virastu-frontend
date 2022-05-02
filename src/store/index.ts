@@ -42,7 +42,12 @@ import { setUser, clearUser } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
+
+
 import {
+  changePositionFeed,
+  setViewedProfile,
+  clearViewprofile,
   setViewFeed,
   clearViewFeed,
   setViewTags,
@@ -132,6 +137,9 @@ import {
 } from './systemSlice';
 
 export {
+  changePositionFeed,
+  setViewedProfile,
+  clearViewprofile,
   setTitle,
   setDescription,
   setBody,

@@ -5,8 +5,8 @@ import { setComment } from '../../store/commentFormSubSlice';
 import createComment from '../../thunks/create-comment-thunk';
 
 const CommentInput = () => {
-  const { id : slug} = useParams();
-  const { image, username } = useSelector((state) => state.profile)
+  const { id: slug } = useParams();
+  const { image, username } = useSelector((state) => state.profile);
   const { comment } = useSelector((state) => state.forms.comment);
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const CommentInput = () => {
         <textarea
           className='form-control'
           placeholder='Write a comment...'
-          value={comment ? comment : ''}
+          value={comment ?? ''}
           onChange={onChangeComment}
           rows={3} />
       </div>

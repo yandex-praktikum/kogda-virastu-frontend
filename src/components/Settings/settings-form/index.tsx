@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import { useDispatch, useSelector } from '../../../services/hooks';
 import {
   setUsernameProfile,
@@ -21,6 +21,26 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
     dispatch(patchCurrentUserThunk());
   };
 
+  const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setImageProfile(e.target.value));
+  };
+
+  const changeUsername = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setUsernameProfile(e.target.value));
+  };
+
+  const changeBioProfile = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(setBioProfile(e.target.value));
+  };
+
+  const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setEmailProfile(e.target.value));
+  };
+
+  const changePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setPasswordProfile(e.target.value));
+  };
+
   return (
     <form onSubmit={submitForm}>
       <fieldset>
@@ -29,8 +49,8 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
             className='form-control'
             type='text'
             placeholder='URL of profile picture'
-            value={image || ''}
-            onChange={(e) => dispatch(setImageProfile(e.target.value))} />
+            value={image ?? ''}
+            onChange={changeImage} />
         </fieldset>
 
         <fieldset className='form-group'>
@@ -38,8 +58,8 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
             className='form-control form-control-lg'
             type='text'
             placeholder='Username'
-            value={username || ''}
-            onChange={(e) => dispatch(setUsernameProfile(e.target.value))} />
+            value={username ?? ''}
+            onChange={changeUsername} />
         </fieldset>
 
         <fieldset className='form-group'>
@@ -47,8 +67,8 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
             className='form-control form-control-lg'
             rows={8}
             placeholder='Short bio about you'
-            value={bio || ''}
-            onChange={(e) => dispatch(setBioProfile(e.target.value))} />
+            value={bio ?? ''}
+            onChange={changeBioProfile} />
         </fieldset>
 
         <fieldset className='form-group'>
@@ -56,8 +76,8 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
             className='form-control form-control-lg'
             type='email'
             placeholder='Email'
-            value={email || ''}
-            onChange={(e) => dispatch(setEmailProfile(e.target.value))} />
+            value={email ?? ''}
+            onChange={changeEmail} />
         </fieldset>
 
         <fieldset className='form-group'>
@@ -65,8 +85,8 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
             className='form-control form-control-lg'
             type='password'
             placeholder='New Password'
-            value={[password || '']}
-            onChange={(e) => dispatch(setPasswordProfile(e.target.value))} />
+            value={password ?? ''}
+            onChange={changePassword} />
         </fieldset>
 
         <button

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import ListErrors from './ListErrors';
 import { connect } from 'react-redux';
 import {
     UPDATE_FIELD_AUTH,
@@ -58,8 +57,6 @@ export const Login: FC = (props: any) => {
                                 Need an account?
                             </Link>
                         </p>
-
-                        <ListErrors errors={props.errors} />
 
                         <form onSubmit={submitForm(email, password)}>
                             <fieldset>
