@@ -6,11 +6,11 @@ import {
   commentPostRequested,
   commentPostSucceeded,
   commentPostFailed,
+  setViewCommentFeed,
+  resetComment,
 } from '../store';
 import { TAPIError } from '../services/api.types';
-import makeErrorMessage from '../services/helpers/make-error-message';
-import { resetComment } from '../store/commentFormSubSlice';
-import { setViewCommentFeed } from '../store/viewSlice';
+import { makeErrorObject } from '../services/helpers';
 
 const createComment: AppThunk = (slug: string) => async (
   dispatch: AppDispatch,
@@ -26,7 +26,7 @@ const createComment: AppThunk = (slug: string) => async (
       dispatch(commentPostSucceeded());
     });
   } catch (error) {
-    dispatch(commentPostFailed(makeErrorMessage(error as AxiosError<TAPIError>)));
+    dispatch(commentPostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 export default createComment;
