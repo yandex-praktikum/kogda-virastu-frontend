@@ -1,5 +1,5 @@
 import loadInitialDataThunk from './load-initial-data-thunk';
-import addLikeThunk from './add-likes-thunks';
+import addLikeThunk from './add-likes-thunk';
 import deleteLikeThunk from './delete-like-thunk';
 import getUserProfileThunk from './get-user-profile-thunk';
 import patchCurrentUserThunk from './patch-current-user-thunk';
@@ -18,4 +18,5 @@ export {
   followProfileThunk,
   patchCurrentUserThunk,
   deleteArticleThunk,
+  deleteCommentThunk,
 };
