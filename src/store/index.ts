@@ -38,20 +38,16 @@ import {
   clearAll,
 } from './allSlice';
 
-<<<<<<< HEAD
 import { setUser, clearUser } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
-import {
-=======
-import { setUser, clearUser} from './userSlice';
+
 
 import {
   changePositionFeed,
   setViewedProfile,
   clearViewprofile,
->>>>>>> refact/MainView_v2.0
   setViewFeed,
   clearViewFeed,
   setViewTags,
@@ -141,12 +137,9 @@ import {
 } from './systemSlice';
 
 export {
-<<<<<<< HEAD
-=======
   changePositionFeed,
   setViewedProfile,
   clearViewprofile,
->>>>>>> refact/MainView_v2.0
   setTitle,
   setDescription,
   setBody,
