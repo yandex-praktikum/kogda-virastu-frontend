@@ -13,7 +13,7 @@ import { AppDispatch } from '../store/store.types';
 import makeErrorMessage from '../services/helpers/make-error-message';
 import { TAPIError } from '../services/api.types';
 
-export const loadPrivatFeedThunk:any = () => async (dispatch : AppDispatch) => {
+const loadPrivatFeedThunk:any = () => async (dispatch : AppDispatch) => {
   try {
     batch(() => {
       dispatch(privateFeedRequested());

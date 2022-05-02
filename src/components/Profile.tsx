@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
 import { EditProfileSettings, FollowUserButton, ArticleList } from '../components_refact/index';
 import { calculateOffset } from '../services/helpers';
+import loadPrivatFeedThunk from '../thunks/load-privat-data-thunk';
 
 import { getUserProfileThunk } from '../thunks';
 import {
@@ -19,43 +20,16 @@ export const Profile: FC = () => {
 
   const params = useParams<{ username: string }>()
 
-  /* const calculateOffset = (page : number, qty : number) : number => qty * (page - 1); 
   
-  export const fetchPublicFeed : IFetchArticles = (
-  limit?: number,
-  offset?: number,
-  tag?: string,
-  author?: string,
-  favorited?: string,
-) : AxiosPromise<TAPIArticles> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: ARTICLES_ROUTE,
-    params: makeParams(limit, offset, tag, author, favorited),
-    method: 'get',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
-export const fetchPrivateFeed : IFetchFeed = (
-  limit?: number,
-  offset?: number,
-  tag?: string,
-) : AxiosPromise<TAPIArticles> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: FEED_ROUTE,
-    params: makeParams(limit, offset, tag),
-    method: 'get',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-  
-  
-  */
-
   useEffect(() => {
     dispatch(getUserProfileThunk(params.username))
 
   }, [dispatch]);
+
+
+  useEffect(() => {
+    profile?.username && dispatch(loadPrivatFeedThunk()) 
+  }, [dispatch])
 
   const onFollow = () => {
     dispatch(followProfileThunk());

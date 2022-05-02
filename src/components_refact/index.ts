@@ -9,10 +9,7 @@ import { ArticlePreview } from './articleprevview/articlepreview';
 import { ListPagination } from './listPagination/ListPagination';
 import { ArticleList } from './articleList/ArticleList';
 import { ArticleActions } from './articleActions/ArticleActions';
-import Banner from './banner';
-import TagFilterTab from './tag-filter-tab';
-import Comment from './comment';
-import { Tags } from './tags/Tags';
+
 
 /* import HeaderLoggedInView from './header-logged-in-view';
 import HeaderLoggedOutView from './header-logged-out-view'; */

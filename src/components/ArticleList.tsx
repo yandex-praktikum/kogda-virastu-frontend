@@ -3,9 +3,11 @@ import { TArticle } from '../types/types';
 import { ArticlePreview } from './Articlepreview'
 import { ListPagination } from './ListPagination';
 
-export const ArticleList:FC<{ /* pager: (page: number) => void, */ articlesCount: number, /* state: number, */ articles:TArticle[] }> = ({
-  /* pager, */ articlesCount, articles,/*  state, */
-}) => {
+export const ArticleList: FC = () => {
+  
+
+
+
   if (!articles) {
     return (
       <div className='article-preview'>Loading...</div>
@@ -28,10 +30,8 @@ export const ArticleList:FC<{ /* pager: (page: number) => void, */ articlesCount
         ))
       }
 
-      <ListPagination
-        /* pager={pager} */
-        articlesCount={articlesCount}
-        currentPage={1} />
+      <ListPagination/>
+      
     </div>
   );
 };
