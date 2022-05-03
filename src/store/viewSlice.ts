@@ -27,7 +27,7 @@ const initialState: TViewState = {
   commentsFeed: [],
   comment: null,
   page: 1,
-  perPage: 20,
+  perPage: 10,
   profile: null,
   positionFeed: 'global',
 };
