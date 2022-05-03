@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-  TArticle, TArticles, TComment, TComments, TTags, TProfile,
+  FeedTypes, TArticle, TArticles, TComment, TComments, TProfile, TTags,
 } from '../types/types';
 
 type TViewState = {
@@ -10,12 +10,13 @@ type TViewState = {
   article: TArticle | null;
   tagsList: TTags | null;
   selectedTags: TTags | null;
+  tag: string | null,
   commentsFeed: TComments;
   comment: TComment | null;
   page: number;
   perPage: number;
   profile: TProfile | null;
-  positionFeed: 'global' | 'privat';
+  feedType: FeedTypes;
 };
 
 const initialState: TViewState = {
@@ -24,12 +25,13 @@ const initialState: TViewState = {
   article: null,
   tagsList: null,
   selectedTags: null,
+  tag: null,
   commentsFeed: [],
   comment: null,
   page: 1,
   perPage: 10,
   profile: null,
-  positionFeed: 'global',
+  feedType: FeedTypes.public,
 };
 
 const viewSlice = createSlice({
@@ -63,6 +65,12 @@ const viewSlice = createSlice({
     clearSelectedTags: (state: TViewState) => ({
       ...state, selectedTags: null,
     }),
+    setTag: (state: TViewState, action: PayloadAction<string>) => ({
+      ...state, tag: action.payload,
+    }),
+    clearTag: (state: TViewState) => ({
+      ...state, tag: null,
+    }),
     setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
       ...state, commentsFeed: action.payload,
     }),
@@ -93,10 +101,9 @@ const viewSlice = createSlice({
     clearViewProfile: (state: TViewState) => ({
       ...state, profile: null,
     }),
-    changePositionFeed: (state: TViewState, action: PayloadAction<'global' | 'privat'>) => ({
-      ...state, positionFeed: action.payload,
+    setFeedType: (state: TViewState, action: PayloadAction<FeedTypes>) => ({
+      ...state, feedType: action.payload,
     }),
-
   },
 });
 
@@ -120,7 +127,9 @@ export const {
   clearView,
   setViewProfile,
   clearViewProfile,
-  changePositionFeed,
+  setTag,
+  clearTag,
+  setFeedType,
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

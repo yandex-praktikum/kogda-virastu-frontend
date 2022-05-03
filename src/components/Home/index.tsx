@@ -1,17 +1,21 @@
-import { useSelector, useDispatch } from '../../services/hooks';
-import React, { useState, useEffect, FC } from 'react';
+import React, { useEffect, FC } from 'react';
+import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
 import Tags from './Tags';
-import { getAllTagsThunk } from '../../thunks/get-all-tags-thunk';
-export const Home: FC = () => {
-  const dispatch = useDispatch()
-  const { tags } = useSelector((state) => state.all)
+import { getAllTagsThunk } from '../../thunks';
+import { clearView } from '../../store';
+
+const Home: FC = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getAllTagsThunk())
-  }, [])
-  const onClickTag = () => {
-  }
+    dispatch(getAllTagsThunk());
+    return () => {
+      dispatch(clearView());
+    };
+  }, [dispatch]);
+
   return (
     <div className='home-page'>
       <Banner />
@@ -21,9 +25,7 @@ export const Home: FC = () => {
           <div className='col-md-3'>
             <div className='sidebar'>
               <p>Popular Tags</p>
-              <Tags
-                tags={tags}
-                onClickTag={onClickTag} />
+              <Tags />
 
             </div>
           </div>
@@ -31,6 +33,6 @@ export const Home: FC = () => {
       </div>
 
     </div>
-  )
-}
-export default Home
+  );
+};
+export default Home;

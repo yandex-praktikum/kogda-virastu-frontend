@@ -3,7 +3,9 @@ import { useSelector } from '../../services/hooks';
 
 const Banner : FC = () => {
   const { appName } = useSelector((state) => state.system);
-  const { isLoggedIn } = useSelector((state) => state.system);
+  const isLoggedIn = useSelector(
+    (state) => !!state.profile.username && !!state.profile.email,
+  );
 
   return (
     isLoggedIn

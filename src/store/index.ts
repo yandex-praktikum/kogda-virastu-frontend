@@ -43,7 +43,7 @@ import { setUser, clearUser } from './userSlice';
 import { setComment, resetComment } from './commentFormSubSlice';
 
 import {
-  changePositionFeed,
+  setFeedType,
   setViewFeed,
   clearViewFeed,
   setFeedCount,
@@ -63,6 +63,8 @@ import {
   clearView,
   setViewProfile,
   clearViewProfile,
+  setTag,
+  clearTag,
 } from './viewSlice';
 
 import {
@@ -134,7 +136,9 @@ import {
 } from './systemSlice';
 
 export {
-  changePositionFeed,
+  setFeedType,
+  setTag,
+  clearTag,
   setTitle,
   setDescription,
   setBody,
