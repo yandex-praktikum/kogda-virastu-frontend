@@ -5,11 +5,10 @@ import MainView from './MainView';
 import Tags from './Tags';
 
 import { clearView } from '../../store';
-import  getAllTagsThunk  from '../../thunks/get-all-tags-thunk';
+import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
-export const Home: FC = () => {
-  const dispatch = useDispatch()
-  const { tags } = useSelector((state) => state.all)
+const Home: FC = () => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllTagsThunk());
