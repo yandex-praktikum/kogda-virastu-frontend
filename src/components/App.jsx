@@ -9,7 +9,7 @@ import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
 import Home from '../components/Home';
-import Article from './Article';
+import Article from './Article/index';
 
 import {
   Route, Routes, useNavigate, useLocation,

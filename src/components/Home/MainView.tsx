@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from '../../services/hooks';
 import { changePositionFeed } from '../../store'
 import { getPrivateFeedThunk } from '../../thunks/get-private-feed-thunk';
-import { getAllTagsThunk } from '../../thunks/get-all-tags-thunk';
+import  getAllTagsThunk  from '../../thunks/get-all-tags-thunk';
 const YourFeedTab = () => {
     const dispatch = useDispatch()
     const { isLoggedIn } = useSelector((state) => state.system);

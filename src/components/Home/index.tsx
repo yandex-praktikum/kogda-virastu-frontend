@@ -3,7 +3,7 @@ import React, { useState, useEffect, FC } from 'react';
 import Banner from './Banner';
 import MainView from './MainView';
 import Tags from './Tags';
-import { getAllTagsThunk } from '../../thunks/get-all-tags-thunk';
+import  getAllTagsThunk  from '../../thunks/get-all-tags-thunk';
 export const Home: FC = () => {
   const dispatch = useDispatch()
   const { tags } = useSelector((state) => state.all)
