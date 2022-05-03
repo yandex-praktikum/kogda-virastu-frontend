@@ -7,13 +7,13 @@ import {
 import { useDispatch } from '../services/hooks';
 
 
-import { Profile } from './Profile'
+import { Profile } from './Profile/Profile'
 import Header from './Header';
 import { Editor } from './Editor';
 import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
-import ProfileFavorites from './ProfileFavorites';
+
 import { jwt } from '../services/api';
 import Home from './Home';
 
@@ -37,7 +37,6 @@ const App = () => {
         <Route path='/article/:id' element={<Article />} />
 
         <Route path='/register' element={<Register />} />
-        <Route path='/:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />

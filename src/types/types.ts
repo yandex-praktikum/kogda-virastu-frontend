@@ -54,3 +54,8 @@ export enum FeedTypes {
   private = 'private',
   tags = 'tags',
 }
+export enum UserArticlesTypes {
+  my = 'my',
+  favorite = 'favorite',
+
+}

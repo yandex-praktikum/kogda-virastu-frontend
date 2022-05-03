@@ -65,6 +65,7 @@ import {
   clearViewProfile,
   setTag,
   clearTag,
+  setArtistProfile
 } from './viewSlice';
 
 import {
@@ -136,6 +137,7 @@ import {
 } from './systemSlice';
 
 export {
+  setArtistProfile,
   setFeedType,
   setTag,
   clearTag,

@@ -1,24 +1,24 @@
 import React, { FC, useCallback, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from '../services/hooks';
-import { EditProfileSettings, FollowUserButton } from '../components_refact/index';
-import { calculateOffset } from '../services/helpers';
-
-import ArticleList from './ArticleList';
-import { getUserProfileThunk, getPublicFeedThunk } from '../thunks';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from '../../services/hooks';
+import { EditProfileSettings, FollowUserButton } from '../../components_refact/index';
+import { calculateOffset } from '../../services/helpers';
+import { UserArticlesTypes } from '../../types/types';
+import ArticleList from '../ArticleList';
+import { getUserProfileThunk, getPublicFeedThunk } from '../../thunks';
 import {
   unfollowProfileThunk,
   followProfileThunk,
-} from '../thunks'
+} from '../../thunks';
+import {UserArticles} from './UserArticles';
+import {ProfileFavorites} from './ProfileFavorites'
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
   const { username } = useSelector(state => state.profile)
   const { profile } = useSelector(state => state.view)
   const { isLoggedIn } = useSelector(state => state.system)
-
-  const { page, perPage } = useSelector(state => state.view)
-
+  const { page, perPage, articlesType } = useSelector(state => state.view)
   const params = useParams<{ username: string }>()
 
 
@@ -29,8 +29,13 @@ export const Profile: FC = () => {
 
 
   useEffect(() => {
-    dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username?.slice(1) }))
-  }, [dispatch, page])
+    if(UserArticlesTypes.my) {
+      dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username }))
+    }
+      else {
+        dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username, favorited:'true' }))
+      }
+  }, [dispatch, page, articlesType])
 
   const onFollow = () => {
     dispatch(followProfileThunk());
@@ -42,21 +47,8 @@ export const Profile: FC = () => {
 
   const renderTabs = useCallback(() => (
     <ul className='nav nav-pills outline-active'>
-      <li className='nav-item'>
-        <Link
-          className='nav-link active'
-          to={`/${profile?.username}`}>
-          My Articles
-        </Link>
-      </li>
-
-      <li className='nav-item'>
-        <Link
-          className='nav-link'
-          to={`/${profile?.username}/favorites`}>
-          Favorited Articles
-        </Link>
-      </li>
+      <UserArticles />
+      <ProfileFavorites />
     </ul>
   ), [profile?.username]);
 
