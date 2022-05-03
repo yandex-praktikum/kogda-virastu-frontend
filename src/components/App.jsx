@@ -21,9 +21,7 @@ import Home from './Home';
 
 import Article from './Article/index';
 
-import {
-  Route, Routes, useNavigate, useLocation,
-} from 'react-router-dom';
+
 
 
 import { getAllTagsThunk, getUserThunk } from '../thunks';
@@ -43,7 +41,7 @@ const App = () => {
       <Header />
       <Routes>
 
-      
+
 
         <Route exact path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
