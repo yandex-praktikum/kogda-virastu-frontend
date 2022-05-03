@@ -1,11 +1,24 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
-import DeleteButton from '../Article/DeleteButton';
+import React, { FC } from 'react';
+import { TComment, TUser } from '../../types/types';
+import { DeleteButton } from '../Article/DeleteButton';
 
-const Comment = (props) => {
-  const { comment } = props;
-  const show = props.currentUser
-    && props.currentUser.username === comment.author.username;
+type CommentProps = {
+  comment: TComment;
+  slug: string;
+  currentUserProfile: {
+    username: string | null,
+    email: string | null,
+    bio?: string | null,
+    image?: string | null,
+  } | null;
+};
+
+const Comment: FC<CommentProps> = ({
+  comment, slug, currentUserProfile,
+}: CommentProps) => {
+  const show = currentUserProfile
+    && currentUserProfile.username === comment.author.username;
   return (
     <div className='card'>
       <div className='card-block'>
@@ -26,7 +39,7 @@ const Comment = (props) => {
         <span className='date-posted'>
           {new Date(comment.createdAt).toDateString()}
         </span>
-        <DeleteButton show={show} slug={props.slug} commentId={comment.id} />
+        <DeleteButton show={!!show} slug={slug} commentId={comment.id} />
       </div>
     </div>
   );

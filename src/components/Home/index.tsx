@@ -3,11 +3,13 @@ import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
 import Tags from './Tags';
-import { getAllTagsThunk } from '../../thunks';
-import { clearView } from '../../store';
 
-const Home: FC = () => {
-  const dispatch = useDispatch();
+import { clearView } from '../../store';
+import  getAllTagsThunk  from '../../thunks/get-all-tags-thunk';
+
+export const Home: FC = () => {
+  const dispatch = useDispatch()
+  const { tags } = useSelector((state) => state.all)
 
   useEffect(() => {
     dispatch(getAllTagsThunk());
