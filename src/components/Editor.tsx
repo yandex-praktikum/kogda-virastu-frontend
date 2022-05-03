@@ -22,6 +22,7 @@ export const Editor: FC = () => {
   } = useSelector((state) => state.forms.article);
   const { isArticleFetching } = useSelector((state) => state.api);
   const { slug } = useParams();
+  
   const initialArticle = useSelector((state) => state.view.article);
 
   useEffect(() => {

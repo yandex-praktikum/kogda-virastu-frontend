@@ -4,11 +4,7 @@ import {
   Route, Routes, useNavigate, useLocation,
 } from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
-
-import { jwt } from '../services/api';
-import { Profile } from '../components_refact';
-
-
+import { Profile } from './Profile';
 import Header from './Header';
 import { Editor } from './Editor';
 import Register from './Register';
@@ -47,12 +43,12 @@ const App = () => {
         <Route path='/article/:id' element={<Article />} />
 
         <Route path='/register' element={<Register />} />
-        <Route path='/@:username/favorites' element={<ProfileFavorites />} />
+        <Route path='/:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />
         <Route path='/editor' element={<Editor />} />
-        <Route path='/@:username' element={<Profile />} />
+        <Route path='/:username' element={<Profile />} />
       </Routes>
     </div>
   );

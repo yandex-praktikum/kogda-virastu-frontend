@@ -9,7 +9,7 @@ export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: () 
   }
 
   let classes = 'btn btn-sm action-btn';
-  if ( user.following ) {
+  if ( user?.following ) {
     classes += ' btn-secondary';
   } else {
     classes += ' btn-outline-secondary';
@@ -30,9 +30,9 @@ export const FollowUserButton: FC<{ isUser: boolean, user: TProfile, follow: () 
       onClick={handleClick}>
       <i className='ion-plus-round' />
       &nbsp;
-      { user.following ? 'Unfollow' : 'Follow'}
+      { user?.following ? 'Unfollow' : 'Follow'}
       {' '}
-      { user.username }
+      { user?.username }
     </button>
   );
 };
