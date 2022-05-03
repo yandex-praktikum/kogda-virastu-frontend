@@ -26,7 +26,7 @@ export const ProfileFavorites:FC = () => {
             <li className="nav-item">
                 <Link
                     className="nav-link active"
-                    to={`/@${username}/favorites`}>
+                    to={`/${username}/favorites`}>
                     Favorited Articles
                 </Link>
             </li>

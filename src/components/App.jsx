@@ -33,7 +33,7 @@ const App = () => {
         <Route exact path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/@:username/favorites' element={<ProfileFavorites />} />
+        <Route path='/:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor/:slug' element={<Editor />} />

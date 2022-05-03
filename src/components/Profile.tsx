@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
-import { EditProfileSettings, FollowUserButton, ArticleList } from '../components_refact/index';
+import { EditProfileSettings, FollowUserButton } from '../components_refact/index';
 import { calculateOffset } from '../services/helpers';
-import loadPrivatFeedThunk from '../thunks/load-privat-data-thunk';
 
-import { getUserProfileThunk } from '../thunks';
+import ArticleList from './ArticleList';
+import { getUserProfileThunk, getPublicFeedThunk } from '../thunks';
 import {
   unfollowProfileThunk,
   followProfileThunk,
@@ -16,11 +16,12 @@ export const Profile: FC = () => {
   const { username } = useSelector(state => state.profile)
   const { profile } = useSelector(state => state.view)
   const { isLoggedIn } = useSelector(state => state.system)
-  const { articles } = useSelector(state => state.all)
+
+  const { page, perPage } = useSelector(state => state.view)
 
   const params = useParams<{ username: string }>()
+  console.log(username, params.username)
 
-  
   useEffect(() => {
     dispatch(getUserProfileThunk(params.username))
 
@@ -28,8 +29,8 @@ export const Profile: FC = () => {
 
 
   useEffect(() => {
-    profile?.username && dispatch(loadPrivatFeedThunk()) 
-  }, [dispatch])
+    dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username?.slice(1) }))
+  }, [dispatch, page])
 
   const onFollow = () => {
     dispatch(followProfileThunk());
@@ -44,7 +45,7 @@ export const Profile: FC = () => {
       <li className='nav-item'>
         <Link
           className='nav-link active'
-          to={`/@${profile?.username}`}>
+          to={`/${profile?.username}`}>
           My Articles
         </Link>
       </li>
@@ -52,7 +53,7 @@ export const Profile: FC = () => {
       <li className='nav-item'>
         <Link
           className='nav-link'
-          to={`/@${profile?.username}/favorites`}>
+          to={`/${profile?.username}/favorites`}>
           Favorited Articles
         </Link>
       </li>
@@ -60,9 +61,7 @@ export const Profile: FC = () => {
   ), [profile?.username]);
 
 
-  /*  if (!isLoggedIn) {
-     return null;
-   } */
+
 
 
   return (
@@ -77,12 +76,16 @@ export const Profile: FC = () => {
               <h4>{profile?.username}</h4>
               <p>{profile?.bio}</p>
 
-              <EditProfileSettings isUser={isLoggedIn} />
-              <FollowUserButton
+              {params.username?.slice(1) === username && <EditProfileSettings isUser={isLoggedIn} />}
+
+
+              {params.username?.slice(1) !== username && <FollowUserButton
                 isUser={isLoggedIn}
                 user={profile!}
                 follow={onFollow}
-                unfollow={onUnfollow} />
+                unfollow={onUnfollow} />}
+
+
 
             </div>
           </div>
@@ -98,7 +101,7 @@ export const Profile: FC = () => {
               {username === profile?.username && renderTabs()}
             </div>
 
-            <ArticleList/>
+            <ArticleList />
           </div>
 
         </div>
