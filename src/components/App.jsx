@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect } from 'react';
 import {
-  Route, Routes, useNavigate, useLocation,
+  Route, Routes, // useNavigate, useLocation,
 } from 'react-router-dom';
-import { useSelector, useDispatch } from '../services/hooks';
+import { useDispatch } from '../services/hooks';
 
 import { jwt } from '../services/api';
 import { Profile } from '../components_refact';
-
 
 import Header from './Header';
 import { Editor } from './Editor';
@@ -18,21 +17,14 @@ import ProfileFavorites from './ProfileFavorites';
 
 import Home from './Home';
 
-
 import Article from './Article/index';
 
-import {
-  Route, Routes, useNavigate, useLocation,
-} from 'react-router-dom';
-
-
-import { getAllTagsThunk, getUserThunk } from '../thunks';
+import { getUserThunk } from '../thunks';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllTagsThunk());
     if (jwt.test()) {
       dispatch(getUserThunk());
     }
@@ -42,9 +34,6 @@ const App = () => {
     <div>
       <Header />
       <Routes>
-
-      
-
         <Route exact path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
 
