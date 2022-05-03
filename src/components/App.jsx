@@ -5,9 +5,9 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch } from '../services/hooks';
-import { jwt } from '../services/api';
 
-import { Profile } from '../components_refact';
+
+import { Profile } from './Profile'
 import Header from './Header';
 import { Editor } from './Editor';
 import Register from './Register';
