@@ -4,24 +4,23 @@ import { useSelector, useDispatch } from '../../services/hooks';
 import { EditProfileSettings, FollowUserButton } from '../index';
 import ArticleList from '../../components/ArticleList';
 
-import { getUserProfileThunk } from '../../thunks';
-import { unfollowProfileThunk,
-  followProfileThunk,} from '../../thunks'
+import {
+  getUserProfileThunk, unfollowProfileThunk,
+  followProfileThunk,
+} from '../../thunks';
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
   const { username, image, bio } = useSelector((state) => state.profile);
-  const{profile} = useSelector(state=> state.view)
-  const { isLoggedIn } = useSelector(state => state.system)
-  const { articles } = useSelector(state => state.all)
-  const {isUserFetching} = useSelector(state=> state.api)
-console.log(isUserFetching)
+  const { profile } = useSelector((state) => state.view);
+  const { isLoggedIn } = useSelector((state) => state.system);
+  const { articles } = useSelector((state) => state.all);
+  const { isUserFetching } = useSelector((state) => state.api);
+  console.log(isUserFetching);
 
   useEffect(() => {
-    if (true) {
-      dispatch(getUserProfileThunk())
-    }
-  },[dispatch]);
+    dispatch(getUserProfileThunk());
+  }, [dispatch]);
 
   const onFollow = () => {
     dispatch(followProfileThunk());
@@ -51,11 +50,9 @@ console.log(isUserFetching)
     </ul>
   ), [username]);
 
-
   /*  if (!isLoggedIn) {
      return null;
    } */
-
 
   return (
     <div className='profile-page'>
@@ -72,7 +69,7 @@ console.log(isUserFetching)
               <EditProfileSettings isUser={isLoggedIn} />
               <FollowUserButton
                 isUser={isLoggedIn}
-                user={profile!} 
+                user={profile!}
                 follow={onFollow}
                 unfollow={onUnfollow} />
 
@@ -93,8 +90,7 @@ console.log(isUserFetching)
             <ArticleList
               /*   pager={pager} */
               articles={articles!}
-              articlesCount={5}
-             /*  state={currentPage}  */ />
+              articlesCount={5} />
           </div>
 
         </div>

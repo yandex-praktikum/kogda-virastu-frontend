@@ -1,9 +1,15 @@
+import React from 'react';
 import ArticleList from '../ArticleList';
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from '../../services/hooks';
-import { changePositionFeed } from '../../store'
-import { getPrivateFeedThunk } from '../../thunks/get-private-feed-thunk';
-import  getAllTagsThunk  from '../../thunks/get-all-tags-thunk';
+import { useDispatch, useSelector } from '../../services/hooks';
+import { getPrivateFeedThunk, getPublicFeedThunk } from '../../thunks';
+import YourFeedTab from './YourFeedTab';
+import GlobalFeedTab from './GlobalFeedTab';
+import TagFilterTab from './TagFilterTab';
+import { FeedTypes } from '../../types/types';
+import { calculateOffset } from '../../services/helpers';
+
+
+
 const YourFeedTab = () => {
     const dispatch = useDispatch()
     const { isLoggedIn } = useSelector((state) => state.system);
@@ -63,28 +69,53 @@ const TagFilterTab = (props: any) => {
         )
     }
 }
-export const MainView = () => {
-
-    const { articles } = useSelector((state) => state.all)
-
-    useEffect(() => {
-        console.log(articles)
-    }, [articles])
 
 
-    const onTabClick = () => {
 
+        const MainView = () => {
+  const dispatch = useDispatch();
+  const {
+    page, perPage, feedType, tag,
+  } = useSelector((state) => state.view);
+  React.useEffect(() => {
+    switch (feedType) {
+      case FeedTypes.public: {
+        dispatch(getPublicFeedThunk({
+          offset: calculateOffset(page, perPage),
+          limit: perPage,
+        }));
+        break;
+      }
+      case FeedTypes.private: {
+        dispatch(getPrivateFeedThunk({
+          offset: calculateOffset(page, perPage),
+          limit: perPage,
+        }));
+        break;
+      }
+      case FeedTypes.tags: {
+        dispatch(getPublicFeedThunk({
+          offset: calculateOffset(page, perPage),
+          limit: perPage,
+          tag,
+        }));
+        break;
+      }
+      default: throw new TypeError('Несоответствующий feedType!');
     }
-    return (
-        <div className="col-md-9">
-            <div className="feed-toggle">
-                <ul className="nav nav-pills outline-active">
-                    <YourFeedTab />
-                    <GlobalFeedTab />
-                </ul>
-            </div>
-            {/*<ArticleList/>*/}
-        </div>
-    )
-}
-export default MainView
+  }, [dispatch, feedType, page, perPage, tag]);
+
+  return (
+    <div className='col-md-9'>
+      <div className='feed-toggle'>
+        <ul className='nav nav-pills outline-active'>
+          <YourFeedTab />
+          <GlobalFeedTab />
+          <TagFilterTab />
+        </ul>
+      </div>
+      <ArticleList />
+    </div>
+  );
+};
+export default MainView;

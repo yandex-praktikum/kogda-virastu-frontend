@@ -48,3 +48,9 @@ export type TComment = {
 };
 
 export type TComments = Array<TComment>;
+
+export enum FeedTypes {
+  public = 'public',
+  private = 'private',
+  tags = 'tags',
+}

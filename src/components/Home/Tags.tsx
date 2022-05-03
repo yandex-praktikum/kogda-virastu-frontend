@@ -1,8 +1,13 @@
-import React, { FC} from 'react';
-//import { fetchArticles } from '../../services/api'
-import { useSelector} from '../../services/hooks';
-const Tags: FC<{ tags:string[]|null, onClickTag:(key:string)=> void }> = ({onClickTag }) => {
-  const { tags} = useSelector((state) => state.all);
+import React, { FC } from 'react';
+
+import { batch } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/hooks';
+import { setFeedType, setTag } from '../../store';
+import { FeedTypes } from '../../types/types';
+
+const Tags: FC = () => {
+  const dispatch = useDispatch();
+  const { tags } = useSelector((state) => state.all);
   if (tags) {
     return (
       <div className='tag-list'>
@@ -10,17 +15,21 @@ const Tags: FC<{ tags:string[]|null, onClickTag:(key:string)=> void }> = ({onCli
           tags.map((tag) => {
             const handleClick = (ev:React.MouseEvent) => {
               ev.preventDefault();
-              onClickTag(tag);
+              console.log(`Click on tag '${tag}'`);
+              batch(() => {
+                dispatch(setTag(tag));
+                dispatch(setFeedType(FeedTypes.tags));
+              });
             };
 
             return (
-              <a
-                href=''
+              <button
+                type='button'
                 className='tag-default tag-pill'
                 key={tag}
                 onClick={handleClick}>
                 {tag}
-              </a>
+              </button>
             );
           })
         }
@@ -31,4 +40,4 @@ const Tags: FC<{ tags:string[]|null, onClickTag:(key:string)=> void }> = ({onCli
     <div>Loading Tags...</div>
   );
 };
-export default Tags
+export default Tags;

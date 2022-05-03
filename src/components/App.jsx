@@ -1,37 +1,53 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect } from 'react';
+import {
+  Route, Routes, useNavigate, useLocation,
+} from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
-import { Profile } from '../components_refact/profile/profile';
+
+import { jwt } from '../services/api';
+import { Profile } from '../components_refact';
+
+
 import Header from './Header';
 import { Editor } from './Editor';
 import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
-import Home from '../components/Home';
+
+import Home from './Home';
+
+
 import Article from './Article/index';
 
 import {
   Route, Routes, useNavigate, useLocation,
 } from 'react-router-dom';
 
-import { getAllTagsThunk } from '../thunks';
+
+import { getAllTagsThunk, getUserThunk } from '../thunks';
 
 const App = () => {
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(getAllTagsThunk());
-
+    if (jwt.test()) {
+      dispatch(getUserThunk());
+    }
   }, [dispatch]);
 
   return (
     <div>
       <Header />
       <Routes>
+
+      
+
         <Route exact path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
+
         <Route path='/register' element={<Register />} />
         <Route path='/@:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />
@@ -43,6 +59,5 @@ const App = () => {
     </div>
   );
 };
-
 
 export default App;

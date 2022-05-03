@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
 import { postLikeArticle } from '../services/api';
 import {
-  setAllArticles,
+  setViewFeed,
   likeArticlePostRequested,
   likeArticlePostSucceeded,
   likeArticlePostFailed,
@@ -17,8 +17,8 @@ const addLikeThunk: AppThunk = (slug: string) => async (
   try {
     dispatch(likeArticlePostRequested());
     const { data: { article } } = await postLikeArticle(slug);
-    const articles = getState().all.articles ?? [];
-    dispatch(setAllArticles(articles.map(
+    const articles = getState().view.feed ?? [];
+    dispatch(setViewFeed(articles.map(
       (item) => (item.slug === article.slug ? article : item
       ),
     )));
