@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from '../services/hooks';
-import { Profile } from '../components_refact';
+import { Profile } from '../components_refact/profile/profile';
 import Header from './Header';
 import { Editor } from './Editor';
 import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
-import Home from '../components/Home'
+import Home from '../components/Home';
+import Article from './Article';
 
 import {
   Route, Routes, useNavigate, useLocation,
@@ -29,12 +30,8 @@ const App = () => {
     <div>
       <Header />
       <Routes>
-       {/* <Route exact path='/' element={<div>загрузка...</div>} />*/}
-        {/*   <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
-        '/editor/:slug'
-         */}
-         <Route exact path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/@:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />
