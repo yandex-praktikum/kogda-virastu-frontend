@@ -2,17 +2,13 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from '../services/hooks';
 import { TArticle } from '../types/types';
-import { deleteLikeThunk, addLikeThunk} from '../thunks';
-
-
+import { deleteLikeThunk, addLikeThunk } from '../thunks';
 
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
-export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
+const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
   const dispatch = useDispatch();
-
-
 
   const favoriteButtonClass = article.favorited
     ? FAVORITED_CLASS
@@ -27,17 +23,15 @@ export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
     }
   };
 
-
-
   return (
     <div className='article-preview'>
       <div className='article-meta'>
-        <Link to={`/@${article.author.username}`}>
+        <Link to={`/${article.author.username}`}>
           <img src={article.author.image} alt={article.author.username} />
         </Link>
 
         <div className='info'>
-          <Link className='author' to={`/@${article.author.username}`}>
+          <Link className='author' to={`/${article.author.username}`}>
             {article.author.username}
           </Link>
           <span className='date'>
@@ -46,7 +40,7 @@ export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
         </div>
 
         <div className='pull-xs-right'>
-          <button className={favoriteButtonClass} onClick={handleClick}>
+          <button className={favoriteButtonClass} type='button' onClick={handleClick}>
             <i className='ion-heart' />
             {' '}
             {article.favoritesCount}
@@ -55,12 +49,12 @@ export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
       </div>
 
       <Link to={`/article/${article.slug}`} className='preview-link'>
-        <h1>{article.title}</h1>
+        <h3>{article.title}</h3>
         <p>{article.description}</p>
         <span>Read more...</span>
         <ul className='tag-list'>
           {
-            article.tagList.map((tag: any) => (
+            article.tagList.map((tag: string) => (
               <li className='tag-default tag-pill tag-outline' key={tag}>
                 {tag}
               </li>
@@ -71,3 +65,5 @@ export const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
     </div>
   );
 };
+
+export default ArticlePreview;
