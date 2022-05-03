@@ -8,20 +8,21 @@ import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
-import Home from '../components/Home'
+import Home from '../components/Home';
+import Article from './Article/index';
 
 import {
   Route, Routes, useNavigate, useLocation,
 } from 'react-router-dom';
 
-import { loadInitialDataThunk } from '../thunks';
+import { getAllTagsThunk } from '../thunks';
 
 const App = () => {
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    dispatch(loadInitialDataThunk());
+    dispatch(getAllTagsThunk());
 
   }, [dispatch]);
 
@@ -29,12 +30,8 @@ const App = () => {
     <div>
       <Header />
       <Routes>
-       {/* <Route exact path='/' element={<div>загрузка...</div>} />*/}
-        {/*   <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
-        '/editor/:slug'
-         */}
-         <Route exact path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/@:username/favorites' element={<ProfileFavorites />} />
         <Route path='/login' element={<Login />} />

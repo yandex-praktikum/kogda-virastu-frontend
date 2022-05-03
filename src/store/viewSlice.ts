@@ -29,7 +29,7 @@ const initialState: TViewState = {
   page: 1,
   perPage: 10,
   profile: null,
-  positionFeed: 'global'
+  positionFeed: 'global',
 };
 
 const viewSlice = createSlice({
@@ -103,6 +103,7 @@ const viewSlice = createSlice({
 export const {
   setViewFeed,
   clearViewFeed,
+  setFeedCount,
   setViewTags,
   clearViewTags,
   setViewArticle,
@@ -119,7 +120,7 @@ export const {
   clearView,
   setViewProfile,
   clearViewProfile,
-  changePositionFeed
+  changePositionFeed,
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

@@ -1,27 +1,20 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
-import { SET_PAGE } from '../constants';
-import { fetchPublicFeed } from '../services/api';
 
-export const ListPagination: FC<{ /* pager: (page: number) => void, */ articlesCount: number, currentPage: number }> = ({ /* pager, */ articlesCount, currentPage }) => {
+import { useSelector, useDispatch } from '../services/hooks';
+import { setPage } from '../store';
+
+const ListPagination: FC = () => {
   const dispatch = useDispatch();
+  const { feedCount, page, perPage } = useSelector((state) => state.view);
 
-  if (articlesCount <= 10) {
+  if (feedCount <= perPage) {
     return null;
   }
 
-  const range = [];
-  for (let i = 0; i < Math.ceil(articlesCount / 10); ++i) {
+  const range : Array<number> = [];
+  for (let i = 1; i < Math.ceil(feedCount / perPage); i += 1) {
     range.push(i);
   }
-
-  const setPage = (page: number) => {
-    if (true) {
-      dispatch({ type: SET_PAGE, page, payload: 1 });
-    } else {
-      dispatch({ type: SET_PAGE, page, payload: fetchPublicFeed(10, page * 10) });
-    }
-  };
 
   return (
     <nav>
@@ -29,18 +22,22 @@ export const ListPagination: FC<{ /* pager: (page: number) => void, */ articlesC
 
         {
           range.map((v) => {
-            const isCurrent = v === currentPage;
+            const isCurrent = v === page;
             const onClick = (ev: React.MouseEvent) => {
               ev.preventDefault();
-              setPage(v);
+              dispatch(setPage(v));
             };
             return (
               <li
                 className={isCurrent ? 'page-item active' : 'page-item'}
-                onClick={onClick}
                 key={v.toString()}>
 
-                <a className='page-link' href=''>{v + 1}</a>
+                <button
+                  className='page-link'
+                  onClick={onClick}
+                  type='button'>
+                  {v}
+                </button>
 
               </li>
             );
@@ -51,3 +48,4 @@ export const ListPagination: FC<{ /* pager: (page: number) => void, */ articlesC
     </nav>
   );
 };
+export default ListPagination;

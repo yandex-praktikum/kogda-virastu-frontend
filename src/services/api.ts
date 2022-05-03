@@ -23,7 +23,6 @@ import {
   IFetchArticle,
   IFetchArticles,
   IFetchComments,
-  IFetchFeed,
   IFetchTags,
   IFetchUser,
   ILikeArticle,
@@ -184,12 +183,11 @@ export const patchCurrentUser : IPatchUser = (
 };
 
 export const fetchPublicFeed : IFetchArticles = (
-  limit?: number,
-  offset?: number,
-  tag?: string,
-  author?: string,
-  favorited?: string,
+  queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
+  const {
+    limit, offset, tag, author, favorited,
+  } = queryParams ?? {};
   const requestConfig : AxiosRequestConfig = {
     url: ARTICLES_ROUTE,
     params: makeParams(limit, offset, tag, author, favorited),
@@ -198,11 +196,10 @@ export const fetchPublicFeed : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchPrivateFeed : IFetchFeed = (
-  limit?: number,
-  offset?: number,
-  tag?: string,
+export const fetchPrivateFeed : IFetchArticles = (
+  queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
+  const { limit, offset, tag } = queryParams ?? {};
   const requestConfig : AxiosRequestConfig = {
     url: FEED_ROUTE,
     params: makeParams(limit, offset, tag),

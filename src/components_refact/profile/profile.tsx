@@ -1,7 +1,8 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from '../../services/hooks';
-import { EditProfileSettings, FollowUserButton, ArticleList } from '../index';
+import { EditProfileSettings, FollowUserButton } from '../index';
+import ArticleList from '../../components/ArticleList';
 
 import { getUserProfileThunk } from '../../thunks';
 import { unfollowProfileThunk,

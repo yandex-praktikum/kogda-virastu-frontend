@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
-import { ArticleActions } from '../../components_refact';
+import React, { FC } from 'react';
+// import { ArticleActions } from '../../components_refact';
 
-const ArticleMeta = (props) => {
-  const { article } = props;
+type IArticleMetaProps = {
+  article: any,
+  canModify: any
+}
+
+const ArticleMeta: FC<IArticleMetaProps> = (props) => {
+  const { article, canModify } = props;
   return (
     <div className='article-meta'>
       <Link to={`/@${article.author.username}`}>
@@ -19,7 +24,7 @@ const ArticleMeta = (props) => {
         </span>
       </div>
 
-      <ArticleActions canModify={props.canModify} article={article} />
+      {/* <ArticleActions canModify={props.canModify} article={article} /> */}
     </div>
   );
 };
