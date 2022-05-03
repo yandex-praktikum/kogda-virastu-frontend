@@ -4,7 +4,7 @@ import { ListErrors } from './ui_lib/list-error';
 import CommentInput from './comment-input';
 import { SettingsForm } from './settings-form';
 
-import ArticlePreview from '../components/ArticlePreview';
+
 import ListPagination from '../components/ListPagination';
 import ArticleList from '../components/ArticleList';
 
@@ -15,6 +15,6 @@ import { ArticleActions } from './articleActions/ArticleActions';
 
 
 export {
-   EditProfileSettings, FollowUserButton, ArticleList, ArticlePreview, ListPagination, ArticleActions,
+   EditProfileSettings, FollowUserButton, ArticleList, ListPagination, ArticleActions,
 };
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { TArticle } from '../types/types';
-import ArticlePreview from './ArticlePreview';
+import ArticlePreview from './Articlepreview';
 import ListPagination from './ListPagination';
 import { useSelector } from '../services/hooks';
 

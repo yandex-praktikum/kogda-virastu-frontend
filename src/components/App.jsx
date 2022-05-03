@@ -11,7 +11,7 @@ import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import ProfileFavorites from './ProfileFavorites';
-
+import { jwt } from '../services/api';
 import Home from './Home';
 
 
