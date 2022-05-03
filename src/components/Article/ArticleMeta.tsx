@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { FC } from 'react';
-// import { ArticleActions } from '../../components_refact';
+import { ArticleActions } from '../ArticleActions' ;
 
 type IArticleMetaProps = {
   article: any,
@@ -24,7 +24,7 @@ const ArticleMeta: FC<IArticleMetaProps> = (props) => {
         </span>
       </div>
 
-      {/* <ArticleActions canModify={props.canModify} article={article} /> */}
+      <ArticleActions canModify={canModify} article={article} />
     </div>
   );
 };
