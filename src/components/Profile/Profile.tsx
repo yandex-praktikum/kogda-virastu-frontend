@@ -11,7 +11,8 @@ import {
   followProfileThunk,
 } from '../../thunks';
 import {UserArticles} from './UserArticles';
-import {ProfileFavorites} from './ProfileFavorites'
+import { ProfileFavorites } from './ProfileFavorites'
+import { clearView } from '../../store';
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
@@ -25,15 +26,19 @@ export const Profile: FC = () => {
   useEffect(() => {
     dispatch(getUserProfileThunk(params.username))
 
+    return () => {
+      dispatch(clearView())
+    }
+
   }, [dispatch]);
 
 
   useEffect(() => {
     if(UserArticlesTypes.my) {
-      dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username }))
+      dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username?.slice(1) }))
     }
       else {
-        dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username, favorited:'true' }))
+        dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username?.slice(1), favorited }))
       }
   }, [dispatch, page, articlesType])
 

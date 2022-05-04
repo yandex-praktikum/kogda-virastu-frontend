@@ -14,6 +14,8 @@ const MainView = () => {
     page, perPage, feedType, tag,
   } = useSelector((state) => state.view);
 
+ 
+
   React.useEffect(() => {
     switch (feedType) {
       case FeedTypes.public: {
@@ -27,6 +29,7 @@ const MainView = () => {
         dispatch(getPrivateFeedThunk({
           offset: calculateOffset(page, perPage),
           limit: perPage,
+         
         }));
         break;
       }
