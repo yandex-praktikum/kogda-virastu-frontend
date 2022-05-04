@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import marked from 'marked';
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from '../Comment/CommentContainer';
 import { useSelector, useDispatch  } from '../../services/hooks';
@@ -35,8 +34,6 @@ const Article = () => {
 
   const canModify = currentUser === article.author.username ? true : false;
 
-  // const markup = { __html: marked(this.props.article.body, { sanitize: true }) };
-
   return (
     <div className='article-page'>
 
@@ -56,7 +53,7 @@ const Article = () => {
         <div className='row article-content'>
           <div className='col-xs-12'>
 
-            {/* <div dangerouslySetInnerHTML={markup} /> */}
+            <p>{article.body}</p>
 
             <ul className='tag-list'>
               {
