@@ -15,7 +15,7 @@ const ListPagination: FC = () => {
   for (let i = 1; i <= Math.ceil(feedCount / perPage); i += 1) {
     range.push(i);
   }
-  console.log(range)
+  
 
   return (
     <nav>

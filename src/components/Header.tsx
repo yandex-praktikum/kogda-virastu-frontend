@@ -41,7 +41,7 @@ const Header : FC = () => {
 
               <li className='nav-item'>
                 <Link
-                  to={`/@${username}`}
+                  to={`/${username}`}
                   className='nav-link'>
                   <span>
                     Hello,
