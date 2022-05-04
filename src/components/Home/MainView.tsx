@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleList from '../ArticleList';
 import { useDispatch, useSelector } from '../../services/hooks';
-import { getPrivateFeedThunk, getPublicFeedThunk,getAllTagsThunk} from '../../thunks';
+import { getPrivateFeedThunk, getPublicFeedThunk } from '../../thunks';
 import TagFilterTab from './TagFilterTab';
 import YourFeedTab from './YourFeedTab';
 import GlobalFeedTab from './GlobalFeedTab';
@@ -13,8 +13,6 @@ const MainView = () => {
   const {
     page, perPage, feedType, tag,
   } = useSelector((state) => state.view);
-
- 
 
   React.useEffect(() => {
     switch (feedType) {
@@ -29,7 +27,6 @@ const MainView = () => {
         dispatch(getPrivateFeedThunk({
           offset: calculateOffset(page, perPage),
           limit: perPage,
-         
         }));
         break;
       }

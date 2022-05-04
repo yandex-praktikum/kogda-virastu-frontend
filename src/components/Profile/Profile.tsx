@@ -1,46 +1,70 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from '../../services/hooks';
-import { EditProfileSettings, FollowUserButton } from '../../components_refact/index';
+import { useDispatch, useSelector } from '../../services/hooks';
 import { calculateOffset } from '../../services/helpers';
 import { UserArticlesTypes } from '../../types/types';
 import ArticleList from '../ArticleList';
-import { getUserProfileThunk, getPublicFeedThunk } from '../../thunks';
+import EditProfileSettings from './edit-profile-settings';
+import FollowUserButton from './follow-user-button';
+import UserArticles from './UserArticles';
+import ProfileFavorites from './ProfileFavorites';
 import {
-  unfollowProfileThunk,
   followProfileThunk,
+  getPublicFeedThunk,
+  getUserProfileThunk,
+  unfollowProfileThunk,
 } from '../../thunks';
-import {UserArticles} from './UserArticles';
-import { ProfileFavorites } from './ProfileFavorites'
 import { clearView } from '../../store';
 
-export const Profile: FC = () => {
+const Profile: FC = () => {
   const dispatch = useDispatch();
-  const { username } = useSelector(state => state.profile)
-  const { profile } = useSelector(state => state.view)
-  const { isLoggedIn } = useSelector(state => state.system)
-  const { page, perPage, articlesType } = useSelector(state => state.view)
-  const params = useParams<{ username: string }>()
-
+  const profile = useSelector(
+    (state) => state.view.profile,
+  )
+    ?? {
+      username: '',
+      following: false,
+      email: '',
+      bio: '',
+      image: '',
+    };
+  const isUser = useSelector(
+    (state) => !!state.profile.username
+      && !!state.profile.email
+      && (state.profile.username === state.view.profile?.username),
+  );
+  const { page, perPage, articlesType } = useSelector((state) => state.view);
+  const params = useParams<{ username: string }>();
 
   useEffect(() => {
-    dispatch(getUserProfileThunk(params.username))
+    dispatch(getUserProfileThunk(params.username));
 
     return () => {
-      dispatch(clearView())
-    }
-
-  }, [dispatch]);
-
+      dispatch(clearView());
+    };
+  }, [dispatch, params.username]);
 
   useEffect(() => {
-    if(UserArticlesTypes.my) {
-      dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username?.slice(1) }))
-    }
-      else {
-        dispatch(getPublicFeedThunk({ offset: calculateOffset(page, perPage), limit: perPage, author: params.username?.slice(1), favorited }))
+    switch (articlesType) {
+      case UserArticlesTypes.my: {
+        dispatch(getPublicFeedThunk({
+          offset: calculateOffset(page, perPage),
+          limit: perPage,
+          author: params?.username,
+        }));
+        break;
       }
-  }, [dispatch, page, articlesType])
+      case UserArticlesTypes.favorite: {
+        dispatch(getPublicFeedThunk({
+          offset: calculateOffset(page, perPage),
+          limit: perPage,
+          favorited: params?.username,
+        }));
+        break;
+      }
+      default: throw new TypeError('Несоответствующий тип фида!');
+    }
+  }, [dispatch, page, articlesType, perPage, params?.username]);
 
   const onFollow = () => {
     dispatch(followProfileThunk());
@@ -49,17 +73,6 @@ export const Profile: FC = () => {
   const onUnfollow = () => {
     dispatch(unfollowProfileThunk());
   };
-
-  const renderTabs = useCallback(() => (
-    <ul className='nav nav-pills outline-active'>
-      <UserArticles />
-      <ProfileFavorites />
-    </ul>
-  ), [profile?.username]);
-
-
-
-
 
   return (
     <div className='profile-page'>
@@ -73,16 +86,12 @@ export const Profile: FC = () => {
               <h4>{profile?.username}</h4>
               <p>{profile?.bio}</p>
 
-              {params.username?.slice(1) === username && <EditProfileSettings isUser={isLoggedIn} />}
-
-
-              {params.username?.slice(1) !== username && <FollowUserButton
-                isUser={isLoggedIn}
-                user={profile!}
+              <EditProfileSettings isUser={isUser} />
+              <FollowUserButton
+                isUser={isUser}
+                user={profile}
                 follow={onFollow}
-                unfollow={onUnfollow} />}
-
-
+                unfollow={onUnfollow} />
 
             </div>
           </div>
@@ -95,7 +104,10 @@ export const Profile: FC = () => {
           <div className='col-xs-12 col-md-10 offset-md-1'>
 
             <div className='articles-toggle'>
-              {username === profile?.username && renderTabs()}
+              <ul className='nav nav-pills outline-active'>
+                <UserArticles />
+                <ProfileFavorites />
+              </ul>
             </div>
 
             <ArticleList />
@@ -108,4 +120,4 @@ export const Profile: FC = () => {
   );
 };
 
-
+export default Profile;

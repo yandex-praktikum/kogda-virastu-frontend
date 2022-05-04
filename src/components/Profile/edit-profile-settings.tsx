@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-export const EditProfileSettings: FC<{ isUser: boolean }> = ({ isUser }) => {
+const EditProfileSettings: FC<{ isUser: boolean }> = ({ isUser }) => {
   if (isUser) {
     return (
       <Link
@@ -15,3 +15,5 @@ export const EditProfileSettings: FC<{ isUser: boolean }> = ({ isUser }) => {
   }
   return null;
 };
+
+export default EditProfileSettings;

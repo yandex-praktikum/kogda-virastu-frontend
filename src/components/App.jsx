@@ -4,7 +4,7 @@ import {
   Route, Routes, // useNavigate, useLocation,
 } from 'react-router-dom';
 import { useDispatch } from '../services/hooks';
-import { Profile } from './Profile/Profile'
+import Profile from './Profile/Profile';
 import Header from './Header';
 import { Editor } from './Editor';
 import Register from './Register';
@@ -14,7 +14,6 @@ import { jwt } from '../services/api';
 import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
-
 
 const App = () => {
   const dispatch = useDispatch();

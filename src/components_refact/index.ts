@@ -1,5 +1,5 @@
-import { EditProfileSettings } from './ui_lib/edit-profile-settings';
-import { FollowUserButton } from './ui_lib/follow-user-button';
+import { EditProfileSettings } from '../components/Profile/edit-profile-settings';
+import { FollowUserButton } from '../components/Profile/follow-user-button';
 import { ListErrors } from './ui_lib/list-error';
 import CommentInput from './comment-input';
 import { SettingsForm } from './settings-form';
@@ -17,4 +17,3 @@ import { ArticleActions } from './articleActions/ArticleActions';
 export {
    EditProfileSettings, FollowUserButton, ArticleList, ListPagination, ArticleActions,
 };
-
