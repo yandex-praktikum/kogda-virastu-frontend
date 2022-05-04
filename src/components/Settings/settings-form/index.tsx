@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../../services/hooks';
 import {
   setUsernameProfile,
@@ -13,8 +13,19 @@ const SettingsForm: FC<{ [key: string]: any }> = () => {
   const {
     bio, email, image, username, password,
   } = useSelector((state) => state.forms.profile);
+
+  const profile = useSelector((state) => state.profile);
+
   const { isSettingsPatching } = useSelector((state) => state.api);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setImageProfile(profile.image ?? ''));
+    dispatch(setUsernameProfile(profile.username ?? ''));
+    dispatch(setBioProfile(profile.bio ?? ''));
+    dispatch(setEmailProfile(profile.image ?? ''));
+  }, [dispatch, profile.bio, profile.image, profile.username]);
 
   const submitForm = (ev: React.FormEvent) => {
     ev.preventDefault();
