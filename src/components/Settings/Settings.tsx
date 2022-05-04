@@ -1,15 +1,17 @@
 import React, { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../../services/hooks';
-import { onLogout } from '../../store';
-import { logoutUser } from '../../store/profileSlice';
+import { clearUser, onLogout } from '../../store';
 import ListErrors from '../ListErrors';
 import SettingsForm from './settings-form';
 
 const Settings: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onClickLogout = () => {
-    dispatch(logoutUser());
+    dispatch(clearUser());
     dispatch(onLogout());
+    navigate('/');
   };
 
   return (
