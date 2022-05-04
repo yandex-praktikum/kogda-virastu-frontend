@@ -24,7 +24,8 @@ type TAPIState = {
   isProfileFetching: boolean,
   isFollowProfilePosting: boolean,
   isFollowProfileDeleting: boolean,
-  isSettingsPatching: boolean
+  isSettingsPatching: boolean,
+  isSettingsUpdateSucceeded: boolean,
 };
 
 const initialState: TAPIState = {
@@ -51,6 +52,7 @@ const initialState: TAPIState = {
   isFollowProfilePosting: false,
   isFollowProfileDeleting: false,
   isSettingsPatching: false,
+  isSettingsUpdateSucceeded: false,
 };
 
 const apiSlice = createSlice({
@@ -60,7 +62,7 @@ const apiSlice = createSlice({
     setSuccessMessage: (state: TAPIState, action: PayloadAction<string>) => ({
       ...state, successMessage: action.payload,
     }),
-    clearSuccessMessage: (state:TAPIState) => ({
+    clearSuccessMessage: (state: TAPIState) => ({
       ...state, successMessage: null,
     }),
     setErrorMessage: (state: TAPIState, action: PayloadAction<string>) => ({
@@ -247,13 +249,19 @@ const apiSlice = createSlice({
       ...state, isFollowProfileDeleting: false, errorObject: action.payload,
     }),
     settingsPatchRequested: (state: TAPIState) => ({
-      ...state, isSettingsPatching: true,
+      ...state, isSettingsPatching: true, isSettingsUpdateSucceeded: false,
     }),
     settingsPatchSucceeded: (state: TAPIState) => ({
-      ...state, isSettingsPatching: false,
+      ...state, isSettingsPatching: false, isSettingsUpdateSucceeded: true,
+    }),
+    settingsResetUpdateSucceeded: (state: TAPIState) => ({
+      ...state, isSettingsUpdateSucceeded: false, errorObject: null,
     }),
     settingsPatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
-      ...state, isSettingsPatching: false, errorObject: action.payload,
+      ...state,
+      isSettingsPatching: false,
+      isSettingsUpdateSucceeded: false,
+      errorObject: action.payload,
     }),
   },
 });
@@ -322,5 +330,6 @@ export const {
   settingsPatchFailed,
   settingsPatchRequested,
   settingsPatchSucceeded,
+  settingsResetUpdateSucceeded,
 } = apiSlice.actions;
 export default apiReducer;

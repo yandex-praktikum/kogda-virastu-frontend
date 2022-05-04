@@ -1,4 +1,6 @@
 import React, { ChangeEvent, FC, useEffect } from 'react';
+import { batch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../../services/hooks';
 import {
   setUsernameProfile,
@@ -6,26 +8,38 @@ import {
   setBioProfile,
   setImageProfile,
 } from '../../../store';
+import { settingsResetUpdateSucceeded } from '../../../store/apiSlice';
 import { setPasswordProfile } from '../../../store/profileFormSubSlice';
 import { patchCurrentUserThunk } from '../../../thunks';
 
-const SettingsForm: FC<{ [key: string]: any }> = () => {
+const SettingsForm: FC = () => {
   const {
     bio, email, image, username, password,
   } = useSelector((state) => state.forms.profile);
 
   const profile = useSelector((state) => state.profile);
 
-  const { isSettingsPatching } = useSelector((state) => state.api);
+  const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    dispatch(setImageProfile(profile.image ?? ''));
-    dispatch(setUsernameProfile(profile.username ?? ''));
-    dispatch(setBioProfile(profile.bio ?? ''));
-    dispatch(setEmailProfile(profile.image ?? ''));
-  }, [dispatch, profile.bio, profile.image, profile.username]);
+    batch(() => {
+      dispatch(setImageProfile(profile.image ?? ''));
+      dispatch(setUsernameProfile(profile.username ?? ''));
+      dispatch(setBioProfile(profile.bio ?? ''));
+      dispatch(setEmailProfile(profile.email ?? ''));
+    });
+  }, [dispatch, profile.bio, profile.email, profile.image, profile.username]);
+
+  useEffect(() => {
+    if (isSettingsUpdateSucceeded) {
+      navigate('/');
+    }
+    return () => { dispatch(settingsResetUpdateSucceeded()); };
+  }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const submitForm = (ev: React.FormEvent) => {
     ev.preventDefault();
