@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { FC } from 'react';
-import { TComment, TUser } from '../../types/types';
-import { DeleteButton } from '../../components_refact/ui_lib/delete-button/DeleteButton';
+import { TComment } from '../../types/types';
+import { DeleteButton } from '../Article/DeleteButton';
 
 type CommentProps = {
   comment: TComment;
