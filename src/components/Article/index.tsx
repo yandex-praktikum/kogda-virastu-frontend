@@ -7,11 +7,10 @@ import { useSelector, useDispatch } from '../../services/hooks';
 import { getArticleThunk, getCommentsThunk } from '../../thunks';
 import { resetArticle } from '../../store';
 
-const Article = () => {
+const Article: FC = () => {
   const dispatch = useDispatch();
 
   const params = useParams();
-  console.log(params);
 
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile.username);
@@ -23,12 +22,12 @@ const Article = () => {
     return () => {
       dispatch(resetArticle());
     };
-  }, []);
+  }, [dispatch, params.id]);
 
   if (!article) {
-    return () => {
-      <p>Подождите...</p>;
-    };
+    return (
+      <p>Подождите...</p>
+    );
   }
 
   const canModify = currentUser === article.author.username;

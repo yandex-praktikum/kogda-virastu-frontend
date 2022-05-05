@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect } from 'react';
 import {
-  Route, Routes, // useNavigate, useLocation,
+  Route, Routes,
 } from 'react-router-dom';
 import { useDispatch } from '../services/hooks';
 import Profile from './Profile/Profile';
@@ -28,7 +27,7 @@ const App = () => {
     <div>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
