@@ -5,7 +5,7 @@ import {
   userFetchRequested,
   userFetchSucceeded,
   userFetchFailed,
-  setUser,onLogin
+  setUser, onLogin,
 } from '../store';
 import { fetchCurrentUser, jwt } from '../services/api';
 import { TAPIError } from '../services/api.types';
@@ -27,7 +27,7 @@ const getUserProfileThunk: AppThunk = () => async (dispatch) => {
         username, email, bio, image,
       }));
       dispatch(userFetchSucceeded());
-      dispatch(onLogin())
+      dispatch(onLogin());
     });
   } catch (error) {
     dispatch(userFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));

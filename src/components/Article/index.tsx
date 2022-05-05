@@ -1,21 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from '../Comment/CommentContainer';
-import { useSelector, useDispatch  } from '../../services/hooks';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useSelector, useDispatch } from '../../services/hooks';
+
 import { getArticleThunk, getCommentsThunk } from '../../thunks';
 import { resetArticle } from '../../store';
 
-const Article = () => {
-
+const Article: FC = () => {
   const dispatch = useDispatch();
 
   const params = useParams();
-  console.log(params)
 
   const { article } = useSelector((state) => state.view);
-  const currentUser = useSelector((state) => state.profile.username)
+  const currentUser = useSelector((state) => state.profile.username);
 
   useEffect(() => {
     dispatch(getArticleThunk(params.id));
@@ -23,16 +21,16 @@ const Article = () => {
 
     return () => {
       dispatch(resetArticle());
-    }
-  }, [])
+    };
+  }, [dispatch, params.id]);
 
-  if(!article) {
-    return () => {
+  if (!article) {
+    return (
       <p>Подождите...</p>
-    }
+    );
   }
 
-  const canModify = currentUser === article.author.username ? true : false;
+  const canModify = currentUser === article.author.username;
 
   return (
     <div className='article-page'>
@@ -80,6 +78,6 @@ const Article = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Article;

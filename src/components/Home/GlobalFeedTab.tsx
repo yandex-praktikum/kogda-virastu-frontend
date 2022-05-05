@@ -1,7 +1,7 @@
 import React from 'react';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
-import { clearTag, setFeedType } from '../../store';
+import { clearTag, setFeedType, setPage } from '../../store';
 import { FeedTypes } from '../../types/types';
 
 const GlobalFeedTab = () => {
@@ -11,6 +11,7 @@ const GlobalFeedTab = () => {
     evt.preventDefault();
     batch(() => {
       dispatch(clearTag());
+      dispatch(setPage(1));
       dispatch(setFeedType(FeedTypes.public));
     });
   };

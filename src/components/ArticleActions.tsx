@@ -5,7 +5,7 @@ import { TArticle } from '../types/types';
 
 import { deleteArticleThunk } from '../thunks';
 
-export const ArticleActions: FC<{ article: TArticle, canModify: boolean }> = ({ article, canModify }) => {
+const ArticleActions: FC<{ article: TArticle, canModify: boolean }> = ({ article, canModify }) => {
   const dispatch = useDispatch();
   const del = () => {
     dispatch(deleteArticleThunk(article.slug));
@@ -24,7 +24,7 @@ export const ArticleActions: FC<{ article: TArticle, canModify: boolean }> = ({ 
           Edit Article
         </Link>
 
-        <button className='btn btn-outline-danger btn-sm' onClick={del}>
+        <button type='button' className='btn btn-outline-danger btn-sm' onClick={del}>
           <i className='ion-trash-a' />
           {' '}
           Delete Article
@@ -38,3 +38,5 @@ export const ArticleActions: FC<{ article: TArticle, canModify: boolean }> = ({ 
     <span />
   );
 };
+
+export default ArticleActions;

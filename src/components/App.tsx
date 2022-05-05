@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect } from 'react';
 import {
-  Route, Routes, // useNavigate, useLocation,
+  Route, Routes,
 } from 'react-router-dom';
 import { useDispatch } from '../services/hooks';
 import Profile from './Profile/Profile';
 import Header from './Header';
-import { Editor } from './Editor';
+import Editor from './Editor';
 import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
@@ -28,9 +27,8 @@ const App = () => {
     <div>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />
-
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/settings' element={<Settings />} />

@@ -9,37 +9,36 @@ import { useParams } from 'react-router-dom';
 // import ListErrors from './ListErrors';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
-  setTitle, setDescription, setBody, setTags, resetArticle, setTaglist, deleteTag, setImage
+  setTitle, setDescription, setBody, setTags, resetArticle, setTaglist, deleteTag, setImage,
 } from '../store';
 import { postArticle, patchArticle } from '../services/api';
 import getArticleThunk from '../thunks/get-article-thunk';
 
-export const Editor: FC = () => {
-
+const Editor: FC = () => {
   const dispatch = useDispatch();
   const {
-    title, description, body, tags, tagList, image
-  } = useSelector((state) => state.forms.article);
+    title, description, body, tags, tagList, link,
+  } = useSelector((state) => state.forms.article) ?? {};
   const { isArticleFetching } = useSelector((state) => state.api);
   const { slug } = useParams();
-  
+
   const initialArticle = useSelector((state) => state.view.article);
 
   useEffect(() => {
     initialArticle?.tagList.forEach((el) => {
-      dispatch(setTaglist(el))
-    })
-  }, [initialArticle])
+      dispatch(setTaglist(el));
+    });
+  }, [initialArticle, dispatch]);
 
   useEffect(() => {
     if (slug) {
       dispatch(getArticleThunk(slug));
     }
-    
+
     return () => {
       dispatch(resetArticle());
     };
-  }, [dispatch]);
+  }, [dispatch, slug]);
 
   if (slug && isArticleFetching) {
     return <div>Подождите...</div>;
@@ -63,7 +62,7 @@ export const Editor: FC = () => {
 
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setImage(e.target.value));
-  }
+  };
 
   const watchForEnter = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && tags) {
@@ -79,21 +78,28 @@ export const Editor: FC = () => {
   const submitForm = (e: SyntheticEvent<Element>) => {
     e.preventDefault();
 
-    slug ? patchArticle(
-      slug,
-      title!,
-      description!,
-      body!,
-      tagList,
-      image!
-    )
-      : postArticle(
-        title!,
-        description!,
-        body!,
-        tagList,
-        image!
-      );
+    if (slug) {
+      dispatch(patchArticle(
+        slug,
+        {
+          title,
+          description,
+          body,
+          tagList,
+          link,
+        },
+      ));
+    } else {
+      dispatch(postArticle(
+        {
+          title,
+          description,
+          body,
+          tagList,
+          link,
+        },
+      ));
+    }
   };
 
   return (
@@ -127,8 +133,8 @@ export const Editor: FC = () => {
                   <input
                     className='form-control'
                     type='url'
-                    placeholder="Article Image"
-                    value={image === '' ? '' : image || initialArticle?.link}
+                    placeholder='Article Image'
+                    value={link === '' ? '' : link || initialArticle?.link}
                     onChange={onChangeImage} />
                 </fieldset>
 
@@ -153,10 +159,12 @@ export const Editor: FC = () => {
                   <div className='tag-list'>
                     {(tagList || []).map((tag: string) => (
                       <span className='tag-default tag-pill' key={tag}>
-                        <i
+                        <button
                           className='ion-close-round'
-                          onClick={removeTagHandler(tag)} />
-                        {tag}
+                          onClick={removeTagHandler(tag)}
+                          type='button'>
+                          {tag}
+                        </button>
                       </span>
                     ))}
                   </div>
@@ -178,3 +186,4 @@ export const Editor: FC = () => {
   );
 };
 
+export default Editor;
