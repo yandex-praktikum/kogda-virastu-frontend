@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FC } from 'react';
 import { TComment, TUser } from '../../types/types';
-import { DeleteButton } from '../ui_lib/delete-button/DeleteButton';
+import { DeleteButton } from '../../components/Article/DeleteButton';
 
 const Comment : FC<{ comment: TComment, currentUser : TUser, slug: string }> = ({ comment, currentUser, slug }) => {
   const show = currentUser && currentUser.username === comment.author.username;

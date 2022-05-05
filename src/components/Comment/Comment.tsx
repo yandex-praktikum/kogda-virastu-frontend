@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { FC } from 'react';
 import { TComment } from '../../types/types';
-import { DeleteButton } from '../Article/DeleteButton';
+import DeleteButton from '../Article/DeleteButton';
 
 type CommentProps = {
   comment: TComment;

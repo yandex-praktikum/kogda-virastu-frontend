@@ -91,6 +91,9 @@ const viewSlice = createSlice({
     setPage: (state: TViewState, action: PayloadAction<number>) => ({
       ...state, page: action.payload,
     }),
+    clearPage: (state: TViewState) => ({
+      ...state, page: 1,
+    }),
     setPageLimit: (state: TViewState, action: PayloadAction<number>) => ({
       ...state, perPage: action.payload,
     }),
@@ -113,6 +116,7 @@ const viewSlice = createSlice({
 });
 
 export const {
+  clearPage,
   setViewFeed,
   clearViewFeed,
   setFeedCount,
