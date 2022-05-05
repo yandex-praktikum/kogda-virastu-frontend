@@ -8,14 +8,17 @@ import {
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
 } from '../../constants/actionTypes';
+
 const { Promise } = global;
 
 export const Home: FC = (props: any) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { currentUser, token } = useSelector((state: any) => state.common);
   const onClickTag = (tag: any, pager: any, payload: any) => {
-    dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload })
-  }
+    dispatch({
+      type: APPLY_TAG_FILTER, tag, pager, payload,
+    });
+  };
 
   return (
     <div className='home-page'>
@@ -37,5 +40,5 @@ export const Home: FC = (props: any) => {
       </div>
 
     </div>
-  )
-} 
+  );
+};

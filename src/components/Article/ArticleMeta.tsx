@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import React, { FC } from 'react';
-import { ArticleActions } from '../ArticleActions' ;
+import { ArticleActions } from '../ArticleActions';
 
 type IArticleMetaProps = {
   article: any,
   canModify: any
-}
+};
 
 const ArticleMeta: FC<IArticleMetaProps> = (props) => {
   const { article, canModify } = props;

@@ -11,5 +11,5 @@ ThunkAction<TReturn, Action, RootState, TApplicationActions>
 >; */
 
 export type AppThunk<TReturn = void> = ActionCreator<
-  ThunkAction<TReturn, RootState, unknown, Action>
+ThunkAction<TReturn, RootState, unknown, Action>
 >;

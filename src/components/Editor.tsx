@@ -9,33 +9,32 @@ import { useParams } from 'react-router-dom';
 // import ListErrors from './ListErrors';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
-  setTitle, setDescription, setBody, setTags, resetArticle, setTaglist, deleteTag, setImage
+  setTitle, setDescription, setBody, setTags, resetArticle, setTaglist, deleteTag, setImage,
 } from '../store';
 import { postArticle, patchArticle } from '../services/api';
 import getArticleThunk from '../thunks/get-article-thunk';
 
 export const Editor: FC = () => {
-
   const dispatch = useDispatch();
   const {
-    title, description, body, tags, tagList, image
+    title, description, body, tags, tagList, image,
   } = useSelector((state) => state.forms.article);
   const { isArticleFetching } = useSelector((state) => state.api);
   const { slug } = useParams();
-  
+
   const initialArticle = useSelector((state) => state.view.article);
 
   useEffect(() => {
     initialArticle?.tagList.forEach((el) => {
-      dispatch(setTaglist(el))
-    })
-  }, [initialArticle])
+      dispatch(setTaglist(el));
+    });
+  }, [initialArticle]);
 
   useEffect(() => {
     if (slug) {
       dispatch(getArticleThunk(slug));
     }
-    
+
     return () => {
       dispatch(resetArticle());
     };
@@ -63,7 +62,7 @@ export const Editor: FC = () => {
 
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setImage(e.target.value));
-  }
+  };
 
   const watchForEnter = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && tags) {
@@ -85,14 +84,14 @@ export const Editor: FC = () => {
       description!,
       body!,
       tagList,
-      image!
+      image!,
     )
       : postArticle(
         title!,
         description!,
         body!,
         tagList,
-        image!
+        image!,
       );
   };
 
@@ -127,7 +126,7 @@ export const Editor: FC = () => {
                   <input
                     className='form-control'
                     type='url'
-                    placeholder="Article Image"
+                    placeholder='Article Image'
                     value={image === '' ? '' : image || initialArticle?.link}
                     onChange={onChangeImage} />
                 </fieldset>
@@ -177,4 +176,3 @@ export const Editor: FC = () => {
     </div>
   );
 };
-

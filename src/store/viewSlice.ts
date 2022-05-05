@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-  FeedTypes, TArticle, TArticles, TComment, TComments, TProfile, TTags, UserArticlesTypes
+  FeedTypes, TArticle, TArticles, TComment, TComments, TProfile, TTags, UserArticlesTypes,
 } from '../types/types';
 
 type TViewState = {
@@ -33,7 +33,7 @@ const initialState: TViewState = {
   perPage: 10,
   profile: null,
   feedType: FeedTypes.public,
-  articlesType:UserArticlesTypes.my,
+  articlesType: UserArticlesTypes.my,
 };
 
 const viewSlice = createSlice({
@@ -139,7 +139,7 @@ export const {
   setTag,
   clearTag,
   setFeedType,
-  setArtistProfile
+  setArtistProfile,
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

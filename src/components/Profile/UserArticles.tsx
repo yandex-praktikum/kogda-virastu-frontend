@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from '../../services/hooks';
 import { UserArticlesTypes } from '../../types/types';
 import { setArtistProfile, clearPage } from '../../store';
 
-
 const UserArticles: FC = () => {
   const dispatch = useDispatch();
   const { articlesType } = useSelector((state) => state.view);
@@ -14,8 +13,7 @@ const UserArticles: FC = () => {
     batch(() => {
       dispatch(setArtistProfile(UserArticlesTypes.my));
       dispatch(clearPage());
-    })
-
+    });
   };
   return (
     <li className='nav-item'>

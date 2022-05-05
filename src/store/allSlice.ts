@@ -35,6 +35,3 @@ export const {
   clearAll,
 } = allSlice.actions;
 export default allReducer;
-
-
-

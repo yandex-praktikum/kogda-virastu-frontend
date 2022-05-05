@@ -30,4 +30,4 @@ const Tags: FC<{ tags:string[], onClickTag:(key:string)=> void }> = ({ tags, onC
     <div>Loading Tags...</div>
   );
 };
-export default Tags
+export default Tags;

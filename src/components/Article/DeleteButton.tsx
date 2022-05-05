@@ -3,10 +3,10 @@ import { useDispatch } from '../../services/hooks';
 
 import { deleteCommentThunk } from '../../thunks';
 
- const DeleteButton: FC<{ slug: string, commentId: string, show: boolean }> = ({ slug, commentId, show }) => {
+const DeleteButton: FC<{ slug: string, commentId: string, show: boolean }> = ({ slug, commentId, show }) => {
   const dispatch = useDispatch();
 
-  const del = () => { 
+  const del = () => {
     dispatch(deleteCommentThunk(slug, commentId));
   };
 
