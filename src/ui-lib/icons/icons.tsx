@@ -10,10 +10,10 @@ type Ticons = {
     isHover?: boolean;
     cursor?: 'default' | 'pointer' | 'none';
 }
-export const HeartsFullIcon:FC<Ticons> = ({onClick, width, height, isHover, onBlur, cursor }) => {
+export const HeartsFullIcon:FC<Ticons> = ({onClick, width, height, isHover, onBlur, cursor}) => {
     return (
         <>
-        <ConstuctorIcon picture={heartFull}  onClick={onClick} width = {width} height={height} isHover={isHover} onBlur={onBlur} cursor={cursor} />
+        <ConstuctorIcon picture={heartFull}  onClick={onClick} width = {width} height={height} isHover={isHover} onBlur={onBlur} cursor={cursor} name={'Сердце'} />
         </>
     )
 }
