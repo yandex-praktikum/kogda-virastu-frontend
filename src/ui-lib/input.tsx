@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-const InpitStyle = styled.input<{ error: boolean | undefined }>`
+const InputStyle = styled.input<{ error: boolean | undefined }>`
      width:540px;
      height: 40px;
      box-sizing: border-box;
@@ -45,7 +45,7 @@ const ErorText = ({ erorText }: TerrorText) => {
 export const Input = ({ type, placeholder, value, name, success, error, icon, errorText, onChange, onIconClick, onBlur, onFocus }: TInputInterface) => {
     return (
         <>
-            <InpitStyle error={error} type={type} placeholder={placeholder} value={value} name={name} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+            <InputStyle error={error} type={type} placeholder={placeholder} value={value} name={name} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
             {error && <ErorText erorText={errorText} />}
         </>
     )
