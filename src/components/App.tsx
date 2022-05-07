@@ -13,6 +13,10 @@ import { jwt } from '../services/api';
 import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
+import styled from 'styled-components';
+
+
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +30,7 @@ const App = () => {
   return (
     <div>
       <Header />
+    
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/article/:id' element={<Article />} />

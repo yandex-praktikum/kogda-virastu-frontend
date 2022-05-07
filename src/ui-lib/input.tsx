@@ -8,7 +8,7 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      padding: 8px 16px 8px 16px;
      font-family: var(--default-text-18);
      color: var(--color-text-secondary);
-     border: 1px solid ${({ error }) => error ? '#FF1E1E' : 'var(--color-gray)'};
+     border: 1px solid ${({ error }) => error ? '#FF1E1E' : (props=> props.theme.colorGray)};
      @media screen and (max-width:320px) {
         font-size: 16px;
         max-width:280px;
@@ -34,7 +34,7 @@ type TerrorText = {
 }
 const ErorTextStyle = styled.span`
 color:#FF1E1E;
-font-family: var(--default-h5);
+font:${props => props.theme.defaultH5};
 `
 
 const ErorText = ({ erorText }: TerrorText) => {
