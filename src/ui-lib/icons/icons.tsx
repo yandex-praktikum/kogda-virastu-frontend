@@ -11,6 +11,7 @@ import setting from '../../imges/icons/setting.png';
 import plus from '../../imges/icons/plus.png';
 import exit from '../../imges/icons/exit.png';
 import basket from '../../imges/icons/basket.png';
+import clip from '../../imges/icons/clip.png';
 import { ConstuctorIcon } from './configIcon';
 type Ticons = {
     onClick?(e: React.MouseEvent<HTMLDivElement>): void;
@@ -103,6 +104,13 @@ export const BasketIcon: FC<Ticons> = ({ onClick, width, height, isHover, onBlur
     return (
         <>
             <ConstuctorIcon picture={basket} onClick={onClick} width={width} height={height} isHover={isHover} onBlur={onBlur} cursor={cursor} name={'Корзина'} color={color} />
+        </>
+    )
+}
+export const ClipIcon: FC<Ticons> = ({ onClick, width, height, isHover, onBlur, cursor, color }) => {
+    return (
+        <>
+            <ConstuctorIcon picture={clip} onClick={onClick} width={width} height={height} isHover={isHover} onBlur={onBlur} cursor={cursor} name={'Корзина'} color={color} />
         </>
     )
 }
