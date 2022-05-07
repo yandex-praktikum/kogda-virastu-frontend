@@ -5,8 +5,6 @@ import GlobalFontsStyles from './globalFontsStyled';
 
 const GlobalStyles = createGlobalStyle`
   ${normalize}
-
-  ${GlobalFontsStyles}
 `;
 
 export default GlobalStyles;

@@ -14,8 +14,8 @@ import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import styled from 'styled-components';
-
-
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../theme/index'
 
 
 const App = () => {
@@ -29,18 +29,20 @@ const App = () => {
 
   return (
     <div>
-      <Header />
-    
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/article/:id' element={<Article />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/editor/:slug' element={<Editor />} />
-        <Route path='/editor' element={<Editor />} />
-        <Route path='/:username' element={<Profile />} />
-      </Routes>
+      <ThemeProvider theme={theme['light']/* [ currentTheme ]*/ }>
+        <Header />
+
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/article/:id' element={<Article />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/editor/:slug' element={<Editor />} />
+          <Route path='/editor' element={<Editor />} />
+          <Route path='/:username' element={<Profile />} />
+        </Routes>
+      </ThemeProvider>
     </div>
   );
 };
