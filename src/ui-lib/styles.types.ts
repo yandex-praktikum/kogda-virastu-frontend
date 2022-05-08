@@ -5,6 +5,13 @@ export type TFontProperties = {
   weight: number;
 };
 
+export type TColorSet = {
+  defaultColor: string;
+  hoverColor: string;
+  activeColor: string;
+  disabledColor: string;
+};
+
 export type TButtonStyle = {
   defaultColor: string;
   hoverColor: string;
