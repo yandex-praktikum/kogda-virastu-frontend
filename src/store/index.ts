@@ -134,10 +134,11 @@ import {
 import {
   onLogin,
   onLogout,
-
+  setTheme,
 } from './systemSlice';
 
 export {
+  setTheme,
   clearPage,
   setArtistProfile,
   setFeedType,
