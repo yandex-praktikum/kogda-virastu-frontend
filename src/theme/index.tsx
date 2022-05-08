@@ -2,7 +2,7 @@ import { primaryBalck, greySecondary, blueActive, blue, blueHover, red, redActiv
 import { defaultTextSans18, defaultTextSansMed18, defaultText18, defaultH1, defaultH2, defaultH3, defaultH4, defaultH5, defaultH1Mobile, defaultH2Mobile, defaultH3Mobile, defaultH4Mobile, defaultH5Mobile } from "../constants/fontsconfigs"
 
 type TTheme = {
-    light: { [key: string]: string | { [key: string]: string | number } }
+    [key:string]: { [key: string]: string | { [key: string]: string | number } }
 }
 
 export const theme: TTheme = {

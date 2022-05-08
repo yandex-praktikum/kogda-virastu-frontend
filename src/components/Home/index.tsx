@@ -7,6 +7,11 @@ import styled from 'styled-components';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
+const Al = styled.p`
+  font-family: ${({ theme: { firstLevelHeading: { family } } }) => family};
+  font-size: ${({ theme: { firstLevelHeading: { size } } }) => size}px;
+  color: ${({ theme: { markedText } }) => markedText};
+`;
 
 
 
@@ -22,7 +27,7 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
- 
+  <Al>fghhhgfgh</Al>
       <Banner />
       <div className='container page'>
         <div className='row'>
