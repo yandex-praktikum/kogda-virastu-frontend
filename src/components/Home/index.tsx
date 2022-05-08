@@ -10,7 +10,6 @@ import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
 
 
-
 const Home: FC = () => {
   const dispatch = useDispatch();
 

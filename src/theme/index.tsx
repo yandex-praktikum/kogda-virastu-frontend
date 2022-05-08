@@ -1,42 +1,44 @@
-import { colors } from "../constants/colors"
-import { config } from "../constants/fontsconfigs"
+import { primaryBalck, greySecondary, blueActive, blue, blueHover, red, redActive, redHover, deviderGray, mainBgColor, hoverUserMenuColor, activeUserMenuColor } from "../constants/colors"
+import { defaultTextSans18, defaultTextSansMed18, defaultText18, defaultH1, defaultH2, defaultH3, defaultH4, defaultH5, defaultH1Mobile, defaultH2Mobile, defaultH3Mobile, defaultH4Mobile, defaultH5Mobile } from "../constants/fontsconfigs"
 
 type TTheme = {
-    light: { [key: string]: string | { [key: string]: string } }
+    light: { [key: string]: string | { [key: string]: string | number } }
 }
 
 export const theme: TTheme = {
     'light': {
-        primaryText: colors.black,
-        secondaryText: colors.darkgrey,
-        navLinkTextColor: colors.blue,
-        colorGray: colors.grey,
-        deviderColor: colors.lightgrey,
-        bgPrimary: colors.milkwhite,
-        bgHoverUserMenu: colors.lightblue,
-        bgActiveUserMenu: colors.lightblueV2,
+        primaryText: primaryBalck,
+        secondaryText: greySecondary,
+        markedText: blue,
+        deviderColor: deviderGray,
+        bgPrimary: mainBgColor,
+        bgHoverUserMenu: hoverUserMenuColor,
+        bgActiveUserMenu: activeUserMenuColor,
         blueButton: {
-            default: colors.blue,
-            hover: colors.skyblue,
-            active: colors.deepblue
+            default: blue,
+            hover: blueHover,
+            active: blueActive,
         },
         redButton: {
-            default: colors.red,
-            hover: colors.richred,
-            active: colors.deepred
+            default: red,
+            hover: redHover,
+            active: redActive,
         },
-        blockedButton: colors.lightgrey,
-        firstLevelHeading: config.defaultH1,
-        secondLevelHeading: config.defaultH2,
-        thirdLevelHeading: config.defaultH3,
-        fourthLevelHeading: config.defaultH4,
-        fifthLevelHeading: config.defaultH5,
-        firstLevelHeadingMobile: config.defaultH1Mobile,
-        secondLevelHeadingMobile: config.defaultH2Mobile,
-        thirdLevelHeadingMobile: config.defaultH3Mobile,
-        fourthLevelHeadingMobile: config.defaultH4Mobile,
-        fifthLevelHeadingMobile: config.defaultH5Mobile,
-        textSans: config.defaultTextSans18,
-        text: config.defaultText18,
+        blockedButton: deviderGray,
+
+        firstLevelHeading: defaultH1, 
+        secondLevelHeading: defaultH2,
+        thirdLevelHeading: defaultH3 ,
+        fourthLevelHeading: defaultH4,
+        fifthLevelHeading: defaultH5,
+        firstLevelHeadingMobile:defaultH1Mobile,
+        secondLevelHeadingMobile: defaultH2Mobile,
+        thirdLevelHeadingMobile:defaultH3Mobile,
+        fourthLevelHeadingMobile: defaultH4Mobile,
+        fifthLevelHeadingMobile: defaultH5Mobile,
+        textSans: defaultTextSans18,
+        text:  defaultText18,
     }
 }
+
+

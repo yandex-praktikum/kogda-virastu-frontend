@@ -1,21 +1,17 @@
 
-type TColors = {
-    [key:string]: string
-}
 
 
-export const colors:TColors  = {
-    black: '#0A0A0B',
-    darkgrey: '#62626A',
-    blue: "#008AFF",
-    skyblue: '#007CE5',
-    deepblue: ' #006ECC',
-    red: '#FF413B',
-    richred: '#E53B35',
-    deepred: '#CC342F',
-    grey: '#A3A3A3',
-    lightgrey: '#CCCCCC',
-    milkwhite: '#FFFFFF',
-    lightblue: '#E0F1FF',
-    lightblueV2: '#D6ECFF',
-}
+const primaryBalck = '#0A0A0B';
+const greySecondary = '#62626A';
+const blue = "#008AFF";
+const blueHover = '#007CE5';
+const blueActive = '#006ECC';
+const red = '#FF413B';
+const redHover = '#E53B35';
+const redActive = '#CC342F';
+const deviderGray = '#CCCCCC';
+const mainBgColor = '#FFFFFF';
+const hoverUserMenuColor = '#E0F1FF';
+const activeUserMenuColor = '#D6ECFF';
+
+export { primaryBalck, greySecondary,blue, blueActive, blueHover,red, redActive, redHover, deviderGray, mainBgColor, hoverUserMenuColor, activeUserMenuColor}

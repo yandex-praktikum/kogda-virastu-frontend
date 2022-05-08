@@ -1,20 +1,17 @@
-type TConfigs = {
-    [key:string]: string
-}
 
 
-export const config: TConfigs = {
-    defaultTextSans18: '400 18px/24px Alegreya Sans',
-    defaultText18: '400 18px/24px Alegreya',
-    defaultH1: ' 400 56px/64px Alegreya Sans',
-    defaultH2: '400 36px/40px Alegreya Sans',
-    defaultH3: '400 32px/40px Alegreya Sans',
-    defaultH4: '400 24px/28px Alegreya Sans',
-    defaultH5: '400 20px/24px Alegreya Sans',
-    defaultH1Mobile: '400 40px/48px Alegreya Sans',
-    defaultH2Mobile: '400 32px/36px Alegreya Sans',
-    defaultH3Mobile: '400 28px/32px Alegreya Sans',
-    defaultH4Mobile: '400 22px/26px Alegreya Sans',
-    defaultH5Mobile: '400 18px/22px Alegreya Sans',
-    defaultTextSansMed18: '400 18px/22px Alegreya Sans'
-}
+const defaultTextSans18 = { weight: 400, size: 18, height: 24, family: 'Alegreya Sans' }
+const defaultText18 = { weight: 400, size: 18, height: 24, family: 'Alegreya' }
+const defaultH1 = { weight: 400, size: 56, height: 64, family: 'Alegreya Sans' }
+const defaultH2 = { weight: 400, size: 36, height: 40, family: 'Alegreya Sans' }
+const defaultH3 = { weight: 400, size: 32, height: 40, family: 'Alegreya Sans' }
+const defaultH4 = { weight: 400, size: 24, height: 28, family: 'Alegreya Sans' }
+const defaultH5 = { weight: 400, size: 20, height: 24, family: 'Alegreya Sans' }
+const defaultH1Mobile = { weight: 400, size: 40, height: 48, family: 'Alegreya Sans' }
+const defaultH2Mobile = { weight: 400, size: 32, height: 36, family: 'Alegreya Sans' }
+const defaultH3Mobile = { weight: 400, size: 28, height: 32, family: 'Alegreya Sans' }
+const defaultH4Mobile = { weight: 400, size: 22, height: 26, family: 'Alegreya Sans' }
+const defaultH5Mobile = { weight: 400, size: 18, height: 22, family: 'Alegreya Sans' }
+const defaultTextSansMed18 = { weight: 400, size: 18, height: 22, family: 'Alegreya Sans' }
+
+export {defaultTextSans18,defaultTextSansMed18, defaultText18,defaultH1,defaultH2,defaultH3,defaultH4, defaultH5,defaultH1Mobile,defaultH2Mobile,defaultH3Mobile,defaultH4Mobile,defaultH5Mobile}
