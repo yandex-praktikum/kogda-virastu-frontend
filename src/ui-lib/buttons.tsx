@@ -1,11 +1,12 @@
 import React, { FC, MouseEventHandler } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProps } from 'styled-components';
 import {
-  TFontProperties, TButtonStyle, TButtonTextStyle, TColorSet, TButtonProps,
-} from './styles.types';
-import {PlusIcon, BasketIcon, MinusIcon, EditIcon} from './index';
-
-
+  TTheme, TFontProperties, TButtonStyle, TButtonTextStyle, TColorSet, TButtonProps,
+} from '../types/styles.types';
+import {
+  PlusIcon, BasketIcon, MinusIcon, EditIcon,
+} from './index';
+import { getColor } from '../services/helpers';
 
 const buttonFont : TFontProperties = {
   family: 'Alagreya Sans',
@@ -14,81 +15,67 @@ const buttonFont : TFontProperties = {
   weight: 500,
 };
 
-const blueButtonStyles : TButtonStyle = {
-  defaultColor: '#008AFF',
-  hoverColor: '#007CE5',
-  activeColor: '#006ECC',
-  disabledColor: '#CCCCCC',
-  fontColor: '#FFFFFF',
-  fontProperties: buttonFont,
-};
-
-
-const redButtonStyles : TButtonStyle = {
-  defaultColor: '#FF413B',
-  hoverColor: '#E53B35',
-  activeColor: '#CC342F',
-  disabledColor: '#CCCCCC',
-  fontColor: '#FFFFFF',
-  fontProperties: buttonFont,
-};
-
 const iconDistance = 8;
 
-interface IButtonStylesInterface {
-  buttonStyle: TButtonStyle;
+type TBasicButtonProps = {
+//  theme: ThemeProps<TTheme>;
+  colorScheme: string;
   disabled?: boolean;
-}
+};
 
-const BasicNormalButton = styled.button<IButtonStylesInterface>`
+const BasicNormalButton = styled.button<TBasicButtonProps>`
   padding: 8px 16px;
   border-radius: 4px;
-  font-family: ${({ buttonStyle: { fontProperties: { family } } }) => family};
-  font-size: ${({ buttonStyle: { fontProperties: { size } } }) => size} px;
-  font-weight: ${({ buttonStyle: { fontProperties: { weight } } }) => weight};
-  line-height: ${({ buttonStyle: { fontProperties: { height } } }) => height} px;
-  background-color: ${({ buttonStyle: { defaultColor, disabledColor }, disabled }) => defaultColor};
-  color: ${({ buttonStyle: { fontColor } }) => fontColor};
+  border-width: 0;
+  box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  font-family: ${({ theme: { buttonText: { family } } }) => family};
+  font-size: ${({ theme: { buttonText: { size } } }) => size} px;
+  font-weight: ${({ theme: { buttonText: { weight } } }) => weight};
+  line-height: ${({ theme: { buttonText: { height } } }) => height} px;
+  background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
   &:hover {
-    background-color: ${({ buttonStyle: { hoverColor } }) => hoverColor};
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
     }
   &:active {
-    background-color: ${({ buttonStyle: { activeColor } }) => activeColor};
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   &:focus {
-    background-color: ${({ buttonStyle: { activeColor } }) => activeColor};
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   `;
 
-const BasicInvertedButton = styled.button<IButtonStylesInterface>`
+const BasicInvertedButton = styled.button<TBasicButtonProps>`
   padding: 8px 16px;
-  border: none;
-  font-family: ${({ buttonStyle: { fontProperties: { family } } }) => family};
-  font-size: ${({ buttonStyle: { fontProperties: { size } } }) => size} px;
-  font-weight: ${({ buttonStyle: { fontProperties: { weight } } }) => weight};
-  line-height: ${({ buttonStyle: { fontProperties: { height } } }) => height} px;
-  background-color: ${({ buttonStyle: { fontColor } }) => fontColor};
-  color: ${({ buttonStyle: { defaultColor } }) => defaultColor};
+  border-radius: 4px;
+  border-width: 0;
+  box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  font-family: ${({ theme: { buttonText: { family } } }) => family};
+  font-size: ${({ theme: { buttonText: { size } } }) => size} px;
+  font-weight: ${({ theme: { buttonText: { weight } } }) => weight};
+  line-height: ${({ theme: { buttonText: { height } } }) => height} px;
+  color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  background-color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
   &:hover {
-    color: ${({ buttonStyle: { hoverColor } }) => hoverColor};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
     }
   &:active {
-    color: ${({ buttonStyle: { activeColor } }) => activeColor};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   &:focus {
-    color: ${({ buttonStyle: { activeColor } }) => activeColor};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
-  `;
+`;
 
 const ButtonText = styled.p<TButtonTextStyle>`
   padding: 0 0 0 ${({ paddingLeft = 0 }) => paddingLeft}px;
@@ -99,77 +86,71 @@ const ButtonText = styled.p<TButtonTextStyle>`
   margin-inline-end: 0;
 `;
 
-export const EditPostButton : FC<TButtonProps> = (
-  onClick, disabled) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles} onClick={onClick}>
+export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
     <EditIcon />
     <ButtonText paddingLeft={iconDistance}>Редактировать запись</ButtonText>
   </BasicNormalButton>
 );
 
-export const DeletePostButton = (
-  onClick: MouseEventHandler<HTMLButtonElement>,
-) => (
-  <BasicInvertedButton buttonStyle={redButtonStyles} onClick={onClick}>
-    <BasketIcon  />
+export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicInvertedButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    <BasketIcon />
     <ButtonText paddingLeft={iconDistance}>Удалить запись</ButtonText>
   </BasicInvertedButton>
 );
 
-export const SavePostButton = (onClick: MouseEventHandler<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles} onClick={onClick}>
+export const SavePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
     Сохранить запись
   </BasicNormalButton>
 );
 
-export const ConfirmDeleteButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={redButtonStyles}>
+export const ConfirmDeleteButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
     Удалить запись
   </BasicNormalButton>
 );
 
-export const FollowButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton
-    buttonStyle={blueButtonStyles}>
+export const FollowButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
     <PlusIcon />
     <ButtonText paddingLeft={iconDistance}>Подписаться</ButtonText>
   </BasicNormalButton>
 );
 
-export const UnfollowButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton
-    buttonStyle={blueButtonStyles}>
+export const UnfollowButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
     <MinusIcon />
     <ButtonText paddingLeft={iconDistance}>Отписаться</ButtonText>
   </BasicNormalButton>
 );
 
-export const PostCommentButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles}>
+export const PostCommentButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
     Отправить комментарий
   </BasicNormalButton>
 );
 
-export const SavePostButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles}>
-    Сохранить запись
+export const registerButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    Зарегистрироваться
   </BasicNormalButton>
 );
 
-export const SavePostButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles}>
-    Сохранить запись
+export const loginButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    Войти
   </BasicNormalButton>
 );
 
-export const SavePostButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles}>
-    Сохранить запись
+export const UpdateProfileButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    Обновить настройки
   </BasicNormalButton>
 );
-export const SavePostButton = (onClick: MouseEvent<HTMLButtonElement>) => (
-  <BasicNormalButton buttonStyle={blueButtonStyles}>
-    Сохранить запись
+export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    Опубликовать запись
   </BasicNormalButton>
 );
-*/
