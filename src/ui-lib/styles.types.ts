@@ -1,3 +1,5 @@
+import {MouseEventHandler} from "react";
+
 export type TFontProperties = {
   family: string;
   size: number;
@@ -24,3 +26,8 @@ export type TButtonStyle = {
 export type TButtonTextStyle = {
   paddingLeft: number;
 };
+
+export type TButtonProps = {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+}
