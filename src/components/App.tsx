@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {
   Route, Routes,
 } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import Profile from './Profile/Profile';
 import Header from './Header';
@@ -13,14 +14,12 @@ import { jwt } from '../services/api';
 import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
-import styled from 'styled-components';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../theme/index'
-
+import basicThemes, { defaultTheme } from '../themes/index';
 
 const App = () => {
   const dispatch = useDispatch();
-  const {currentTheme} = useSelector(state => state.system)
+  const { currentTheme } = useSelector((state) => state.system);
+  const { themes } = useSelector((state) => state.all);
   useEffect(() => {
     if (jwt.test()) {
       dispatch(getUserThunk());
@@ -29,7 +28,10 @@ const App = () => {
 
   return (
     <div>
-      <ThemeProvider theme={theme[currentTheme]}>
+      <ThemeProvider theme={
+        themes[currentTheme ?? defaultTheme]
+        ?? basicThemes[currentTheme ?? defaultTheme]
+      }>
         <Header />
 
         <Routes>

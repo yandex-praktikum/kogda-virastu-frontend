@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { defaultTheme } from '../themes';
 
 type TSystemState = {
   isLoggedIn: boolean;
@@ -9,7 +10,7 @@ type TSystemState = {
 const initialState: TSystemState = {
   isLoggedIn: false,
   appName: 'Real World',
-  currentTheme: 'light',
+  currentTheme: defaultTheme,
 };
 
 const systemSlice = createSlice({
@@ -19,8 +20,8 @@ const systemSlice = createSlice({
     onLogin: (state: TSystemState) => ({ ...state, isLoggedIn: true }),
     onLogout: (state: TSystemState) => ({ ...state, isLoggedIn: false }),
     setTheme: (state: TSystemState, action: PayloadAction<string>) => ({
-      ...state, currentTheme: action.payload      
-    })
+      ...state, currentTheme: action.payload,
+    }),
   },
 });
 
