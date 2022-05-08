@@ -20,8 +20,6 @@ import {
 
 const GlobalStyles = createGlobalStyle`
   ${normalize}
-  ${GlobalColorsStyles}
-  ${GlobalFontsStyles}
 `;
 
 export default GlobalStyles;

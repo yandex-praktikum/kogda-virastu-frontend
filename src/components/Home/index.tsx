@@ -3,10 +3,18 @@ import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
 import Tags from './Tags';
-
+import styled from 'styled-components';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 import {DeletePostButton, EditPostButton} from "../../ui-lib/buttons";
+
+const Al = styled.p`
+  font-family: ${({ theme: { firstLevelHeading: { family } } }) => family};
+  font-size: ${({ theme: { firstLevelHeading: { size } } }) => size}px;
+  color: ${({ theme: { markedText } }) => markedText};
+`;
+
+
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -20,6 +28,7 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
+  <Al>fghhhgfgh</Al>
       <Banner />
       <div className='container page'>
         <div className='row'>

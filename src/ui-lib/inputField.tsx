@@ -1,25 +1,41 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import React, { useState, FC } from 'react';
 
 const InputStyle = styled.input<{ error: boolean | undefined }>`
+     box-sizing: border-box;
      width:540px;
      height: 40px;
-     box-sizing: border-box;
      padding: 8px 16px 8px 16px;
      font-family: var(--default-text-18);
      color: var(--color-text-secondary);
-     border: 1px solid ${({ error }) => error ? '#FF1E1E' : 'var(--color-gray)'};
+     border: 1px solid ${({ error }) => error ? '#FF1E1E' : (props=> props.theme.colorGray)};
      @media screen and (max-width:320px) {
         font-size: 16px;
         max-width:280px;
      }
+ `
+const ContainerInput = styled.div`
+     width:540px;
+     height: 40px;
+     margin: 0;
+     padding: 0;
+     position: relative;
+     @media screen and (max-width:320px) {
+        font-size: 16px;
+        max-width:280px;
+     }
+ `
+
+const ContainerIcon = styled.div`
+     position: absolute;
+     top: 6px;
+     right:16px;
  `
 type TInputInterface = {
     type?: 'text' | 'email' | 'password' | 'url';
     placeholder?: string;
     value: string;
     name?: string;
-    success?: boolean;
     error?: boolean;
     icon?: any;
     errorText?: string;
@@ -34,7 +50,7 @@ type TerrorText = {
 }
 const ErorTextStyle = styled.span`
 color:#FF1E1E;
-font-family: var(--default-h5);
+font:${props => props.theme.defaultH5};
 `
 
 const ErorText = ({ erorText }: TerrorText) => {
@@ -43,12 +59,15 @@ const ErorText = ({ erorText }: TerrorText) => {
     )
 }
 
-const Input = ({ type, placeholder, value, name, success, error, icon, errorText, onChange, onIconClick, onBlur, onFocus }: TInputInterface) => {
+export const InputField = ({ type, placeholder, value, name, error, icon, errorText, onChange, onIconClick, onBlur, onFocus }: TInputInterface) => {
     return (
-        <>
+        <ContainerInput>
             <InputStyle error={error} type={type} placeholder={placeholder} value={value} name={name} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+            <ContainerIcon onClick={onIconClick}>
+                {icon}
+            </ContainerIcon>
             {error && <ErorText erorText={errorText} />}
-        </>
+        </ContainerInput>
     )
 }
-export default Input;
+export default InputField;
