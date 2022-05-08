@@ -1,18 +1,4 @@
 import { FC } from 'react';
-<<<<<<< HEAD
-import heartFull from '../../assets/imges/icons/heartFull.png';
-import close from '../../../assets/imges/icons/close.png';
-import daw from '../../../assets/imges/icons/daw.png';
-import edit from '../../../assets/imges/icons/edit.png';
-import heart from '../../../assets/imges/icons/heart.png';
-import home from '../../../assets/imges/icons/home.png';
-import login from '../../../assets/imges/icons/login.png';
-import minus from '../../../assets/imges/icons/minus.png';
-import setting from '../../../assets/imges/icons/setting.png';
-import plus from '../../../assets/imges/icons/plus.png';
-import exit from '../../../assets/imges/icons/exit.png';
-import basket from '../../../assets/imges/icons/basket.png';
-=======
 import heartFull from '../../imges/icons/heartFull.png';
 import close from '../../imges/icons/close.png';
 import daw from '../../imges/icons/daw.png';
@@ -26,7 +12,6 @@ import plus from '../../imges/icons/plus.png';
 import exit from '../../imges/icons/exit.png';
 import basket from '../../imges/icons/basket.png';
 import clip from '../../imges/icons/clip.png';
->>>>>>> develop
 import { ConstuctorIcon } from './configIcon';
 type Ticons = {
     onClick?(e: React.MouseEvent<HTMLDivElement>): void;
