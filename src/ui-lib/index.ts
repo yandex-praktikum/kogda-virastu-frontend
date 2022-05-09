@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import GlobalColorsStyles from './globalColorsStyled';
 import GlobalFontsStyles from './globalFontsStyled';
-import { EditIcon, DeleteIcon, AvatarIcon } from './icons';
+import { DeleteIcon, AvatarIcon } from './icons';
 import { EditPostButton, DeletePostButton, OpenMenuButton } from './buttons';
 
 
