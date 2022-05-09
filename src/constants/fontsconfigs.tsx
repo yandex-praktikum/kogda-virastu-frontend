@@ -12,6 +12,6 @@ const defaultH2Mobile = { weight: 400, size: 32, height: 36, family: 'Alegreya S
 const defaultH3Mobile = { weight: 400, size: 28, height: 32, family: 'Alegreya Sans' }
 const defaultH4Mobile = { weight: 400, size: 22, height: 26, family: 'Alegreya Sans' }
 const defaultH5Mobile = { weight: 400, size: 18, height: 22, family: 'Alegreya Sans' }
-const defaultTextSansMed18 = { weight: 400, size: 18, height: 22, family: 'Alegreya Sans' }
+const defaultTextSansMed18 = { weight: 500, size: 18, height: 24, family: 'Alegreya Sans' }
 
 export {defaultTextSans18,defaultTextSansMed18, defaultText18,defaultH1,defaultH2,defaultH3,defaultH4, defaultH5,defaultH1Mobile,defaultH2Mobile,defaultH3Mobile,defaultH4Mobile,defaultH5Mobile}

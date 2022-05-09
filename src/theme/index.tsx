@@ -37,7 +37,8 @@ export const theme: TTheme = {
         fourthLevelHeadingMobile: defaultH4Mobile,
         fifthLevelHeadingMobile: defaultH5Mobile,
         textSans: defaultTextSans18,
-        text:  defaultText18,
+        text: defaultText18,
+        textMedium: defaultTextSansMed18,
     }
 }
 
