@@ -2,7 +2,7 @@ import { TVocabulary } from '../types/vocabularies.types';
 
 const en : TVocabulary = {
   headerLink: 'Main Page',
-  userEnter: 'Enter',
+  userLogin: 'Login',
   newArticle: 'New post',
   settings: 'Settings',
   exitProfile: 'Exit',
@@ -13,7 +13,7 @@ const en : TVocabulary = {
   articleEnter: 'Read More',
   freshContent: 'New content',
   comments: 'Comments',
-  redactArticle: 'Edit article',
+  editArticle: 'Edit article',
   deleteArticle: 'Delete article',
   sendComment: 'Send comment',
   articleName: 'Article title',
@@ -24,7 +24,7 @@ const en : TVocabulary = {
   saveArticle: 'Create article',
   deletepopuptext: 'By clicking «Delete Entry», the material will be removed without the possibility of recovery. ',
   subscribe: 'Subscribe',
-  unFollow: 'Unsubscribe',
+  unsubscribe: 'Unsubscribe',
   register: 'Sign Up',
   userName: 'User Name',
   userEmail: 'Email',

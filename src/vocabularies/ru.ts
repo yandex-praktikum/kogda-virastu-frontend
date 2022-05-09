@@ -2,7 +2,7 @@ import { TVocabulary } from '../types/vocabularies.types';
 
 const ru : TVocabulary = {
   headerLink: 'Главная',
-  userEnter: 'Войти',
+  userLogin: 'Войти',
   newArticle: 'Новая запись',
   settings: 'Настройки',
   exitProfile: 'Выйти',
@@ -13,7 +13,7 @@ const ru : TVocabulary = {
   articleEnter: 'Читать дальше',
   freshContent: 'Свежие материалы',
   comments: 'Комментарии',
-  redactArticle: 'Редактировать запись',
+  editArticle: 'Редактировать запись',
   deleteArticle: 'Удалить запись',
   sendComment: 'Отправить комментарий',
   articleName: 'Название статьи',
@@ -24,7 +24,7 @@ const ru : TVocabulary = {
   saveArticle: 'Сохранить запись',
   deletepopuptext: 'Нажимая кнопку «Удалить запись», материал будет удален без возможности восстановления. ',
   subscribe: 'Подписаться',
-  unFollow: 'Отписаться',
+  unsubscribe: 'Отписаться',
   register: 'Зарегистрироваться',
   userName: 'Имя пользователя',
   userEmail: 'Email',
