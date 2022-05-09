@@ -5,20 +5,10 @@ import GlobalFontsStyles from './globalFontsStyled';
 import { EditIcon, DeleteIcon, AvatarIcon } from './icons';
 import { EditPostButton, DeletePostButton, OpenMenuButton } from './buttons';
 
-import {
-  PlusIcon,
-  CloseIcon,
-  DawIcon,
-  HeartIcon,
-  HeartsFullIcon,
-  HomeIcon,
-  LoginIcon,
-  MinusIcon,
-  SettingIcon,
-  ExitIcon,
-} from './icons/icons';
+
 
 import {
+
   PlusIcon,
   CloseIcon,
   DawIcon,
@@ -39,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
 
 export default GlobalStyles;
 export {
+
   PlusIcon,
   CloseIcon,
   DawIcon,
@@ -50,10 +41,14 @@ export {
   MinusIcon,
   SettingIcon,
   ExitIcon,
-  DeleteIcon,
+
+  BasketIcon,
+    DeleteIcon,
   AvatarIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
+} 
 
-};
+
+
