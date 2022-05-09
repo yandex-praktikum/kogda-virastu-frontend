@@ -18,7 +18,20 @@ import {
   PaperClipIcon,
 } from './icons';
 
-import { EditPostButton, DeletePostButton, OpenMenuButton } from './buttons';
+import {
+  EditPostButton,
+  DeletePostButton,
+  OpenMenuButton,
+  FollowButton,
+  UnfollowButton,
+  LoginButton,
+  RegisterButton,
+  UpdateProfileButton,
+  PostCommentButton,
+  PublishPostButton,
+  SavePostButton,
+  ConfirmDeleteButton,
+} from './buttons';
 
 const GlobalStyles = createGlobalStyle`
   ${normalize}
@@ -43,4 +56,13 @@ export {
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
+  FollowButton,
+  UnfollowButton,
+  LoginButton,
+  RegisterButton,
+  UpdateProfileButton,
+  PostCommentButton,
+  PublishPostButton,
+  SavePostButton,
+  ConfirmDeleteButton,
 };
