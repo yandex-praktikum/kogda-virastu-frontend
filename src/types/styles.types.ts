@@ -9,10 +9,29 @@ export type TColorSet = {
 };
 
 export type TTheme = {
-  [key: string]: string |
-  { [key: string]: string | number } |
-  { [key: string]: TColorSet } |
-  { [key: string]: TFontProperties }
+  primaryText: string,
+  secondaryText: string,
+  markedText: string,
+  dividerColor: string,
+  bgPrimary:string,
+  bgHoverUserMenu: string,
+  bgActiveUserMenu: string,
+  button: {
+    [key: string]: TColorSet,
+  },
+  buttonText: TFontProperties,
+  firstLevelHeading: TFontProperties,
+  secondLevelHeading: TFontProperties,
+  thirdLevelHeading: TFontProperties,
+  fourthLevelHeading: TFontProperties,
+  fifthLevelHeading: TFontProperties,
+  firstLevelHeadingMobile: TFontProperties,
+  secondLevelHeadingMobile: TFontProperties,
+  thirdLevelHeadingMobile: TFontProperties,
+  fourthLevelHeadingMobile: TFontProperties,
+  fifthLevelHeadingMobile: TFontProperties,
+  textSans: TFontProperties,
+  text: TFontProperties,
 };
 export type TThemes = {
   [key:string]: TTheme;
@@ -39,6 +58,23 @@ export type TButtonTextStyle = {
 };
 
 export type TButtonProps = {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+};
+
+export type TAvatarSizes = 'large' | 'small';
+
+export type TAvatarIconProps = {
+  size: TAvatarSizes;
+  name: string;
+  image: string;
+  distance?: number;
+  color: string;
+};
+
+export type TAvatarButtonProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+  name: string;
+  image: string;
 };
