@@ -33,6 +33,8 @@ import {
   ConfirmDeleteButton,
 } from './buttons';
 
+import Divider from './divider';
+
 const GlobalStyles = createGlobalStyle`
   ${normalize}
 `;
@@ -65,4 +67,5 @@ export {
   PublishPostButton,
   SavePostButton,
   ConfirmDeleteButton,
+  Divider,
 };
