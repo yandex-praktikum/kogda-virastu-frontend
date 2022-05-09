@@ -1,47 +1,46 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
-import GlobalColorsStyles from './globalColorsStyled';
-import GlobalFontsStyles from './globalFontsStyled';
-import { EditIcon, DeleteIcon, AvatarIcon } from './icons';
-import { EditPostButton, DeletePostButton, OpenMenuButton } from './buttons';
-
-
-
+// import GlobalColorsStyles from './globalColorsStyled';
+// import GlobalFontsStyles from './globalFontsStyled';
 import {
-
+  EditIcon,
+  DeleteIcon,
+  AvatarIcon,
   PlusIcon,
-  CloseIcon,
-  DawIcon,
-  HeartIcon,
-  HeartsFullIcon,
-  HomeIcon,
-  LoginIcon,
   MinusIcon,
-  SettingIcon,
-  ExitIcon,
-} from './icons/icons';
+  LoginIcon,
+  HomeIcon,
+  AsterixIcon,
+  CheckIcon,
+  LikeIcon,
+  LogoutIcon,
+  NoLikeIcon,
+  PaperClipIcon,
+} from './icons';
+
+import { EditPostButton, DeletePostButton, OpenMenuButton } from './buttons';
 
 const GlobalStyles = createGlobalStyle`
   ${normalize}
 `;
 
 export default GlobalStyles;
+
 export {
   PlusIcon,
-  CloseIcon,
-  DawIcon,
-  HeartIcon,
-  HeartsFullIcon,
   HomeIcon,
   LoginIcon,
   MinusIcon,
-  SettingIcon,
-  ExitIcon,
-
   EditIcon,
   DeleteIcon,
   AvatarIcon,
+  AsterixIcon,
+  CheckIcon,
+  LikeIcon,
+  NoLikeIcon,
+  LogoutIcon,
+  PaperClipIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
-}
+};
