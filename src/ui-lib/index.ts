@@ -18,6 +18,21 @@ import {
   ExitIcon,
 } from './icons/icons';
 
+import {
+  PlusIcon,
+  CloseIcon,
+  DawIcon,
+  EditIcon,
+  HeartIcon,
+  HeartsFullIcon,
+  HomeIcon,
+  LoginIcon,
+  MinusIcon,
+  SettingIcon,
+  ExitIcon,
+  BasketIcon,
+} from './icons/icons';
+
 const GlobalStyles = createGlobalStyle`
   ${normalize}
 `;
@@ -40,4 +55,5 @@ export {
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
+
 };
