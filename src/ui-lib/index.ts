@@ -18,12 +18,7 @@ import {
   ExitIcon,
 } from './icons/icons';
 
-const GlobalStyles = createGlobalStyle`
-  ${normalize}
-`;
-
-export default GlobalStyles;
-export {
+import {
   PlusIcon,
   CloseIcon,
   DawIcon,
@@ -35,9 +30,11 @@ export {
   MinusIcon,
   SettingIcon,
   ExitIcon,
-  DeleteIcon,
-  AvatarIcon,
-  EditPostButton,
-  DeletePostButton,
-  OpenMenuButton,
-};
+  BasketIcon,
+} from './icons/icons';
+
+const GlobalStyles = createGlobalStyle`
+  ${normalize}
+`;
+
+export default GlobalStyles;
