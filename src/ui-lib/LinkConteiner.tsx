@@ -37,10 +37,10 @@ const LinkElement = styled.li<TLinkElement>`
 `;
 
 const LinkText = styled.p`
-    font-size: ${({ theme: { textMedium: { size } } }) => size + 'px'} ;
-    font-family: ${({ theme: { textMedium: { family } } }) => family};
-    line-height: ${({ theme: { textMedium: { height } } }) => height + 'px'} ;
-    font-weight: ${({ theme: { textMedium: { weight } } }) => weight};
+    font-size: ${({ theme: {  buttonText: { size } } }) => size + 'px'} ;
+    font-family: ${({ theme: {  buttonText: { family } } }) => family};
+    line-height: ${({ theme: {  buttonText: { height } } }) => height + 'px'} ;
+    font-weight: ${({ theme: {  buttonText: { weight } } }) => weight};
     color: ${({ theme: { markedText } }) => markedText};
     margin: 0;
     margin-left: 8px;

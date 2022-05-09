@@ -6,9 +6,12 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      width:540px;
      height: 40px;
      padding: 8px 16px 8px 16px;
-     font-family: var(--default-text-18);
-     color: var(--color-text-secondary);
-     border: 1px solid ${({ error }) => error ? '#FF1E1E' : (props=> props.theme.colorGray)};
+     font-size: ${({ theme: { text: { size } } }) => size + 'px'} ;
+     font-family: ${({ theme: { text: { family } } }) => family};
+     line-height: ${({ theme: { text: { height } } }) => height + 'px'} ;
+     font-weight: ${({ theme: { text: { weight } } }) => weight};
+     color: ${({ theme: { secondaryText } }) => secondaryText};
+     border: 1px solid ${({ error }) => error ? '#FF1E1E' : (props => props.theme.divederColor)};
      @media screen and (max-width:320px) {
         font-size: 16px;
         max-width:280px;
@@ -50,7 +53,10 @@ type TerrorText = {
 }
 const ErorTextStyle = styled.span`
 color:#FF1E1E;
-font:${props => props.theme.defaultH5};
+font-size: ${({ theme: { fifthLevelHeading: { size } } }) => size + 'px'} ;
+font-family: ${({ theme: { fifthLevelHeading: { family } } }) => family};
+line-height: ${({ theme: { fifthLevelHeading: { height } } }) => height + 'px'} ;
+font-weight: ${({ theme: { fifthLevelHeading: { weight } } }) => weight};
 `
 
 const ErorText = ({ erorText }: TerrorText) => {
