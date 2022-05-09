@@ -1,24 +1,17 @@
-import React, { FC, MouseEventHandler } from 'react';
-import styled, { ThemeProps } from 'styled-components';
+import React, { FC } from 'react';
+import styled, { useTheme } from 'styled-components';
 import {
-  TTheme, TFontProperties, TButtonStyle, TButtonTextStyle, TColorSet, TButtonProps,
+  TButtonProps,
+  TAvatarButtonProps,
 } from '../types/styles.types';
-import {
-  PlusIcon, BasketIcon, MinusIcon, EditIcon,
-} from './index';
-import { getColor } from '../services/helpers';
 
-const buttonFont : TFontProperties = {
-  family: 'Alagreya Sans',
-  size: 18,
-  height: 24,
-  weight: 500,
-};
+import { EditIcon, AvatarIcon, DeleteIcon } from './icons';
+import { getColor, setColor } from '../services/helpers';
+import useMouseEvents from '../services/hooks/use-mouse-events';
 
-const iconDistance = 8;
+export const iconDistance = 8;
 
 type TBasicButtonProps = {
-//  theme: ThemeProps<TTheme>;
   colorScheme: string;
   disabled?: boolean;
 };
@@ -77,28 +70,101 @@ const BasicInvertedButton = styled.button<TBasicButtonProps>`
     }
 `;
 
-const ButtonText = styled.p<TButtonTextStyle>`
-  padding: 0 0 0 ${({ paddingLeft = 0 }) => paddingLeft}px;
-  margin:0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-`;
+export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='blue'
+      disabled={disabled}
+      onClick={onClick}>
+      <EditIcon
+        color={theme.button.blue.font}
+        distance={iconDistance} />
+      Редактировать запись
+    </BasicNormalButton>
+  );
+};
+export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  const {
+    status: {
+      isActive,
+      isHovered,
+      isFocused,
+    },
+    handlers: {
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+      onMouseDown,
+      onMouseUp,
+    },
+  } = useMouseEvents({});
 
-export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
-    <EditIcon />
-    <ButtonText paddingLeft={iconDistance}>Редактировать запись</ButtonText>
-  </BasicNormalButton>
-);
+  return (
+    <BasicInvertedButton
+      colorScheme='red'
+      disabled={disabled}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}>
+      <DeleteIcon
+        color={theme.button.red[setColor(isHovered, isFocused, isActive, !!disabled)]}
+        distance={iconDistance} />
+      Редактировать запись
+    </BasicInvertedButton>
+  );
+};
+export const OpenMenuButton: FC<TAvatarButtonProps> = ({
+  onClick,
+  disabled = false,
+  name,
+  image,
+}) => {
+  const theme = useTheme();
+  const {
+    status: {
+      isActive,
+      isHovered,
+      isFocused,
+    },
+    handlers: {
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+      onMouseDown,
+      onMouseUp,
+    },
+  } = useMouseEvents({});
+  return (
+    <BasicInvertedButton
+      colorScheme='blue'
+      disabled={disabled}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}>
+      <AvatarIcon
+        size='small'
+        name={name}
+        image={image}
+        distance={iconDistance}
+        color={theme.button.blue[setColor(isHovered, isFocused, isActive, !!disabled)]} />
+      {name}
+    </BasicInvertedButton>
+  );
+};
 
-export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicInvertedButton colorScheme='red' disabled={disabled} onClick={onClick}>
-    <BasketIcon />
-    <ButtonText paddingLeft={iconDistance}>Удалить запись</ButtonText>
-  </BasicInvertedButton>
-);
+/*
 
 export const SavePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
@@ -153,4 +219,5 @@ export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false
   <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
     Опубликовать запись
   </BasicNormalButton>
-);
+); */
+
