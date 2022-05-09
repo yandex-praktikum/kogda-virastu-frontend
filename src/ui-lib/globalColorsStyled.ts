@@ -23,3 +23,11 @@ const GlobalColorsStyles = `
 `;
 
 export default GlobalColorsStyles;
+
+
+
+
+
+
+
+
