@@ -7,8 +7,14 @@ import MainView from './MainView';
 import Tags from './Tags';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
+
 import LinkConteiner from '../../ui-lib/LinkConteiner';
 import { HomeIcon } from '../../ui-lib/icons/icons';
+
+import {DeletePostButton, EditPostButton} from "../../ui-lib/buttons";
+
+
+
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -30,9 +36,9 @@ const Home: FC = () => {
           <div className='col-md-3'>
             <div className='sidebar'>
               <p>Popular Tags</p>
-              <Tags />
-
             </div>
+            <EditPostButton onClick={() => console.log('Меня нажали!!')} />
+            <DeletePostButton onClick={() => console.log('Меня удалительно нажали!!')} />
           </div>
         </div>
       </div>
