@@ -36,6 +36,7 @@ import {
   clearArticles,
   clearTags,
   clearAll,
+  setAllThemes,
 } from './allSlice';
 
 import { setUser, clearUser } from './userSlice';
@@ -139,6 +140,7 @@ import {
 
 export {
   setTheme,
+  setAllThemes,
   clearPage,
   setArtistProfile,
   setFeedType,
