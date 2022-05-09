@@ -12,7 +12,6 @@ import {
   PlusIcon,
   CloseIcon,
   DawIcon,
-  EditIcon,
   HeartIcon,
   HeartsFullIcon,
   HomeIcon,
@@ -20,7 +19,6 @@ import {
   MinusIcon,
   SettingIcon,
   ExitIcon,
-  BasketIcon,
 } from './icons/icons';
 
 const GlobalStyles = createGlobalStyle`
@@ -29,11 +27,9 @@ const GlobalStyles = createGlobalStyle`
 
 export default GlobalStyles;
 export {
-
   PlusIcon,
   CloseIcon,
   DawIcon,
-  EditIcon,
   HeartIcon,
   HeartsFullIcon,
   HomeIcon,
@@ -42,13 +38,10 @@ export {
   SettingIcon,
   ExitIcon,
 
-  BasketIcon,
-    DeleteIcon,
+  EditIcon,
+  DeleteIcon,
   AvatarIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
-} 
-
-
-
+}
