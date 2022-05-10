@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HeartIcon } from "../ui-lib";
+import { LikeIcon } from "../ui-lib";
 import styled, { useTheme } from 'styled-components';
 import { TFontProperties } from "../types/styles.types";
 
@@ -33,7 +33,7 @@ const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) =>
   return (
     <LikesContainer>
       <LikesCounter font={theme.textSans} color={theme.secondaryText} >{likesCounterValue}</LikesCounter>
-      <HeartIcon onClick={(e) => handleClick(e)} width='21' height='18' isHover={true} cursor='pointer' color='grey' />
+      <LikeIcon onClick={(e) => handleClick(e)} width='21' height='18' isHover={true} cursor='pointer' color='grey' />
     </LikesContainer>
     
   )

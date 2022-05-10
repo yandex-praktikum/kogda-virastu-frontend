@@ -10,11 +10,11 @@ import { ReactComponent as AsterixPic } from '../assets/images/icons/asterix-ico
 import { ReactComponent as CheckPic } from '../assets/images/icons/check-icon.svg';
 import { ReactComponent as HomePic } from '../assets/images/icons/home-icon.svg';
 import { ReactComponent as LikePic } from '../assets/images/icons/like-icon.svg';
-import { ReactComponent as LoginPic } from '../assets/images/icons/Login-icon.svg';
+import { ReactComponent as LoginPic } from '../assets/images/icons/login-icon.svg';
 import { ReactComponent as LogoutPic } from '../assets/images/icons/logout-icon.svg';
 import { ReactComponent as NoLikePic } from '../assets/images/icons/no-like-icon.svg';
 import { ReactComponent as PaperclipPic } from '../assets/images/icons/paperclip-icon.svg';
-import { ReactComponent as PlusPic } from '../assets/images/icons/Plus-icon.svg';
+import { ReactComponent as PlusPic } from '../assets/images/icons/plus-icon.svg';
 import { ReactComponent as MinusPic } from '../assets/images/icons/minus-icon.svg';
 
 import { getAvatarBorderProp } from '../services/helpers';

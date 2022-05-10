@@ -17,7 +17,7 @@ const LinkElement = styled.li<TLinkElement>`
     height: 40px;
     ${({ isBgColorChange }) => (isBgColorChange ? `:hover {background-color: #E0F1FF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 4px;}` : ':hover {opacity:0.5}')};
-    ${({ isActive }) => (isActive ? ':active {background-color: #D6ECFF; }' : '')};
+    ${({ isActive }) => (isActive ? `:active {background-color: #D6ECFF; }`: '')};
     padding-left: ${(props) => `${props.leftPadding}px`};
     & .link  {
     display: flex;
