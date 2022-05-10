@@ -3,14 +3,10 @@ import { normalize } from 'styled-normalize';
 
 import GlobalColorsStyles from './globalColorsStyled';
 import GlobalFontsStyles from './globalFontsStyled';
-import { DeleteIcon, AvatarIcon } from './icons';
-import { EditPostButton, DeletePostButton, OpenMenuButton } from './buttons';
-
-
-
 
 import {
   EditIcon,
+  CrossIcon,
   DeleteIcon,
   AvatarIcon,
   PlusIcon,
@@ -62,6 +58,7 @@ export {
   NoLikeIcon,
   LogoutIcon,
   PaperClipIcon,
+  CrossIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
