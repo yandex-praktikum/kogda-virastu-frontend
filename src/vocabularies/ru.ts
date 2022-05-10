@@ -1,6 +1,8 @@
-const ru = {
+import { TVocabulary } from '../types/vocabularies.types';
+
+const ru : TVocabulary = {
   headerLink: 'Главная',
-  userEnter: 'Войти',
+  userLogin: 'Войти',
   newArticle: 'Новая запись',
   settings: 'Настройки',
   exitProfile: 'Выйти',
@@ -11,7 +13,7 @@ const ru = {
   articleEnter: 'Читать дальше',
   freshContent: 'Свежие материалы',
   comments: 'Комментарии',
-  redactArticle: 'Редактировать запись',
+  editArticle: 'Редактировать запись',
   deleteArticle: 'Удалить запись',
   sendComment: 'Отправить комментарий',
   articleName: 'Название статьи',
@@ -22,7 +24,7 @@ const ru = {
   saveArticle: 'Сохранить запись',
   deletepopuptext: 'Нажимая кнопку «Удалить запись», материал будет удален без возможности восстановления. ',
   subscribe: 'Подписаться',
-  unFollow: 'Отписаться',
+  unsubscribe: 'Отписаться',
   register: 'Зарегистрироваться',
   userName: 'Имя пользователя',
   userEmail: 'Email',
@@ -33,44 +35,6 @@ const ru = {
   usersettings: 'Ваши настройки',
   publishArticle: 'Опубликовать запись',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
-
 };
 
-const en = {
-  headerLink: 'Main Page',
-  userEnter: 'Enter',
-  newArticle: 'New post',
-  settings: 'Settings',
-  exitProfile: 'Exit',
-  mainTitle: 'When I grow up',
-  mainSubtitle: 'What it’s like to be a junior in a turbulent world',
-  popularTags: 'Popular tags',
-  popularContent: 'Popular content',
-  articleEnter: 'Read More',
-  freshContent: 'New content',
-  comments: 'Comments',
-  redactArticle: 'Edit article',
-  deleteArticle: 'Delete article',
-  sendComment: 'Send comment',
-  articleName: 'Article title',
-  articleAbout: 'About',
-  articleImage: 'URL of images (optional)',
-  articleText: 'Article Text',
-  tags: 'Tags (with a comma)',
-  saveArticle: 'Create article',
-  deletepopuptext: 'By clicking «Delete Entry», the material will be removed without the possibility of recovery. ',
-  subscribe: 'Subscribe',
-  unFollow: 'Unsubscribe',
-  register: 'Sign Up',
-  userName: 'User Name',
-  userEmail: 'Email',
-  password: 'Password',
-  urlImage: 'User avatar URL',
-  newPassword: 'New password',
-  refreshUser: 'Update settings',
-  usersettings: 'Your setings',
-  publishArticle: 'Publish your material',
-  pageMessage: 'Page not found. To read blog, go to Home',
-};
-
-export { ru, en };
+export default ru;

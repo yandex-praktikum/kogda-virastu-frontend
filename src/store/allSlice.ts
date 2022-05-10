@@ -2,18 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TArticles, TTags } from '../types/types';
 import { TThemes } from '../types/styles.types';
 import themes from '../themes';
+import { TVocabularies } from '../types/vocabularies.types';
+import vocabularies from '../vocabularies';
 
 type TAllState = {
   articles: TArticles | null;
   tags: TTags | null;
   themes: TThemes,
   themesNames: Array<string>,
+  vocabularies: TVocabularies,
+  langNames: Array<string>,
 };
 const initialState : TAllState = {
   articles: null,
   tags: null,
   themes,
   themesNames: Object.keys(themes),
+  vocabularies,
+  langNames: Object.keys(vocabularies),
 };
 
 const allSlice = createSlice({
@@ -32,6 +38,9 @@ const allSlice = createSlice({
     setAllThemes: (state:TAllState, action: PayloadAction<TThemes>) => ({
       ...state, themes: action.payload,
     }),
+    setAllVocabularies: (state: TAllState, action:PayloadAction<TVocabularies>) => ({
+      ...state, vocabularies: action.payload,
+    }),
   },
 });
 
@@ -43,5 +52,6 @@ export const {
   clearTags,
   clearAll,
   setAllThemes,
+  setAllVocabularies,
 } = allSlice.actions;
 export default allReducer;
