@@ -72,7 +72,7 @@ const defaultH5Mobile : TFontProperties = {
   height: 22,
   family: 'Alegreya Sans',
 };
-const defaultTextSansMed18 = {
+const defaultTextSansMed18 : TFontProperties = {
   weight: 500,
   size: 18,
   height:

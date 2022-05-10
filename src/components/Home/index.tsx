@@ -1,17 +1,18 @@
 import React, { useEffect, FC } from 'react';
+import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
 import Tags from './Tags';
-import styled from 'styled-components';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
-const Al = styled.p`
-  font-family: ${({ theme: { firstLevelHeading: { family } } }) => family};
-  font-size: ${({ theme: { firstLevelHeading: { size } } }) => size}px;
-  color: ${({ theme: { markedText } }) => markedText};
-`;
+import LinkConteiner from '../../ui-lib/LinkConteiner';
+import { HomeIcon } from '../../ui-lib/icons/icons';
+
+import {DeletePostButton, EditPostButton} from "../../ui-lib/buttons";
+
 
 
 
@@ -27,7 +28,7 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
-  <Al>fghhhgfgh</Al>
+  
       <Banner />
       <div className='container page'>
         <div className='row'>
@@ -35,9 +36,9 @@ const Home: FC = () => {
           <div className='col-md-3'>
             <div className='sidebar'>
               <p>Popular Tags</p>
-              <Tags />
-
             </div>
+            <EditPostButton onClick={() => console.log('Меня нажали!!')} />
+            <DeletePostButton onClick={() => console.log('Меня удалительно нажали!!')} />
           </div>
         </div>
       </div>

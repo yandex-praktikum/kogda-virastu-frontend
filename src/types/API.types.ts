@@ -78,7 +78,7 @@ export interface IProfile {
   (username: string) : AxiosPromise<TAPIProfile | null>
 }
 
-export {
+export type {
   TAPIArticle,
   TAPIArticles,
   TAPIComment,
