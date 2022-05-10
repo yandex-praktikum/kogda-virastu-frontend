@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from 'styled-components';
-import { CloseIcon } from "../ui-lib/icons/icons";
+import { DeleteIcon } from "../ui-lib";
 
 interface ITagProps {
   tag: string,
@@ -35,7 +35,7 @@ const Tag: FC<ITagProps> = ({ tag, handleClick, active, inactiveTag }) => {
       type='button'
       key={tag}
       onClick={(e) => handleClick(e, tag)}>
-      #{tag} { active? <CloseIcon color="blue" onClick={(e) => inactiveTag(e)} /> : null }
+      #{tag} { active? <DeleteIcon color="blue" onClick={(e) => inactiveTag(e)} /> : null }
     </Button>
   )
 }
