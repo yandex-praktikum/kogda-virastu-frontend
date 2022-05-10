@@ -1,16 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { defaultTheme } from '../themes';
+import { defaultLang } from '../vocabularies';
 
 type TSystemState = {
   isLoggedIn: boolean;
   appName: string;
   currentTheme: string,
+  currentLang: string,
 };
 
 const initialState: TSystemState = {
   isLoggedIn: false,
   appName: 'Real World',
   currentTheme: defaultTheme,
+  currentLang: defaultLang,
 };
 
 const systemSlice = createSlice({
@@ -22,6 +25,9 @@ const systemSlice = createSlice({
     setTheme: (state: TSystemState, action: PayloadAction<string>) => ({
       ...state, currentTheme: action.payload,
     }),
+    setLanguage: (state: TSystemState, action: PayloadAction<string>) => ({
+      ...state, currentLang: action.payload,
+    }),
   },
 });
 
@@ -30,5 +36,6 @@ export const {
   onLogin,
   onLogout,
   setTheme,
+  setLanguage,
 } = systemSlice.actions;
 export default systemReducer;

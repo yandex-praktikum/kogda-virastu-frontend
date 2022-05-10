@@ -16,33 +16,28 @@ import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
-import { ru, en } from '../vocabularies';
+import {setLanguage} from "../store";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { currentTheme } = useSelector((state) => state.system);
-  const { themes } = useSelector((state) => state.all);
+  const { currentTheme, currentLang } = useSelector((state) => state.system);
+  const { themes, langNames, vocabularies } = useSelector((state) => state.all);
+
   useEffect(() => {
     if (jwt.test()) {
       dispatch(getUserThunk());
     }
   }, [dispatch]);
 
+useEffect(() => {
   const language = navigator.language.split('-')[0];
-  let vocabulary = {};
-  switch (language) {
-    case 'ru':
-      vocabulary = ru;
-      break;
-    case 'en':
-      vocabulary = en;
-      break;
-    default: vocabulary = ru;
+  if (langNames.includes(language)) {
+    dispatch(setLanguage(language));
   }
-
+},[dispatch])
   return (
     <div>
-      <IntlProvider locale={language} messages={vocabulary}>
+      <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
         <ThemeProvider theme={
           themes[currentTheme ?? defaultTheme]
           ?? basicThemes[currentTheme ?? defaultTheme]

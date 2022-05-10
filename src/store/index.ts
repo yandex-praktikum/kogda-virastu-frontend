@@ -37,6 +37,7 @@ import {
   clearTags,
   clearAll,
   setAllThemes,
+  setAllVocabularies,
 } from './allSlice';
 
 import { setUser, clearUser } from './userSlice';
@@ -136,11 +137,14 @@ import {
   onLogin,
   onLogout,
   setTheme,
+  setLanguage,
 } from './systemSlice';
 
 export {
   setTheme,
+  setLanguage,
   setAllThemes,
+  setAllVocabularies,
   clearPage,
   setArtistProfile,
   setFeedType,

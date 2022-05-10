@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from '../services/hooks';
 import { TArticle } from '../types/types';
 import { deleteLikeThunk, addLikeThunk } from '../thunks';
+import Likes from '../widgets/likes';
 
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
@@ -40,11 +41,12 @@ const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
         </div>
 
         <div className='pull-xs-right'>
-          <button className={favoriteButtonClass} type='button' onClick={handleClick}>
+          <Likes likesCounterValue={article.favoritesCount} handleClick={handleClick} favorite={article.favorited}/>
+          {/* <button className={favoriteButtonClass} type='button' onClick={handleClick}>
             <i className='ion-heart' />
             {' '}
             {article.favoritesCount}
-          </button>
+          </button> */}
         </div>
       </div>
 

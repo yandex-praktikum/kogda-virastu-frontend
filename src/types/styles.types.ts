@@ -78,3 +78,8 @@ export type TAvatarButtonProps = {
   name: string;
   image: string;
 };
+
+export type TIconProps = {
+  color: string;
+  distance?: number;
+};
