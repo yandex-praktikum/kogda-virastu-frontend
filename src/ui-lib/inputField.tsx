@@ -11,7 +11,7 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      line-height: ${({ theme: { text: { height } } }) => `${height}px`} ;
      font-weight: ${({ theme: { text: { weight } } }) => weight};
      color: ${({ theme: { secondaryText } }) => secondaryText};
-     border: 1px solid ${({ error }) => (error ? '#FF1E1E' : ((props) => props.theme.divederColor))};
+     border: 1px solid ${({ error }) => (error ? '#FF1E1E' : ((props) => props.theme.dividerColor))};
      @media screen and (max-width:320px) {
         font-size: 16px;
         max-width:280px;

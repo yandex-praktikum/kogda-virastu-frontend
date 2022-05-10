@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
-import Tags from './Tags';
+import Tags from '../../widgets/Tags';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
@@ -34,9 +34,7 @@ const Home: FC = () => {
         <div className='row'>
           <MainView />
           <div className='col-md-3'>
-            <div className='sidebar'>
-              <p>Popular Tags</p>
-            </div>
+            <Tags />
             <EditPostButton onClick={() => console.log('Меня нажали!!')} />
             <DeletePostButton onClick={() => console.log('Меня удалительно нажали!!')} />
           </div>
