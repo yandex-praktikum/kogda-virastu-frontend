@@ -25,6 +25,8 @@ import {
   defaultH5Mobile,
   defaultText18,
   defaultTextSans18,
+  defaultTextSans16,
+  defaultTextSans12,
   defaultTextSansMed18,
 } from '../constants/fontsconfigs';
 import { TTheme } from '../types/styles.types';
@@ -64,8 +66,10 @@ const themeLight : TTheme = {
   thirdLevelHeadingMobile: defaultH3Mobile,
   fourthLevelHeadingMobile: defaultH4Mobile,
   fifthLevelHeadingMobile: defaultH5Mobile,
-  textSans: defaultTextSans18,
-  text: defaultText18,
+  text18Sans: defaultTextSans18,
+  text16Sans: defaultTextSans16,
+  text12Sans: defaultTextSans12,
+  text18: defaultText18,
 };
 
 export default themeLight;
