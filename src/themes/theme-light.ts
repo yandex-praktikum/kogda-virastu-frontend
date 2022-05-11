@@ -11,6 +11,10 @@ import {
   red,
   redActive,
   redHover,
+  hoverBorderInputColor,
+  borderInputColor,
+  backgroundInputColor,
+  errInput
 } from '../constants/colors';
 import {
   defaultH1,
@@ -37,6 +41,13 @@ const themeLight : TTheme = {
   bgPrimary: mainBgColor,
   bgHoverUserMenu: hoverUserMenuColor,
   bgActiveUserMenu: activeUserMenuColor,
+  inpurtField:{
+    defaultBorder:dividerGray,
+    borderHover:hoverBorderInputColor,
+    borderActive:borderInputColor,
+    disabledInput:backgroundInputColor,
+    errBorder:errInput
+  },
   button: {
     blue: {
       default: blue,

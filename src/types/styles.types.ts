@@ -16,6 +16,13 @@ export type TTheme = {
   bgPrimary:string,
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
+  inpurtField: {
+    defaultBorder:string;
+    borderHover:string;
+    borderActive:string;
+    disabledInput:string;
+    errBorder:string;
+  },
   button: {
     [key: string]: TColorSet,
   },
