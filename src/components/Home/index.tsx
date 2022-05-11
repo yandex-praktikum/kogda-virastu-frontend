@@ -8,11 +8,10 @@ import Tags from '../../widgets/Tags';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
-import LinkConteiner from '../../ui-lib/LinkConteiner';
-import { HomeIcon } from '../../ui-lib/icons/icons';
 
-import {DeletePostButton, EditPostButton} from "../../ui-lib/buttons";
 
+import { DeletePostButton, EditPostButton } from "../../ui-lib/buttons";
+import { ProfileWidget } from '../../widgets/ProfileWidget';
 
 
 
@@ -28,7 +27,15 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
-  
+      <ProfileWidget userName={'goga'}
+        isFollow={true}
+        userImage={'fggf'}
+        onClick={() => console.log('ff')}
+        isUser={false}
+        size={'large'}
+        color={'red'}
+        distance={8}
+      />
       <Banner />
       <div className='container page'>
         <div className='row'>
