@@ -24,7 +24,7 @@ const Tag: FC<ITagProps> = ({ tag, handleClick, active, inactiveTag }) => {
     align-items: center;
     color: ${ active ? theme.button.blue.default : theme.secondaryText};
     background-color: transparent;
-
+    
     :active {
       outline: none;
     }
