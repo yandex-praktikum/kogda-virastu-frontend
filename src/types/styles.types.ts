@@ -69,6 +69,12 @@ export type TAvatarIconProps = {
   name: string;
   image: string;
   distance?: number;
+  color?: string;
+} | {
+  size: TAvatarSizes;
+  name: string;
+  image?: string;
+  distance?: number;
   color: string;
 };
 

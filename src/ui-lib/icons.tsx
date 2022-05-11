@@ -16,9 +16,10 @@ import { ReactComponent as NoLikePic } from '../assets/images/icons/no-like-icon
 import { ReactComponent as PaperclipPic } from '../assets/images/icons/paperclip-icon.svg';
 import { ReactComponent as PlusPic } from '../assets/images/icons/plus-icon.svg';
 import { ReactComponent as MinusPic } from '../assets/images/icons/minus-icon.svg';
+import { ReactComponent as CrossPic } from '../assets/images/icons/cross-icon.svg';
 
-import { getAvatarBorderProp } from '../services/helpers';
-import { blue } from '../constants/colors';
+import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
+import { blue, greySecondary } from '../constants/colors';
 
 type TAvatarSize = {
   [size in TAvatarSizes]: {
@@ -59,6 +60,17 @@ export const EditIcon = styled(EditPic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
+
+export const CrossIcon = styled(CrossPic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+
 export const DeleteIcon = styled(BasketPic)<TIconProps>`
   width: 24px;
   height: 24px;
@@ -89,14 +101,13 @@ export const AvatarIcon : FC<TAvatarIconProps> = ({
   name,
   image,
   distance,
-  color,
+  color = greySecondary,
 }) => {
   const borderProps : TBorderProps = {
     width: 2,
     color: blue,
   };
-
-  if (!image) {
+  if ((!image) || (!!image && !testImageUrl(image))) {
     return (
       <DefaultAvatar
         width={`${avatarSize[size].width}px`}

@@ -4,13 +4,9 @@ import { normalize } from 'styled-normalize';
 import GlobalColorsStyles from './globalColorsStyled';
 import GlobalFontsStyles from './globalFontsStyled';
 
-
-
-
-
-
 import {
   EditIcon,
+  CrossIcon,
   DeleteIcon,
   AvatarIcon,
   PlusIcon,
@@ -62,6 +58,7 @@ export {
   NoLikeIcon,
   LogoutIcon,
   PaperClipIcon,
+  CrossIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
