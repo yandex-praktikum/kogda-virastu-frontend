@@ -28,7 +28,7 @@ type TAvatarSize = {
   }
 };
 
-const avatarSize : TAvatarSize = {
+const avatarSize: TAvatarSize = {
   large: {
     width: 320,
     height: 320,
@@ -42,6 +42,7 @@ const avatarSize : TAvatarSize = {
 type TBorderProps = {
   width: number;
   color: string;
+  style: string;
 };
 
 interface IBasicAvatar {
@@ -51,7 +52,7 @@ interface IBasicAvatar {
   color?: string,
 }
 
-export const EditIcon = styled(EditPic)<TIconProps>`
+export const EditIcon = styled(EditPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -61,7 +62,7 @@ export const EditIcon = styled(EditPic)<TIconProps>`
     }
 `;
 
-export const CrossIcon = styled(CrossPic)<TIconProps>`
+export const CrossIcon = styled(CrossPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -71,7 +72,7 @@ export const CrossIcon = styled(CrossPic)<TIconProps>`
     }
 `;
 
-export const DeleteIcon = styled(BasketPic)<TIconProps>`
+export const DeleteIcon = styled(BasketPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -80,7 +81,7 @@ export const DeleteIcon = styled(BasketPic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
-const DefaultAvatar = styled(AvatarPic)<TIconProps>`
+const DefaultAvatar = styled(AvatarPic) <TIconProps>`
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
   & > path {
@@ -94,18 +95,20 @@ const BasicAvatar = styled.img<IBasicAvatar>`
   margin-right: ${({ distance }) => distance ?? 0}px;
   border-width: ${({ bordered, borderProps: { width } }) => getAvatarBorderProp(bordered, width)}px;
   border-color: ${({ bordered, borderProps: { color } }) => getAvatarBorderProp(bordered, color)};
+  border-style: ${({ bordered, borderProps: { style } }) => getAvatarBorderProp(bordered, style)};
 `;
 
-export const AvatarIcon : FC<TAvatarIconProps> = ({
+export const AvatarIcon: FC<TAvatarIconProps> = ({
   size,
   name,
   image,
   distance,
   color = greySecondary,
 }) => {
-  const borderProps : TBorderProps = {
+  const borderProps: TBorderProps = {
     width: 2,
     color: blue,
+    style: 'solid',
   };
   if ((!image) || (!!image && !testImageUrl(image))) {
     return (
@@ -128,7 +131,7 @@ export const AvatarIcon : FC<TAvatarIconProps> = ({
   );
 };
 
-export const AsterixIcon = styled(AsterixPic)<TIconProps>`
+export const AsterixIcon = styled(AsterixPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -138,7 +141,7 @@ export const AsterixIcon = styled(AsterixPic)<TIconProps>`
     }
 `;
 
-export const CheckIcon = styled(CheckPic)<TIconProps>`
+export const CheckIcon = styled(CheckPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -148,7 +151,7 @@ export const CheckIcon = styled(CheckPic)<TIconProps>`
     }
 `;
 
-export const HomeIcon = styled(HomePic)<TIconProps>`
+export const HomeIcon = styled(HomePic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -158,7 +161,7 @@ export const HomeIcon = styled(HomePic)<TIconProps>`
     }
 `;
 
-export const LikeIcon = styled(LikePic)<TIconProps>`
+export const LikeIcon = styled(LikePic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -168,7 +171,7 @@ export const LikeIcon = styled(LikePic)<TIconProps>`
     }
 `;
 
-export const NoLikeIcon = styled(NoLikePic)<TIconProps>`
+export const NoLikeIcon = styled(NoLikePic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -178,7 +181,7 @@ export const NoLikeIcon = styled(NoLikePic)<TIconProps>`
     }
 `;
 
-export const PaperClipIcon = styled(PaperclipPic)<TIconProps>`
+export const PaperClipIcon = styled(PaperclipPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -188,7 +191,7 @@ export const PaperClipIcon = styled(PaperclipPic)<TIconProps>`
     }
 `;
 
-export const LoginIcon = styled(LoginPic)<TIconProps>`
+export const LoginIcon = styled(LoginPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -198,7 +201,7 @@ export const LoginIcon = styled(LoginPic)<TIconProps>`
     }
 `;
 
-export const LogoutIcon = styled(LogoutPic)<TIconProps>`
+export const LogoutIcon = styled(LogoutPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -208,7 +211,7 @@ export const LogoutIcon = styled(LogoutPic)<TIconProps>`
     }
 `;
 
-export const PlusIcon = styled(PlusPic)<TIconProps>`
+export const PlusIcon = styled(PlusPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
@@ -217,7 +220,7 @@ export const PlusIcon = styled(PlusPic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
-export const MinusIcon = styled(MinusPic)<TIconProps>`
+export const MinusIcon = styled(MinusPic) <TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
