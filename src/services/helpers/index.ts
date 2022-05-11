@@ -4,7 +4,7 @@ import calculateOffset from './calculate-offset';
 import getColor from './get-color';
 import getAvatarBorderProp from './get-avatar-border-prop';
 import setColor from './set-color';
-import testImageUrl from './getImageUrl';
+import testImageUrl from './test-image-url';
 
 export {
   makeErrorMessage,
