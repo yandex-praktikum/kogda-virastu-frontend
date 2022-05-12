@@ -17,13 +17,13 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
         font-size: 16px;
      }
      :hover {
-      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.borderHover))};
+      border: 1px solid ${((props) => props.theme.inpurtField.borderHover)};
      }
      :disabled {
        background-color: ${((props) => props.theme.inpurtField.disabledInput)};
      }
      :active {
-      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.borderActive))};
+      border: 1px solid ${((props) => props.theme.inpurtField.borderActive)};
      }
  `;
 const ContainerInput = styled.div`
@@ -84,8 +84,19 @@ const ErorText = ({ erorText }: TerrorText) => (
 );
 
 export const InputField = ({
-  type, placeholder, value, name, error, icon = null, errorText, onChange, onIconClick, onBlur, onFocus,
-  disabled, labelText
+  type,
+  placeholder,
+  value,
+  name,
+  error,
+  icon = null,
+  errorText,
+  onChange,
+  onIconClick,
+  onBlur,
+  onFocus,
+  disabled,
+  labelText
 }: TInputInterface) => (
   <ContainerInput>
     <LabelStyle>
