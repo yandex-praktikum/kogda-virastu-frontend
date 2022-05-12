@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { LikeIcon } from '../ui-lib';
+import { LikeIcon, NoLikeIcon } from '../ui-lib';
 import { TFontProperties } from '../types/styles.types';
 
 interface ILikesProps {
@@ -34,7 +34,11 @@ const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) =>
       <LikesCounter font={theme.text18Sans} color={theme.secondaryText}>
         {likesCounterValue}
       </LikesCounter>
-      <LikeIcon onClick={(e) => handleClick(e)} width='21' height='18' isHover={true} cursor='pointer' color='grey' />
+      { favorite ? 
+        <LikeIcon onClick={(e) => handleClick(e)} width='21' height='18' cursor='pointer' color='grey' /> :
+        <NoLikeIcon onClick={(e) => handleClick(e)} width='21' height='18' cursor='pointer' color='grey' />
+      }
+      
     </LikesContainer>
 
   );
