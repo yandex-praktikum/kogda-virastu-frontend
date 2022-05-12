@@ -29,6 +29,7 @@ import {
   defaultH5Mobile,
   defaultText18,
   defaultTextSans18,
+  defaultTextSans16,
   defaultTextSans12,
   defaultTextSansMed18,
 } from '../constants/fontsconfigs';
@@ -79,12 +80,7 @@ const themeLight : TTheme = {
   fifthLevelHeadingMobile: defaultH5Mobile,
   textSans: defaultTextSans18,
   text: defaultText18,
-
-
-
-  labelInput:defaultTextSans16,
-
-
+  labelInput: defaultTextSans16,
   text18Sans: defaultTextSans18,
   text16Sans: defaultTextSans16,
   text12Sans: defaultTextSans12,
