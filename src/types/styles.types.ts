@@ -17,7 +17,7 @@ export type TTheme = {
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
   labelColor:string,
-  inpurtField: {
+  inputField: {
     defaultBorder:string;
     borderHover:string;
     borderActive:string;

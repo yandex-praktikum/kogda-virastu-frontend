@@ -1,21 +1,20 @@
-import React, { FC } from "react";
-import { AvatarIcon } from "../ui-lib";
-import styled from "styled-components";
-import { FollowButton, UnfollowButton } from "../ui-lib";
+import React, { FC } from 'react';
+import styled from 'styled-components';
+import { AvatarIcon, FollowButton, UnfollowButton } from '../ui-lib';
 import { TAvatarSizes } from '../types/styles.types';
 
 type TProfileWidget = {
-    userName: string,
-    isFollow: boolean,
-    userImage: string,
-    onClick: () => void,
-    isUser: boolean,
-    size: TAvatarSizes,
-    distance: number,
-    color: string,
-}
+  userName: string,
+  isFollow: boolean,
+  userImage: string,
+  onClick: () => void,
+  isUser: boolean,
+  size: TAvatarSizes,
+  distance: number,
+  color: string,
+};
 
-const ProfileConteiner = styled.div`
+const ProfileContainer = styled.div`
     width: 304px;
     display: flex;
     flex-direction: column;
@@ -37,7 +36,7 @@ const UserName = styled.h2`
   font-size: ${({ theme: { secondLevelHeading: { size } } }) => size}px;
   font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
   line-height: ${({ theme: { secondLevelHeading: { height } } }) => height}px;
-    
+
   @media screen and (max-width: 768px) {
   font-family: ${({ theme: { secondLevelHeadingMobile: { family } } }) => family};
   font-size: ${({ theme: { secondLevelHeadingMobile: { size } } }) => size}px;
@@ -46,32 +45,40 @@ const UserName = styled.h2`
      }
 `;
 
-const ProfileWidgetButton: FC<{ isUser: boolean, isFollow: boolean, onClick:()=>void}> = ({ isUser, isFollow, onClick}) => {
-    if (isUser) {
-        return null
-    }
+const ProfileWidgetButton: FC<{
+  isUser: boolean,
+  isFollow: boolean,
+  onClick:()=>void
+}> = ({
+  isUser,
+  isFollow,
+  onClick,
+}) => {
+  if (isUser) {
+    return null;
+  }
 
-    return (
-        isFollow ? <UnfollowButton onClick={onClick} /> : <FollowButton onClick={onClick}/> 
-    )
-}
+  return (
+    isFollow ? <UnfollowButton onClick={onClick} /> : <FollowButton onClick={onClick} />
+  );
+};
 
+const ProfileWidget: FC<TProfileWidget> = ({
+  userName,
+  isFollow,
+  userImage,
+  onClick,
+  isUser,
+  size,
+  distance,
+  color,
+}) => (
+  <ProfileContainer>
+    <AvatarIcon name={userName} image={userImage} size={size} distance={distance} color={color} />
+    <UserName>{userName}</UserName>
+    <ProfileWidgetButton isUser={isUser} isFollow={isFollow} onClick={onClick} />
+  </ProfileContainer>
 
-export const ProfileWidget: FC<TProfileWidget> = ({
-    userName,
-    isFollow,
-    userImage,
-    onClick,
-    isUser,
-    size,
-    distance,
-    color}) => {
-    return (
-        <ProfileConteiner>
-            <AvatarIcon name={userName} image={userImage} size={size} distance={distance} color={color} />
-            <UserName>{userName}</UserName>
-            <ProfileWidgetButton isUser={isUser} isFollow={isFollow} onClick={onClick} />
-        </ProfileConteiner>
+);
 
-    )
-}
+export default ProfileWidget;

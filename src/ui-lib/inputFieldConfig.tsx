@@ -13,19 +13,19 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      font-weight: ${({ theme: { text: { weight } } }) => weight};
      outline:none;
      color: ${({ theme: { secondaryText } }) => secondaryText};
-     border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.defaultBorder))};
+     border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.defaultBorder))};
      @media screen and (max-width:320px) {
         font-size: 16px;
         max-width:280px;
      }
      :hover {
-      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.borderHover))};
+      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderHover))};
      }
      :disabled {
-       background-color: ${((props) => props.theme.inpurtField.disabledInput)};
+       background-color: ${((props) => props.theme.inputField.disabledInput)};
      }
      :active {
-      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.borderActive))};
+      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderActive))};
      }
  `;
 const ContainerInput = styled.div`
@@ -46,8 +46,7 @@ const LabelStyle = styled.label`
 font-family: ${({ theme: { labelInput: { family } } }) => family};
 line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
 font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
- `
-
+ `;
 
 const ContainerIcon = styled.div`
      position: absolute;
@@ -75,7 +74,7 @@ type TerrorText = {
 };
 const ErorTextStyle = styled.span`
 margin: 0;
-color: ${((props) => props.theme.inpurtField.errorColor)};
+color: ${((props) => props.theme.inputField.errorColor)};
 font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
 font-family: ${({ theme: { labelInput: { family } } }) => family};
 line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
@@ -88,7 +87,7 @@ const ErorText = ({ erorText }: TerrorText) => (
 
 export const InputField = ({
   type, placeholder, value, name, error, icon = null, errorText, onChange, onIconClick, onBlur, onFocus,
-  disabled, labelText
+  disabled, labelText,
 }: TInputInterface) => (
   <ContainerInput>
     <LabelStyle>
