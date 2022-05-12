@@ -3,8 +3,7 @@ import React, { useState, FC } from 'react';
 
 const InputStyle = styled.input<{ error: boolean | undefined }>`
      box-sizing: border-box;
-     width:540px;
-     height: 40px;
+     width: 100%;
      padding: 8px 16px 8px 16px;
      position: relative;
      font-size: ${({ theme: { text: { size } } }) => `${size}px`} ;
@@ -14,9 +13,8 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      outline:none;
      color: ${({ theme: { secondaryText } }) => secondaryText};
      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.defaultBorder))};
-     @media screen and (max-width:320px) {
+     @media screen and (max-width:768px) {
         font-size: 16px;
-        max-width:280px;
      }
      :hover {
       border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inpurtField.errorColor) : ((props) => props.theme.inpurtField.borderHover))};
@@ -29,24 +27,23 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      }
  `;
 const ContainerInput = styled.div`
-     width:540px;
-     height: 40px;
+     width: 100%;
      margin: 0;
      padding: 0;
      position: relative;
-     @media screen and (max-width:320px) {
+     @media screen and (max-width:768px) {
         font-size: 16px;
-        max-width:280px;
      }
  `;
 const LabelStyle = styled.label`
- margin: 0;
- color:${((props) => props.theme.labelColor)};
- font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
-font-family: ${({ theme: { labelInput: { family } } }) => family};
-line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
-font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
- `
+  width: 100%;
+  margin: 0;
+  color:${((props) => props.theme.labelColor)};
+  font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
+  font-family: ${({ theme: { labelInput: { family } } }) => family};
+  line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
+  font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
+`
 
 
 const ContainerIcon = styled.div`
