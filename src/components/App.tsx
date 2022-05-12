@@ -17,6 +17,7 @@ import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import {setLanguage} from "../store";
+import Footer from '../widgets/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,8 @@ useEffect(() => {
             <Route path='/editor' element={<Editor />} />
             <Route path='/:username' element={<Profile />} />
           </Routes>
+
+          <Footer />
         </ThemeProvider>
       </IntlProvider>
     </div>
