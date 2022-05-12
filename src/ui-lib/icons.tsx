@@ -67,7 +67,7 @@ export const CrossIcon = styled(CrossPic)<TIconProps>`
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
   color: ${({ color }) => color};
-  & > g > path {
+  & > path {
     stroke: ${({ color }) => color};
     }
 `;
@@ -165,7 +165,7 @@ export const LikeIcon = styled(LikePic)<TIconProps>`
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
   color: ${({ color }) => color};
-  & > g > path {
+  & > path {
     stroke: ${({ color }) => color};
     fill: ${({ color }) => color};
     }
