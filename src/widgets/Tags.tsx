@@ -51,7 +51,7 @@ const Tags: FC = () => {
           {
             tags.map((tag) => {
               return (
-                <Tag tag={tag} handleClick={handleClick} active={tag === activeTag} inactiveTag={inactiveTag} />
+                <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} inactiveTag={inactiveTag} />
               );
             })
           }
