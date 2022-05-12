@@ -70,12 +70,19 @@ height: 85px;
 `;
 
 const Article = styled.article<TArticle>`
-font - size: ${ ({ theme: { text: { size } } }) => `${size}px` };
-font - family: ${ ({ theme: { text: { family } } }) => family };
-line - height: ${ ({ theme: { text: { height } } }) => `${height}px` };
-font - weight: ${ ({ theme: { text: { weight } } }) => weight };
-color: ${ ({ theme: { primaryText } }) => primaryText };
- ${ (props => !props.image && `grid-column: 1/3`) };
+font-size: ${({ theme: { text: { size } } }) => `${size}px`};
+font-family: ${({ theme: { text: { family } } }) => family};
+line-height: ${({ theme: { text: { height } } }) => `${height}px`};
+font-weight: ${({ theme: { text: { weight } } }) => weight};
+color: ${({ theme: { primaryText } }) => primaryText};
+ ${(props => !props.image && `grid-column: 1/3`)};
+@media screen and (max-width: 768px) {
+    font-size: ${({ theme: { text: { size } } }) => `${size}px`};
+    font-family: ${({ theme: { text: { family } } }) => family};
+    line-height: ${({ theme: { text: { height } } }) => `${height}px`};
+    font-weight: ${({ theme: { text: { weight } } }) => weight};
+}
+
 `;
 
 type TArticleFullPreview = {
