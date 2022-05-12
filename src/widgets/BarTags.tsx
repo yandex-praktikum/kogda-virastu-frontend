@@ -1,6 +1,7 @@
 import React, { FC} from 'react';
 import { useSelector } from '../services/hooks';
 import styled from 'styled-components';
+import Tag from './tag';
 type TBarTags = {
     tagList: string[]
 }
@@ -20,7 +21,6 @@ const Lists = styled.ul`
 const List = styled.li`
     list-style-type: none;
 `
-import Tag from './tag';
 export const BarTags:FC<TBarTags> = ({tagList}) => {
     const { tag: activeTag } = useSelector((state) => state.view)
     return(
