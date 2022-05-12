@@ -3,16 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../../services/hooks';
 import { clearUser, onLogout } from '../../store';
 import ListErrors from '../ListErrors';
-import SettingsForm from './settings-form';
+import SettingsForm from '../../widgets/forms/Settings';
 
 const Settings: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onClickLogout = () => {
-    dispatch(clearUser());
-    dispatch(onLogout());
-    navigate('/');
-  };
+  
 
   return (
     <div className='settings-page'>
@@ -26,7 +22,8 @@ const Settings: FC = () => {
             <button
               type='button'
               className='btn btn-outline-danger'
-              onClick={onClickLogout}>
+              // onClick={onClickLogout}
+            >
               Or click here to logout.
             </button>
 

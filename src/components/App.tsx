@@ -10,7 +10,7 @@ import Header from './Header';
 import Editor from './Editor';
 import Register from '../widgets/forms/Register';
 import Login from '../widgets/forms/Login';
-import Settings from './Settings/Settings';
+import Settings from '../widgets/forms/Settings';
 import { jwt } from '../services/api';
 import Home from './Home';
 import Article from './Article/index';
