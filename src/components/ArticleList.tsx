@@ -3,6 +3,7 @@ import { TArticle } from '../types/types';
 import ArticlePreview from './Articlepreview';
 import ListPagination from './ListPagination';
 import { useSelector } from '../services/hooks';
+import { ArticleFullPreview } from '../widgets/ArticleFullPreview';
 
 const ArticleList:FC = () => {
   const { feed } = useSelector((state) => state.view);
@@ -24,7 +25,7 @@ const ArticleList:FC = () => {
     <div>
       {
         feed.map((article : TArticle) => (
-          <ArticlePreview article={article} key={article.slug} />
+          <ArticleFullPreview articleName={article.title} key={article.slug} article={article.body} image={article.link} slug={article.slug} />
         ))
       }
 

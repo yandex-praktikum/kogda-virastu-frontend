@@ -32,7 +32,7 @@ import {
   defaultTextSans16,
   defaultTextSans12,
   defaultTextSansMed18,
-  defaultTextSans16
+ 
 } from '../constants/fontsconfigs';
 import { TTheme } from '../types/styles.types';
 
@@ -82,7 +82,7 @@ const themeLight : TTheme = {
 
   textSans: defaultTextSans18,
   text: defaultText18,
-  labelInput:defaultTextSans16
+  labelInput:defaultTextSans16,
 
   text18Sans: defaultTextSans18,
   text16Sans: defaultTextSans16,

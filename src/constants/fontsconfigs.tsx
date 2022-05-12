@@ -91,13 +91,13 @@ const defaultTextSansMed18 : TFontProperties = {
     22,
   family: 'Alegreya Sans',
 };
-const defaultTextSans16:TFontProperties = {
+/* const defaultTextSans16:TFontProperties = {
   weight:400,
   size: 16,
   height: 24,
   family: 'Alegreya Sans',
 
-}
+} */
 
 export {
   defaultTextSans18,
@@ -115,5 +115,5 @@ export {
   defaultH3Mobile,
   defaultH4Mobile,
   defaultH5Mobile,
-  defaultTextSans16
+
 };
