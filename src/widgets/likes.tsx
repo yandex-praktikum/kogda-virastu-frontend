@@ -35,8 +35,8 @@ const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) =>
         {likesCounterValue}
       </LikesCounter>
       { favorite ? 
-        <LikeIcon onClick={(e) => handleClick(e)} width='21' height='18' cursor='pointer' color='grey' /> :
-        <NoLikeIcon onClick={(e) => handleClick(e)} width='21' height='18' cursor='pointer' color='grey' />
+        <LikeIcon onClick={handleClick} width='21' height='18' cursor='pointer' color='grey' /> :
+        <NoLikeIcon onClick={handleClick} width='21' height='18' cursor='pointer' color='grey' />
       }
       
     </LikesContainer>

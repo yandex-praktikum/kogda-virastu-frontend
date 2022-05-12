@@ -17,7 +17,7 @@ export type TTheme = {
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
   labelColor:string,
-  inpurtField: {
+  inputField: {
     defaultBorder:string;
     borderHover:string;
     borderActive:string;
@@ -74,7 +74,7 @@ export type TButtonTextStyle = {
 };
 
 export type TButtonProps = {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 };
 

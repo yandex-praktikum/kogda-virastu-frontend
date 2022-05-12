@@ -4,9 +4,9 @@ import { CrossIcon } from '../ui-lib';
 
 interface ITagProps {
   tag: string,
-  handleClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
+  handleClick?(e: React.MouseEvent<HTMLButtonElement>, tag: string): void,
   isActive: boolean,
-  inactiveTag: MouseEventHandler<SVGSVGElement>,
+  inactiveTag?: MouseEventHandler<SVGSVGElement>,
 }
 
 const Tag: FC<ITagProps> = ({
@@ -35,7 +35,7 @@ const Tag: FC<ITagProps> = ({
     <Button
       type='button'
       key={tag}
-      onClick={(e) => handleClick(e, tag)}>
+      onClick={handleClick && ((e) => handleClick(e, tag))}>
       #
       {tag}
       {' '}
