@@ -16,12 +16,13 @@ export type TTheme = {
   bgPrimary:string,
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
+  labelColor:string,
   inpurtField: {
     defaultBorder:string;
     borderHover:string;
     borderActive:string;
     disabledInput:string;
-    errBorder:string;
+    errorColor:string;
   },
   button: {
     [key: string]: TColorSet,
@@ -39,6 +40,7 @@ export type TTheme = {
   fifthLevelHeadingMobile: TFontProperties,
   textSans: TFontProperties,
   text: TFontProperties,
+  labelInput:TFontProperties,
 };
 export type TThemes = {
   [key:string]: TTheme;
