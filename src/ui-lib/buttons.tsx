@@ -20,7 +20,6 @@ type TBasicButtonProps = {
 };
 
 const BasicNormalButton = styled.button<TBasicButtonProps>`
-  width: max-content;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
@@ -48,7 +47,6 @@ const BasicNormalButton = styled.button<TBasicButtonProps>`
   `;
 
 const BasicInvertedButton = styled.button<TBasicButtonProps>`
-  width: max-content;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;

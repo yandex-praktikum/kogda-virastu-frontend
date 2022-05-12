@@ -11,8 +11,7 @@ import { loginUserThunk } from '../../thunks';
 import { ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset } from './forms-styles';
 import { FormattedMessage } from 'react-intl';
 import { useTheme } from 'styled-components';
-import { FieldEmail, FieldPassword } from '../../ui-lib';
-import { LoginButton } from '../../ui-lib';
+import { FieldEmail, FieldPassword, LoginButton } from '../../ui-lib';
 
 const LoginForm: FC = () => {
   const theme = useTheme();
