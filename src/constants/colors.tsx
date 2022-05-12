@@ -10,7 +10,10 @@ const dividerGray = '#CCCCCC';
 const mainBgColor = '#FFFFFF';
 const hoverUserMenuColor = '#E0F1FF';
 const activeUserMenuColor = '#D6ECFF';
-
+const shadowGrey = '#B8B8B8';
+const grey = '#A3A3A3';
+const paleGrey= '#F5F5F5';
+const redAccess = '#FF1E1E';
 export {
   primaryBlack,
   greySecondary,
@@ -24,4 +27,8 @@ export {
   mainBgColor,
   hoverUserMenuColor,
   activeUserMenuColor,
+  shadowGrey,
+  grey,
+  paleGrey,
+  redAccess
 };

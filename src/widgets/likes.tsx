@@ -1,23 +1,23 @@
-import { FC } from "react";
-import { LikeIcon } from "../ui-lib";
+import React, { FC, MouseEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { TFontProperties } from "../types/styles.types";
+import { LikeIcon, NoLikeIcon } from '../ui-lib';
+import { TFontProperties } from '../types/styles.types';
 
 interface ILikesProps {
   likesCounterValue: number,
-  handleClick: Function,
+  handleClick: MouseEventHandler<SVGSVGElement>,
   favorite: boolean
 }
 
 type TLikesCounterProps = {
   font: TFontProperties,
   color: string
-}
+};
 
 const LikesCounter = styled.p<TLikesCounterProps>`
   margin: 0;
-  font-family: ${props => props.font.family};
-  color: ${props => props.color};
+  font-family: ${(props) => props.font.family};
+  color: ${(props) => props.color};
 `;
 
 const LikesContainer = styled.div`
@@ -27,16 +27,21 @@ const LikesContainer = styled.div`
 `;
 
 const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) => {
-
   const theme = useTheme();
 
   return (
     <LikesContainer>
-      <LikesCounter font={theme.textSans} color={theme.secondaryText} >{likesCounterValue}</LikesCounter>
-      <LikeIcon onClick={(e) => handleClick(e)} width='21' height='18' isHover={true} cursor='pointer' color='grey' />
+      <LikesCounter font={theme.text18Sans} color={theme.secondaryText}>
+        {likesCounterValue}
+      </LikesCounter>
+      { favorite ? 
+        <LikeIcon onClick={(e) => handleClick(e)} width='21' height='18' cursor='pointer' color='grey' /> :
+        <NoLikeIcon onClick={(e) => handleClick(e)} width='21' height='18' cursor='pointer' color='grey' />
+      }
+      
     </LikesContainer>
-    
-  )
-}
+
+  );
+};
 
 export default Likes;

@@ -1,28 +1,29 @@
-import { FC } from "react";
+import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { DeleteIcon } from "../ui-lib";
+import { CrossIcon } from '../ui-lib';
 
 interface ITagProps {
   tag: string,
-  handleClick: Function,
-  active: boolean,
-  inactiveTag: Function
+  handleClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
+  isActive: boolean,
+  inactiveTag: MouseEventHandler<SVGSVGElement>,
 }
 
-const Tag: FC<ITagProps> = ({ tag, handleClick, active, inactiveTag }) => {
-
+const Tag: FC<ITagProps> = ({
+  tag, handleClick, isActive, inactiveTag,
+}) => {
   const theme = useTheme();
 
   const Button = styled.button`
     padding: 0;
     border: none;
-    font-family: ${theme.textSans.family};
-    font-weight: ${theme.textSans.weight};
-    font-size: ${theme.textSans.size}px;
-    line-height: ${theme.textSans.height}px;
+    font-family: ${theme.text18Sans.family};
+    font-weight: ${theme.text18Sans.weight};
+    font-size: ${theme.text18Sans.size}px;
+    line-height: ${theme.text18Sans.height}px;
     display: flex;
     align-items: center;
-    color: ${ active ? theme.button.blue.default : theme.secondaryText};
+    color: ${isActive ? theme.button.blue.default : theme.secondaryText};
     background-color: transparent;
     
     :active {
@@ -35,9 +36,12 @@ const Tag: FC<ITagProps> = ({ tag, handleClick, active, inactiveTag }) => {
       type='button'
       key={tag}
       onClick={(e) => handleClick(e, tag)}>
-      #{tag} { active? <DeleteIcon color="blue" onClick={(e) => inactiveTag(e)} /> : null }
+      #
+      {tag}
+      {' '}
+      {isActive && <CrossIcon color='blue' onClick={inactiveTag} />}
     </Button>
-  )
-}
+  );
+};
 
 export default Tag;

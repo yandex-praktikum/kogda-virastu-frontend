@@ -36,6 +36,18 @@ import {
   ConfirmDeleteButton,
 } from './buttons';
 
+import {
+  FieldUrl,
+  FieldLogin,
+  FieldEmail,
+  FieldPassword,
+  FieldNewPassword,
+  FieldNameArticle,
+  FieldDescriptionArticle,
+  FieldTegs
+}
+from './inputFields'
+
 import Divider from './divider';
 
 const GlobalStyles = createGlobalStyle`
@@ -72,4 +84,12 @@ export {
   SavePostButton,
   ConfirmDeleteButton,
   Divider,
+  FieldUrl,
+  FieldLogin,
+  FieldEmail,
+  FieldPassword,
+  FieldNewPassword,
+  FieldNameArticle,
+  FieldDescriptionArticle,
+  FieldTegs
 };
