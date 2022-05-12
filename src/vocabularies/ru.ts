@@ -35,7 +35,7 @@ const ru : TVocabulary = {
   usersettings: 'Ваши настройки',
   publishArticle: 'Опубликовать запись',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
-  footerMessage: 'Сделано студентами Яндекс Практикума',
+  footerMessage: 'Сделано студентами Яндекс Практикума Red.Types',
 };
 
 export default ru;

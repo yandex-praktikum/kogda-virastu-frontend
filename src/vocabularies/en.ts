@@ -35,7 +35,7 @@ const en : TVocabulary = {
   usersettings: 'Your setings',
   publishArticle: 'Publish your material',
   pageMessage: 'Page not found. To read blog, go to Home',
-  footerMessage: 'Created by Yandex Practicum Students',
+  footerMessage: 'Created by Red.Types Yandex Practicum Students',
 };
 
 export default en;
