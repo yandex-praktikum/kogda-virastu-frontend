@@ -92,6 +92,7 @@ const defaultTextSansMed18 : TFontProperties = {
   family: 'Alegreya Sans',
 };
 
+
 export {
   defaultTextSans18,
   defaultTextSans16,
@@ -107,5 +108,7 @@ export {
   defaultH2Mobile,
   defaultH3Mobile,
   defaultH4Mobile,
+
   defaultH5Mobile,
+
 };
