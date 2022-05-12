@@ -11,6 +11,10 @@ import {
   red,
   redActive,
   redHover,
+  shadowGrey,
+  grey,
+  paleGrey,
+  redAccess
 } from '../constants/colors';
 import {
   defaultH1,
@@ -28,6 +32,7 @@ import {
   defaultTextSans16,
   defaultTextSans12,
   defaultTextSansMed18,
+  defaultTextSans16
 } from '../constants/fontsconfigs';
 import { TTheme } from '../types/styles.types';
 
@@ -39,6 +44,14 @@ const themeLight : TTheme = {
   bgPrimary: mainBgColor,
   bgHoverUserMenu: hoverUserMenuColor,
   bgActiveUserMenu: activeUserMenuColor,
+  labelColor: greySecondary,
+  inpurtField:{
+    defaultBorder:dividerGray,
+    borderHover:shadowGrey,
+    borderActive:grey,
+    disabledInput:paleGrey,
+    errorColor:redAccess,
+  },
   button: {
     blue: {
       default: blue,
@@ -66,10 +79,16 @@ const themeLight : TTheme = {
   thirdLevelHeadingMobile: defaultH3Mobile,
   fourthLevelHeadingMobile: defaultH4Mobile,
   fifthLevelHeadingMobile: defaultH5Mobile,
+
+  textSans: defaultTextSans18,
+  text: defaultText18,
+  labelInput:defaultTextSans16
+
   text18Sans: defaultTextSans18,
   text16Sans: defaultTextSans16,
   text12Sans: defaultTextSans12,
   text18: defaultText18,
+
 };
 
 export default themeLight;
