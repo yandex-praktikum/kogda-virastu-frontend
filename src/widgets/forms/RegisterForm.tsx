@@ -11,12 +11,12 @@ import {
   resetFormRegister,
 } from '../../store';
 import { registerThunk } from '../../thunks';
-import { Form, FormContainer, FormLoginLink, FormTitle, InputFieldset } from './forms-styles';
+import { ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset } from './forms-styles';
 import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { FieldEmail, FieldLogin, FieldPassword, RegisterButton } from '../../ui-lib';
 
-const Register: FC = () => {
+const RegisterForm: FC = () => {
 
   const { username, email, password } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
@@ -52,10 +52,10 @@ const Register: FC = () => {
 
   return (
     <FormContainer>
-      <FormTitle font={theme.secondLevelHeading} color={theme.primaryText}>
+      <FormTitle>
         <FormattedMessage id='register' />
       </FormTitle>
-      <FormLoginLink to='/login' font={theme.textSans} color={theme.markedText}>
+      <FormLoginLink to='/login'>
         <FormattedMessage id='userLogin' />
       </FormLoginLink>
       <Form onSubmit={submitForm} >
@@ -64,10 +64,12 @@ const Register: FC = () => {
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
         </InputFieldset>
-        <RegisterButton onClick={() => {console.log('test')}} disabled={isUserRegistering} />
+        <ButtonContainer>
+          <RegisterButton disabled={isUserRegistering} />
+        </ButtonContainer>
       </Form>
     </FormContainer>
   );
 };
 
-export default Register;
+export default RegisterForm;

@@ -1,27 +1,14 @@
-import styled, { css } from 'styled-components';
-import { TFontProperties } from '../../types/styles.types';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-type TFormTextProps = {
-  font: TFontProperties;
-  color: string;
-}
 
 type TInputFieldsetProps = {
   rowGap: number;
 }
 
-const textStyles = css<TFormTextProps>`
-  color: ${(props) => props.color};
-  font-size: ${(props) => props.font.size}px;
-  font-family: ${(props) => props.font.family};
-  font-weight: ${(props) => props.font.weight};
-  line-height: ${(props) => props.font.height}px;
-`;
-
 export const FormContainer = styled.div`
   padding: 16px 0 0 0;
-  width: 540px;
+  max-width: 540px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,18 +16,34 @@ export const FormContainer = styled.div`
 
 export const FormTitle = styled.h2`
   margin: 0 0 40px 0;
-  ${textStyles};
+  color: ${({ theme }) => theme.primaryText};
+  font-size: ${({ theme }) => theme.secondLevelHeading.size}px;
+  font-family: ${({ theme }) => theme.secondLevelHeading.family};
+  font-weight: ${({ theme }) => theme.secondLevelHeading.weight};
+  line-height: ${({ theme }) => theme.secondLevelHeading.height}px;
+
+  @media(max-width: 768px) {
+    font-size: ${({ theme }) => theme.secondLevelHeadingMobile.size}px;
+    font-family: ${({ theme }) => theme.secondLevelHeadingMobile.family};
+    font-weight: ${({ theme }) => theme.secondLevelHeadingMobile.weight};
+    line-height: ${({ theme }) => theme.secondLevelHeadingMobile.height}px;
+  }
 `;
 
 export const FormLoginLink = styled(Link)`
   margin: 0 0 24px 0;
   text-decoration: none;
-  ${textStyles};
+  color: ${({ theme }) => theme.markedText};
+  font-size: ${({ theme }) => theme.textSans.size}px;
+  font-family: ${({ theme }) => theme.textSans.family};
+  font-weight: ${({ theme }) => theme.textSans.weight};
+  line-height: ${({ theme }) => theme.textSans.height}px;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
@@ -50,4 +53,8 @@ export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
   flex-direction: column;
   row-gap: ${(props) => props.rowGap}px;
   box-sizing: border-box;
+`;
+
+export const ButtonContainer = styled.div`
+  align-self: flex-end;
 `;

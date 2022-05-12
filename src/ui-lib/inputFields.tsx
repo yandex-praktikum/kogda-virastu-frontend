@@ -28,6 +28,22 @@ export const FieldUrl: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder
         </>
     )
 }
+export const FieldProfileImage: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
+  return (
+      <>
+          <InputField placeholder={placeholder}
+              name="FieldProfileImage"
+              type='url'
+              errorText={errorText}
+              error={error}
+              onBlur={onBlur}
+              value={value}
+              onChange={onChange}
+              labelText={'URL изображения профиля'}
+              icon={<PaperClipIcon color='grey' />} />
+      </>
+  )
+}
 export const FieldLogin: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
     return (
         <>

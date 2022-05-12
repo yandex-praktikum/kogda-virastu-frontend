@@ -8,13 +8,13 @@ import React, {
 import { useSelector, useDispatch } from '../../services/hooks';
 import { changeEmailLogin, changePasswordLogin } from '../../store';
 import { loginUserThunk } from '../../thunks';
-import { Form, FormContainer, FormLoginLink, FormTitle, InputFieldset } from './forms-styles';
+import { ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset } from './forms-styles';
 import { FormattedMessage } from 'react-intl';
 import { useTheme } from 'styled-components';
 import { FieldEmail, FieldPassword } from '../../ui-lib';
 import { LoginButton } from '../../ui-lib';
 
-const Login: FC = () => {
+const LoginForm: FC = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,10 +41,10 @@ const Login: FC = () => {
 
   return (
     <FormContainer>
-      <FormTitle font={theme.secondLevelHeading} color={theme.primaryText}>
+      <FormTitle>
         <FormattedMessage id='userLogin' />
       </FormTitle>
-      <FormLoginLink to='/register' font={theme.textSans} color={theme.markedText}>
+      <FormLoginLink to='/register' >
         <FormattedMessage id='register' />
       </FormLoginLink>
       <Form onSubmit={submitForm} >
@@ -52,9 +52,11 @@ const Login: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
-        <LoginButton onClick={() => {console.log('test')}} disabled={isUserLoggingIn} />
+        <ButtonContainer>
+          <LoginButton disabled={isUserLoggingIn} />
+        </ButtonContainer>
       </Form>
     </FormContainer>
   );
 };
-export default Login;
+export default LoginForm;
