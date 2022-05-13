@@ -25,7 +25,7 @@ const ArticleList:FC = () => {
     <div>
       {
         feed.map((article : TArticle) => (
-          <ArticleFullPreview articleName={article.title} key={article.slug} article={article.body} image={article.link} slug={article.slug} />
+          <ArticleFullPreview article={article}  />
         ))
       }
 

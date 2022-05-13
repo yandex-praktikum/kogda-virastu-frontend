@@ -2,6 +2,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
+import AuthorHeadingWidget from "./author-heading-widget";
+import { TArticle } from "../types/types";
+import { TProfile } from "../types/types";
+import BarTags from "./BarTags";
+import { Divider } from "../ui-lib";
 
 const ArticleCardConteiner = styled.div`
     width: 700px;
@@ -35,16 +40,19 @@ const ArticleName = styled.h2`
     line-height: ${({ theme: { secondLevelHeadingMobile: { height } } }) => `${height}px`} ;
     font-weight: ${({ theme: { secondLevelHeadingMobile: { weight } } }) => weight};
  }
+ @media screen and (max-width: 320px) {
+    grid-column: 1/1;
+}
 
 `;
 
-type TArticle = {
+type TElementWithImage = {
 
-    image: string,
+    image?: string,
 }
 
 
-const ContentConteiner = styled.div`
+const ContentConteiner = styled.div<TElementWithImage>`
     display: grid;
     grid-template-columns: 1fr 6fr;
     grid-gap: 16px;  
@@ -61,7 +69,15 @@ const ContentConteiner = styled.div`
         &:active {
             color: ${(props) => props.theme.button.red.active};
         }
-
+        @media screen and (max-width: 320px) {
+        
+        ${(props) => props.image ? `grid-row: 5/6 ` : `grid-row: 4/5`};
+        margin-top: -8px;
+    }
+    }
+    @media screen and (max-width: 320px) {
+        grid-template-columns: 280px;
+     
     }
 `;
 
@@ -70,11 +86,15 @@ const ContentConteiner = styled.div`
 const ArticleImage = styled.img`
 width: 159px;
 height: 85px;
+@media screen and (max-width: 320px) {
+    width: 280px;
+    height: 150px;
+}
 
 
 `;
 
-const Article = styled.article<TArticle>`
+const Article = styled.article<TElementWithImage>`
 font-size: ${({ theme: { text: { size } } }) => `${size}px`};
 font-family: ${({ theme: { text: { family } } }) => family};
 line-height: ${({ theme: { text: { height } } }) => `${height}px`};
@@ -87,28 +107,70 @@ color: ${({ theme: { primaryText } }) => primaryText};
     line-height: ${({ theme: { text16Sans: { height } } }) => `${height}px`};
     font-weight: ${({ theme: { text16Sans: { weight } } }) => weight};
 }
+@media screen and (max-width: 320px) {
+    grid-column: 1/1;
+}
 
 `;
 
 type TArticleFullPreview = {
-    article: string,
-    articleName: string,
-    image?: string,
-    slug: string,
+    article: TArticle,
+    onLikeClick: () => void,
+    isAuthor:boolean,
 }
 
-export const ArticleFullPreview: FC<TArticleFullPreview> = ({ articleName, article, image = '', slug }) => {
+
+/*following: boolean;
+  image?: string;
+  username: string;
+  email: string;
+  bio?: string;
+  
+  author: TProfile;
+  body: string;
+  createdAt: string;
+  description: string;
+  link?: string ;
+  favorited: boolean;
+  favoritesCount: number;
+  slug: string;
+  tagList: TTags;
+  title: string;
+  updatedAt: string;
+  */
+
+export const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick,isAuthor }) => {
+
+
     return (
         <ArticleCardConteiner>
-
-            <ContentConteiner >
-                <ArticleName>{articleName}</ArticleName>
-                {image && <ArticleImage src={image} />}
-                <Article image={image}>{article}</Article>
-                <Link className="link" to={`/article/${slug}`}>
+            <AuthorHeadingWidget name={article.author?.username}
+                image={article.author.image}
+                date={article.createdAt}
+                isLiked={article.favorited}
+                likesCount={article.favoritesCount}
+                isAuthor={isAuthor}
+                onLikeClick={onLikeClick}
+            />
+            <ContentConteiner image={article.link} >
+                <ArticleName>{article.title}</ArticleName>
+                {article.link && <ArticleImage src={article.link} />}
+                <Article image={article.link}>{article.body}</Article>
+                <Link className="link" to={`/article/${article.slug}`}>
                     <FormattedMessage id='articleEnter' />
                 </Link>
+                <BarTags image={article.link} tagList={['jjjj', 'ghgh', 'jjjjbnvnbvn', 'ghghvbvbvb', 'jjjj', 'ghgbvbvbh', 'jjjjbvbvb', 'ghgbvbvbh']} />
             </ContentConteiner>
+            <Divider />
         </ArticleCardConteiner>
     )
 }
+
+/* name,
+  image,
+  date,
+  isLiked,
+  likesCount,
+  isAuthor,
+  onDeleteClick,
+  onLikeClick, */

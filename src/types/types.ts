@@ -21,7 +21,7 @@ export type TArticle = {
   body: string;
   createdAt: string;
   description: string;
-  link?: string;
+  link?: string ;
   favorited: boolean;
   favoritesCount: number;
   slug: string;
