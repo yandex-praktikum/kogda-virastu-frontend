@@ -42,6 +42,7 @@ const avatarSize : TAvatarSize = {
 type TBorderProps = {
   width: number;
   color: string;
+  style: string;
 };
 
 interface IBasicAvatar {
@@ -95,6 +96,7 @@ const BasicAvatar = styled.img<IBasicAvatar>`
   margin-right: ${({ distance }) => distance ?? 0}px;
   border-width: ${({ bordered, borderProps: { width } }) => getAvatarBorderProp(bordered, width)}px;
   border-color: ${({ bordered, borderProps: { color } }) => getAvatarBorderProp(bordered, color)};
+  border-style: ${({ bordered, borderProps: { style } }) => getAvatarBorderProp(bordered, style)};
 `;
 
 export const AvatarIcon : FC<TAvatarIconProps> = ({
@@ -107,6 +109,7 @@ export const AvatarIcon : FC<TAvatarIconProps> = ({
   const borderProps : TBorderProps = {
     width: 2,
     color: blue,
+    style: 'solid',
   };
   if ((!image) || (!!image && !testImageUrl(image))) {
     return (

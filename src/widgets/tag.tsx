@@ -13,6 +13,7 @@ const Tag: FC<ITagProps> = ({
   tag, handleClick, isActive, inactiveTag,
 }) => {
   const theme = useTheme();
+
   const Button = styled.button`
     padding: 0;
     border: none;
