@@ -2,11 +2,11 @@ import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 
-type TButtonProps = {
+type TTagButtonProps = {
   isActive: boolean;
 }
 
-const Button = styled.button<TButtonProps>`
+const Button = styled.button<TTagButtonProps>`
     padding: 0;
     border: none;
     font-family: ${({ theme }) => theme.text18Sans.family};
@@ -27,11 +27,11 @@ interface ITagProps {
   tag: string,
   handleClick?(e: React.MouseEvent<HTMLButtonElement>, tag: string): void,
   isActive: boolean,
-  deactivationTag?: MouseEventHandler<SVGSVGElement>,
+  deactivateTag?: MouseEventHandler<SVGSVGElement>,
 }
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick, isActive, deactivationTag,
+  tag, handleClick, isActive, deactivateTag,
 }) => {
   const theme = useTheme();
 
@@ -44,7 +44,7 @@ const Tag: FC<ITagProps> = ({
       #
       {tag}
       {' '}
-      {isActive && deactivationTag && <CrossIcon color={theme.markedText} onClick={deactivationTag} />}
+      {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
     </Button>
   );
 };
