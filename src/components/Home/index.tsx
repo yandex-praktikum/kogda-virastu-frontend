@@ -4,14 +4,14 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
-import Tags from '../../widgets/Tags';
+import PopularTags from '../../widgets/PopularTags';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
 
 
 import { DeletePostButton, EditPostButton } from "../../ui-lib/buttons";
-import { ProfileWidget } from '../../widgets/ProfileWidget';
+import ProfileWidget from '../../widgets/profile-widget';
 
 
 
@@ -41,7 +41,7 @@ const Home: FC = () => {
         <div className='row'>
           <MainView />
           <div className='col-md-3'>
-            <Tags />
+            <PopularTags />
             <EditPostButton onClick={() => console.log('Меня нажали!!')} />
             <DeletePostButton onClick={() => console.log('Меня удалительно нажали!!')} />
           </div>
