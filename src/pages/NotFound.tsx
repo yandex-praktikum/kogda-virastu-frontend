@@ -25,7 +25,6 @@ const NotFoundStyle = styled.section`
     @media screen and (max-width:320px) {
         padding-top:40px;
         min-height:307px;
-
 }
 `
 const LinkStyle = styled(Link)`
