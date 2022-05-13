@@ -34,10 +34,10 @@ export const FormLoginLink = styled(Link)`
   margin: 0 0 24px 0;
   text-decoration: none;
   color: ${({ theme }) => theme.markedText};
-  font-size: ${({ theme }) => theme.textSans.size}px;
-  font-family: ${({ theme }) => theme.textSans.family};
-  font-weight: ${({ theme }) => theme.textSans.weight};
-  line-height: ${({ theme }) => theme.textSans.height}px;
+  font-size: ${({ theme }) => theme.text18Sans.size}px;
+  font-family: ${({ theme }) => theme.text18Sans.family};
+  font-weight: ${({ theme }) => theme.text18Sans.weight};
+  line-height: ${({ theme }) => theme.text18Sans.height}px;
 `;
 
 export const Form = styled.form`

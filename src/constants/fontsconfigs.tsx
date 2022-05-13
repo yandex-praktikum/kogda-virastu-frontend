@@ -24,6 +24,12 @@ const defaultText18 : TFontProperties = {
   height: 24,
   family: 'Alegreya',
 };
+const defaultText16 : TFontProperties = {
+  weight: 400,
+  size: 16,
+  height: 20,
+  family: 'Alegreya',
+};
 const defaultH1 : TFontProperties = {
   weight: 400,
   size: 56,
@@ -91,13 +97,6 @@ const defaultTextSansMed18 : TFontProperties = {
     22,
   family: 'Alegreya Sans',
 };
-// const defaultTextSans16:TFontProperties = {
-//   weight:400,
-//   size: 16,
-//   height: 24,
-//   family: 'Alegreya Sans',
-
-// }
 
 export {
   defaultTextSans18,
@@ -105,6 +104,7 @@ export {
   defaultTextSans12,
   defaultTextSansMed18,
   defaultText18,
+  defaultText16,
   defaultH1,
   defaultH2,
   defaultH3,
@@ -114,5 +114,5 @@ export {
   defaultH2Mobile,
   defaultH3Mobile,
   defaultH4Mobile,
-  defaultH5Mobile
+  defaultH5Mobile,
 };

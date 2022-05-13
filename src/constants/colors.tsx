@@ -12,7 +12,7 @@ const hoverUserMenuColor = '#E0F1FF';
 const activeUserMenuColor = '#D6ECFF';
 const shadowGrey = '#B8B8B8';
 const grey = '#A3A3A3';
-const paleGrey= '#F5F5F5';
+const paleGrey = '#F5F5F5';
 const redAccess = '#FF1E1E';
 export {
   primaryBlack,
@@ -30,5 +30,5 @@ export {
   shadowGrey,
   grey,
   paleGrey,
-  redAccess
+  redAccess,
 };
