@@ -1,6 +1,7 @@
 import InputField from "./inputFieldConfig";
-import { FC } from 'react';
-import { PaperClipIcon } from './'
+import { FC, useState } from 'react';
+import { PaperClipIcon,EyeIcon, EyeNoIcon } from './';
+
 type TFieldInput = {
     name?: string;
     value: string;
@@ -8,6 +9,7 @@ type TFieldInput = {
     disabled?: boolean;
     placeholder?: string;
     errorText?: string;
+
     onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
     onChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }
@@ -69,16 +71,31 @@ export const FieldEmail: FC<TFieldInput> = ({ value, onBlur, onChange, placehold
   )
 }
 export const FieldPassword: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
+  const [passwordState,
+    setPasswordState] = useState<'password' | 'text'>('password');
+    const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color="grey" / >);
+    const onIconClick = () => {
+      setPasswordState(passwordState === 'password'
+      ? 'text'
+      : 'password')
+      setPasswordIcon(passwordState === 'password'
+      ? <EyeIcon color="grey" / >
+      : <EyeNoIcon color="grey" /> )
+    }
+
   return (
     <InputField placeholder={placeholder}
         name="Password"
-        type='password'
+        type={passwordState}
         errorText={errorText}
         error={error}
         onBlur={onBlur}
         value={value}
         onChange={onChange}
         labelText={'Пароль'}
+        icon={passwordIcon}
+        isPointerIcon={true}
+        onIconClick={onIconClick}
     />
   )
 }
