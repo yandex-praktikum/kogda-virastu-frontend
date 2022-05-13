@@ -16,13 +16,14 @@ export type TTheme = {
   bgPrimary: string,
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
-  labelColor:string,
+  labelColor: string,
+  headerNofound:string,
   inputField: {
-    defaultBorder:string;
-    borderHover:string;
-    borderActive:string;
-    disabledInput:string;
-    errorColor:string;
+    defaultBorder: string;
+    borderHover: string;
+    borderActive: string;
+    disabledInput: string;
+    errorColor: string;
   },
   button: {
     [key: string]: TColorSet,
@@ -38,16 +39,12 @@ export type TTheme = {
   thirdLevelHeadingMobile: TFontProperties,
   fourthLevelHeadingMobile: TFontProperties,
   fifthLevelHeadingMobile: TFontProperties,
-
-  textSans: TFontProperties,
-  text: TFontProperties,
-  labelInput:TFontProperties,
-
+  labelInput: TFontProperties,
   text18Sans: TFontProperties,
   text16Sans: TFontProperties,
   text12Sans: TFontProperties,
   text18: TFontProperties,
-
+  text16: TFontProperties,
 };
 export type TThemes = {
   [key: string]: TTheme;

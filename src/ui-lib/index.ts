@@ -16,6 +16,8 @@ import {
   LogoutIcon,
   NoLikeIcon,
   PaperClipIcon,
+  EyeIcon,
+  EyeNoIcon
 } from './icons';
 
 import {
@@ -46,7 +48,7 @@ import {
   FieldDescriptionArticle,
   FieldTegs,
 }
-  from './inputFields';
+  from './textFields/inputFields';
 
 import {
   HeaderOneText,
@@ -80,6 +82,8 @@ export {
   LogoutIcon,
   PaperClipIcon,
   CrossIcon,
+  EyeIcon,
+  EyeNoIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,

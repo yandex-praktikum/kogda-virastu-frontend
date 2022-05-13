@@ -1,13 +1,13 @@
 import Author from './author';
 import Tag from './tag';
-import Tags from './Tags';
+import PopularTags from './PopularTags';
 import Likes from './likes';
 import ProfileWidget from './profile-widget';
 import AuthorHeadingMiniWidget from './author-heading-widget';
 
 export {
   Author,
-  Tags,
+  PopularTags,
   Tag,
   Likes,
   ProfileWidget,

@@ -4,9 +4,7 @@ import {
   setBody,
   setTags,
   setArticle,
-  setTaglist,
   resetArticle,
-  deleteTag,
   setImage,
 } from './articleFormSubSlice';
 
@@ -255,8 +253,6 @@ export {
   onLogin,
   onLogout,
   setArticle,
-  setTaglist,
-  deleteTag,
   setImage,
   setComment,
   resetComment,
