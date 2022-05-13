@@ -17,7 +17,8 @@ type TViewState = {
   perPage: number;
   profile: TProfile | null;
   feedType: FeedTypes;
-  articlesType:UserArticlesTypes
+  articlesType:UserArticlesTypes;
+  isTooltipShown: boolean;
 };
 
 const initialState: TViewState = {
@@ -34,6 +35,7 @@ const initialState: TViewState = {
   profile: null,
   feedType: FeedTypes.public,
   articlesType: UserArticlesTypes.my,
+  isTooltipShown: false,
 };
 
 const viewSlice = createSlice({
@@ -112,6 +114,9 @@ const viewSlice = createSlice({
     setArtistProfile: (state: TViewState, action: PayloadAction<UserArticlesTypes>) => ({
       ...state, articlesType: action.payload,
     }),
+    setTooltipVisibility: (state: TViewState, action: PayloadAction<boolean>) => ({
+      ...state, isTooltipShown: action.payload,
+    }),
   },
 });
 
@@ -140,6 +145,7 @@ export const {
   clearTag,
   setFeedType,
   setArtistProfile,
+  setTooltipVisibility,
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

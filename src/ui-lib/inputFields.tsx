@@ -13,130 +13,132 @@ type TFieldInput = {
 }
 
 export const FieldUrl: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name="FieldUrl"
-        type='url'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'URL изображения (опционально)'}
-        icon={<PaperClipIcon color='grey' />} />
-  )
-}
-export const FieldProfileImage: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name="FieldProfileImage"
-        type='url'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'URL изображения профиля'}
-        icon={<PaperClipIcon color='grey' />} />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name="FieldUrl"
+                type='url'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'URL изображения (опционально)'}
+                icon={<PaperClipIcon color='grey' />} />
+        </>
+    )
 }
 export const FieldLogin: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name="FieldLogin"
-        type='text'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'Имя пользователя'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name="FieldLogin"
+                type='text'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'Имя пользователя'}
+            />
+        </>
+    )
 }
 export const FieldEmail: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name='Email'
-        type='email'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'Email'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name='Email'
+                type='email'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'Email'}
+            />
+        </>
+    )
 }
 export const FieldPassword: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name="Password"
-        type='password'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'Пароль'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name="Password"
+                type='password'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'Пароль'}
+            />
+        </>
+    )
 }
 export const FieldNewPassword: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name="NewPassword"
-        type='password'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'Новый пароль'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name="NewPassword"
+                type='password'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'Новый пароль'}
+            />
+        </>
+    )
 }
 export const FieldNameArticle: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name="NameArticle"
-        type='text'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'Название статьи'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name="NameArticle"
+                type='text'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'Название статьи'}
+            />
+        </>
+    )
 }
 export const FieldDescriptionArticle: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name='inputField'
-        type='text'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'О чем статья'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name='inputField'
+                type='text'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'О чем статья'}
+            />
+        </>
+    )
 }
 export const FieldTegs: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-  return (
-    <InputField placeholder={placeholder}
-        name='tags'
-        type='text'
-        errorText={errorText}
-        error={error}
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        labelText={'Теги (через запятую)'}
-    />
-  )
+    return (
+        <>
+            <InputField placeholder={placeholder}
+                name='tags'
+                type='text'
+                errorText={errorText}
+                error={error}
+                onBlur={onBlur}
+                value={value}
+                onChange={onChange}
+                labelText={'Теги (через запятую)'}
+            />
+        </>
+    )
 }
 
 
