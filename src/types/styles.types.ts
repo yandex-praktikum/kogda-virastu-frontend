@@ -17,6 +17,7 @@ export type TTheme = {
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
   labelColor: string,
+  headerNofound:string,
   inputField: {
     defaultBorder: string;
     borderHover: string;
@@ -70,7 +71,7 @@ export type TButtonTextStyle = {
 };
 
 export type TButtonProps = {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 };
 
@@ -100,4 +101,43 @@ export type TAvatarButtonProps = {
 export type TIconProps = {
   color: string;
   distance?: number;
+};
+
+export type TTypoTypes = 'desktop' | 'mobile';
+
+export type THeaderFonts = {
+  [type in TTypoTypes]: TFontProperties;
+};
+
+export type THeaderTextProps = {
+  color?: string;
+  marginCSS?: string;
+  paddingCSS?: string;
+  lines?: number;
+};
+
+export type TTextProps = {
+  size: TFontSizeTypes,
+  weight: number,
+  sansSerif?: boolean,
+  color?: string,
+  marginCSS?: string;
+  paddingCSS?: string;
+  clampLines?: boolean;
+  heightLimit?: number;
+};
+
+export type TFontSizeTypes = 'small' | 'medium' | 'large';
+
+export type TFontSizeProps = {
+  size: number,
+  height: number,
+};
+
+export type TDefaultFontSizes = {
+  [key in TFontSizeTypes]: TFontSizeProps;
+};
+
+export type TDividerProps = {
+  distance: number;
 };

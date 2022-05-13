@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import LoginForm from "../widgets/forms/LoginForm";
+import EditorForm from "../widgets/forms/EditorForm";
 
 const Page = styled.section`
   width: 100%;
 `;
 
-const Login = () => {
+const Editor = () => {
 
   return (
     <Page>
-      <LoginForm />
+      <EditorForm />
     </Page>
   )
 
 }
 
-export default Login;
+export default Editor;

@@ -36,7 +36,7 @@ import {
 } from '../constants/fontsconfigs';
 import { TTheme } from '../types/styles.types';
 
-const themeLight: TTheme = {
+const themeLight : TTheme = {
   primaryText: primaryBlack,
   secondaryText: greySecondary,
   markedText: blue,
@@ -45,6 +45,7 @@ const themeLight: TTheme = {
   bgHoverUserMenu: hoverUserMenuColor,
   bgActiveUserMenu: activeUserMenuColor,
   labelColor: greySecondary,
+  headerNofound:red,
   inputField: {
     defaultBorder: dividerGray,
     borderHover: shadowGrey,
