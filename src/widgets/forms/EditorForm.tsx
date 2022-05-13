@@ -1,6 +1,7 @@
 import React, { useEffect, ChangeEvent, SyntheticEvent, FC, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "../../services/hooks";
+
 import {
   setTitle,
   setDescription,
@@ -26,15 +27,15 @@ import {
 } from "./forms-styles";
 import { FormattedMessage } from "react-intl";
 import {
-  DeletePostButton,
+  
   FieldAboutArticle,
-  FieldNameArticle,
-  FieldTags,
+
   FieldTextArticle,
-  FieldUrl,
-  PublishPostButton,
-  SavePostButton,
-} from "../../ui-lib";
+
+} from "../../ui-lib/textFields/textAreaFields";
+
+import { DeletePostButton,FieldNameArticle,FieldTegs,FieldUrl,PublishPostButton, SavePostButton } from "../../ui-lib";
+
 
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
@@ -132,7 +133,7 @@ const EditorForm: FC = () => {
             onChange={onChangeBody}
             minHeight={300}
           />
-          <FieldTags
+          <FieldTegs
             value={tags === "" ? "" : tags || ""}
             onChange={onChangeTags}
           />

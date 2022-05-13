@@ -10,10 +10,10 @@ export const TextFieldStyle = css<TTextFieldStyleProps>`
   width: 100%;
   padding: 8px 16px 8px 16px;
   position: relative;
-  font-size: ${({ theme: { text: { size } } }) => `${size}px`} ;
-  font-family: ${({ theme: { text: { family } } }) => family};
-  line-height: ${({ theme: { text: { height } } }) => `${height}px`} ;
-  font-weight: ${({ theme: { text: { weight } } }) => weight};
+  font-size: ${({ theme: { text18: { size } } }) => size}px ;
+  font-family: ${({ theme: { text18: { family } } }) => family};
+  line-height: ${({ theme: { text18: { height } } }) => height}px ;
+  font-weight: ${({ theme: { text18: { weight } } }) => weight};
   outline:none;
   color: ${({ theme: { secondaryText } }) => secondaryText};
   border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.defaultBorder))};

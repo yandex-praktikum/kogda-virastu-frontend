@@ -1,6 +1,6 @@
 import InputField from './inputFieldConfig';
 import React, { FC, useState } from 'react';
-import { PaperClipIcon, EyeIcon, EyeNoIcon } from '.';
+import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
 type TFieldInput = {
   name?: string;
   value: string;
@@ -125,9 +125,6 @@ export const FieldPassword: FC<TFieldInput> = ({
       onIconClick={onIconClick} />
   )
 }
-<<<<<<< HEAD:src/ui-lib/textFields/inputFields.tsx
-export const FieldTags: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
-=======
 export const FieldNewPassword: FC<TFieldInput> = ({
   value,
   onBlur, onChange,
@@ -147,7 +144,6 @@ export const FieldNewPassword: FC<TFieldInput> = ({
       setPasswordIcon(<EyeNoIcon color='grey' />)
     }
   }
->>>>>>> develop:src/ui-lib/inputFields.tsx
   return (
     <InputField
       placeholder={placeholder}
