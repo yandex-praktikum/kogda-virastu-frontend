@@ -18,6 +18,10 @@ import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import {setLanguage} from "../store";
 
+import Footer from '../widgets/Footer';
+import NotFound from '../pages/NotFound'
+
+
 const App = () => {
   const dispatch = useDispatch();
   const { currentTheme, currentLang } = useSelector((state) => state.system);
@@ -53,6 +57,7 @@ useEffect(() => {
             <Route path='/editor/:slug' element={<Editor />} />
             <Route path='/editor' element={<Editor />} />
             <Route path='/:username' element={<Profile />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </ThemeProvider>
       </IntlProvider>

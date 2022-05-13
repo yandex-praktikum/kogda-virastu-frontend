@@ -45,6 +45,7 @@ const themeLight : TTheme = {
   bgHoverUserMenu: hoverUserMenuColor,
   bgActiveUserMenu: activeUserMenuColor,
   labelColor: greySecondary,
+  headerNofound:red,
   inputField: {
     defaultBorder: dividerGray,
     borderHover: shadowGrey,
