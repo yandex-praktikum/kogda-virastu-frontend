@@ -108,5 +108,5 @@ export {
   HeaderFourText,
   HeaderFiveText,
   RegularText,
-  FieldTegs,
+ 
 };
