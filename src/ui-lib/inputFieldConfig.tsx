@@ -19,17 +19,13 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
         max-width:280px;
      }
      :hover {
-
       border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderHover))};
-
      }
      :disabled {
        background-color: ${((props) => props.theme.inputField.disabledInput)};
      }
      :active {
-
       border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderActive))};
-
      }
  `;
 const ContainerInput = styled.div`
@@ -57,7 +53,18 @@ const ContainerIcon = styled.div<{ isPointerIcon: boolean | undefined }>`
      top:32px;
      right:16px;
      cursor:${({ isPointerIcon }) => (isPointerIcon ? 'pointer': 'default')}`;
-     
+     `;
+
+const ErorTextStyle = styled.span`
+margin: 0;
+color: ${((props) => props.theme.inputField.errorColor)};
+font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
+font-family: ${({ theme: { labelInput: { family } } }) => family};
+line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
+font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
+`;
+
+
 
 type TInputInterface = {
   type: 'text' | 'email' | 'password' | 'url';
@@ -80,14 +87,7 @@ type TerrorText = {
   isPointerIcon?: boolean;
 
 };
-const ErorTextStyle = styled.span`
-margin: 0;
-color: ${((props) => props.theme.inputField.errorColor)};
-font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
-font-family: ${({ theme: { labelInput: { family } } }) => family};
-line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
-font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
-`;
+
 
 const ErorText = ({ erorText}: TerrorText) => (
   <ErorTextStyle>{erorText}</ErorTextStyle>
@@ -108,7 +108,7 @@ export const InputField = ({
   onFocus,
   disabled,
   labelText,
-  isPointerIcon
+  isPointerIcon,
 
 
 }: TInputInterface) => (
