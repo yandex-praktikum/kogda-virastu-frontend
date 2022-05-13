@@ -1,9 +1,10 @@
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { red } from '../constants/colors';
 
 const Heading = styled.h2`
-color: ${((props) => props.theme.headerNofound)};
+color: ${red};
 font-size: 118px;
 font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
 line-height: 118px;
@@ -14,7 +15,7 @@ margin-bottom: 24px;
     font-size: 86px;
     line-height: 86px;
 }
-`
+`;
 const NotFoundStyle = styled.section`
     box-sizing: border-box;
     padding-top:80px;
@@ -26,10 +27,10 @@ const NotFoundStyle = styled.section`
         padding-top:40px;
         min-height:307px;
 }
-`
+`;
 const LinkStyle = styled(Link)`
     color: ${((props) => props.theme.markedText)};
-`
+`;
 const Text = styled.p`
 max-width: 297px;
 text-align: center;
@@ -46,19 +47,20 @@ font-family: ${({ theme: { text18Sans: { family } } }) => family};
   line-height: ${({ theme: { text16Sans: { height } } }) => height}px;
 
   }
-`
+`;
 
-const  NotFound = () => {
-    return(
-        <NotFoundStyle>
-        <Heading >
-            404
-        </Heading>
-        <div>
+const NotFound = () => (
+  <NotFoundStyle>
+    <Heading>
+      404
+    </Heading>
+    <div>
       <Text> Страница не найдена.</Text>
-      <Text>Чтобы читать блог, перейдите на <LinkStyle to='/'> Главную</LinkStyle></Text>
-      </div>
-      </NotFoundStyle>
-    )
-}
-export default NotFound
+      <Text>
+        Чтобы читать блог, перейдите на
+        <LinkStyle to='/'> Главную</LinkStyle>
+      </Text>
+    </div>
+  </NotFoundStyle>
+);
+export default NotFound;
