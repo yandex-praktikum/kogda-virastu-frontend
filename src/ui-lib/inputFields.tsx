@@ -10,17 +10,20 @@ type TFieldInput = {
   errorText?: string;
   onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-}
+};
 export const FieldUrl: FC<TFieldInput> = ({
   value,
+  name = 'FieldUrl',
   onBlur,
   onChange,
-  placeholder,
-  error,
-  errorText }) => (
+  placeholder = 'Введите URL',
+  error = false,
+  errorText = '',
+  disabled = false,
+}) => (
     <InputField
       placeholder={placeholder}
-      name='FieldUrl'
+      name={name}
       type='url'
       errorText={errorText}
       error={error}
@@ -28,8 +31,9 @@ export const FieldUrl: FC<TFieldInput> = ({
       value={value}
       onChange={onChange}
       labelText='URL изображения (опционально)'
-      icon={<PaperClipIcon color='grey' />} />
-)
+      icon={<PaperClipIcon color='grey' />}
+      disabled={disabled}/>
+);
 export const FieldProfileImage: FC<TFieldInput> = ({
   value,
   onBlur,
@@ -37,7 +41,7 @@ export const FieldProfileImage: FC<TFieldInput> = ({
   placeholder,
   error,
   errorText }) =>  (
-    <InputField 
+    <InputField
       placeholder={placeholder}
       name='FieldProfileImage'
       type='url'

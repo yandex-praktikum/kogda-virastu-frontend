@@ -16,3 +16,13 @@ export type TCommentAuthorHeadingProps = {
   isAuthor: boolean;
   onDeleteClick?: React.MouseEventHandler<SVGSVGElement>;
 };
+
+export type TBriefPostAnnounceProps = {
+  image?: string;
+  name: string;
+  title: string;
+  date: Date;
+  isLiked: boolean;
+  likesCount: number;
+  onLikeClick: React.MouseEventHandler<SVGSVGElement>;
+};

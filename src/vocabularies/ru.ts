@@ -6,7 +6,7 @@ const ru : TVocabulary = {
   newArticle: 'Новая запись',
   settings: 'Настройки',
   exitProfile: 'Выйти',
-  mainTitle: 'Когда вырасту',
+  mainTitle: 'Когда Вырасту',
   mainSubtitle: 'Каково быть джуном  в турбулентном мире',
   popularTags: 'Популярные тэги',
   popularContent: 'Популярные материалы',
@@ -35,7 +35,6 @@ const ru : TVocabulary = {
   usersettings: 'Ваши настройки',
   publishArticle: 'Опубликовать запись',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
-  footerMessage: 'Сделано студентами Яндекс Практикума Red.Types',
 };
 
 export default ru;

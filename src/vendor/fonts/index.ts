@@ -7,7 +7,7 @@ import AlegreyaRegularTtf from './Alegreya/Alegreya-Regular.ttf';
 
 export const AlegreyaSansFonts = createGlobalStyle`
   @font-face {
-    font-family: 'Alegreya Sans';
+    font-family: 'Alegreya Sans', sans-serif;
     src: local('Alegreya Sans'),
       url(${AlegreyaSansRegularTtf}) format('truetype');
     font-weight: 400;
@@ -15,7 +15,7 @@ export const AlegreyaSansFonts = createGlobalStyle`
   }
 
   @font-face {
-    font-family: 'Alegreya Sans';
+    font-family: 'Alegreya Sans', sans-serif;
     src: local('Alegreya Sans'),
       url(${AlegreyaSansMediumTtf}) format('truetype');
     font-weight: 500;
@@ -25,7 +25,7 @@ export const AlegreyaSansFonts = createGlobalStyle`
 
 export const AlegreyaFonts = createGlobalStyle`
   @font-face {
-    font-family: 'Alegreya';
+    font-family: 'Alegreya', serif;
     src: local('Alegreya'),
       url(${AlegreyaRegularTtf}) format('truetype');
     font-weight: 400;

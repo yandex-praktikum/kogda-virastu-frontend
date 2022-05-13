@@ -1,9 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import GlobalColorsStyles from './globalColorsStyled';
-import GlobalFontsStyles from './globalFontsStyled';
-
 import {
   EditIcon,
   CrossIcon,
@@ -46,9 +43,18 @@ import {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs
+  FieldTegs,
 }
-from './inputFields'
+  from './inputFields';
+
+import {
+  HeaderOneText,
+  HeaderTwoText,
+  HeaderThreeText,
+  HeaderFourText,
+  HeaderFiveText,
+  RegularText,
+} from './text-elements';
 
 import Divider from './divider';
 
@@ -95,5 +101,12 @@ export {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
+  FieldTegs,
+  HeaderOneText,
+  HeaderTwoText,
+  HeaderThreeText,
+  HeaderFourText,
+  HeaderFiveText,
+  RegularText,
   FieldTegs,
 };

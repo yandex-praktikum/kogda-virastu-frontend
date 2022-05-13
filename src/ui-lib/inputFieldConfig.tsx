@@ -3,7 +3,8 @@ import React, { useState, FC } from 'react';
 
 const InputStyle = styled.input<{ error: boolean | undefined }>`
      box-sizing: border-box;
-     width: 100%;
+     width:540px;
+     height: 40px;
      padding: 8px 16px 8px 16px;
      position: relative;
      font-size: ${({ theme: { text18: { size } } }) => `${size}px`} ;
@@ -12,12 +13,10 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      font-weight: ${({ theme: { text18: { weight } } }) => weight};
      outline:none;
      color: ${({ theme: { secondaryText } }) => secondaryText};
-
      border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.defaultBorder))};
-   
-     @media screen and (max-width:768px) {
-
+     @media screen and (max-width:320px) {
         font-size: 16px;
+        max-width:280px;
      }
      :hover {
 
@@ -34,27 +33,24 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
      }
  `;
 const ContainerInput = styled.div`
-     width: 100%;
+     width:540px;
+     height: 40px;
      margin: 0;
      padding: 0;
      position: relative;
-     @media screen and (max-width:768px) {
+     @media screen and (max-width:320px) {
         font-size: 16px;
+        max-width:280px;
      }
  `;
 const LabelStyle = styled.label`
-
-
-  width: 100%;
-  margin: 0;
-  color:${((props) => props.theme.labelColor)};
-  font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
-  font-family: ${({ theme: { labelInput: { family } } }) => family};
-  line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
-  font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
-`;
-
-
+ margin: 0;
+ color:${((props) => props.theme.labelColor)};
+ font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
+font-family: ${({ theme: { labelInput: { family } } }) => family};
+line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
+font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
+ `;
 
 const ContainerIcon = styled.div<{ isPointerIcon: boolean | undefined }>`
      position: absolute;
