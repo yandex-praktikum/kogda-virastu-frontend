@@ -19,6 +19,8 @@ import {
   LogoutIcon,
   NoLikeIcon,
   PaperClipIcon,
+  EyeIcon,
+  EyeNoIcon
 } from './icons';
 
 import {
@@ -71,6 +73,8 @@ export {
   LogoutIcon,
   PaperClipIcon,
   CrossIcon,
+  EyeIcon,
+  EyeNoIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
@@ -91,5 +95,5 @@ export {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs
+  FieldTegs,
 };

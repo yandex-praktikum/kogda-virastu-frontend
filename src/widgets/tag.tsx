@@ -2,11 +2,26 @@ import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 
+
+interface ITagProps {
+  tag: string,
+  handleClick?(e: React.MouseEvent<HTMLButtonElement>, tag: string): void,
+  isActive: boolean,
+  inactiveTag?: MouseEventHandler<SVGSVGElement>,
+}
+
+const Tag: FC<ITagProps> = ({
+  tag, handleClick, isActive, inactiveTag,
+}) => {
+  const theme = useTheme();
+  const Button = styled.button`
+
 type TTagButtonProps = {
   isActive: boolean;
 }
 
 const Button = styled.button<TTagButtonProps>`
+
     padding: 0;
     border: none;
     font-family: ${({ theme }) => theme.text18Sans.family};

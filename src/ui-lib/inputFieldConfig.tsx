@@ -20,13 +20,17 @@ const InputStyle = styled.input<{ error: boolean | undefined }>`
         font-size: 16px;
      }
      :hover {
+
       border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderHover))};
+
      }
      :disabled {
        background-color: ${((props) => props.theme.inputField.disabledInput)};
      }
      :active {
+
       border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderActive))};
+
      }
  `;
 const ContainerInput = styled.div`
@@ -52,11 +56,13 @@ const LabelStyle = styled.label`
 
 
 
-const ContainerIcon = styled.div`
+const ContainerIcon = styled.div<{ isPointerIcon: boolean | undefined }>`
      position: absolute;
      top:32px;
      right:16px;
- `;
+     cursor:${({ isPointerIcon }) => (isPointerIcon ? 'pointer': 'default')}`;
+     
+
 type TInputInterface = {
   type: 'text' | 'email' | 'password' | 'url';
   placeholder?: string;
@@ -67,13 +73,15 @@ type TInputInterface = {
   errorText?: string;
   disabled?: boolean;
   labelText?: string;
+  isPointerIcon?:boolean;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
   onIconClick?(e: React.MouseEvent<HTMLDivElement>): void;
   onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
   onFocus?(e?: React.FocusEvent<HTMLInputElement>): void;
 };
 type TerrorText = {
-  erorText?: string
+  erorText?: string;
+  isPointerIcon?: boolean;
 
 };
 const ErorTextStyle = styled.span`
@@ -85,13 +93,28 @@ line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
 font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
 `;
 
-const ErorText = ({ erorText }: TerrorText) => (
+const ErorText = ({ erorText}: TerrorText) => (
   <ErorTextStyle>{erorText}</ErorTextStyle>
 );
 
 export const InputField = ({
-  type, placeholder, value, name, error, icon = null, errorText, onChange, onIconClick, onBlur, onFocus,
-  disabled, labelText,
+
+  type,
+  placeholder,
+  value,
+  name,
+  error,
+  icon = null,
+  errorText,
+  onChange,
+  onIconClick,
+  onBlur,
+  onFocus,
+  disabled,
+  labelText,
+  isPointerIcon
+
+
 }: TInputInterface) => (
   <ContainerInput>
     <LabelStyle>
@@ -107,10 +130,10 @@ export const InputField = ({
         onFocus={onFocus}
         onBlur={onBlur} />
     </LabelStyle>
-    <ContainerIcon onClick={onIconClick}>
+    <ContainerIcon onClick={onIconClick} isPointerIcon={isPointerIcon} >
       {icon}
     </ContainerIcon>
-    {error && <ErorText erorText={errorText} />}
+    {error && <ErorText erorText={errorText}/>}
   </ContainerInput>
 );
 export default InputField;
