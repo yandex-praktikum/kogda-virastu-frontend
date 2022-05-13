@@ -30,4 +30,4 @@ export type TButtonTextStyle = {
 export type TButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
-}
+};
