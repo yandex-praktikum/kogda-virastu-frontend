@@ -1,9 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import GlobalColorsStyles from './globalColorsStyled';
-import GlobalFontsStyles from './globalFontsStyled';
-
 import {
   EditIcon,
   CrossIcon,
@@ -19,6 +16,8 @@ import {
   LogoutIcon,
   NoLikeIcon,
   PaperClipIcon,
+  EyeIcon,
+  EyeNoIcon
 } from './icons';
 
 import {
@@ -44,9 +43,18 @@ import {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs
+  FieldTegs,
 }
-from './inputFields'
+  from './inputFields';
+
+import {
+  HeaderOneText,
+  HeaderTwoText,
+  HeaderThreeText,
+  HeaderFourText,
+  HeaderFiveText,
+  RegularText,
+} from './text-elements';
 
 import Divider from './divider';
 
@@ -71,6 +79,8 @@ export {
   LogoutIcon,
   PaperClipIcon,
   CrossIcon,
+  EyeIcon,
+  EyeNoIcon,
   EditPostButton,
   DeletePostButton,
   OpenMenuButton,
@@ -91,5 +101,12 @@ export {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs
+  FieldTegs,
+  HeaderOneText,
+  HeaderTwoText,
+  HeaderThreeText,
+  HeaderFourText,
+  HeaderFiveText,
+  RegularText,
+ 
 };

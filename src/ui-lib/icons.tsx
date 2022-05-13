@@ -17,6 +17,9 @@ import { ReactComponent as PaperclipPic } from '../assets/images/icons/paperclip
 import { ReactComponent as PlusPic } from '../assets/images/icons/plus-icon.svg';
 import { ReactComponent as MinusPic } from '../assets/images/icons/minus-icon.svg';
 import { ReactComponent as CrossPic } from '../assets/images/icons/cross-icon.svg';
+import { ReactComponent as EyePic } from '../assets/images/icons/eye-icon.svg';
+import { ReactComponent as EyeNoPic } from '../assets/images/icons/eyeNo-icon.svg';
+
 
 import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
 import { blue, greySecondary } from '../constants/colors';
@@ -232,3 +235,23 @@ export const MinusIcon = styled(MinusPic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
+export const EyeIcon = styled(EyePic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+export const EyeNoIcon = styled(EyeNoPic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+
+
