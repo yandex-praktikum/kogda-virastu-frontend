@@ -1,0 +1,35 @@
+import { AppDispatch, AppThunk, RootState } from "../store/store.types";
+import {
+  articlePatchRequested,
+  articlePatchSucceeded,
+  articlePatchFailed,
+} from "../store";
+import { patchArticle } from "../services/api";
+import { makeErrorObject, makeTagList } from "../services/helpers";
+import { AxiosError } from "axios";
+import { TAPIError } from "../services/api.types";
+
+const patchArticleThunk: AppThunk =
+  (slug: string) =>
+  async (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(articlePatchRequested());
+    const articleData = getState().forms.article ?? {};
+    const { title, description, body, link } = articleData;
+    const tagList = makeTagList(articleData.tags || '');
+    try {
+      await patchArticle(slug, {
+        title,
+        description,
+        body,
+        tagList,
+        link,
+      });
+      dispatch(articlePatchSucceeded());
+    } catch (error) {
+      dispatch(
+        articlePatchFailed(makeErrorObject(error as AxiosError<TAPIError>))
+      );
+    }
+  };
+
+export default patchArticleThunk;

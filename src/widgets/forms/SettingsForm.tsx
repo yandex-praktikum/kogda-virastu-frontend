@@ -16,7 +16,7 @@ import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { FieldEmail, FieldLogin, FieldNewPassword, FieldUrl } from '../../ui-lib';
 import { UpdateProfileButton } from '../../ui-lib';
-import { FieldProfileImage } from '../../ui-lib/inputFields';
+import { FieldProfileImage } from '../../ui-lib/textFields/inputFields';
 
 const SettingsForm: FC = () => {
   const {

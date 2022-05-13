@@ -7,7 +7,7 @@ import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import Profile from './Profile/Profile';
 import Header from './Header';
-import Editor from './Editor';
+import Editor from '../pages/editor';
 import Register from '../pages/register';
 import Login from '../pages/login';
 import Settings from '../pages/settings';

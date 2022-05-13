@@ -44,9 +44,13 @@ import {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs
-}
-from './inputFields'
+  FieldTags
+} from './textFields/inputFields';
+
+import { 
+  FieldAboutArticle,
+  FieldTextArticle
+} from './textFields/textAreaFields';
 
 import Divider from './divider';
 
@@ -91,5 +95,7 @@ export {
   FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs
+  FieldTags,
+  FieldAboutArticle,
+  FieldTextArticle
 };

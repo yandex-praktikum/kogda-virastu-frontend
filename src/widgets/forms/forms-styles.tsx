@@ -58,3 +58,9 @@ export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
 export const ButtonContainer = styled.div`
   align-self: flex-end;
 `;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px
+`;

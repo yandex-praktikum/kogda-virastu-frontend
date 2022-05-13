@@ -1,9 +1,10 @@
 import InputField from "./inputFieldConfig";
 import { FC } from 'react';
-import { PaperClipIcon } from './'
+import { PaperClipIcon } from '../'
+
 type TFieldInput = {
     name?: string;
-    value: string;
+    value?: string;
     error?: boolean;
     disabled?: boolean;
     placeholder?: string;
@@ -124,7 +125,7 @@ export const FieldDescriptionArticle: FC<TFieldInput> = ({ value, onBlur, onChan
     />
   )
 }
-export const FieldTegs: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
+export const FieldTags: FC<TFieldInput> = ({ value, onBlur, onChange, placeholder, error, errorText }) => {
   return (
     <InputField placeholder={placeholder}
         name='tags'
