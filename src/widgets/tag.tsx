@@ -2,11 +2,26 @@ import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 
-type TButtonProps = {
+
+interface ITagProps {
+  tag: string,
+  handleClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
+  isActive: boolean,
+  inactiveTag: MouseEventHandler<SVGSVGElement>,
+}
+
+const Tag: FC<ITagProps> = ({
+  tag, handleClick, isActive, inactiveTag,
+}) => {
+  const theme = useTheme();
+  const Button = styled.button`
+
+type TTagButtonProps = {
   isActive: boolean;
 }
 
-const Button = styled.button<TButtonProps>`
+const Button = styled.button<TTagButtonProps>`
+
     padding: 0;
     border: none;
     font-family: ${({ theme }) => theme.text18Sans.family};
@@ -27,11 +42,11 @@ interface ITagProps {
   tag: string,
   handleClick?(e: React.MouseEvent<HTMLButtonElement>, tag: string): void,
   isActive: boolean,
-  deactivationTag?: MouseEventHandler<SVGSVGElement>,
+  deactivateTag?: MouseEventHandler<SVGSVGElement>,
 }
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick, isActive, deactivationTag,
+  tag, handleClick, isActive, deactivateTag,
 }) => {
   const theme = useTheme();
 
@@ -40,11 +55,11 @@ const Tag: FC<ITagProps> = ({
       isActive = {isActive}
       type='button'
       key={tag}
-      onClick={handleClick && ((e) => handleClick(e, tag))}>
+      onClick={(e) => handleClick(e, tag)}>
       #
       {tag}
       {' '}
-      {isActive && deactivationTag && <CrossIcon color={theme.markedText} onClick={deactivationTag} />}
+      {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
     </Button>
   );
 };

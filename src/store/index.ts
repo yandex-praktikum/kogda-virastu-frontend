@@ -67,6 +67,7 @@ import {
   clearTag,
   setArtistProfile,
   clearPage,
+  setTooltipVisibility,
 } from './viewSlice';
 
 import {
@@ -254,5 +255,6 @@ export {
   setArticle,
   setImage,
   setComment,
-  resetComment
+  resetComment,
+  setTooltipVisibility,
 };

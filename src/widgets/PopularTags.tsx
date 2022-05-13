@@ -7,7 +7,7 @@ import Tag from './tag';
 import styled, { useTheme } from 'styled-components';
 
 
-const Title = styled.h2`
+const Title = styled.h3`
     color: ${({ theme }) => theme.primaryText};
     font-size: ${({ theme }) => theme.thirdLevelHeading.size}px;
     font-family: ${({ theme }) => theme.thirdLevelHeading.family};
@@ -37,7 +37,7 @@ const PopularTags: FC = () => {
     });
   };
 
-  const deactivationTag = (e: React.MouseEvent) => {
+  const deactivateTag = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(clearTag());
   }
@@ -50,7 +50,7 @@ const PopularTags: FC = () => {
           {
             tags.map((tag) => {
               return (
-                <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivationTag={deactivationTag} />
+                <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivateTag={deactivateTag} />
               );
             })
           }
