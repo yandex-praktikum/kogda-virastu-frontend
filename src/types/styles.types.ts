@@ -17,6 +17,7 @@ export type TTheme = {
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
   labelColor: string,
+  headerNofound:string,
   inputField: {
     defaultBorder: string;
     borderHover: string;
