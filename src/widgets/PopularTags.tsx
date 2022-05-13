@@ -6,14 +6,13 @@ import { FeedTypes } from '../types/types';
 import Tag from './tag';
 import styled, { useTheme } from 'styled-components';
 
-type TTitleProps = {
-  color: string,
-  fontSize: number
-}
 
-const Title = styled.h2<TTitleProps>`
-    color: ${props => props.color};
-    font-size: ${props => props.fontSize}px;
+const Title = styled.h3`
+    color: ${({ theme }) => theme.primaryText};
+    font-size: ${({ theme }) => theme.thirdLevelHeading.size}px;
+    font-family: ${({ theme }) => theme.thirdLevelHeading.family};
+    font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
+    line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
     margin-bottom: 16px;
   ;`
 
@@ -24,7 +23,7 @@ const TagList = styled.div`
   column-gap: 24px;
 `;
 
-const Tags: FC = () => {
+const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
   const { tag: activeTag } = useSelector((state) => state.view)
@@ -38,7 +37,7 @@ const Tags: FC = () => {
     });
   };
 
-  const inactiveTag = (e: React.MouseEvent) => {
+  const deactivateTag = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(clearTag());
   }
@@ -46,12 +45,12 @@ const Tags: FC = () => {
   if (tags) {
     return (
       <div>
-        <Title color={theme.primaryText} fontSize={theme.thirdLevelHeading.size} >Популярные теги</Title>
+        <Title>Популярные теги</Title>
         <TagList>
           {
             tags.map((tag) => {
               return (
-                <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} inactiveTag={inactiveTag} />
+                <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivateTag={deactivateTag} />
               );
             })
           }
@@ -64,4 +63,4 @@ const Tags: FC = () => {
     <div>Loading Tags...</div>
   );
 };
-export default Tags;
+export default PopularTags;
