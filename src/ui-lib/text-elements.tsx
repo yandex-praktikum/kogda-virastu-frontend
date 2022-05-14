@@ -135,8 +135,8 @@ export const HeaderFiveText = styled.h5<THeaderTextProps>`
 `;
 
 export const RegularText = styled.p<TTextProps>`
-   font-family: ${({ sansSerif }) => (sansSerif ? 'Alegreya Sans' : 'Alegreya')};
-   font-size: ${({ size }) => defaultFontSizes[size].size}px;
+  font-family: ${({ sansSerif }) => (sansSerif ? 'Alegreya Sans' : 'Alegreya')};
+  font-size: ${({ size }) => defaultFontSizes[size].size}px;
   font-weight: ${({ weight }) => (weight || 400)};
   line-height: ${({ size }) => defaultFontSizes[size].height}px;
   color: ${({ color }) => (color || 'inherit')};
