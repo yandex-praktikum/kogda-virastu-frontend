@@ -17,6 +17,8 @@ import getPrivateFeedThunk from './get-private-feed-thunk';
 import getUserThunk from './get-user-thunk';
 import patchArticleThunk from './patch-article-thunk';
 import postArticleThunk from './post-article-thunk';
+import setTopLikedThunk from './set-top-liked-thunk';
+import setNewPostsThunk from './set-new-posts-thunk';
 
 export {
   createCommentThunk,
@@ -38,4 +40,6 @@ export {
   getUserThunk,
   patchArticleThunk,
   postArticleThunk,
+  setTopLikedThunk,
+  setNewPostsThunk,
 };
