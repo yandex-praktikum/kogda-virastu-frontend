@@ -7,6 +7,7 @@ import vocabularies from '../vocabularies';
 
 type TAllState = {
   articles: TArticles | null;
+  articlesCount: number;
   tags: TTags | null;
   themes: TThemes,
   themesNames: Array<string>,
@@ -15,6 +16,7 @@ type TAllState = {
 };
 const initialState : TAllState = {
   articles: null,
+  articlesCount: 0,
   tags: null,
   themes,
   themesNames: Object.keys(themes),
@@ -28,6 +30,9 @@ const allSlice = createSlice({
   reducers: {
     setAllArticles: (state : TAllState, action: PayloadAction<TArticles>) => ({
       ...state, articles: action.payload,
+    }),
+    setAllArticlesCount: (state: TAllState, action: PayloadAction<number>) => ({
+      ...state, articlesCount: action.payload,
     }),
     setAllTags: (state : TAllState, action: PayloadAction<TTags>) => ({
       ...state, tags: action.payload,
@@ -47,6 +52,7 @@ const allSlice = createSlice({
 const allReducer = allSlice.reducer;
 export const {
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,

@@ -46,3 +46,7 @@ export type TComment = {
 };
 
 export type TComments = Array<TComment>;
+
+export interface IComparator {
+  (articleOne: TArticle, articleTwo: TArticle) : number;
+}

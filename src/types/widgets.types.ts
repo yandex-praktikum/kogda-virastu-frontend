@@ -27,6 +27,10 @@ export type TBriefPostAnnounceProps = {
   onLikeClick: React.MouseEventHandler<SVGSVGElement>;
 };
 
+
+export type TTopAnnounceWidgetProps = {
+  caption : string;
+
 export type TAuthorProps = {
   userName: string,
   createAt: Date,
