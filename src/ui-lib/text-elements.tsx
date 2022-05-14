@@ -17,7 +17,7 @@ import {
 } from '../constants/fontsconfigs';
 
 import { tabletBreakpoint } from '../constants';
-import { getLinesClamp } from '../services/helpers';
+import { getLinesClamp, getOptionalProp } from '../services/helpers';
 
 export const HeaderOneText = styled.h1<THeaderTextProps>`
    font-family: ${defaultH1.family};
@@ -142,6 +142,11 @@ export const RegularText = styled.p<TTextProps>`
   color: ${({ color }) => (color || 'inherit')};
   text-overflow: ellipsis;
   margin-bottom: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  ${({ align }) => getOptionalProp('text-align', align)};
   ${({
     clampLines,
     heightLimit,

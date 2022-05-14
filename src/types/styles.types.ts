@@ -125,6 +125,7 @@ export type TTextProps = {
   paddingCSS?: string;
   clampLines?: boolean;
   heightLimit?: number;
+  align?: string;
 };
 
 export type TFontSizeTypes = 'small' | 'medium' | 'large';
