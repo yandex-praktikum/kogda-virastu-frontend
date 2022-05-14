@@ -26,6 +26,7 @@ import {
   setEmailProfile,
   setBioProfile,
   setImageProfile,
+  setNicknameProfile,
 } from './profileFormSubSlice';
 
 import {
@@ -67,7 +68,6 @@ import {
   clearTag,
   setArtistProfile,
   clearPage,
-  setTooltipVisibility,
 } from './viewSlice';
 
 import {
@@ -137,6 +137,8 @@ import {
   onLogout,
   setTheme,
   setLanguage,
+  openMenu,
+  closeMenu,
 } from './systemSlice';
 
 export {
@@ -162,6 +164,7 @@ export {
   changePasswordRegister,
   resetFormRegister,
   setUsernameProfile,
+  setNicknameProfile,
   setEmailProfile,
   setBioProfile,
   setImageProfile,
@@ -256,5 +259,6 @@ export {
   setImage,
   setComment,
   resetComment,
-  setTooltipVisibility,
+  openMenu,
+  closeMenu,
 };
