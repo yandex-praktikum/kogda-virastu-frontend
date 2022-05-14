@@ -98,7 +98,7 @@ const defaultTextSansMed18 : TFontProperties = {
   family: 'Alegreya Sans',
 };
 
-export const defaultFontSizes : TDefaultFontSizes = {
+const defaultFontSizes : TDefaultFontSizes = {
   large: {
     size: 18,
     height: 24,
@@ -120,6 +120,7 @@ export {
   defaultTextSansMed18,
   defaultText18,
   defaultText16,
+  defaultFontSizes,
   defaultH1,
   defaultH2,
   defaultH3,
