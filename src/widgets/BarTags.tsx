@@ -1,13 +1,12 @@
-import React, { FC} from 'react';
-import { useSelector } from '../services/hooks';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-
+import { useSelector } from '../services/hooks';
 
 import Tag from './tag';
 
 type TBarTags = {
-    tagList: string[]
-}
+  tagList: string[]
+};
 const Lists = styled.ul`
     display: flex;
     box-sizing:border-box;
@@ -20,25 +19,21 @@ const Lists = styled.ul`
      @media screen and (max-width:320px) {
         max-width:352px;
      }
-`
+`;
 const List = styled.li`
     list-style-type: none;
-`
+`;
 
-
-
-export const BarTags:FC<TBarTags> = ({tagList}) => {
-    const { tag: activeTag } = useSelector((state) => state.view)
-    return(
-        <Lists>
-            {tagList.map((tag) => {
-                return (
-                    <List>
-                    <Tag tag={tag}  isActive={tag === activeTag} />
-                    </List>
-                )
-            })}
-        </Lists>
-    )
-}
-export default BarTags
+export const BarTags:FC<TBarTags> = ({ tagList }) => {
+  const { tag: activeTag } = useSelector((state) => state.view);
+  return (
+    <Lists>
+      {tagList.map((tag) => (
+        <List>
+          <Tag tag={tag} isActive={tag === activeTag} />
+        </List>
+      ))}
+    </Lists>
+  );
+};
+export default BarTags;

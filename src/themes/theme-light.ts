@@ -68,6 +68,13 @@ const themeLight: TTheme = {
       disabled: dividerGray,
       font: mainBgColor,
     },
+    menu: {
+      default: mainBgColor,
+      hover: hoverUserMenuColor,
+      active: activeUserMenuColor,
+      disabled: dividerGray,
+      font: blue,
+    },
   },
   buttonText: defaultTextSansMed18,
   firstLevelHeading: defaultH1,
