@@ -1,56 +1,72 @@
-import React, {FC} from "react";
-import styled from "styled-components";
-import {desktopBreakpoint, tabletBreakpoint, mobileViewThreshold} from "../constants";
+import React, { FC } from 'react';
+import styled from 'styled-components';
+import { mobileViewThreshold } from '../constants';
 
-import {useDispatch, useSelector} from "../services/hooks";
-import {TArticle} from '../types/types';
-import BriefPostAnnounceWidget from "./brief-post-announce-widget";
+import { useSelector } from '../services/hooks';
+import { TArticle } from '../types/types';
+import BriefPostAnnounceWidget from './brief-post-announce-widget';
+import { Divider, HeaderThreeText } from '../ui-lib';
+import { TTopAnnounceWidgetProps } from '../types/widgets.types';
 
-const desktopToTabletWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
-const tabletToMobileWidthStep = (227 - 220) / (tabletBreakpoint - mobileViewThreshold);
 const TopContainer = styled.ul`
   min-width: 220px;
   max-width: 359px;
-  width: 360px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   align-items: flex-start;
-
-  @media screen and (max-width: ${desktopBreakpoint}px) {
-    width: calc(359px - (${desktopBreakpoint}px - 100vw) * ${desktopToTabletWidthStep});
-    }
-  @media screen and (max-width: ${tabletBreakpoint}px) {
-    width: calc(227px - (${tabletBreakpoint}px - 100vw) * ${tabletToMobileWidthStep});
-    }
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+  
   @media screen and (max-width: ${mobileViewThreshold}px) {
     display: none;
     }
 `;
 
-const TopAnnounceWidget : FC = () => {
+const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
-  const dispatch = useDispatch();
 
   return (
     <TopContainer>
-    {topArticles.map((article: TArticle) => {
-      const {
-        username,
-        nickname,
-        title,
-        createdAt,
-        favorited,
-        favoritesCount } = article;
-      <BriefPostAnnounceWidget
-        name={nickname && username}
-        title={title}
-        date={new Date(createdAt)}
-        isLiked={}
-        likesCount={}
-        onLikeClick={() ={}
-    })
-
-    }
+      <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
+        {caption}
+      </HeaderThreeText>
+      {topArticles.map((article: TArticle, index) => {
+        const {
+          author: {
+            username,
+            nickname,
+          },
+          title,
+          createdAt,
+          favorited,
+          favoritesCount,
+          slug,
+        } = article;
+        const nope = (): void => {
+        };
+        return (
+          <>
+            {index && <Divider distance={24} />}
+            <BriefPostAnnounceWidget
+              key={slug}
+              name={nickname ?? username}
+              title={title}
+              date={new Date(createdAt)}
+              isLiked={favorited}
+              likesCount={favoritesCount}
+              onLikeClick={nope} />
+          </>
+        );
+      })}
     </TopContainer>
-  )
-}
+  );
+};
+
+export default TopAnnounceWidget;

@@ -26,3 +26,7 @@ export type TBriefPostAnnounceProps = {
   likesCount: number;
   onLikeClick: React.MouseEventHandler<SVGSVGElement>;
 };
+
+export type TTopAnnounceWidgetProps = {
+  caption : string;
+};

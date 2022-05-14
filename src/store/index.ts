@@ -31,6 +31,7 @@ import {
 
 import {
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,
@@ -132,6 +133,9 @@ import {
   followProfileDeleteRequested,
   followProfileDeleteSucceeded,
   followProfileDeleteFailed,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
 } from './apiSlice';
 
 import {
@@ -171,6 +175,7 @@ export {
   setBioProfile,
   setImageProfile,
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,
@@ -265,4 +270,7 @@ export {
   resetComment,
   openMenu,
   closeMenu,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
 };

@@ -4,12 +4,12 @@ import { setTopFeed } from '../store';
 
 import { compareLikesForTop, makeTopFeed } from '../services/helpers';
 
-const setTopLikedThunk: AppThunk = (qty = 5) => (
+const setTopLikedThunk: AppThunk = (qty: number) => (
   dispatch : AppDispatch,
   getState : () => RootState,
 ) => {
   const articles = getState().all.articles ?? [];
-  dispatch(setTopFeed(makeTopFeed(articles, compareLikesForTop, qty as number)));
+  dispatch(setTopFeed(makeTopFeed(articles, compareLikesForTop, qty ?? 5)));
 };
 
 export default setTopLikedThunk;
