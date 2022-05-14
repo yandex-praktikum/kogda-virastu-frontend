@@ -1,4 +1,4 @@
-import {MouseEventHandler} from "react";
+import { MouseEventHandler } from 'react';
 
 export type TFontProperties = {
   family: string;
@@ -30,4 +30,4 @@ export type TButtonTextStyle = {
 export type TButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
-}
+};

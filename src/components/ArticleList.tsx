@@ -25,7 +25,7 @@ const ArticleList:FC = () => {
     <div>
       {
         feed.map((article : TArticle) => (
-          <ArticleFullPreview article={article}  />
+          <ArticleFullPreview onLikeClick={()=> console.log('f')} article={article} isAuthor={true}  />
         ))
       }
 

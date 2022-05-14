@@ -7,17 +7,19 @@ import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import Profile from './Profile/Profile';
 import Header from './Header';
-import Editor from './Editor';
-import Register from '../pages/register';
-import Login from '../pages/login';
-import Settings from '../pages/settings';
+import Editor from '../pages/editor';
+import Register from './Register';
+import Login from './Login';
+import Settings from './Settings/Settings';
 import { jwt } from '../services/api';
 import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
-import {setLanguage} from "../store";
+import { setLanguage } from '../store';
+
 import Footer from '../widgets/Footer';
+import NotFound from '../pages/not-found';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,12 +32,12 @@ const App = () => {
     }
   }, [dispatch]);
 
-useEffect(() => {
-  const language = navigator.language.split('-')[0];
-  if (langNames.includes(language)) {
-    dispatch(setLanguage(language));
-  }
-},[dispatch])
+  useEffect(() => {
+    const language = navigator.language.split('-')[0];
+    if (langNames.includes(language)) {
+      dispatch(setLanguage(language));
+    }
+  }, [dispatch]);
   return (
     <div>
       <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
@@ -54,9 +56,8 @@ useEffect(() => {
             <Route path='/editor/:slug' element={<Editor />} />
             <Route path='/editor' element={<Editor />} />
             <Route path='/:username' element={<Profile />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
-
-          <Footer />
         </ThemeProvider>
       </IntlProvider>
     </div>

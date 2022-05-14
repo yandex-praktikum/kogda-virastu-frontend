@@ -5,6 +5,7 @@ import getColor from './get-color';
 import getAvatarBorderProp from './get-avatar-border-prop';
 import setColor from './set-color';
 import testImageUrl from './test-image-url';
+import getLinesClamp from './get-lines-clamp';
 
 
 export {
@@ -15,5 +16,5 @@ export {
   getAvatarBorderProp,
   setColor,
   testImageUrl,
-
+  getLinesClamp,
 };

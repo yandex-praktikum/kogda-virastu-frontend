@@ -4,9 +4,7 @@ import {
   setBody,
   setTags,
   setArticle,
-  setTaglist,
   resetArticle,
-  deleteTag,
   setImage,
 } from './articleFormSubSlice';
 
@@ -69,6 +67,7 @@ import {
   clearTag,
   setArtistProfile,
   clearPage,
+  setTooltipVisibility,
 } from './viewSlice';
 
 import {
@@ -254,9 +253,8 @@ export {
   onLogin,
   onLogout,
   setArticle,
-  setTaglist,
-  deleteTag,
   setImage,
   setComment,
   resetComment,
+  setTooltipVisibility,
 };

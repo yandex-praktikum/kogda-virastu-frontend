@@ -34,11 +34,10 @@ const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) =>
       <LikesCounter font={theme.text18Sans} color={theme.secondaryText}>
         {likesCounterValue}
       </LikesCounter>
-      { favorite ? 
-        <LikeIcon onClick={handleClick} width='21' height='18' cursor='pointer' color='grey' /> :
-        <NoLikeIcon onClick={handleClick} width='21' height='18' cursor='pointer' color='grey' />
-      }
-      
+      { favorite
+        ? <LikeIcon onClick={handleClick} width='21' height='18' cursor='pointer' color='grey' />
+        : <NoLikeIcon onClick={handleClick} width='21' height='18' cursor='pointer' color='grey' />}
+
     </LikesContainer>
 
   );

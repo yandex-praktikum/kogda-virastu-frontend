@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
-import { useSelector } from '../services/hooks';
 import styled from 'styled-components';
+import { useSelector } from '../services/hooks';
+
 import Tag from './tag';
+
 type TBarTags = {
-    tagList: string[]
-    image?:string,
-}
+  tagList: string[],
+  image:string | undefined,
+};
 
 type TLists = {
-    image?: string,
+  image: string | undefined,
 }
 
 const Lists = styled.ul<TLists>`
@@ -30,22 +32,21 @@ const Lists = styled.ul<TLists>`
         
         flex-direction: row;
      }
-`
+`;
 const List = styled.li`
     list-style-type: none;
-`
-export const BarTags: FC<TBarTags> = ({ tagList, image }) => {
-    const { tag: activeTag } = useSelector((state) => state.view)
-    return (
-        <Lists image={image}>
-            {tagList.map((tag) => {
-                return (
-                    <List>
-                        <Tag tag={tag} isActive={tag === activeTag} />
-                    </List>
-                )
-            })}
-        </Lists>
-    )
-}
-export default BarTags
+`;
+
+export const BarTags:FC<TBarTags> = ({ tagList, image }) => {
+  const { tag: activeTag } = useSelector((state) => state.view);
+  return (
+    <Lists image={image}>
+      {tagList.map((tag) => (
+        <List>
+          <Tag tag={tag} isActive={tag === activeTag} />
+        </List>
+      ))}
+    </Lists>
+  );
+};
+export default BarTags;

@@ -7,7 +7,7 @@ import {
 } from '../types/styles.types';
 
 import {
-  EditIcon, AvatarIcon, DeleteIcon, PlusIcon, MinusIcon,
+  EditIcon, AvatarIcon, DeleteIcon, PlusIcon, MinusIcon, AsterixIcon, LogoutIcon,
 } from './icons';
 import { getColor, setColor } from '../services/helpers';
 import useMouseEvents from '../services/hooks/use-mouse-events';
@@ -227,3 +227,48 @@ export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false
     <FormattedMessage id='publishArticle' />
   </BasicNormalButton>
 );
+
+export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <AsterixIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <FormattedMessage id='settings' />
+    </BasicNormalButton>
+  );
+};
+
+export const MenuNewPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <EditIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <FormattedMessage id='newArticle' />
+    </BasicNormalButton>
+  );
+};
+
+export const MenuLogoutButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <LogoutIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <FormattedMessage id='exitProfile' />
+    </BasicNormalButton>
+  );
+};

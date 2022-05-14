@@ -57,12 +57,12 @@ const ContentConteiner = styled.div<TElementWithImage>`
     grid-template-columns: 1fr 6fr;
     grid-gap: 16px;  
     .link {
-        font-size: ${({ theme: { textSans: { size } } }) => `${size}px`} ;
-        font-family: ${({ theme: { textSans: { family } } }) => family};
-        line-height: ${({ theme: { textSans: { height } } }) => `${height}px`} ;
-        font-weight: ${({ theme: { textSans: { weight } } }) => weight};
+        font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
+        font-family: ${({ theme: { text18Sans: { family } } }) => family};
+        line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`} ;
+        font-weight: ${({ theme: {text18Sans: { weight } } }) => weight};
         color: ${(props) => props.theme.button.red.default};
-        width: 106px;
+        width: 106px; 
         &:hover {
             color: ${(props) => props.theme.button.red.hover};
         } 
@@ -95,10 +95,10 @@ height: 85px;
 `;
 
 const Article = styled.article<TElementWithImage>`
-font-size: ${({ theme: { text: { size } } }) => `${size}px`};
-font-family: ${({ theme: { text: { family } } }) => family};
-line-height: ${({ theme: { text: { height } } }) => `${height}px`};
-font-weight: ${({ theme: { text: { weight } } }) => weight};
+font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`};
+font-family: ${({ theme: { text18Sans: { family } } }) => family};
+line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`};
+font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
 color: ${({ theme: { primaryText } }) => primaryText};
  ${(props => !props.image && `grid-column: 1/3`)};
 @media screen and (max-width: 768px) {
@@ -116,7 +116,7 @@ color: ${({ theme: { primaryText } }) => primaryText};
 type TArticleFullPreview = {
     article: TArticle,
     onLikeClick: () => void,
-    isAuthor:boolean,
+    isAuthor:boolean ,
 }
 
 
@@ -161,7 +161,7 @@ export const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeCli
                 </Link>
                 <BarTags image={article.link} tagList={['jjjj', 'ghgh', 'jjjjbnvnbvn', 'ghghvbvbvb', 'jjjj', 'ghgbvbvbh', 'jjjjbvbvb', 'ghgbvbvbh']} />
             </ContentConteiner>
-            <Divider />
+            <Divider distance={0} />
         </ArticleCardConteiner>
     )
 }

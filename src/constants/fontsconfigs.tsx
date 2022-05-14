@@ -1,4 +1,4 @@
-import { TFontProperties } from '../types/styles.types';
+import { TDefaultFontSizes, TFontProperties } from '../types/styles.types';
 
 const defaultTextSans18 : TFontProperties = {
   weight: 400,
@@ -22,6 +22,12 @@ const defaultText18 : TFontProperties = {
   weight: 400,
   size: 18,
   height: 24,
+  family: 'Alegreya',
+};
+const defaultText16 : TFontProperties = {
+  weight: 400,
+  size: 16,
+  height: 20,
   family: 'Alegreya',
 };
 const defaultH1 : TFontProperties = {
@@ -92,12 +98,29 @@ const defaultTextSansMed18 : TFontProperties = {
   family: 'Alegreya Sans',
 };
 
+const defaultFontSizes : TDefaultFontSizes = {
+  large: {
+    size: 18,
+    height: 24,
+  },
+  medium: {
+    size: 16,
+    height: 20,
+  },
+  small: {
+    size: 12,
+    height: 16,
+  },
+};
+
 export {
   defaultTextSans18,
   defaultTextSans16,
   defaultTextSans12,
   defaultTextSansMed18,
   defaultText18,
+  defaultText16,
+  defaultFontSizes,
   defaultH1,
   defaultH2,
   defaultH3,
@@ -107,7 +130,5 @@ export {
   defaultH2Mobile,
   defaultH3Mobile,
   defaultH4Mobile,
-  
   defaultH5Mobile,
-
 };

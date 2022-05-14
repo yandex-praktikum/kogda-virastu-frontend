@@ -4,17 +4,12 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch } from '../../services/hooks';
 import Banner from './Banner';
 import MainView from './MainView';
-import Tags from '../../widgets/Tags';
+import PopularTags from '../../widgets/PopularTags';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
-import { ArticleFullPreview } from '../../widgets/ArticleFullPreview';
-
-import { DeletePostButton, EditPostButton } from "../../ui-lib/buttons";
-
-
-
-
+import { DeletePostButton, EditPostButton } from '../../ui-lib/buttons';
+import ProfileWidget from '../../widgets/profile-widget';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -29,13 +24,21 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
-   
+      <ProfileWidget
+        userName='goga'
+        isFollow
+        userImage='fggf'
+        onClick={() => console.log('ff')}
+        isUser={false}
+        size='large'
+        color='red'
+        distance={8} />
       <Banner />
       <div className='container page'>
         <div className='row'>
           <MainView />
           <div className='col-md-3'>
-            <Tags />
+            <PopularTags />
             <EditPostButton onClick={() => console.log('Меня нажали!!')} />
             <DeletePostButton onClick={() => console.log('Меня удалительно нажали!!')} />
            
