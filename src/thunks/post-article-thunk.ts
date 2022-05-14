@@ -5,7 +5,8 @@ import {
   articlePostFailed,
 } from "../store";
 import { postArticle } from "../services/api";
-import { makeErrorObject, makeTagList } from "../services/helpers";
+import { makeErrorObject, } from "../services/helpers";
+import makeTagList from "../services/helpers/make-tagList";
 import { AxiosError } from "axios";
 import { TAPIError } from "../services/api.types";
 

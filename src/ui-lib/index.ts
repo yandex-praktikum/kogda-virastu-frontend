@@ -45,7 +45,7 @@ import {
   FieldDescriptionArticle,
   FieldTegs,
 }
-  from './inputFields';
+  from './textFields/inputFields';
 
 import {
   HeaderOneText,

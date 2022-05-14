@@ -10,11 +10,7 @@ interface ITagProps {
   inactiveTag: MouseEventHandler<SVGSVGElement>,
 }
 
-const Tag: FC<ITagProps> = ({
-  tag, handleClick, isActive, inactiveTag,
-}) => {
-  const theme = useTheme();
-  const Button = styled.button`
+
 
 type TTagButtonProps = {
   isActive: boolean;
