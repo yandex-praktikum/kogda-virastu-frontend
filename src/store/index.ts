@@ -67,7 +67,6 @@ import {
   clearTag,
   setArtistProfile,
   clearPage,
-  setTooltipVisibility,
 } from './viewSlice';
 
 import {
@@ -137,6 +136,8 @@ import {
   onLogout,
   setTheme,
   setLanguage,
+  openMenu,
+  closeMenu,
 } from './systemSlice';
 
 export {
@@ -256,5 +257,6 @@ export {
   setImage,
   setComment,
   resetComment,
-  setTooltipVisibility,
+  openMenu,
+  closeMenu,
 };
