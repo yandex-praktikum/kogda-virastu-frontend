@@ -7,7 +7,8 @@ import {
   getPublicFeedThunk,
   getUserProfileThunk,
   addLikeThunk,
-  deleteLikeThunk
+  deleteLikeThunk,
+  deleteArticleThunk,
 } from '../thunks';
 import { clearView } from '../store';
 import ArticleFullPreview from '../widgets/article-full-preview';
@@ -60,14 +61,17 @@ const Profile: FC = () => {
     } else {
       dispatch(deleteLikeThunk(slug))
     }
-}
+  } 
+  const deleteArticle = (slug: string): void => {
+    dispatch(deleteArticleThunk(slug))
+  }
   
 
   return (
     <>
        <ProfileWidget userName={profile.username} isFollow={profile.following} userImage={profile.image} isUser={isUser} size='large' distance={0} color='' />
       {feed?.map(item => (
-        <ArticleFullPreview article={item} isAuthor={isUser} onLikeClick={()=> onLikeClick(item.favorited, item.slug)}  />
+        <ArticleFullPreview article={item} isAuthor={isUser} onLikeClick={()=> onLikeClick(item.favorited, item.slug)} onDeleteClick={() => deleteArticle(item.slug)}  />
       ))}
     </>
    

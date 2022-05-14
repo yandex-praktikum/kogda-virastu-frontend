@@ -6,6 +6,8 @@ import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle, TProfile } from '../types/types';
 import BarTags from './BarTags';
 import { Divider } from '../ui-lib';
+import { useDispatch, useSelector } from '../services/hooks';
+import { addLikeThunk, deleteLikeThunk, deleteArticleThunk } from '../thunks';
 
 const ArticleCardConteiner = styled.div`
     width: 700px;
@@ -101,16 +103,18 @@ color: ${({ theme: { primaryText } }) => primaryText};
 @media screen and (max-width: 320px) {
     grid-column: 1/1;
 }
-
 `;
 
 type TArticleFullPreview = {
   article: TArticle,
   onLikeClick: () => void,
+  onDeleteClick:()=> void,
   isAuthor: boolean,
 };
 
-const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick, isAuthor }) => (
+const ArticleFullPreview: FC<TArticleFullPreview> = ({
+  article, onLikeClick, onDeleteClick, isAuthor }) => (
+  
   <ArticleCardConteiner>
     <AuthorHeadingWidget
       name={article.author?.username}
@@ -119,6 +123,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick, isA
       isLiked={article.favorited}
       likesCount={article.favoritesCount}
       isAuthor={isAuthor}
+      onDeleteClick={onDeleteClick}
       onLikeClick={onLikeClick} />
     <ContentConteiner image={article.link}>
       <ArticleName>{article.title}</ArticleName>
@@ -131,6 +136,6 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick, isA
     </ContentConteiner>
     <Divider distance={0} />
   </ArticleCardConteiner>
-);
+  );
 
 export default ArticleFullPreview;
