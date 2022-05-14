@@ -3,6 +3,7 @@ export type TUser = {
   username: string;
   bio?: string;
   image?:string;
+  nickname?: string;
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -12,6 +13,7 @@ export type TProfile = {
   username: string;
   email: string;
   bio?: string;
+  nickname?: string;
 };
 
 export type TTags = Array<string>;
