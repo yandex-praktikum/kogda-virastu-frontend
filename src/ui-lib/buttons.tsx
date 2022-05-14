@@ -11,6 +11,7 @@ import {
 } from './icons';
 import { getColor, setColor } from '../services/helpers';
 import useMouseEvents from '../services/hooks/use-mouse-events';
+import { RegularText } from './text-elements';
 
 export const iconDistance = 8;
 
@@ -28,10 +29,6 @@ const BasicNormalButton = styled.button<TBasicButtonProps>`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  font-family: ${({ theme: { buttonText: { family } } }) => family};
-  font-size: ${({ theme: { buttonText: { size } } }) => size} px;
-  font-weight: ${({ theme: { buttonText: { weight } } }) => weight};
-  line-height: ${({ theme: { buttonText: { height } } }) => height} px;
   background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
   color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
@@ -55,10 +52,6 @@ const BasicInvertedButton = styled.button<TBasicButtonProps>`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  font-family: ${({ theme: { buttonText: { family } } }) => family};
-  font-size: ${({ theme: { buttonText: { size } } }) => size} px;
-  font-weight: ${({ theme: { buttonText: { weight } } }) => weight};
-  line-height: ${({ theme: { buttonText: { height } } }) => height} px;
   color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
   background-color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
@@ -83,7 +76,9 @@ export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false })
       <EditIcon
         color={theme.button.blue.font}
         distance={iconDistance} />
-      <FormattedMessage id='editArticle' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='editArticle' />
+      </RegularText>
     </BasicNormalButton>
   );
 };
@@ -119,7 +114,9 @@ export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false 
       <DeleteIcon
         color={theme.button.red[setColor(isHovered, isFocused, isActive, !!disabled)]}
         distance={iconDistance} />
-      <FormattedMessage id='deleteArticle' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='deleteArticle' />
+      </RegularText>
     </BasicInvertedButton>
   );
 };
@@ -162,7 +159,9 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
         image={image}
         distance={iconDistance}
         color={theme.button.blue[setColor(isHovered, isFocused, isActive, !!disabled)]} />
-      {name}
+      <RegularText size='large' weight={500}>
+        {name}
+      </RegularText>
     </BasicInvertedButton>
   );
 };
@@ -175,7 +174,9 @@ export const SavePostButton : FC<TButtonProps> = ({ onClick, disabled = false })
 
 export const ConfirmDeleteButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
-    <FormattedMessage id='deleteArticle' />
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='deleteArticle' />
+    </RegularText>
   </BasicNormalButton>
 );
 
@@ -184,7 +185,9 @@ export const FollowButton: FC<TButtonProps> = ({ onClick, disabled = false }) =>
   return (
     <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
       <PlusIcon color={theme.button.blue.font} distance={iconDistance} />
-      <FormattedMessage id='subscribe' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='subscribe' />
+      </RegularText>
     </BasicNormalButton>
   );
 };
@@ -194,37 +197,49 @@ export const UnfollowButton : FC<TButtonProps> = ({ onClick, disabled = false })
   return (
     <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
       <MinusIcon color={theme.button.blue.font} distance={iconDistance} />
-      <FormattedMessage id='unsubscribe' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='unsubscribe' />
+      </RegularText>
     </BasicNormalButton>
   );
 };
 
 export const PostCommentButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
-    <FormattedMessage id='sendComment' />
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='sendComment' />
+    </RegularText>
   </BasicNormalButton>
 );
 
 export const RegisterButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
-    <FormattedMessage id='register' />
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='register' />
+    </RegularText>
   </BasicNormalButton>
 );
 
 export const LoginButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
-    <FormattedMessage id='userLogin' />
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='userLogin' />
+    </RegularText>
   </BasicNormalButton>
 );
 
 export const UpdateProfileButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
-    <FormattedMessage id='refreshUser' />
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='refreshUser' />
+    </RegularText>
   </BasicNormalButton>
 );
 export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
-    <FormattedMessage id='publishArticle' />
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='publishArticle' />
+    </RegularText>
   </BasicNormalButton>
 );
 
@@ -238,7 +253,9 @@ export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = fals
       <AsterixIcon
         color={theme.button.menu.font}
         distance={iconDistance} />
-      <FormattedMessage id='settings' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='settings' />
+      </RegularText>
     </BasicNormalButton>
   );
 };
@@ -253,7 +270,9 @@ export const MenuNewPostButton : FC<TButtonProps> = ({ onClick, disabled = false
       <EditIcon
         color={theme.button.menu.font}
         distance={iconDistance} />
-      <FormattedMessage id='newArticle' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='newArticle' />
+      </RegularText>
     </BasicNormalButton>
   );
 };
@@ -268,7 +287,9 @@ export const MenuLogoutButton : FC<TButtonProps> = ({ onClick, disabled = false 
       <LogoutIcon
         color={theme.button.menu.font}
         distance={iconDistance} />
-      <FormattedMessage id='exitProfile' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='exitProfile' />
+      </RegularText>
     </BasicNormalButton>
   );
 };
