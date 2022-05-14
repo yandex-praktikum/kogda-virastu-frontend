@@ -20,7 +20,6 @@ import { ReactComponent as CrossPic } from '../assets/images/icons/cross-icon.sv
 import { ReactComponent as EyePic } from '../assets/images/icons/eye-icon.svg';
 import { ReactComponent as EyeNoPic } from '../assets/images/icons/eyeNo-icon.svg';
 
-
 import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
 import { blue, greySecondary } from '../constants/colors';
 
@@ -253,5 +252,3 @@ export const EyeNoIcon = styled(EyeNoPic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
-
-

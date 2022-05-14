@@ -16,11 +16,10 @@ import Home from './Home';
 import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
-import {setLanguage} from "../store";
+import { setLanguage } from '../store';
 
 import Footer from '../widgets/Footer';
-import NotFound from '../pages/NotFound'
-
+import NotFound from '../pages/not-found';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,12 +32,12 @@ const App = () => {
     }
   }, [dispatch]);
 
-useEffect(() => {
-  const language = navigator.language.split('-')[0];
-  if (langNames.includes(language)) {
-    dispatch(setLanguage(language));
-  }
-},[dispatch])
+  useEffect(() => {
+    const language = navigator.language.split('-')[0];
+    if (langNames.includes(language)) {
+      dispatch(setLanguage(language));
+    }
+  }, [dispatch]);
   return (
     <div>
       <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 type TTextFieldStyleProps = {
   error: boolean | undefined;
   minHeight?: number;
-}
+};
 
 export const TextFieldStyle = css<TTextFieldStyleProps>`
   box-sizing: border-box;

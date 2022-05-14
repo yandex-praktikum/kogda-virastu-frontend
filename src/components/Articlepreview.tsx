@@ -41,7 +41,7 @@ const ArticlePreview: FC<{ article: TArticle }> = ({ article }) => {
         </div>
 
         <div className='pull-xs-right'>
-          <Likes likesCounterValue={article.favoritesCount} handleClick={handleClick} favorite={article.favorited}/>
+          <Likes likesCounterValue={article.favoritesCount} handleClick={handleClick} favorite={article.favorited} />
           {/* <button className={favoriteButtonClass} type='button' onClick={handleClick}>
             <i className='ion-heart' />
             {' '}

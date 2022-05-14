@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import { batch } from 'react-redux';
+import styled, { useTheme } from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setFeedType, setTag, clearTag } from '../store';
 import { FeedTypes } from '../types/types';
 import Tag from './tag';
-import styled, { useTheme } from 'styled-components';
-
 
 const Title = styled.h3`
     color: ${({ theme }) => theme.primaryText};
@@ -14,7 +13,7 @@ const Title = styled.h3`
     font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
     line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
     margin-bottom: 16px;
-  ;`
+  ;`;
 
 const TagList = styled.div`
   max-width: 360px;
@@ -26,7 +25,7 @@ const TagList = styled.div`
 const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
-  const { tag: activeTag } = useSelector((state) => state.view)
+  const { tag: activeTag } = useSelector((state) => state.view);
   const theme = useTheme();
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
@@ -40,7 +39,7 @@ const PopularTags: FC = () => {
   const deactivateTag = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(clearTag());
-  }
+  };
 
   if (tags) {
     return (
@@ -48,15 +47,13 @@ const PopularTags: FC = () => {
         <Title>Популярные теги</Title>
         <TagList>
           {
-            tags.map((tag) => {
-              return (
-                <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivateTag={deactivateTag} />
-              );
-            })
+            tags.map((tag) => (
+              <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivateTag={deactivateTag} />
+            ))
           }
         </TagList>
       </div>
-      
+
     );
   }
   return (

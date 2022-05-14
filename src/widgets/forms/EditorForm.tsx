@@ -1,6 +1,9 @@
-import React, { useEffect, ChangeEvent, SyntheticEvent, FC, useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "../../services/hooks";
+import React, {
+  useEffect, ChangeEvent, SyntheticEvent, FC, useMemo,
+} from 'react';
+import { useParams } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { useSelector, useDispatch } from '../../services/hooks';
 
 import {
   setTitle,
@@ -10,13 +13,13 @@ import {
   resetArticle,
   setImage,
   clearViewArticle,
-} from "../../store";
+} from '../../store';
 import {
   deleteArticleThunk,
   getArticleThunk,
   patchArticleThunk,
   postArticleThunk,
-} from "../../thunks";
+} from '../../thunks';
 import {
   ButtonContainer,
   ButtonsWrapper,
@@ -24,32 +27,31 @@ import {
   FormContainer,
   FormTitle,
   InputFieldset,
-} from "./forms-styles";
-import { FormattedMessage } from "react-intl";
+} from './forms-styles';
 import {
-  
+
   FieldAboutArticle,
 
   FieldTextArticle,
 
-} from "../../ui-lib/textFields/textAreaFields";
+} from '../../ui-lib/textFields/textAreaFields';
 
-import { DeletePostButton,FieldNameArticle,FieldTegs,FieldUrl,PublishPostButton, SavePostButton } from "../../ui-lib";
-
+import {
+  DeletePostButton, FieldNameArticle, FieldTegs, FieldUrl, PublishPostButton, SavePostButton,
+} from '../../ui-lib';
 
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
-  const { title, description, body, tags, link } =
-    useSelector((state) => state.forms.article) ?? {};
+  const {
+    title, description, body, tags, link,
+  } = useSelector((state) => state.forms.article) ?? {};
   const { isArticleFetching } = useSelector((state) => state.api);
   const { slug } = useParams();
   const initialArticle = useSelector((state) => state.view.article);
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetArticle());
-      dispatch(clearViewArticle());
-    };
+  useEffect(() => () => {
+    dispatch(resetArticle());
+    dispatch(clearViewArticle());
   }, [dispatch]);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ const EditorForm: FC = () => {
     if (slug && !title) {
       dispatch(getArticleThunk(slug));
     }
-  }, [slug])  
+  }, [slug]);
 
   if (slug && isArticleFetching) {
     return <div>Подождите...</div>;
@@ -76,12 +78,12 @@ const EditorForm: FC = () => {
 
   const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setDescription(e.target.value));
-    e.target.style.height = e.target.scrollHeight + 2 + "px";
+    e.target.style.height = `${e.target.scrollHeight + 2}px`;
   };
 
   const onChangeBody = (e: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setBody(e.target.value));
-    e.target.style.height = e.target.scrollHeight + 2 + "px";
+    e.target.style.height = `${e.target.scrollHeight + 2}px`;
   };
 
   const onChangeTags = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,34 +111,29 @@ const EditorForm: FC = () => {
   return (
     <FormContainer>
       <FormTitle>
-        <FormattedMessage id={slug ? "editArticle" : "newArticle"} />
+        <FormattedMessage id={slug ? 'editArticle' : 'newArticle'} />
       </FormTitle>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={24}>
           <FieldNameArticle
-            value={title === "" ? "" : title || initialArticle?.title || ''}
-            onChange={onChangeTitle}
-          />
+            value={title === '' ? '' : title || initialArticle?.title || ''}
+            onChange={onChangeTitle} />
           <FieldAboutArticle
             value={
-              description === "" ? ""
+              description === '' ? ''
                 : description || initialArticle?.description || ''
             }
-            onChange={onChangeDescription}
-          />
+            onChange={onChangeDescription} />
           <FieldUrl
-            value={link === "" ? "" : link || initialArticle?.link || ''}
-            onChange={onChangeImage}
-          />
+            value={link === '' ? '' : link || initialArticle?.link || ''}
+            onChange={onChangeImage} />
           <FieldTextArticle
-            value={body === "" ? "" : body || initialArticle?.body || ''}
+            value={body === '' ? '' : body || initialArticle?.body || ''}
             onChange={onChangeBody}
-            minHeight={300}
-          />
+            minHeight={300} />
           <FieldTegs
-            value={tags === "" ? "" : tags || ""}
-            onChange={onChangeTags}
-          />
+            value={tags === '' ? '' : tags || ''}
+            onChange={onChangeTags} />
         </InputFieldset>
         <ButtonContainer>
           {slug ? (

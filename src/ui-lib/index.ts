@@ -17,7 +17,7 @@ import {
   NoLikeIcon,
   PaperClipIcon,
   EyeIcon,
-  EyeNoIcon
+  EyeNoIcon,
 } from './icons';
 
 import {
