@@ -32,8 +32,8 @@ type TAvatarSize = {
 
 const avatarSize : TAvatarSize = {
   large: {
-    width: 320,
-    height: 320,
+    width: 230,
+    height: 230,
   },
   small: {
     width: 24,

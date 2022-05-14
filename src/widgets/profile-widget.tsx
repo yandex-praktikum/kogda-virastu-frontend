@@ -2,12 +2,17 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { AvatarIcon, FollowButton, UnfollowButton } from '../ui-lib';
 import { TAvatarSizes } from '../types/styles.types';
+import { useDispatch } from '../services/hooks';
+import {
+  unfollowProfileThunk,
+  followProfileThunk,
+} from '../thunks';
 
 type TProfileWidget = {
   userName: string,
   isFollow: boolean,
-  userImage: string,
-  onClick: () => void,
+  userImage: string | undefined,
+
   isUser: boolean,
   size: TAvatarSizes,
   distance: number,
@@ -48,18 +53,29 @@ const UserName = styled.h2`
 const ProfileWidgetButton: FC<{
   isUser: boolean,
   isFollow: boolean,
-  onClick:()=>void
+
 }> = ({
   isUser,
   isFollow,
-  onClick,
+
 }) => {
+  const dispatch = useDispatch();
+
   if (isUser) {
     return null;
   }
 
+  const profileButtonActionSelect = React.useCallback(() => {
+    if (isFollow) {
+      dispatch(unfollowProfileThunk());
+    } else {
+      dispatch(followProfileThunk());
+    }
+  }, [dispatch, isFollow]);
+
   return (
-    isFollow ? <UnfollowButton onClick={onClick} /> : <FollowButton onClick={onClick} />
+    isFollow ? <UnfollowButton onClick={profileButtonActionSelect} />
+      : <FollowButton onClick={profileButtonActionSelect} />
   );
 };
 
@@ -67,7 +83,6 @@ const ProfileWidget: FC<TProfileWidget> = ({
   userName,
   isFollow,
   userImage,
-  onClick,
   isUser,
   size,
   distance,
@@ -76,7 +91,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
   <ProfileContainer>
     <AvatarIcon name={userName} image={userImage} size={size} distance={distance} color={color} />
     <UserName>{userName}</UserName>
-    <ProfileWidgetButton isUser={isUser} isFollow={isFollow} onClick={onClick} />
+    <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
   </ProfileContainer>
 
 );

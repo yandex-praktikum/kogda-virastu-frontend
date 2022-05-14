@@ -5,7 +5,7 @@ import {
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
-import Profile from './Profile/Profile';
+import  Profile  from '../pages/profile';
 import Header from './Header';
 import Editor from '../pages/editor';
 import Register from './Register';
