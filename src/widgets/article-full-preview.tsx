@@ -16,7 +16,7 @@ const ArticleCardConteiner = styled.div`
     gap: 16px;
 
     @media screen and (max-width: 768px) {
-        width: 453px;
+        width: 720px;
     }
 
     @media screen and (max-width:320px) {
@@ -113,8 +113,9 @@ type TArticleFullPreview = {
 };
 
 const ArticleFullPreview: FC<TArticleFullPreview> = ({
-  article, onLikeClick, onDeleteClick, isAuthor }) => (
-  
+  article, onLikeClick, onDeleteClick, isAuthor,
+}) => (
+
   <ArticleCardConteiner>
     <AuthorHeadingWidget
       name={article.author?.username}
@@ -132,10 +133,10 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({
       <Link className='link' to={`/article/${article.slug}`}>
         <FormattedMessage id='articleEnter' />
       </Link>
-      <BarTags image={article.link} tagList={/* test */['jjjj', 'ghgh', 'jjjjbnvnbvn', 'ghghvbvbvb', 'jjjj', 'ghgbvbvbh', 'jjjjbvbvb', 'ghgbvbvbh']} />
+      <BarTags image={article.link} tagList={article.tagList} />
     </ContentConteiner>
     <Divider distance={0} />
   </ArticleCardConteiner>
-  );
+);
 
 export default ArticleFullPreview;

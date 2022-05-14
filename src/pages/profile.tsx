@@ -12,6 +12,11 @@ import {
 } from '../thunks';
 import { clearView } from '../store';
 import ArticleFullPreview from '../widgets/article-full-preview';
+import ProfilePageLayout from '../layouts/profile-page-layout';
+
+
+  
+
 
 
 const Profile: FC = () => {
@@ -20,12 +25,12 @@ const Profile: FC = () => {
     (state) => state.view.profile,
   )
     ?? {
-    username: '',
-    following: false,
-    email: '',
-    bio: '',
-    image: '',
-  };
+      username: '',
+      following: false,
+      email: '',
+      bio: '',
+      image: '',
+    };
   const isUser = useSelector(
     (state) => !!state.profile.username
       && !!state.profile.email
@@ -33,10 +38,6 @@ const Profile: FC = () => {
   );
   const { page, perPage, feed } = useSelector((state) => state.view);
   const params = useParams<{ username: string }>();
-
- 
-
-
 
   useEffect(() => {
     dispatch(getUserProfileThunk(params.username));
@@ -52,31 +53,28 @@ const Profile: FC = () => {
       limit: perPage,
       author: params?.username,
     }));
-  },[dispatch,page, perPage,params.username])
+  }, [dispatch, page, perPage, params.username]);
 
-  
   const onLikeClick = (isLiked: boolean, slug:string): void => {
     if (isLiked) {
-      dispatch(addLikeThunk(slug))
+      dispatch(addLikeThunk(slug));
     } else {
-      dispatch(deleteLikeThunk(slug))
+      dispatch(deleteLikeThunk(slug));
     }
-  } 
+  };
   const deleteArticle = (slug: string): void => {
-    dispatch(deleteArticleThunk(slug))
-  }
-  
+    dispatch(deleteArticleThunk(slug));
+  };
 
   return (
-    <>
-       <ProfileWidget userName={profile.username} isFollow={profile.following} userImage={profile.image} isUser={isUser} size='large' distance={0} color='' />
-      {feed?.map(item => (
-        <ArticleFullPreview article={item} isAuthor={isUser} onLikeClick={()=> onLikeClick(item.favorited, item.slug)} onDeleteClick={() => deleteArticle(item.slug)}  />
+    <ProfilePageLayout>
+      <ProfileWidget userName={profile.username} isFollow={profile.following} userImage={profile.image} isUser={isUser} size='large' distance={0} color='' />
+      {feed?.map((item) => (
+        <ArticleFullPreview article={item} isAuthor={isUser} onLikeClick={() => onLikeClick(item.favorited, item.slug)} onDeleteClick={() => deleteArticle(item.slug)} />
       ))}
-    </>
-   
+    </ProfilePageLayout>
+
   );
 };
-
 
 export default Profile;
