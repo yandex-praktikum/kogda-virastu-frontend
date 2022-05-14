@@ -125,7 +125,7 @@ export const FieldPassword: FC<TFieldInput> = ({
       onChange={onChange}
       labelText='Пароль'
       icon={passwordIcon}
-      isPointerIcon
+
       onIconClick={onIconClick} />
   );
 };
@@ -160,7 +160,7 @@ export const FieldNewPassword: FC<TFieldInput> = ({
       onChange={onChange}
       labelText='Пароль'
       icon={passwordIcon}
-      isPointerIcon
+     
       onIconClick={onIconClick} />
   );
 };

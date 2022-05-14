@@ -4,6 +4,7 @@ import ArticlePreview from './Articlepreview';
 import ListPagination from './ListPagination';
 import { useSelector } from '../services/hooks';
 
+
 const ArticleList:FC = () => {
   const { feed } = useSelector((state) => state.view);
   if (!feed) {
@@ -23,9 +24,9 @@ const ArticleList:FC = () => {
   return (
     <div>
       {
-        feed.map((article : TArticle) => (
-          <ArticlePreview article={article} key={article.slug} />
-        ))
+       /*  feed.map((article : TArticle) => (
+          <ArticleFullPreview onLikeClick={()=> console.log('f')} article={article} isAuthor={false}  />
+        )) */
       }
 
       <ListPagination />
