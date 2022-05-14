@@ -10,7 +10,12 @@ import {
   JWT,
 } from './api.constants';
 
-import { mobileBreakpoint, tabletBreakpoint, desktopBreakpoint } from './screen-sizes';
+import {
+  mobileBreakpoint,
+  tabletBreakpoint,
+  desktopBreakpoint,
+  mobileViewThreshold,
+} from './screen-sizes';
 
 export {
   API_ROOT,
@@ -25,4 +30,5 @@ export {
   mobileBreakpoint,
   tabletBreakpoint,
   desktopBreakpoint,
+  mobileViewThreshold,
 };

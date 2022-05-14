@@ -26,6 +26,7 @@ type TAPIState = {
   isFollowProfileDeleting: boolean,
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
+  isAllPostsRequested: boolean,
 };
 
 const initialState: TAPIState = {
@@ -53,6 +54,7 @@ const initialState: TAPIState = {
   isFollowProfileDeleting: false,
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
+  isAllPostsRequested: false,
 };
 
 const apiSlice = createSlice({
@@ -76,6 +78,15 @@ const apiSlice = createSlice({
     }),
     clearErrorObject: (state: TAPIState) => ({
       ...state, errorObject: null,
+    }),
+    allPostsRequested: (state: TAPIState) => ({
+      ...state, isAllPostsRequested: true,
+    }),
+    allPostsRequestSucceeded: (state: TAPIState) => ({
+      ...state, isAllPostsRequested: false,
+    }),
+    allPostsRequestFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserRegistering: false, errorObject: action.payload,
     }),
     userRegistrationRequested: (state: TAPIState) => ({
       ...state, isUserRegistering: true,
@@ -331,5 +342,8 @@ export const {
   settingsPatchRequested,
   settingsPatchSucceeded,
   settingsResetUpdateSucceeded,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
 } = apiSlice.actions;
 export default apiReducer;
