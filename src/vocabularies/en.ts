@@ -35,6 +35,7 @@ const en : TVocabulary = {
   usersettings: 'Your setings',
   publishArticle: 'Publish your material',
   pageMessage: 'Page not found. To read blog, go to Home',
+  publishComment: 'Post comment',
 };
 
 export default en;

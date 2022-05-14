@@ -31,6 +31,7 @@ import {
 
 import {
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,
@@ -68,6 +69,8 @@ import {
   clearTag,
   setArtistProfile,
   clearPage,
+  setTopFeed,
+  clearTopFeed,
 } from './viewSlice';
 
 import {
@@ -130,6 +133,9 @@ import {
   followProfileDeleteRequested,
   followProfileDeleteSucceeded,
   followProfileDeleteFailed,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
 } from './apiSlice';
 
 import {
@@ -169,6 +175,7 @@ export {
   setBioProfile,
   setImageProfile,
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,
@@ -177,6 +184,8 @@ export {
   clearUser,
   setViewFeed,
   clearViewFeed,
+  setTopFeed,
+  clearTopFeed,
   setFeedCount,
   setViewTags,
   clearViewTags,
@@ -261,4 +270,7 @@ export {
   resetComment,
   openMenu,
   closeMenu,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
 };
