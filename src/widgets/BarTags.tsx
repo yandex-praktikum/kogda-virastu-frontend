@@ -11,7 +11,7 @@ type TBarTags = {
 
 type TLists = {
   image: string | undefined,
-}
+};
 
 const Lists = styled.ul<TLists>`
     display: flex;
@@ -24,7 +24,7 @@ const Lists = styled.ul<TLists>`
     padding:0;
     @media screen and (max-width:768px) {
         max-width:453px;
-        ${(props)=> props.image && `margin-left: -60px`}
+        ${(props) => props.image && 'margin-left: -60px'}
      }
      @media screen and (max-width:320px) {
         max-width:352px;
@@ -37,7 +37,7 @@ const List = styled.li`
     list-style-type: none;
 `;
 
-export const BarTags:FC<TBarTags> = ({ tagList, image }) => {
+const BarTags:FC<TBarTags> = ({ tagList, image }) => {
   const { tag: activeTag } = useSelector((state) => state.view);
   return (
     <Lists image={image}>

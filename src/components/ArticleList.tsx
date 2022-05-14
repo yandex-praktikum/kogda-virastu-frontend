@@ -3,7 +3,7 @@ import { TArticle } from '../types/types';
 import ArticlePreview from './Articlepreview';
 import ListPagination from './ListPagination';
 import { useSelector } from '../services/hooks';
-import { ArticleFullPreview } from '../widgets/ArticleFullPreview';
+
 
 const ArticleList:FC = () => {
   const { feed } = useSelector((state) => state.view);
@@ -24,9 +24,9 @@ const ArticleList:FC = () => {
   return (
     <div>
       {
-        feed.map((article : TArticle) => (
-          <ArticleFullPreview onLikeClick={()=> console.log('f')} article={article} isAuthor={true}  />
-        ))
+       /*  feed.map((article : TArticle) => (
+          <ArticleFullPreview onLikeClick={()=> console.log('f')} article={article} isAuthor={false}  />
+        )) */
       }
 
       <ListPagination />

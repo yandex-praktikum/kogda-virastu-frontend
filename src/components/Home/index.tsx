@@ -26,7 +26,7 @@ const Home: FC = () => {
     <div className='home-page'>
       <ProfileWidget
         userName='goga'
-        isFollow
+        isFollow={false}
         userImage='fggf'
         onClick={() => console.log('ff')}
         isUser={false}
