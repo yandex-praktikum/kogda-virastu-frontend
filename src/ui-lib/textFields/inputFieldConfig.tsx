@@ -36,8 +36,6 @@ type TInputInterface = {
   onFocus?(e?: React.FocusEvent<HTMLInputElement>): void;
 };
 
-
-
 export const InputField = ({
   type, placeholder, value, name, error, icon = null, errorText, onChange, onIconClick, onBlur, onFocus,
   disabled, labelText,

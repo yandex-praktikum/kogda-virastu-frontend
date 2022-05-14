@@ -8,12 +8,8 @@ import PopularTags from '../../widgets/PopularTags';
 import { clearView } from '../../store';
 import getAllTagsThunk from '../../thunks/get-all-tags-thunk';
 
-
-
-import { DeletePostButton, EditPostButton } from "../../ui-lib/buttons";
+import { DeletePostButton, EditPostButton } from '../../ui-lib/buttons';
 import ProfileWidget from '../../widgets/profile-widget';
-
-
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -27,15 +23,15 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
-      <ProfileWidget userName={'goga'}
-        isFollow={true}
-        userImage={'fggf'}
+      <ProfileWidget
+        userName='goga'
+        isFollow
+        userImage='fggf'
         onClick={() => console.log('ff')}
         isUser={false}
-        size={'large'}
-        color={'red'}
-        distance={8}
-      />
+        size='large'
+        color='red'
+        distance={8} />
       <Banner />
       <div className='container page'>
         <div className='row'>

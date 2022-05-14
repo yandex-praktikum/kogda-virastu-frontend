@@ -17,7 +17,7 @@ import {
   NoLikeIcon,
   PaperClipIcon,
   EyeIcon,
-  EyeNoIcon
+  EyeNoIcon,
 } from './icons';
 
 import {
@@ -108,5 +108,5 @@ export {
   HeaderFourText,
   HeaderFiveText,
   RegularText,
- 
+
 };

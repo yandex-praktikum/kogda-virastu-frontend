@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 type TInputFieldsetProps = {
   rowGap: number;
-}
+};
 
 export const FormContainer = styled.div`
   padding: 16px 0 0 0;

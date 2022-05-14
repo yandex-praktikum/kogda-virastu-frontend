@@ -5,7 +5,7 @@ import { TextFieldStyle, LabelStyle, ErorText } from './textFields-styles';
 type TTextAreaStyleProps = {
   error: boolean | undefined;
   minHeight?: number;
-}
+};
 
 const TextAreaStyle = styled.textarea<TTextAreaStyleProps>`
   ${TextFieldStyle}
@@ -39,7 +39,7 @@ type TTextAreaInterface = {
 
 export const TextAreaField = ({
   placeholder, value, name, error, errorText, onChange, onBlur, onFocus,
-  disabled, labelText, minHeight
+  disabled, labelText, minHeight,
 }: TTextAreaInterface) => (
   <ContainerTextArea>
     <LabelStyle>
@@ -54,8 +54,7 @@ export const TextAreaField = ({
         onFocus={onFocus}
         onBlur={onBlur}
         minHeight={minHeight}
-        rows={1}
-      />
+        rows={1} />
     </LabelStyle>
     {error && <ErorText erorText={errorText} />}
   </ContainerTextArea>

@@ -37,5 +37,5 @@ export {
   loginUserThunk,
   getUserThunk,
   patchArticleThunk,
-  postArticleThunk
+  postArticleThunk,
 };

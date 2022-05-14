@@ -14,7 +14,7 @@ const initialState : TArticleFormState = {
   description: null,
   body: null,
   tags: null,
-  link: null
+  link: null,
 };
 
 const articleSubSlice = createSlice({
