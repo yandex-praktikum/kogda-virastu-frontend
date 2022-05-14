@@ -267,6 +267,12 @@ export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false
   </BasicNormalButton>
 );
 
+export const PublishCommentButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <FormattedMessage id='publishComment' />
+  </BasicNormalButton>
+);
+
 export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (

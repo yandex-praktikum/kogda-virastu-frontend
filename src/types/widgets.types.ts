@@ -26,3 +26,15 @@ export type TBriefPostAnnounceProps = {
   likesCount: number;
   onLikeClick: React.MouseEventHandler<SVGSVGElement>;
 };
+
+export type TAuthorProps = {
+  userName: string,
+  createAt: Date,
+  imageSrc?: string,
+};
+
+export type TCommentInputProps = TAuthorProps & {
+  onChangeArea(e: React.ChangeEvent<HTMLTextAreaElement>): void;
+  onButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+  disabledButton?: boolean | undefined;
+};
