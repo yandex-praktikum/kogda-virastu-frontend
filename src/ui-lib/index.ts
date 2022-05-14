@@ -33,6 +33,9 @@ import {
   PublishPostButton,
   SavePostButton,
   ConfirmDeleteButton,
+  MenuNewPostButton,
+  MenuSettingsButton,
+  MenuLogoutButton,
 } from './buttons';
 
 import {
@@ -108,5 +111,7 @@ export {
   HeaderFourText,
   HeaderFiveText,
   RegularText,
-
+  MenuNewPostButton,
+  MenuSettingsButton,
+  MenuLogoutButton,
 };
