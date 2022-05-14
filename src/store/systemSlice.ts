@@ -7,6 +7,7 @@ type TSystemState = {
   appName: string;
   currentTheme: string,
   currentLang: string,
+  isMenuOpen: boolean,
 };
 
 const initialState: TSystemState = {
@@ -14,6 +15,7 @@ const initialState: TSystemState = {
   appName: 'Real World',
   currentTheme: defaultTheme,
   currentLang: defaultLang,
+  isMenuOpen: false,
 };
 
 const systemSlice = createSlice({
@@ -28,6 +30,12 @@ const systemSlice = createSlice({
     setLanguage: (state: TSystemState, action: PayloadAction<string>) => ({
       ...state, currentLang: action.payload,
     }),
+    openMenu: (state: TSystemState) => ({
+      ...state, isMenuOpen: true,
+    }),
+    closeMenu: (state: TSystemState) => ({
+      ...state, isMenuOpen: false,
+    }),
   },
 });
 
@@ -37,5 +45,7 @@ export const {
   onLogout,
   setTheme,
   setLanguage,
+  openMenu,
+  closeMenu,
 } = systemSlice.actions;
 export default systemReducer;
