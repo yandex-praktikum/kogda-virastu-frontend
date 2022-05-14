@@ -9,6 +9,7 @@ import TopAnnounceWidget from './top-announce-widget';
 import Comment from './comment';
 import CommentInput from './comment-input';
 
+import Article from './article';
 
 export {
   Author,
@@ -21,4 +22,5 @@ export {
   TopAnnounceWidget,
   Comment,
   CommentInput,
+  Article,
 };
