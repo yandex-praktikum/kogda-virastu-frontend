@@ -66,6 +66,30 @@ const BasicInvertedButton = styled.button<TBasicButtonProps>`
     }
 `;
 
+const MenuButton = styled.button<TBasicButtonProps>`
+  padding: 8px 16px;
+  border-radius: 4px;
+  border-width: 0;
+  width: 172px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  background-color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
+
+  &:hover {
+    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
+    }
+  &:active {
+    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    }
+  &:focus {
+    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    }
+`;
+
 export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (
@@ -143,7 +167,7 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
     },
   } = useMouseEvents({});
   return (
-    <BasicInvertedButton
+    <MenuButton
       colorScheme='blue'
       disabled={disabled}
       onClick={onClick}
@@ -159,10 +183,10 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
         image={image}
         distance={iconDistance}
         color={theme.button.blue[setColor(isHovered, isFocused, isActive, !!disabled)]} />
-      <RegularText size='large' weight={500} clampLines heightLimit={40}>
+      <RegularText size='large' weight={500} clampLines heightLimit={40} align='left'>
         {name}
       </RegularText>
-    </BasicInvertedButton>
+    </MenuButton>
   );
 };
 
