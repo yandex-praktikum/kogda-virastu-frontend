@@ -26,6 +26,7 @@ import {
   setEmailProfile,
   setBioProfile,
   setImageProfile,
+  setNicknameProfile,
 } from './profileFormSubSlice';
 
 import {
@@ -163,6 +164,7 @@ export {
   changePasswordRegister,
   resetFormRegister,
   setUsernameProfile,
+  setNicknameProfile,
   setEmailProfile,
   setBioProfile,
   setImageProfile,
