@@ -17,7 +17,7 @@ export type TTheme = {
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
   labelColor: string,
-  headerNofound:string,
+  //headerNofound:string,
   inputField: {
     defaultBorder: string;
     borderHover: string;
@@ -125,6 +125,7 @@ export type TTextProps = {
   paddingCSS?: string;
   clampLines?: boolean;
   heightLimit?: number;
+  align?: string;
 };
 
 export type TFontSizeTypes = 'small' | 'medium' | 'large';

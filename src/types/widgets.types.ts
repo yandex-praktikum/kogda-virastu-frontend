@@ -1,7 +1,7 @@
 export type TAuthorHeadingProps = {
   image?: string;
   name: string;
-  date: Date;
+  date: string 
   isAuthor: boolean;
   isLiked: boolean;
   likesCount: number;

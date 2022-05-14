@@ -43,7 +43,7 @@ const CreateDate = styled.p`
 
 type TAuthorProps = {
   userName: string,
-  createAt: Date,
+  createAt: string,
   imageSrc?: string,
 };
 

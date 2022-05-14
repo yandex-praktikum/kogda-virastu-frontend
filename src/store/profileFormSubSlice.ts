@@ -3,6 +3,7 @@ import { TUser } from '../types/types';
 
 type TProfileFormState = {
   username: string | null;
+  nickname: string | null;
   email: string | null;
   bio: string | null;
   image: string | null;
@@ -11,6 +12,7 @@ type TProfileFormState = {
 
 const initialState: TProfileFormState = {
   username: null,
+  nickname: null,
   email: null,
   bio: null,
   image: null,
@@ -23,6 +25,9 @@ const profileSubSlice = createSlice({
   reducers: {
     setUsernameProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
       ...state, username: action.payload,
+    }),
+    setNicknameProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+      ...state, nickname: action.payload,
     }),
     setEmailProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
       ...state, email: action.payload,
@@ -51,6 +56,7 @@ const profileSubSlice = createSlice({
 const profileReducer = profileSubSlice.reducer;
 export const {
   setUsernameProfile,
+  setNicknameProfile,
   setEmailProfile,
   setBioProfile,
   setImageProfile,

@@ -6,6 +6,8 @@ import getAvatarBorderProp from './get-avatar-border-prop';
 import setColor from './set-color';
 import testImageUrl from './test-image-url';
 import getLinesClamp from './get-lines-clamp';
+import getOptionalProp from './get-optional-prop';
+
 
 export {
   makeErrorMessage,
@@ -16,4 +18,5 @@ export {
   setColor,
   testImageUrl,
   getLinesClamp,
+  getOptionalProp,
 };
