@@ -159,7 +159,7 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
         image={image}
         distance={iconDistance}
         color={theme.button.blue[setColor(isHovered, isFocused, isActive, !!disabled)]} />
-      <RegularText size='large' weight={500}>
+      <RegularText size='large' weight={500} clampLines heightLimit={40}>
         {name}
       </RegularText>
     </BasicInvertedButton>
