@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FormattedDate } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { AvatarIcon } from '../../ui-lib/icons';
+import { TAuthorProps } from '../../types/widgets.types';
 
 const AuthorContainer = styled.div`
   display: flex;
@@ -41,19 +42,13 @@ const CreateDate = styled.p`
   margin: 0;
 `;
 
-type TAuthorProps = {
-  userName: string,
-  createAt: Date,
-  imageSrc?: string,
-};
-
 const Author: FC<TAuthorProps> = ({ userName, createAt, imageSrc }) => (
   <AuthorContainer>
-    <Link to={userName}>
+    <Link to={`/${userName}`}>
       <AvatarIcon color='none' size='small' name={userName} image={imageSrc} />
     </Link>
     <AuthorContainerInfo>
-      <UserNameLink to={userName}>{userName}</UserNameLink>
+      <UserNameLink to={`/${userName}`}>{userName}</UserNameLink>
       <CreateDate>
         <FormattedDate
           value={createAt}

@@ -4,9 +4,9 @@ import { CrossIcon } from '../ui-lib';
 
 interface ITagProps {
   tag: string,
-  handleClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
+  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
   isActive: boolean,
-  inactiveTag: MouseEventHandler<SVGSVGElement>,
+  inactiveTag?: MouseEventHandler<SVGSVGElement>,
 }
 
 type TTagButtonProps = {
@@ -25,18 +25,13 @@ const Button = styled.button<TTagButtonProps>`
     align-items: center;
     color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
     background-color: transparent;
-
+    
     :active {
       outline: none;
     }
   `;
 
-interface ITagProps {
-  tag: string,
-  handleClick?(e: React.MouseEvent<HTMLButtonElement>, tag: string): void,
-  isActive: boolean,
-  deactivateTag?: MouseEventHandler<SVGSVGElement>,
-}
+
 
 const Tag: FC<ITagProps> = ({
   tag, handleClick, isActive, deactivateTag,

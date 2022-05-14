@@ -6,6 +6,9 @@ import ProfileWidget from './profile-widget';
 import AuthorHeadingMiniWidget from './author-heading-widget';
 import HeaderMenuWidget from './header-menu-widget';
 import TopAnnounceWidget from './top-announce-widget';
+import Comment from './comment';
+import CommentInput from './comment-input';
+
 
 export {
   Author,
@@ -16,4 +19,6 @@ export {
   AuthorHeadingMiniWidget,
   HeaderMenuWidget,
   TopAnnounceWidget,
+  Comment,
+  CommentInput,
 };

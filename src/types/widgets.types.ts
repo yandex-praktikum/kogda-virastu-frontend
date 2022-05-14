@@ -1,7 +1,7 @@
 export type TAuthorHeadingProps = {
   image?: string;
   name: string;
-  date: Date;
+  date: string 
   isAuthor: boolean;
   isLiked: boolean;
   likesCount: number;
@@ -27,6 +27,18 @@ export type TBriefPostAnnounceProps = {
   onLikeClick: React.MouseEventHandler<SVGSVGElement>;
 };
 
+
 export type TTopAnnounceWidgetProps = {
   caption : string;
+
+export type TAuthorProps = {
+  userName: string,
+  createAt: Date,
+  imageSrc?: string,
+};
+
+export type TCommentInputProps = TAuthorProps & {
+  onChangeArea(e: React.ChangeEvent<HTMLTextAreaElement>): void;
+  onButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+  disabledButton?: boolean | undefined;
 };

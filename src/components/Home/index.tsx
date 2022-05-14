@@ -13,6 +13,7 @@ import ProfileWidget from '../../widgets/profile-widget';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
+ 
 
   useEffect(() => {
     dispatch(getAllTagsThunk());
@@ -25,7 +26,7 @@ const Home: FC = () => {
     <div className='home-page'>
       <ProfileWidget
         userName='goga'
-        isFollow
+        isFollow={false}
         userImage='fggf'
         onClick={() => console.log('ff')}
         isUser={false}
@@ -40,6 +41,7 @@ const Home: FC = () => {
             <PopularTags />
             <EditPostButton onClick={() => console.log('Меня нажали!!')} />
             <DeletePostButton onClick={() => console.log('Меня удалительно нажали!!')} />
+           
           </div>
         </div>
       </div>
