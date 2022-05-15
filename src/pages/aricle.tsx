@@ -1,12 +1,8 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useDispatch, useSelector } from '../services/hooks';
-import {
-  deleteCommentThunk,
-  getCommentsThunk,
-} from '../thunks';
+import { useSelector } from '../services/hooks';
 import {
   Article,
   CommentInput,

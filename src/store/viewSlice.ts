@@ -81,11 +81,9 @@ const viewSlice = createSlice({
     clearTag: (state: TViewState) => ({
       ...state, tag: null,
     }),
-    setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => {
-      const { commentsFeed } = state;
-      const newCommentsFeed = commentsFeed ? [...commentsFeed, ...action.payload] : action.payload;
-      return { ...state, commentsFeed: newCommentsFeed };
-    },
+    setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
+      ...state, commentsFeed: action.payload,
+    }),
     clearViewCommentsFeed: (state: TViewState) => ({
       ...state, commentsFeed: [],
     }),
