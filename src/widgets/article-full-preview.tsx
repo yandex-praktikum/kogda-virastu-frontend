@@ -140,7 +140,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({
       <Link className='link' to={`/article/${article.slug}`}>
         <FormattedMessage id='articleEnter' />
       </Link>
-      <BarTags image={article.link} tagList={article.tagList} />
+      <BarTags isHasImage={!!article.link} rowReverse tagList={/* test */['jjjj', 'ghgh', 'jjjjbnvnbvn', 'ghghvbvbvb', 'jjjj', 'ghgbvbvbh', 'jjjjbvbvb', 'ghgbvbvbh']} />
     </ContentConteiner>
     <Divider distance={0} />
   </ArticleCardConteiner>

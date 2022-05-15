@@ -101,6 +101,7 @@ export const HeaderFourText = styled.h4<THeaderTextProps>`
   -webkit-line-clamp: ${({ lines }) => (lines || 2)};
   -webkit-box-orient: vertical;
   overflow: hidden;
+  white-space: nowrap;
   color: ${({ color }) => (color || 'inherit')};
   ${({ marginCSS }) => (marginCSS || 'margin: 0;')};
   ${({ paddingCSS }) => (paddingCSS || 'padding: 0;')};

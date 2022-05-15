@@ -7,7 +7,8 @@ const Footer: FC = () => {
   const theme = useTheme();
 
   const FooterStyled = styled.footer`
-    position: relative;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -44,7 +45,7 @@ const Footer: FC = () => {
     margin: 0;
     color: ${theme.secondaryText};
     white-space: nowrap;
-    font: 400 16px/24px 'Alegreya Sans';
+    font: ${theme.footerText.weight} ${theme.footerText.size}px/${theme.footerText.height}px ${theme.footerText.family};
   `;
 
   const TextCreatedBy = styled(Text)`
@@ -57,7 +58,7 @@ const Footer: FC = () => {
 
   return (
     <FooterStyled>
-      <Divider />
+      <Divider distance={0} />
       <Container>
         <Text>
           &copy;&nbsp;

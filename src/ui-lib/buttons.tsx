@@ -7,7 +7,7 @@ import {
 } from '../types/styles.types';
 
 import {
-  EditIcon, AvatarIcon, DeleteIcon, PlusIcon, MinusIcon, AsterixIcon, LogoutIcon,
+  EditIcon, AvatarIcon, DeleteIcon, PlusIcon, MinusIcon, AsterixIcon, LogoutIcon, HomeIcon, LoginIcon,
 } from './icons';
 import { getColor, setColor } from '../services/helpers';
 import useMouseEvents from '../services/hooks/use-mouse-events';
@@ -267,6 +267,12 @@ export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false
   </BasicNormalButton>
 );
 
+export const PublishCommentButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <FormattedMessage id='publishComment' />
+  </BasicNormalButton>
+);
+
 export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (
@@ -317,3 +323,37 @@ export const MenuLogoutButton : FC<TButtonProps> = ({ onClick, disabled = false 
     </BasicNormalButton>
   );
 };
+
+export const HomeButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <HomeIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='headerLink' />
+      </RegularText>
+    </BasicNormalButton>
+  );
+};
+
+export const HeaderLoginButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <LoginIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='userLogin' />
+      </RegularText>
+    </BasicNormalButton>
+  );
+}

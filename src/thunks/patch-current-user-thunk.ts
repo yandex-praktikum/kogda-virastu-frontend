@@ -20,6 +20,7 @@ const patchCurrentUserThunk: AppThunk = () => async (
     email: profile.email || '',
     bio: profile.bio || '',
     image: profile.image || '',
+    nickname: profile.nickname || '',
   };
 
   if (profile.password) {
@@ -29,13 +30,13 @@ const patchCurrentUserThunk: AppThunk = () => async (
     const {
       data: {
         user: {
-          username, email, bio, image,
+          username, email, bio, image, nickname,
         },
       },
     } = await patchCurrentUser(userData);
     batch(() => {
       dispatch(setUser({
-        username, email, bio, image,
+        username, email, bio, image, nickname,
       }));
       dispatch(resetFormProfile());
       dispatch(settingsPatchSucceeded());
