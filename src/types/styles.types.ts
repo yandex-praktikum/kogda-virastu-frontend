@@ -47,7 +47,16 @@ export type TTheme = {
   text12Sans: TFontProperties,
   text18: TFontProperties,
   text16: TFontProperties,
+  text118Sans: TFontProperties,
+  text102Sans: TFontProperties,
+  text86Sans: TFontProperties,
+  text40Sans: TFontProperties,
+  text26SubSans: TFontProperties,
+  text18SubSans: TFontProperties,
+  text16SubSans: TFontProperties,
+  footerText: TFontProperties,
 };
+
 export type TThemes = {
   [key: string]: TTheme;
 };

@@ -9,6 +9,8 @@ import { jwt } from '../services/api';
 import { getPublicFeedThunk, getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { setLanguage } from '../store';
+import Header from '../widgets/Header';
+import Footer from '../widgets/Footer';
 
 /* import NotFound from '../pages/not-found'; */
 
@@ -34,11 +36,11 @@ const App = () => {
                     themes[currentTheme ?? defaultTheme]
                     ?? basicThemes[currentTheme ?? defaultTheme]
                 }>
-        {/* Тут будет шапка */}
+        <Header />
         <Routes>
           {/* Тут будет роутинг  */}
         </Routes>
-        {/* Тут будет подвал */}
+        <Footer />
       </ThemeProvider>
     </IntlProvider>
   );

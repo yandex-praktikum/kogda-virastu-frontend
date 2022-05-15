@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import Profile from './Profile/Profile';
-import Header from './Header';
+// import Header from './Header';
 import Editor from '../pages/editor';
 import Register from './Register';
 import Login from './Login';
@@ -17,8 +17,8 @@ import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { setLanguage } from '../store';
+import Header from '../widgets/Header';
 
-import Footer from '../widgets/Footer';
 import NotFound from '../pages/not-found';
 
 const App = () => {

@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { closeMenu, onLogout } from '../store';
 
 const HeaderMenuWrapper = styled.nav`
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -39,21 +42,3 @@ const HeaderMenuWidget : FC = () => {
 };
 
 export default HeaderMenuWidget;
-
-// Сниппет добавления меню в шапку
-/*
-  const dispatch = useDispatch();
-  const { isMenuOpen } = useSelector((state) => state.system);
-  const { nickname, username, image } = useSelector((store) => store.profile);
-
-  const onOpenMenuClick : MouseEventHandler<HTMLButtonElement> = () => dispatch(openMenu());
-
-{ isMenuOpen ? (
-              <HeaderMenuWidget />
-            ) : (
-              <OpenMenuButton
-                onClick={onOpenMenuClick}
-                name={(nickname ?? username) || ''}
-                image={image || ''} />
-            )}
- */
