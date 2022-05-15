@@ -16,15 +16,16 @@ const registerThunk: AppThunk = () => async (dispatch: AppDispatch, getState: ()
   const usernameReg = reg.username ?? '';
   const emailReg = reg.email ?? '';
   const passwordReg = reg.password ?? '';
+  const nicknameReg = reg.nickname ?? '';
   dispatch(userRegistrationRequested());
   try {
     const {
       data: {
         user: {
-          username, email, token, bio = '', image = '',
+          username, email, token, bio = '', image = '', nickname = '',
         },
       },
-    } = await registerUser(usernameReg, emailReg, passwordReg);
+    } = await registerUser(usernameReg, emailReg, passwordReg, nicknameReg);
     jwt.set(token);
     batch(() => {
       dispatch(setUser({
@@ -32,6 +33,7 @@ const registerThunk: AppThunk = () => async (dispatch: AppDispatch, getState: ()
         email,
         bio,
         image,
+        nickname,
       }));
       dispatch(userRegistrationSucceeded());
     });

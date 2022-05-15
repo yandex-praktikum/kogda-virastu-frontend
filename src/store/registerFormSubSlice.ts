@@ -3,13 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 type TRegisterFormState = {
   username: string | null,
   email: string | null,
-  password: string | null
+  password: string | null,
+  nickname: string | null,
 };
 
 const initialState: TRegisterFormState = {
   username: null,
   email: null,
   password: null,
+  nickname: null,
 };
 
 const registerFormSubSlice = createSlice({
@@ -27,6 +29,9 @@ const registerFormSubSlice = createSlice({
     changePasswordRegister: (state : TRegisterFormState, action: PayloadAction<string>) => ({
       ...state, password: action.payload,
     }),
+    changeNicknameRegister: (state : TRegisterFormState, action: PayloadAction<string>) => ({
+      ...state, nickname: action.payload,
+    }),
     resetFormRegister: (state : TRegisterFormState) => ({
       ...state, ...initialState,
     }),
@@ -38,6 +43,7 @@ export const {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeNicknameRegister,
   resetFormRegister,
 } = registerFormSubSlice.actions;
 export default registerReducer;

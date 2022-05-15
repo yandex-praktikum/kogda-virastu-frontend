@@ -11,6 +11,7 @@ type TFieldInput = {
   errorText?: string;
   onBlur?(e?: React.FocusEvent<HTMLTextAreaElement>): void;
   onChange(e: React.ChangeEvent<HTMLTextAreaElement>): void;
+  isHasBorder?: boolean;
 };
 
 export const FieldAboutArticle: FC<TFieldInput> = ({
@@ -41,4 +42,20 @@ export const FieldTextArticle: FC<TFieldInput> = ({
     onChange={onChange}
     labelText='Текст статьи'
     minHeight={minHeight} />
+);
+
+export const FieldTextComment: FC<TFieldInput & { isHasBorder?: boolean }> = ({
+  value, onBlur, onChange, placeholder, error, errorText, minHeight, isHasBorder,
+}) => (
+  <TextAreaField
+    placeholder={placeholder}
+    name='FieldTextComment'
+    errorText={errorText}
+    error={error}
+    onBlur={onBlur}
+    value={value}
+    onChange={onChange}
+    minHeight={minHeight}
+    isHasBorder={isHasBorder}
+  />
 );
