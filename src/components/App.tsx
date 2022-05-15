@@ -16,7 +16,11 @@ import Home from './Home';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { setLanguage } from '../store';
+
+import {Main} from '../pages/main'
+
 import Header from '../widgets/Header';
+
 
 import NotFound from '../pages/not-found';
 import ArticlePage from '../pages/aricle';
@@ -48,8 +52,13 @@ const App = () => {
           <Header />
     
           <Routes>
+
+            <Route path='/' element={<Main />} />
+            <Route path='/article/:id' element={<Article />} />
+
             <Route path='/' element={<Home />} />
             <Route path='/article/:id' element={<ArticlePage />} />
+
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/settings' element={<Settings />} />

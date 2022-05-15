@@ -14,12 +14,9 @@ const BriefPostAnnounceWrapper = styled.li`
   align-items: flex-start;
   max-height: 150px;
   width: 100%;
-  @media screen and (max-width: 600px) {
-    display: none;
-  }
 `;
 
-const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
+export const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
   name,
   title,
   image,
