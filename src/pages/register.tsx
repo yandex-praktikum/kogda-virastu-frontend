@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RegisterForm from "../widgets/forms/RegisterForm";
+import RegisterForm from '../widgets/forms/register-form';
 
 const Page = styled.section`
   width: 100%;

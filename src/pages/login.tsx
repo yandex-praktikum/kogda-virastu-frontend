@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LoginForm from "../widgets/forms/LoginForm";
+import LoginForm from '../widgets/forms/login-form';
 
 const Page = styled.section`
   width: 100%;
