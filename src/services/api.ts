@@ -134,16 +134,18 @@ export const registerUser : IRegisterUser = (
   username: string,
   email: string,
   password: string,
+  nickname,
 ) : AxiosPromise<TAPIAuth> => {
   const registerData : TAPINewUser = {
-    user: { username, email, password },
+    user: {
+      username, email, password, nickname,
+    },
   };
   const requestConfig : AxiosRequestConfig = {
     url: REGISTER_ROUTE,
     data: registerData,
     method: 'post',
   };
-  // eslint-disable @typescript-eslint/no-unsafe-return
   return blogAPI(requestConfig);
 };
 
@@ -175,7 +177,7 @@ export const patchCurrentUser : IPatchUser = (
 ) : AxiosPromise<TAPIAuth> => {
   const makePatchData = (data : TAPIPatchUserData) : TAPIPatchUserData => {
     const {
-      username, email, password, bio, image,
+      username, email, password, bio, image, nickname,
     } = data;
     let res = {};
     if (username) {
@@ -192,6 +194,9 @@ export const patchCurrentUser : IPatchUser = (
     }
     if (image) {
       res = { ...res, link: image };
+    }
+    if (nickname) {
+      res = { ...res, nickname };
     }
     return res;
   };

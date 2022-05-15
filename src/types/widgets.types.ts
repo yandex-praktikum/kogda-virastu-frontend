@@ -1,7 +1,9 @@
+import React from 'react';
+
 export type TAuthorHeadingProps = {
   image?: string;
   name: string;
-  date: string 
+  date: Date;
   isAuthor: boolean;
   isLiked: boolean;
   likesCount: number;
@@ -27,9 +29,9 @@ export type TBriefPostAnnounceProps = {
   onLikeClick: React.MouseEventHandler<SVGSVGElement>;
 };
 
-
 export type TTopAnnounceWidgetProps = {
-  caption : string;
+  caption: string;
+};
 
 export type TAuthorProps = {
   userName: string,
@@ -41,4 +43,13 @@ export type TCommentInputProps = TAuthorProps & {
   onChangeArea(e: React.ChangeEvent<HTMLTextAreaElement>): void;
   onButtonClick: React.MouseEventHandler<HTMLButtonElement>;
   disabledButton?: boolean | undefined;
+};
+
+interface IGenericVoidHandler {
+  () : void;
+}
+
+export type TModalProps = {
+  onClose: IGenericVoidHandler;
+  onSubmit: IGenericVoidHandler;
 };

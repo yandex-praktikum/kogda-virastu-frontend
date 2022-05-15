@@ -18,6 +18,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeNicknameRegister,
   resetFormRegister,
 } from './registerFormSubSlice';
 
@@ -145,6 +146,8 @@ import {
   setLanguage,
   openMenu,
   closeMenu,
+  openConfirm,
+  closeConfirm,
 } from './systemSlice';
 
 export {
@@ -168,6 +171,7 @@ export {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeNicknameRegister,
   resetFormRegister,
   setUsernameProfile,
   setNicknameProfile,
@@ -273,4 +277,6 @@ export {
   allPostsRequested,
   allPostsRequestSucceeded,
   allPostsRequestFailed,
+  openConfirm,
+  closeConfirm,
 };
