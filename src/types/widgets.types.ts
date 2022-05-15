@@ -3,7 +3,7 @@ import React from 'react';
 export type TAuthorHeadingProps = {
   image?: string;
   name: string;
-  date: string
+  date: Date;
   isAuthor: boolean;
   isLiked: boolean;
   likesCount: number;
