@@ -1,7 +1,6 @@
-import React, { FC } from "react";
-import styled, {useTheme} from "styled-components";
-import { mainBgColor } from "../constants/colors";
-
+import React, { FC } from 'react';
+import styled, { useTheme } from 'styled-components';
+import { mainBgColor } from '../constants/colors';
 
 const ProfilePageLayout = styled.section`
     width:100%;

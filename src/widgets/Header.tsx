@@ -13,8 +13,8 @@ import FigureRight from '../assets/images/header/header-right-figure.svg';
 import FigureEllipse from '../assets/images/header/header-left-right-figure-ellipse.svg';
 
 const HeaderStyled = styled.header`
-  position: fixed;
-  top: 0;
+  //position: fixed;
+  //top: 0;
   width: 100%;
   padding: 0;
 `;

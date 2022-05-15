@@ -53,7 +53,6 @@ const Profile: FC = () => {
   const onLikeClick = (isLiked: boolean, slug:string): void => {
     if (isLiked) {
       dispatch(deleteLikeThunk(slug));
-      
     } else {
       dispatch(addLikeThunk(slug));
     }

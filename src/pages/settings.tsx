@@ -8,14 +8,10 @@ const Page = styled.section`
   justify-content: center;
 `;
 
-const Settings = () => {
-
-  return (
-    <Page>
-      <SettingsForm />
-    </Page>
-  )
-
-}
+const Settings = () => (
+  <Page>
+    <SettingsForm />
+  </Page>
+);
 
 export default Settings;

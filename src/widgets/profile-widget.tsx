@@ -64,8 +64,8 @@ const ProfileWidgetButton: FC<{
   if (isUser) {
     return null;
   }
-  
- /*  const profileButtonActionSelect = React.useCallback(() => {
+
+  /*  const profileButtonActionSelect = React.useCallback(() => {
     if (isFollow) {
       dispatch(unfollowProfileThunk());
     } else {
@@ -74,8 +74,8 @@ const ProfileWidgetButton: FC<{
   }, [dispatch, isFollow]);
  */
   return (
-    isFollow ? <UnfollowButton onClick={()=> dispatch(unfollowProfileThunk()) } />
-      : <FollowButton onClick={()=> dispatch(followProfileThunk())} />
+    isFollow ? <UnfollowButton onClick={() => dispatch(unfollowProfileThunk())} />
+      : <FollowButton onClick={() => dispatch(followProfileThunk())} />
   );
 };
 

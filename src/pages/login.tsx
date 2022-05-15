@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import LoginForm from '../widgets/forms/login-form';
 
 const Page = styled.section`
@@ -8,14 +8,10 @@ const Page = styled.section`
   justify-content: center;
 `;
 
-const Login = () => {
-
-  return (
-    <Page>
-      <LoginForm />
-    </Page>
-  )
-
-}
+const Login = () => (
+  <Page>
+    <LoginForm />
+  </Page>
+);
 
 export default Login;

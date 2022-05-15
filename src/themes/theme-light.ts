@@ -109,7 +109,7 @@ const themeLight: TTheme = {
   text26SubSans: mainTextSans26,
   text18SubSans: mainTextSans18,
   text16SubSans: mainTextSans16,
-  footerText: footerText,
+  footerText,
 };
 
 export default themeLight;

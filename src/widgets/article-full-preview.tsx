@@ -116,14 +116,10 @@ color: ${({ theme: { primaryText } }) => primaryText};
 
 type TArticleFullPreview = {
   article: TArticle,
-  onDeleteClick:()=> void,
   onLikeClick: MouseEventHandler,
-  isAuthor: boolean,
 };
 
-const ArticleFullPreview: FC<TArticleFullPreview> = ({
-  article, onLikeClick, onDeleteClick, isAuthor,
-}) => (
+const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => (
 
   <ArticleCardConteiner>
     <AuthorHeadingWidget
@@ -132,8 +128,6 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({
       date={new Date(article.createdAt)}
       isLiked={article.favorited}
       likesCount={article.favoritesCount}
-      isAuthor={isAuthor}
-      onDeleteClick={onDeleteClick}
       onLikeClick={onLikeClick} />
     <ContentConteiner image={article.link}>
       <ArticleName>{article.title}</ArticleName>

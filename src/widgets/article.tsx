@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import { resetArticle } from '../store';
-import { addLikeThunk, deleteArticleThunk, deleteLikeThunk, getArticleThunk } from '../thunks';
+import {
+  addLikeThunk, deleteArticleThunk, deleteLikeThunk, getArticleThunk,
+} from '../thunks';
 import { TArticle } from '../types/types';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
 import BarTags from './BarTags';
@@ -106,13 +108,6 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getArticleThunk(slug));
-    return () => {
-      dispatch(resetArticle());
-    };
-  }, [dispatch, slug]);
-
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
@@ -171,6 +166,6 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );
-}
+};
 
 export default Article;

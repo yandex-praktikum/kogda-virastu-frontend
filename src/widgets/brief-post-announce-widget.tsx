@@ -16,7 +16,7 @@ const BriefPostAnnounceWrapper = styled.li`
   width: 100%;
 `;
 
-export const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
+const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
   name,
   title,
   image,
