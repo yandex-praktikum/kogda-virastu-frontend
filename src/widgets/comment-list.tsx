@@ -38,7 +38,6 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
   if (!comments || !comments.length) {
     return null;
   }
-  console.log(comments)
   return (
     <List>
       {comments.map((comment) => (
