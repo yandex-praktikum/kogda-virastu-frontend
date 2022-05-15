@@ -33,7 +33,14 @@ import {
   defaultTextSans16,
   defaultTextSans12,
   defaultTextSansMed18,
-
+  mainTextSans118,
+  mainTextSans102,
+  mainTextSans86,
+  mainTextSans40,
+  mainTextSans26,
+  mainTextSans18,
+  mainTextSans16,
+  footerText,
 } from '../constants/fontsconfigs';
 import { TTheme } from '../types/styles.types';
 
@@ -93,6 +100,14 @@ const themeLight: TTheme = {
   text12Sans: defaultTextSans12,
   text18: defaultText18,
   text16: defaultText16,
+  text118Sans: mainTextSans118,
+  text102Sans: mainTextSans102,
+  text86Sans: mainTextSans86,
+  text40Sans: mainTextSans40,
+  text26SubSans: mainTextSans26,
+  text18SubSans: mainTextSans18,
+  text16SubSans: mainTextSans16,
+  footerText: footerText,
 };
 
 export default themeLight;

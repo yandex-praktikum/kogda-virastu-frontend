@@ -6,7 +6,7 @@ const ru : TVocabulary = {
   newArticle: 'Новая запись',
   settings: 'Настройки',
   exitProfile: 'Выйти',
-  mainTitle: 'Когда Вырасту',
+  mainTitle: 'Когда вырасту',
   mainSubtitle: 'Каково быть джуном  в турбулентном мире',
   popularTags: 'Популярные тэги',
   popularContent: 'Популярные материалы',

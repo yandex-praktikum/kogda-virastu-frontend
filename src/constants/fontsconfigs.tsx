@@ -98,6 +98,69 @@ const defaultTextSansMed18 : TFontProperties = {
   family: 'Alegreya Sans',
 };
 
+const mainTextSans118 : TFontProperties = {
+  weight: 400,
+  size: 118,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const mainTextSans102 : TFontProperties = {
+  weight: 400,
+  size: 102,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const mainTextSans86 : TFontProperties = {
+  weight: 400,
+  size: 86,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const mainTextSans40 : TFontProperties = {
+  weight: 400,
+  size: 40,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const mainTextSans26 : TFontProperties = {
+  weight: 500,
+  size: 26,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const mainTextSans18 : TFontProperties = {
+  weight: 500,
+  size: 18,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const mainTextSans16 : TFontProperties = {
+  weight: 500,
+  size: 16,
+  height:
+    100,
+  family: 'Alegreya Sans',
+};
+
+const footerText : TFontProperties = {
+  weight: 400,
+  size: 16,
+  height: 24,
+  family: 'Alegreya Sans',
+};
+
 const defaultFontSizes : TDefaultFontSizes = {
   large: {
     size: 18,
@@ -131,4 +194,12 @@ export {
   defaultH3Mobile,
   defaultH4Mobile,
   defaultH5Mobile,
+  mainTextSans118,
+  mainTextSans102,
+  mainTextSans86,
+  mainTextSans40,
+  mainTextSans26,
+  mainTextSans18,
+  mainTextSans16,
+  footerText,
 };
