@@ -67,6 +67,8 @@ import {
 
 import Divider from './divider';
 
+import { FieldTextComment } from './textFields/textAreaFields';
+
 const GlobalStyles = createGlobalStyle`
   ${normalize}
 `;
@@ -125,4 +127,5 @@ export {
   MenuNewPostButton,
   MenuSettingsButton,
   MenuLogoutButton,
+  FieldTextComment,
 };

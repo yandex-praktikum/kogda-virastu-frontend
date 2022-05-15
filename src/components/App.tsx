@@ -20,6 +20,7 @@ import { setLanguage } from '../store';
 import Header from '../widgets/Header';
 
 import NotFound from '../pages/not-found';
+import ArticlePage from '../pages/aricle';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const App = () => {
 
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/article/:id' element={<Article />} />
+            <Route path='/article/:id' element={<ArticlePage />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/settings' element={<Settings />} />
