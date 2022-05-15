@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { /* Route, */ Routes } from 'react-router-dom';
+import {  Route,  Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -12,8 +12,14 @@ import { setLanguage } from '../store';
 import Header from '../widgets/Header';
 import Footer from '../widgets/Footer';
 import Profile from '../pages/profile';
+import NotFound from '../pages/not-found';
+import Main from '../pages/main';
+import Login from '../pages/login';
+import Register from '../pages/register';
+import Settings from '../pages/settings';
+import ArticlePage from '../pages/aricle';
+import Editor from '../pages/editor';
 
-/* import NotFound from '../pages/not-found'; */
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,8 +44,16 @@ const App = () => {
                     ?? basicThemes[currentTheme ?? defaultTheme]
                 }>
         <Header />
-       
         <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/settings' element={<Settings />} />
+        <Route path='/registration' element={<Register />} />
+        <Route path='/:username' element={<Profile />} />
+        <Route path='/editArticle' element={<Editor />} />
+        <Route path='/:username' element={<Profile />} />
+        <Route path='/articles/:user' element={<ArticlePage />} />
+        <Route path='*' element={<NotFound />} />
           {/* Тут будет роутинг  */}
         </Routes>
         <Footer />

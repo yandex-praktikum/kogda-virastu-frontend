@@ -8,7 +8,7 @@ import store from './store/store';
 import { AlegreyaSansFonts, AlegreyaFonts } from './vendor/fonts';
 import GlobalStyles from './ui-lib';
 
-import App from './components/App';
+import App from './app/app';
 
 const rootDiv = document.getElementById('root');
 const rootNode = createRoot(rootDiv as Element);
