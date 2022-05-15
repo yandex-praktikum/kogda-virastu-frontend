@@ -40,6 +40,7 @@ const ArticleName = styled.h2`
     line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
     font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
     color: ${({ theme: { primaryText } }) => primaryText};
+    
  @media screen and (max-width: 768px) {
         font-size: ${({ theme: { secondLevelHeadingMobile: { size } } }) => `${size}px`} ;
         font-family: ${({ theme: { secondLevelHeadingMobile: { family } } }) => family};
@@ -73,7 +74,7 @@ const ContentConteiner = styled.div<TElementWithImage>`
         &:active {
             color: ${(props) => props.theme.button.red.active};
         }
-        @media screen and (max-width: 320px) {
+        @media screen and (max-width: 500px) {
         
         ${(props) => (props.image ? 'grid-row: 5/6 ' : 'grid-row: 4/5')};
         margin-top: -8px;
@@ -100,6 +101,7 @@ font-family: ${({ theme: { text18Sans: { family } } }) => family};
 line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`};
 font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
 color: ${({ theme: { primaryText } }) => primaryText};
+
  ${((props) => !props.image && 'grid-column: 1/3')};
 @media screen and (max-width: 768px) {
     font-size: ${({ theme: { text16Sans: { size } } }) => `${size}px`};

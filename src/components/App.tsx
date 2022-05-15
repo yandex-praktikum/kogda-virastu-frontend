@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import  Profile  from '../pages/profile';
-import Header from './Header';
+
 import Editor from '../pages/editor';
 import Register from './Register';
 import Login from './Login';
@@ -46,7 +46,7 @@ const App = () => {
           ?? basicThemes[currentTheme ?? defaultTheme]
         }>
           <Header />
-
+          <Profile />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/article/:id' element={<Article />} />

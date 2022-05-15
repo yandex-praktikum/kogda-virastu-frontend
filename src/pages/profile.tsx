@@ -14,18 +14,13 @@ import { clearView } from '../store';
 import ArticleFullPreview from '../widgets/article-full-preview';
 import ProfilePageLayout from '../layouts/profile-page-layout';
 
-
-  
-
-
-
 const Profile: FC = () => {
   const dispatch = useDispatch();
   const profile = useSelector(
     (state) => state.view.profile,
   )
     ?? {
-      username: '',
+      nickname: '',
       following: false,
       email: '',
       bio: '',
@@ -57,9 +52,10 @@ const Profile: FC = () => {
 
   const onLikeClick = (isLiked: boolean, slug:string): void => {
     if (isLiked) {
-      dispatch(addLikeThunk(slug));
-    } else {
       dispatch(deleteLikeThunk(slug));
+      
+    } else {
+      dispatch(addLikeThunk(slug));
     }
   };
   const deleteArticle = (slug: string): void => {
@@ -72,8 +68,10 @@ const Profile: FC = () => {
         userName={profile.username}
         isFollow={profile.following}
         userImage={profile.image}
-        isUser={isUser} size='large'
-        distance={0} color='' />
+        isUser={isUser}
+        size='large'
+        distance={0}
+        color='' />
       {feed?.map((item) => (
         <ArticleFullPreview
           article={item}

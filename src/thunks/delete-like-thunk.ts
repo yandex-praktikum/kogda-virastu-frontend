@@ -19,7 +19,7 @@ const deleteLikeThunk: AppThunk = (slug: string) => async (
     const { data: { article } } = await deleteLikeArticle(slug);
     // Type Guard - в TAllState допускается null,  в TArticles - нет
     const articles = getState().view.feed ?? [];
-    dispatch(setViewFeed(articles?.filter((item) => (item.slug !== article.slug))));
+    dispatch(setViewFeed(articles?.map((item) => item.slug === article.slug ? {...item, favorited: false, favoritesCount:item.favoritesCount-1}  : item )));
     dispatch(likeArticleDeleteSucceeded());
   } catch (error) {
     dispatch(likeArticleDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));
