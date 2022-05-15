@@ -8,7 +8,7 @@ import HeaderMenuWidget from './header-menu-widget';
 import TopAnnounceWidget from './top-announce-widget';
 import Comment from './comment';
 import CommentInput from './comment-input';
-
+import Modal from './modal';
 
 export {
   Author,
@@ -21,4 +21,5 @@ export {
   TopAnnounceWidget,
   Comment,
   CommentInput,
+  Modal,
 };
