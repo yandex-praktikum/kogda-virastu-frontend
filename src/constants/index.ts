@@ -16,6 +16,8 @@ import {
   desktopBreakpoint,
   mobileViewThreshold,
   mobileViewModal,
+  headerHeightAtBreakpoint,
+  footerHeightAtBreakpoint,
 } from './screen-sizes';
 
 export {
@@ -33,4 +35,6 @@ export {
   desktopBreakpoint,
   mobileViewThreshold,
   mobileViewModal,
+  headerHeightAtBreakpoint,
+  footerHeightAtBreakpoint,
 };

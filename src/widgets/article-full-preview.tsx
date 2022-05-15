@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import AuthorHeadingWidget from './author-heading-widget';
-import { TArticle, TProfile } from '../types/types';
+import { TArticle } from '../types/types';
 import BarTags from './BarTags';
 import { Divider } from '../ui-lib';
 
@@ -106,7 +106,7 @@ color: ${({ theme: { primaryText } }) => primaryText};
 
 type TArticleFullPreview = {
   article: TArticle,
-  onLikeClick: () => void,
+  onLikeClick: MouseEventHandler,
   isAuthor: boolean,
 };
 
@@ -115,7 +115,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick, isA
     <AuthorHeadingWidget
       name={article.author?.username}
       image={article.author.image}
-      date={article.createdAt}
+      date={new Date(article.createdAt)}
       isLiked={article.favorited}
       likesCount={article.favoritesCount}
       isAuthor={isAuthor}
