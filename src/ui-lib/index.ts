@@ -43,10 +43,10 @@ import {
   FieldLogin,
   FieldEmail,
   FieldPassword,
-  FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTegs,
+  FieldNick,
 }
   from './textFields/inputFields';
 
@@ -101,7 +101,7 @@ export {
   FieldLogin,
   FieldEmail,
   FieldPassword,
-  FieldNewPassword,
+  FieldNick,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTegs,

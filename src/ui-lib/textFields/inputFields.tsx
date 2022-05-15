@@ -1,30 +1,20 @@
 import React, { FC, useState } from 'react';
-import InputField from './inputFieldConfig';
+import { InputField } from './inputFieldConfig';
 import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
+import { TFieldInput } from '../../types/styles.types';
 
-type TFieldInput = {
-  name?: string;
-  value: string;
-  error?: boolean;
-  disabled?: boolean;
-  placeholder?: string;
-  errorText?: string;
-  onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-};
 export const FieldUrl: FC<TFieldInput> = ({
   value,
-  name = 'FieldUrl',
   onBlur,
   onChange,
-  placeholder = 'Введите URL',
+  placeholder = '',
   error = false,
   errorText = '',
   disabled = false,
 }) => (
   <InputField
     placeholder={placeholder}
-    name={name}
+    name='FieldURL'
     type='url'
     errorText={errorText}
     error={error}
@@ -39,7 +29,7 @@ export const FieldProfileImage: FC<TFieldInput> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  placeholder = '',
   error,
   errorText,
 }) => (
@@ -59,7 +49,7 @@ export const FieldLogin: FC<TFieldInput> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  placeholder = '',
   error,
   errorText,
 }) => (
@@ -74,11 +64,30 @@ export const FieldLogin: FC<TFieldInput> = ({
     onChange={onChange}
     labelText='Имя пользователя' />
 );
+export const FieldNick: FC<TFieldInput> = ({
+  value,
+  onBlur,
+  onChange,
+  placeholder = '',
+  error,
+  errorText,
+}) => (
+  <InputField
+    placeholder={placeholder}
+    name='FieldNick'
+    type='text'
+    errorText={errorText}
+    error={error}
+    onBlur={onBlur}
+    value={value}
+    onChange={onChange}
+    labelText='Отображаемое имя' />
+);
 export const FieldEmail: FC<TFieldInput> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  placeholder = '',
   error,
   errorText,
 }) => (
@@ -93,13 +102,15 @@ export const FieldEmail: FC<TFieldInput> = ({
     onChange={onChange}
     labelText='Email' />
 );
-export const FieldPassword: FC<TFieldInput> = ({
+export const FieldPassword: FC<TFieldInput & { label?: string, name?: string }> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  name = 'FieldPassword',
   error,
   errorText,
+  label = 'Пароль',
+  placeholder = '',
 }) => {
   const [passwordState,
     setPasswordState] = useState<'password' | 'text'>('password');
@@ -116,59 +127,24 @@ export const FieldPassword: FC<TFieldInput> = ({
   return (
     <InputField
       placeholder={placeholder}
-      name='Password'
+      name={name}
       type={passwordState}
       errorText={errorText}
       error={error}
       onBlur={onBlur}
       value={value}
       onChange={onChange}
-      labelText='Пароль'
+      labelText={label}
       icon={passwordIcon}
+      onIconClick={onIconClick} />
+  );
+};
 
-      onIconClick={onIconClick} />
-  );
-};
-export const FieldNewPassword: FC<TFieldInput> = ({
-  value,
-  onBlur, onChange,
-  placeholder,
-  error,
-  errorText,
-}) => {
-  const [passwordState,
-    setPasswordState] = useState<'password' | 'text'>('password');
-  const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color='grey' />);
-  const onIconClick = () => {
-    if (passwordState === 'password') {
-      setPasswordState('text');
-      setPasswordIcon(<EyeIcon color='grey' />);
-    } else {
-      setPasswordState('password');
-      setPasswordIcon(<EyeNoIcon color='grey' />);
-    }
-  };
-  return (
-    <InputField
-      placeholder={placeholder}
-      name='Password'
-      type={passwordState}
-      errorText={errorText}
-      error={error}
-      onBlur={onBlur}
-      value={value}
-      onChange={onChange}
-      labelText='Пароль'
-      icon={passwordIcon}
-     
-      onIconClick={onIconClick} />
-  );
-};
 export const FieldDescriptionArticle: FC<TFieldInput> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  placeholder = '',
   error,
   errorText,
 }) => (
@@ -187,7 +163,7 @@ export const FieldNameArticle: FC<TFieldInput> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  placeholder = '',
   error,
   errorText,
 }) => (
@@ -206,7 +182,7 @@ export const FieldTegs: FC<TFieldInput> = ({
   value,
   onBlur,
   onChange,
-  placeholder,
+  placeholder = '',
   error,
   errorText,
 }) => (
