@@ -24,6 +24,7 @@ import Header from '../widgets/Header';
 
 import NotFound from '../pages/not-found';
 import ArticlePage from '../pages/aricle';
+import Footer from '../widgets/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const App = () => {
             <Route path='/:username' element={<Profile />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
+          <Footer />
         </ThemeProvider>
       </IntlProvider>
     </div>
