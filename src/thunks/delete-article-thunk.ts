@@ -2,7 +2,7 @@ import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
 import { AppThunk, AppDispatch, RootState } from '../store/store.types';
 import {
-  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles,
+  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles,setViewFeed,
 } from '../store';
 import { deleteArticle } from '../services/api';
 import { TAPIError } from '../services/api.types';
@@ -16,9 +16,9 @@ const deleteArticleThunk: AppThunk = (slug: string) => async (
   try {
     const { status } = await deleteArticle(slug);
     if (status === 204) {
-      const articles = getState().all.articles ?? [];
+      const articles = getState().view.feed ?? [];
       batch(() => {
-        dispatch(setAllArticles(articles?.filter((item) => item.slug !== slug)));
+        dispatch(setViewFeed(articles?.filter((item) => item.slug !== slug)));
         dispatch(articleDeleteSucceeded());
         // TODO: Надо перезапросить текущие статьи, или на странице будет меньше статей чем надо
       });

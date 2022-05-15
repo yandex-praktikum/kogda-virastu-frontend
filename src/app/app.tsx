@@ -11,6 +11,7 @@ import basicThemes, { defaultTheme } from '../themes/index';
 import { setLanguage } from '../store';
 import Header from '../widgets/Header';
 import Footer from '../widgets/Footer';
+import Profile from '../pages/profile';
 
 /* import NotFound from '../pages/not-found'; */
 
@@ -37,6 +38,7 @@ const App = () => {
                     ?? basicThemes[currentTheme ?? defaultTheme]
                 }>
         <Header />
+       
         <Routes>
           {/* Тут будет роутинг  */}
         </Routes>
