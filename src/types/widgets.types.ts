@@ -51,3 +51,7 @@ export type TModalProps = {
   onClose: IGenericVoidHandler;
   onSubmit: IGenericVoidHandler;
 };
+
+export type TScrollRibbonProps = {
+  children: JSX.Element,
+};
