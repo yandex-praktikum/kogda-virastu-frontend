@@ -15,6 +15,7 @@ import {
   tabletBreakpoint,
   desktopBreakpoint,
   mobileViewThreshold,
+  mobileViewModal,
 } from './screen-sizes';
 
 export {
@@ -31,4 +32,5 @@ export {
   tabletBreakpoint,
   desktopBreakpoint,
   mobileViewThreshold,
+  mobileViewModal,
 };

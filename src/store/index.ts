@@ -145,6 +145,8 @@ import {
   setLanguage,
   openMenu,
   closeMenu,
+  openConfirm,
+  closeConfirm,
 } from './systemSlice';
 
 export {
@@ -273,4 +275,6 @@ export {
   allPostsRequested,
   allPostsRequestSucceeded,
   allPostsRequestFailed,
+  openConfirm,
+  closeConfirm,
 };
