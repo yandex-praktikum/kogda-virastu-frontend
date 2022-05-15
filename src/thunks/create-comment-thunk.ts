@@ -6,7 +6,7 @@ import {
   commentPostRequested,
   commentPostSucceeded,
   commentPostFailed,
-  setViewCommentFeed,
+  setViewCommentsFeed,
   resetComment,
 } from '../store';
 import { TAPIError } from '../services/api.types';
@@ -16,15 +16,17 @@ const createCommentThunk: AppThunk = (slug: string) => async (
   dispatch: AppDispatch,
   getState: () => RootState,
 ) => {
-  const comment = getState().forms.comment.comment ?? '';
+  const newComment = getState().forms.comment.comment ?? '';
   try {
-    dispatch(commentPostRequested());
-    const { data } = await postComment(slug, comment);
-    batch(() => {
-      dispatch(setViewCommentFeed(data.comment));
-      dispatch(resetComment());
-      dispatch(commentPostSucceeded());
-    });
+    if (newComment) {
+      dispatch(commentPostRequested());
+      const { data: { comment } } = await postComment(slug, newComment);
+      batch(() => {
+        dispatch(setViewCommentsFeed([comment]));
+        dispatch(resetComment());
+        dispatch(commentPostSucceeded());
+      });
+    }
   } catch (error) {
     dispatch(commentPostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }

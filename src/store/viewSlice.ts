@@ -11,13 +11,13 @@ type TViewState = {
   tagsList: TTags | null;
   selectedTags: TTags | null;
   tag: string | null,
-  commentsFeed: TComments;
+  commentsFeed: TComments | null;
   comment: TComment | null;
   page: number;
   perPage: number;
   profile: TProfile | null;
   feedType: FeedTypes;
-  articlesType:UserArticlesTypes;
+  articlesType: UserArticlesTypes;
   topFeed: TArticles | null;
 };
 
@@ -28,7 +28,7 @@ const initialState: TViewState = {
   tagsList: null,
   selectedTags: null,
   tag: null,
-  commentsFeed: [],
+  commentsFeed: null,
   comment: null,
   page: 1,
   perPage: 10,
@@ -54,7 +54,7 @@ const viewSlice = createSlice({
     clearTopFeed: (state: TViewState) => ({
       ...state, topFeed: null,
     }),
-    setFeedCount: (state: TViewState, action : PayloadAction<number>) => ({
+    setFeedCount: (state: TViewState, action: PayloadAction<number>) => ({
       ...state, feedCount: action.payload,
     }),
     setViewTags: (state: TViewState, action: PayloadAction<TTags>) => ({
@@ -81,12 +81,11 @@ const viewSlice = createSlice({
     clearTag: (state: TViewState) => ({
       ...state, tag: null,
     }),
-    setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
-      ...state, commentsFeed: action.payload,
-    }),
-    setViewCommentFeed: (state: TViewState, action: PayloadAction<TComment>) => ({
-      ...state, commentsFeed: [...state.commentsFeed, action.payload],
-    }),
+    setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => {
+      const { commentsFeed } = state;
+      const newCommentsFeed = commentsFeed ? [...commentsFeed, ...action.payload] : action.payload;
+      return { ...state, commentsFeed: newCommentsFeed };
+    },
     clearViewCommentsFeed: (state: TViewState) => ({
       ...state, commentsFeed: [],
     }),
@@ -135,7 +134,6 @@ export const {
   setSelectedTags,
   clearSelectedTags,
   setViewCommentsFeed,
-  setViewCommentFeed,
   clearViewCommentsFeed,
   selectViewComment,
   clearViewComment,
