@@ -32,8 +32,8 @@ type TAvatarSize = {
 
 const avatarSize : TAvatarSize = {
   large: {
-    width: 320,
-    height: 320,
+    width: 230,
+    height: 230,
   },
   small: {
     width: 24,
@@ -79,6 +79,7 @@ export const DeleteIcon = styled(BasketPic)<TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
+  cursor: pointer;
   margin-right: ${({ distance }) => distance ?? 0}px;
   & > path {
     stroke: ${({ color }) => color};

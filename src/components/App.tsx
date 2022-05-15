@@ -5,22 +5,25 @@ import {
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
-import Profile from './Profile/Profile';
-import Header from './Header';
+import  Profile  from '../pages/profile';
+
 import Editor from '../pages/editor';
 import Register from './Register';
 import Login from './Login';
 import Settings from './Settings/Settings';
 import { jwt } from '../services/api';
 import Home from './Home';
-import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { setLanguage } from '../store';
+
 import {Main} from '../pages/main'
 
-import Footer from '../widgets/Footer';
+import Header from '../widgets/Header';
+
+
 import NotFound from '../pages/not-found';
+import ArticlePage from '../pages/aricle';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,10 +50,15 @@ const App = () => {
           ?? basicThemes[currentTheme ?? defaultTheme]
         }>
           <Header />
-
+    
           <Routes>
+
             <Route path='/' element={<Main />} />
             <Route path='/article/:id' element={<Article />} />
+
+            <Route path='/' element={<Home />} />
+            <Route path='/article/:id' element={<ArticlePage />} />
+
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/settings' element={<Settings />} />

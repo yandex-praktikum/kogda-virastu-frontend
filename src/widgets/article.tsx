@@ -1,17 +1,17 @@
-import React, { FC, MouseEventHandler } from 'react';
+import React, { FC, MouseEventHandler, useEffect } from 'react';
 import { FormattedDate } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from '../services/hooks';
+import { resetArticle } from '../store';
+import { addLikeThunk, deleteArticleThunk, deleteLikeThunk, getArticleThunk } from '../thunks';
 import { TArticle } from '../types/types';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
 import BarTags from './BarTags';
 import Likes from './likes';
 
 type TArticleProps = {
-  isAuthor: boolean;
-  article: TArticle;
-  onClickEdit: MouseEventHandler<HTMLButtonElement>;
-  onClickDelete: MouseEventHandler<HTMLButtonElement>;
-  onClickLike: MouseEventHandler<SVGSVGElement>;
+  slug: string;
 };
 
 type TArticleActionsProps = {
@@ -23,6 +23,8 @@ const ArticleContainer = styled.div`
   display: flex;
   flex-flow: column  nowrap;
   gap: 24px 0;
+  width: 100%;
+  max-width: 700px;
   @media screen and (max-width:768px) {
     gap: 16px 0;
  }
@@ -61,7 +63,7 @@ const ArticleCreateDate = styled.p`
   grid-row: 1; 
 `;
 
-const ArticleLikeWrapper = styled.p`
+const ArticleLikeWrapper = styled.div`
   grid-row: 1;
   justify-self: end;
 `;
@@ -100,38 +102,75 @@ const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }
   </ArticleActionsContainer>
 );
 
-const Article: FC<TArticleProps> = ({
-  article, isAuthor, onClickEdit, onClickDelete, onClickLike,
-}) => (
-  <ArticleContainer>
-    {isAuthor && (
-      <ArticleActions onClickDelete={onClickDelete} onClickEdit={onClickEdit} />
-    )}
+const Article: FC<TArticleProps> = ({ slug }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    <ArticleTitle>{article.title}</ArticleTitle>
-    <ArticleAuthorContainer>
-      <ArticleAuthor>{article.author.username}</ArticleAuthor>
-      <ArticleCreateDate>
-        <FormattedDate
-          value={article.createdAt}
-          year='numeric'
-          month='long'
-          day='2-digit'
-          weekday='short' />
-      </ArticleCreateDate>
-      <ArticleLikeWrapper>
-        <Likes
-          likesCounterValue={article.favoritesCount}
-          handleClick={onClickLike}
-          favorite={article.favorited} />
-      </ArticleLikeWrapper>
-    </ArticleAuthorContainer>
-    {article.link && (
-      <ArticleImage src={article.link} />
-    )}
-    <ArticleBody>{article.body}</ArticleBody>
-    <BarTags tagList={article.tagList} />
-  </ArticleContainer>
-);
+  useEffect(() => {
+    dispatch(getArticleThunk(slug));
+    return () => {
+      dispatch(resetArticle());
+    };
+  }, [dispatch, slug]);
+
+  const { article } = useSelector((state) => state.view);
+  const currentUser = useSelector((state) => state.profile);
+  const isAuthor = article?.author.username === currentUser.username;
+
+  const onClickDelete = () => {
+    if (article) {
+      dispatch(deleteArticleThunk(article.slug));
+    }
+  };
+
+  const onClickEdit = () => {
+    if (article && slug) {
+      navigate(`/editor/${slug}`);
+    }
+  };
+
+  const onClickLike = (ev: React.MouseEvent) => {
+    ev.preventDefault();
+    if (article?.favorited) {
+      dispatch(deleteLikeThunk(slug));
+    } else {
+      dispatch(addLikeThunk(slug));
+    }
+  };
+
+  if (!article) {
+    return null;
+  }
+  return (
+    <ArticleContainer>
+      {isAuthor && (
+        <ArticleActions onClickDelete={onClickDelete} onClickEdit={onClickEdit} />
+      )}
+      <ArticleTitle>{article.title}</ArticleTitle>
+      <ArticleAuthorContainer>
+        <ArticleAuthor>{article.author.username}</ArticleAuthor>
+        <ArticleCreateDate>
+          <FormattedDate
+            value={article.createdAt}
+            year='numeric'
+            month='long'
+            day='2-digit'
+            weekday='short' />
+        </ArticleCreateDate>
+        <ArticleLikeWrapper>
+          <Likes
+            likesCounterValue={article.favoritesCount}
+            handleClick={onClickLike}
+            favorite={article.favorited} />
+        </ArticleLikeWrapper>
+      </ArticleAuthorContainer>
+      {article.link && (
+        <ArticleImage src={article.link} />
+      )}
+      <ArticleBody>{article.body}</ArticleBody>
+      <BarTags tagList={article.tagList} />
+    </ArticleContainer>
+  );
+}
 
 export default Article;

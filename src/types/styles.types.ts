@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 export type TColorSet = {
   default: string;
@@ -47,7 +47,16 @@ export type TTheme = {
   text12Sans: TFontProperties,
   text18: TFontProperties,
   text16: TFontProperties,
+  text118Sans: TFontProperties,
+  text102Sans: TFontProperties,
+  text86Sans: TFontProperties,
+  text40Sans: TFontProperties,
+  text26SubSans: TFontProperties,
+  text18SubSans: TFontProperties,
+  text16SubSans: TFontProperties,
+  footerText: TFontProperties,
 };
+
 export type TThemes = {
   [key: string]: TTheme;
 };
@@ -143,4 +152,16 @@ export type TDefaultFontSizes = {
 
 export type TDividerProps = {
   distance: number;
+};
+
+export type TInputFieldType = 'text' | 'email' | 'password' | 'url';
+
+export type TFieldInput = {
+  value: string;
+  placeholder?: string;
+  error?: boolean;
+  disabled?: boolean;
+  errorText?: string;
+  onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
 };

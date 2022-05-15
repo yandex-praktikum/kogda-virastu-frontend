@@ -24,15 +24,7 @@ const Home: FC = () => {
 
   return (
     <div className='home-page'>
-      <ProfileWidget
-        userName='goga'
-        isFollow={false}
-        userImage='fggf'
-        onClick={() => console.log('ff')}
-        isUser={false}
-        size='large'
-        color='red'
-        distance={8} />
+   
       <Banner />
       <div className='container page'>
         <div className='row'>

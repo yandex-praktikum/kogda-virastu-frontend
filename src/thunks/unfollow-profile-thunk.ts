@@ -17,6 +17,8 @@ const unfollowProfileThunk: AppThunk = () => async (
 ) => {
   const { profile } = getState().view;
   const username = !!profile && !!profile.username ? profile.username : '';
+  profile.nickname ? profile.nickname : '';
+  console.log(profile);
   dispatch(followProfileDeleteRequested());
   try {
     const { data } = await deleteFollowProfile(username) as AxiosResponse<TAPIProfile>;
