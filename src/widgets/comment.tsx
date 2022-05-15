@@ -15,12 +15,15 @@ const CommentContainer = styled.div`
 `;
 
 type TCommentProps = {
+  // eslint-disable-next-line react/require-default-props
   image?: string;
   createAt: Date;
   name: string;
-  onDeleteClick: React.MouseEventHandler<SVGSVGElement>;
+  // eslint-disable-next-line react/require-default-props
+  onDeleteClick?: (commentId: string) => void;
   isAuthor: boolean,
   body: string,
+  commentId: string,
 };
 
 const CommentBody = styled.p`
@@ -38,6 +41,7 @@ const Comment: FC<TCommentProps> = ({
   name,
   isAuthor,
   onDeleteClick,
+  commentId,
   body,
 }) => (
   <CommentContainer>
@@ -45,7 +49,11 @@ const Comment: FC<TCommentProps> = ({
       image={image}
       date={createAt}
       name={name}
-      onDeleteClick={onDeleteClick}
+      onDeleteClick={() => {
+        if (typeof onDeleteClick === 'function') {
+          onDeleteClick(commentId);
+        }
+      }}
       isAuthor={isAuthor} />
     <CommentBody>{body}</CommentBody>
   </CommentContainer>

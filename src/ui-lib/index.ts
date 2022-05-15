@@ -115,7 +115,6 @@ export {
   FieldTextArticle,
   FieldAboutUser,
   FieldAboutArticle,
-  FieldTextComment,
   HeaderOneText,
   HeaderTwoText,
   HeaderThreeText,
@@ -125,4 +124,5 @@ export {
   MenuNewPostButton,
   MenuSettingsButton,
   MenuLogoutButton,
+  FieldTextComment,
 };

@@ -58,6 +58,7 @@ export const FieldTextArticle: FC<TFieldInput> = ({
     minHeight={minHeight} />
 );
 
+// eslint-disable-next-line react/require-default-props
 export const FieldTextComment: FC<TFieldInput & { isHasBorder?: boolean }> = ({
   value, onBlur, onChange, placeholder, error, errorText, minHeight, isHasBorder,
 }) => (
