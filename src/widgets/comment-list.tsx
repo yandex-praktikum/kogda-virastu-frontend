@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { TComments } from '../types/types';
+import { useDispatch, useSelector } from '../services/hooks';
+import { deleteCommentThunk, getCommentsThunk } from '../thunks';
 import Comment from './comment';
 
 const List = styled.ul`
@@ -19,21 +20,25 @@ const Item = styled.li`
 `;
 
 type CommentListProps = {
-  comments: TComments
-  // eslint-disable-next-line react/require-default-props
-  onDeleteClick?: (commentId: string) => void;
-  // eslint-disable-next-line react/require-default-props
-  currentUserName?: string,
+  slug: string
 };
 
-const CommentList: FC<CommentListProps> = ({
-  comments,
-  onDeleteClick,
-  currentUserName = false,
-}) => {
-  if (Array.isArray(comments) && !comments.length) {
+const CommentList: FC<CommentListProps> = ({ slug }) => {
+  const dispatch = useDispatch();
+  const { commentsFeed: comments } = useSelector((store) => store.view);
+  const currentUser = useSelector((state) => state.profile);
+  useEffect(() => {
+    dispatch(getCommentsThunk(slug));
+  }, [dispatch, slug]);
+
+  const onDeleteClick = (commentId: string) => {
+    dispatch(deleteCommentThunk(slug, commentId));
+  };
+
+  if (!comments || !comments.length) {
     return null;
   }
+  console.log(comments)
   return (
     <List>
       {comments.map((comment) => (
@@ -42,7 +47,7 @@ const CommentList: FC<CommentListProps> = ({
             createAt={new Date(comment.createdAt)}
             name={comment.author.username}
             body={comment.body}
-            isAuthor={comment.author.username === currentUserName}
+            isAuthor={comment.author.username === currentUser.username}
             onDeleteClick={onDeleteClick}
             commentId={comment.id} />
         </Item>

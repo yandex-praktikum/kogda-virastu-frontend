@@ -13,7 +13,6 @@ import Login from './Login';
 import Settings from './Settings/Settings';
 import { jwt } from '../services/api';
 import Home from './Home';
-import Article from './Article/index';
 import { getUserThunk } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { setLanguage } from '../store';

@@ -17,7 +17,7 @@ type TViewState = {
   perPage: number;
   profile: TProfile | null;
   feedType: FeedTypes;
-  articlesType:UserArticlesTypes;
+  articlesType: UserArticlesTypes;
   topFeed: TArticles | null;
 };
 
@@ -54,7 +54,7 @@ const viewSlice = createSlice({
     clearTopFeed: (state: TViewState) => ({
       ...state, topFeed: null,
     }),
-    setFeedCount: (state: TViewState, action : PayloadAction<number>) => ({
+    setFeedCount: (state: TViewState, action: PayloadAction<number>) => ({
       ...state, feedCount: action.payload,
     }),
     setViewTags: (state: TViewState, action: PayloadAction<TTags>) => ({
