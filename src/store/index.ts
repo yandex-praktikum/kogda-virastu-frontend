@@ -28,6 +28,10 @@ import {
   setBioProfile,
   setImageProfile,
   setNicknameProfile,
+  setFormProfile,
+  setPasswordProfile,
+  resetFormProfile,
+
 } from './profileFormSubSlice';
 
 import {
@@ -177,6 +181,9 @@ export {
   setEmailProfile,
   setBioProfile,
   setImageProfile,
+  setFormProfile,
+  setPasswordProfile,
+  resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
   setAllTags,

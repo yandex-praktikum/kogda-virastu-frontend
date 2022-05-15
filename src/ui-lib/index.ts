@@ -47,9 +47,15 @@ import {
   FieldDescriptionArticle,
   FieldTegs,
   FieldNick,
+  FieldProfileImage,
 }
   from './textFields/inputFields';
-
+import {
+  FieldTextComment,
+  FieldAboutArticle,
+  FieldAboutUser,
+  FieldTextArticle,
+} from './textFields/textAreaFields';
 import {
   HeaderOneText,
   HeaderTwoText,
@@ -105,6 +111,11 @@ export {
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTegs,
+  FieldProfileImage,
+  FieldTextArticle,
+  FieldAboutUser,
+  FieldAboutArticle,
+  FieldTextComment,
   HeaderOneText,
   HeaderTwoText,
   HeaderThreeText,
