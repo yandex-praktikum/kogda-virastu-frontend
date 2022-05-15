@@ -3,7 +3,7 @@ import React, {
     FC,
   } from 'react';
 import {TopAnnounceWidget} from '../widgets/top-announce-widget';
-import {PopularTags} from '../widgets/PopularTags';
+import PopularTags from '../widgets/PopularTags';
 import { useSelector, useDispatch } from '../services/hooks';
 import { batch } from 'react-redux';
 import { getAllTagsThunk, getAllPostsThunk, setTopLikedThunk, setNewPostsThunk} from '../thunks/';
