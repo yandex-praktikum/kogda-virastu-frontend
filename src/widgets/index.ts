@@ -12,6 +12,10 @@ import Modal from './modal';
 import CommentList from './comment-list';
 import Article from './article';
 import LoginForm from './forms/login-form';
+import RegisterForm from './forms/register-form';
+import SettingsForm from './forms/settings-form';
+import ScrollRibbon from './scroll-ribbon';
+import FeedRibbon from './feed-ribbon';
 
 export {
   Author,
@@ -27,5 +31,9 @@ export {
   Modal,
   Article,
   LoginForm,
+  RegisterForm,
+  SettingsForm,
+  ScrollRibbon,
+  FeedRibbon,
   CommentList,
 };

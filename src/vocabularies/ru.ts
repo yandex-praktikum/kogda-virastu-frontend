@@ -36,6 +36,7 @@ const ru : TVocabulary = {
   publishArticle: 'Опубликовать запись',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
   publishComment: 'Опубликовать комментарий',
+  loading: 'Подождите, данные загружаются...',
 };
 
 export default ru;
