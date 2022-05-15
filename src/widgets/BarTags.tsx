@@ -6,25 +6,27 @@ import Tag from './tag';
 
 type TBarTags = {
   tagList: string[],
-  image:string | undefined,
 };
 
 type TLists = {
-  image: string | undefined,
+  // eslint-disable-next-line react/require-default-props
+  isHasImage?: boolean,
+  // eslint-disable-next-line react/require-default-props
+  rowReverse?: boolean;
 };
 
 const Lists = styled.ul<TLists>`
     display: flex;
     box-sizing:border-box;
     flex-wrap:wrap;
-    flex-direction: row-reverse;
+    flex-direction: ${({ rowReverse }) => rowReverse && 'row-reverse'};
     gap: 4px 24px;
     //width:526px;
     white-space: pre-line;
     padding:0;
     @media screen and (max-width:768px) {
         max-width:453px;
-        ${(props) => props.image && 'margin-left: -60px'}
+        ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
      }
      @media screen and (max-width:320px) {
         max-width:352px;
@@ -37,10 +39,10 @@ const List = styled.li`
     list-style-type: none;
 `;
 
-const BarTags:FC<TBarTags> = ({ tagList, image }) => {
+const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { tag: activeTag } = useSelector((state) => state.view);
   return (
-    <Lists image={image}>
+    <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List>
           <Tag tag={tag} isActive={tag === activeTag} />
