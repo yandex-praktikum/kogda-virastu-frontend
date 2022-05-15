@@ -4,6 +4,8 @@ import SettingsForm from '../widgets/forms/SettingsForm';
 
 const Page = styled.section`
   width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const Settings = () => {

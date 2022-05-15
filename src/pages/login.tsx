@@ -4,6 +4,8 @@ import LoginForm from "../widgets/forms/LoginForm";
 
 const Page = styled.section`
   width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const Login = () => {

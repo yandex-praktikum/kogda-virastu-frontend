@@ -4,6 +4,8 @@ import RegisterForm from "../widgets/forms/RegisterForm";
 
 const Page = styled.section`
   width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const Register = () => {
