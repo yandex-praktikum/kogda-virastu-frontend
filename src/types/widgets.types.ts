@@ -39,10 +39,8 @@ export type TAuthorProps = {
   imageSrc?: string,
 };
 
-export type TCommentInputProps = TAuthorProps & {
-  onChangeArea(e: React.ChangeEvent<HTMLTextAreaElement>): void;
-  onButtonClick: React.MouseEventHandler<HTMLButtonElement>;
-  disabledButton?: boolean | undefined;
+export type TCommentInputProps = {
+  slug: string;
 };
 
 interface IGenericVoidHandler {
