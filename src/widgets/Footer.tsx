@@ -4,8 +4,8 @@ import { FormattedMessage } from 'react-intl';
 import { Divider } from '../ui-lib';
 
 const FooterStyled = styled.footer`
-  position: fixed;
-  bottom: 0;
+/*  position: fixed;
+  bottom: 0;*/
   width: 100%;
   padding: 0;
   margin: 0;

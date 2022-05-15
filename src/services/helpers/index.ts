@@ -11,7 +11,6 @@ import makeTopFeed from './make-top-feed';
 import compareCreatedDatesForTop from './compare-created-dates-for-top';
 import compareLikesForTop from './compare-likes-for-top';
 
-
 export {
   makeErrorMessage,
   makeErrorObject,

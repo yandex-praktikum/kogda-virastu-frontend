@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { TScrollRibbonProps } from '../types/widgets.types';
 
 const Ribbon = styled.section`
-  overflow: scroll;
+  // overflow: scroll;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -17,7 +17,7 @@ const Ribbon = styled.section`
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  height: calc(100vh - 293px - 120px);
+ /* height: calc(100vh - 293px - 120px);
   @media screen and (max-width: 1300px) {
     height: calc(100vh - 229px - 120px);
   }
@@ -32,7 +32,7 @@ const Ribbon = styled.section`
   }
   @media screen and (max-width: 544px) {
     height: calc(100vh - 181px - 79px);
-  }
+  }*/
 `;
 
 const ScrollRibbon : FC<PropsWithChildren<TScrollRibbonProps>> = ({

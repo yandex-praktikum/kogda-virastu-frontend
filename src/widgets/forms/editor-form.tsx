@@ -58,7 +58,7 @@ const EditorForm: FC = () => {
     if (initialArticle?.tagList) {
       dispatch(setTags(initialArticle.tagList.toString()));
     }
-  }, [initialArticle]);
+  }, [initialArticle, dispatch]);
 
   useMemo(() => {
     dispatch(resetArticle());
@@ -66,7 +66,7 @@ const EditorForm: FC = () => {
     if (slug && !title) {
       dispatch(getArticleThunk(slug));
     }
-  }, [slug]);
+  }, [slug, dispatch, title]);
 
   if (slug && isArticleFetching) {
     return <div>Подождите...</div>;

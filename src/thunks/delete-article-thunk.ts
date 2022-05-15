@@ -2,7 +2,7 @@ import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
 import { AppThunk, AppDispatch, RootState } from '../store/store.types';
 import {
-  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles,setViewFeed,
+  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles, setViewFeed,
 } from '../store';
 import { deleteArticle } from '../services/api';
 import { TAPIError } from '../services/api.types';

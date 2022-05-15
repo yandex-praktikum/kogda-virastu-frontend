@@ -27,9 +27,6 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const { commentsFeed: comments } = useSelector((store) => store.view);
   const currentUser = useSelector((state) => state.profile);
-  useEffect(() => {
-    dispatch(getCommentsThunk(slug));
-  }, [dispatch, slug]);
 
   const onDeleteClick = (commentId: string) => {
     dispatch(deleteCommentThunk(slug, commentId));

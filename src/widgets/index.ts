@@ -16,6 +16,7 @@ import RegisterForm from './forms/register-form';
 import SettingsForm from './forms/settings-form';
 import ScrollRibbon from './scroll-ribbon';
 import FeedRibbon from './feed-ribbon';
+import Slider from './slider';
 
 export {
   Author,
@@ -36,4 +37,5 @@ export {
   ScrollRibbon,
   FeedRibbon,
   CommentList,
+  Slider,
 };

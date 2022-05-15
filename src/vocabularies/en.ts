@@ -37,6 +37,7 @@ const en : TVocabulary = {
   pageMessage: 'Page not found. To read blog, go to Home',
   publishComment: 'Post comment',
   loading: 'Please wait, loading...',
+  footerMessage: 'Created by Yandex Practicum Students, Red.Types Lakers team',
 };
 
 export default en;

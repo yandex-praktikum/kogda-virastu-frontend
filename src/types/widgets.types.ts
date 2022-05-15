@@ -4,7 +4,7 @@ export type TAuthorHeadingProps = {
   image?: string;
   name: string;
   date: Date;
-  isAuthor: boolean;
+  isAuthor?: boolean;
   isLiked: boolean;
   likesCount: number;
   onDeleteClick?: React.MouseEventHandler<SVGSVGElement>;
@@ -43,7 +43,7 @@ export type TCommentInputProps = {
   slug: string;
 };
 
-interface IGenericVoidHandler {
+export interface IGenericVoidHandler {
   () : void;
 }
 

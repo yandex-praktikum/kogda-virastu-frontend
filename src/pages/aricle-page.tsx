@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useSelector } from '../services/hooks';
+import { batch } from 'react-redux';
+import { useDispatch, useSelector } from '../services/hooks';
 import {
   Article,
   CommentInput,
   CommentList,
   TopAnnounceWidget,
 } from '../widgets';
+import { getArticleThunk, getCommentsThunk } from '../thunks';
+import { resetArticle } from '../store';
+import Slider from '../widgets/slider';
 
 const Page = styled.section`
   width: 100%;
@@ -42,25 +46,37 @@ const CommentTitle = styled.p`
 `;
 
 const ArticlePage = () => {
-  const { id: slug } = useParams();
+  const dispatch = useDispatch();
+  const { slug } = useParams();
   const { commentsFeed: comments } = useSelector((store) => store.view);
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
+  useEffect(() => {
+    batch(() => {
+      dispatch(resetArticle());
+      dispatch(getCommentsThunk(slug));
+      dispatch(getArticleThunk(slug));
+    });
+  }, [dispatch, slug]);
+  if (!slug) {
+    return null;
+  }
   return (
     <Page>
       <ArticlePageWrapper>
-        <Article slug={slug!} />
+        <Article slug={slug} />
         {(isLoggedIn || !!comments?.length) ? (
           <CommentTitle>
             <FormattedMessage id='comments' />
           </CommentTitle>
         ) : null}
         <CommentInputWrapper>
-          <CommentInput slug={slug!} />
+          <CommentInput slug={slug} />
         </CommentInputWrapper>
-        <CommentList slug={slug!} />
+        <CommentList slug={slug} />
       </ArticlePageWrapper>
       <TopAnnounceWidget caption={intl.messages.popularContent as string} />
+      <Slider />
     </Page>
   );
 };
