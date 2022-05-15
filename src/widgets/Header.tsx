@@ -17,8 +17,6 @@ const HeaderStyled = styled.header`
   top: 0;
   width: 100%;
   padding: 0;
-  background-color: ${({ theme }) => theme.bgPrimary};
-  z-index: 99999;
 `;
 
 const BackgroundContainer = styled.div`
@@ -29,9 +27,9 @@ const BackgroundContainer = styled.div`
   width: 1920px;
   height: 100vh;
   max-height: 640px;
-  z-index: -1;
   left: 50%;
   transform: translate(-50%);
+  z-index: 999999;
   @media screen and (max-width:1700px) {
     width: 1920px;
   }
@@ -155,6 +153,8 @@ const Container = styled.div`
   max-width: 1140px;
   margin: 0 auto;
   padding: 0;
+  z-index: 99999;
+  background-color: ${({ theme }) => theme.bgPrimary};
   @media screen and (max-width:1300px) {
     max-width: 955px;
   }
