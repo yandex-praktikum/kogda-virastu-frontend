@@ -15,18 +15,25 @@ const ArticleCardConteiner = styled.div`
     flex-direction: column;
     gap: 16px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1000px) { 
         width: 720px;
     }
-
-    @media screen and (max-width:320px) {
-        width:280px;
+    
+    @media screen and (max-width: 750px) {
+        width: 500px;
     }
+    
+    @media screen and (max-width: 525px) {
+        width: 280px;
+    }
+
+   /*  @media screen and (max-width:320px) {
+        width:280px;
+    } */
 `;
 
 const ArticleName = styled.h2`
-    max-width: 700px;
-    min-width: 275px;
+    width:100%;
     grid-column: 1/3;
     font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
     font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};

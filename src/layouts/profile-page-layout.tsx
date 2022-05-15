@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, {useTheme} from "styled-components";
+import { mainBgColor } from "../constants/colors";
 
 
 const ProfilePageLayout = styled.section`
@@ -7,6 +8,7 @@ const ProfilePageLayout = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${(props) => props.theme.bgPrimary};
 
 `;
 
