@@ -1,21 +1,18 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import LoginForm from '../widgets/forms/login-form';
 
 const Page = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 340px;
 `;
 
-const Login = () => {
-
-  return (
-    <Page>
-      <LoginForm />
-    </Page>
-  )
-
-}
+const Login = () => (
+  <Page>
+    <LoginForm />
+  </Page>
+);
 
 export default Login;

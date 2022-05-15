@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
-import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
 import {

@@ -9,13 +9,9 @@ const Page = styled.section`
 `;
 
 const Settings = () => {
-
-  return (
-    <Page>
-      <SettingsForm />
-    </Page>
-  )
-
-}
+  <Page>
+    <SettingsForm />
+  </Page>
+};
 
 export default Settings;

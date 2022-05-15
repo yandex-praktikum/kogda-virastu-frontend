@@ -8,14 +8,10 @@ const Page = styled.section`
   justify-content: center;
 `;
 
-const Register = () => {
-
-  return (
-    <Page>
-      <RegisterForm />
-    </Page>
-    
-  )
-}
+const Register = () => (
+  <Page>
+    <RegisterForm />
+  </Page>
+);
 
 export default Register;
