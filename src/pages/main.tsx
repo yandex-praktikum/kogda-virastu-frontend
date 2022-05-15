@@ -1,3 +1,7 @@
+import React, {
+    useEffect,
+    FC,
+  } from 'react';
 import {TopAnnounceWidget} from '../widgets/top-announce-widget';
 import {PopularTags} from '../widgets/PopularTags';
 import { useSelector, useDispatch } from '../services/hooks';
@@ -11,15 +15,6 @@ const RightColunm = styled.div`
     display: flex;
     flex-direction: column;
 `
-
-import React, {
-    useEffect,
-    FC,
-  } from 'react';
-
-
-
-
 export const Main = () => {
     const dispatch = useDispatch();
     const topArticles = useSelector((state) => state.view.topFeed)
