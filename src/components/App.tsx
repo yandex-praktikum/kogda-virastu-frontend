@@ -46,7 +46,7 @@ const App = () => {
           ?? basicThemes[currentTheme ?? defaultTheme]
         }>
           <Header />
-          <Profile />
+    
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/article/:id' element={<Article />} />

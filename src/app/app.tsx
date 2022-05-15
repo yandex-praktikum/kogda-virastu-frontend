@@ -38,7 +38,7 @@ const App = () => {
                     ?? basicThemes[currentTheme ?? defaultTheme]
                 }>
         <Header />
-        <Profile />
+       
         <Routes>
           {/* Тут будет роутинг  */}
         </Routes>
