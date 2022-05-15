@@ -4,9 +4,7 @@ import {
   setBody,
   setTags,
   setArticle,
-  setTaglist,
   resetArticle,
-  deleteTag,
   setImage,
 } from './articleFormSubSlice';
 
@@ -20,6 +18,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeNicknameRegister,
   resetFormRegister,
 } from './registerFormSubSlice';
 
@@ -28,10 +27,12 @@ import {
   setEmailProfile,
   setBioProfile,
   setImageProfile,
+  setNicknameProfile,
 } from './profileFormSubSlice';
 
 import {
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,
@@ -69,6 +70,8 @@ import {
   clearTag,
   setArtistProfile,
   clearPage,
+  setTopFeed,
+  clearTopFeed,
 } from './viewSlice';
 
 import {
@@ -131,6 +134,9 @@ import {
   followProfileDeleteRequested,
   followProfileDeleteSucceeded,
   followProfileDeleteFailed,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
 } from './apiSlice';
 
 import {
@@ -138,6 +144,10 @@ import {
   onLogout,
   setTheme,
   setLanguage,
+  openMenu,
+  closeMenu,
+  openConfirm,
+  closeConfirm,
 } from './systemSlice';
 
 export {
@@ -161,12 +171,15 @@ export {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeNicknameRegister,
   resetFormRegister,
   setUsernameProfile,
+  setNicknameProfile,
   setEmailProfile,
   setBioProfile,
   setImageProfile,
   setAllArticles,
+  setAllArticlesCount,
   setAllTags,
   clearArticles,
   clearTags,
@@ -175,6 +188,8 @@ export {
   clearUser,
   setViewFeed,
   clearViewFeed,
+  setTopFeed,
+  clearTopFeed,
   setFeedCount,
   setViewTags,
   clearViewTags,
@@ -254,9 +269,14 @@ export {
   onLogin,
   onLogout,
   setArticle,
-  setTaglist,
-  deleteTag,
   setImage,
   setComment,
   resetComment,
+  openMenu,
+  closeMenu,
+  allPostsRequested,
+  allPostsRequestSucceeded,
+  allPostsRequestFailed,
+  openConfirm,
+  closeConfirm,
 };

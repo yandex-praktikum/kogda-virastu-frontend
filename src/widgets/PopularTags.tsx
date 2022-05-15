@@ -1,21 +1,19 @@
 import React, { FC } from 'react';
 import { batch } from 'react-redux';
+import styled, { useTheme } from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setFeedType, setTag, clearTag } from '../store';
 import { FeedTypes } from '../types/types';
 import Tag from './tag';
-import styled, { useTheme } from 'styled-components';
 
-type TTitleProps = {
-  color: string,
-  fontSize: number
-}
-
-const Title = styled.h2<TTitleProps>`
-    color: ${props => props.color};
-    font-size: ${props => props.fontSize}px;
+const Title = styled.h3`
+    color: ${({ theme }) => theme.primaryText};
+    font-size: ${({ theme }) => theme.thirdLevelHeading.size}px;
+    font-family: ${({ theme }) => theme.thirdLevelHeading.family};
+    font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
+    line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
     margin-bottom: 16px;
-  ;`
+  ;`;
 
 const TagList = styled.div`
   max-width: 360px;
@@ -24,10 +22,10 @@ const TagList = styled.div`
   column-gap: 24px;
 `;
 
-const Tags: FC = () => {
+const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
-  const { tag: activeTag } = useSelector((state) => state.view)
+  const { tag: activeTag } = useSelector((state) => state.view);
   const theme = useTheme();
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
@@ -38,30 +36,28 @@ const Tags: FC = () => {
     });
   };
 
-  const inactiveTag = (e: React.MouseEvent) => {
+  const deactivateTag = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(clearTag());
-  }
+  };
 
   if (tags) {
     return (
       <div>
-        <Title color={theme.primaryText} fontSize={theme.thirdLevelHeading.size} >Популярные теги</Title>
+        <Title>Популярные теги</Title>
         <TagList>
           {
-            tags.map((tag) => {
-              return (
-                <Tag tag={tag} handleClick={handleClick} active={tag === activeTag} inactiveTag={inactiveTag} />
-              );
-            })
+            tags.map((tag) => (
+              <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivateTag={deactivateTag} />
+            ))
           }
         </TagList>
       </div>
-      
+
     );
   }
   return (
     <div>Loading Tags...</div>
   );
 };
-export default Tags;
+export default PopularTags;

@@ -10,6 +10,14 @@ import {
   JWT,
 } from './api.constants';
 
+import {
+  mobileBreakpoint,
+  tabletBreakpoint,
+  desktopBreakpoint,
+  mobileViewThreshold,
+  mobileViewModal,
+} from './screen-sizes';
+
 export {
   API_ROOT,
   REGISTER_ROUTE,
@@ -20,4 +28,9 @@ export {
   TAGS_ROUTE,
   PROFILES_ROUTE,
   JWT,
+  mobileBreakpoint,
+  tabletBreakpoint,
+  desktopBreakpoint,
+  mobileViewThreshold,
+  mobileViewModal,
 };

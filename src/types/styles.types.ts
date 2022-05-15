@@ -13,16 +13,19 @@ export type TTheme = {
   secondaryText: string,
   markedText: string,
   dividerColor: string,
-  bgPrimary:string,
+  bgPrimary: string,
   bgHoverUserMenu: string,
   bgActiveUserMenu: string,
-  labelColor:string,
-  inpurtField: {
-    defaultBorder:string;
-    borderHover:string;
-    borderActive:string;
-    disabledInput:string;
-    errorColor:string;
+  labelColor: string,
+  // headerNofound:string,
+  modalCaption: string,
+  modalText: string,
+  inputField: {
+    defaultBorder: string;
+    borderHover: string;
+    borderActive: string;
+    disabledInput: string;
+    errorColor: string;
   },
   button: {
     [key: string]: TColorSet,
@@ -38,12 +41,15 @@ export type TTheme = {
   thirdLevelHeadingMobile: TFontProperties,
   fourthLevelHeadingMobile: TFontProperties,
   fifthLevelHeadingMobile: TFontProperties,
-  textSans: TFontProperties,
-  text: TFontProperties,
-  labelInput:TFontProperties,
+  labelInput: TFontProperties,
+  text18Sans: TFontProperties,
+  text16Sans: TFontProperties,
+  text12Sans: TFontProperties,
+  text18: TFontProperties,
+  text16: TFontProperties,
 };
 export type TThemes = {
-  [key:string]: TTheme;
+  [key: string]: TTheme;
 };
 
 export type TFontProperties = {
@@ -67,7 +73,7 @@ export type TButtonTextStyle = {
 };
 
 export type TButtonProps = {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 };
 
@@ -97,4 +103,44 @@ export type TAvatarButtonProps = {
 export type TIconProps = {
   color: string;
   distance?: number;
+};
+
+export type TTypoTypes = 'desktop' | 'mobile';
+
+export type THeaderFonts = {
+  [type in TTypoTypes]: TFontProperties;
+};
+
+export type THeaderTextProps = {
+  color?: string;
+  marginCSS?: string;
+  paddingCSS?: string;
+  lines?: number;
+};
+
+export type TTextProps = {
+  size: TFontSizeTypes,
+  weight: number,
+  sansSerif?: boolean,
+  color?: string,
+  marginCSS?: string;
+  paddingCSS?: string;
+  clampLines?: boolean;
+  heightLimit?: number;
+  align?: string;
+};
+
+export type TFontSizeTypes = 'small' | 'medium' | 'large';
+
+export type TFontSizeProps = {
+  size: number,
+  height: number,
+};
+
+export type TDefaultFontSizes = {
+  [key in TFontSizeTypes]: TFontSizeProps;
+};
+
+export type TDividerProps = {
+  distance: number;
 };
