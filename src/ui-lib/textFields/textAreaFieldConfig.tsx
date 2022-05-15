@@ -12,7 +12,7 @@ const TextAreaStyle = styled.textarea<TTextAreaStyleProps>`
   ${TextFieldStyle}
   resize: none;
   min-height: ${({ minHeight }) => minHeight ?? 0}px;
-  ${({ isHasBorder }) => !isHasBorder && css`border 0`};
+  ${({ isHasBorder }) => !isHasBorder && css`border: 0;`};
 `;
 
 const ContainerTextArea = styled.div`
@@ -40,7 +40,7 @@ type TTextAreaInterface = {
   isHasBorder?: boolean;
 };
 
-export const TextAreaField = ({
+const TextAreaField = ({
   placeholder, value, name, error, errorText, onChange, onBlur, onFocus,
   disabled, labelText, minHeight, isHasBorder,
 }: TTextAreaInterface) => (

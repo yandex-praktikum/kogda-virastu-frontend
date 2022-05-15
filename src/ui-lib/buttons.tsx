@@ -7,7 +7,15 @@ import {
 } from '../types/styles.types';
 
 import {
-  EditIcon, AvatarIcon, DeleteIcon, PlusIcon, MinusIcon, AsterixIcon, LogoutIcon, HomeIcon, LoginIcon,
+  EditIcon,
+  AvatarIcon,
+  DeleteIcon,
+  PlusIcon,
+  MinusIcon,
+  AsterixIcon,
+  LogoutIcon,
+  HomeIcon,
+  LoginIcon,
 } from './icons';
 import { getColor, setColor } from '../services/helpers';
 import useMouseEvents from '../services/hooks/use-mouse-events';
@@ -190,8 +198,8 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
   );
 };
 
-export const SavePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+export const SavePostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
+  <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <FormattedMessage id='saveArticle' />
   </BasicNormalButton>
 );
@@ -236,39 +244,39 @@ export const PostCommentButton : FC<TButtonProps> = ({ onClick, disabled = false
   </BasicNormalButton>
 );
 
-export const RegisterButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+export const RegisterButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
+  <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <RegularText size='large' weight={500}>
       <FormattedMessage id='register' />
     </RegularText>
   </BasicNormalButton>
 );
 
-export const LoginButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+export const LoginButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
+  <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <RegularText size='large' weight={500}>
       <FormattedMessage id='userLogin' />
     </RegularText>
   </BasicNormalButton>
 );
 
-export const UpdateProfileButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+export const UpdateProfileButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
+  <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <RegularText size='large' weight={500}>
       <FormattedMessage id='refreshUser' />
     </RegularText>
   </BasicNormalButton>
 );
-export const PublishPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+export const PublishPostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
+  <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <RegularText size='large' weight={500}>
       <FormattedMessage id='publishArticle' />
     </RegularText>
   </BasicNormalButton>
 );
 
-export const PublishCommentButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
-  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+export const PublishCommentButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
+  <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <FormattedMessage id='publishComment' />
   </BasicNormalButton>
 );
@@ -356,4 +364,4 @@ export const HeaderLoginButton : FC<TButtonProps> = ({ onClick, disabled = false
       </RegularText>
     </BasicNormalButton>
   );
-}
+};

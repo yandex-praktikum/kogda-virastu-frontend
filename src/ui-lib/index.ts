@@ -43,13 +43,19 @@ import {
   FieldLogin,
   FieldEmail,
   FieldPassword,
-  FieldNewPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTegs,
+  FieldNick,
+  FieldProfileImage,
 }
   from './textFields/inputFields';
-
+import {
+  FieldTextComment,
+  FieldAboutArticle,
+  FieldAboutUser,
+  FieldTextArticle,
+} from './textFields/textAreaFields';
 import {
   HeaderOneText,
   HeaderTwoText,
@@ -101,10 +107,15 @@ export {
   FieldLogin,
   FieldEmail,
   FieldPassword,
-  FieldNewPassword,
+  FieldNick,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTegs,
+  FieldProfileImage,
+  FieldTextArticle,
+  FieldAboutUser,
+  FieldAboutArticle,
+  FieldTextComment,
   HeaderOneText,
   HeaderTwoText,
   HeaderThreeText,
