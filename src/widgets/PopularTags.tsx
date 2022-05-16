@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
-import { setFeedType, setTag, clearTag } from '../store';
+import { setFeedType, setTag, clearTag, setSelectedTags } from '../store';
 import { FeedTypes } from '../types/types';
 import Tag from './tag';
 
@@ -36,18 +36,24 @@ const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
   const { tag: activeTag } = useSelector((state) => state.view);
+  const { selectedTags } = useSelector((state) => state.view);
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
     batch(() => {
-      dispatch(setTag(tag));
+      if (selectedTags) {
+        dispatch(setSelectedTags([...selectedTags, tag]));
+      } else {
+        dispatch(setSelectedTags([tag]));
+      }
       dispatch(setFeedType(FeedTypes.tags));
     });
   };
 
-  const deactivateTag = (e: React.MouseEvent) => {
+  const deactivateTag = (e: React.MouseEvent, tag: string) => {
     e.stopPropagation();
-    dispatch(clearTag());
+    console.log(tag);
+    dispatch(setSelectedTags(selectedTags!.filter((el) => {return el !== tag})));
   };
 
   if (tags) {
@@ -57,7 +63,7 @@ const PopularTags: FC = () => {
         <TagList>
           {
             tags.map((tag) => (
-              <Tag tag={tag} handleClick={handleClick} isActive={tag === activeTag} deactivateTag={deactivateTag} />
+              <Tag tag={tag} handleClick={handleClick} isActive={selectedTags?.includes(tag) || false} deactivateTag={(e) => deactivateTag(e, tag)} />
             ))
           }
         </TagList>
