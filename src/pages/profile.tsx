@@ -6,9 +6,6 @@ import { ProfileWidget, FeedRibbon } from '../widgets';
 import {
   getPublicFeedThunk,
   getUserProfileThunk,
-  addLikeThunk,
-  deleteLikeThunk,
-  deleteArticleThunk,
 } from '../thunks';
 import { clearView } from '../store';
 import ProfilePageLayout from '../layouts/profile-page-layout';
@@ -25,6 +22,7 @@ const Profile: FC = () => {
       bio: '',
       image: '',
     };
+
   const isUser = useSelector(
     (state) => !!state.profile.username
       && !!state.profile.email
@@ -49,17 +47,6 @@ const Profile: FC = () => {
     }));
   }, [dispatch, page, perPage, params.username]);
 
-  const onLikeClick = (isLiked: boolean, slug:string): void => {
-    if (isLiked) {
-      dispatch(deleteLikeThunk(slug));
-    } else {
-      dispatch(addLikeThunk(slug));
-    }
-  };
-  const deleteArticle = (slug: string): void => {
-    dispatch(deleteArticleThunk(slug));
-  };
-
   return (
     <ProfilePageLayout>
       <ProfileWidget
@@ -78,11 +65,3 @@ const Profile: FC = () => {
 };
 
 export default Profile;
-
-/* {feed?.map((item) => (
-  <ArticleFullPreview
-    article={item}
-    isAuthor={isUser}
-    onLikeClick={() => onLikeClick(item.favorited, item.slug)}
-    onDeleteClick={() => deleteArticle(item.slug)} />
-))} */

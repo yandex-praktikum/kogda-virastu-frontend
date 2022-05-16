@@ -154,7 +154,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0;
   z-index: 99999;
-  background-color: ${({ theme }) => theme.bgPrimary};
+  background-color:transparent;
   @media screen and (max-width:1300px) {
     max-width: 955px;
   }

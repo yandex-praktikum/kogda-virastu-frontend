@@ -9,7 +9,7 @@ import {
 } from '../thunks';
 
 type TProfileWidget = {
-  userName: string,
+  userName: string | undefined,
   isFollow: boolean,
   userImage: string | undefined,
 
@@ -85,7 +85,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
   color,
 }) => (
   <ProfileContainer>
-    <AvatarIcon name={userName} image={userImage} size={size} distance={distance} color={color} />
+    <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
     <UserName>{userName}</UserName>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
   </ProfileContainer>
