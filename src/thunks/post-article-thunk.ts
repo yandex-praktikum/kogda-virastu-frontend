@@ -10,7 +10,10 @@ import { makeErrorObject } from '../services/helpers';
 import makeTagList from '../services/helpers/make-tagList';
 import { TAPIError } from '../services/api.types';
 
-const postArticleThunk: AppThunk = () => async (dispatch: AppDispatch, getState: () => RootState) => {
+const postArticleThunk: AppThunk = () => async (
+  dispatch: AppDispatch,
+  getState: () => RootState,
+) => {
   dispatch(articlePostRequested());
   const articleData = getState().forms.article ?? {};
   const {

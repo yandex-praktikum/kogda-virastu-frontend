@@ -16,12 +16,12 @@ const getUserProfileThunk: AppThunk = (user: string) => async (dispatch) => {
     const {
       data: {
         profile: {
-          username = '', email = '', bio, image, following = false,
+          username = '', email = '', bio, image, following = false, nickname,
         },
       },
     } = await fetchProfile(user) as AxiosResponse<TAPIProfile>;
     dispatch(setViewProfile({
-      username, email, bio, image, following,
+      username, email, bio, image, following, nickname,
     }));
     dispatch(profileFetchSucceeded());
   } catch (error) {
