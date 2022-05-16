@@ -1,7 +1,7 @@
 import React, {
-  useEffect, ChangeEvent, SyntheticEvent, FC, useMemo,
+  useEffect, FC, ChangeEventHandler, FormEventHandler, useState,
 } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
 
@@ -10,12 +10,10 @@ import {
   setDescription,
   setBody,
   setTags,
-  resetArticle,
   setImage,
-  clearViewArticle,
+  openConfirm,
 } from '../../store';
 import {
-  deleteArticleThunk,
   getArticleThunk,
   patchArticleThunk,
   postArticleThunk,
@@ -28,31 +26,37 @@ import {
   FormTitle,
   InputFieldset,
 } from './forms-styles';
-import {
 
+import {
+  DeletePostButton,
+  FieldNameArticle,
+  FieldTags,
+  FieldUrl,
+  PublishPostButton,
+  SavePostButton,
   FieldAboutArticle,
-
   FieldTextArticle,
-
-} from '../../ui-lib/inputs/textarea-fields';
-
-import {
-  DeletePostButton, FieldNameArticle, FieldTags, FieldUrl, PublishPostButton, SavePostButton,
 } from '../../ui-lib';
 
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     title, description, body, tags, link,
   } = useSelector((state) => state.forms.article) ?? {};
-  const { isArticleFetching } = useSelector((state) => state.api);
+  const {
+    isArticleFetching,
+    isArticlePostingSucceeded,
+    isArticleRemoved,
+  } = useSelector((state) => state.api);
   const { slug } = useParams();
   const initialArticle = useSelector((state) => state.view.article);
-
-  useEffect(() => () => {
+  const [isPosted, setPostRequested] = useState(false);
+  const [isRemoving, setRemoveState] = useState(false);
+  /* useEffect(() => () => {
     dispatch(resetArticle());
     dispatch(clearViewArticle());
-  }, [dispatch]);
+  }, [dispatch]); */
 
   useEffect(() => {
     if (initialArticle?.tagList) {
@@ -60,9 +64,15 @@ const EditorForm: FC = () => {
     }
   }, [initialArticle, dispatch]);
 
-  useMemo(() => {
-    dispatch(resetArticle());
-    dispatch(clearViewArticle());
+  useEffect(() => {
+    if ((isPosted && isArticlePostingSucceeded) || (isArticleRemoved && isRemoving)) {
+      navigate('/');
+    }
+  }, [navigate, isPosted, isArticlePostingSucceeded, isArticleRemoved, isRemoving]);
+
+  useEffect(() => {
+    /*    dispatch(resetArticle());
+    dispatch(clearViewArticle()); */
     if (slug && !title) {
       dispatch(getArticleThunk(slug));
     }
@@ -72,31 +82,33 @@ const EditorForm: FC = () => {
     return <div>Подождите...</div>;
   }
 
-  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setTitle(e.target.value));
+  const onChangeTitle : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(setTitle(evt.target.value));
   };
 
-  const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setDescription(e.target.value));
-    e.target.style.height = `${e.target.scrollHeight + 2}px`;
+  const onChangeDescription : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+    dispatch(setDescription(evt.target.value));
+    // eslint-disable-next-line no-param-reassign
+    evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  const onChangeBody = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setBody(e.target.value));
-    e.target.style.height = `${e.target.scrollHeight + 2}px`;
+  const onChangeBody : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+    dispatch(setBody(evt.target.value));
+    // eslint-disable-next-line no-param-reassign
+    evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  const onChangeTags = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setTags(e.target.value));
+  const onChangeTags : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(setTags(evt.target.value));
   };
 
-  const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setImage(e.target.value));
+  const onChangeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(setImage(evt.target.value));
   };
 
-  const submitForm = (e: SyntheticEvent<Element>) => {
-    e.preventDefault();
-
+  const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
+    evt.preventDefault();
+    setPostRequested(true);
     if (slug) {
       dispatch(patchArticleThunk(slug));
     } else {
@@ -105,13 +117,29 @@ const EditorForm: FC = () => {
   };
 
   const deleteArticle = () => {
-    dispatch(deleteArticleThunk(slug));
+    setRemoveState(true);
+    dispatch(openConfirm());
   };
-
+  const makeButtons = () => (
+    slug ? (
+      <ButtonsWrapper>
+        <SavePostButton disabled={isArticleFetching} />
+        <DeletePostButton onClick={deleteArticle} />
+      </ButtonsWrapper>
+    ) : (
+      <PublishPostButton disabled={isArticleFetching} />
+    )
+  );
+  const makeMessageId = () => {
+    if (slug) {
+      return 'editArticle';
+    }
+    return 'newArticle';
+  };
   return (
     <FormContainer>
       <FormTitle>
-        <FormattedMessage id={slug ? 'editArticle' : 'newArticle'} />
+        <FormattedMessage id={makeMessageId()} />
       </FormTitle>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={24}>
@@ -136,14 +164,7 @@ const EditorForm: FC = () => {
             onChange={onChangeTags} />
         </InputFieldset>
         <ButtonContainer>
-          {slug ? (
-            <ButtonsWrapper>
-              <SavePostButton disabled={isArticleFetching} />
-              <DeletePostButton onClick={deleteArticle} />
-            </ButtonsWrapper>
-          ) : (
-            <PublishPostButton disabled={isArticleFetching} />
-          )}
+          {makeButtons()}
         </ButtonContainer>
       </Form>
     </FormContainer>

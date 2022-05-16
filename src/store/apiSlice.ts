@@ -13,7 +13,9 @@ type TAPIState = {
   isArticleFetching: boolean,
   isPrivateFeedFetching: boolean,
   isArticlePosting: boolean,
+  isArticlePostingSucceeded: boolean,
   isArticleDeleting: boolean,
+  isArticleRemoved: boolean,
   isArticlePatching: boolean,
   isLikeArticlePosting: boolean,
   isLikeArticleDeleting: boolean,
@@ -41,7 +43,9 @@ const initialState: TAPIState = {
   isArticleFetching: false,
   isPrivateFeedFetching: false,
   isArticlePosting: false,
+  isArticlePostingSucceeded: false,
   isArticleDeleting: false,
+  isArticleRemoved: false,
   isArticlePatching: false,
   isLikeArticlePosting: false,
   isLikeArticleDeleting: false,
@@ -152,19 +156,19 @@ const apiSlice = createSlice({
       ...state, isPrivateFeedFetching: false, errorObject: action.payload,
     }),
     articlePostRequested: (state: TAPIState) => ({
-      ...state, isArticlePosting: true,
+      ...state, isArticlePosting: true, sArticlePostingSucceeded: false,
     }),
     articlePostSucceeded: (state: TAPIState) => ({
-      ...state, isArticlePosting: false,
+      ...state, isArticlePosting: false, isArticlePostingSucceeded: true,
     }),
     articlePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePosting: false, errorObject: action.payload,
     }),
     articleDeleteRequested: (state: TAPIState) => ({
-      ...state, isArticleDeleting: true,
+      ...state, isArticleDeleting: true, isArticleRemoved: false,
     }),
     articleDeleteSucceeded: (state: TAPIState) => ({
-      ...state, isArticleDeleting: false,
+      ...state, isArticleDeleting: false, isArticleRemoved: true,
     }),
     articleDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isArticleDeleting: false, errorObject: action.payload,
