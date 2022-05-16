@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { OpenMenuButton } from '../ui-lib';
 import { useDispatch, useSelector } from '../services/hooks';
-import { openMenu } from '../store';
+import { openMenu, closeMenu } from '../store';
 import HeaderMenuWidget from './header-menu-widget';
 import { HomeButton, HeaderLoginButton } from '../ui-lib/buttons';
 import FigureLeft from '../assets/images/header/header-left-figure.svg';
@@ -152,6 +152,7 @@ const Navigation = styled.nav`
   padding-top: 24px;
 `;
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -234,11 +235,14 @@ const Header: FC = () => {
   const { isMenuOpen, isLoggedIn } = useSelector((state) => state.system);
   const { nickname, username, image } = useSelector((store) => store.profile);
 
-  const onOpenMenuClick : MouseEventHandler<HTMLButtonElement> = () => dispatch(openMenu());
+  const onOpenMenuClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation(); dispatch(openMenu())
+  }
+  const closeMenuClick: MouseEventHandler<HTMLElement> = () => dispatch(closeMenu());
 
   return (
-    <HeaderStyled>
-      <BackgroundOuterContainer>
+    <HeaderStyled  >
+      <BackgroundOuterContainer onClick={closeMenuClick} >
         <BackgroundContainer>
           <FigureContainerLeft />
           <FigureContainerCenter>
@@ -248,19 +252,19 @@ const Header: FC = () => {
           <FigureContainerRight />
         </BackgroundContainer>
       </BackgroundOuterContainer>
-      <Container>
+      <Container  >
         <Navigation>
-          <Link to='/'><HomeButton onClick={() => {}} /></Link>
+          <Link to='/'><HomeButton onClick={() => { }} /></Link>
           {isLoggedIn && isMenuOpen && <HeaderMenuWidget />}
           {isLoggedIn && !isMenuOpen && (
             <OpenMenuButton
-              onClick={onOpenMenuClick}
+              onClick={(e) => onOpenMenuClick(e)}
               name={(nickname ?? username) || ''}
               image={image || ''} />
           )}
-          {!isLoggedIn && <Link to='/login'><HeaderLoginButton onClick={() => {}} /></Link>}
+          {!isLoggedIn && <Link to='/login'><HeaderLoginButton onClick={() => { }} /></Link>}
         </Navigation>
-        <TextContainer>
+        <TextContainer >
           <MainText>
             <FormattedMessage
               id='mainTitle'

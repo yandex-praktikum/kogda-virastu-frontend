@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import CommentAuthorHeading from './comment-author-heading';
 
 const CommentContainer = styled.div`
-  width: 100%;
+
   display: flex;
   background: ${({ theme: { bgPrimary } }) => bgPrimary};
   border-radius: 4px;
