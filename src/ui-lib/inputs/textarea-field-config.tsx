@@ -1,14 +1,15 @@
 import styled, { css } from 'styled-components';
-import React from 'react';
-import { TextFieldStyle, LabelStyle, ErorText } from './textFields-styles';
+import React, { ChangeEventHandler, FocusEventHandler } from 'react';
+import {
+  TextFieldStyle, LabelStyle, ErrorText, ITextFieldStyleProps,
+} from './text-fields-styles';
 
-type TTextAreaStyleProps = {
-  error: boolean | undefined;
-  minHeight?: number;
-  isHasBorder?: boolean;
-};
+interface ITextAreaStyleProps extends ITextFieldStyleProps {
 
-const TextAreaStyle = styled.textarea<TTextAreaStyleProps>`
+  isHasBorder: boolean;
+}
+
+const TextAreaStyle = styled.textarea<ITextAreaStyleProps>`
   ${TextFieldStyle}
   resize: none;
   min-height: ${({ minHeight }) => minHeight ?? 0}px;
@@ -25,25 +26,23 @@ const ContainerTextArea = styled.div`
   }
 `;
 
-type TTextAreaInterface = {
-  placeholder?: string;
-  value?: string;
-  name?: string;
-  error?: boolean;
-  errorText?: string;
-  disabled?: boolean;
-  labelText?: string;
-  onChange(e: React.ChangeEvent<HTMLTextAreaElement>): void;
-  onBlur?(e?: React.FocusEvent<HTMLTextAreaElement>): void;
-  onFocus?(e?: React.FocusEvent<HTMLTextAreaElement>): void;
-  minHeight?: number;
-  isHasBorder?: boolean;
-};
+interface ITextAreaInterface extends ITextAreaStyleProps {
+  placeholder: string;
+  value: string;
+  name: string;
+  errorText: string;
+  disabled: boolean;
+  labelText: string;
+  onChange: ChangeEventHandler<HTMLTextAreaElement> | undefined;
+  onBlur: FocusEventHandler<HTMLTextAreaElement> | undefined;
+  onFocus: FocusEventHandler<HTMLTextAreaElement> | undefined;
+
+}
 
 const TextAreaField = ({
   placeholder, value, name, error, errorText, onChange, onBlur, onFocus,
   disabled, labelText, minHeight, isHasBorder,
-}: TTextAreaInterface) => (
+}: ITextAreaInterface) => (
   <ContainerTextArea>
     <LabelStyle>
       {labelText}
@@ -60,7 +59,7 @@ const TextAreaField = ({
         rows={1}
         isHasBorder={isHasBorder ?? true} />
     </LabelStyle>
-    {error && <ErorText errorText={errorText} />}
+    {error && <ErrorText errorText={errorText} />}
   </ContainerTextArea>
 );
 
