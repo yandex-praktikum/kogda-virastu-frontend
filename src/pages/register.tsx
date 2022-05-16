@@ -6,6 +6,7 @@ const Page = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 40px 0 40px 0;
 `;
 
 const Register = () => (

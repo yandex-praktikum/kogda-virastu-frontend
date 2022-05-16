@@ -53,6 +53,7 @@ export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
   flex-direction: column;
   row-gap: ${(props) => props.rowGap}px;
   box-sizing: border-box;
+  border: none;
 `;
 
 export const ButtonContainer = styled.div`
