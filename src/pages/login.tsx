@@ -7,6 +7,8 @@ const Page = styled.section`
   display: flex;
   justify-content: center;
   margin: 40px 0 40px 0;
+  position: relative;
+  z-index: 10;
 `;
 
 const Login = () => (

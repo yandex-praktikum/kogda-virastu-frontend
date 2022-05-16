@@ -8,6 +8,8 @@ import Tag from './tag';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
+  position: relative;
+  z-index: 10;
 
   @media screen and (max-width:768px) {
     margin-bottom: 40px;
@@ -20,7 +22,7 @@ const Title = styled.h3`
   font-family: ${({ theme }) => theme.thirdLevelHeading.family};
   font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
   line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
-  margin-bottom: 16px;
+  margin:  0 0 16px 0;
 `;
 
 const TagList = styled.div`
