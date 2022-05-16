@@ -14,6 +14,16 @@ const BriefPostAnnounceWrapper = styled.li`
   align-items: flex-start;
   max-height: 150px;
   width: 100%;
+  word-break: break-all;
+  @media screen and (max-width: 1918px) {
+    width: 280px;
+  }
+  @media screen and (max-width: 1700px) {
+    width: 160px;
+  }
+  @media screen and (max-width: 639px) {
+    width: 280px;
+  }
 `;
 
 const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
