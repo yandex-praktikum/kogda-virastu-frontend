@@ -52,7 +52,6 @@ const PopularTags: FC = () => {
 
   const deactivateTag = (e: React.MouseEvent, tag: string) => {
     e.stopPropagation();
-    console.log(tag);
     dispatch(setSelectedTags(selectedTags!.filter((el) => {return el !== tag})));
   };
 
