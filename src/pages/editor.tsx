@@ -7,6 +7,8 @@ const Page = styled.section`
   margin: 40px 0 40px 0;
   position: relative;
   z-index: 10;
+  display: flex;
+  justify-content: center;
 `;
 
 const Editor = () => (
