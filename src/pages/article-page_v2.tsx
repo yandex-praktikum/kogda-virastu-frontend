@@ -79,7 +79,6 @@ const RightColumn = styled.aside`
 
 const ArticlePage: FC = () => {
   const dispatch = useDispatch();
- 
   const { commentsFeed: comments } = useSelector((store) => store.view);
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
@@ -91,6 +90,10 @@ const ArticlePage: FC = () => {
       dispatch(getArticleThunk(slug));
     });
   }, [dispatch, slug]);
+
+  if (!slug) {
+    return null;
+  }
 
   return (
     <ArticleSection>
@@ -107,7 +110,6 @@ const ArticlePage: FC = () => {
         <CommentList slug={slug} />
       </ArticlePageWrapper>
       <RightColumn>
-
         <Slider />
         <TopAnnounceWidget caption={intl.messages.popularContent as string} />
       </RightColumn>
