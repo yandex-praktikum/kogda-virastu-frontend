@@ -41,7 +41,7 @@ const en : TVocabulary = {
   aboutUser: 'About you',
   noPageText:' Page not found',
   goPageOnPage:'To read the blog, go to ',
-  npPageLink:'Main'
+  npPageLink:'Main',
   nickname: 'Display name',
 };
 

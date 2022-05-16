@@ -35,8 +35,7 @@ const MainContainer = styled.div`
     justify-content: center;
     align-items: center;
     max-width:1140px;
-    /*width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
-    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);*/
+    
     @media screen and (max-width:${tabletBreakpoint}px) {
       padding: 0, 24px;
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;

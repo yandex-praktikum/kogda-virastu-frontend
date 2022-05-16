@@ -41,7 +41,7 @@ const ru : TVocabulary = {
   aboutUser: 'Расскажите о себе',
   noPageText:' Страница не найдена',
   goPageOnPage:'Чтобы читать блог, перейдите на ',
-  npPageLink:'Главную'
+  npPageLink:'Главную',
   nickname: 'Отображаемое имя',
 };
 
