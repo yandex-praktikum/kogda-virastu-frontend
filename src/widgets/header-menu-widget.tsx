@@ -1,12 +1,17 @@
 import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
-import { useNavigate,  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { batch } from 'react-redux';
+import { jwt } from '../services/api';
 
 import {
   OpenMenuButton, MenuSettingsButton, MenuNewPostButton, MenuLogoutButton,
 } from '../ui-lib';
 import { useDispatch, useSelector } from '../services/hooks';
-import { closeMenu, onLogout } from '../store';
+import {
+  clearSelectedTags,
+  clearUser, clearViewArticle, onLogout,
+} from '../store';
 
 const HeaderMenuWrapper = styled.nav`
   position: absolute;
@@ -29,13 +34,29 @@ const HeaderMenuWidget : FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { nickname, username, image } = useSelector((store) => store.profile);
-  const onCloseClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`${nickname || username}`);
-  const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => alert('Здесь будет редирект на редактирование профиля!');
-  const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => alert('Здесь будет редирект на создание новой статьи!');
-  const onLogoutClick : MouseEventHandler<HTMLButtonElement> = () => dispatch(onLogout());
+  const { isLoggedIn } = useSelector((state) => state.system);
+  const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/${username || ''}}`);
+  const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/settings');
+  const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(clearViewArticle());
+    navigate('/editArticle');
+  };
+  const onLogoutClick : MouseEventHandler<HTMLButtonElement> = () => {
+    batch(() => {
+      dispatch(onLogout());
+      dispatch(clearUser());
+      dispatch(clearViewArticle());
+      dispatch(clearSelectedTags());
+    });
+    jwt.remove();
+    navigate('/');
+  };
+  if (!isLoggedIn || !username) {
+    return null;
+  }
   return (
     <HeaderMenuWrapper>
-      <OpenMenuButton onClick={onCloseClick} name={(nickname ?? username) || ''} image={image || ''} />
+      <OpenMenuButton onClick={onProfileClick} name={(nickname ?? username) || ''} image={image || ''} />
       <MenuNewPostButton onClick={onNewPostClick} />
       <MenuSettingsButton onClick={onUpdateProfileClick} />
       <MenuLogoutButton onClick={onLogoutClick} />

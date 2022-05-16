@@ -119,6 +119,7 @@ export const jwt = {
     return res || '';
   },
   test: () : boolean => !!localStorage.getItem(JWT),
+  remove: () : void => localStorage.removeItem(JWT),
 };
 
 const injectBearerToken = (requestConfig : AxiosRequestConfig) : AxiosRequestConfig => {

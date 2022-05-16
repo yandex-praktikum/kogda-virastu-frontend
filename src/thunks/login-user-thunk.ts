@@ -9,6 +9,7 @@ import {
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
+import { TUser } from '../types/types';
 
 const loginUserThunk : AppThunk = () => async (
   dispatch: AppDispatch,
@@ -20,7 +21,7 @@ const loginUserThunk : AppThunk = () => async (
     const {
       data: {
         user: {
-          username, email, token, bio = '', image = '',
+          username, email, token, bio = '', image = '', nickname = '',
         },
       },
     } = await loginUser(loginData?.email ?? '', loginData?.password ?? '');
@@ -28,8 +29,8 @@ const loginUserThunk : AppThunk = () => async (
     batch(() => {
       dispatch(userLoginSucceeded());
       dispatch(setUser({
-        username, email, bio, image,
-      }));
+        username, email, bio, image, nickname,
+      } as TUser));
       dispatch(onLogin());
       dispatch(resetFormLogin());
     });
