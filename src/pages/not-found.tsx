@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { red } from '../constants/colors';
 import { FormattedMessage } from 'react-intl';
+import { red } from '../constants/colors';
 
 const Heading = styled.h2`
 color: ${red};
@@ -62,12 +62,14 @@ const NotFound = () => (
           defaultMessage='Страница не найдена.' />
       </Text>
       <Text>
-      <FormattedMessage
+        <FormattedMessage
           id='goPageOnPage'
           defaultMessage='Чтобы читать блог, перейдите на ' />
-        <LinkStyle to='/'> <FormattedMessage
-          id='npPageLink'
-          defaultMessage='Главную' /></LinkStyle>
+        <LinkStyle to='/'>
+          <FormattedMessage
+            id='npPageLink'
+            defaultMessage='Главную' />
+        </LinkStyle>
       </Text>
     </div>
   </NotFoundStyle>
