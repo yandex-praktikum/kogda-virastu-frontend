@@ -25,13 +25,16 @@ const ProfileContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap:24px;
+    margin-top: 56px;
 
     @media screen and (max-width:768px) {
         width:271px;
+        margin-top: 48px;
     }
 
      @media screen and (max-width: 320px) {
          width:280px;
+         margin-top:40px;
      }
 
 `;
@@ -65,14 +68,7 @@ const ProfileWidgetButton: FC<{
     return null;
   }
 
-  /*  const profileButtonActionSelect = React.useCallback(() => {
-    if (isFollow) {
-      dispatch(unfollowProfileThunk());
-    } else {
-      dispatch(followProfileThunk());
-    }
-  }, [dispatch, isFollow]);
- */
+
   return (
     isFollow ? <UnfollowButton onClick={() => dispatch(unfollowProfileThunk())} />
       : <FollowButton onClick={() => dispatch(followProfileThunk())} />

@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
 import { calculateOffset } from '../services/helpers';
-import { ProfileWidget } from '../widgets';
+import { ProfileWidget, FeedRibbon } from '../widgets';
 import {
   getPublicFeedThunk,
   getUserProfileThunk,
@@ -11,7 +11,6 @@ import {
   deleteArticleThunk,
 } from '../thunks';
 import { clearView } from '../store';
-import ArticleFullPreview from '../widgets/article-full-preview';
 import ProfilePageLayout from '../layouts/profile-page-layout';
 
 const Profile: FC = () => {
@@ -71,16 +70,19 @@ const Profile: FC = () => {
         size='large'
         distance={0}
         color='' />
-      {feed?.map((item) => (
-        <ArticleFullPreview
-          article={item}
-          isAuthor={isUser}
-          onLikeClick={() => onLikeClick(item.favorited, item.slug)}
-          onDeleteClick={() => deleteArticle(item.slug)} />
-      ))}
+      <FeedRibbon />
+
     </ProfilePageLayout>
 
   );
 };
 
 export default Profile;
+
+/* {feed?.map((item) => (
+  <ArticleFullPreview
+    article={item}
+    isAuthor={isUser}
+    onLikeClick={() => onLikeClick(item.favorited, item.slug)}
+    onDeleteClick={() => deleteArticle(item.slug)} />
+))} */

@@ -21,6 +21,7 @@ width: 100%;
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
+  gap: 32px;
 `;
 
 const ItemWrapper = styled.li`
