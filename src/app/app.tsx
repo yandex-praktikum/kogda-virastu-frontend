@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
-import {  Route,  Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
+import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 
 import { jwt } from '../services/api';
 
-import { getPublicFeedThunk, getUserThunk } from '../thunks';
+import {
+  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
+} from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
-import { setLanguage } from '../store';
+import { closeConfirm, setLanguage } from '../store';
 import Header from '../widgets/Header';
 import Footer from '../widgets/Footer';
 import Profile from '../pages/profile';
@@ -17,20 +20,40 @@ import Main from '../pages/main';
 import Login from '../pages/login';
 import Register from '../pages/register';
 import Settings from '../pages/settings';
-import ArticlePage from '../pages/aricle';
+import ArticlePage from '../pages/aricle-page';
 import Editor from '../pages/editor';
+import { Modal } from '../widgets';
 
+import { IGenericVoidHandler } from '../types/widgets.types';
 
 const App = () => {
   const dispatch = useDispatch();
   const { currentTheme, currentLang } = useSelector((state) => state.system);
   const { themes, langNames, vocabularies } = useSelector((state) => state.all);
+  const { isDeleteConfirmOpen } = useSelector((state) => state.system);
+  const slug = useSelector((state) => state.view.article?.slug) ?? '';
+  const onConfirmDelete : IGenericVoidHandler = () => {
+    batch(() => {
+      dispatch(deleteArticleThunk(slug));
+      dispatch(closeConfirm());
+    });
+  };
+  const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
 
   useEffect(() => {
+    batch(() => {
+      dispatch(getAllPostsThunk());
+      dispatch(getAllTagsThunk());
+    });
     if (jwt.test()) {
-      dispatch(getUserThunk());
-      dispatch(getPublicFeedThunk());
+      batch(() => {
+        dispatch(getUserThunk());
+        dispatch(getPublicFeedThunk());
+      });
     }
+  }, [dispatch]);
+
+  useEffect(() => {
     const language = navigator.language.split('-')[0];
     if (langNames.includes(language)) {
       dispatch(setLanguage(language));
@@ -45,18 +68,19 @@ const App = () => {
                 }>
         <Header />
         <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/registration' element={<Register />} />
-        <Route path='/:username' element={<Profile />} />
-        <Route path='/editArticle' element={<Editor />} />
-        <Route path='/:username' element={<Profile />} />
-        <Route path='/articles/:user' element={<ArticlePage />} />
-        <Route path='*' element={<NotFound />} />
+          <Route path='/' element={<Main />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/registration' element={<Register />} />
+          <Route path='/:username' element={<Profile />} />
+          <Route path='/editArticle' element={<Editor />} />
+          <Route path='/:username' element={<Profile />} />
+          <Route path='/article/:slug' element={<ArticlePage />} />
+          <Route path='*' element={<NotFound />} />
           {/* Тут будет роутинг  */}
         </Routes>
         <Footer />
+        {isDeleteConfirmOpen && <Modal onClose={onConfirmClose} onSubmit={onConfirmDelete} />}
       </ThemeProvider>
     </IntlProvider>
   );

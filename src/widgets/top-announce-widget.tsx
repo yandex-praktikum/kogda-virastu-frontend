@@ -1,17 +1,16 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { mobileViewThreshold } from '../constants';
-import {Slider} from '../widgets/Slider';
 import { useSelector } from '../services/hooks';
 import { TArticle } from '../types/types';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
 import { Divider, HeaderThreeText } from '../ui-lib';
 import { TTopAnnounceWidgetProps } from '../types/widgets.types';
-const TopAnnounce =  styled.div`
+
+const TopAnnounce = styled.div`
   display: flex;
   flex-flow: column nowrap;
-`
-
+`;
 
 const TopContainer = styled.ul`
   min-width: 220px;
@@ -38,40 +37,39 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
   return (
     <TopAnnounce>
-       <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
+      <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
         {caption}
       </HeaderThreeText>
-    <TopContainer>
-      {topArticles.map((article: TArticle, index) => {
-        const {
-          author: {
-            username,
-            nickname,
-          },
-          title,
-          createdAt,
-          favorited,
-          favoritesCount,
-          slug,
-        } = article;
-        const nope = (): void => {
-        };
-        return (
-          <>
-            {index && <Divider distance={24} />}
-            <BriefPostAnnounceWidget
-              key={slug}
-              name={nickname ?? username}
-              title={title}
-              date={new Date(createdAt)}
-              isLiked={favorited}
-              likesCount={favoritesCount}
-              onLikeClick={nope} />
-          </>
-        );
-      })}
-    </TopContainer>
-    <Slider data={topArticles} />
+      <TopContainer>
+        {topArticles.map((article: TArticle, index) => {
+          const {
+            author: {
+              username,
+              nickname,
+            },
+            title,
+            createdAt,
+            favorited,
+            favoritesCount,
+            slug,
+          } = article;
+          const nope = (): void => {
+          };
+          return (
+            <>
+              {index && <Divider distance={24} />}
+              <BriefPostAnnounceWidget
+                key={slug}
+                name={nickname ?? username}
+                title={title}
+                date={new Date(createdAt)}
+                isLiked={favorited}
+                likesCount={favoritesCount}
+                onLikeClick={nope} />
+            </>
+          );
+        })}
+      </TopContainer>
     </TopAnnounce>
   );
 };

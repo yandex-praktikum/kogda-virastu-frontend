@@ -37,7 +37,6 @@ const FeedRibbon : FC = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
   const { isPublicFeedFetching } = useSelector((state) => state.api);
-  const { username } = useSelector((state) => state.profile);
   if (!posts || isPublicFeedFetching) {
     return (
       <RegularText size='large' weight={500}>
@@ -60,8 +59,7 @@ const FeedRibbon : FC = () => {
             <ItemWrapper key={post.slug}>
               <ArticleFullPreview
                 article={post}
-                onLikeClick={onClick}
-                isAuthor={post.author.username === username} />
+                onLikeClick={onClick} />
             </ItemWrapper>
           );
         })}

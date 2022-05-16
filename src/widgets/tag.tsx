@@ -31,8 +31,6 @@ const Button = styled.button<TTagButtonProps>`
     }
   `;
 
-
-
 const Tag: FC<ITagProps> = ({
   tag, handleClick = () => {}, isActive, deactivateTag,
 }) => {

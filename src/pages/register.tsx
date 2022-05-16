@@ -12,6 +12,8 @@ const Register = () => (
   <Page>
     <RegisterForm />
   </Page>
+
 );
+
 
 export default Register;
