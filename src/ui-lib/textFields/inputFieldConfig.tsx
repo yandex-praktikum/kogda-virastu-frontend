@@ -6,6 +6,8 @@ import { TextFieldStyle, LabelStyle, ErorText } from './textFields-styles';
 import { TInputFieldType } from '../../types/styles.types';
 
 const InputStyle = styled.input<{ error: boolean | undefined }>`
+box-sizing: border-box;
+padding-right: 20px;
      ${TextFieldStyle}
  `;
 

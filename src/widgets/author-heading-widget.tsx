@@ -9,7 +9,7 @@ import { DeleteIcon } from '../ui-lib';
 const HeadingContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 32px;
+  grid-template-columns: 1fr 40px;
   gap: 0 8px;
   height: 40px;
 `;
