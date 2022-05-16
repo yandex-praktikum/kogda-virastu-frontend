@@ -10,7 +10,7 @@ export interface ITextFieldStyleProps {
 export const TextFieldStyle = css<ITextFieldStyleProps>`
   box-sizing: border-box;
   width: 100%;
-  padding: 8px 16px 8px 16px;
+  padding: 8px 38px 8px 16px;
   position: relative;
   font-size: ${({ theme: { text18: { size } } }) => size}px ;
   font-family: ${({ theme: { text18: { family } } }) => family};
