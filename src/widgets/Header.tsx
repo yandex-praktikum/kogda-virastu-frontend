@@ -19,8 +19,14 @@ const HeaderStyled = styled.header`
   padding: 0;
 `;
 
-const BackgroundContainer = styled.div`
+const BackgroundOuterContainer = styled.div`
   position: absolute;
+  overflow: hidden;
+  width: 100%;
+`;
+
+const BackgroundContainer = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: 19% 50% 31%;
   top: 0;
@@ -154,7 +160,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0;
   z-index: 99999;
-  background-color:transparent;
+
   @media screen and (max-width:1300px) {
     max-width: 955px;
   }
@@ -232,14 +238,16 @@ const Header: FC = () => {
 
   return (
     <HeaderStyled>
-      <BackgroundContainer>
-        <FigureContainerLeft />
-        <FigureContainerCenter>
-          <FigureLeftEllipse />
-          <FigureRightEllipse />
-        </FigureContainerCenter>
-        <FigureContainerRight />
-      </BackgroundContainer>
+      <BackgroundOuterContainer>
+        <BackgroundContainer>
+          <FigureContainerLeft />
+          <FigureContainerCenter>
+            <FigureLeftEllipse />
+            <FigureRightEllipse />
+          </FigureContainerCenter>
+          <FigureContainerRight />
+        </BackgroundContainer>
+      </BackgroundOuterContainer>
       <Container>
         <Navigation>
           <Link to='/'><HomeButton onClick={() => {}} /></Link>
