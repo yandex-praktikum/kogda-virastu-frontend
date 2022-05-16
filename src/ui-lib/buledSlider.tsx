@@ -9,6 +9,7 @@ type Tbullet = {
 
 const Bulet = styled.button<{ isActive: boolean }>`
     border-radius: 50%;
+    cursor: pointer;
     width: 12px;
     height: 12px;
     background-color: ${({ isActive }) => (isActive ? blue : dividerGray)};
