@@ -60,7 +60,7 @@ const TextAreaField = ({
         rows={1}
         isHasBorder={isHasBorder ?? true} />
     </LabelStyle>
-    {error && <ErorText erorText={errorText} />}
+    {error && <ErorText errorText={errorText} />}
   </ContainerTextArea>
 );
 

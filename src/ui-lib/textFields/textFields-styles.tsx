@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
+import { getPropOnCondition } from '../../services/helpers';
 
 type TTextFieldStyleProps = {
-  error: boolean | undefined;
+  error: boolean;
   minHeight?: number;
 };
 
@@ -17,12 +18,12 @@ export const TextFieldStyle = css<TTextFieldStyleProps>`
   outline:none;
   color: ${({ theme: { secondaryText } }) => secondaryText};
   border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.defaultBorder))};
-  
+
   @media screen and (max-width:768px) {
   font-size: 16px;
   }
   :hover {
-  border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderHover))};
+  border: 1px solid ${({ error, theme: { inputField: { borderHover, errorColor } } }) => getPropOnCondition(error, borderHover, errorColor) as string};
   }
   :disabled {
   background-color: ${((props) => props.theme.inputField.disabledInput)};
@@ -42,7 +43,7 @@ export const LabelStyle = styled.label`
   font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
 `;
 
-const ErorTextStyle = styled.span`
+const ErrorTextStyle = styled.span`
 margin: 0;
 color: ${((props) => props.theme.inputField.errorColor)};
 font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
@@ -51,10 +52,10 @@ line-height: ${({ theme: { labelInput: { height } } }) => `${height}px`} ;
 font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
 `;
 
-type TerrorText = {
-  erorText?: string
+type TErrorText = {
+  errorText?: string
 };
 
-export const ErorText = ({ erorText }: TerrorText) => (
-  <ErorTextStyle>{erorText}</ErorTextStyle>
+export const ErorText = ({ errorText }: TErrorText) => (
+  <ErrorTextStyle>{errorText}</ErrorTextStyle>
 );

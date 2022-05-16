@@ -67,7 +67,7 @@ export const InputField :FC<IInputInterface> = ({
     <ContainerIcon onClick={onIconClick}>
       {icon}
     </ContainerIcon>
-    {error && <ErorText erorText={errorText} />}
+    {error && <ErorText errorText={errorText} />}
   </ContainerInput>
 );
 export default InputField;
