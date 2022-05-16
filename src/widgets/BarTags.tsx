@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useSelector } from '../services/hooks';
+import {uid} from '../services/helpers/uid';
 
 import Tag from './tag';
 
@@ -44,7 +45,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
   return (
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
-        <List>
+        <List key={uid()}>
           <Tag tag={tag} isActive={tag === activeTag} />
         </List>
       ))}

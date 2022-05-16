@@ -28,7 +28,7 @@ const TopContainer = styled.ul`
   margin-inline-end: 0;
   padding-inline-start: 0;
   
-  @media screen and (max-width: ${mobileViewThreshold}px) {
+  @media screen and (max-width: 760px) {
     display: none;
     }
 `;
