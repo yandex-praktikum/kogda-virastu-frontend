@@ -1,19 +1,27 @@
 import React, { FC } from 'react';
 import { batch } from 'react-redux';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setFeedType, setTag, clearTag } from '../store';
 import { FeedTypes } from '../types/types';
 import Tag from './tag';
 
+const PopularTagsContainer = styled.div`
+  margin-bottom: 56px;
+
+  @media screen and (max-width:768px) {
+    margin-bottom: 40px;
+  }
+`;
+
 const Title = styled.h3`
-    color: ${({ theme }) => theme.primaryText};
-    font-size: ${({ theme }) => theme.thirdLevelHeading.size}px;
-    font-family: ${({ theme }) => theme.thirdLevelHeading.family};
-    font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
-    line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
-    margin-bottom: 16px;
-  ;`;
+  color: ${({ theme }) => theme.primaryText};
+  font-size: ${({ theme }) => theme.thirdLevelHeading.size}px;
+  font-family: ${({ theme }) => theme.thirdLevelHeading.family};
+  font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
+  line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
+  margin-bottom: 16px;
+`;
 
 const TagList = styled.div`
   max-width: 360px;
@@ -26,7 +34,6 @@ const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
   const { tag: activeTag } = useSelector((state) => state.view);
-  const theme = useTheme();
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
@@ -43,7 +50,7 @@ const PopularTags: FC = () => {
 
   if (tags) {
     return (
-      <div>
+      <PopularTagsContainer>
         <Title>Популярные теги</Title>
         <TagList>
           {
@@ -52,7 +59,7 @@ const PopularTags: FC = () => {
             ))
           }
         </TagList>
-      </div>
+      </PopularTagsContainer>
 
     );
   }

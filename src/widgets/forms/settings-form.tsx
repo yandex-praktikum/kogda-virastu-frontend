@@ -106,8 +106,7 @@ const SettingsForm: FC = () => {
           <FieldAboutUser
             onChange={changeBioProfile}
             value={bio ?? ''}
-            minHeight={theme.text18.height * 5}
-            name='FieldBio' />
+            minHeight={theme.text18.height * 5} />
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>

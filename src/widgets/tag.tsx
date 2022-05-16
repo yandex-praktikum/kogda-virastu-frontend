@@ -6,7 +6,7 @@ interface ITagProps {
   tag: string,
   handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
   isActive: boolean,
-  inactiveTag?: MouseEventHandler<SVGSVGElement>,
+  deactivateTag?: MouseEventHandler<SVGSVGElement>,
 }
 
 type TTagButtonProps = {
@@ -32,7 +32,7 @@ const Button = styled.button<TTagButtonProps>`
   `;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick, isActive, deactivateTag,
+  tag, handleClick = () => {}, isActive, deactivateTag,
 }) => {
   const theme = useTheme();
 
