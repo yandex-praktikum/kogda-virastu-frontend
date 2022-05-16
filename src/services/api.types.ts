@@ -12,13 +12,14 @@ export type TAPINewUser = {
 };
 
 export type TAPIAuth = {
-  user : {
+  user: {
     email: string;
     username: string;
     bio?: string;
-    image?:string;
+    image?: string;
     token: string;
-    nickname: string };
+    nickname: string
+  };
 };
 
 export type TAPILoginUser = {
@@ -29,14 +30,14 @@ export type TAPILoginUser = {
 };
 
 export type TAPIUser = {
-  user : TUser;
+  user: TUser;
 };
 
 export type TAPIPatchUserData = {
   email?: string;
   username?: string;
   bio?: string;
-  image?:string;
+  image?: string;
   password?: string;
   nickname?: string;
 };
@@ -59,7 +60,7 @@ export type TAPIParamsObject = {
 };
 
 export type TAPIArticle = {
-  article : TArticle;
+  article: TArticle;
 };
 
 export type TAPIPatchArticleData = {
@@ -90,4 +91,5 @@ export type TAPIErrors = {
 };
 export type TAPIError = {
   errors: TAPIErrors;
+  statusCode: number;
 };
