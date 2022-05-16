@@ -55,7 +55,7 @@ const SettingsForm: FC = () => {
       email: profile.email || '',
       nickname: profile.nickname || '',
       bio: profile.bio || '',
-      image: profile.image || ',',
+      image: profile.image || '',
     }));
   }, [dispatch, profile]);
 

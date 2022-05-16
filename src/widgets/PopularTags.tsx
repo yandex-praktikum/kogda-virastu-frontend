@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { setFeedType, setTag, clearTag, setSelectedTags } from '../store';
 import { FeedTypes } from '../types/types';
 import Tag from './tag';
+import { FormattedMessage } from 'react-intl';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -58,7 +59,9 @@ const PopularTags: FC = () => {
   if (tags) {
     return (
       <PopularTagsContainer>
-        <Title>Популярные теги</Title>
+        <Title>
+          <FormattedMessage id={'popularTags'} />
+        </Title>
         <TagList>
           {
             tags.map((tag) => (
