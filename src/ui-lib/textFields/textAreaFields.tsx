@@ -8,18 +8,20 @@ interface IFieldInput {
   error?: boolean,
   placeholder?: string,
   errorText?: string,
-  onBlur?: FocusEventHandler<HTMLTextAreaElement>;
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  onBlur?: FocusEventHandler<HTMLTextAreaElement>,
+  onFocus?: FocusEventHandler<HTMLTextAreaElement>,
+  onChange: ChangeEventHandler<HTMLTextAreaElement>,
 }
 
 export const FieldAboutArticle: FC<IFieldInput> = ({
   value,
   onBlur = undefined,
+  onFocus = undefined,
   onChange,
   placeholder = '',
   error = false,
   errorText = '',
-  minHeight = undefined,
+  minHeight = 0,
 }) => {
   const intl = useIntl();
   return (
@@ -29,6 +31,7 @@ export const FieldAboutArticle: FC<IFieldInput> = ({
       errorText={errorText}
       error={error}
       onBlur={onBlur}
+      onFocus={onFocus}
       value={value}
       onChange={onChange}
       labelText={intl.messages.articleAbout as string}
@@ -38,20 +41,22 @@ export const FieldAboutArticle: FC<IFieldInput> = ({
 
 FieldAboutArticle.defaultProps = {
   onBlur: undefined,
+  onFocus: undefined,
   placeholder: '',
   error: false,
   errorText: '',
-  minHeight: undefined,
+  minHeight: 0,
 };
 
 export const FieldAboutUser: FC<IFieldInput> = ({
   value,
   onBlur = undefined,
+  onFocus = undefined,
   onChange,
   placeholder = '',
   error = false,
   errorText = '',
-  minHeight = undefined,
+  minHeight = 0,
 }) => {
   const intl = useIntl();
   return (
@@ -61,6 +66,7 @@ export const FieldAboutUser: FC<IFieldInput> = ({
       errorText={errorText}
       error={error}
       onBlur={onBlur}
+      onFocus={onFocus}
       value={value}
       onChange={onChange}
       labelText={intl.messages.aboutUser as string}
@@ -70,20 +76,22 @@ export const FieldAboutUser: FC<IFieldInput> = ({
 
 FieldAboutUser.defaultProps = {
   onBlur: undefined,
+  onFocus: undefined,
   placeholder: '',
   error: false,
   errorText: '',
-  minHeight: undefined,
+  minHeight: 0,
 };
 
 export const FieldTextArticle: FC<IFieldInput> = ({
   value,
   onBlur = undefined,
+  onFocus = undefined,
   onChange,
   placeholder = '',
   error = false,
   errorText = '',
-  minHeight = undefined,
+  minHeight = 0,
 }) => {
   const intl = useIntl();
   return (
@@ -93,6 +101,7 @@ export const FieldTextArticle: FC<IFieldInput> = ({
       errorText={errorText}
       error={error}
       onBlur={onBlur}
+      onFocus={onFocus}
       value={value}
       onChange={onChange}
       labelText={intl.messages.articleText as string}
@@ -102,21 +111,22 @@ export const FieldTextArticle: FC<IFieldInput> = ({
 
 FieldTextArticle.defaultProps = {
   onBlur: undefined,
+  onFocus: undefined,
   placeholder: '',
   error: false,
   errorText: '',
-  minHeight: undefined,
+  minHeight: 0,
 };
 
-export const FieldTextComment: FC<IFieldInput & { isHasBorder?: boolean }> = ({
+export const FieldTextComment: FC<IFieldInput> = ({
   value,
   onBlur = undefined,
+  onFocus = undefined,
   onChange,
   placeholder = '',
   error = false,
   errorText = '',
-  minHeight = undefined,
-  isHasBorder = false,
+  minHeight = 0,
 }) => (
   <TextAreaField
     placeholder={placeholder}
@@ -124,17 +134,18 @@ export const FieldTextComment: FC<IFieldInput & { isHasBorder?: boolean }> = ({
     errorText={errorText}
     error={error}
     onBlur={onBlur}
+    onFocus={onFocus}
     value={value}
     onChange={onChange}
     minHeight={minHeight}
-    isHasBorder={isHasBorder} />
+    isHasBorder={false} />
 );
 
 FieldTextComment.defaultProps = {
   onBlur: undefined,
+  onFocus: undefined,
   placeholder: '',
   error: false,
   errorText: '',
-  minHeight: undefined,
-  isHasBorder: false,
+  minHeight: 0,
 };
