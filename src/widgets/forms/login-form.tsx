@@ -49,7 +49,7 @@ const LoginForm: FC = () => {
       <FormTitle>
         <FormattedMessage id='userLogin' />
       </FormTitle>
-      <FormLoginLink to='/register'>
+      <FormLoginLink to='/registration'>
         <FormattedMessage id='register' />
       </FormLoginLink>
       <Form onSubmit={submitForm}>

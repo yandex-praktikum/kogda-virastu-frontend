@@ -9,6 +9,7 @@ import {
 } from '../thunks';
 import { TArticle } from '../types/types';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
+import { BasicNormalButton } from '../ui-lib/buttons';
 import BarTags from './BarTags';
 import Likes from './likes';
 
@@ -45,6 +46,12 @@ const ArticleActionsContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  && > button {
+    width:233px;
+    @media screen  and (max-width:725px) {
+      width:175px;
+    }
+  }
 `;
 
 const ArticleAuthor = styled.p`
@@ -96,6 +103,8 @@ const ArticleBody = styled.p`
     font-weight: ${({ theme: { text16: { weight } } }) => weight};
  }
 `;
+
+
 
 const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }) => (
   <ArticleActionsContainer>

@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,  } from 'react-router-dom';
 
 import {
   OpenMenuButton, MenuSettingsButton, MenuNewPostButton, MenuLogoutButton,
@@ -10,7 +10,7 @@ import { closeMenu, onLogout } from '../store';
 
 const HeaderMenuWrapper = styled.nav`
   position: absolute;
-  top: 0;
+  top: 24px;
   right: 0;
   display: flex;
   flex-flow: column nowrap;
@@ -29,7 +29,7 @@ const HeaderMenuWidget : FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { nickname, username, image } = useSelector((store) => store.profile);
-  const onCloseClick : MouseEventHandler<HTMLButtonElement> = () => dispatch(closeMenu());
+  const onCloseClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`${nickname || username}`);
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => alert('Здесь будет редирект на редактирование профиля!');
   const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => alert('Здесь будет редирект на создание новой статьи!');
   const onLogoutClick : MouseEventHandler<HTMLButtonElement> = () => dispatch(onLogout());

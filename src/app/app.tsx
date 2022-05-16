@@ -20,7 +20,7 @@ import Main from '../pages/main';
 import Login from '../pages/login';
 import Register from '../pages/register';
 import Settings from '../pages/settings';
-import ArticlePage from '../pages/aricle-page';
+import ArticlePage from '../pages/article-page_v2';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
 
