@@ -38,6 +38,7 @@ const en : TVocabulary = {
   publishComment: 'Post comment',
   loading: 'Please wait, loading...',
   footerMessage: 'Created by Yandex Practicum Students, Red.Types Lakers team',
+  aboutUser: 'About you',
 };
 
 export default en;

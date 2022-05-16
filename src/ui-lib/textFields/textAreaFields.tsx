@@ -1,66 +1,132 @@
 import React, { ChangeEventHandler, FC, FocusEventHandler } from 'react';
+import { useIntl } from 'react-intl';
 import TextAreaField from './textAreaFieldConfig';
 
-type TFieldInput = {
-  minHeight?: number;
-  value?: string;
-  error?: boolean;
-  disabled?: boolean;
-  placeholder?: string;
-  errorText?: string;
-  onBlur?: FocusEventHandler<HTMLTextAreaElement>;
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
-  isHasBorder?: boolean;
+interface IFieldInput {
+  minHeight?: number,
+  value: string,
+  error?: boolean,
+  placeholder?: string,
+  errorText?: string,
+  onBlur?: FocusEventHandler<HTMLTextAreaElement>,
+  onFocus?: FocusEventHandler<HTMLTextAreaElement>,
+  onChange: ChangeEventHandler<HTMLTextAreaElement>,
+}
+
+export const FieldAboutArticle: FC<IFieldInput> = ({
+  value,
+  onBlur = undefined,
+  onFocus = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  minHeight = 0,
+}) => {
+  const intl = useIntl();
+  return (
+    <TextAreaField
+      placeholder={placeholder}
+      name='FieldAboutArticle'
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      value={value}
+      onChange={onChange}
+      labelText={intl.messages.articleAbout as string}
+      minHeight={minHeight} />
+  );
 };
 
-export const FieldAboutArticle: FC<TFieldInput> = ({
-  value, onBlur, onChange, placeholder, error, errorText, minHeight,
-}) => (
-  <TextAreaField
-    placeholder={placeholder}
-    name='FieldAboutArticle'
-    errorText={errorText}
-    error={error}
-    onBlur={onBlur}
-    value={value}
-    onChange={onChange}
-    labelText='О чем статья'
-    minHeight={minHeight} />
-);
+FieldAboutArticle.defaultProps = {
+  onBlur: undefined,
+  onFocus: undefined,
+  placeholder: '',
+  error: false,
+  errorText: '',
+  minHeight: 0,
+};
 
-export const FieldAboutUser: FC<TFieldInput> = ({
-  value, onBlur, onChange, placeholder, error, errorText, minHeight,
-}) => (
-  <TextAreaField
-    placeholder={placeholder}
-    name='FieldAboutArticle'
-    errorText={errorText}
-    error={error}
-    onBlur={onBlur}
-    value={value}
-    onChange={onChange}
-    labelText='Расскажите о себе'
-    minHeight={minHeight} />
-);
+export const FieldAboutUser: FC<IFieldInput> = ({
+  value,
+  onBlur = undefined,
+  onFocus = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  minHeight = 0,
+}) => {
+  const intl = useIntl();
+  return (
+    <TextAreaField
+      placeholder={placeholder}
+      name='FieldAboutArticle'
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      value={value}
+      onChange={onChange}
+      labelText={intl.messages.aboutUser as string}
+      minHeight={minHeight} />
+  );
+};
 
-export const FieldTextArticle: FC<TFieldInput> = ({
-  value, onBlur, onChange, placeholder, error, errorText, minHeight,
-}) => (
-  <TextAreaField
-    placeholder={placeholder}
-    name='FieldTextArticle'
-    errorText={errorText}
-    error={error}
-    onBlur={onBlur}
-    value={value}
-    onChange={onChange}
-    labelText='Текст статьи'
-    minHeight={minHeight} />
-);
+FieldAboutUser.defaultProps = {
+  onBlur: undefined,
+  onFocus: undefined,
+  placeholder: '',
+  error: false,
+  errorText: '',
+  minHeight: 0,
+};
 
-// eslint-disable-next-line react/require-default-props
-export const FieldTextComment: FC<TFieldInput & { isHasBorder?: boolean }> = ({
-  value, onBlur, onChange, placeholder, error, errorText, minHeight, isHasBorder,
+export const FieldTextArticle: FC<IFieldInput> = ({
+  value,
+  onBlur = undefined,
+  onFocus = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  minHeight = 0,
+}) => {
+  const intl = useIntl();
+  return (
+    <TextAreaField
+      placeholder={placeholder}
+      name='FieldTextArticle'
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      value={value}
+      onChange={onChange}
+      labelText={intl.messages.articleText as string}
+      minHeight={minHeight} />
+  );
+};
+
+FieldTextArticle.defaultProps = {
+  onBlur: undefined,
+  onFocus: undefined,
+  placeholder: '',
+  error: false,
+  errorText: '',
+  minHeight: 0,
+};
+
+export const FieldTextComment: FC<IFieldInput> = ({
+  value,
+  onBlur = undefined,
+  onFocus = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  minHeight = 0,
 }) => (
   <TextAreaField
     placeholder={placeholder}
@@ -68,8 +134,18 @@ export const FieldTextComment: FC<TFieldInput & { isHasBorder?: boolean }> = ({
     errorText={errorText}
     error={error}
     onBlur={onBlur}
+    onFocus={onFocus}
     value={value}
     onChange={onChange}
     minHeight={minHeight}
-    isHasBorder={isHasBorder} />
+    isHasBorder={false} />
 );
+
+FieldTextComment.defaultProps = {
+  onBlur: undefined,
+  onFocus: undefined,
+  placeholder: '',
+  error: false,
+  errorText: '',
+  minHeight: 0,
+};
