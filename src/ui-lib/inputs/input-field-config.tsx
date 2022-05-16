@@ -5,14 +5,10 @@ import React, {
 import { TextFieldStyle, LabelStyle, ErrorText } from './text-fields-styles';
 import { TInputFieldType } from '../../types/styles.types';
 
-<<<<<<< HEAD:src/ui-lib/textFields/inputFieldConfig.tsx
 const InputStyle = styled.input<{ error: boolean | undefined }>`
 box-sizing: border-box;
 padding-right: 20px;
-=======
-const InputStyle = styled.input<{ error: boolean }>`
->>>>>>> develop:src/ui-lib/inputs/input-field-config.tsx
-     ${TextFieldStyle}
+ ${TextFieldStyle}
  `;
 
 const ContainerInput = styled.div`
