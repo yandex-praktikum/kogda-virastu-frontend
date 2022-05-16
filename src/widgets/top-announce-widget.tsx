@@ -41,7 +41,7 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
         {caption}
       </HeaderThreeText>
       <TopContainer>
-        {topArticles.map((article: TArticle, index) => {
+        {topArticles.map((article: TArticle) => {
           const {
             author: {
               username,
