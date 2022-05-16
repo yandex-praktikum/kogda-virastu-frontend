@@ -55,7 +55,7 @@ const CommentInput: FC<TCommentInputProps> = ({ slug }) => {
   if (username) {
     return (
       <CommentInputContainer onSubmit={handleCommentSubmit}>
-        <FieldTextComment minHeight={112} isHasBorder={false} onChange={onChangeComment} value={comment || ''} />
+        <FieldTextComment minHeight={112} onChange={onChangeComment} value={comment || ''} />
         <CommentInfoWrapper>
           <Author userName={nickname ?? username} createAt={new Date()} imageSrc={image || ''} />
           <CommentButtonWrapper>
