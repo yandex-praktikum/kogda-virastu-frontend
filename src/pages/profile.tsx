@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
 import { calculateOffset } from '../services/helpers';
 import { ProfileWidget, FeedRibbon } from '../widgets';
@@ -28,7 +28,8 @@ const Profile: FC = () => {
       && !!state.profile.email
       && (state.profile.username === state.view.profile?.username),
   );
-  const { page, perPage, feed } = useSelector((state) => state.view);
+  const { page, perPage } = useSelector((state) => state.view);
+  const statusCode = useSelector((state) => state.api.errorObject?.statusCode);
   const params = useParams<{ username: string }>();
 
   useEffect(() => {
@@ -46,6 +47,10 @@ const Profile: FC = () => {
       author: params?.username,
     }));
   }, [dispatch, page, perPage, params.username]);
+
+  if (statusCode === 404) {
+    return <Navigate to='404' />;
+  }
 
   return (
     <ProfilePageLayout>

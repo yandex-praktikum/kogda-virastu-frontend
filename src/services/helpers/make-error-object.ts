@@ -3,7 +3,7 @@ import { TAPIError } from '../api.types';
 
 const makeErrorObject = (error: AxiosError<TAPIError>) : TAPIError => {
   const { data: { errors } } = error.response as AxiosResponse<TAPIError>;
-  let res : TAPIError = { errors: {} };
+  let res: TAPIError = { errors: {}, statusCode: error.response?.status || 0 };
   if (errors) {
     res = { ...res, errors };
   } else if (!errors && !error.response && !!error.request && error.isAxiosError) {

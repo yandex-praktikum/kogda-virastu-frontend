@@ -15,12 +15,8 @@ const ArticleCardConteiner = styled.div`
     flex-direction: column;
     gap: 16px;
 
-    @media screen and (max-width: 1000px) { 
-        width: 720px;
-    }
-    
-    @media screen and (max-width: 750px) {
-        width: 500px;
+    @media screen and (max-width: 1050px) { 
+        width: 453px;
     }
     
     @media screen and (max-width: 600px) {
@@ -145,7 +141,10 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
         <FormattedMessage id='articleEnter' />
       </Link>
       <BarTagsWrapper image={article.link}>
-      <BarTags isHasImage={!!article.link} rowReverse tagList={/* test */['jjjj', 'ghgh', 'jjjjbnvnbvn', 'ghghvbvbvb', 'jjjj', 'ghgbvbvbh', 'jjjjbvbvb', 'ghgbvbvbh']} />
+        <BarTags
+          isHasImage={!!article.link}
+          rowReverse
+          tagList={article.tagList} />
       </BarTagsWrapper>
     </ContentConteiner>
     <Divider distance={0} />

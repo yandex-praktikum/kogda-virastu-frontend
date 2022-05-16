@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { red } from '../constants/colors';
 
 const Heading = styled.h2`
@@ -55,10 +56,20 @@ const NotFound = () => (
       404
     </Heading>
     <div>
-      <Text> Страница не найдена.</Text>
       <Text>
-        Чтобы читать блог, перейдите на
-        <LinkStyle to='/'> Главную</LinkStyle>
+        <FormattedMessage
+          id='noPageText'
+          defaultMessage='Страница не найдена.' />
+      </Text>
+      <Text>
+        <FormattedMessage
+          id='goPageOnPage'
+          defaultMessage='Чтобы читать блог, перейдите на ' />
+        <LinkStyle to='/'>
+          <FormattedMessage
+            id='npPageLink'
+            defaultMessage='Главную' />
+        </LinkStyle>
       </Text>
     </div>
   </NotFoundStyle>
