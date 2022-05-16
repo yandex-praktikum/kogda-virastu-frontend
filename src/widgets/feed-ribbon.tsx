@@ -37,6 +37,7 @@ const ItemWrapper = styled.li`
 const FeedRibbon : FC = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
+  const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
   if (!posts || isPublicFeedFetching) {
     return (
@@ -48,7 +49,9 @@ const FeedRibbon : FC = () => {
   return (
     <ScrollRibbon>
       <RibbonWrapper>
-        {posts.map((post) => {
+        {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
+            || !tags
+            || tags.length < 1))).map((post) => {
           const onClick : MouseEventHandler = () => {
             if (post.favorited) {
               dispatch(deleteLikeThunk(post.slug));
