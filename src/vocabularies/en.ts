@@ -20,7 +20,7 @@ const en : TVocabulary = {
   articleAbout: 'About',
   articleImage: 'URL of images (optional)',
   articleText: 'Article Text',
-  tags: 'Tags (with a comma)',
+  tags: 'Tags (comma-separated)',
   saveArticle: 'Create article',
   deletepopuptext: 'By clicking «Delete Entry», the material will be removed without the possibility of recovery. ',
   subscribe: 'Subscribe',
@@ -42,6 +42,7 @@ const en : TVocabulary = {
   noPageText:' Page not found',
   goPageOnPage:'To read the blog, go to ',
   npPageLink:'Main'
+  nickname: 'Display name',
 };
 
 export default en;

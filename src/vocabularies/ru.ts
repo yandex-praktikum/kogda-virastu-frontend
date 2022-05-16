@@ -42,6 +42,7 @@ const ru : TVocabulary = {
   noPageText:' Страница не найдена',
   goPageOnPage:'Чтобы читать блог, перейдите на ',
   npPageLink:'Главную'
+  nickname: 'Отображаемое имя',
 };
 
 export default ru;
