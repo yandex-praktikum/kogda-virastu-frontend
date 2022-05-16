@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -81,6 +81,7 @@ const ArticlePage: FC = () => {
   const dispatch = useDispatch();
   const { commentsFeed: comments } = useSelector((store) => store.view);
   const { isLoggedIn } = useSelector((state) => state.system);
+  const statusCode = useSelector((state) => state.api.errorObject?.statusCode);
   const intl = useIntl();
   const { slug } = useParams();
   useEffect(() => {
@@ -93,6 +94,10 @@ const ArticlePage: FC = () => {
 
   if (!slug) {
     return null;
+  }
+
+  if (statusCode === 404) {
+    return <Navigate to='404' />;
   }
 
   return (
