@@ -13,8 +13,6 @@ import FigureRight from '../assets/images/header/header-right-figure.svg';
 import FigureEllipse from '../assets/images/header/header-left-right-figure-ellipse.svg';
 
 const HeaderStyled = styled.header`
-  //position: fixed;
-  //top: 0;
   width: 100%;
   padding: 0;
 `;
@@ -23,6 +21,7 @@ const BackgroundOuterContainer = styled.div`
   position: absolute;
   overflow: hidden;
   width: 100%;
+  z-index: -1;
 `;
 
 const BackgroundContainer = styled.div`
@@ -155,7 +154,6 @@ const Navigation = styled.nav`
   }
 `;
 
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -239,13 +237,13 @@ const Header: FC = () => {
   const { nickname, username, image } = useSelector((store) => store.profile);
 
   const onOpenMenuClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.stopPropagation(); dispatch(openMenu())
-  }
+    e.stopPropagation(); dispatch(openMenu());
+  };
   const closeMenuClick: MouseEventHandler<HTMLElement> = () => dispatch(closeMenu());
 
   return (
-    <HeaderStyled  >
-      <BackgroundOuterContainer onClick={closeMenuClick} >
+    <HeaderStyled>
+      <BackgroundOuterContainer onClick={closeMenuClick}>
         <BackgroundContainer>
           <FigureContainerLeft />
           <FigureContainerCenter>
@@ -255,7 +253,7 @@ const Header: FC = () => {
           <FigureContainerRight />
         </BackgroundContainer>
       </BackgroundOuterContainer>
-      <Container  >
+      <Container>
         <Navigation>
           <Link className='navlink' to='/'><HomeButton onClick={() => { }} /></Link>
           {isLoggedIn && isMenuOpen && <HeaderMenuWidget />}
@@ -267,7 +265,7 @@ const Header: FC = () => {
           )}
           {!isLoggedIn && <Link className='navlink' to='/login'><HeaderLoginButton onClick={() => { }} /></Link>}
         </Navigation>
-        <TextContainer >
+        <TextContainer>
           <MainText>
             <FormattedMessage
               id='mainTitle'
