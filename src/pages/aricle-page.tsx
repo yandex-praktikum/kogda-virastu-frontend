@@ -16,15 +16,25 @@ import Slider from '../widgets/slider';
 
 const Page = styled.section`
   width: 100%;
+  margin-left: 24px;
+  margin-top: 56px;
+  margin-bottom: 166px;
+
+  position: relative;
+  z-index: 10;
   display: flex;
   justify-content: center;
   gap: 0 81px ;
   @media screen and (max-width:768px) {
     gap: 0 40px ;
+    margin-top: 48px;
+    margin-bottom: 100px;
   }
 
-  @media screen and (max-width:768px) {
+  @media screen and (max-width:320px) {
     gap: 0 ;
+    margin-top: 46px;
+    margin-bottom: 100px;
   } 
 `;
 

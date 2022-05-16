@@ -1,4 +1,6 @@
-import React, { MouseEventHandler } from 'react';
+import {
+  ChangeEventHandler, FocusEventHandler, MouseEventHandler,
+} from 'react';
 
 export type TColorSet = {
   default: string;
@@ -68,19 +70,6 @@ export type TFontProperties = {
   weight: number;
 };
 
-export type TButtonStyle = {
-  defaultColor: string;
-  hoverColor: string;
-  activeColor: string;
-  disabledColor: string;
-  fontColor: string;
-  fontProperties: TFontProperties;
-};
-
-export type TButtonTextStyle = {
-  paddingLeft: number;
-};
-
 export type TButtonProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
@@ -112,12 +101,6 @@ export type TAvatarButtonProps = {
 export type TIconProps = {
   color: string;
   distance?: number;
-};
-
-export type TTypoTypes = 'desktop' | 'mobile';
-
-export type THeaderFonts = {
-  [type in TTypoTypes]: TFontProperties;
 };
 
 export type THeaderTextProps = {
@@ -162,6 +145,7 @@ export type TFieldInput = {
   error?: boolean;
   disabled?: boolean;
   errorText?: string;
-  onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 };

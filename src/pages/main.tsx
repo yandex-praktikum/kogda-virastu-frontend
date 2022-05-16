@@ -52,7 +52,6 @@ const MainContainer = styled.div`
   }
   
   
-
   @media screen and (max-width: ${mobileViewThreshold}px) {
     padding:0, 20px;
     width: 280px;
@@ -60,7 +59,6 @@ const MainContainer = styled.div`
 `
 const LeftColumn = styled.div`
 overflow: hidden;
-
 `
 
 const RightColumn = styled.aside`

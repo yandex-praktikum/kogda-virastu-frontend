@@ -17,7 +17,7 @@ import {
   HomeIcon,
   LoginIcon,
 } from './icons';
-import { getColor, setColor } from '../services/helpers';
+import { getPropOnCondition, setColor } from '../services/helpers';
 import useMouseEvents from '../services/hooks/use-mouse-events';
 import { RegularText } from './text-elements';
 
@@ -28,7 +28,8 @@ type TBasicButtonProps = {
   disabled?: boolean;
 };
 
-const BasicNormalButton = styled.button<TBasicButtonProps>`
+export const BasicNormalButton = styled.button<TBasicButtonProps>`
+  width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
@@ -37,17 +38,17 @@ const BasicNormalButton = styled.button<TBasicButtonProps>`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].default, button[colorScheme].disabled)};
   color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
   &:hover {
-    background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
     }
   &:active {
-    background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   &:focus {
-    background-color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   `;
 
@@ -60,17 +61,17 @@ const BasicInvertedButton = styled.button<TBasicButtonProps>`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].default, button[colorScheme].disabled)};
   background-color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
   &:hover {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
     }
   &:active {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   &:focus {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
 `;
 
@@ -84,17 +85,17 @@ const MenuButton = styled.button<TBasicButtonProps>`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].default, button[colorScheme].disabled)};
   background-color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
   &:hover {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
     }
   &:active {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   &:focus {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getColor(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
 `;
 

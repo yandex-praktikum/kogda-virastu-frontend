@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { createCommentThunk } from '../thunks';
 import { TCommentInputProps } from '../types/widgets.types';
 import { PublishCommentButton } from '../ui-lib/buttons';
-import { FieldTextComment } from '../ui-lib/textFields/textAreaFields';
+import { FieldTextComment } from '../ui-lib';
 import Author from './author';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setComment } from '../store';
@@ -55,7 +55,7 @@ const CommentInput: FC<TCommentInputProps> = ({ slug }) => {
   if (username) {
     return (
       <CommentInputContainer onSubmit={handleCommentSubmit}>
-        <FieldTextComment minHeight={112} isHasBorder={false} onChange={onChangeComment} value={comment || ''} />
+        <FieldTextComment minHeight={112} onChange={onChangeComment} value={comment || ''} />
         <CommentInfoWrapper>
           <Author userName={nickname ?? username} createAt={new Date()} imageSrc={image || ''} />
           <CommentButtonWrapper>

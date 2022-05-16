@@ -4,8 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Divider } from '../ui-lib';
 
 const FooterStyled = styled.footer`
-/*  position: fixed;
-  bottom: 0;*/
+  
   width: 100%;
   padding: 0;
   margin: 0;
@@ -17,6 +16,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 1140px;
   height: 120px;
+  box-sizing: border-box;
   padding: 0 20px;
   margin: 0 auto;
   align-items: center;

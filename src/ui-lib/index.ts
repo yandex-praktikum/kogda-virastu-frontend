@@ -45,17 +45,17 @@ import {
   FieldPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs,
+  FieldTags,
   FieldNick,
   FieldProfileImage,
 }
-  from './textFields/inputFields';
+  from './inputs/input-fields';
 import {
   FieldTextComment,
   FieldAboutArticle,
   FieldAboutUser,
   FieldTextArticle,
-} from './textFields/textAreaFields';
+} from './inputs/textarea-fields';
 import {
   HeaderOneText,
   HeaderTwoText,
@@ -110,7 +110,7 @@ export {
   FieldNick,
   FieldNameArticle,
   FieldDescriptionArticle,
-  FieldTegs,
+  FieldTags,
   FieldProfileImage,
   FieldTextArticle,
   FieldAboutUser,
