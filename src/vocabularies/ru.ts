@@ -38,6 +38,7 @@ const ru : TVocabulary = {
   publishComment: 'Опубликовать комментарий',
   loading: 'Подождите, данные загружаются...',
   footerMessage: 'Сделано студентами Яндекс Практикума. Команда Red.Types Lakers',
+  aboutUser: 'Расскажите о себе',
 };
 
 export default ru;
