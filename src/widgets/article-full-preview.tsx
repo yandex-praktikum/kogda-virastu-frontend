@@ -141,7 +141,10 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
         <FormattedMessage id='articleEnter' />
       </Link>
       <BarTagsWrapper image={article.link}>
-      <BarTags isHasImage={!!article.link} rowReverse tagList={/* test */['jjjj', 'ghgh', 'jjjjbnvnbvn', 'ghghvbvbvb', 'jjjj', 'ghgbvbvbh', 'jjjjbvbvb', 'ghgbvbvbh']} />
+        <BarTags
+          isHasImage={!!article.link}
+          rowReverse
+          tagList={article.tagList} />
       </BarTagsWrapper>
     </ContentConteiner>
     <Divider distance={0} />
