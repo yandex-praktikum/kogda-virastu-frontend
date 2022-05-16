@@ -1,5 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import {
   OpenMenuButton, MenuSettingsButton, MenuNewPostButton, MenuLogoutButton,
@@ -26,6 +27,7 @@ const HeaderMenuWrapper = styled.nav`
 
 const HeaderMenuWidget : FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { nickname, username, image } = useSelector((store) => store.profile);
   const onCloseClick : MouseEventHandler<HTMLButtonElement> = () => dispatch(closeMenu());
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => alert('Здесь будет редирект на редактирование профиля!');
