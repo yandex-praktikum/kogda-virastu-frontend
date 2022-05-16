@@ -7,6 +7,7 @@ import { useSelector } from '../services/hooks';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
 import { mobileViewThreshold } from '../constants';
 import { TArticle } from '../types/types';
+import { Divider} from '../ui-lib';
 
 const SlideContainer = styled.div`
 display: flex;
@@ -16,8 +17,9 @@ const SlidersContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+margin-bottom: 22px;
 width: 100%;
-@media screen and (min-width: ${mobileViewThreshold}px) {
+@media screen and (min-width: 760px) {
     display: none;
     }
 `;
@@ -60,6 +62,7 @@ const BuletBar = styled.div`
         display: flex;
         gap:12px;
         padding-top:16px;
+        padding-bottom: 12px;
     `;
 
 const Slider: FC = () => {
@@ -91,6 +94,7 @@ const Slider: FC = () => {
                 })
             }
       </BuletBar>
+      <Divider distance={24} />
     </SlidersContainer>
 
   );

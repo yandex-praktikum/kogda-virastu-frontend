@@ -15,12 +15,8 @@ const ArticleCardConteiner = styled.div`
     flex-direction: column;
     gap: 16px;
 
-    @media screen and (max-width: 1000px) { 
-        width: 720px;
-    }
-    
-    @media screen and (max-width: 750px) {
-        width: 500px;
+    @media screen and (max-width: 1050px) { 
+        width: 453px;
     }
     
     @media screen and (max-width: 600px) {

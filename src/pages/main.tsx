@@ -23,42 +23,59 @@ const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileView
 const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
 
 const MainSection = styled.main`
-    display: flex;
+display: flex;
+justify-content: center;
+margin: 0;
+   
+`;
+const MainContainer = styled.div`
+ display: flex;
     margin: 56px 0 0 0;
     gap: 0 calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
     justify-content: center;
     align-items: center;
-    position: relative;
-    z-index: 10;
-    width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
-    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);  
-  
-    @media screen and (max-width:768px) {
+    max-width:1140px;
+    /*width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
+    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);*/
+    @media screen and (max-width:${tabletBreakpoint}px) {
+      padding: 0, 24px;
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
   }
-
-  @media screen and (max-width: ${mobileViewThreshold}px) {
+  @media screen and (max-width: 765px) {
     flex-direction: column-reverse;
     gap: 0;
+    max-width: 400px;
+  }
+  @media screen and (min-width: ${desktopBreakpoint}px) {
+    gap: 40px;
+  }
+  
+  
+  @media screen and (max-width: ${mobileViewThreshold}px) {
+    padding:0, 20px;
     width: 280px;
-    }
-`;
+  }
+`
+const LeftColumn = styled.div`
+overflow: hidden;
+`
 
 const RightColumn = styled.aside`
     display: flex;
-    align-self: flex-start;
     overflow: hidden;
+    align-self: flex-start;
     flex-direction: column;
     width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
   @media screen and (max-width:768px) {
-    width: 227px;
-  }
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     @media screen and (max-width: ${mobileViewThreshold}px) {
       width: 100%;
     }
+  }
 `;
-
 const Main : FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
@@ -77,12 +94,16 @@ const Main : FC = () => {
   }, [dispatch, articles]);
   return (
     <MainSection>
+    <MainContainer>
+      <LeftColumn>
       <FeedRibbon />
+      </LeftColumn>
       <RightColumn>
         <PopularTags />
-        <Slider />
         <TopAnnounceWidget caption={intl.messages.popularContent as string} />
+        <Slider />
       </RightColumn>
+      </MainContainer>
     </MainSection>
   );
 };
