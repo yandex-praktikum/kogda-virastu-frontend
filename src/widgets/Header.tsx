@@ -29,7 +29,7 @@ const BackgroundContainer = styled.div`
   max-height: 640px;
   left: 50%;
   transform: translate(-50%);
-  z-index: 999999;
+  z-index: -1;
   @media screen and (max-width:1700px) {
     width: 1920px;
   }
