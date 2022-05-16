@@ -1,6 +1,6 @@
 import { TVocabulary } from '../types/vocabularies.types';
 
-const ru : TVocabulary = {
+const ru: TVocabulary = {
   headerLink: 'Главная',
   userLogin: 'Войти',
   newArticle: 'Новая запись',
@@ -39,9 +39,9 @@ const ru : TVocabulary = {
   loading: 'Подождите, данные загружаются...',
   footerMessage: 'Сделано студентами Яндекс Практикума. Команда Red.Types Lakers',
   aboutUser: 'Расскажите о себе',
-  noPageText:' Страница не найдена',
-  goPageOnPage:'Чтобы читать блог, перейдите на ',
-  npPageLink:'Главную'
+  noPageText: ' Страница не найдена',
+  goPageOnPage: 'Чтобы читать блог, перейдите на ',
+  npPageLink: 'Главную',
   nickname: 'Отображаемое имя',
 };
 
