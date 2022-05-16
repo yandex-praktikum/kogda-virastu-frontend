@@ -9,6 +9,7 @@ const Divider = styled.hr<TDividerProps>`
   border-top: 1px solid ${dividerGray};
   padding: 0;
   margin: ${({ distance }) => (distance || 0)}px 0;
+  box-sizing: border-box;
 `;
 
 export default Divider;
