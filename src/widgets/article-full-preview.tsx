@@ -72,6 +72,7 @@ const ContentConteiner = styled.div<TElementWithImage>`
         font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
         color: ${(props) => props.theme.button.red.default};
         width: 106px; 
+        text-decoration: none;
         &:hover {
             color: ${(props) => props.theme.button.red.hover};
         } 
