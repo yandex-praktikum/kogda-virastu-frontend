@@ -34,10 +34,10 @@ import {
 
   FieldTextArticle,
 
-} from '../../ui-lib/textFields/textAreaFields';
+} from '../../ui-lib/inputs/textarea-fields';
 
 import {
-  DeletePostButton, FieldNameArticle, FieldTegs, FieldUrl, PublishPostButton, SavePostButton,
+  DeletePostButton, FieldNameArticle, FieldTags, FieldUrl, PublishPostButton, SavePostButton,
 } from '../../ui-lib';
 
 const EditorForm: FC = () => {
@@ -131,7 +131,7 @@ const EditorForm: FC = () => {
             value={body === '' ? '' : body || initialArticle?.body || ''}
             onChange={onChangeBody}
             minHeight={300} />
-          <FieldTegs
+          <FieldTags
             value={tags === '' ? '' : tags || ''}
             onChange={onChangeTags} />
         </InputFieldset>
