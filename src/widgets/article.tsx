@@ -3,13 +3,11 @@ import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
-import { resetArticle } from '../store';
 import {
   addLikeThunk, deleteArticleThunk, deleteLikeThunk, getArticleThunk,
 } from '../thunks';
-import { TArticle } from '../types/types';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
-import { BasicNormalButton } from '../ui-lib/buttons';
+import { openConfirm } from '../store';
 import BarTags from './BarTags';
 import Likes from './likes';
 
@@ -104,8 +102,6 @@ const ArticleBody = styled.p`
  }
 `;
 
-
-
 const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }) => (
   <ArticleActionsContainer>
     <EditPostButton onClick={onClickEdit} />
@@ -123,7 +119,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
 
   const onClickDelete = () => {
     if (article) {
-      dispatch(deleteArticleThunk(article.slug));
+      dispatch(openConfirm());
     }
   };
 
