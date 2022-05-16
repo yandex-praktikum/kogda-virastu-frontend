@@ -1,12 +1,13 @@
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { getPropOnCondition } from '../../services/helpers';
 
-type TTextFieldStyleProps = {
+export interface ITextFieldStyleProps {
   error: boolean;
   minHeight?: number;
-};
+}
 
-export const TextFieldStyle = css<TTextFieldStyleProps>`
+export const TextFieldStyle = css<ITextFieldStyleProps>`
   box-sizing: border-box;
   width: 100%;
   padding: 8px 16px 8px 16px;
@@ -17,19 +18,19 @@ export const TextFieldStyle = css<TTextFieldStyleProps>`
   font-weight: ${({ theme: { text18: { weight } } }) => weight};
   outline:none;
   color: ${({ theme: { secondaryText } }) => secondaryText};
-  border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.defaultBorder))};
+  border: 1px solid ${({ error, theme: { inputField: { defaultBorder, errorColor } } }) => (getPropOnCondition(error, defaultBorder, errorColor))};
 
   @media screen and (max-width:768px) {
   font-size: 16px;
   }
   :hover {
-  border: 1px solid ${({ error, theme: { inputField: { borderHover, errorColor } } }) => getPropOnCondition(error, borderHover, errorColor) as string};
+  border: 1px solid ${({ error, theme: { inputField: { borderHover, errorColor } } }) => getPropOnCondition(error, borderHover, errorColor)};
   }
   :disabled {
-  background-color: ${((props) => props.theme.inputField.disabledInput)};
+  background-color: ${(({ theme: { inputField: { disabledInput } } }) => disabledInput)};
   }
   :active {
-  border: 1px solid ${({ error }) => (error ? ((props) => props.theme.inputField.errorColor) : ((props) => props.theme.inputField.borderActive))};
+  border: 1px solid ${({ error, theme: { inputField: { borderActive, errorColor } } }) => getPropOnCondition(error, borderActive, errorColor)};
   }
 `;
 
@@ -53,9 +54,9 @@ font-weight: ${({ theme: { labelInput: { weight } } }) => weight};
 `;
 
 type TErrorText = {
-  errorText?: string
+  errorText: string
 };
 
-export const ErorText = ({ errorText }: TErrorText) => (
+export const ErrorText : FC<TErrorText> = ({ errorText }: TErrorText) => (
   <ErrorTextStyle>{errorText}</ErrorTextStyle>
 );
