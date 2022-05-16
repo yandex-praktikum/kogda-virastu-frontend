@@ -39,6 +39,9 @@ const en : TVocabulary = {
   loading: 'Please wait, loading...',
   footerMessage: 'Created by Yandex Practicum Students, Red.Types Lakers team',
   aboutUser: 'About you',
+  noPageText:' Page not found',
+  goPageOnPage:'To read the blog, go to ',
+  npPageLink:'Main'
 };
 
 export default en;

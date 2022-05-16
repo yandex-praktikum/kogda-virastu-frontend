@@ -39,6 +39,9 @@ const ru : TVocabulary = {
   loading: 'Подождите, данные загружаются...',
   footerMessage: 'Сделано студентами Яндекс Практикума. Команда Red.Types Lakers',
   aboutUser: 'Расскажите о себе',
+  noPageText:' Страница не найдена',
+  goPageOnPage:'Чтобы читать блог, перейдите на ',
+  npPageLink:'Главную'
 };
 
 export default ru;
