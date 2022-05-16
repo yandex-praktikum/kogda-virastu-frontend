@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import { useIntl } from 'react-intl';
-import TextAreaField from './textAreaFieldConfig';
+import TextAreaField from './textarea-field-config';
 
 interface IFieldInput {
   minHeight?: number,
@@ -11,6 +11,7 @@ interface IFieldInput {
   onBlur?: FocusEventHandler<HTMLTextAreaElement>,
   onFocus?: FocusEventHandler<HTMLTextAreaElement>,
   onChange: ChangeEventHandler<HTMLTextAreaElement>,
+  disabled?: boolean,
 }
 
 export const FieldAboutArticle: FC<IFieldInput> = ({
@@ -22,6 +23,7 @@ export const FieldAboutArticle: FC<IFieldInput> = ({
   error = false,
   errorText = '',
   minHeight = 0,
+  disabled = false,
 }) => {
   const intl = useIntl();
   return (
@@ -35,7 +37,9 @@ export const FieldAboutArticle: FC<IFieldInput> = ({
       value={value}
       onChange={onChange}
       labelText={intl.messages.articleAbout as string}
-      minHeight={minHeight} />
+      minHeight={minHeight}
+      disabled={disabled}
+      isHasBorder />
   );
 };
 
@@ -46,6 +50,7 @@ FieldAboutArticle.defaultProps = {
   error: false,
   errorText: '',
   minHeight: 0,
+  disabled: false,
 };
 
 export const FieldAboutUser: FC<IFieldInput> = ({
@@ -57,6 +62,7 @@ export const FieldAboutUser: FC<IFieldInput> = ({
   error = false,
   errorText = '',
   minHeight = 0,
+  disabled = false,
 }) => {
   const intl = useIntl();
   return (
@@ -70,7 +76,9 @@ export const FieldAboutUser: FC<IFieldInput> = ({
       value={value}
       onChange={onChange}
       labelText={intl.messages.aboutUser as string}
-      minHeight={minHeight} />
+      minHeight={minHeight}
+      disabled={disabled}
+      isHasBorder />
   );
 };
 
@@ -81,6 +89,7 @@ FieldAboutUser.defaultProps = {
   error: false,
   errorText: '',
   minHeight: 0,
+  disabled: false,
 };
 
 export const FieldTextArticle: FC<IFieldInput> = ({
@@ -92,6 +101,7 @@ export const FieldTextArticle: FC<IFieldInput> = ({
   error = false,
   errorText = '',
   minHeight = 0,
+  disabled = false,
 }) => {
   const intl = useIntl();
   return (
@@ -105,7 +115,9 @@ export const FieldTextArticle: FC<IFieldInput> = ({
       value={value}
       onChange={onChange}
       labelText={intl.messages.articleText as string}
-      minHeight={minHeight} />
+      minHeight={minHeight}
+      disabled={disabled}
+      isHasBorder />
   );
 };
 
@@ -116,6 +128,7 @@ FieldTextArticle.defaultProps = {
   error: false,
   errorText: '',
   minHeight: 0,
+  disabled: false,
 };
 
 export const FieldTextComment: FC<IFieldInput> = ({
@@ -127,10 +140,12 @@ export const FieldTextComment: FC<IFieldInput> = ({
   error = false,
   errorText = '',
   minHeight = 0,
+  disabled = false,
 }) => (
   <TextAreaField
     placeholder={placeholder}
     name='FieldTextComment'
+    labelText=''
     errorText={errorText}
     error={error}
     onBlur={onBlur}
@@ -138,6 +153,7 @@ export const FieldTextComment: FC<IFieldInput> = ({
     value={value}
     onChange={onChange}
     minHeight={minHeight}
+    disabled={disabled}
     isHasBorder={false} />
 );
 
@@ -148,4 +164,5 @@ FieldTextComment.defaultProps = {
   error: false,
   errorText: '',
   minHeight: 0,
+  disabled: false,
 };

@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import React, {
   FC, ChangeEventHandler, MouseEventHandler, FocusEventHandler,
 } from 'react';
-import { TextFieldStyle, LabelStyle, ErorText } from './textFields-styles';
+import { TextFieldStyle, LabelStyle, ErrorText } from './text-fields-styles';
 import { TInputFieldType } from '../../types/styles.types';
 
+<<<<<<< HEAD:src/ui-lib/textFields/inputFieldConfig.tsx
 const InputStyle = styled.input<{ error: boolean | undefined }>`
 box-sizing: border-box;
 padding-right: 20px;
+=======
+const InputStyle = styled.input<{ error: boolean }>`
+>>>>>>> develop:src/ui-lib/inputs/input-field-config.tsx
      ${TextFieldStyle}
  `;
 
@@ -37,11 +41,11 @@ interface IInputInterface {
   placeholder: string;
   value: string;
   name: string;
-  error?: boolean;
+  error: boolean;
   icon?: React.ReactNode;
-  errorText?: string;
-  disabled?: boolean;
-  labelText?: string;
+  errorText: string;
+  disabled: boolean;
+  labelText: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onIconClick?: MouseEventHandler;
   onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -69,7 +73,15 @@ export const InputField :FC<IInputInterface> = ({
     <ContainerIcon onClick={onIconClick}>
       {icon}
     </ContainerIcon>
-    {error && <ErorText erorText={errorText} />}
+    {error && <ErrorText errorText={errorText} />}
   </ContainerInput>
 );
+
+InputField.defaultProps = {
+  icon: undefined,
+  onIconClick: undefined,
+  onBlur: undefined,
+  onFocus: undefined,
+};
+
 export default InputField;

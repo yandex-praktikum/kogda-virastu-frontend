@@ -150,6 +150,9 @@ const Navigation = styled.nav`
   align-items: flex-start;
   justify-content: space-between;
   padding-top: 24px;
+  .navlink {
+    text-decoration: none;
+  }
 `;
 
 
@@ -254,7 +257,7 @@ const Header: FC = () => {
       </BackgroundOuterContainer>
       <Container  >
         <Navigation>
-          <Link to='/'><HomeButton onClick={() => { }} /></Link>
+          <Link className='navlink' to='/'><HomeButton onClick={() => { }} /></Link>
           {isLoggedIn && isMenuOpen && <HeaderMenuWidget />}
           {isLoggedIn && !isMenuOpen && (
             <OpenMenuButton
@@ -262,7 +265,7 @@ const Header: FC = () => {
               name={(nickname ?? username) || ''}
               image={image || ''} />
           )}
-          {!isLoggedIn && <Link to='/login'><HeaderLoginButton onClick={() => { }} /></Link>}
+          {!isLoggedIn && <Link className='navlink' to='/login'><HeaderLoginButton onClick={() => { }} /></Link>}
         </Navigation>
         <TextContainer >
           <MainText>
