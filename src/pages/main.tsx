@@ -35,6 +35,8 @@ const MainContainer = styled.div`
     justify-content: center;
     align-items: center;
     max-width:1140px;
+    position: relative;
+    z-index: 10;
     
     @media screen and (max-width:${tabletBreakpoint}px) {
       padding: 0, 24px;
