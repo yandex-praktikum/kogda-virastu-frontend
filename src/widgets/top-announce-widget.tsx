@@ -57,7 +57,7 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
           };
           return (
             <>
-              {'' && <Divider distance={24} />}
+              {index && <Divider distance={24} />}
               <BriefPostAnnounceWidget
                 key={slug}
                 name={nickname ?? username}
