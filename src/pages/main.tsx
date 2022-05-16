@@ -62,12 +62,17 @@ const LeftColumn = styled.div`
 overflow: hidden;
 `
 
+
 const RightColumn = styled.aside`
     display: flex;
     overflow: hidden;
     align-self: flex-start;
     flex-direction: column;
-    width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
+    max-width: 360px;
+
+    @media screen and (max-width:1600px) {
+      width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
+    }
   @media screen and (max-width:768px) {
     width: 100%;
     align-items: center;
@@ -76,6 +81,7 @@ const RightColumn = styled.aside`
       width: 100%;
     }
   }
+
 `;
 const Main : FC = () => {
   const dispatch = useDispatch();
