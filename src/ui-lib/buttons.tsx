@@ -28,8 +28,8 @@ type TBasicButtonProps = {
   disabled?: boolean;
 };
 
-const BasicNormalButton = styled.button<TBasicButtonProps>`
-width: 100%;
+export const BasicNormalButton = styled.button<TBasicButtonProps>`
+  width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;

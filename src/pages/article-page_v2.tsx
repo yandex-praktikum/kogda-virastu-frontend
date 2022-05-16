@@ -1,17 +1,18 @@
-import React, {
-  useEffect,
-  FC,
-} from 'react';
-import { batch } from 'react-redux';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { useIntl } from 'react-intl';
-import { TopAnnounceWidget } from '../widgets/top-announce-widget';
-import PopularTags from '../widgets/PopularTags';
-import { useSelector, useDispatch } from '../services/hooks';
+import { useParams } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { batch } from 'react-redux';
+import { useDispatch, useSelector } from '../services/hooks';
 import {
-  setTopLikedThunk, setNewPostsThunk, getPublicFeedThunk,
-} from '../thunks';
-import { FeedRibbon, Slider } from '../widgets';
+  Article,
+  CommentInput,
+  CommentList,
+  TopAnnounceWidget,
+} from '../widgets';
+import { getArticleThunk, getCommentsThunk } from '../thunks';
+import { resetArticle } from '../store';
+import Slider from '../widgets/slider';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
 
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
@@ -22,14 +23,31 @@ const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileView
 
 const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
 
-const MainSection = styled.main`
+const ArticlePageWrapper = styled.div`
+  max-width: 700px;
+  width: 100%;
+`;
+
+const CommentInputWrapper = styled.div`
+  margin-bottom: 24px;
+`;
+
+const CommentTitle = styled.p`
+  font-family: ${({ theme: { fourthLevelHeading: { family } } }) => family};
+  font-size: ${({ theme: { fourthLevelHeading: { size } } }) => size}px;
+  font-weight: ${({ theme: { fourthLevelHeading: { weight } } }) => weight};
+  line-height: ${({ theme: { fourthLevelHeading: { height } } }) => height}px;
+  margin: 48px 0 24px;
+`;
+
+const ArticleSection = styled.section`
     display: flex;
-    margin: 56px 0 0 0;
+    margin: 56px auto;
+    position: relative;
+    z-index: 10;
     gap: 0 calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
     justify-content: center;
     align-items: center;
-    position: relative;
-    z-index: 10;
     width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
     padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);  
   
@@ -59,31 +77,41 @@ const RightColumn = styled.aside`
     }
 `;
 
-const Main : FC = () => {
+const ArticlePage: FC = () => {
   const dispatch = useDispatch();
+ 
+  const { commentsFeed: comments } = useSelector((store) => store.view);
+  const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
-  const { articles } = useSelector((state) => state.all);
+  const { slug } = useParams();
   useEffect(() => {
     batch(() => {
-      dispatch(getPublicFeedThunk());
-      dispatch(setNewPostsThunk());
+      dispatch(resetArticle());
+      dispatch(getCommentsThunk(slug));
+      dispatch(getArticleThunk(slug));
     });
-  }, [dispatch]);
+  }, [dispatch, slug]);
 
-  useEffect(() => {
-    if (articles && articles.length > 0) {
-      dispatch(setTopLikedThunk());
-    }
-  }, [dispatch, articles]);
   return (
-    <MainSection>
-      <FeedRibbon />
+    <ArticleSection>
+      <ArticlePageWrapper>
+        <Article slug={slug} />
+        {(isLoggedIn || !!comments?.length) ? (
+          <CommentTitle>
+            <FormattedMessage id='comments' />
+          </CommentTitle>
+        ) : null}
+        <CommentInputWrapper>
+          <CommentInput slug={slug} />
+        </CommentInputWrapper>
+        <CommentList slug={slug} />
+      </ArticlePageWrapper>
       <RightColumn>
-        <PopularTags />
+
         <Slider />
         <TopAnnounceWidget caption={intl.messages.popularContent as string} />
       </RightColumn>
-    </MainSection>
+    </ArticleSection>
   );
 };
-export default Main;
+export default ArticlePage;
