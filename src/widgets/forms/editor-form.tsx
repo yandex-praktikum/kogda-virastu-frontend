@@ -50,7 +50,7 @@ const EditorForm: FC = () => {
     isArticlePostingSucceeded,
     isArticleRemoved,
     isArticlePatching,
-    isArticlePosting
+    isArticlePosting,
   } = useSelector((state) => state.api);
   const { slug } = useParams();
   const initialArticle = useSelector((state) => state.view.article);
@@ -66,7 +66,6 @@ const EditorForm: FC = () => {
       dispatch(setTags(initialArticle.tagList.toString()));
     }
   }, [initialArticle, dispatch]);
-
 
   useEffect(() => {
     if (isPosted || (isArticleRemoved && isRemoving)) {
@@ -141,8 +140,6 @@ const EditorForm: FC = () => {
     }
     return 'newArticle';
   };
-
-
 
   return (
     <FormContainer>

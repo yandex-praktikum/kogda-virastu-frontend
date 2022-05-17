@@ -24,7 +24,7 @@ const deleteLikeThunk: AppThunk = (slug: string) => async (
     if (articleView) {
       dispatch(setViewArticle(article));
     }
-    dispatch(setViewFeed(articles?.map((item) => {return item.slug === article.slug ? article : item })));
+    dispatch(setViewFeed(articles?.map((item) => (item.slug === article.slug ? article : item))));
     dispatch(likeArticleDeleteSucceeded());
   } catch (error) {
     dispatch(likeArticleDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));

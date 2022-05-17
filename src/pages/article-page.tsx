@@ -141,7 +141,6 @@ const ArticlePage: FC = () => {
     }
   }, [navigate, isArticleRemoved]);
 
-
   return (
     <ArticleSection>
       <ArticlePageWrapper>

@@ -242,8 +242,8 @@ const Header: FC = () => {
   const closeMenuClick: MouseEventHandler<HTMLElement> = () => dispatch(closeMenu());
 
   return (
-    <HeaderStyled onClick={closeMenuClick} >
-      <BackgroundOuterContainer >
+    <HeaderStyled onClick={closeMenuClick}>
+      <BackgroundOuterContainer>
         <BackgroundContainer>
           <FigureContainerLeft />
           <FigureContainerCenter>

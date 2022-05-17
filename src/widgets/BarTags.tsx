@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useSelector } from '../services/hooks';
-import {uid} from '../services/helpers/uid';
+import { uid } from '../services/helpers/uid';
 
 import Tag from './tag';
 

@@ -32,7 +32,7 @@ const App = () => {
   const { currentTheme, currentLang } = useSelector((state) => state.system);
   const { themes, langNames, vocabularies } = useSelector((state) => state.all);
   const { isDeleteConfirmOpen } = useSelector((state) => state.system);
-  const { username, nickname } = useSelector((state) => state.profile)
+  const { username, nickname } = useSelector((state) => state.profile);
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
   const onConfirmDelete: IGenericVoidHandler = () => {
     batch(() => {
@@ -53,7 +53,7 @@ const App = () => {
         dispatch(getPublicFeedThunk());
       });
     }
-  }, [dispatch,username, nickname]);
+  }, [dispatch, username, nickname]);
 
   useEffect(() => {
     const language = navigator.language.split('-')[0];
