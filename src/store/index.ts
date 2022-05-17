@@ -140,6 +140,16 @@ import {
   allPostsRequested,
   allPostsRequestSucceeded,
   allPostsRequestFailed,
+  setArticleFetchNotFound,
+  clearArticleFetchNotFound,
+  clearErrorMessage,
+  clearErrorObject,
+  clearSuccessMessage,
+  setErrorObject,
+  settingsPatchFailed,
+  settingsPatchRequested,
+  settingsPatchSucceeded,
+  settingsResetUpdateSucceeded,
 } from './apiSlice';
 
 import {
@@ -284,4 +294,14 @@ export {
   allPostsRequestFailed,
   openConfirm,
   closeConfirm,
+  setArticleFetchNotFound,
+  clearArticleFetchNotFound,
+  clearErrorMessage,
+  clearErrorObject,
+  clearSuccessMessage,
+  setErrorObject,
+  settingsPatchFailed,
+  settingsPatchRequested,
+  settingsPatchSucceeded,
+  settingsResetUpdateSucceeded,
 };

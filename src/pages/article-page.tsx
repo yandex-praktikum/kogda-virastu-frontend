@@ -10,8 +10,12 @@ import {
   CommentList,
   TopAnnounceWidget,
 } from '../widgets';
-import { getArticleThunk, getCommentsThunk } from '../thunks';
-import { resetArticle } from '../store';
+import {
+  getArticleThunk, getCommentsThunk, setNewPostsThunk,
+} from '../thunks';
+import {
+  clearArticleFetchNotFound, clearErrorMessage, clearErrorObject, resetArticle,
+} from '../store';
 import Slider from '../widgets/slider';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
 
@@ -49,8 +53,8 @@ const ArticleSection = styled.section`
     justify-content: center;
     align-items: center;
     width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
-    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);  
-  
+    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);
+
     @media screen and (max-width:768px) {
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
@@ -87,7 +91,9 @@ const ArticlePage: FC = () => {
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
   const { slug } = useParams();
+  const { isArticleNotFound } = useSelector((state) => state.api);
   const { articles } = useSelector((state) => state.all);
+
   useEffect(() => {
     batch(() => {
       dispatch(resetArticle());
@@ -95,12 +101,23 @@ const ArticlePage: FC = () => {
       dispatch(getArticleThunk(slug));
     });
   }, [dispatch, slug]);
+
   useEffect(() => {
-    if (!!articles && (articles.length > 0)
-        && (!articles.some((article) => article.slug === slug) || !slug)) {
+    if (articles && articles?.length > 0) {
+      dispatch(setNewPostsThunk());
+    }
+  }, [dispatch, articles]);
+
+  useEffect(() => {
+    if (isArticleNotFound) {
+      batch(() => {
+        dispatch(clearArticleFetchNotFound());
+        dispatch(clearErrorObject());
+        dispatch(clearErrorMessage());
+      });
       navigate('/no-article');
     }
-  }, [articles, slug, navigate]);
+  }, [dispatch, navigate, isArticleNotFound]);
 
   return (
     <ArticleSection>
@@ -119,7 +136,7 @@ const ArticlePage: FC = () => {
       <RightColumn>
 
         <Slider />
-        <TopAnnounceWidget caption={intl.messages.popularContent as string} />
+        <TopAnnounceWidget caption={intl.messages.freshContent as string} />
       </RightColumn>
     </ArticleSection>
   );

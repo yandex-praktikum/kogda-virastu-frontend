@@ -3,7 +3,11 @@ import { AxiosError } from 'axios';
 import { AppThunk, AppDispatch } from '../store/store.types';
 import { fetchArticle } from '../services/api';
 import {
-  articleFetchRequested, articleFetchSucceeded, articleFetchFailed, setViewArticle,
+  articleFetchRequested,
+  articleFetchSucceeded,
+  articleFetchFailed,
+  setViewArticle,
+  setArticleFetchNotFound,
 } from '../store';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
@@ -17,6 +21,10 @@ const getArticleThunk: AppThunk = (slug: string) => async (dispatch: AppDispatch
       dispatch(articleFetchSucceeded());
     });
   } catch (error) {
+    const { response } = error as AxiosError<TAPIError>;
+    if (response && response?.status === 404) {
+      dispatch(setArticleFetchNotFound());
+    }
     dispatch(articleFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
