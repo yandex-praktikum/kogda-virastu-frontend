@@ -35,7 +35,7 @@ const TopContainer = styled.ul`
     }
 `;
 
-export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
+const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
   return (
     <TopAnnounce>
