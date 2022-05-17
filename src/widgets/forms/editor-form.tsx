@@ -1,7 +1,7 @@
 import React, {
   useEffect, FC, ChangeEventHandler, FormEventHandler, useState,
 } from 'react';
-import { useNavigate, useParams, Navigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
 
@@ -12,7 +12,9 @@ import {
   setTags,
   setImage,
   openConfirm,
-  articlePatchSucceeded,
+  articleDeleteClear,
+  articlePatchClear,
+  articlePostClear,
 } from '../../store';
 import {
   getArticleThunk,
@@ -48,6 +50,7 @@ const EditorForm: FC = () => {
   const {
     isArticleFetching,
     isArticlePostingSucceeded,
+    isArticlePatchingSucceeded,
     isArticleRemoved,
     isArticlePatching,
     isArticlePosting,
@@ -63,15 +66,30 @@ const EditorForm: FC = () => {
     }
   }, [initialArticle, dispatch]);
 
-  useEffect(() => {
-    if (isPosted || (isArticleRemoved && isRemoving)) {
-      navigate('/');
-    }
-  }, [navigate, isPosted, isArticlePostingSucceeded, isArticleRemoved, isRemoving]);
+  useEffect(
+    () => {
+      if (isPosted && isArticlePatchingSucceeded) {
+        dispatch(articlePatchClear());
+        navigate('/');
+      } else if (isPosted && isArticlePostingSucceeded) {
+        dispatch(articlePostClear());
+        navigate('/');
+      } else if (isArticleRemoved && isRemoving) {
+        dispatch(articleDeleteClear());
+        navigate('/');
+      }
+    },
+    [
+      dispatch,
+      navigate,
+      isPosted,
+      isArticlePostingSucceeded,
+      isArticlePatchingSucceeded,
+      isArticleRemoved,
+      isRemoving],
+  );
 
   useEffect(() => {
-    /*    dispatch(resetArticle());
-    dispatch(clearViewArticle()); */
     if (slug && !title) {
       dispatch(getArticleThunk(slug));
     }
@@ -108,7 +126,7 @@ const EditorForm: FC = () => {
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     setPostRequested(true);
-    if (!slug) {
+    if (slug) {
       dispatch(patchArticleThunk(slug));
     } else {
       dispatch(postArticleThunk());
@@ -126,7 +144,7 @@ const EditorForm: FC = () => {
         <DeletePostButton onClick={deleteArticle} />
       </ButtonsWrapper>
     ) : (
-      <PublishPostButton disabled={isArticleFetching} />
+      <PublishPostButton disabled={isArticleFetching || isArticlePatching || isArticlePosting} />
     )
   );
 
