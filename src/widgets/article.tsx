@@ -1,14 +1,14 @@
-import React, { FC, MouseEventHandler, useEffect } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
-  addLikeThunk, deleteArticleThunk, deleteLikeThunk, getArticleThunk,
+  addLikeThunk, deleteLikeThunk,
 } from '../thunks';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
 import { openConfirm } from '../store';
-import BarTags from './BarTags';
+import BarTags from './bar-tags';
 import Likes from './likes';
 
 type TArticleProps = {
@@ -26,7 +26,7 @@ const ArticleContainer = styled.div`
   gap: 24px 0;
   width: 100%;
   max-width: 700px;
-   
+
   @media screen and (max-width:768px) {
     gap: 16px 0;
  }
@@ -58,7 +58,7 @@ const ArticleAuthor = styled.p`
   font-family: ${({ theme: { text16: { family } } }) => family};
   line-height: ${({ theme: { text16: { height } } }) => height}px;
   font-weight: ${({ theme: { text16: { weight } } }) => weight};
-  margin: 0px;
+  margin: 0;
   grid-row: 1;
 `;
 
@@ -67,7 +67,7 @@ const ArticleCreateDate = styled.p`
   font-family: ${({ theme: { text16: { family } } }) => family};
   line-height: ${({ theme: { text16: { height } } }) => height}px;
   font-weight: ${({ theme: { text16: { weight } } }) => weight};
-  margin: 0px;
+  margin: 0;
   grid-row: 1;
 `;
 
@@ -94,7 +94,7 @@ const ArticleBody = styled.p`
   font-size: ${({ theme: { text18: { size } } }) => size}px ;
   line-height: ${({ theme: { text18: { height } } }) => height}px;
   font-weight: ${({ theme: { text18: { weight } } }) => weight};
-  margin: 0px;
+  margin: 0;
   @media screen and (max-width:768px) {
     font-family: ${({ theme: { text16: { family } } }) => family};
     font-size: ${({ theme: { text16: { size } } }) => size}px ;
