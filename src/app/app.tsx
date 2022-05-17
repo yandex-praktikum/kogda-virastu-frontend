@@ -23,6 +23,7 @@ import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page_v2';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
+import ProtectedRoute from '../widgets/ProtectedRoute';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
 
@@ -70,13 +71,15 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/settings' element={<Settings />} />
           <Route path='/registration' element={<Register />} />
-          <Route path='/editArticle' element={<Editor />} />
+          <Route path='/editArticle' element={<ProtectedRoute path='/editArticle'>
+               <Editor /> </ProtectedRoute>} />
           <Route path='/:username' element={<Profile />} />
+          <Route path="/settings" element={<ProtectedRoute path="/settings">
+                            <Settings />
+                        </ProtectedRoute>} />
           <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='*' element={<NotFound />} />
-          {/* Тут будет роутинг  */}
         </Routes>
         <Footer />
         {isDeleteConfirmOpen && <Modal onClose={onConfirmClose} onSubmit={onConfirmDelete} />}
