@@ -62,6 +62,7 @@ export const HeaderTwoText = styled.h2<THeaderTextProps>`
     font-size: ${defaultH2Mobile.size}px;
     font-weight: ${defaultH2Mobile.weight};
     line-height: ${defaultH2Mobile.height}px;
+  }
 `;
 
 export const HeaderThreeText = styled.h3<THeaderTextProps>`
@@ -84,6 +85,7 @@ export const HeaderThreeText = styled.h3<THeaderTextProps>`
     font-size: ${defaultH3Mobile.size}px;
     font-weight: ${defaultH3Mobile.weight};
     line-height: ${defaultH3Mobile.height}px;
+  }
 `;
 
 export const HeaderFourText = styled.h4<THeaderTextProps>`
@@ -111,6 +113,7 @@ export const HeaderFourText = styled.h4<THeaderTextProps>`
     font-size: ${defaultH4Mobile.size}px;
     font-weight: ${defaultH4Mobile.weight};
     line-height: ${defaultH4Mobile.height}px;
+  }
 `;
 
 export const HeaderFiveText = styled.h5<THeaderTextProps>`
@@ -133,6 +136,7 @@ export const HeaderFiveText = styled.h5<THeaderTextProps>`
     font-size: ${defaultH5Mobile.size}px;
     font-weight: ${defaultH5Mobile.weight};
     line-height: ${defaultH5Mobile.height}px;
+  }
 `;
 
 export const RegularText = styled.p<TTextProps>`

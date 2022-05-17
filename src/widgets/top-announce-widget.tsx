@@ -10,6 +10,9 @@ import { TTopAnnounceWidgetProps } from '../types/widgets.types';
 const TopAnnounce = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  @media screen and (max-width: 767px) {
+    display: none;
+    }
 `;
 
 const TopContainer = styled.ul`
@@ -28,7 +31,7 @@ const TopContainer = styled.ul`
   margin-inline-end: 0;
   padding-inline-start: 0;
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: none;
     }
 `;

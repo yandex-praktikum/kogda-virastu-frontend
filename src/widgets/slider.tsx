@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import React, {
   FC, useState, MouseEventHandler,
 } from 'react';
+import { useIntl } from 'react-intl';
 import BuletSlider from '../ui-lib/buledSlider';
 import { useSelector } from '../services/hooks';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
 import { mobileViewThreshold } from '../constants';
 import { TArticle } from '../types/types';
-import { Divider} from '../ui-lib';
+import { Divider, HeaderThreeText } from '../ui-lib';
 
 const SlideContainer = styled.div`
 @keyframes show{
@@ -33,7 +34,7 @@ flex-direction: column;
 align-items: center;
 margin-bottom: 22px;
 width: 100%;
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 768px) {
     display: none;
     }
 `;
@@ -42,7 +43,7 @@ type TSlide = {
   name: number;
   page: number;
 };
-const Slide : FC<TSlide> = ({ data, name, page }) => {
+const Slide: FC<TSlide> = ({ data, name, page }) => {
   const {
     author: {
       username,
@@ -82,6 +83,7 @@ const BuletBar = styled.div`
 const Slider: FC = () => {
   const data = useSelector((state) => state.view.topFeed) ?? [];
   const range = [];
+  const intl = useIntl();
   for (let i = 0; i < data?.length ?? 0; i += 1) {
     range.push(i);
   }
@@ -89,24 +91,28 @@ const Slider: FC = () => {
 
   return (
     <SlidersContainer>
+      <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
+        {intl.messages.popularContent}
+      </HeaderThreeText>
+
       {
-                data && data.length > 0 && data.map((DataSlide: TArticle, index: number) => (
-                  <Slide key={DataSlide.slug} data={DataSlide} name={index} page={page} />
-                ))
-            }
+        data && data.length > 0 && data.map((DataSlide: TArticle, index: number) => (
+          <Slide key={DataSlide.slug} data={DataSlide} name={index} page={page} />
+        ))
+      }
       <BuletBar>
         {
-                data && range.map((pageSlide) => {
-                  const isActive = pageSlide === page;
-                  const onClick : MouseEventHandler = () => {
-                    setPage(pageSlide);
-                    console.log(`Клик по кнопке № ${pageSlide}!`);
-                  };
-                  return (
-                    <BuletSlider key={pageSlide} onClick={onClick} isActive={isActive} />
-                  );
-                })
-            }
+          data && range.map((pageSlide) => {
+            const isActive = pageSlide === page;
+            const onClick: MouseEventHandler = () => {
+              setPage(pageSlide);
+              console.log(`Клик по кнопке № ${pageSlide}!`);
+            };
+            return (
+              <BuletSlider key={pageSlide} onClick={onClick} isActive={isActive} />
+            );
+          })
+        }
       </BuletBar>
       <Divider distance={24} />
     </SlidersContainer>

@@ -57,11 +57,10 @@ const MainContainer = styled.div`
     padding:0, 20px;
     width: 280px;
   }
-`
+`;
 const LeftColumn = styled.div`
 overflow: hidden;
-`
-
+`;
 
 const RightColumn = styled.aside`
     display: flex;
@@ -69,19 +68,17 @@ const RightColumn = styled.aside`
     align-self: flex-start;
     flex-direction: column;
     max-width: 360px;
-
     @media screen and (max-width:1600px) {
       width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
     }
   @media screen and (max-width:768px) {
-    width: 100%;
+
     align-items: center;
     justify-content: center;
-    @media screen and (max-width: ${mobileViewThreshold}px) {
+    @media screen and (max-width: 765px) {
       width: 100%;
     }
   }
-
 `;
 const Main : FC = () => {
   const dispatch = useDispatch();
@@ -101,15 +98,15 @@ const Main : FC = () => {
   }, [dispatch, articles]);
   return (
     <MainSection>
-    <MainContainer>
-      <LeftColumn>
-      <FeedRibbon />
-      </LeftColumn>
-      <RightColumn>
-        <PopularTags />
-        <TopAnnounceWidget caption={intl.messages.popularContent as string} />
-        <Slider />
-      </RightColumn>
+      <MainContainer>
+        <LeftColumn>
+          <FeedRibbon />
+        </LeftColumn>
+        <RightColumn>
+          <PopularTags />
+          <TopAnnounceWidget caption={intl.messages.popularContent as string} />
+          <Slider />
+        </RightColumn>
       </MainContainer>
     </MainSection>
   );
