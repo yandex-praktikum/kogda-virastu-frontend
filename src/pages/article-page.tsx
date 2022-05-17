@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -82,11 +82,12 @@ const RightColumn = styled.aside`
 
 const ArticlePage: FC = () => {
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
   const { commentsFeed: comments } = useSelector((store) => store.view);
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
   const { slug } = useParams();
+  const { articles } = useSelector((state) => state.all);
   useEffect(() => {
     batch(() => {
       dispatch(resetArticle());
@@ -94,20 +95,26 @@ const ArticlePage: FC = () => {
       dispatch(getArticleThunk(slug));
     });
   }, [dispatch, slug]);
+  useEffect(() => {
+    if (!!articles && (articles.length > 0)
+        && (!articles.some((article) => article.slug === slug) || !slug)) {
+      navigate('/no-article');
+    }
+  }, [articles, slug, navigate]);
 
   return (
     <ArticleSection>
       <ArticlePageWrapper>
-        <Article slug={slug} />
+        <Article slug={slug!} />
         {(isLoggedIn || !!comments?.length) ? (
           <CommentTitle>
             <FormattedMessage id='comments' />
           </CommentTitle>
         ) : null}
         <CommentInputWrapper>
-          <CommentInput slug={slug} />
+          <CommentInput slug={slug!} />
         </CommentInputWrapper>
-        <CommentList slug={slug} />
+        <CommentList slug={slug!} />
       </ArticlePageWrapper>
       <RightColumn>
 
