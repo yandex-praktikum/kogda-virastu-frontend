@@ -1,3 +1,4 @@
+/* eslint-disable ternary/no-unreachable */
 import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -104,7 +105,15 @@ font-family: ${({ theme: { text18Sans: { family } } }) => family};
 line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`};
 font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
 color: ${({ theme: { primaryText } }) => primaryText};
-word-wrap: break-word;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -moz-box;
+-moz-box-orient: vertical;
+display: -webkit-box;
+-webkit-line-clamp: 9;
+-webkit-box-orient: vertical;
+line-clamp: 9;
+box-orient: vertical;
  ${((props) => !props.image && 'grid-column: 1/3')};
 @media screen and (max-width: 768px) {
     font-size: ${({ theme: { text16Sans: { size } } }) => `${size}px`};
