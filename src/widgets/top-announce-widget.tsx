@@ -37,6 +37,7 @@ const TopContainer = styled.ul`
 
 const ItemWrapper = styled.li`
   list-style: none outside;
+  width: 100%;
   margin: 0;
   padding: 0;
   margin-block-start: 0;

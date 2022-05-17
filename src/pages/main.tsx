@@ -30,7 +30,7 @@ const MainContainer = styled.div`
     margin: 56px 0 0 0;
     gap: 0 calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     max-width:1140px;
     position: relative;
     z-index: 10;
