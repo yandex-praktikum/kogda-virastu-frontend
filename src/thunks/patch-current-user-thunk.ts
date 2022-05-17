@@ -1,11 +1,16 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
 import { patchCurrentUser } from '../services/api';
-import { settingsPatchFailed, settingsPatchRequested, settingsPatchSucceeded } from '../store/apiSlice';
-import { resetFormProfile } from '../store/profileFormSubSlice';
+import {
+  settingsPatchFailed,
+  settingsPatchRequested,
+  settingsPatchSucceeded,
+  setUser,
+  resetFormProfile,
+} from '../store';
+
 import { AppDispatch, AppThunk, RootState } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
-import { setUser } from '../store';
 import { TAPIError, TAPIPatchUserData } from '../services/api.types';
 
 const patchCurrentUserThunk: AppThunk = () => async (
