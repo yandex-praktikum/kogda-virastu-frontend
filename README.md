@@ -16,6 +16,14 @@
 * Axios
 * Format.JS
 
+## Команда Red.Types
+* [Станислав Судовский](https://github.com/grecha1337).
+* [Георгий Трубачев](https://github.com/George051191).
+* [Алексей Вишневский](https://github.com/LexorV).
+* [Елена Шарипова](https://github.com/elena-sh-r).
+* [Евгений Карпель](https://github.com/kspshnik).
+* [Илья Пичугин](https://github.com/IlyaKZN).
+
 ## Реализовано
 * Развернуты заготовки и настроен коллективный Гитхаб.
 * Организована файловая структура.
