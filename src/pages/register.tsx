@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../widgets/forms/register-form';
+import { useSelector } from '../services/hooks';
+import { jwt } from '../services/api';
 
 const Page = styled.section`
   width: 100%;
@@ -11,11 +14,25 @@ const Page = styled.section`
   z-index: 10;
 `;
 
-const Register = () => (
-  <Page>
-    <RegisterForm />
-  </Page>
+const Register = () => {
+  const navigate = useNavigate();
+  const isLogged = useSelector(
+    (state) => state.system.isLoggedIn
+        && !!state.profile.username,
+  )
+    && jwt.test();
 
-);
+  React.useEffect(() => {
+    if (isLogged) {
+      navigate('/');
+    }
+  }, [isLogged, navigate]);
+  return (
+    <Page>
+      <RegisterForm />
+    </Page>
+
+  );
+};
 
 export default Register;

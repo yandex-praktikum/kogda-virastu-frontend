@@ -23,7 +23,6 @@ import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
-import ProtectedRoute from '../widgets/ProtectedRoute';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
 
@@ -72,21 +71,9 @@ const App = () => {
           <Route path='/' element={<Main />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Register />} />
-          <Route
-            path='/editArticle'
-            element={(
-              <ProtectedRoute path='/editArticle'>
-                <Editor />
-              </ProtectedRoute>
-)} />
+          <Route path='/editArticle' element={<Editor />} />
           <Route path='/profile/:username' element={<Profile />} />
-          <Route
-            path='/settings'
-            element={(
-              <ProtectedRoute path='/settings'>
-                <Settings />
-              </ProtectedRoute>
-)} />
+          <Route path='/settings' element={<Settings />} />
           <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
