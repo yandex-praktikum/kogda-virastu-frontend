@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { FormattedDate } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { AvatarIcon } from '../../ui-lib/icons';
+import { AvatarIcon } from '../../ui-lib';
 import { TAuthorProps } from '../../types/widgets.types';
 
 const AuthorContainer = styled.div`
@@ -42,13 +42,18 @@ const CreateDate = styled.p`
   margin: 0;
 `;
 
-const Author: FC<TAuthorProps> = ({ userName, createAt, imageSrc }) => (
+const Author: FC<TAuthorProps> = ({
+  userName,
+  nickname,
+  createAt,
+  imageSrc,
+}) => (
   <AuthorContainer>
     <Link to={`/profile/${userName}`}>
-      <AvatarIcon color='none' size='small' name={userName} image={imageSrc} />
+      <AvatarIcon color='none' size='small' name={nickname} image={imageSrc} />
     </Link>
     <AuthorContainerInfo>
-      <UserNameLink to={`/profile/${userName}`}>{userName}</UserNameLink>
+      <UserNameLink to={`/profile/${userName}`}>{nickname}</UserNameLink>
       <CreateDate>
         <FormattedDate
           value={createAt}

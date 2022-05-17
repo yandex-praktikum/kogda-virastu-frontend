@@ -14,7 +14,8 @@ const HeadingContainer = styled.div`
 `;
 
 const CommentAuthorHeading: React.FC<TCommentAuthorHeadingProps> = ({
-  name,
+  username,
+  nickname,
   image,
   date,
   isAuthor,
@@ -25,7 +26,8 @@ const CommentAuthorHeading: React.FC<TCommentAuthorHeadingProps> = ({
   return (
     <HeadingContainer>
       <Author
-        userName={name}
+        userName={username}
+        nickname={nickname ?? username}
         imageSrc={image}
         createAt={date} />
       {isAuthor ? (<DeleteIcon color={theme.button.red.default} onClick={onDeleteClick} />)

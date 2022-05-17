@@ -15,7 +15,8 @@ const HeadingContainer = styled.div`
 `;
 
 const AuthorHeadingWidget : React.FC<TAuthorHeadingProps> = ({
-  name,
+  username,
+  nickname,
   image,
   date,
   isLiked,
@@ -29,7 +30,8 @@ const AuthorHeadingWidget : React.FC<TAuthorHeadingProps> = ({
   return (
     <HeadingContainer>
       <Author
-        userName={name}
+        userName={username}
+        nickname={nickname}
         imageSrc={image}
         createAt={date} />
       {isAuthor ? (<DeleteIcon color={theme.button.red.default} onClick={onDeleteClick} />)

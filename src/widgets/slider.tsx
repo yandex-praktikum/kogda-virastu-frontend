@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import BuletSlider from '../ui-lib/buledSlider';
 import { useSelector } from '../services/hooks';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
-import { mobileViewThreshold } from '../constants';
 import { TArticle } from '../types/types';
 import { Divider, HeaderThreeText } from '../ui-lib';
 
@@ -48,6 +47,7 @@ const Slide: FC<TSlide> = ({ data, name, page }) => {
     author: {
       username,
       nickname,
+      image,
     },
     title,
     createdAt,
@@ -62,8 +62,10 @@ const Slide: FC<TSlide> = ({ data, name, page }) => {
       <SlideContainer>
         <BriefPostAnnounceWidget
           key={slug}
-          name={nickname ?? username}
+          username={username}
+          nickname={nickname ?? username}
           title={title}
+          image={image}
           date={new Date(createdAt)}
           isLiked={favorited}
           likesCount={favoritesCount}
@@ -92,7 +94,7 @@ const Slider: FC = () => {
   return (
     <SlidersContainer>
       <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
-        {intl.messages.popularContent}
+        {intl.messages.popularContent as string}
       </HeaderThreeText>
 
       {
@@ -106,7 +108,6 @@ const Slider: FC = () => {
             const isActive = pageSlide === page;
             const onClick: MouseEventHandler = () => {
               setPage(pageSlide);
-              console.log(`Клик по кнопке № ${pageSlide}!`);
             };
             return (
               <BuletSlider key={pageSlide} onClick={onClick} isActive={isActive} />

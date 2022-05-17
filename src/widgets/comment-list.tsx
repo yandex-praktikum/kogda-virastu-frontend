@@ -1,7 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
-import { deleteCommentThunk, getCommentsThunk } from '../thunks';
+import { deleteCommentThunk } from '../thunks';
 import Comment from './comment';
 
 const List = styled.ul`
@@ -40,8 +40,10 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
       {comments.map((comment) => (
         <Item key={comment.id}>
           <Comment
+            username={comment.author.username}
             createAt={new Date(comment.createdAt)}
-            name={comment.author.nickname ?? comment.author.username}
+            nickname={comment.author.nickname ?? comment.author.username}
+            image={comment.author.image}
             body={comment.body}
             isAuthor={comment.author.username === currentUser.username}
             onDeleteClick={onDeleteClick}
