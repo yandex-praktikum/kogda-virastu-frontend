@@ -22,7 +22,6 @@ import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../con
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
 
-const desktopToTabletMainWidthStep = (1140 - 720) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileViewThreshold);
 
 const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
@@ -58,12 +57,11 @@ const ArticleSection = styled.section`
     z-index: 10;
     margin: auto;
     padding-top: 56px;
-   
+
     @media screen and (max-width:${tabletBreakpoint}px) {
-      padding: 0, 24px;
+      padding: 48px 24px 0 24px;
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
-      padding-top: 48px;
   }
   @media screen and (max-width: 767px) {
     flex-direction: column-reverse;
@@ -73,12 +71,11 @@ const ArticleSection = styled.section`
   @media screen and (min-width: ${desktopBreakpoint}px) {
     gap: 40px;
   }
-  
-  
+
+
   @media screen and (max-width: ${mobileViewThreshold}px) {
-    padding:0, 20px;
+    padding: 40px 20px 0 20px;
     width: 280px;
-    padding-top: 40px;
   }
 `;
 const RightColumn = styled.aside`
@@ -138,16 +135,18 @@ const ArticlePage: FC = () => {
   return (
     <ArticleSection>
       <ArticlePageWrapper>
-        <Article slug={slug!} />
+        {!!slug && <Article slug={slug} />}
         {(isLoggedIn || !!comments?.length) ? (
           <CommentTitle>
             <FormattedMessage id='comments' />
           </CommentTitle>
         ) : null}
+        {!!slug && (
         <CommentInputWrapper>
-          <CommentInput slug={slug!} />
+          <CommentInput slug={slug} />
         </CommentInputWrapper>
-        <CommentList slug={slug!} />
+        )}
+        {!!slug && <CommentList slug={slug} />}
       </ArticlePageWrapper>
       <RightColumn>
 
