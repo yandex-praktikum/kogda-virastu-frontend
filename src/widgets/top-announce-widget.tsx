@@ -35,6 +35,17 @@ const TopContainer = styled.ul`
     }
 `;
 
+const ItemWrapper = styled.li`
+  list-style: none outside;
+  margin: 0;
+  padding: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+`;
+
 const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
   return (
@@ -59,10 +70,9 @@ const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
           const nope = (): void => {
           };
           return (
-            <>
+            <ItemWrapper key={slug}>
               {!!index && <Divider distance={24} />}
               <BriefPostAnnounceWidget
-                key={slug}
                 username={username}
                 nickname={nickname ?? username}
                 image={image}
@@ -71,7 +81,7 @@ const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
                 isLiked={favorited}
                 likesCount={favoritesCount}
                 onLikeClick={nope} />
-            </>
+            </ItemWrapper>
           );
         })}
       </TopContainer>

@@ -1,4 +1,4 @@
-// styled.d.ts
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import 'styled-components';
 
 import { TTheme } from './styles.types';

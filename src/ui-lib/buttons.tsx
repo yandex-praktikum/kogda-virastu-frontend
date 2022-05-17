@@ -29,7 +29,7 @@ type TBasicButtonProps = {
 };
 
 export const BasicNormalButton = styled.button<TBasicButtonProps>`
-  width: 100%;
+ // width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
@@ -76,27 +76,27 @@ const BasicInvertedButton = styled.button<TBasicButtonProps>`
 `;
 
 const MenuButton = styled.button<TBasicButtonProps>`
+  width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
-  width: 172px;
   box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].default, button[colorScheme].disabled)};
-  background-color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
+  background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+  color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
 
   &:hover {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
-    }
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
+  }
   &:active {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
-    }
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+  }
   &:focus {
-    color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
-    }
+    background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+  }
 `;
 
 export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
@@ -109,7 +109,7 @@ export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false })
       <EditIcon
         color={theme.button.blue.font}
         distance={iconDistance} />
-      <RegularText size='large' weight={500}>
+      <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='editArticle' />
       </RegularText>
     </BasicNormalButton>
@@ -147,7 +147,7 @@ export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false 
       <DeleteIcon
         color={theme.button.red[setColor(isHovered, isFocused, isActive, !!disabled)]}
         distance={iconDistance} />
-      <RegularText size='large' weight={500}>
+      <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='deleteArticle' />
       </RegularText>
     </BasicInvertedButton>
@@ -176,8 +176,8 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
     },
   } = useMouseEvents({});
   return (
-    <MenuButton
-      colorScheme='blue'
+    <BasicNormalButton
+      colorScheme='menu'
       disabled={disabled}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
@@ -195,7 +195,7 @@ export const OpenMenuButton: FC<TAvatarButtonProps> = ({
       <RegularText size='large' weight={500} clampLines heightLimit={40} align='left'>
         {name}
       </RegularText>
-    </MenuButton>
+    </BasicNormalButton>
   );
 };
 
@@ -285,7 +285,7 @@ export const PublishCommentButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disab
 export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (
-    <BasicNormalButton
+    <MenuButton
       colorScheme='menu'
       disabled={disabled}
       onClick={onClick}>
@@ -295,14 +295,14 @@ export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = fals
       <RegularText size='large' weight={500}>
         <FormattedMessage id='settings' />
       </RegularText>
-    </BasicNormalButton>
+    </MenuButton>
   );
 };
 
 export const MenuNewPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (
-    <BasicNormalButton
+    <MenuButton
       colorScheme='menu'
       disabled={disabled}
       onClick={onClick}>
@@ -312,14 +312,14 @@ export const MenuNewPostButton : FC<TButtonProps> = ({ onClick, disabled = false
       <RegularText size='large' weight={500}>
         <FormattedMessage id='newArticle' />
       </RegularText>
-    </BasicNormalButton>
+    </MenuButton>
   );
 };
 
 export const MenuLogoutButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (
-    <BasicNormalButton
+    <MenuButton
       colorScheme='menu'
       disabled={disabled}
       onClick={onClick}>
@@ -329,7 +329,7 @@ export const MenuLogoutButton : FC<TButtonProps> = ({ onClick, disabled = false 
       <RegularText size='large' weight={500}>
         <FormattedMessage id='exitProfile' />
       </RegularText>
-    </BasicNormalButton>
+    </MenuButton>
   );
 };
 

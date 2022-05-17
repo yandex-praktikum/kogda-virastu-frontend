@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { AvatarIcon, FollowButton, UnfollowButton } from '../ui-lib';
+import {
+  AvatarIcon, FollowButton, HeaderTwoText, UnfollowButton,
+} from '../ui-lib';
 import { TAvatarSizes } from '../types/styles.types';
 import { useDispatch } from '../services/hooks';
 import {
@@ -39,20 +41,6 @@ const ProfileContainer = styled.div`
 
 `;
 
-const UserName = styled.h2`
-  font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
-  font-size: ${({ theme: { secondLevelHeading: { size } } }) => size}px;
-  font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
-  line-height: ${({ theme: { secondLevelHeading: { height } } }) => height}px;
-
-  @media screen and (max-width: 768px) {
-  font-family: ${({ theme: { secondLevelHeadingMobile: { family } } }) => family};
-  font-size: ${({ theme: { secondLevelHeadingMobile: { size } } }) => size}px;
-  font-weight: ${({ theme: { secondLevelHeadingMobile: { weight } } }) => weight};
-  line-height: ${({ theme: { secondLevelHeadingMobile: { height } } }) => height}px;
-     }
-`;
-
 const ProfileWidgetButton: FC<{
   isUser: boolean,
   isFollow: boolean,
@@ -85,7 +73,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
 }) => (
   <ProfileContainer>
     <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
-    <UserName>{userName}</UserName>
+    <HeaderTwoText>{userName}</HeaderTwoText>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
   </ProfileContainer>
 
