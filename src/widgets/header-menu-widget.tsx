@@ -23,7 +23,7 @@ const HeaderMenuWrapper = styled.nav`
   align-items: flex-start;
   padding: 0;
   gap: 1px;
-  width: 173px;  
+  width: 173px;
   background: ${({ theme: { bgPrimary } }) => bgPrimary};
 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08), 0 0 4px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.08);
@@ -35,7 +35,7 @@ const HeaderMenuWidget : FC = () => {
   const navigate = useNavigate();
   const { nickname, username, image } = useSelector((store) => store.profile);
   const { isLoggedIn } = useSelector((state) => state.system);
-  const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/${username || ''}}`);
+  const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/profile/${username || ''}}`);
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/settings');
   const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(clearViewArticle());

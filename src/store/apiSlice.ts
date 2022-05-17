@@ -25,6 +25,7 @@ type TAPIState = {
   isCommentPosting: boolean,
   isCommentDeleting: boolean,
   isProfileFetching: boolean,
+  isProfileNotFound: boolean,
   isFollowProfilePosting: boolean,
   isFollowProfileDeleting: boolean,
   isSettingsPatching: boolean,
@@ -56,6 +57,7 @@ const initialState: TAPIState = {
   isCommentPosting: false,
   isCommentDeleting: false,
   isProfileFetching: false,
+  isProfileNotFound: false,
   isFollowProfilePosting: false,
   isFollowProfileDeleting: false,
   isSettingsPatching: false,
@@ -245,13 +247,19 @@ const apiSlice = createSlice({
       ...state, isCommentDeleting: false, errorObject: action.payload,
     }),
     profileFetchRequested: (state: TAPIState) => ({
-      ...state, isProfileFetching: true,
+      ...state, isProfileFetching: true, isProfileNotFound: false,
     }),
     profileFetchSucceeded: (state: TAPIState) => ({
-      ...state, isProfileFetching: false,
+      ...state, isProfileFetching: false, isProfileNotFound: false,
     }),
     profileFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isProfileFetching: false, errorObject: action.payload,
+    }),
+    setProfileFetchNotFound: (state: TAPIState) => ({
+      ...state, isProfileNotFound: true,
+    }),
+    clearProfileFetchNotFound: (state: TAPIState) => ({
+      ...state, isProfileNotFound: false,
     }),
     followProfilePostRequested: (state: TAPIState) => ({
       ...state, isFollowProfilePosting: true,
@@ -363,5 +371,7 @@ export const {
   allPostsRequestFailed,
   setArticleFetchNotFound,
   clearArticleFetchNotFound,
+  clearProfileFetchNotFound,
+  setProfileFetchNotFound,
 } = apiSlice.actions;
 export default apiReducer;
