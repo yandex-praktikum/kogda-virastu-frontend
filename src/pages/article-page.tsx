@@ -48,14 +48,13 @@ const CommentTitle = styled.p`
 
 const ArticleSection = styled.section`
    display: flex;
-    margin: 56px 0 0 0;
+    margin: 56px auto 0 auto;
     gap: 0 calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     max-width:1140px;
     position: relative;
     z-index: 10;
-    margin: auto;
     padding-top: 56px;
 
     @media screen and (max-width:${tabletBreakpoint}px) {
