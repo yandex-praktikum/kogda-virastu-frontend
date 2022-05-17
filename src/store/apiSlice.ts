@@ -11,6 +11,7 @@ type TAPIState = {
   isUserPatching: boolean,
   isPublicFeedFetching: boolean,
   isArticleFetching: boolean,
+  isArticleNotFound: boolean,
   isPrivateFeedFetching: boolean,
   isArticlePosting: boolean,
   isArticlePostingSucceeded: boolean,
@@ -41,6 +42,7 @@ const initialState: TAPIState = {
   isUserPatching: false,
   isPublicFeedFetching: false,
   isArticleFetching: false,
+  isArticleNotFound: false,
   isPrivateFeedFetching: false,
   isArticlePosting: false,
   isArticlePostingSucceeded: false,
@@ -138,13 +140,19 @@ const apiSlice = createSlice({
       ...state, isPublicFeedFetching: false, errorObject: action.payload,
     }),
     articleFetchRequested: (state: TAPIState) => ({
-      ...state, isArticleFetching: true,
+      ...state, isArticleFetching: true, isArticleNotFound: false,
     }),
     articleFetchSucceeded: (state: TAPIState) => ({
-      ...state, isArticleFetching: false,
+      ...state, isArticleFetching: false, isArticleNotFound: false,
     }),
     articleFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isArticleFetching: false, errorObject: action.payload,
+    }),
+    setArticleFetchNotFound: (state: TAPIState) => ({
+      ...state, isArticleNotFound: true,
+    }),
+    clearArticleFetchNotFound: (state: TAPIState) => ({
+      ...state, isArticleNotFound: false,
     }),
     privateFeedRequested: (state: TAPIState) => ({
       ...state, isPrivateFeedFetching: true,
@@ -285,6 +293,10 @@ const apiReducer = apiSlice.reducer;
 export const {
   setSuccessMessage,
   setErrorMessage,
+  clearSuccessMessage,
+  clearErrorMessage,
+  clearErrorObject,
+  setErrorObject,
   userRegistrationRequested,
   userRegistrationSucceeded,
   userRegistrationFailed,
@@ -349,5 +361,7 @@ export const {
   allPostsRequested,
   allPostsRequestSucceeded,
   allPostsRequestFailed,
+  setArticleFetchNotFound,
+  clearArticleFetchNotFound,
 } = apiSlice.actions;
 export default apiReducer;

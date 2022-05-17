@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -10,8 +10,12 @@ import {
   CommentList,
   TopAnnounceWidget,
 } from '../widgets';
-import { getArticleThunk, getCommentsThunk } from '../thunks';
-import { resetArticle } from '../store';
+import {
+  getArticleThunk, getCommentsThunk, setNewPostsThunk,
+} from '../thunks';
+import {
+  clearArticleFetchNotFound, clearErrorMessage, clearErrorObject, resetArticle,
+} from '../store';
 import Slider from '../widgets/slider';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
 
@@ -49,8 +53,8 @@ const ArticleSection = styled.section`
     justify-content: center;
     align-items: center;
     width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
-    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);  
-  
+    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);
+
     @media screen and (max-width:768px) {
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
@@ -82,11 +86,14 @@ const RightColumn = styled.aside`
 
 const ArticlePage: FC = () => {
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
   const { commentsFeed: comments } = useSelector((store) => store.view);
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
   const { slug } = useParams();
+  const { isArticleNotFound } = useSelector((state) => state.api);
+  const { articles } = useSelector((state) => state.all);
+
   useEffect(() => {
     batch(() => {
       dispatch(resetArticle());
@@ -95,24 +102,41 @@ const ArticlePage: FC = () => {
     });
   }, [dispatch, slug]);
 
+  useEffect(() => {
+    if (articles && articles?.length > 0) {
+      dispatch(setNewPostsThunk());
+    }
+  }, [dispatch, articles]);
+
+  useEffect(() => {
+    if (isArticleNotFound) {
+      batch(() => {
+        dispatch(clearArticleFetchNotFound());
+        dispatch(clearErrorObject());
+        dispatch(clearErrorMessage());
+      });
+      navigate('/no-article');
+    }
+  }, [dispatch, navigate, isArticleNotFound]);
+
   return (
     <ArticleSection>
       <ArticlePageWrapper>
-        <Article slug={slug} />
+        <Article slug={slug!} />
         {(isLoggedIn || !!comments?.length) ? (
           <CommentTitle>
             <FormattedMessage id='comments' />
           </CommentTitle>
         ) : null}
         <CommentInputWrapper>
-          <CommentInput slug={slug} />
+          <CommentInput slug={slug!} />
         </CommentInputWrapper>
-        <CommentList slug={slug} />
+        <CommentList slug={slug!} />
       </ArticlePageWrapper>
       <RightColumn>
 
         <Slider />
-        <TopAnnounceWidget caption={intl.messages.popularContent as string} />
+        <TopAnnounceWidget caption={intl.messages.freshContent as string} />
       </RightColumn>
     </ArticleSection>
   );

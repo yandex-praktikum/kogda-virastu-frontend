@@ -20,7 +20,7 @@ import Main from '../pages/main';
 import Login from '../pages/login';
 import Register from '../pages/register';
 import Settings from '../pages/settings';
-import ArticlePage from '../pages/article-page_v2';
+import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
 import ProtectedRoute from '../widgets/ProtectedRoute';
@@ -72,12 +72,21 @@ const App = () => {
           <Route path='/' element={<Main />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Register />} />
-          <Route path='/editArticle' element={<ProtectedRoute path='/editArticle'>
-               <Editor /> </ProtectedRoute>} />
+          <Route
+            path='/editArticle'
+            element={(
+              <ProtectedRoute path='/editArticle'>
+                <Editor />
+              </ProtectedRoute>
+)} />
           <Route path='/:username' element={<Profile />} />
-          <Route path="/settings" element={<ProtectedRoute path="/settings">
-                            <Settings />
-                        </ProtectedRoute>} />
+          <Route
+            path='/settings'
+            element={(
+              <ProtectedRoute path='/settings'>
+                <Settings />
+              </ProtectedRoute>
+)} />
           <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
