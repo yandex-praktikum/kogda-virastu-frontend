@@ -1,7 +1,7 @@
 import React, {
   useEffect, FC, ChangeEventHandler, FormEventHandler, useState,
 } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Navigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
 
@@ -12,6 +12,7 @@ import {
   setTags,
   setImage,
   openConfirm,
+  articlePatchSucceeded,
 } from '../../store';
 import {
   getArticleThunk,
@@ -48,6 +49,8 @@ const EditorForm: FC = () => {
     isArticleFetching,
     isArticlePostingSucceeded,
     isArticleRemoved,
+    isArticlePatching,
+    isArticlePosting,
   } = useSelector((state) => state.api);
   const { slug } = useParams();
   const initialArticle = useSelector((state) => state.view.article);
@@ -61,7 +64,7 @@ const EditorForm: FC = () => {
   }, [initialArticle, dispatch]);
 
   useEffect(() => {
-    if ((isPosted && isArticlePostingSucceeded) || (isArticleRemoved && isRemoving)) {
+    if (isPosted || (isArticleRemoved && isRemoving)) {
       navigate('/');
     }
   }, [navigate, isPosted, isArticlePostingSucceeded, isArticleRemoved, isRemoving]);
@@ -105,7 +108,7 @@ const EditorForm: FC = () => {
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     setPostRequested(true);
-    if (slug) {
+    if (!slug) {
       dispatch(patchArticleThunk(slug));
     } else {
       dispatch(postArticleThunk());
@@ -126,12 +129,14 @@ const EditorForm: FC = () => {
       <PublishPostButton disabled={isArticleFetching} />
     )
   );
+
   const makeMessageId = () => {
     if (slug) {
       return 'editArticle';
     }
     return 'newArticle';
   };
+
   return (
     <FormContainer>
       <FormTitle>
