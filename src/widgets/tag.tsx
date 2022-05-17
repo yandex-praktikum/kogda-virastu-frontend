@@ -25,7 +25,7 @@ const Button = styled.button<TTagButtonProps>`
     align-items: center;
     color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
     background-color: transparent;
-    
+
     :active {
       outline: none;
     }
@@ -48,6 +48,11 @@ const Tag: FC<ITagProps> = ({
       {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
     </Button>
   );
+};
+
+Tag.defaultProps = {
+  handleClick: undefined,
+  deactivateTag: undefined,
 };
 
 export default Tag;
