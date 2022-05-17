@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from '../services/hooks';
-import {uid} from '../services/helpers/uid';
 
 import Tag from './tag';
 
@@ -10,9 +10,7 @@ type TBarTags = {
 };
 
 type TLists = {
-  // eslint-disable-next-line react/require-default-props
   isHasImage?: boolean,
-  // eslint-disable-next-line react/require-default-props
   rowReverse?: boolean;
 };
 
@@ -32,24 +30,36 @@ const Lists = styled.ul<TLists>`
      @media screen and (max-width:600px) {
         max-width:352px;
         margin:0;
-        
+
         flex-direction: row;
      }
 `;
+
+Lists.defaultProps = {
+  isHasImage: false,
+  rowReverse: false,
+};
+
 const List = styled.li`
     list-style-type: none;
 `;
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
-  const { tag: activeTag } = useSelector((state) => state.view);
+  const { selectedTags } = useSelector((state) => state.view);
   return (
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
-        <List key={uid()}>
-          <Tag tag={tag} isActive={tag === activeTag} />
+        <List key={nanoid(10)}>
+          <Tag tag={tag} isActive={!!selectedTags?.includes(tag)} />
         </List>
       ))}
     </Lists>
   );
 };
+
+BarTags.defaultProps = {
+  isHasImage: false,
+  rowReverse: false,
+};
+
 export default BarTags;
