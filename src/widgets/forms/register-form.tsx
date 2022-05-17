@@ -49,7 +49,7 @@ const RegisterForm: FC = () => {
     dispatch(registerThunk());
   };
 
-  useEffect(() => () => {
+  useEffect(() => {
     if (isLoggedIn) {
       navigate('/');
     }

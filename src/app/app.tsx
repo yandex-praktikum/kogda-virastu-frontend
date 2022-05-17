@@ -32,14 +32,15 @@ const App = () => {
   const { currentTheme, currentLang } = useSelector((state) => state.system);
   const { themes, langNames, vocabularies } = useSelector((state) => state.all);
   const { isDeleteConfirmOpen } = useSelector((state) => state.system);
+  const { username, nickname } = useSelector((state) => state.profile)
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
-  const onConfirmDelete : IGenericVoidHandler = () => {
+  const onConfirmDelete: IGenericVoidHandler = () => {
     batch(() => {
       dispatch(deleteArticleThunk(slug));
       dispatch(closeConfirm());
     });
   };
-  const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
+  const onConfirmClose: IGenericVoidHandler = () => dispatch(closeConfirm());
 
   useEffect(() => {
     batch(() => {
@@ -52,7 +53,7 @@ const App = () => {
         dispatch(getPublicFeedThunk());
       });
     }
-  }, [dispatch]);
+  }, [dispatch,username, nickname]);
 
   useEffect(() => {
     const language = navigator.language.split('-')[0];
@@ -64,21 +65,22 @@ const App = () => {
   return (
     <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
       <ThemeProvider theme={
-                    themes[currentTheme ?? defaultTheme]
-                    ?? basicThemes[currentTheme ?? defaultTheme]
-                }>
+        themes[currentTheme ?? defaultTheme]
+        ?? basicThemes[currentTheme ?? defaultTheme]
+      }>
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Register />} />
+          <Route path='/editArticle' element={<Editor />} />
           <Route
-            path='/editArticle'
+            path='/editArticle/:slug'
             element={(
-              <ProtectedRoute path='/editArticle'>
+              <ProtectedRoute path='/editArticle/:slug'>
                 <Editor />
               </ProtectedRoute>
-)} />
+            )} />
           <Route path='/profile/:username' element={<Profile />} />
           <Route
             path='/settings'
@@ -86,7 +88,7 @@ const App = () => {
               <ProtectedRoute path='/settings'>
                 <Settings />
               </ProtectedRoute>
-)} />
+            )} />
           <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

@@ -35,7 +35,7 @@ const HeaderMenuWidget : FC = () => {
   const navigate = useNavigate();
   const { nickname, username, image } = useSelector((store) => store.profile);
   const { isLoggedIn } = useSelector((state) => state.system);
-  const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/profile/${username || ''}}`);
+  const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/profile/${username || ''}`);
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/settings');
   const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(clearViewArticle());

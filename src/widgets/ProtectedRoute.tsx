@@ -5,8 +5,8 @@ import { useSelector } from '../services/hooks';
 
 const ProtectedRoute = ({ children, ...rest }:any) => {
   const location = useLocation();
-  const isLogin = useSelector((state) => state.system.isLoggedIn && !!state.profile.username)
-      && jwt.test();
+  const isLogin = useSelector((state) => state.system.isLoggedIn && !!state.profile.username
+      && jwt.test());
   return ((isLogin) ? children : <Navigate replace to='/login' state={location.pathname} />
   );
 };

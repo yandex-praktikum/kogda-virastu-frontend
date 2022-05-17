@@ -126,7 +126,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
 
   const onClickEdit = () => {
     if (article && slug) {
-      navigate(`/editor/${slug}`);
+      navigate(`/editArticle/${slug}`);
     }
   };
 
