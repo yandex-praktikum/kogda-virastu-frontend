@@ -26,6 +26,7 @@ const ArticleContainer = styled.div`
   gap: 24px 0;
   width: 100%;
   max-width: 700px;
+   
   @media screen and (max-width:768px) {
     gap: 16px 0;
  }

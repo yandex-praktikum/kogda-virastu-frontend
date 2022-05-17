@@ -30,6 +30,9 @@ const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletB
 const ArticlePageWrapper = styled.div`
   max-width: 700px;
   width: 100%;
+  @media screen and (max-width:1035px) {
+      max-width: 453px;
+    }
 `;
 
 const CommentInputWrapper = styled.div`
@@ -45,43 +48,56 @@ const CommentTitle = styled.p`
 `;
 
 const ArticleSection = styled.section`
-    display: flex;
-    margin: 56px auto;
-    position: relative;
-    z-index: 10;
+   display: flex;
+    margin: 56px 0 0 0;
     gap: 0 calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
     justify-content: center;
     align-items: center;
-    width: calc(1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw));
-    padding: 0 calc((100vw - (1140px - ${desktopToTabletMainWidthStep} * (${desktopBreakpoint}px - 100vw))) / 2);
-
-    @media screen and (max-width:768px) {
+    max-width:1140px;
+    position: relative;
+    z-index: 10;
+    margin: auto;
+    padding-top: 56px;
+   
+    @media screen and (max-width:${tabletBreakpoint}px) {
+      padding: 0, 24px;
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
-      flex-direction: column-reverse;
-
+      padding-top: 48px;
   }
-
-  @media screen and (max-width: ${mobileViewThreshold}px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column-reverse;
     gap: 0;
+    max-width: 400px;
+  }
+  @media screen and (min-width: ${desktopBreakpoint}px) {
+    gap: 40px;
+  }
+  
+  
+  @media screen and (max-width: ${mobileViewThreshold}px) {
+    padding:0, 20px;
     width: 280px;
-    }
+    padding-top: 40px;
+  }
 `;
-
 const RightColumn = styled.aside`
     display: flex;
-    align-self: flex-start;
     overflow: hidden;
+    align-self: flex-start;
     flex-direction: column;
-    width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
-  @media screen and (max-width:768px) {
-    width: 227px;
-    flex-direction: column-reverse;
-  }
-    @media screen and (max-width: ${mobileViewThreshold}px) {
+    max-width: 360px;
+    @media screen and (max-width:1600px) {
+      width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
+    }
+  @media screen and (max-width:767px) {
+    margin:auto;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 765px) {
       width: 100%;
     }
+  }
 `;
 
 const ArticlePage: FC = () => {
