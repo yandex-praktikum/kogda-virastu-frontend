@@ -9,21 +9,21 @@ interface ILikesProps {
   favorite: boolean
 }
 
-type TLikesCounterProps = {
-  font: TFontProperties,
-  color: string
-};
-
-const LikesCounter = styled.p<TLikesCounterProps>`
+const LikesCounter = styled.p`
   margin: 0;
-  font-family: ${(props) => props.font.family};
-  color: ${(props) => props.color};
+  font-family: ${({ theme }) => theme.text18Sans.family};
+  font-size: ${({ theme }) => theme.text18Sans.size}px;
+  font-weight: ${({ theme }) => theme.text18Sans.weight};
+  line-height: ${({ theme }) => theme.text18Sans.height}px;
+  color: ${({ theme }) => theme.secondaryText};
 `;
 
 const LikesContainer = styled.div`
   width: 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: min-content;
 `;
 
 const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) => {
@@ -31,7 +31,7 @@ const Likes: FC<ILikesProps> = ({ likesCounterValue, handleClick, favorite }) =>
 
   return (
     <LikesContainer>
-      <LikesCounter font={theme.text18Sans} color={theme.secondaryText}>
+      <LikesCounter>
         {likesCounterValue}
       </LikesCounter>
       { favorite
