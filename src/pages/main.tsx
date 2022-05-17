@@ -5,7 +5,7 @@ import React, {
 import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
-import { TopAnnounceWidget } from '../widgets/top-announce-widget';
+import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/PopularTags';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
@@ -16,17 +16,14 @@ import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../con
 
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
-
-const desktopToTabletMainWidthStep = (1140 - 720) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileViewThreshold);
-
 const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
 
 const MainSection = styled.main`
 display: flex;
 justify-content: center;
 margin: 0;
-   
+
 `;
 const MainContainer = styled.div`
  display: flex;
@@ -37,9 +34,9 @@ const MainContainer = styled.div`
     max-width:1140px;
     position: relative;
     z-index: 10;
-    
+
     @media screen and (max-width:${tabletBreakpoint}px) {
-      padding: 0, 24px;
+      padding: 0 24px;
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
   }
@@ -51,10 +48,10 @@ const MainContainer = styled.div`
   @media screen and (min-width: ${desktopBreakpoint}px) {
     gap: 40px;
   }
-  
-  
+
+
   @media screen and (max-width: ${mobileViewThreshold}px) {
-    padding:0, 20px;
+    padding:0 20px;
     width: 280px;
   }
 `;
