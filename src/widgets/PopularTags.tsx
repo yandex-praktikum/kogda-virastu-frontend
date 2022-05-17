@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { batch } from 'react-redux';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
-import { setFeedType, setTag, clearTag, setSelectedTags } from '../store';
+import {
+  setFeedType, setTag, clearTag, setSelectedTags,
+} from '../store';
 import { FeedTypes } from '../types/types';
 import Tag from './tag';
-import { FormattedMessage } from 'react-intl';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -41,26 +43,26 @@ const PopularTags: FC = () => {
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
-    batch(() => {
-      if (selectedTags) {
-        dispatch(setSelectedTags([...selectedTags, tag]));
-      } else {
-        dispatch(setSelectedTags([tag]));
-      }
-      dispatch(setFeedType(FeedTypes.tags));
-    });
+    // batch(() => {
+    if (selectedTags) {
+      dispatch(setSelectedTags([...selectedTags, tag]));
+    } else {
+      dispatch(setSelectedTags([tag]));
+    }
+    // dispatch(setFeedType(FeedTypes.tags));
+    // });
   };
 
   const deactivateTag = (e: React.MouseEvent, tag: string) => {
     e.stopPropagation();
-    dispatch(setSelectedTags(selectedTags!.filter((el) => {return el !== tag})));
+    dispatch(setSelectedTags(selectedTags!.filter((el) => el !== tag)));
   };
 
   if (tags) {
     return (
       <PopularTagsContainer>
         <Title>
-          <FormattedMessage id={'popularTags'} />
+          <FormattedMessage id='popularTags' />
         </Title>
         <TagList>
           {
