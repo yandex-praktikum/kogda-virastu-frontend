@@ -48,7 +48,7 @@ interface IInputInterface {
   onFocus?: FocusEventHandler<HTMLInputElement>;
 }
 
-export const InputField :FC<IInputInterface> = ({
+const InputField :FC<IInputInterface> = ({
   type, placeholder, value, name, error = false, icon = null, errorText = '', onChange, onIconClick, onBlur, onFocus,
   disabled = false, labelText = '',
 }: IInputInterface) => (

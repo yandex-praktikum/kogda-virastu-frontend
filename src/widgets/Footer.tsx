@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { Divider } from '../ui-lib';
 
 const FooterStyled = styled.footer`
-  
+
   width: 100%;
   padding: 0;
   margin: 0;
@@ -30,7 +30,7 @@ const Container = styled.div`
   }
   @media screen and (max-width:768px) {
     max-width: 576px;
-    
+
   }
   @media screen and (max-width:544px) {
     height: 79px;
@@ -53,27 +53,23 @@ const TextCreatedBy = styled(Text)`
   }
 `;
 
-const Footer: FC = () => {
-  const theme = useTheme();
-
-  return (
-    <FooterStyled>
-      <Divider distance={0} />
-      <Container>
-        <Text>
-          &copy;&nbsp;
-          <FormattedMessage
-            id='mainTitle'
-            defaultMessage='Когда вырасту' />
-        </Text>
-        <TextCreatedBy>
-          <FormattedMessage
-            id='footerMessage'
-            defaultMessage='Сделано студентами Яндекс Практикума' />
-        </TextCreatedBy>
-      </Container>
-    </FooterStyled>
-  );
-};
+const Footer: FC = () => (
+  <FooterStyled>
+    <Divider distance={0} />
+    <Container>
+      <Text>
+        &copy;&nbsp;
+        <FormattedMessage
+          id='mainTitle'
+          defaultMessage='Когда вырасту' />
+      </Text>
+      <TextCreatedBy>
+        <FormattedMessage
+          id='footerMessage'
+          defaultMessage='Сделано студентами Яндекс Практикума' />
+      </TextCreatedBy>
+    </Container>
+  </FooterStyled>
+);
 
 export default Footer;

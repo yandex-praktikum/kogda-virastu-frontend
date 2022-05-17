@@ -152,6 +152,9 @@ import {
   settingsPatchRequested,
   settingsPatchSucceeded,
   settingsResetUpdateSucceeded,
+  articleDeleteClear,
+  articlePatchClear,
+  articlePostClear,
 } from './apiSlice';
 
 import {
@@ -308,4 +311,7 @@ export {
   settingsPatchRequested,
   settingsPatchSucceeded,
   settingsResetUpdateSucceeded,
+  articleDeleteClear,
+  articlePatchClear,
+  articlePostClear,
 };

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { InputField } from './input-field-config';
+import InputField from './input-field-config';
 import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
 import { TFieldInput } from '../../types/styles.types';
 

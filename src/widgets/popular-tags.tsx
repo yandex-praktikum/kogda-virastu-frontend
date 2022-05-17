@@ -1,12 +1,8 @@
 import React, { FC } from 'react';
-import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
-import {
-  setFeedType, setTag, clearTag, setSelectedTags,
-} from '../store';
-import { FeedTypes } from '../types/types';
+import { setSelectedTags } from '../store';
 import Tag from './tag';
 
 const PopularTagsContainer = styled.div`
@@ -38,19 +34,15 @@ const TagList = styled.div`
 const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
-  const { tag: activeTag } = useSelector((state) => state.view);
   const { selectedTags } = useSelector((state) => state.view);
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
-    // batch(() => {
     if (selectedTags) {
       dispatch(setSelectedTags([...selectedTags, tag]));
     } else {
       dispatch(setSelectedTags([tag]));
     }
-    // dispatch(setFeedType(FeedTypes.tags));
-    // });
   };
 
   const deactivateTag = (e: React.MouseEvent, tag: string) => {

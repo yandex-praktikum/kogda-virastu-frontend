@@ -35,7 +35,7 @@ const TopContainer = styled.ul`
     }
 `;
 
-export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
+const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
   return (
     <TopAnnounce>
@@ -60,7 +60,7 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
           };
           return (
             <>
-              {index && <Divider distance={24} />}
+              {!!index && <Divider distance={24} />}
               <BriefPostAnnounceWidget
                 key={slug}
                 username={username}

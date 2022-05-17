@@ -18,6 +18,7 @@ type TAPIState = {
   isArticleDeleting: boolean,
   isArticleRemoved: boolean,
   isArticlePatching: boolean,
+  isArticlePatchingSucceeded: boolean,
   isLikeArticlePosting: boolean,
   isLikeArticleDeleting: boolean,
   isTagsFetching: boolean,
@@ -50,6 +51,7 @@ const initialState: TAPIState = {
   isArticleDeleting: false,
   isArticleRemoved: false,
   isArticlePatching: false,
+  isArticlePatchingSucceeded: false,
   isLikeArticlePosting: false,
   isLikeArticleDeleting: false,
   isTagsFetching: false,
@@ -171,6 +173,14 @@ const apiSlice = createSlice({
     articlePostSucceeded: (state: TAPIState) => ({
       ...state, isArticlePosting: false, isArticlePostingSucceeded: true,
     }),
+    articlePostClear: (state: TAPIState) => ({
+      ...state,
+      isArticlePosting: false,
+      isArticlePostingSucceeded: false,
+      successMessage: null,
+      errorMessage: null,
+      errorObject: null,
+    }),
     articlePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePosting: false, errorObject: action.payload,
     }),
@@ -183,11 +193,27 @@ const apiSlice = createSlice({
     articleDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isArticleDeleting: false, errorObject: action.payload,
     }),
+    articleDeleteClear: (state: TAPIState) => ({
+      ...state,
+      isArticleDeleting: false,
+      isArticleRemoved: false,
+      successMessage: null,
+      errorMessage: null,
+      errorObject: null,
+    }),
     articlePatchRequested: (state: TAPIState) => ({
       ...state, isArticlePatching: true,
     }),
     articlePatchSucceeded: (state: TAPIState) => ({
-      ...state, isArticlePatching: false,
+      ...state, isArticlePatching: false, isArticlePatchingSucceeded: true,
+    }),
+    articlePatchClear: (state: TAPIState) => ({
+      ...state,
+      isArticlePatching: false,
+      isArticlePatchingSucceeded: false,
+      successMessage: null,
+      errorMessage: null,
+      errorObject: null,
     }),
     articlePatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePatching: false, errorObject: action.payload,
@@ -373,5 +399,8 @@ export const {
   clearArticleFetchNotFound,
   clearProfileFetchNotFound,
   setProfileFetchNotFound,
+  articleDeleteClear,
+  articlePatchClear,
+  articlePostClear,
 } = apiSlice.actions;
 export default apiReducer;
