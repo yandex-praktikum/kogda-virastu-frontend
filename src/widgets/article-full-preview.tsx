@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
-import BarTags from './BarTags';
+import BarTags from './bar-tags';
 import { Divider } from '../ui-lib';
+import { getPropOnCondition } from '../services/helpers';
 
-const ArticleCardConteiner = styled.div`
+const ArticleCardContainer = styled.div`
     width: 700px;
     display: flex;
     flex-direction: column;
@@ -54,12 +55,12 @@ type TElementWithImage = {
 const BarTagsWrapper = styled.div<TElementWithImage>`
   width:100%;
   @media screen and (max-width:600px) {
-    ${(props) => (props.image ? 'grid-row: 4/5 ' : 'grid-row: 3/4')};
+    ${({ image }) => getPropOnCondition(!!image, 'grid-row: 3/4', 'grid-row: 4/5 ')};
   }
 
 `;
 
-const ContentConteiner = styled.div<TElementWithImage>`
+const ContentContainer = styled.div<TElementWithImage>`
     display: grid;
     grid-template-columns: 1fr 6fr;
     grid-gap: 16px;
@@ -77,9 +78,9 @@ const ContentConteiner = styled.div<TElementWithImage>`
         &:active {
             color: ${(props) => props.theme.button.red.active};
         }
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 600px) {                  // 'grid-row: 5/6 ' : 'grid-row: 4/5'
 
-        ${(props) => (props.image ? 'grid-row: 5/6 ' : 'grid-row: 4/5')};
+        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
         margin-top: -8px;
     }
     }
@@ -124,7 +125,7 @@ type TArticleFullPreview = {
 
 const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => (
 
-  <ArticleCardConteiner>
+  <ArticleCardContainer>
     <AuthorHeadingWidget
       username={article.author?.username}
       nickname={article.author?.nickname ?? article.author?.username}
@@ -133,7 +134,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
       isLiked={article.favorited}
       likesCount={article.favoritesCount}
       onLikeClick={onLikeClick} />
-    <ContentConteiner image={article.link}>
+    <ContentContainer image={article.link}>
       <ArticleName>{article.title}</ArticleName>
       {article.link && <ArticleImage src={article.link} />}
       <Article image={article.link}>{article.body}</Article>
@@ -146,9 +147,9 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
           rowReverse
           tagList={article.tagList} />
       </BarTagsWrapper>
-    </ContentConteiner>
+    </ContentContainer>
     <Divider distance={0} />
-  </ArticleCardConteiner>
+  </ArticleCardContainer>
 );
 
 export default ArticleFullPreview;
