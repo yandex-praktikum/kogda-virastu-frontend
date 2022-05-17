@@ -67,7 +67,12 @@ const PopularTags: FC = () => {
         <TagList>
           {
             tags.map((tag) => (
-              <Tag tag={tag} handleClick={handleClick} isActive={selectedTags?.includes(tag) || false} deactivateTag={(e) => deactivateTag(e, tag)} />
+              <Tag
+                key={tag}
+                tag={tag}
+                handleClick={handleClick}
+                isActive={selectedTags?.includes(tag) || false}
+                deactivateTag={(e) => deactivateTag(e, tag)} />
             ))
           }
         </TagList>
