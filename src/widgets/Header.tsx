@@ -1,5 +1,5 @@
 import React, { FC, MouseEventHandler } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { OpenMenuButton } from '../ui-lib';
@@ -96,7 +96,7 @@ const FigureLeftEllipse = styled.div<TFigureContainerProps>`
   top: 31%;
   left: -1%;
   @media screen and (max-width:1700px) {
-    left: 0%;
+    left: 0;
   }
   @media screen and (max-width:1400px) {
     top: 33%;
