@@ -67,7 +67,7 @@ const Profile: FC = () => {
   return (
     <ProfilePageLayout>
       <ProfileWidget
-        userName={profile.username}
+        userName={profile.nickname ?? profile.username}
         isFollow={profile.following}
         userImage={profile.image}
         isUser={isUser}

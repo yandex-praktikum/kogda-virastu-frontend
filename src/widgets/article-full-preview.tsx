@@ -6,8 +6,6 @@ import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
 import BarTags from './BarTags';
 import { Divider } from '../ui-lib';
-import { useDispatch, useSelector } from '../services/hooks';
-import { addLikeThunk, deleteLikeThunk, deleteArticleThunk } from '../thunks';
 
 const ArticleCardConteiner = styled.div`
     width: 700px;
@@ -128,7 +126,8 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
 
   <ArticleCardConteiner>
     <AuthorHeadingWidget
-      name={article.author?.nickname ?? article.author?.username}
+      username={article.author?.username}
+      nickname={article.author?.nickname ?? article.author?.username}
       image={article.author.image}
       date={new Date(article.createdAt)}
       isLiked={article.favorited}
