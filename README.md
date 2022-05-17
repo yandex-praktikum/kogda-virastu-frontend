@@ -19,7 +19,7 @@
 ## Реализовано
 * Развернуты заготовки и настроен коллективный Гитхаб.
 * Организована файловая структура.
-* Реализована архитектура (с классов на хуки, с jsx на tsx, с redux на redux-toolkit).
+* Реализован рефакторинг архитектуры (с классов на хуки, с jsx на tsx, с redux на redux-toolkit). Подробнее в ветке [refactored](https://github.com/RedTypes/react-project-kitchen-frontend/tree/refactored).
 * Реализован редизайн.
 
 ## Бэкэнд
