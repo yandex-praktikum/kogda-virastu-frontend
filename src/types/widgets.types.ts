@@ -2,7 +2,8 @@ import React from 'react';
 
 export type TAuthorHeadingProps = {
   image?: string;
-  name: string;
+  username: string;
+  nickname: string;
   date: Date;
   isAuthor?: boolean;
   isLiked: boolean;
@@ -13,7 +14,8 @@ export type TAuthorHeadingProps = {
 
 export type TCommentAuthorHeadingProps = {
   image?: string;
-  name: string;
+  username: string;
+  nickname: string;
   date: Date;
   isAuthor: boolean;
   onDeleteClick?: React.MouseEventHandler<SVGSVGElement>;
@@ -21,7 +23,8 @@ export type TCommentAuthorHeadingProps = {
 
 export type TBriefPostAnnounceProps = {
   image?: string;
-  name: string;
+  username: string;
+  nickname: string;
   title: string;
   date: Date;
   isLiked: boolean;
@@ -35,6 +38,7 @@ export type TTopAnnounceWidgetProps = {
 
 export type TAuthorProps = {
   userName: string,
+  nickname: string,
   createAt: Date,
   imageSrc?: string,
 };
@@ -54,4 +58,15 @@ export type TModalProps = {
 
 export type TScrollRibbonProps = {
   children: JSX.Element,
+};
+
+export type TCommentProps = {
+  image?: string;
+  createAt: Date;
+  username: string;
+  nickname: string;
+  onDeleteClick?: (commentId: string) => void;
+  isAuthor: boolean,
+  body: string,
+  commentId: string,
 };

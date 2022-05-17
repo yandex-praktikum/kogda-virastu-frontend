@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { FC } from 'react';
 import CommentAuthorHeading from './comment-author-heading';
+import { TCommentProps } from '../types/widgets.types';
 
 const CommentContainer = styled.div`
 
@@ -14,18 +15,6 @@ const CommentContainer = styled.div`
   gap: 24px 0;
 `;
 
-type TCommentProps = {
-  // eslint-disable-next-line react/require-default-props
-  image?: string;
-  createAt: Date;
-  name: string;
-  // eslint-disable-next-line react/require-default-props
-  onDeleteClick?: (commentId: string) => void;
-  isAuthor: boolean,
-  body: string,
-  commentId: string,
-};
-
 const CommentBody = styled.p`
   color: ${({ theme }) => theme.primaryText};
   font-size: ${({ theme }) => theme.text16.size}px;
@@ -38,7 +27,8 @@ const CommentBody = styled.p`
 const Comment: FC<TCommentProps> = ({
   image,
   createAt,
-  name,
+  username,
+  nickname,
   isAuthor,
   onDeleteClick,
   commentId,
@@ -48,7 +38,8 @@ const Comment: FC<TCommentProps> = ({
     <CommentAuthorHeading
       image={image}
       date={createAt}
-      name={name}
+      username={username}
+      nickname={nickname ?? username}
       onDeleteClick={() => {
         if (typeof onDeleteClick === 'function') {
           onDeleteClick(commentId);

@@ -23,7 +23,8 @@ const BriefPostAnnounceWrapper = styled.li`
 `;
 
 const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
-  name,
+  username,
+  nickname,
   title,
   image,
   date,
@@ -33,7 +34,8 @@ const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
 }) => (
   <BriefPostAnnounceWrapper>
     <AuthorHeadingWidget
-      name={name}
+      username={username}
+      nickname={nickname}
       date={date}
       image={image}
       isAuthor={false}

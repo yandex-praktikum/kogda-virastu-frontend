@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { mobileViewThreshold } from '../constants';
 import { useSelector } from '../services/hooks';
 import { TArticle } from '../types/types';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
@@ -30,7 +29,7 @@ const TopContainer = styled.ul`
   margin-inline-start: 0;
   margin-inline-end: 0;
   padding-inline-start: 0;
-  
+
   @media screen and (max-width: 767px) {
     display: none;
     }
@@ -44,11 +43,12 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
         {caption}
       </HeaderThreeText>
       <TopContainer>
-        {topArticles.map((article: TArticle) => {
+        {topArticles.map((article: TArticle, index) => {
           const {
             author: {
               username,
               nickname,
+              image,
             },
             title,
             createdAt,
@@ -60,10 +60,12 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
           };
           return (
             <>
-              {'' && <Divider distance={24} />}
+              {index && <Divider distance={24} />}
               <BriefPostAnnounceWidget
                 key={slug}
-                name={nickname ?? username}
+                username={username}
+                nickname={nickname ?? username}
+                image={image}
                 title={title}
                 date={new Date(createdAt)}
                 isLiked={favorited}
