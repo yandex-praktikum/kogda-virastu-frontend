@@ -6,7 +6,7 @@ import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
-import PopularTags from '../widgets/PopularTags';
+import PopularTags from '../widgets/popular-tags';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
   setTopLikedThunk, setNewPostsThunk, getPublicFeedThunk,

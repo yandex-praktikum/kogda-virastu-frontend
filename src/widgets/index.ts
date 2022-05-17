@@ -1,6 +1,6 @@
 import Author from './author';
 import Tag from './tag';
-import PopularTags from './PopularTags';
+import PopularTags from './popular-tags';
 import Likes from './likes';
 import ProfileWidget from './profile-widget';
 import AuthorHeadingMiniWidget from './author-heading-widget';
