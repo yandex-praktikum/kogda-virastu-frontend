@@ -26,7 +26,9 @@ const deleteCommentThunk: AppThunk = (
           commentsFeed?.filter((comment) => comment.id !== commentId) ?? [],
         ));
       });
-    } else dispatch(commentDeleteFailed({ errors: { 'Unexpected error': `Server replied with code ${status}` } }));
+    } else {
+      dispatch(commentDeleteFailed({ errors: { 'Unexpected error': `Server replied with code ${status}` }, statusCode: status }));
+    }
   } catch (error) {
     dispatch(commentDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }

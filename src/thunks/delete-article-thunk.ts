@@ -2,7 +2,7 @@ import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
 import { AppThunk, AppDispatch, RootState } from '../store/store.types';
 import {
-  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setAllArticles, setViewFeed,
+  articleDeleteRequested, articleDeleteSucceeded, articleDeleteFailed, setViewFeed,
 } from '../store';
 import { deleteArticle } from '../services/api';
 import { TAPIError } from '../services/api.types';
@@ -20,9 +20,12 @@ const deleteArticleThunk: AppThunk = (slug: string) => async (
       batch(() => {
         dispatch(setViewFeed(articles?.filter((item) => item.slug !== slug)));
         dispatch(articleDeleteSucceeded());
-        // TODO: Надо перезапросить текущие статьи, или на странице будет меньше статей чем надо
       });
-    } else dispatch(articleDeleteFailed({ errors: { 'Unexpected error': `Server replied with code ${status}` } }));
+    } else {
+      dispatch(articleDeleteFailed(
+        { errors: { 'Unexpected error': `Server replied with code ${status}` }, statusCode: status },
+      ));
+    }
   } catch (error) {
     dispatch(articleDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
