@@ -107,7 +107,7 @@ const ArticlePage: FC = () => {
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
   const { slug } = useParams();
-  const { isArticleNotFound } = useSelector((state) => state.api);
+  const { isArticleNotFound, isArticleRemoved } = useSelector((state) => state.api);
   const { articles } = useSelector((state) => state.all);
 
   useEffect(() => {
@@ -134,6 +134,13 @@ const ArticlePage: FC = () => {
       navigate('/no-article');
     }
   }, [dispatch, navigate, isArticleNotFound]);
+
+  useEffect(() => {
+    if (isArticleRemoved) {
+      navigate('/');
+    }
+  }, [navigate, isArticleRemoved]);
+
 
   return (
     <ArticleSection>

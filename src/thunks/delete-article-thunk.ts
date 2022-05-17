@@ -19,6 +19,7 @@ const deleteArticleThunk: AppThunk = (slug: string) => async (
       const articles = getState().view.feed ?? [];
       batch(() => {
         dispatch(setViewFeed(articles?.filter((item) => item.slug !== slug)));
+        dispatch(clearViewArticle());
         dispatch(articleDeleteSucceeded());
       });
     } else {
