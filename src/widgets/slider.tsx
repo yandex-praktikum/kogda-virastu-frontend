@@ -10,7 +10,21 @@ import { TArticle } from '../types/types';
 import { Divider} from '../ui-lib';
 
 const SlideContainer = styled.div`
+@keyframes show{
+0%{
+opacity:0;
+}
+100% {
+opacity:1;
+}
+}
+opacity:0;
+transition: 1s;
+animation: show 3s 1;
+animation-fill-mode: forwards;
+animation-delay: 0s;
 display: flex;
+transition: margin-right .3s;
 width: 100%;
 `;
 const SlidersContainer = styled.div`

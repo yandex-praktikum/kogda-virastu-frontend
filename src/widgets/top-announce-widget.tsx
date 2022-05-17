@@ -41,7 +41,7 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
         {caption}
       </HeaderThreeText>
       <TopContainer>
-        {topArticles.map((article: TArticle, index) => {
+        {topArticles.map((article: TArticle) => {
           const {
             author: {
               username,
@@ -57,7 +57,7 @@ export const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => 
           };
           return (
             <>
-              {index && <Divider distance={24} />}
+              {'' && <Divider distance={24} />}
               <BriefPostAnnounceWidget
                 key={slug}
                 name={nickname ?? username}
