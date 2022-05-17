@@ -6,7 +6,7 @@ import { TBriefPostAnnounceProps } from '../types/widgets.types';
 import { HeaderFiveText } from '../ui-lib';
 import { primaryBlack } from '../constants/colors';
 
-const BriefPostAnnounceWrapper = styled.li`
+const BriefPostAnnounceWrapper = styled.article`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;

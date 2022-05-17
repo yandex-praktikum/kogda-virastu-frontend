@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
+import { HeaderThreeText } from '../ui-lib';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -13,15 +15,6 @@ const PopularTagsContainer = styled.div`
   @media screen and (max-width:768px) {
     margin-bottom: 40px;
   }
-`;
-
-const Title = styled.h3`
-  color: ${({ theme }) => theme.primaryText};
-  font-size: ${({ theme }) => theme.thirdLevelHeading.size}px;
-  font-family: ${({ theme }) => theme.thirdLevelHeading.family};
-  font-weight: ${({ theme }) => theme.thirdLevelHeading.weight};
-  line-height: ${({ theme }) => theme.thirdLevelHeading.height}px;
-  margin:  0 0 16px 0;
 `;
 
 const TagList = styled.div`
@@ -53,15 +46,16 @@ const PopularTags: FC = () => {
   if (tags) {
     return (
       <PopularTagsContainer>
-        <Title>
+        <HeaderThreeText paddingCSS='padding-bottom: 16px;'>
           <FormattedMessage id='popularTags' />
-        </Title>
+        </HeaderThreeText>
         <TagList>
           {
             tags.map((tag) => (
               <Tag
                 key={tag}
                 tag={tag}
+                pointer
                 handleClick={handleClick}
                 isActive={selectedTags?.includes(tag) || false}
                 deactivateTag={(e) => deactivateTag(e, tag)} />

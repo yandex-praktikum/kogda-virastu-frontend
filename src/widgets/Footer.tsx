@@ -7,8 +7,11 @@ const FooterStyled = styled.footer`
 
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin: 130px 0 0 0;
   background-color: ${({ theme }) => theme.bgPrimary};
+  @media screen and (max-width: 768px) {
+    margin: 100px 0 0 0;
+  }
 `;
 
 const Container = styled.div`

@@ -30,6 +30,10 @@ export const HeaderOneText = styled.h1<THeaderTextProps>`
   -webkit-line-clamp: ${({ lines }) => (lines || 2)};
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   color: ${({ color }) => (color || 'inherit')};
   ${({ marginCSS }) => (marginCSS || '')};
   ${({ paddingCSS }) => (paddingCSS || '')};
@@ -48,6 +52,10 @@ export const HeaderTwoText = styled.h2<THeaderTextProps>`
   font-weight: ${defaultH2.weight};
   line-height: ${defaultH2.height}px;
   margin-bottom: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: ${({ lines }) => (lines || 2)};
@@ -71,6 +79,10 @@ export const HeaderThreeText = styled.h3<THeaderTextProps>`
   font-weight: ${defaultH3.weight};
   line-height: ${defaultH3.height}px;
   margin-bottom: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: ${({ lines }) => (lines || 2)};
@@ -123,6 +135,10 @@ export const HeaderFiveText = styled.h5<THeaderTextProps>`
   line-height: ${defaultH5.height}px;
   color: ${({ color }) => (color || 'inherit')};
   margin-bottom: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: ${({ lines }) => (lines || 2)};
