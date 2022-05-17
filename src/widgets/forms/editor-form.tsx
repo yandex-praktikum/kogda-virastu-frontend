@@ -53,10 +53,6 @@ const EditorForm: FC = () => {
   const initialArticle = useSelector((state) => state.view.article);
   const [isPosted, setPostRequested] = useState(false);
   const [isRemoving, setRemoveState] = useState(false);
-  /* useEffect(() => () => {
-    dispatch(resetArticle());
-    dispatch(clearViewArticle());
-  }, [dispatch]); */
 
   useEffect(() => {
     if (initialArticle?.tagList) {
