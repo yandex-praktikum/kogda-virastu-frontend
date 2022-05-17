@@ -1,21 +1,26 @@
 import React, { FC, useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
-import { calculateOffset } from '../services/helpers';
+
 import { ProfileWidget, FeedRibbon } from '../widgets';
 import {
   getPublicFeedThunk,
   getUserProfileThunk,
 } from '../thunks';
-import { clearView } from '../store';
+import {
+  clearProfileFetchNotFound, clearErrorMessage, clearErrorObject, clearView,
+} from '../store';
 import ProfilePageLayout from '../layouts/profile-page-layout';
 
 const Profile: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const profile = useSelector(
     (state) => state.view.profile,
   )
     ?? {
+      username: '',
       nickname: '',
       following: false,
       email: '',
@@ -28,29 +33,36 @@ const Profile: FC = () => {
       && !!state.profile.email
       && (state.profile.username === state.view.profile?.username),
   );
-  const { page, perPage } = useSelector((state) => state.view);
-  const statusCode = useSelector((state) => state.api.errorObject?.statusCode);
-  const params = useParams<{ username: string }>();
+  const { isProfileNotFound } = useSelector((state) => state.api);
+  const totalCount = useSelector((state) => state.all.articlesCount);
+  const { username } = useParams<{ username: string }>();
 
   useEffect(() => {
-    dispatch(getUserProfileThunk(params.username));
-
+    batch(() => {
+      dispatch(clearView());
+      dispatch(getUserProfileThunk(username));
+    });
     return () => {
       dispatch(clearView());
     };
-  }, [dispatch, params.username]);
+  }, [dispatch, username]);
 
   useEffect(() => {
-    dispatch(getPublicFeedThunk({
-      offset: calculateOffset(page, perPage),
-      limit: perPage,
-      author: params?.username,
-    }));
-  }, [dispatch, page, perPage, params.username]);
+    if (!!profile.username && !!totalCount) {
+      dispatch(getPublicFeedThunk({ limit: totalCount ?? 20, author: username }));
+    }
+  }, [dispatch, username, totalCount, profile.username]);
 
-  if (statusCode === 404) {
-    return <Navigate to='404' />;
-  }
+  useEffect(() => {
+    if (isProfileNotFound) {
+      batch(() => {
+        dispatch(clearProfileFetchNotFound());
+        dispatch(clearErrorObject());
+        dispatch(clearErrorMessage());
+      });
+      navigate('/no-user');
+    }
+  }, [dispatch, navigate, isProfileNotFound]);
 
   return (
     <ProfilePageLayout>

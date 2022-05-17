@@ -41,7 +41,7 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
         <Item key={comment.id}>
           <Comment
             createAt={new Date(comment.createdAt)}
-            name={comment.author.username}
+            name={comment.author.nickname ?? comment.author.username}
             body={comment.body}
             isAuthor={comment.author.username === currentUser.username}
             onDeleteClick={onDeleteClick}

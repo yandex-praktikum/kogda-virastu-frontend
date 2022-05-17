@@ -4,7 +4,7 @@ import {
   profileFetchRequested,
   profileFetchFailed,
   profileFetchSucceeded,
-  setViewProfile,
+  setViewProfile, setProfileFetchNotFound,
 } from '../store';
 import { fetchProfile } from '../services/api';
 import { TAPIError, TAPIProfile } from '../services/api.types';
@@ -25,6 +25,10 @@ const getUserProfileThunk: AppThunk = (user: string) => async (dispatch) => {
     }));
     dispatch(profileFetchSucceeded());
   } catch (error) {
+    const { response } = error as AxiosError<TAPIError>;
+    if (response && response?.status === 404) {
+      dispatch(setProfileFetchNotFound());
+    }
     dispatch(profileFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };

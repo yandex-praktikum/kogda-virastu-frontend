@@ -68,7 +68,7 @@ const ArticleCreateDate = styled.p`
   line-height: ${({ theme: { text16: { height } } }) => height}px;
   font-weight: ${({ theme: { text16: { weight } } }) => weight};
   margin: 0px;
-  grid-row: 1; 
+  grid-row: 1;
 `;
 
 const ArticleLikeWrapper = styled.div`
@@ -149,7 +149,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       )}
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleAuthorContainer>
-        <ArticleAuthor>{article.author.username}</ArticleAuthor>
+        <ArticleAuthor>{article.author.nickname ?? article.author.username}</ArticleAuthor>
         <ArticleCreateDate>
           <FormattedDate
             value={article.createdAt}

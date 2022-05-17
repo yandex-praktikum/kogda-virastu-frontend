@@ -15,10 +15,10 @@ const ArticleCardConteiner = styled.div`
     flex-direction: column;
     gap: 16px;
 
-    @media screen and (max-width: 1050px) { 
+    @media screen and (max-width: 1050px) {
         width: 453px;
     }
-    
+
     @media screen and (max-width: 600px) {
         width: 280px;
     }
@@ -64,30 +64,30 @@ const BarTagsWrapper = styled.div<TElementWithImage>`
 const ContentConteiner = styled.div<TElementWithImage>`
     display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-gap: 16px;  
+    grid-gap: 16px;
     .link {
         font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
         font-family: ${({ theme: { text18Sans: { family } } }) => family};
         line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`} ;
         font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
         color: ${(props) => props.theme.button.red.default};
-        width: 106px; 
+        width: 106px;
         text-decoration: none;
         &:hover {
             color: ${(props) => props.theme.button.red.hover};
-        } 
+        }
         &:active {
             color: ${(props) => props.theme.button.red.active};
         }
         @media screen and (max-width: 600px) {
-      
+
         ${(props) => (props.image ? 'grid-row: 5/6 ' : 'grid-row: 4/5')};
         margin-top: -8px;
     }
     }
     @media screen and (max-width: 600px) {
         grid-template-columns: 280px;
-  
+
     }
 `;
 
@@ -128,7 +128,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
 
   <ArticleCardConteiner>
     <AuthorHeadingWidget
-      name={article.author?.username}
+      name={article.author?.nickname ?? article.author?.username}
       image={article.author.image}
       date={new Date(article.createdAt)}
       isLiked={article.favorited}

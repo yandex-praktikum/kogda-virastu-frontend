@@ -44,11 +44,11 @@ const CreateDate = styled.p`
 
 const Author: FC<TAuthorProps> = ({ userName, createAt, imageSrc }) => (
   <AuthorContainer>
-    <Link to={`/${userName}`}>
+    <Link to={`/profile/${userName}`}>
       <AvatarIcon color='none' size='small' name={userName} image={imageSrc} />
     </Link>
     <AuthorContainerInfo>
-      <UserNameLink to={`/${userName}`}>{userName}</UserNameLink>
+      <UserNameLink to={`/profile/${userName}`}>{userName}</UserNameLink>
       <CreateDate>
         <FormattedDate
           value={createAt}
