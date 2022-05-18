@@ -7,14 +7,11 @@ import {
   setViewProfile,
 } from '../store';
 import { postFollowProfile } from '../services/api';
-import { AppThunk, AppDispatch, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { TAPIProfile, TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const followProfileThunk: AppThunk = () => async (
-  dispatch : AppDispatch,
-  getState : () => RootState,
-) => {
+const followProfileThunk: AppThunk = () => async (dispatch, getState) => {
   const { profile } = getState().view;
   const username = !!profile && !!profile.username ? profile?.username : '';
 

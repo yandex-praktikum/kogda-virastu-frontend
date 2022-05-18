@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { postLikeArticle } from '../services/api';
 import {
   setViewFeed,
@@ -11,10 +11,7 @@ import {
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const addLikeThunk: AppThunk = (slug: string) => async (
-  dispatch: AppDispatch,
-  getState: () => RootState,
-) => {
+const addLikeThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
   try {
     dispatch(likeArticlePostRequested());
     const { data: { article } } = await postLikeArticle(slug);

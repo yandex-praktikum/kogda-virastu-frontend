@@ -6,15 +6,12 @@ import {
   userLoginSucceeded,
   userLoginFailed, setUser, onLogin, resetFormLogin,
 } from '../store';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 import { TUser } from '../types/types';
 
-const loginUserThunk : AppThunk = () => async (
-  dispatch: AppDispatch,
-  getState: () => RootState,
-) => {
+const loginUserThunk : AppThunk = () => async (dispatch, getState) => {
   const loginData = getState().forms.login ?? {};
   try {
     dispatch(userLoginRequested());

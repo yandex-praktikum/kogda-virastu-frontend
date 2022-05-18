@@ -9,14 +9,11 @@ import {
   resetFormProfile,
 } from '../store';
 
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError, TAPIPatchUserData } from '../services/api.types';
 
-const patchCurrentUserThunk: AppThunk = () => async (
-  dispatch: AppDispatch,
-  getState: () => RootState,
-) => {
+const patchCurrentUserThunk: AppThunk = () => async (dispatch, getState) => {
   dispatch(settingsPatchRequested());
   const profile = getState().forms.profile ?? {};
   // Type Guards
