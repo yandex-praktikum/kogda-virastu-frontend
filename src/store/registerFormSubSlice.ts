@@ -19,20 +19,20 @@ const registerFormSubSlice = createSlice({
   initialState,
   reducers: {
     changeUsernameRegister: (
-      state : TRegisterFormState,
+      state,
       action: PayloadAction<string>,
     ) => ({ ...state, username: action.payload }),
     changeEmailRegister: (
-      state: TRegisterFormState,
+      state,
       action : PayloadAction<string>,
     ) => ({ ...state, email: action.payload }),
-    changePasswordRegister: (state : TRegisterFormState, action: PayloadAction<string>) => ({
+    changePasswordRegister: (state, action: PayloadAction<string>) => ({
       ...state, password: action.payload,
     }),
-    changeNicknameRegister: (state : TRegisterFormState, action: PayloadAction<string>) => ({
+    changeNicknameRegister: (state, action: PayloadAction<string>) => ({
       ...state, nickname: action.payload,
     }),
-    resetFormRegister: (state : TRegisterFormState) => ({
+    resetFormRegister: (state) => ({
       ...state, ...initialState,
     }),
   },

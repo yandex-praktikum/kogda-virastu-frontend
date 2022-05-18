@@ -14,15 +14,13 @@ const loginFormSubSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    changeEmailLogin: (
-      state : TLoginFormState,
-      action: PayloadAction<string>,
-    ) => ({ ...state, email: action.payload }),
-    changePasswordLogin: (
-      state: TLoginFormState,
-      action: PayloadAction<string>,
-    ) => ({ ...state, password: action.payload }),
-    resetFormLogin: (state : TLoginFormState) => ({
+    changeEmailLogin: (state, action: PayloadAction<string>) => ({
+      ...state, email: action.payload,
+    }),
+    changePasswordLogin: (state, action: PayloadAction<string>) => ({
+      ...state, password: action.payload,
+    }),
+    resetFormLogin: (state) => ({
       ...state, ...initialState,
     }),
   },

@@ -23,31 +23,28 @@ const profileSubSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    setUsernameProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+    setUsernameProfile: (state, action: PayloadAction<string>) => ({
       ...state, username: action.payload,
     }),
-    setNicknameProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+    setNicknameProfile: (state, action: PayloadAction<string>) => ({
       ...state, nickname: action.payload,
     }),
-    setEmailProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+    setEmailProfile: (state, action: PayloadAction<string>) => ({
       ...state, email: action.payload,
     }),
-    setBioProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+    setBioProfile: (state, action: PayloadAction<string>) => ({
       ...state, bio: action.payload,
     }),
-    setImageProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+    setImageProfile: (state, action: PayloadAction<string>) => ({
       ...state, image: action.payload,
     }),
-    setPasswordProfile: (state: TProfileFormState, action: PayloadAction<string>) => ({
+    setPasswordProfile: (state, action: PayloadAction<string>) => ({
       ...state, password: action.payload,
     }),
-    setFormProfile: (
-      state: TProfileFormState,
-      action: PayloadAction<TUser>,
-    ) => ({
+    setFormProfile: (state, action: PayloadAction<TUser>) => ({
       ...state, ...action.payload,
     }),
-    resetFormProfile: (state: TProfileFormState) => ({
+    resetFormProfile: (state) => ({
       ...state, ...initialState,
     }),
   },
