@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { batch } from 'react-redux';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { registerUser, jwt } from '../services/api';
 import {
   userRegistrationRequested,
@@ -11,7 +11,7 @@ import {
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-const registerThunk: AppThunk = () => async (dispatch: AppDispatch, getState: () => RootState) => {
+const registerThunk: AppThunk = () => async (dispatch, getState) => {
   const reg = getState().forms.register || {};
   const usernameReg = reg.username ?? '';
   const emailReg = reg.email ?? '';

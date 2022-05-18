@@ -24,24 +24,24 @@ const systemSlice = createSlice({
   name: 'system',
   initialState,
   reducers: {
-    onLogin: (state: TSystemState) => ({ ...state, isLoggedIn: true }),
-    onLogout: (state: TSystemState) => ({ ...state, isLoggedIn: false }),
-    setTheme: (state: TSystemState, action: PayloadAction<string>) => ({
+    onLogin: (state) => ({ ...state, isLoggedIn: true }),
+    onLogout: (state) => ({ ...state, isLoggedIn: false }),
+    setTheme: (state, action: PayloadAction<string>) => ({
       ...state, currentTheme: action.payload,
     }),
-    setLanguage: (state: TSystemState, action: PayloadAction<string>) => ({
+    setLanguage: (state, action: PayloadAction<string>) => ({
       ...state, currentLang: action.payload,
     }),
-    openMenu: (state: TSystemState) => ({
+    openMenu: (state) => ({
       ...state, isMenuOpen: true,
     }),
-    closeMenu: (state: TSystemState) => ({
+    closeMenu: (state) => ({
       ...state, isMenuOpen: false,
     }),
-    openConfirm: (state: TSystemState) => ({
+    openConfirm: (state) => ({
       ...state, isDeleteConfirmOpen: true,
     }),
-    closeConfirm: (state: TSystemState) => ({
+    closeConfirm: (state) => ({
       ...state, isDeleteConfirmOpen: false,
     }),
   },

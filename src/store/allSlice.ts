@@ -28,22 +28,22 @@ const allSlice = createSlice({
   name: 'all',
   initialState,
   reducers: {
-    setAllArticles: (state : TAllState, action: PayloadAction<TArticles>) => ({
+    setAllArticles: (state, action: PayloadAction<TArticles>) => ({
       ...state, articles: action.payload,
     }),
-    setAllArticlesCount: (state: TAllState, action: PayloadAction<number>) => ({
+    setAllArticlesCount: (state, action: PayloadAction<number>) => ({
       ...state, articlesCount: action.payload,
     }),
-    setAllTags: (state : TAllState, action: PayloadAction<TTags>) => ({
+    setAllTags: (state, action: PayloadAction<TTags>) => ({
       ...state, tags: action.payload,
     }),
-    clearArticles: (state: TAllState) => ({ ...state, articles: null }),
-    clearTags: (state: TAllState) => ({ ...state, tags: null }),
-    clearAll: (state: TAllState) => ({ ...state, articles: null, tags: null }),
-    setAllThemes: (state:TAllState, action: PayloadAction<TThemes>) => ({
+    clearArticles: (state) => ({ ...state, articles: null }),
+    clearTags: (state) => ({ ...state, tags: null }),
+    clearAll: (state) => ({ ...state, articles: null, tags: null }),
+    setAllThemes: (state, action: PayloadAction<TThemes>) => ({
       ...state, themes: action.payload,
     }),
-    setAllVocabularies: (state: TAllState, action:PayloadAction<TVocabularies>) => ({
+    setAllVocabularies: (state, action:PayloadAction<TVocabularies>) => ({
       ...state, vocabularies: action.payload,
     }),
   },

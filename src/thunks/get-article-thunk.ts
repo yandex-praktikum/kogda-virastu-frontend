@@ -1,6 +1,6 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
-import { AppThunk, AppDispatch } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { fetchArticle } from '../services/api';
 import {
   articleFetchRequested,
@@ -12,7 +12,7 @@ import {
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-const getArticleThunk: AppThunk = (slug: string) => async (dispatch: AppDispatch) => {
+const getArticleThunk: AppThunk = (slug: string) => async (dispatch) => {
   dispatch(articleFetchRequested());
   try {
     const { data: { article } } = await fetchArticle(slug);

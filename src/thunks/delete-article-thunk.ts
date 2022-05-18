@@ -1,6 +1,6 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
-import { AppThunk, AppDispatch, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import {
   articleDeleteRequested,
   articleDeleteSucceeded,
@@ -12,10 +12,7 @@ import { deleteArticle } from '../services/api';
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const deleteArticleThunk: AppThunk = (slug: string) => async (
-  dispatch : AppDispatch,
-  getState : () => RootState,
-) => {
+const deleteArticleThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
   dispatch(articleDeleteRequested());
   try {
     const { status } = await deleteArticle(slug);

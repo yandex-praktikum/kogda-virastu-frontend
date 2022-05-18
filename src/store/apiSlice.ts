@@ -34,7 +34,7 @@ type TAPIState = {
   isAllPostsRequested: boolean,
 };
 
-const initialState: TAPIState = {
+const initialState : TAPIState = {
   successMessage: null,
   errorMessage: null,
   errorObject: null,
@@ -71,109 +71,109 @@ const apiSlice = createSlice({
   name: 'api',
   initialState,
   reducers: {
-    setSuccessMessage: (state: TAPIState, action: PayloadAction<string>) => ({
+    setSuccessMessage: (state, action: PayloadAction<string>) => ({
       ...state, successMessage: action.payload,
     }),
-    clearSuccessMessage: (state: TAPIState) => ({
+    clearSuccessMessage: (state) => ({
       ...state, successMessage: null,
     }),
-    setErrorMessage: (state: TAPIState, action: PayloadAction<string>) => ({
+    setErrorMessage: (state, action: PayloadAction<string>) => ({
       ...state, errorMessage: action.payload,
     }),
-    clearErrorMessage: (state: TAPIState) => ({
+    clearErrorMessage: (state) => ({
       ...state, errorMessage: null,
     }),
-    setErrorObject: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    setErrorObject: (state, action: PayloadAction<TAPIError>) => ({
       ...state, errorObject: action.payload,
     }),
-    clearErrorObject: (state: TAPIState) => ({
+    clearErrorObject: (state) => ({
       ...state, errorObject: null,
     }),
-    allPostsRequested: (state: TAPIState) => ({
+    allPostsRequested: (state) => ({
       ...state, isAllPostsRequested: true,
     }),
-    allPostsRequestSucceeded: (state: TAPIState) => ({
+    allPostsRequestSucceeded: (state) => ({
       ...state, isAllPostsRequested: false,
     }),
-    allPostsRequestFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    allPostsRequestFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserRegistering: false, errorObject: action.payload,
     }),
-    userRegistrationRequested: (state: TAPIState) => ({
+    userRegistrationRequested: (state) => ({
       ...state, isUserRegistering: true,
     }),
-    userRegistrationSucceeded: (state: TAPIState) => ({
+    userRegistrationSucceeded: (state) => ({
       ...state, isUserRegistering: false,
     }),
-    userRegistrationFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    userRegistrationFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserRegistering: false, errorObject: action.payload,
     }),
-    userLoginRequested: (state: TAPIState) => ({
+    userLoginRequested: (state) => ({
       ...state, isUserLoggingIn: true,
     }),
-    userLoginSucceeded: (state: TAPIState) => ({
+    userLoginSucceeded: (state) => ({
       ...state, isUserLoggingIn: false,
     }),
-    userLoginFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    userLoginFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserLoggingIn: false, errorObject: action.payload,
     }),
-    userFetchRequested: (state: TAPIState) => ({
+    userFetchRequested: (state) => ({
       ...state, isUserFetching: true,
     }),
-    userFetchSucceeded: (state: TAPIState) => ({
+    userFetchSucceeded: (state) => ({
       ...state, isUserFetching: false,
     }),
-    userFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    userFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserFetching: false, errorObject: action.payload,
     }),
-    userPatchRequested: (state: TAPIState) => ({
+    userPatchRequested: (state) => ({
       ...state, isUserPatching: true,
     }),
-    userPatchSucceeded: (state: TAPIState) => ({
+    userPatchSucceeded: (state) => ({
       ...state, isUserPatching: false,
     }),
-    userPatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    userPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserPatching: false, errorObject: action.payload,
     }),
-    publicFeedRequested: (state: TAPIState) => ({
+    publicFeedRequested: (state) => ({
       ...state, isPublicFeedFetching: true,
     }),
-    publicFeedSucceeded: (state: TAPIState) => ({
+    publicFeedSucceeded: (state) => ({
       ...state, isPublicFeedFetching: false,
     }),
-    publicFeedFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    publicFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isPublicFeedFetching: false, errorObject: action.payload,
     }),
-    articleFetchRequested: (state: TAPIState) => ({
+    articleFetchRequested: (state) => ({
       ...state, isArticleFetching: true, isArticleNotFound: false,
     }),
-    articleFetchSucceeded: (state: TAPIState) => ({
+    articleFetchSucceeded: (state) => ({
       ...state, isArticleFetching: false, isArticleNotFound: false,
     }),
-    articleFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    articleFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticleFetching: false, errorObject: action.payload,
     }),
-    setArticleFetchNotFound: (state: TAPIState) => ({
+    setArticleFetchNotFound: (state) => ({
       ...state, isArticleNotFound: true,
     }),
-    clearArticleFetchNotFound: (state: TAPIState) => ({
+    clearArticleFetchNotFound: (state) => ({
       ...state, isArticleNotFound: false,
     }),
-    privateFeedRequested: (state: TAPIState) => ({
+    privateFeedRequested: (state) => ({
       ...state, isPrivateFeedFetching: true,
     }),
-    privateFeedSucceeded: (state: TAPIState) => ({
+    privateFeedSucceeded: (state) => ({
       ...state, isPrivateFeedFetching: false,
     }),
-    privateFeedFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    privateFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isPrivateFeedFetching: false, errorObject: action.payload,
     }),
-    articlePostRequested: (state: TAPIState) => ({
+    articlePostRequested: (state) => ({
       ...state, isArticlePosting: true, sArticlePostingSucceeded: false,
     }),
-    articlePostSucceeded: (state: TAPIState) => ({
+    articlePostSucceeded: (state) => ({
       ...state, isArticlePosting: false, isArticlePostingSucceeded: true,
     }),
-    articlePostClear: (state: TAPIState) => ({
+    articlePostClear: (state) => ({
       ...state,
       isArticlePosting: false,
       isArticlePostingSucceeded: false,
@@ -181,19 +181,19 @@ const apiSlice = createSlice({
       errorMessage: null,
       errorObject: null,
     }),
-    articlePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    articlePostFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePosting: false, errorObject: action.payload,
     }),
-    articleDeleteRequested: (state: TAPIState) => ({
+    articleDeleteRequested: (state) => ({
       ...state, isArticleDeleting: true, isArticleRemoved: false,
     }),
-    articleDeleteSucceeded: (state: TAPIState) => ({
+    articleDeleteSucceeded: (state) => ({
       ...state, isArticleDeleting: false, isArticleRemoved: true,
     }),
-    articleDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    articleDeleteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticleDeleting: false, errorObject: action.payload,
     }),
-    articleDeleteClear: (state: TAPIState) => ({
+    articleDeleteClear: (state) => ({
       ...state,
       isArticleDeleting: false,
       isArticleRemoved: false,
@@ -201,13 +201,13 @@ const apiSlice = createSlice({
       errorMessage: null,
       errorObject: null,
     }),
-    articlePatchRequested: (state: TAPIState) => ({
+    articlePatchRequested: (state) => ({
       ...state, isArticlePatching: true,
     }),
-    articlePatchSucceeded: (state: TAPIState) => ({
+    articlePatchSucceeded: (state) => ({
       ...state, isArticlePatching: false, isArticlePatchingSucceeded: true,
     }),
-    articlePatchClear: (state: TAPIState) => ({
+    articlePatchClear: (state) => ({
       ...state,
       isArticlePatching: false,
       isArticlePatchingSucceeded: false,
@@ -215,106 +215,106 @@ const apiSlice = createSlice({
       errorMessage: null,
       errorObject: null,
     }),
-    articlePatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    articlePatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePatching: false, errorObject: action.payload,
     }),
-    likeArticlePostRequested: (state: TAPIState) => ({
+    likeArticlePostRequested: (state) => ({
       ...state, isLikeArticlePosting: true,
     }),
-    likeArticlePostSucceeded: (state: TAPIState) => ({
+    likeArticlePostSucceeded: (state) => ({
       ...state, isLikeArticlePosting: false,
     }),
-    likeArticlePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    likeArticlePostFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isLikeArticlePosting: false, errorObject: action.payload,
     }),
-    likeArticleDeleteRequested: (state: TAPIState) => ({
+    likeArticleDeleteRequested: (state) => ({
       ...state, isLikeArticleDeleting: true,
     }),
-    likeArticleDeleteSucceeded: (state: TAPIState) => ({
+    likeArticleDeleteSucceeded: (state) => ({
       ...state, isLikeArticleDeleting: false,
     }),
-    likeArticleDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    likeArticleDeleteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isLikeArticleDeleting: false, errorObject: action.payload,
     }),
-    tagsFetchRequested: (state: TAPIState) => ({
+    tagsFetchRequested: (state) => ({
       ...state, isTagsFetching: true,
     }),
-    tagsFetchSucceeded: (state: TAPIState) => ({
+    tagsFetchSucceeded: (state) => ({
       ...state, isTagsFetching: false,
     }),
-    tagsFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    tagsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isTagsFetching: false, errorObject: action.payload,
     }),
-    commentsFetchRequested: (state: TAPIState) => ({
+    commentsFetchRequested: (state) => ({
       ...state, isCommentsFetching: true,
     }),
-    commentsFetchSucceeded: (state: TAPIState) => ({
+    commentsFetchSucceeded: (state) => ({
       ...state, isCommentsFetching: false,
     }),
-    commentsFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    commentsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isCommentsFetching: false, errorObject: action.payload,
     }),
-    commentPostRequested: (state: TAPIState) => ({
+    commentPostRequested: (state) => ({
       ...state, isCommentPosting: true,
     }),
-    commentPostSucceeded: (state: TAPIState) => ({
+    commentPostSucceeded: (state) => ({
       ...state, isCommentPosting: false,
     }),
-    commentPostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    commentPostFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isCommentPosting: false, errorObject: action.payload,
     }),
-    commentDeleteRequested: (state: TAPIState) => ({
+    commentDeleteRequested: (state) => ({
       ...state, isCommentDeleting: true,
     }),
-    commentDeleteSucceeded: (state: TAPIState) => ({
+    commentDeleteSucceeded: (state) => ({
       ...state, isCommentDeleting: false,
     }),
-    commentDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    commentDeleteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isCommentDeleting: false, errorObject: action.payload,
     }),
-    profileFetchRequested: (state: TAPIState) => ({
+    profileFetchRequested: (state) => ({
       ...state, isProfileFetching: true, isProfileNotFound: false,
     }),
-    profileFetchSucceeded: (state: TAPIState) => ({
+    profileFetchSucceeded: (state) => ({
       ...state, isProfileFetching: false, isProfileNotFound: false,
     }),
-    profileFetchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    profileFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isProfileFetching: false, errorObject: action.payload,
     }),
-    setProfileFetchNotFound: (state: TAPIState) => ({
+    setProfileFetchNotFound: (state) => ({
       ...state, isProfileNotFound: true,
     }),
-    clearProfileFetchNotFound: (state: TAPIState) => ({
+    clearProfileFetchNotFound: (state) => ({
       ...state, isProfileNotFound: false,
     }),
-    followProfilePostRequested: (state: TAPIState) => ({
+    followProfilePostRequested: (state) => ({
       ...state, isFollowProfilePosting: true,
     }),
-    followProfilePostSucceeded: (state: TAPIState) => ({
+    followProfilePostSucceeded: (state) => ({
       ...state, isFollowProfilePosting: false,
     }),
-    followProfilePostFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    followProfilePostFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isFollowProfilePosting: false, errorObject: action.payload,
     }),
-    followProfileDeleteRequested: (state: TAPIState) => ({
+    followProfileDeleteRequested: (state) => ({
       ...state, isFollowProfileDeleting: true,
     }),
-    followProfileDeleteSucceeded: (state: TAPIState) => ({
+    followProfileDeleteSucceeded: (state) => ({
       ...state, isFollowProfileDeleting: false,
     }),
-    followProfileDeleteFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    followProfileDeleteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isFollowProfileDeleting: false, errorObject: action.payload,
     }),
-    settingsPatchRequested: (state: TAPIState) => ({
+    settingsPatchRequested: (state) => ({
       ...state, isSettingsPatching: true, isSettingsUpdateSucceeded: false,
     }),
-    settingsPatchSucceeded: (state: TAPIState) => ({
+    settingsPatchSucceeded: (state) => ({
       ...state, isSettingsPatching: false, isSettingsUpdateSucceeded: true,
     }),
-    settingsResetUpdateSucceeded: (state: TAPIState) => ({
+    settingsResetUpdateSucceeded: (state) => ({
       ...state, isSettingsUpdateSucceeded: false, errorObject: null,
     }),
-    settingsPatchFailed: (state: TAPIState, action: PayloadAction<TAPIError>) => ({
+    settingsPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state,
       isSettingsPatching: false,
       isSettingsUpdateSucceeded: false,

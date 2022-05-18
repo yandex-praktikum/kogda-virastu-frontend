@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { batch } from 'react-redux';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { postComment } from '../services/api';
 import {
   commentPostRequested,
@@ -12,10 +12,7 @@ import {
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const createCommentThunk: AppThunk = (slug: string) => async (
-  dispatch: AppDispatch,
-  getState: () => RootState,
-) => {
+const createCommentThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
   const newComment = getState().forms.comment.comment ?? '';
   try {
     if (newComment) {

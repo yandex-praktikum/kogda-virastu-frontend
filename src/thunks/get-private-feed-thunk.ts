@@ -8,13 +8,13 @@ import {
   setFeedCount,
   setViewFeed,
 } from '../store';
-import { AppDispatch, AppThunk } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError, TAPIParamsObject } from '../services/api.types';
 
 const getPrivateFeedThunk: AppThunk = (
   params: TAPIParamsObject,
-) => async (dispatch : AppDispatch) => {
+) => async (dispatch) => {
   try {
     batch(() => {
       dispatch(privateFeedRequested());

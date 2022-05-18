@@ -1,6 +1,6 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
-import { AppThunk, AppDispatch } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { fetchComments } from '../services/api';
 import {
   setViewCommentsFeed, commentsFetchSucceeded, commentsFetchFailed, commentsFetchRequested,
@@ -8,7 +8,7 @@ import {
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-const getComments: AppThunk = (slug: string) => async (dispatch: AppDispatch) => {
+const getComments: AppThunk = (slug: string) => async (dispatch) => {
   dispatch(commentsFetchRequested());
   try {
     const { data: { comments } } = await fetchComments(slug);

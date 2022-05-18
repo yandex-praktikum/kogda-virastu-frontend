@@ -12,10 +12,10 @@ const commentSubSlice = createSlice({
   name: 'comment',
   initialState,
   reducers: {
-    setComment: (state : TCommentFormState, action: PayloadAction<string>) => ({
+    setComment: (state, action: PayloadAction<string>) => ({
       ...state, comment: action.payload,
     }),
-    resetComment: (state :TCommentFormState) => ({
+    resetComment: (state) => ({
       ...state, ...initialState,
     }),
   },

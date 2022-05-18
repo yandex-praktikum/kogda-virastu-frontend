@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import {
   likeArticleDeleteFailed,
   likeArticleDeleteRequested,
@@ -11,10 +11,7 @@ import { deleteLikeArticle } from '../services/api';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-const deleteLikeThunk: AppThunk = (slug: string) => async (
-  dispatch: AppDispatch,
-  getState: () => RootState,
-) => {
+const deleteLikeThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
   try {
     dispatch(likeArticleDeleteRequested());
     const { data: { article } } = await deleteLikeArticle(slug);

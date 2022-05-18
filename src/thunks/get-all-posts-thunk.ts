@@ -6,11 +6,11 @@ import {
   allPostsRequestSucceeded,
   allPostsRequestFailed, setAllArticles, setAllArticlesCount,
 } from '../store';
-import { AppDispatch, AppThunk } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-const getAllPostsThunk: AppThunk = () => async (dispatch : AppDispatch) => {
+const getAllPostsThunk: AppThunk = () => async (dispatch) => {
   try {
     dispatch(allPostsRequested());
     const
