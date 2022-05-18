@@ -42,79 +42,79 @@ const viewSlice = createSlice({
   name: 'view',
   initialState,
   reducers: {
-    setViewFeed: (state: TViewState, action: PayloadAction<TArticles>) => ({
+    setViewFeed: (state, action: PayloadAction<TArticles>) => ({
       ...state, feed: action.payload,
     }),
-    clearViewFeed: (state: TViewState) => ({
+    clearViewFeed: (state) => ({
       ...state, feed: null,
     }),
-    setTopFeed: (state: TViewState, action: PayloadAction<TArticles>) => ({
+    setTopFeed: (state, action: PayloadAction<TArticles>) => ({
       ...state, topFeed: action.payload,
     }),
-    clearTopFeed: (state: TViewState) => ({
+    clearTopFeed: (state) => ({
       ...state, topFeed: null,
     }),
-    setFeedCount: (state: TViewState, action: PayloadAction<number>) => ({
+    setFeedCount: (state, action: PayloadAction<number>) => ({
       ...state, feedCount: action.payload,
     }),
-    setViewTags: (state: TViewState, action: PayloadAction<TTags>) => ({
+    setViewTags: (state, action: PayloadAction<TTags>) => ({
       ...state, tagsList: action.payload,
     }),
-    clearViewTags: (state: TViewState) => ({
+    clearViewTags: (state) => ({
       ...state, tagsList: null, selectedTags: null,
     }),
-    setViewArticle: (state: TViewState, action: PayloadAction<TArticle>) => ({
+    setViewArticle: (state, action: PayloadAction<TArticle>) => ({
       ...state, article: action.payload,
     }),
-    clearViewArticle: (state: TViewState) => ({
+    clearViewArticle: (state) => ({
       ...state, article: null,
     }),
-    setSelectedTags: (state: TViewState, action: PayloadAction<TTags>) => ({
+    setSelectedTags: (state, action: PayloadAction<TTags>) => ({
       ...state, selectedTags: action.payload,
     }),
-    clearSelectedTags: (state: TViewState) => ({
+    clearSelectedTags: (state) => ({
       ...state, selectedTags: null,
     }),
-    setTag: (state: TViewState, action: PayloadAction<string>) => ({
+    setTag: (state, action: PayloadAction<string>) => ({
       ...state, tag: action.payload,
     }),
-    clearTag: (state: TViewState) => ({
+    clearTag: (state) => ({
       ...state, tag: null,
     }),
-    setViewCommentsFeed: (state: TViewState, action: PayloadAction<TComments>) => ({
+    setViewCommentsFeed: (state, action: PayloadAction<TComments>) => ({
       ...state, commentsFeed: action.payload,
     }),
-    clearViewCommentsFeed: (state: TViewState) => ({
+    clearViewCommentsFeed: (state) => ({
       ...state, commentsFeed: [],
     }),
-    selectViewComment: (state: TViewState, action: PayloadAction<TComment>) => ({
+    selectViewComment: (state, action: PayloadAction<TComment>) => ({
       ...state, comment: action.payload,
     }),
-    clearViewComment: (state: TViewState) => ({
+    clearViewComment: (state) => ({
       ...state, comment: null,
     }),
-    setPage: (state: TViewState, action: PayloadAction<number>) => ({
+    setPage: (state, action: PayloadAction<number>) => ({
       ...state, page: action.payload,
     }),
-    clearPage: (state: TViewState) => ({
+    clearPage: (state) => ({
       ...state, page: 1,
     }),
-    setPageLimit: (state: TViewState, action: PayloadAction<number>) => ({
+    setPageLimit: (state, action: PayloadAction<number>) => ({
       ...state, perPage: action.payload,
     }),
-    clearView: (state: TViewState) => ({
+    clearView: (state) => ({
       ...state, ...initialState,
     }),
-    setViewProfile: (state: TViewState, action: PayloadAction<TProfile>) => ({
+    setViewProfile: (state, action: PayloadAction<TProfile>) => ({
       ...state, profile: action.payload,
     }),
-    clearViewProfile: (state: TViewState) => ({
+    clearViewProfile: (state) => ({
       ...state, profile: null,
     }),
-    setFeedType: (state: TViewState, action: PayloadAction<FeedTypes>) => ({
+    setFeedType: (state, action: PayloadAction<FeedTypes>) => ({
       ...state, feedType: action.payload,
     }),
-    setArtistProfile: (state: TViewState, action: PayloadAction<UserArticlesTypes>) => ({
+    setArtistProfile: (state, action: PayloadAction<UserArticlesTypes>) => ({
       ...state, articlesType: action.payload,
     }),
   },
