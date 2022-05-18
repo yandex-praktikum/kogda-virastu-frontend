@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import {
   articlePostRequested,
   articlePostSucceeded,
@@ -10,10 +10,7 @@ import { makeErrorObject } from '../services/helpers';
 import makeTagList from '../services/helpers/make-tagList';
 import { TAPIError } from '../services/api.types';
 
-const postArticleThunk: AppThunk = () => async (
-  dispatch: AppDispatch,
-  getState: () => RootState,
-) => {
+const postArticleThunk: AppThunk = () => async (dispatch, getState) => {
   dispatch(articlePostRequested());
   const articleData = getState().forms.article ?? {};
   const {

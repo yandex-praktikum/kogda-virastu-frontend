@@ -7,11 +7,11 @@ import {
   tagsFetchRequested,
   tagsFetchSucceeded,
 } from '../store';
-import { AppDispatch } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const getAllTagsThunk = () => async (dispatch : AppDispatch) => {
+const getAllTagsThunk : AppThunk = () => async (dispatch) => {
   try {
     dispatch(tagsFetchRequested());
     const { data: { tags } } = await fetchTags();

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { batch } from 'react-redux';
-import { AppDispatch, AppThunk, RootState } from '../store/store.types';
+import { AppThunk } from '../store/store.types';
 import {
   commentDeleteRequested,
   commentDeleteSucceeded,
@@ -14,7 +14,7 @@ import { makeErrorObject } from '../services/helpers';
 const deleteCommentThunk: AppThunk = (
   slug: string,
   commentId: string,
-) => async (dispatch: AppDispatch, getState: () => RootState) => {
+) => async (dispatch, getState) => {
   dispatch(commentDeleteRequested());
   const { view: { commentsFeed } } = getState();
   try {
