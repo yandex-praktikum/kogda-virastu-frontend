@@ -21,22 +21,22 @@ const articleSubSlice = createSlice({
   name: 'article',
   initialState,
   reducers: {
-    setTitle: (state : TArticleFormState, action: PayloadAction<string>) => ({
+    setTitle: (state, action: PayloadAction<string>) => ({
       ...state, title: action.payload,
     }),
-    setDescription: (state : TArticleFormState, action: PayloadAction<string>) => ({
+    setDescription: (state, action: PayloadAction<string>) => ({
       ...state, description: action.payload,
     }),
-    setBody: (state : TArticleFormState, action: PayloadAction<string>) => ({
+    setBody: (state, action: PayloadAction<string>) => ({
       ...state, body: action.payload,
     }),
-    setImage: (state : TArticleFormState, action: PayloadAction<string>) => ({
+    setImage: (state, action: PayloadAction<string>) => ({
       ...state, link: action.payload,
     }),
-    setTags: (state : TArticleFormState, action: PayloadAction<string>) => ({
+    setTags: (state, action: PayloadAction<string>) => ({
       ...state, tags: action.payload,
     }),
-    setArticle: (state : TArticleFormState, action : PayloadAction<Omit<TArticleCore, 'tagList'>>) => ({
+    setArticle: (state, action : PayloadAction<Omit<TArticleCore, 'tagList'>>) => ({
       ...state, ...action.payload,
     }),
     resetArticle: (state :TArticleFormState) => ({
