@@ -1,0 +1,8 @@
+version: "3"
+services:
+  backend-api:
+    container_name: kogda-virastu-frontend
+    build: .
+    restart: always
+    ports:
+      - "81:80"
