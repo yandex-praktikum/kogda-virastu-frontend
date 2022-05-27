@@ -1,0 +1,8 @@
+version: "3"
+services:
+  frontend:
+    container_name: kogda-virastu-frontend
+    build: .
+    restart: always
+    ports:
+      - "3002:80"
