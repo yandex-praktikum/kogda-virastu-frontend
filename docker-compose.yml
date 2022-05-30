@@ -5,6 +5,6 @@ services:
     build: .
     restart: always
     volumes:
-      - ./etc/config/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - "./etc/config/docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - "3002:80"
