@@ -7,4 +7,4 @@ services:
     volumes:
       - ./etc/cofnig/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "81:80"
+      - "3002:80"

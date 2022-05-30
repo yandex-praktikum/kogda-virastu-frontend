@@ -20,7 +20,7 @@ jobs:
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
       - name: Install PM2
         run: npm i -g pm2
-      - name: Create env file
+      - name: Deploy
         run: |
           pm2 deploy ecosystem.config.js production
         env:
