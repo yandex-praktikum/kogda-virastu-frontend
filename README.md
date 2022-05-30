@@ -31,7 +31,7 @@
 * Реализован редизайн.
 
 ## Бэкэнд
-Бэкенд для локального запуска проекта: ссылки на [репозиторий бэкенда на Express](https://github.com/gothinkster/node-express-realworld-example-app) и на [Контейнер в Docker](https://github.com/Yandex-Practicum/react-project-kitchen-backend).
+Бэкенд для локального запуска проекта: ссылки на [репозиторий бэкенда на Express](https://github.com/yandex-praktikum/kogda-virastu-backend) и на [Контейнер в Docker](https://github.com/yandex-praktikum/kogda-virastu-backend/blob/main/Dockerfile).
 
 ## Развертывание фронтэнда:
 * Создайте локальную директорию для проекта
@@ -39,7 +39,7 @@
 * Перейдите в созданную директорию
 `cd dev`
 * Клонируйте репозиторий в созданную директорию
-`git clone https://github.com/RedTypes/react-project-kitchen-frontend.git`
+`git clone https://github.com/yandex-praktikum/kogda-virastu-frontend.git`
 * Откройте проект в любом редакторе кода
 * Выполните `npm install && npm start` в терминале, находясь в папке проекта.
 
