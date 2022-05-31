@@ -73,7 +73,8 @@ const Profile: FC = () => {
         isUser={isUser}
         size='large'
         distance={0}
-        color='' />
+        color=''
+        bio={profile.bio} />
       <FeedRibbon />
 
     </ProfilePageLayout>
