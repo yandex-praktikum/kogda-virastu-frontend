@@ -43,6 +43,8 @@ const ru: TVocabulary = {
   goPageOnPage: 'Чтобы читать блог, перейдите на ',
   npPageLink: 'Главную',
   nickname: 'Отображаемое имя',
+  viewAllArticle: 'Все посты',
+  mySubscriptions: 'Мои подписки',
 };
 
 export default ru;
