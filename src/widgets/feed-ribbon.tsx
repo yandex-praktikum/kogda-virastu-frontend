@@ -108,7 +108,7 @@ const FeedRibbon : FC = () => {
         <RibbonWrapper>
           {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
                 || !tags
-                || tags.length < 1))).map((post) => {
+                || tags.length < 1))).map((post, index) => {
             const onClick : MouseEventHandler = () => {
               if (post.favorited) {
                 dispatch(deleteLikeThunk(post.slug));
@@ -121,7 +121,8 @@ const FeedRibbon : FC = () => {
                 <ArticleFullPreview
                   article={post}
                   onLikeClick={onClick} />
-                <DividerCust distance={0} />
+                {index !== posts.length - 1 && index !== posts.length - 2
+                    && <DividerCust distance={0} />}
               </ItemWrapper>
             );
           })}
