@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 
-import { ProfileWidget, FeedRibbon } from '../widgets';
+import { ProfileWidget, ProfileFeed } from '../widgets';
 import {
   getPublicFeedThunk,
   getUserProfileThunk,
@@ -70,11 +70,12 @@ const Profile: FC = () => {
         userName={profile.nickname ?? profile.username}
         isFollow={profile.following}
         userImage={profile.image}
+        userBio={profile.bio}
         isUser={isUser}
         size='large'
         distance={0}
         color='' />
-
+      <ProfileFeed />
     </ProfilePageLayout>
 
   );
