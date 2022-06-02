@@ -14,6 +14,7 @@ type TProfileWidget = {
   userName: string | undefined,
   isFollow: boolean,
   userImage: string | undefined,
+  bio: string | undefined,
 
   isUser: boolean,
   size: TAvatarSizes,
@@ -37,6 +38,24 @@ const ProfileContainer = styled.div`
      @media screen and (max-width: 320px) {
          width:280px;
          margin-top:40px;
+     }
+
+`;
+
+const ProfileBio = styled.p`
+    min-width: 500px;
+    margin: 0;
+    color: #0A0A0B;
+    font-family: 'Alegreya';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    word-wrap: break-word;  
+
+     @media screen and (max-width: 515px) {
+         min-width:280px;
      }
 
 `;
@@ -66,6 +85,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
   userName,
   isFollow,
   userImage,
+  bio,
   isUser,
   size,
   distance,
@@ -74,6 +94,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
   <ProfileContainer>
     <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
     <HeaderTwoText>{userName}</HeaderTwoText>
+    <ProfileBio>{bio}</ProfileBio>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
   </ProfileContainer>
 
