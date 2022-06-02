@@ -73,3 +73,6 @@ const FeedRibbon : FC = () => {
 };
 
 export default FeedRibbon;
+// грид поста;
+// ! из-за него всё летит;
+// 2 поста;

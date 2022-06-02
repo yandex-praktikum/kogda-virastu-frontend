@@ -13,6 +13,7 @@ import {
 } from '../thunks';
 import { FeedRibbon, Slider } from '../widgets';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
+import TabArticle from '../widgets/tab-article';
 
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
@@ -97,7 +98,8 @@ const Main : FC = () => {
     <MainSection>
       <MainContainer>
         <LeftColumn>
-          <FeedRibbon />
+          <TabArticle />
+          {/* <FeedRibbon /> */}
         </LeftColumn>
         <RightColumn>
           <PopularTags />
