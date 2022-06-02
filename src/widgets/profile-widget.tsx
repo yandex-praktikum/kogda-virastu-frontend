@@ -9,6 +9,7 @@ import {
   unfollowProfileThunk,
   followProfileThunk,
 } from '../thunks';
+import FeedRibbon from './feed-ribbon';
 
 type TProfileWidget = {
   userName: string | undefined,
@@ -22,7 +23,7 @@ type TProfileWidget = {
 };
 
 const ProfileContainer = styled.div`
-    width: 304px;
+    min-width: 304px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,6 +76,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
     <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
     <HeaderTwoText>{userName}</HeaderTwoText>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
+    <FeedRibbon />
   </ProfileContainer>
 
 );

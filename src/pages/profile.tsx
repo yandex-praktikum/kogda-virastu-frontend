@@ -74,7 +74,6 @@ const Profile: FC = () => {
         size='large'
         distance={0}
         color='' />
-      <FeedRibbon />
 
     </ProfilePageLayout>
 

@@ -18,19 +18,15 @@ const Lists = styled.ul<TLists>`
     display: flex;
     box-sizing:border-box;
     flex-wrap:wrap;
-    flex-direction: ${({ rowReverse }) => rowReverse && 'row-reverse'};
+    //flex-direction: ${({ rowReverse }) => rowReverse && 'row-reverse'};
     gap: 4px 24px;
-    //width:526px;
     white-space: pre-line;
     padding:0;
-    @media screen and (max-width:768px) {
-        max-width:453px;
-        ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
-     }
+    // @media screen and (max-width:768px) {
+    //     ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
+    //  }
      @media screen and (max-width:600px) {
-        max-width:352px;
         margin:0;
-
         flex-direction: row;
      }
 `;

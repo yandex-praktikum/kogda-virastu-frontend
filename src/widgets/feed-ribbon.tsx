@@ -2,19 +2,17 @@ import React, { FC, MouseEventHandler, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
-import { RegularText } from '../ui-lib';
+import { Divider, RegularText } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { blue, greySecondary, primaryBlack } from '../constants/colors';
 
 const RibbonWrapper = styled.ul`
-width: 100%;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   list-style: none outside;
   margin: 0;
   padding: 0;
@@ -22,17 +20,28 @@ width: 100%;
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  gap: 32px;
+  
+ @media screen and (max-width: 1050px) {
+         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+     }
+  @media screen and (max-width: 769px) {
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     }
+  @media screen and (max-width: 767px) {
+         grid-template-columns: auto;
+     }
 `;
 
 const ItemWrapper = styled.li`
   list-style: none outside;
+  display: grid;
   margin: 0;
   padding: 0;
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
+
 `;
 
 const TabContainer = styled.div`
@@ -60,6 +69,10 @@ const Button = styled.button<IButtonProps>`
       outline: none;
     }
   `;
+
+const DividerCust = styled(Divider)`
+  align-self: end;
+`;
 
 const FeedRibbon : FC = () => {
   const dispatch = useDispatch();
@@ -95,7 +108,7 @@ const FeedRibbon : FC = () => {
         <RibbonWrapper>
           {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
                 || !tags
-                || tags.length < 1))).map((post) => {
+                || tags.length < 1))).map((post, index) => {
             const onClick : MouseEventHandler = () => {
               if (post.favorited) {
                 dispatch(deleteLikeThunk(post.slug));
@@ -108,6 +121,8 @@ const FeedRibbon : FC = () => {
                 <ArticleFullPreview
                   article={post}
                   onLikeClick={onClick} />
+                {index !== posts.length - 1 && index !== posts.length - 2
+                    && <DividerCust distance={0} />}
               </ItemWrapper>
             );
           })}
