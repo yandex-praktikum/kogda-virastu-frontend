@@ -79,6 +79,7 @@ const FeedRibbon : FC = () => {
   const sharedPosts = useSelector((state) => state.view.feed);
   const privatePosts = useSelector((state) => state.view.privateFeed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
+
   const [activePost, setActivePost] = useState(true);
   const [active, setActive] = useState(false);
   let posts = sharedPosts;
@@ -161,13 +162,7 @@ const FeedRibbon : FC = () => {
                 {index !== posts.length - 1 && index !== posts.length - 2
                     && <DividerCust distance={0} />}
               </ItemWrapper>
-            );} else {
-              return (
-                <RegularText size='large' weight={500}>
-                  <FormattedMessage id='zeroSubscriptions' />
-                </RegularText>
-              );   
-            } 
+            );}
           })}
         </RibbonWrapper>
       </>
