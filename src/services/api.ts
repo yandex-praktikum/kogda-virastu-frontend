@@ -194,7 +194,7 @@ export const patchCurrentUser : IPatchUser = (
       res = { ...res, bio };
     }
     if (image) {
-      res = { ...res, link: image };
+      res = { ...res, image };
     }
     if (nickname) {
       res = { ...res, nickname };
