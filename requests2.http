@@ -1,0 +1,64 @@
+### Авторизация
+# @name login
+POST http://127.0.0.1:8000/api/v1/auth/token/
+Content-Type: application/json
+
+{
+    "email": "admin@admin-email.adm",
+    "confirmation_code": "123456"
+}
+
+###
+
+@token = {{login.response.body.$.access}}
+
+
+
+
+### Список ревью
+GET http://127.0.0.1:8000/api/v1/titles/18/reviews/
+###
+
+
+### Отдельный отзыв
+GET http://127.0.0.1:8000/api/v1/titles/1/reviews/1/
+###
+
+
+### Новый отзыв
+POST http://127.0.0.1:8000/api/v1/titles/18/reviews/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "text": "Прям втему к курсу!",
+    "score": 10
+}
+
+###
+
+
+
+
+
+
+### Список комментов
+GET http://127.0.0.1:8000/api/v1/titles/5/reviews/6/comments/
+###
+
+
+### Отдельный коммент
+GET http://127.0.0.1:8000/api/v1/titles/5/reviews/6/comments/2/
+###
+
+
+
+
+
+### Список произведениий
+GET http://127.0.0.1:8000/api/v1/titles/
+###
+
+### Отдельное произведение
+GET http://127.0.0.1:8000/api/v1/titles/1/
+###

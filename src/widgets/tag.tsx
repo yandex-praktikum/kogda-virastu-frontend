@@ -2,6 +2,8 @@ import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
+import { postTagFollow } from '../services/api';
+import { useDispatch, useSelector } from '../services/hooks';
 
 interface ITagProps extends ITagButtonProps {
   tag: string,
@@ -25,16 +27,20 @@ const Button = styled.button<ITagButtonProps>`
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
     align-items: center;
-    color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
+    color: ${({ isActive, theme }) => (isActive ? theme.button.red.default : theme.secondaryText)};
     background-color: transparent;
 
+    :hover {
+      cursor: pointer;
+    }
     :active {
       outline: none;
     }
   `;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick = () => {}, isActive, deactivateTag, pointer,
+  tag, handleClick = () => {
+  }, isActive, deactivateTag, pointer,
 }) => {
   const theme = useTheme();
 

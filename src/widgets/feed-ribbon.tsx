@@ -21,7 +21,7 @@ width: 100%;
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  gap: 32px;
+  gap: 32px;pointer
 `;
 
 const ItemWrapper = styled.li`
@@ -39,6 +39,11 @@ const FeedRibbon : FC = () => {
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
+
+  if (posts) {
+    posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag))));
+  }
+
   if (!posts || isPublicFeedFetching) {
     return (
       <RegularText size='large' weight={500}>

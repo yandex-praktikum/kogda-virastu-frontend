@@ -1,5 +1,5 @@
 import {
-  TArticle, TComment, TProfile, TTags, TUser,
+  TArticle, TComment, TProfile, TTags, TUser, TTag
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -89,7 +89,12 @@ export type TAPIProfile = {
 export type TAPIErrors = {
   [error: string]: string;
 };
+
 export type TAPIError = {
   errors: TAPIErrors;
   statusCode: number;
+};
+
+export type TAPITag = {
+  tag: TTag;
 };

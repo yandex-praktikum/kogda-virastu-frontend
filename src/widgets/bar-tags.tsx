@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import styled from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
-import { useSelector } from '../services/hooks';
-
+import { useSelector, useDispatch } from '../services/hooks';
+import { setTagsFollow } from '../store';
 import Tag from './tag';
+import addTagFollowThunk from '../thunks/add-tag-follow-thunk';
+import deleteTagFollowThunk from '../thunks/delete-tag-follow-thunk';
 
 type TBarTags = {
   tagList: string[],
@@ -45,12 +47,34 @@ const List = styled.li`
 `;
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
-  const { selectedTags } = useSelector((state) => state.view);
+  const { tagsFollow } = useSelector((state) => state.view);
+
+  const dispatch = useDispatch();
+  const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string) => {
+    e.preventDefault();
+    dispatch(addTagFollowThunk(tag));
+    if (tagsFollow) {
+      dispatch(setTagsFollow([...tagsFollow, tag]));
+    } else {
+      dispatch(setTagsFollow([tag]));
+    }
+  };
+
+  const deactivateTagFollow = (e: React.MouseEvent, tag: string) => {
+    e.stopPropagation();
+    dispatch(deleteTagFollowThunk(tag));
+    dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
+  };
+
   return (
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List key={nanoid(10)}>
-          <Tag tag={tag} isActive={!!selectedTags?.includes(tag)} />
+          <Tag
+            tag={tag}
+            isActive={!!tagsFollow?.includes(tag)}
+            handleClick={handleClickTag}
+            deactivateTag={(e) => deactivateTagFollow(e, tag)} />
         </List>
       ))}
     </Lists>
