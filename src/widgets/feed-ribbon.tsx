@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useState } from 'react';
+import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -76,35 +76,72 @@ const DividerCust = styled(Divider)`
 
 const FeedRibbon : FC = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.view.feed);
+  const sharedPosts = useSelector((state) => state.view.feed);
+  const privatePosts = useSelector((state) => state.view.privateFeed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
-  const { isPublicFeedFetching } = useSelector((state) => state.api);
-  const [activePost, setActivePost] = useState(false);
-  const [active, setActive] = useState(true);
-  if (!posts || isPublicFeedFetching) {
+
+  const [activePost, setActivePost] = useState(true);
+  const [active, setActive] = useState(false);
+  let posts = sharedPosts;
+
+  if (activePost) {
+    posts = sharedPosts;
+  } else {
+    posts = privatePosts;
+  }
+  
+  if (!posts) {
     return (
       <RegularText size='large' weight={500}>
         <FormattedMessage id='loading' />
       </RegularText>
     );
   }
+
+  if (posts.length === 0 && active) {
+    return (
+      <ScrollRibbon>
+        <>
+          <TabContainer>
+            <Button
+              type='button'
+              onClick={() => {setActivePost(!activePost); setActive(!active);}}
+              active={activePost}>
+              <FormattedMessage id='viewAllArticle' />
+            </Button>
+            <Button
+              type='button'
+              onClick={() => {setActivePost(!activePost); setActive(!active);}}
+              active={active}>
+              <FormattedMessage id='mySubscriptions' />
+            </Button>
+          </TabContainer>
+          <RegularText size='large' weight={500}>
+            <FormattedMessage id='zeroSubscriptions' />
+          </RegularText>
+        </>
+      </ScrollRibbon>
+    );    
+  }
+
   return (
     <ScrollRibbon>
       <>
         <TabContainer>
           <Button
             type='button'
-            onClick={() => setActivePost(!activePost)}
+            onClick={() => {setActivePost(!activePost); setActive(!active);}}
             active={activePost}>
             <FormattedMessage id='viewAllArticle' />
           </Button>
           <Button
             type='button'
-            onClick={() => setActive(!active)}
+            onClick={() => {setActivePost(!activePost); setActive(!active);}}
             active={active}>
             <FormattedMessage id='mySubscriptions' />
           </Button>
         </TabContainer>
+
         <RibbonWrapper>
           {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
                 || !tags
@@ -116,6 +153,7 @@ const FeedRibbon : FC = () => {
                 dispatch(addLikeThunk(post.slug));
               }
             };
+            if (posts) {
             return (
               <ItemWrapper key={post.slug}>
                 <ArticleFullPreview
@@ -124,7 +162,7 @@ const FeedRibbon : FC = () => {
                 {index !== posts.length - 1 && index !== posts.length - 2
                     && <DividerCust distance={0} />}
               </ItemWrapper>
-            );
+            );}
           })}
         </RibbonWrapper>
       </>

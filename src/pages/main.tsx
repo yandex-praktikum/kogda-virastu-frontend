@@ -9,7 +9,7 @@ import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/popular-tags';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
-  setTopLikedThunk, setNewPostsThunk, getPublicFeedThunk,
+  setTopLikedThunk, setNewPostsThunk, getPublicFeedThunk, getPrivateFeedThunk,
 } from '../thunks';
 import { FeedRibbon, Slider } from '../widgets';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
@@ -84,6 +84,7 @@ const Main : FC = () => {
   useEffect(() => {
     batch(() => {
       dispatch(getPublicFeedThunk());
+      dispatch(getPrivateFeedThunk());
       dispatch(setNewPostsThunk());
     });
   }, [dispatch]);

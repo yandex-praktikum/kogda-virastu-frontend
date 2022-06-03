@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
+  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPrivateFeedThunk, getPublicFeedThunk, getUserThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -49,6 +49,7 @@ const App = () => {
     if (jwt.test()) {
       batch(() => {
         dispatch(getUserThunk());
+        dispatch(getPrivateFeedThunk());
         dispatch(getPublicFeedThunk());
       });
     }

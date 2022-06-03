@@ -45,6 +45,7 @@ const en: TVocabulary = {
   nickname: 'Display name',
   viewAllArticle: 'All posts',
   mySubscriptions: 'My subscriptions',
+  zeroSubscriptions: 'You are not subscribed to anyone',
 };
 
 export default en;
