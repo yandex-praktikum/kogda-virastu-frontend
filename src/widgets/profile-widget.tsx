@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import {
-  AvatarIcon, FollowButton, HeaderTwoText, UnfollowButton,
+  AvatarIcon, FollowButton, HeaderTwoText, UnfollowButton, RegularText,
 } from '../ui-lib';
 import { TAvatarSizes } from '../types/styles.types';
 import { useDispatch } from '../services/hooks';
@@ -9,12 +9,13 @@ import {
   unfollowProfileThunk,
   followProfileThunk,
 } from '../thunks';
-import FeedRibbon from './feed-ribbon';
+import ProfileFeed from './profile-feed';
 
 type TProfileWidget = {
   userName: string | undefined,
   isFollow: boolean,
   userImage: string | undefined,
+  userBio: string | undefined,
 
   isUser: boolean,
   size: TAvatarSizes,
@@ -24,12 +25,15 @@ type TProfileWidget = {
 
 const ProfileContainer = styled.div`
     min-width: 304px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap:24px;
     margin-top: 56px;
     margin-bottom: 48px;
+    word-break:break-all;
+    text-overflow: ellipsis;
     @media screen and (max-width:768px) {
         width:271px;
         margin-top: 48px;
@@ -65,6 +69,7 @@ const ProfileWidgetButton: FC<{
 
 const ProfileWidget: FC<TProfileWidget> = ({
   userName,
+  userBio,
   isFollow,
   userImage,
   isUser,
@@ -75,8 +80,10 @@ const ProfileWidget: FC<TProfileWidget> = ({
   <ProfileContainer>
     <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
     <HeaderTwoText>{userName}</HeaderTwoText>
+    <RegularText size='large' weight={400}>
+      {userBio}
+    </RegularText>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
-    <FeedRibbon />
   </ProfileContainer>
 
 );
