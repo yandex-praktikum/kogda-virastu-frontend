@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 
 import { ProfileWidget, FeedRibbon } from '../widgets';
 import {
+  getPrivateFeedThunk,
   getPublicFeedThunk,
   getUserProfileThunk,
 } from '../thunks';
@@ -50,6 +51,7 @@ const Profile: FC = () => {
   useEffect(() => {
     if (!!profile.username && !!totalCount) {
       dispatch(getPublicFeedThunk({ limit: totalCount ?? 20, author: username }));
+      dispatch(getPrivateFeedThunk());
     }
   }, [dispatch, username, totalCount, profile.username]);
 

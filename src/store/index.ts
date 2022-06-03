@@ -52,6 +52,7 @@ import { setComment, resetComment } from './commentFormSubSlice';
 import {
   setFeedType,
   setViewFeed,
+  setViewPrivateFeed,
   clearViewFeed,
   setFeedCount,
   setViewTags,
@@ -208,6 +209,7 @@ export {
   setUser,
   clearUser,
   setViewFeed,
+  setViewPrivateFeed,
   clearViewFeed,
   setTopFeed,
   clearTopFeed,

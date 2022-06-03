@@ -6,6 +6,7 @@ import {
 
 type TViewState = {
   feed: TArticles | null;
+  privateFeed: TArticles | null;
   feedCount: number;
   article: TArticle | null;
   tagsList: TTags | null;
@@ -23,6 +24,7 @@ type TViewState = {
 
 const initialState: TViewState = {
   feed: null,
+  privateFeed: null,
   feedCount: 0,
   article: null,
   tagsList: null,
@@ -44,6 +46,9 @@ const viewSlice = createSlice({
   reducers: {
     setViewFeed: (state, action: PayloadAction<TArticles>) => ({
       ...state, feed: action.payload,
+    }),
+    setViewPrivateFeed: (state, action: PayloadAction<TArticles>) => ({
+      ...state, privateFeed: action.payload,
     }),
     clearViewFeed: (state) => ({
       ...state, feed: null,
@@ -123,6 +128,7 @@ const viewSlice = createSlice({
 export const {
   clearPage,
   setViewFeed,
+  setViewPrivateFeed,
   clearViewFeed,
   setFeedCount,
   setViewTags,
