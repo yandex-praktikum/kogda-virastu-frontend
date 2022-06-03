@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from '../../services/hooks';
 import {
   setTitle,
   setDescription,
-  setBody,
   setTags,
   setImage,
   openConfirm,
@@ -38,14 +37,15 @@ import {
   PublishPostButton,
   SavePostButton,
   FieldAboutArticle,
-  FieldTextArticle,
 } from '../../ui-lib';
+
+import Editor from '../editor';
 
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
-    title, description, body, tags, link,
+    title, description, tags, link,
   } = useSelector((state) => state.forms.article) ?? {};
   const {
     isArticleFetching,
@@ -109,12 +109,6 @@ const EditorForm: FC = () => {
     evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  const onChangeBody : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
-    dispatch(setBody(evt.target.value));
-    // eslint-disable-next-line no-param-reassign
-    evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
-  };
-
   const onChangeTags : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setTags(evt.target.value));
   };
@@ -174,10 +168,7 @@ const EditorForm: FC = () => {
           <FieldUrl
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
-          <FieldTextArticle
-            value={body === '' ? '' : body || initialArticle?.body || ''}
-            onChange={onChangeBody}
-            minHeight={300} />
+          <Editor />
           <FieldTags
             value={tags === '' ? '' : tags || ''}
             onChange={onChangeTags} />
