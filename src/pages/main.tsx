@@ -34,6 +34,7 @@ const MainContainer = styled.div`
     max-width:1140px;
     position: relative;
     z-index: 10;
+    width: 100%;
 
     @media screen and (max-width:${tabletBreakpoint}px) {
       padding: 0 24px;
@@ -56,7 +57,8 @@ const MainContainer = styled.div`
   }
 `;
 const LeftColumn = styled.div`
-overflow: hidden;
+  overflow: hidden;
+  min-width: 65%;
 `;
 
 const RightColumn = styled.aside`
