@@ -75,6 +75,10 @@ export type TAPITags = {
   tags: TTags;
 };
 
+export type TAPITag = {
+  tag: string;
+};
+
 export type TAPIComment = {
   comment: TComment;
 };

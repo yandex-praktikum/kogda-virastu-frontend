@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPrivateFeedThunk, getPublicFeedThunk, getUserThunk,
+  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPrivateFeedThunk, getPublicFeedThunk, getUserThunk, getFollowTagsThunk
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -51,6 +51,7 @@ const App = () => {
         dispatch(getUserThunk());
         dispatch(getPrivateFeedThunk());
         dispatch(getPublicFeedThunk());
+        dispatch(getFollowTagsThunk());
       });
     }
   }, [dispatch, username, nickname]);

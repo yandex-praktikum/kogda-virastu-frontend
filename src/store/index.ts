@@ -61,6 +61,7 @@ import {
   clearViewArticle,
   setSelectedTags,
   clearSelectedTags,
+  setFollowTags,
   setViewCommentsFeed,
   clearViewCommentsFeed,
   selectViewComment,
@@ -156,6 +157,15 @@ import {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  followTagRequested,
+  followTagSucceeded,
+  followTagFailed,
+  followTagsFetchRequested,
+  followTagsFetchSucceeded,
+  followTagsFetchFailed,
+  unfollowTagRequested,
+  unfollowTagSucceeded,
+  unfollowTagFailed
 } from './apiSlice';
 
 import {
@@ -220,6 +230,7 @@ export {
   clearViewArticle,
   setSelectedTags,
   clearSelectedTags,
+  setFollowTags,
   setViewCommentsFeed,
   clearViewCommentsFeed,
   selectViewComment,
@@ -316,4 +327,13 @@ export {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  followTagRequested,
+  followTagSucceeded,
+  followTagFailed,
+  followTagsFetchRequested,
+  followTagsFetchSucceeded,
+  followTagsFetchFailed,
+  unfollowTagRequested,
+  unfollowTagSucceeded,
+  unfollowTagFailed
 };

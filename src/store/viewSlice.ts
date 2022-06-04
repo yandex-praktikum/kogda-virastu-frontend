@@ -11,6 +11,7 @@ type TViewState = {
   article: TArticle | null;
   tagsList: TTags | null;
   selectedTags: TTags | null;
+  followTags: TTags | null;
   tag: string | null,
   commentsFeed: TComments | null;
   comment: TComment | null;
@@ -29,6 +30,7 @@ const initialState: TViewState = {
   article: null,
   tagsList: null,
   selectedTags: null,
+  followTags: null,
   tag: null,
   commentsFeed: null,
   comment: null,
@@ -76,6 +78,9 @@ const viewSlice = createSlice({
     }),
     setSelectedTags: (state, action: PayloadAction<TTags>) => ({
       ...state, selectedTags: action.payload,
+    }),
+    setFollowTags: (state, action: PayloadAction<TTags>) => ({
+      ...state, followTags: action.payload,
     }),
     clearSelectedTags: (state) => ({
       ...state, selectedTags: null,
@@ -136,6 +141,7 @@ export const {
   setViewArticle,
   clearViewArticle,
   setSelectedTags,
+  setFollowTags,
   clearSelectedTags,
   setViewCommentsFeed,
   clearViewCommentsFeed,

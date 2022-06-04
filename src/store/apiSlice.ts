@@ -32,6 +32,9 @@ type TAPIState = {
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
   isAllPostsRequested: boolean,
+  isFollowTag: boolean,
+  isUnfollowTag: boolean,
+  isFollowTagsFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -65,6 +68,9 @@ const initialState : TAPIState = {
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
   isAllPostsRequested: false,
+  isFollowTag: false,
+  isUnfollowTag: false,
+  isFollowTagsFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -320,6 +326,33 @@ const apiSlice = createSlice({
       isSettingsUpdateSucceeded: false,
       errorObject: action.payload,
     }),
+    followTagRequested: (state) => ({
+      ...state, isFollowTag: true,
+    }),
+    followTagSucceeded: (state) => ({
+      ...state, isFollowTag: false,
+    }),
+    followTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isFollowTag: false, errorObject: action.payload,
+    }),
+    followTagsFetchRequested: (state) => ({
+      ...state, isFollowTagsFetching: true,
+    }),
+    followTagsFetchSucceeded: (state) => ({
+      ...state, isFollowTagsFetching: false,
+    }),
+    followTagsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isFollowTagsFetching: false, errorObject: action.payload,
+    }),
+    unfollowTagRequested: (state) => ({
+      ...state, isUnfollowTag: true,
+    }),
+    unfollowTagSucceeded: (state) => ({
+      ...state, isUnfollowTag: false,
+    }),
+    unfollowTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUnfollowTag: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -402,5 +435,14 @@ export const {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  followTagRequested,
+  followTagSucceeded,
+  followTagFailed,
+  followTagsFetchRequested,
+  followTagsFetchSucceeded,
+  followTagsFetchFailed,
+  unfollowTagRequested,
+  unfollowTagSucceeded,
+  unfollowTagFailed
 } = apiSlice.actions;
 export default apiReducer;
