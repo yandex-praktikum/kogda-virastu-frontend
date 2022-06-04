@@ -1,12 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useIntl } from 'react-intl';
 import { useSelector, useDispatch } from '../services/hooks';
 import { setBody } from '../store';
+import { LabelStyle } from '../ui-lib/inputs/text-fields-styles';
+import { ContainerTextArea } from '../ui-lib/inputs/textarea-field-config';
+
+const ReactQuillContainer = styled.div`
+  && .ql-editor {
+    min-height: 300px
+  }
+`;
 
 const modules = {
   toolbar: {
     container: '#toolbar',
+  },
+  history: {
+    delay: 500,
+    maxStack: 100,
+    userOnly: true,
   },
 };
 
@@ -23,9 +38,9 @@ const formats = [
 const EditorToolbar = () => (
   <div id='toolbar'>
     <span className='ql-formats'>
-      <button type='button' className='ql-bold' />
-      <button type='button' className='ql-italic' />
-      <button type='button' className='ql-underline' />
+      <button className='ql-bold' type='button' />
+      <button className='ql-italic' type='button' />
+      <button className='ql-underline' type='button' />
     </span>
     <span className='ql-formats'>
       <button type='button' className='ql-list' value='ordered' />
@@ -35,6 +50,7 @@ const EditorToolbar = () => (
       <button type='button' className='ql-blockquote' />
       <button type='button' className='ql-link' />
       <button type='button' className='ql-code-block' />
+      <button type='button' className='ql-clean' />
     </span>
   </div>
 );
@@ -46,19 +62,23 @@ const Editor = () => {
   const handleChange = (value: string) => {
     dispatch(setBody(value));
   };
+  const intl = useIntl();
 
   return (
-    <div className='text-editor'>
-      <EditorToolbar />
-      <ReactQuill
-        theme='snow'
-        value={body === '' ? '' : body || initialArticle?.body || ''}
-        onChange={handleChange}
-        placeholder='Write something awesome...'
-        preserveWhitespace
-        modules={modules}
-        formats={formats} />
-    </div>
+    <ContainerTextArea>
+      <LabelStyle>{intl.messages.articleText as string}</LabelStyle>
+      <ReactQuillContainer>
+        <EditorToolbar />
+        <ReactQuill
+          theme='snow'
+          value={body === '' ? '' : body || initialArticle?.body || ''}
+          onChange={handleChange}
+          placeholder='Write something awesome...'
+          preserveWhitespace
+          modules={modules}
+          formats={formats} />
+      </ReactQuillContainer>
+    </ContainerTextArea>
   );
 };
 

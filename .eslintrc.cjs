@@ -63,7 +63,6 @@ module.exports = {
         },
       ],
     'default-param-last': 'off',
-    'linebreak-style': ["error", "windows"],
   },
 }
 ;
