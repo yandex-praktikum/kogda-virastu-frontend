@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
+import React, { FC, MouseEventHandler, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -7,6 +7,7 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { blue, greySecondary, primaryBlack } from '../constants/colors';
+import { TArticle } from '../types/types';
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -96,6 +97,16 @@ const FeedRibbon : FC = () => {
         <FormattedMessage id='loading' />
       </RegularText>
     );
+  }
+
+  function compare (a: TArticle, b: TArticle) : number {
+    return Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
+  }
+
+  if (posts.length !== 0) {
+    const arrayForSort = [...posts];
+    arrayForSort.sort(compare);
+    posts = arrayForSort;
   }
 
   if (posts.length === 0 && active) {
