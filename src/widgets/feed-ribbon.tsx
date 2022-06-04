@@ -90,6 +90,7 @@ const FeedRibbon : FC = () => {
   } else {
     posts = privatePosts;
   }
+  
   if (!posts) {
     return (
       <RegularText size='large' weight={500}>
@@ -156,7 +157,7 @@ const FeedRibbon : FC = () => {
           {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
                 || !tags
                 || tags.length < 1))).map((post, index) => {
-            const onClick : MouseEventHandler = () => {
+            const onClick: MouseEventHandler = () => {
               if (post.favorited) {
                 dispatch(deleteLikeThunk(post.slug));
               } else {
@@ -173,7 +174,7 @@ const FeedRibbon : FC = () => {
                       && <DividerCust distance={0} />}
                 </ItemWrapper>
               );
-            }
+            } return null;
           })}
         </RibbonWrapper>
       </>
