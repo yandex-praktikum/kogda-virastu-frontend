@@ -90,7 +90,6 @@ const FeedRibbon : FC = () => {
   } else {
     posts = privatePosts;
   }
-  
   if (!posts) {
     return (
       <RegularText size='large' weight={500}>
@@ -116,13 +115,13 @@ const FeedRibbon : FC = () => {
           <TabContainer>
             <Button
               type='button'
-              onClick={() => {setActivePost(!activePost); setActive(!active);}}
+              onClick={() => { setActivePost(!activePost); setActive(!active); }}
               active={activePost}>
               <FormattedMessage id='viewAllArticle' />
             </Button>
             <Button
               type='button'
-              onClick={() => {setActivePost(!activePost); setActive(!active);}}
+              onClick={() => { setActivePost(!activePost); setActive(!active); }}
               active={active}>
               <FormattedMessage id='mySubscriptions' />
             </Button>
@@ -132,7 +131,7 @@ const FeedRibbon : FC = () => {
           </RegularText>
         </>
       </ScrollRibbon>
-    );    
+    );
   }
 
   return (
@@ -141,13 +140,13 @@ const FeedRibbon : FC = () => {
         <TabContainer>
           <Button
             type='button'
-            onClick={() => {setActivePost(!activePost); setActive(!active);}}
+            onClick={() => { setActivePost(!activePost); setActive(!active); }}
             active={activePost}>
             <FormattedMessage id='viewAllArticle' />
           </Button>
           <Button
             type='button'
-            onClick={() => {setActivePost(!activePost); setActive(!active);}}
+            onClick={() => { setActivePost(!activePost); setActive(!active); }}
             active={active}>
             <FormattedMessage id='mySubscriptions' />
           </Button>
@@ -165,15 +164,16 @@ const FeedRibbon : FC = () => {
               }
             };
             if (posts) {
-            return (
-              <ItemWrapper key={post.slug}>
-                <ArticleFullPreview
-                  article={post}
-                  onLikeClick={onClick} />
-                {index !== posts.length - 1 && index !== posts.length - 2
-                    && <DividerCust distance={0} />}
-              </ItemWrapper>
-            );}
+              return (
+                <ItemWrapper key={post.slug}>
+                  <ArticleFullPreview
+                    article={post}
+                    onLikeClick={onClick} />
+                  {index !== posts.length - 1 && index !== posts.length - 2
+                      && <DividerCust distance={0} />}
+                </ItemWrapper>
+              );
+            }
           })}
         </RibbonWrapper>
       </>
