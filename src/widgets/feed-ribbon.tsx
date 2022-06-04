@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
+import React, { FC, MouseEventHandler, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -89,7 +89,7 @@ const FeedRibbon : FC = () => {
   } else {
     posts = privatePosts;
   }
-  
+
   if (!posts) {
     return (
       <RegularText size='large' weight={500}>
@@ -105,13 +105,13 @@ const FeedRibbon : FC = () => {
           <TabContainer>
             <Button
               type='button'
-              onClick={() => {setActivePost(!activePost); setActive(!active);}}
+              onClick={() => { setActivePost(!activePost); setActive(!active); }}
               active={activePost}>
               <FormattedMessage id='viewAllArticle' />
             </Button>
             <Button
               type='button'
-              onClick={() => {setActivePost(!activePost); setActive(!active);}}
+              onClick={() => { setActivePost(!activePost); setActive(!active); }}
               active={active}>
               <FormattedMessage id='mySubscriptions' />
             </Button>
@@ -121,7 +121,7 @@ const FeedRibbon : FC = () => {
           </RegularText>
         </>
       </ScrollRibbon>
-    );    
+    );
   }
 
   return (
@@ -130,13 +130,13 @@ const FeedRibbon : FC = () => {
         <TabContainer>
           <Button
             type='button'
-            onClick={() => {setActivePost(!activePost); setActive(!active);}}
+            onClick={() => { setActivePost(!activePost); setActive(!active); }}
             active={activePost}>
             <FormattedMessage id='viewAllArticle' />
           </Button>
           <Button
             type='button'
-            onClick={() => {setActivePost(!activePost); setActive(!active);}}
+            onClick={() => { setActivePost(!activePost); setActive(!active); }}
             active={active}>
             <FormattedMessage id='mySubscriptions' />
           </Button>
@@ -146,7 +146,7 @@ const FeedRibbon : FC = () => {
           {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
                 || !tags
                 || tags.length < 1))).map((post, index) => {
-            const onClick : MouseEventHandler = () => {
+            const onClick: MouseEventHandler = () => {
               if (post.favorited) {
                 dispatch(deleteLikeThunk(post.slug));
               } else {
@@ -154,15 +154,16 @@ const FeedRibbon : FC = () => {
               }
             };
             if (posts) {
-            return (
-              <ItemWrapper key={post.slug}>
-                <ArticleFullPreview
-                  article={post}
-                  onLikeClick={onClick} />
-                {index !== posts.length - 1 && index !== posts.length - 2
-                    && <DividerCust distance={0} />}
-              </ItemWrapper>
-            );}
+              return (
+                <ItemWrapper key={post.slug}>
+                  <ArticleFullPreview
+                    article={post}
+                    onLikeClick={onClick} />
+                  {index !== posts.length - 1 && index !== posts.length - 2
+                        && <DividerCust distance={0} />}
+                </ItemWrapper>
+              );
+            } return null;
           })}
         </RibbonWrapper>
       </>

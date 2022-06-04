@@ -45,7 +45,7 @@ const ru: TVocabulary = {
   nickname: 'Отображаемое имя',
   viewAllArticle: 'Все посты',
   mySubscriptions: 'Мои подписки',
-  zeroSubscriptions: 'У вас пока нет активных подписок'
+  zeroSubscriptions: 'У вас пока нет активных подписок',
 };
 
 export default ru;

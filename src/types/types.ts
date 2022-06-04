@@ -30,6 +30,7 @@ export type TArticle = {
   tagList: TTags;
   title: string;
   updatedAt: string;
+  privatePosts?: string;
 };
 
 export type TArticleCore = Omit<TArticle,

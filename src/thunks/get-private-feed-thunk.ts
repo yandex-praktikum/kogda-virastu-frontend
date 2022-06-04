@@ -6,12 +6,11 @@ import {
   privateFeedRequested,
   privateFeedSucceeded,
   setFeedCount,
-  setViewPrivateFeed
+  setViewPrivateFeed,
 } from '../store';
 import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError, TAPIParamsObject } from '../services/api.types';
-
 
 const getPrivateFeedThunk: AppThunk = (
   params: TAPIParamsObject,
