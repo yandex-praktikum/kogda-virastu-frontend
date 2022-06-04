@@ -7,6 +7,7 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { blue, greySecondary, primaryBlack } from '../constants/colors';
+import { TArticle } from '../types/types';
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -89,13 +90,23 @@ const FeedRibbon : FC = () => {
   } else {
     posts = privatePosts;
   }
-
+  
   if (!posts) {
     return (
       <RegularText size='large' weight={500}>
         <FormattedMessage id='loading' />
       </RegularText>
     );
+  }
+
+  function compare (a: TArticle, b: TArticle) : number {
+    return Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
+  }
+
+  if (posts.length !== 0) {
+    const arrayForSort = [...posts];
+    arrayForSort.sort(compare);
+    posts = arrayForSort;
   }
 
   if (posts.length === 0 && active) {
@@ -160,7 +171,7 @@ const FeedRibbon : FC = () => {
                     article={post}
                     onLikeClick={onClick} />
                   {index !== posts.length - 1 && index !== posts.length - 2
-                        && <DividerCust distance={0} />}
+                      && <DividerCust distance={0} />}
                 </ItemWrapper>
               );
             } return null;
