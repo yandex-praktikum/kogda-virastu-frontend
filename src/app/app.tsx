@@ -25,6 +25,7 @@ import Editor from '../pages/editor';
 import { Modal } from '../widgets';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
+import getSubscribeTagsThunk from '../thunks/get-subscribe-tags-thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const App = () => {
     batch(() => {
       dispatch(getAllPostsThunk());
       dispatch(getAllTagsThunk());
+      dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {
       batch(() => {

@@ -75,6 +75,7 @@ import {
   clearPage,
   setTopFeed,
   clearTopFeed,
+  setSubscribeTags,
 } from './viewSlice';
 
 import {
@@ -155,6 +156,15 @@ import {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  subscribeTagRequested,
+  subscribeTagSucceeded,
+  subscribeTagFailed,
+  unsubscribeTagRequested,
+  unsubscribeTagSucceeded,
+  unsubscribeTagFailed,
+  subscribeTagsFetchRequested,
+  subscribeTagsFetchSucceeded,
+  subscribeTagsFetchFailed,
 } from './apiSlice';
 
 import {
@@ -314,4 +324,14 @@ export {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  subscribeTagRequested,
+  subscribeTagSucceeded,
+  subscribeTagFailed,
+  setSubscribeTags,
+  unsubscribeTagRequested,
+  unsubscribeTagSucceeded,
+  unsubscribeTagFailed,
+  subscribeTagsFetchRequested,
+  subscribeTagsFetchSucceeded,
+  subscribeTagsFetchFailed,
 };
