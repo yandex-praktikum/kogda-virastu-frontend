@@ -55,16 +55,16 @@ const ItemWrapper = styled.li`
 `;
 
 const FeedRibbon : FC = () => {
-  const [mobileScreen, setMobileScreen] = useState(false);
+  const [mobileScreen, setMobileScreen] = useState(true);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
   window.addEventListener('resize', () => {
-    if (window.screen.width > 765) {
-      setMobileScreen(true);
-    } else {
+    if (window.screen.width < 766) {
       setMobileScreen(false);
+    } else {
+      setMobileScreen(true);
     }
   });
   if (!posts || isPublicFeedFetching) {
@@ -88,15 +88,15 @@ const FeedRibbon : FC = () => {
             }
           };
           return (
-            <>
-              <ItemWrapper key={post.slug}>
+            <React.Fragment key={post.slug}>
+              <ItemWrapper>
                 <ArticleFullPreview
                   article={post}
                   onLikeClick={onClick} />
               </ItemWrapper>
               {i % 2 && i !== posts.length - 1 && mobileScreen
                 ? <Divider distance={0} /> : null}
-            </>
+            </React.Fragment>
           );
         })}
       </RibbonWrapper>
