@@ -6,22 +6,20 @@ import { FormattedMessage } from 'react-intl';
 import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
 import BarTags from './bar-tags';
-import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
-    width: 700px;
     display: flex;
     flex-direction: column;
     gap: 16px;
 
     @media screen and (max-width: 1050px) {
-        width: 453px;
+        //width: 453px;
     }
 
-    @media screen and (max-width: 600px) {
-        width: 280px;
-    }
+    // @media screen and (max-width: 600px) {
+    //     width: 280px;
+    // }
 
    /*  @media screen and (max-width:320px) {
         width:280px;
@@ -62,9 +60,11 @@ const BarTagsWrapper = styled.div<TElementWithImage>`
 `;
 
 const ContentContainer = styled.div<TElementWithImage>`
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-gap: 16px;
+    //display: grid;
+    //grid-template-columns: 1fr 6fr;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     .link {
         font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
         font-family: ${({ theme: { text18Sans: { family } } }) => family};
@@ -147,17 +147,16 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
       <ArticleName>{article.title}</ArticleName>
       {article.link && <ArticleImage src={article.link} />}
       <Article image={article.link}>{article.body}</Article>
-      <Link className='link' to={`/article/${article.slug}`}>
-        <FormattedMessage id='articleEnter' />
-      </Link>
       <BarTagsWrapper image={article.link}>
         <BarTags
           isHasImage={!!article.link}
           rowReverse
           tagList={article.tagList} />
       </BarTagsWrapper>
+      <Link className='link' to={`/article/${article.slug}`}>
+        <FormattedMessage id='articleEnter' />
+      </Link>
     </ContentContainer>
-    <Divider distance={0} />
   </ArticleCardContainer>
 );
 

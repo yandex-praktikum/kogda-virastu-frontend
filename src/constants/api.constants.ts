@@ -1,4 +1,5 @@
 export const API_ROOT = 'https://redtypes.ru/blog/api';
+// export const API_ROOT = 'https://api.kogda-virastu.com/';
 
 export const REGISTER_ROUTE = '/users';
 export const LOGIN_ROUTE = '/users/login';
