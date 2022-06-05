@@ -9,6 +9,10 @@ import { AppThunk } from '../store/store.types';
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
+type MyType = {
+  name: string;
+}
+
 const getPopularTags: AppThunk = () => async (dispatch) => {
   try {
     const {
@@ -17,7 +21,7 @@ const getPopularTags: AppThunk = () => async (dispatch) => {
       },
     } = await fetchPopularTags();
 
-    const tagNameList = tags.map((item: any) => 
+    const tagNameList: Array<string> = tags.map((item: {[key:string] : MyType}) => 
       item.name
     );
 
