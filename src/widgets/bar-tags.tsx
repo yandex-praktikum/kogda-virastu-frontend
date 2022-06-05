@@ -72,6 +72,8 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
         <List key={nanoid(10)}>
           <Tag
             tag={tag}
+            pointer
+            isShowIcon={false}
             isActive={!!tagsFollow?.includes(tag)}
             handleClick={handleClickTag}
             deactivateTag={(e) => deactivateTagFollow(e, tag)} />

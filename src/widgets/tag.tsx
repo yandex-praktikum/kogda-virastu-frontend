@@ -14,6 +14,7 @@ interface ITagProps extends ITagButtonProps {
 interface ITagButtonProps {
   isActive: boolean;
   pointer?: boolean;
+  isShowIcon?: boolean;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -30,9 +31,6 @@ const Button = styled.button<ITagButtonProps>`
     color: ${({ isActive, theme }) => (isActive ? theme.button.red.default : theme.secondaryText)};
     background-color: transparent;
 
-    :hover {
-      cursor: pointer;
-    }
     :active {
       outline: none;
     }
@@ -40,21 +38,23 @@ const Button = styled.button<ITagButtonProps>`
 
 const Tag: FC<ITagProps> = ({
   tag, handleClick = () => {
-  }, isActive, deactivateTag, pointer,
+  }, isActive, deactivateTag, pointer, isShowIcon,
 }) => {
   const theme = useTheme();
+  console.log(isShowIcon);
 
   return (
     <Button
       isActive={isActive}
       pointer={pointer}
+      isShowIcon={isShowIcon}
       type='button'
       key={tag}
       onClick={(e) => handleClick(e, tag)}>
       #
       {tag}
       {' '}
-      {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
+      {isActive && isShowIcon && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
     </Button>
   );
 };
@@ -63,6 +63,7 @@ Tag.defaultProps = {
   handleClick: undefined,
   deactivateTag: undefined,
   pointer: false,
+  isShowIcon: true,
 };
 
 export default Tag;
