@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
 import { HeaderThreeText } from '../ui-lib';
+import getPopularTagsThunk from '../thunks/get-popular-tags-thunk';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;

@@ -1,11 +1,11 @@
-/* eslint-disable ternary/no-unreachable */
+/* eslint-disable*/
 import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
-import BarTags from './bar-tags';
+import PreviewTags from './preview-tags';
 import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
@@ -151,7 +151,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
         <FormattedMessage id='articleEnter' />
       </Link>
       <BarTagsWrapper image={article.link}>
-        <BarTags
+        <PreviewTags
           isHasImage={!!article.link}
           rowReverse
           tagList={article.tagList} />

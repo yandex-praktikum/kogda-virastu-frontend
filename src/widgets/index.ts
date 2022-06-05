@@ -1,6 +1,7 @@
 import Author from './author';
 import Tag from './tag';
 import PopularTags from './popular-tags';
+import FollowedTags from './followed-tags';
 import Likes from './likes';
 import ProfileWidget from './profile-widget';
 import AuthorHeadingMiniWidget from './author-heading-widget';
@@ -21,6 +22,7 @@ import Slider from './slider';
 export {
   Author,
   PopularTags,
+  FollowedTags,
   Tag,
   Likes,
   ProfileWidget,

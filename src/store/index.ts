@@ -38,6 +38,8 @@ import {
   setAllArticles,
   setAllArticlesCount,
   setAllTags,
+  setFollowingTags,
+  setPopularTags,
   clearArticles,
   clearTags,
   clearAll,
@@ -155,6 +157,10 @@ import {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  followTagRequested,
+  followTagSucceeded,
+  unfollowTagRequested,
+  unfollowTagSucceeded,
 } from './apiSlice';
 
 import {
@@ -202,6 +208,8 @@ export {
   setAllArticles,
   setAllArticlesCount,
   setAllTags,
+  setFollowingTags,
+  setPopularTags,
   clearArticles,
   clearTags,
   clearAll,
@@ -314,4 +322,8 @@ export {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  followTagRequested,
+  followTagSucceeded,
+  unfollowTagRequested,
+  unfollowTagSucceeded,
 };

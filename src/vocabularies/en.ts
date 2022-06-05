@@ -9,6 +9,7 @@ const en: TVocabulary = {
   mainTitle: 'When I grow up',
   mainSubtitle: 'What it’s like to be a junior in a turbulent world',
   popularTags: 'Popular tags',
+  followedTags: 'Subscribed to tags:',
   popularContent: 'Popular content',
   articleEnter: 'Read More',
   freshContent: 'New content',

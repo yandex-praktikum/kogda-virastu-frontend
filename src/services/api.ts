@@ -39,6 +39,7 @@ import {
   IPostArticle,
   IPostComment,
   IProfile,
+  ITag,
   IRegisterUser,
 } from '../types/API.types';
 
@@ -194,7 +195,7 @@ export const patchCurrentUser : IPatchUser = (
       res = { ...res, bio };
     }
     if (image) {
-      res = { ...res, image };
+      res = { ...res, link: image };
     }
     if (nickname) {
       res = { ...res, nickname };
@@ -368,6 +369,38 @@ export const deleteFollowProfile : IProfile = (username: string) : AxiosPromise<
   const requestConfig : AxiosRequestConfig = {
     url: `${PROFILES_ROUTE}/${username}/follow`,
     method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const postFollowTag: ITag = (tagname: string) => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/${tagname}/follow`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const deleteFollowTag: ITag = (tagname: string) => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/${tagname}/follow`,
+    method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchUserTags : IFetchTags = () : AxiosPromise<TAPITags> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/follow`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchPopularTags : IFetchTags = () : AxiosPromise<TAPITags> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/top`,
+    method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

@@ -14,6 +14,7 @@ export type TProfile = {
   email: string;
   bio?: string;
   nickname?: string;
+  followingTags?: Array<string>;
 };
 
 export type TTags = Array<string>;

@@ -79,6 +79,10 @@ export interface IProfile {
   (username: string) : AxiosPromise<TAPIProfile | null>
 }
 
+export interface ITag {
+  (tagname: string) : AxiosPromise<TAPIProfile | null>
+}
+
 export type {
   TAPIArticle,
   TAPIArticles,
