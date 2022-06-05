@@ -1,4 +1,4 @@
-/* eslint-disable ternary/no-unreachable */
+/* eslint-disable*/
 import React, { FC, MouseEventHandler } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 import styled from 'styled-components';

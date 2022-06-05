@@ -9,6 +9,8 @@ type TAllState = {
   articles: TArticles | null;
   articlesCount: number;
   tags: TTags | null;
+  followingTags: TTags | null;
+  popularTags: TTags | null;
   themes: TThemes,
   themesNames: Array<string>,
   vocabularies: TVocabularies,
@@ -18,6 +20,8 @@ const initialState : TAllState = {
   articles: null,
   articlesCount: 0,
   tags: null,
+  followingTags: null,
+  popularTags: null,
   themes,
   themesNames: Object.keys(themes),
   vocabularies,
@@ -37,6 +41,12 @@ const allSlice = createSlice({
     setAllTags: (state, action: PayloadAction<TTags>) => ({
       ...state, tags: action.payload,
     }),
+    setFollowingTags: (state, action: PayloadAction<TTags>) => ({
+      ...state, followingTags: action.payload,
+    }),
+    setPopularTags: (state, action: PayloadAction<TTags>) => ({
+      ...state, popularTags: action.payload,
+    }),
     clearArticles: (state) => ({ ...state, articles: null }),
     clearTags: (state) => ({ ...state, tags: null }),
     clearAll: (state) => ({ ...state, articles: null, tags: null }),
@@ -54,6 +64,8 @@ export const {
   setAllArticles,
   setAllArticlesCount,
   setAllTags,
+  setFollowingTags,
+  setPopularTags,
   clearArticles,
   clearTags,
   clearAll,

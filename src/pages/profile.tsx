@@ -27,7 +27,6 @@ const Profile: FC = () => {
       bio: '',
       image: '',
     };
-
   const isUser = useSelector(
     (state) => !!state.profile.username
       && !!state.profile.email

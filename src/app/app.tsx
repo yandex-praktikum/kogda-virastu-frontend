@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -8,7 +9,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
+  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk, getPopularTags,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -44,7 +45,7 @@ const App = () => {
   useEffect(() => {
     batch(() => {
       dispatch(getAllPostsThunk());
-      dispatch(getAllTagsThunk());
+      dispatch(getPopularTags());
     });
     if (jwt.test()) {
       batch(() => {
