@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import FeedRibbon from './feed-ribbon';
+import { TTabProps } from '../types/styles.types';
 
 const TabsContainer = styled.div`
   overflow: hidden;
@@ -21,35 +22,32 @@ const Tab = styled.button`
   color: ${({ theme }) => theme.primaryText};
   border: 0;
   background-color: #fff;
+  cursor: pointer;
 `;
 
-const TabAllPosts = styled(Tab)<{ border: string }>`
+const TabAllPosts = styled(Tab)<TTabProps>`
   border-bottom: ${({ border }) => border};
 `;
 
-const TabMySubscriptions = styled(Tab)<{ border: string }>`
+const TabMySubscriptions = styled(Tab)<TTabProps>`
   border-bottom: ${({ border }) => border};
 `;
 
 const TabArticle: FC = () => {
-  const [allPosts, setAllPosts] = useState(true);
-  const [mySubscriptions, setMySubscriptions] = useState(false);
-  const onClickAllPosts = () => {
-    setAllPosts(true);
-    setMySubscriptions(false);
+  const [activeTab, setActiveTab] = useState<number>(1);
+
+  const togglTab = (index: number) => {
+    setActiveTab(index);
   };
-  const onClickMySubscriptions = () => {
-    setAllPosts(false);
-    setMySubscriptions(true);
-  };
+
   return (
     <>
       <TabsContainer>
-        <TabAllPosts border={allPosts ? '2px solid #008AFF' : 'none'} onClick={onClickAllPosts}>Все посты</TabAllPosts>
-        <TabMySubscriptions border={mySubscriptions ? '2px solid #008AFF' : 'none'} onClick={onClickMySubscriptions}>Мои подписки</TabMySubscriptions>
+        <TabAllPosts border={activeTab === 1 ? '2px solid #008AFF' : 'none'} onClick={() => togglTab(1)}>Все посты</TabAllPosts>
+        <TabMySubscriptions border={activeTab === 2 ? '2px solid #008AFF' : 'none'} onClick={() => togglTab(2)}>Мои подписки</TabMySubscriptions>
       </TabsContainer>
-      {allPosts && <FeedRibbon />}
-      {mySubscriptions && <PStyle>Пока тут пусто, но скоро что-то будет, сто процентов</PStyle>}
+      {activeTab === 1 && <FeedRibbon />}
+      {activeTab === 2 && <FeedRibbon />}
     </>
   );
 };

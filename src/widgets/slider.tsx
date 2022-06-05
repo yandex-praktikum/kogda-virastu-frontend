@@ -33,8 +33,9 @@ flex-direction: column;
 align-items: center;
 margin-bottom: 22px;
 width: 100%;
-@media screen and (min-width: 768px) {
-    display: none;
+@media screen and (max-width: 765px) {
+    
+    margin-bottom: 0;
     }
 `;
 type TSlide = {
@@ -79,7 +80,7 @@ const BuletBar = styled.div`
         display: flex;
         gap:12px;
         padding-top:16px;
-        padding-bottom: 12px;
+        padding-bottom: 40px;
     `;
 
 const Slider: FC = () => {
@@ -115,7 +116,7 @@ const Slider: FC = () => {
           })
         }
       </BuletBar>
-      <Divider distance={24} />
+      <Divider distance={0} />
     </SlidersContainer>
 
   );

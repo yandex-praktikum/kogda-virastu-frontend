@@ -135,6 +135,11 @@ export type TDefaultFontSizes = {
 
 export type TDividerProps = {
   distance: number;
+  width?: number;
+};
+
+export type TTabProps = {
+  border: string;
 };
 
 export type TInputFieldType = 'text' | 'email' | 'password' | 'url';

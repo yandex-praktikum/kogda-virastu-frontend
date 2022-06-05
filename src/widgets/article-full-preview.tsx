@@ -9,28 +9,72 @@ import BarTags from './bar-tags';
 import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
+// const ArticleCardContainer = styled.div`
+//     width: 700px;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 16px;
+
+//     @media screen and (max-width: 1050px) {
+//         width: 453px;
+//     }
+
+//     @media screen and (max-width: 600px) {
+//         width: 280px;
+//     }
+
+//    /*  @media screen and (max-width:320px) {
+//         width:280px;
+//     } */
+// `;
+
 const ArticleCardContainer = styled.div`
-    width: 700px;
+    width: 359px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-bottom: 32px;
 
-    @media screen and (max-width: 1050px) {
-        width: 453px;
+    @media screen and (max-width: 1300px) {
+        width: 297px;
     }
 
-    @media screen and (max-width: 600px) {
-        width: 280px;
+    @media screen and (max-width: 1023px) {
+        width: 227px;
     }
 
-   /*  @media screen and (max-width:320px) {
-        width:280px;
-    } */
+    @media screen and (max-width: 765px) {
+        width: 359px;
+    }
+
+    @media screen and (max-width:720px) {
+      width: 280px;
+    };
 `;
+
+// const ArticleName = styled.h2`
+//     width:100%;
+//     grid-column: 1/3;
+//     font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
+//     font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
+//     line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
+//     font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
+//     color: ${({ theme: { primaryText } }) => primaryText};
+//     word-break:break-all;
+//  @media screen and (max-width: 768px) {
+//         font-size: ${({ theme: { secondLevelHeadingMobile: { size } } }) => `${size}px`} ;
+//         font-family: ${({ theme: { secondLevelHeadingMobile: { family } } }) => family};
+//         line-height: ${({ theme: { secondLevelHeadingMobile: { height } } }) => `${height}px`} ;
+//         font-weight: ${({ theme: { secondLevelHeadingMobile: { weight } } }) => weight};
+//  }
+//  @media screen and (max-width: 320px) {
+//     grid-column: 1/1;
+// }
+// `;
 
 const ArticleName = styled.h2`
     width:100%;
-    grid-column: 1/3;
+    margin: 0;
     font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
     font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
     line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
@@ -46,7 +90,6 @@ const ArticleName = styled.h2`
  @media screen and (max-width: 320px) {
     grid-column: 1/1;
 }
-
 `;
 
 type TElementWithImage = {
@@ -61,10 +104,40 @@ const BarTagsWrapper = styled.div<TElementWithImage>`
 
 `;
 
+// const ContentContainer = styled.div<TElementWithImage>`
+//     display: grid;
+//     grid-template-columns: 1fr 6fr;
+//     grid-gap: 16px;
+//     .link {
+//         font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
+//         font-family: ${({ theme: { text18Sans: { family } } }) => family};
+//         line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`} ;
+//         font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
+//         color: ${(props) => props.theme.button.red.default};
+//         width: 106px;
+//         text-decoration: none;
+//         &:hover {
+//             color: ${(props) => props.theme.button.red.hover};
+//         }
+//         &:active {
+//             color: ${(props) => props.theme.button.red.active};
+//         }
+//         @media screen and (max-width: 600px) {        // 'grid-row: 5/6 ' : 'grid-row: 4/5'
+
+//         ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
+//         margin-top: -8px;
+//     }
+//     }
+//     @media screen and (max-width: 600px) {
+//         grid-template-columns: 280px;
+
+//     }
+// `;
+
 const ContentContainer = styled.div<TElementWithImage>`
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-gap: 16px;
+    display: flex;
+    row-gap: 16px;
+    flex-direction: column;
     .link {
         font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
         font-family: ${({ theme: { text18Sans: { family } } }) => family};
@@ -79,25 +152,20 @@ const ContentContainer = styled.div<TElementWithImage>`
         &:active {
             color: ${(props) => props.theme.button.red.active};
         }
-        @media screen and (max-width: 600px) {                  // 'grid-row: 5/6 ' : 'grid-row: 4/5'
-
-        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
-        margin-top: -8px;
-    }
-    }
-    @media screen and (max-width: 600px) {
-        grid-template-columns: 280px;
-
-    }
+        
 `;
 
+// const ArticleImage = styled.img`
+// width: 159px;
+// height: 85px;
+// @media screen and (max-width: 320px) {
+//     width: 280px;
+//     height: 150px;
+// }
+// `;
+
 const ArticleImage = styled.img`
-width: 159px;
-height: 85px;
-@media screen and (max-width: 320px) {
-    width: 280px;
-    height: 150px;
-}
+width: 100%;
 `;
 
 const Article = styled.article<TElementWithImage>`
@@ -116,14 +184,11 @@ display: -webkit-box;
 line-clamp: 9;
 box-orient: vertical;
  ${((props) => !props.image && 'grid-column: 1/3')};
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 765px) {
     font-size: ${({ theme: { text16Sans: { size } } }) => `${size}px`};
     font-family: ${({ theme: { text16Sans: { family } } }) => family};
     line-height: ${({ theme: { text16Sans: { height } } }) => `${height}px`};
     font-weight: ${({ theme: { text16Sans: { weight } } }) => weight};
-}
-@media screen and (max-width: 600px) {
-    grid-column: 1/1;
 }
 `;
 
@@ -133,32 +198,34 @@ type TArticleFullPreview = {
 };
 
 const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => (
-
-  <ArticleCardContainer>
-    <AuthorHeadingWidget
-      username={article.author?.username}
-      nickname={article.author?.nickname ?? article.author?.username}
-      image={article.author.image}
-      date={new Date(article.createdAt)}
-      isLiked={article.favorited}
-      likesCount={article.favoritesCount}
-      onLikeClick={onLikeClick} />
-    <ContentContainer image={article.link}>
-      <ArticleName>{article.title}</ArticleName>
-      {article.link && <ArticleImage src={article.link} />}
-      <Article image={article.link}>{article.body}</Article>
-      <Link className='link' to={`/article/${article.slug}`}>
-        <FormattedMessage id='articleEnter' />
-      </Link>
-      <BarTagsWrapper image={article.link}>
-        <BarTags
-          isHasImage={!!article.link}
-          rowReverse
-          tagList={article.tagList} />
-      </BarTagsWrapper>
-    </ContentContainer>
-    <Divider distance={0} />
-  </ArticleCardContainer>
+  <>
+    <ArticleCardContainer>
+      <AuthorHeadingWidget
+        username={article.author?.username}
+        nickname={article.author?.nickname ?? article.author?.username}
+        image={article.author.image}
+        date={new Date(article.createdAt)}
+        isLiked={article.favorited}
+        likesCount={article.favoritesCount}
+        onLikeClick={onLikeClick} />
+      <ContentContainer image={article.link}>
+        <ArticleName>{article.title}</ArticleName>
+        {article.link && <ArticleImage src={article.link} />}
+        <Article image={article.link}>{article.body}</Article>
+        <BarTagsWrapper image={article.link}>
+          <BarTags
+            isHasImage={!!article.link}
+            rowReverse
+            tagList={article.tagList} />
+        </BarTagsWrapper>
+        <Link className='link' to={`/article/${article.slug}`}>
+          <FormattedMessage id='articleEnter' />
+        </Link>
+      </ContentContainer>
+      {/* <Divider distance={0} /> */}
+    </ArticleCardContainer>
+    {/* <Divider distance={0} /> */}
+  </>
 );
 
 export default ArticleFullPreview;
