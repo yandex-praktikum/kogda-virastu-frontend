@@ -32,6 +32,8 @@ type TAPIState = {
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
   isAllPostsRequested: boolean,
+  isTagFollowing: boolean,
+  isTagUnfollowing: boolean,
 };
 
 const initialState : TAPIState = {
@@ -65,6 +67,8 @@ const initialState : TAPIState = {
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
   isAllPostsRequested: false,
+  isTagFollowing: false,
+  isTagUnfollowing: false,
 };
 
 const apiSlice = createSlice({
@@ -320,11 +324,27 @@ const apiSlice = createSlice({
       isSettingsUpdateSucceeded: false,
       errorObject: action.payload,
     }),
+    followTagRequested: (state) => ({
+      ...state, isTagFollowing: true,
+    }),
+    followTagSucceeded: (state) => ({
+      ...state, isTagFollowing: false,
+    }),
+    unfollowTagRequested: (state) => ({
+      ...state, isTagUnfollowing: true,
+    }),
+    unfollowTagSucceeded: (state) => ({
+      ...state, isTagUnfollowing: false,
+    }),
   },
 });
 
 const apiReducer = apiSlice.reducer;
 export const {
+  followTagRequested,
+  followTagSucceeded,
+  unfollowTagRequested,
+  unfollowTagSucceeded,
   setSuccessMessage,
   setErrorMessage,
   clearSuccessMessage,

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
+import FollowedTags from '../followed-tags';
 
 import {
   setUsernameProfile,
@@ -63,7 +64,6 @@ const SettingsForm: FC = () => {
     if (isSettingsUpdateSucceeded) {
       navigate('/');
     }
-  //  return () => { dispatch(settingsResetUpdateSucceeded()); };
   }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
@@ -110,6 +110,7 @@ const SettingsForm: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
+        <FollowedTags />
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
         </ButtonContainer>

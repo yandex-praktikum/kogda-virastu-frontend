@@ -63,6 +63,10 @@ export interface IFetchTags {
   () : AxiosPromise<TAPITags>
 }
 
+export interface IFetchPopularTags {
+  () : AxiosPromise<any>
+}
+
 export interface IFetchComments {
   (slug: string) : AxiosPromise<TAPIComments>;
 }
@@ -77,6 +81,10 @@ export interface IDeleteComment {
 
 export interface IProfile {
   (username: string) : AxiosPromise<TAPIProfile | null>
+}
+
+export interface ITag {
+  (tagname: string) : AxiosPromise<TAPIProfile | null>
 }
 
 export type {

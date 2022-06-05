@@ -9,10 +9,6 @@ const TabsContainer = styled.div`
   margin-bottom: 33px;
 `;
 
-const PStyle = styled.p`
-  width: 46.745vw;
-`;
-
 const Tab = styled.button`
   padding: 16px 8px;
   font-family: ${({ theme }) => theme.text18Sans.family};

@@ -9,6 +9,7 @@ const ru: TVocabulary = {
   mainTitle: 'Когда вырасту',
   mainSubtitle: 'Каково быть джуном  в турбулентном мире',
   popularTags: 'Популярные тэги',
+  followedTags: 'Подписка на тэги:',
   popularContent: 'Популярные материалы',
   articleEnter: 'Читать дальше',
   freshContent: 'Свежие материалы',

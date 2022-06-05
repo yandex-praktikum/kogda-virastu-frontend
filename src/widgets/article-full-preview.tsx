@@ -1,5 +1,6 @@
-/* eslint-disable ternary/no-unreachable */
+/* eslint-disable*/
 import React, { FC, MouseEventHandler } from 'react';
+import DOMPurify from 'isomorphic-dompurify';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -8,25 +9,6 @@ import { TArticle } from '../types/types';
 import BarTags from './bar-tags';
 import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
-
-// const ArticleCardContainer = styled.div`
-//     width: 700px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 16px;
-
-//     @media screen and (max-width: 1050px) {
-//         width: 453px;
-//     }
-
-//     @media screen and (max-width: 600px) {
-//         width: 280px;
-//     }
-
-//    /*  @media screen and (max-width:320px) {
-//         width:280px;
-//     } */
-// `;
 
 const ArticleCardContainer = styled.div`
     width: 359px;
@@ -51,26 +33,6 @@ const ArticleCardContainer = styled.div`
       width: 280px;
     };
 `;
-
-// const ArticleName = styled.h2`
-//     width:100%;
-//     grid-column: 1/3;
-//     font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
-//     font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
-//     line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
-//     font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
-//     color: ${({ theme: { primaryText } }) => primaryText};
-//     word-break:break-all;
-//  @media screen and (max-width: 768px) {
-//         font-size: ${({ theme: { secondLevelHeadingMobile: { size } } }) => `${size}px`} ;
-//         font-family: ${({ theme: { secondLevelHeadingMobile: { family } } }) => family};
-//         line-height: ${({ theme: { secondLevelHeadingMobile: { height } } }) => `${height}px`} ;
-//         font-weight: ${({ theme: { secondLevelHeadingMobile: { weight } } }) => weight};
-//  }
-//  @media screen and (max-width: 320px) {
-//     grid-column: 1/1;
-// }
-// `;
 
 const ArticleName = styled.h2`
     width:100%;
@@ -104,36 +66,6 @@ const BarTagsWrapper = styled.div<TElementWithImage>`
 
 `;
 
-// const ContentContainer = styled.div<TElementWithImage>`
-//     display: grid;
-//     grid-template-columns: 1fr 6fr;
-//     grid-gap: 16px;
-//     .link {
-//         font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
-//         font-family: ${({ theme: { text18Sans: { family } } }) => family};
-//         line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`} ;
-//         font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
-//         color: ${(props) => props.theme.button.red.default};
-//         width: 106px;
-//         text-decoration: none;
-//         &:hover {
-//             color: ${(props) => props.theme.button.red.hover};
-//         }
-//         &:active {
-//             color: ${(props) => props.theme.button.red.active};
-//         }
-//         @media screen and (max-width: 600px) {        // 'grid-row: 5/6 ' : 'grid-row: 4/5'
-
-//         ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
-//         margin-top: -8px;
-//     }
-//     }
-//     @media screen and (max-width: 600px) {
-//         grid-template-columns: 280px;
-
-//     }
-// `;
-
 const ContentContainer = styled.div<TElementWithImage>`
     display: flex;
     row-gap: 16px;
@@ -155,41 +87,52 @@ const ContentContainer = styled.div<TElementWithImage>`
         
 `;
 
-// const ArticleImage = styled.img`
-// width: 159px;
-// height: 85px;
-// @media screen and (max-width: 320px) {
-//     width: 280px;
-//     height: 150px;
-// }
-// `;
-
 const ArticleImage = styled.img`
 width: 100%;
 `;
 
 const Article = styled.article<TElementWithImage>`
-font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`};
-font-family: ${({ theme: { text18Sans: { family } } }) => family};
-line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`};
-font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
-color: ${({ theme: { primaryText } }) => primaryText};
-overflow: hidden;
-text-overflow: ellipsis;
-display: -moz-box;
--moz-box-orient: vertical;
-display: -webkit-box;
--webkit-line-clamp: 9;
--webkit-box-orient: vertical;
-line-clamp: 9;
-box-orient: vertical;
- ${((props) => !props.image && 'grid-column: 1/3')};
-@media screen and (max-width: 765px) {
-    font-size: ${({ theme: { text16Sans: { size } } }) => `${size}px`};
-    font-family: ${({ theme: { text16Sans: { family } } }) => family};
-    line-height: ${({ theme: { text16Sans: { height } } }) => `${height}px`};
-    font-weight: ${({ theme: { text16Sans: { weight } } }) => weight};
-}
+  font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`};
+  font-family: ${({ theme: { text18Sans: { family } } }) => family};
+  line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`};
+  font-weight: ${({ theme: { text18Sans: { weight } } }) => weight};
+  color: ${({ theme: { primaryText } }) => primaryText};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
+  line-clamp: 9;
+  box-orient: vertical;
+  
+  > blockquote {
+    border-left: 4px solid #ccc;
+    margin: 5px 0 5px;
+    padding-left: 16px;
+  }
+  
+  > pre {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: visible;
+    white-space: pre-wrap;
+    margin: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+  
+   ${((props) => !props.image && 'grid-column: 1/3')};
+  @media screen and (max-width: 768px) {
+      font-size: ${({ theme: { text16Sans: { size } } }) => `${size}px`};
+      font-family: ${({ theme: { text16Sans: { family } } }) => family};
+      line-height: ${({ theme: { text16Sans: { height } } }) => `${height}px`};
+      font-weight: ${({ theme: { text16Sans: { weight } } }) => weight};
+  }
+  @media screen and (max-width: 600px) {
+      grid-column: 1/1;
+  }
 `;
 
 type TArticleFullPreview = {
@@ -197,8 +140,10 @@ type TArticleFullPreview = {
   onLikeClick: MouseEventHandler,
 };
 
-const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => (
-  <>
+const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => {
+  const articleBody = DOMPurify.sanitize(article?.body || '');
+
+  return (
     <ArticleCardContainer>
       <AuthorHeadingWidget
         username={article.author?.username}
@@ -211,21 +156,20 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
       <ContentContainer image={article.link}>
         <ArticleName>{article.title}</ArticleName>
         {article.link && <ArticleImage src={article.link} />}
-        <Article image={article.link}>{article.body}</Article>
+        <Article image={article.link} dangerouslySetInnerHTML={{ __html: articleBody }} />
+        <Link className='link' to={`/article/${article.slug}`}>
+          <FormattedMessage id='articleEnter' />
+        </Link>
         <BarTagsWrapper image={article.link}>
           <BarTags
             isHasImage={!!article.link}
             rowReverse
             tagList={article.tagList} />
         </BarTagsWrapper>
-        <Link className='link' to={`/article/${article.slug}`}>
-          <FormattedMessage id='articleEnter' />
-        </Link>
       </ContentContainer>
-      {/* <Divider distance={0} /> */}
+      <Divider distance={0} />
     </ArticleCardContainer>
-    {/* <Divider distance={0} /> */}
-  </>
-);
+  );
+};
 
 export default ArticleFullPreview;

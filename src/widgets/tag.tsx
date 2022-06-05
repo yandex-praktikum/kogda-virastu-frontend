@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
@@ -10,8 +11,10 @@ interface ITagProps extends ITagButtonProps {
 }
 
 interface ITagButtonProps {
-  isActive: boolean;
+  isActive?: boolean;
   pointer?: boolean;
+  isFollowing?: boolean | undefined | null;
+  isDefault?: boolean | undefined | null;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -25,7 +28,7 @@ const Button = styled.button<ITagButtonProps>`
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
     align-items: center;
-    color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
+    color: ${({ isActive, theme, isFollowing }) => (isActive ? theme.button.blue.default : isFollowing ? theme.button.red.default : theme.secondaryText)};
     background-color: transparent;
 
     :active {
@@ -34,13 +37,15 @@ const Button = styled.button<ITagButtonProps>`
   `;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick = () => {}, isActive, deactivateTag, pointer,
+  tag, handleClick = () => {}, isActive, deactivateTag, pointer, isFollowing, isDefault
 }) => {
   const theme = useTheme();
 
   return (
     <Button
       isActive={isActive}
+      isFollowing={isFollowing}
+      isDefault={isDefault}
       pointer={pointer}
       type='button'
       key={tag}
@@ -49,6 +54,7 @@ const Tag: FC<ITagProps> = ({
       {tag}
       {' '}
       {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
+      {isDefault && deactivateTag && <CrossIcon color={theme.secondaryText} onClick={deactivateTag} />}
     </Button>
   );
 };
@@ -57,6 +63,9 @@ Tag.defaultProps = {
   handleClick: undefined,
   deactivateTag: undefined,
   pointer: false,
+  isActive: false,
+  isFollowing: false,
+  isDefault: undefined,
 };
 
 export default Tag;
