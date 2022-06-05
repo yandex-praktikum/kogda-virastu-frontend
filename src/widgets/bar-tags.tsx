@@ -46,11 +46,12 @@ const List = styled.li`
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { selectedTags } = useSelector((state) => state.view);
+  const handleClick = (e: React.MouseEvent, tag: string) => console.log('click Tag', tag);
   return (
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List key={nanoid(10)}>
-          <Tag tag={tag} isActive={!!selectedTags?.includes(tag)} />
+          <Tag tag={tag} handleClick={handleClick} isActive={!!selectedTags?.includes(tag)} />
         </List>
       ))}
     </Lists>
