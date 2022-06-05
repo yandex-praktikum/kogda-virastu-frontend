@@ -1,4 +1,6 @@
-import React, { FC, MouseEventHandler, useState } from 'react';
+import React, {
+  FC, MouseEventHandler, useEffect, useState,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -55,18 +57,25 @@ const ItemWrapper = styled.li`
 `;
 
 const FeedRibbon : FC = () => {
-  const [mobileScreen, setMobileScreen] = useState(true);
+  const [mobileScreen, setMobileScreen] = useState(false);
+  const resizeHandler = () => {
+    if (window.screen.width > 765) {
+      setMobileScreen(true);
+    } else {
+      setMobileScreen(false);
+    }
+  };
+  useEffect(() => {
+    if (window.screen.width > 765) setMobileScreen(true);
+    window.addEventListener('resize', resizeHandler);
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
-  window.addEventListener('resize', () => {
-    if (window.screen.width < 766) {
-      setMobileScreen(false);
-    } else {
-      setMobileScreen(true);
-    }
-  });
   if (!posts || isPublicFeedFetching) {
     return (
       <RegularText size='large' weight={500}>
