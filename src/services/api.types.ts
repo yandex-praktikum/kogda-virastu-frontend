@@ -76,6 +76,10 @@ export type TAPITags = {
   followingTags: TTags
 };
 
+export type TAPIPopularTags = {
+  tags: TTags;
+};
+
 export type TAPIComment = {
   comment: TComment;
 };

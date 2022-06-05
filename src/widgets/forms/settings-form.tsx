@@ -64,7 +64,6 @@ const SettingsForm: FC = () => {
     if (isSettingsUpdateSucceeded) {
       navigate('/');
     }
-  //  return () => { dispatch(settingsResetUpdateSucceeded()); };
   }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {

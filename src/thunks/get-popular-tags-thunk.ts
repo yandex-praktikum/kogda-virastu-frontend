@@ -1,31 +1,31 @@
 /* eslint-disable*/
-import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
 import { fetchPopularTags } from '../services/api';
 import {
   setPopularTags,
   tagsFetchFailed,
-  tagsFetchRequested,
-  tagsFetchSucceeded,
 } from '../store';
 import { AppThunk } from '../store/store.types';
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
 
-const getPopularTagsThunk : AppThunk = () => async (dispatch) => {
+const getPopularTags: AppThunk = () => async (dispatch) => {
   try {
-    // dispatch(tagsFetchRequested());
-    const { data: { tags } } = await fetchPopularTags();
-    // dispatch(setPopularTags(
-    //     tags
-    //   ));
-    // batch(() => {
-    //   dispatch(setAllTags(tags));
-    //   dispatch(tagsFetchSucceeded());
-    // });
+    const {
+      data: {
+        tags
+      },
+    } = await fetchPopularTags();
+
+    const tagNameList = tags.map((item: any) => 
+      item.name
+    );
+
+   if(tagNameList) {dispatch(setPopularTags(tagNameList))};
+
   } catch (error) {
     dispatch(tagsFetchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
 
-export default getPopularTagsThunk;
+export default getPopularTags;

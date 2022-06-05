@@ -31,6 +31,7 @@ import {
   IFetchArticles,
   IFetchComments,
   IFetchTags,
+  IFetchPopularTags,
   IFetchUser,
   ILikeArticle,
   ILoginUser,
@@ -397,7 +398,7 @@ export const fetchUserTags : IFetchTags = () : AxiosPromise<TAPITags> => {
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchPopularTags : IFetchTags = () : AxiosPromise<TAPITags> => {
+export const fetchPopularTags : IFetchPopularTags = () : AxiosPromise<[]> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/top`,
     method: 'get',

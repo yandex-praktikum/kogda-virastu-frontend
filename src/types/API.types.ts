@@ -7,6 +7,7 @@ import {
   TAPIComments, TAPIParamsObject, TAPIPatchArticleData,
   TAPIProfile,
   TAPITags,
+  TAPIPopularTags,
   TAPIUser,
 } from '../services/api.types';
 
@@ -61,6 +62,10 @@ export interface ILikeArticle {
 
 export interface IFetchTags {
   () : AxiosPromise<TAPITags>
+}
+
+export interface IFetchPopularTags {
+  () : AxiosPromise<any>
 }
 
 export interface IFetchComments {
