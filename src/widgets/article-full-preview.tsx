@@ -11,27 +11,32 @@ import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
-    width: 700px;
+    width: 359px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-bottom: 32px;
 
-    @media screen and (max-width: 1050px) {
-        width: 453px;
+    @media screen and (max-width: 1300px) {
+        width: 297px;
     }
 
-    @media screen and (max-width: 600px) {
-        width: 280px;
+    @media screen and (max-width: 1023px) {
+        width: 227px;
     }
 
-   /*  @media screen and (max-width:320px) {
-        width:280px;
-    } */
+    @media screen and (max-width: 765px) {
+        width: 359px;
+    }
+
+    @media screen and (max-width:720px) {
+      width: 280px;
+    };
 `;
 
 const ArticleName = styled.h2`
     width:100%;
-    grid-column: 1/3;
+    margin: 0;
     font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
     font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
     line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
@@ -47,7 +52,6 @@ const ArticleName = styled.h2`
  @media screen and (max-width: 320px) {
     grid-column: 1/1;
 }
-
 `;
 
 type TElementWithImage = {
@@ -63,9 +67,9 @@ const BarTagsWrapper = styled.div<TElementWithImage>`
 `;
 
 const ContentContainer = styled.div<TElementWithImage>`
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-gap: 16px;
+    display: flex;
+    row-gap: 16px;
+    flex-direction: column;
     .link {
         font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`} ;
         font-family: ${({ theme: { text18Sans: { family } } }) => family};
@@ -80,25 +84,11 @@ const ContentContainer = styled.div<TElementWithImage>`
         &:active {
             color: ${(props) => props.theme.button.red.active};
         }
-        @media screen and (max-width: 600px) {                  // 'grid-row: 5/6 ' : 'grid-row: 4/5'
-
-        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
-        margin-top: -8px;
-    }
-    }
-    @media screen and (max-width: 600px) {
-        grid-template-columns: 280px;
-
-    }
+        
 `;
 
 const ArticleImage = styled.img`
-width: 159px;
-height: 85px;
-@media screen and (max-width: 320px) {
-    width: 280px;
-    height: 150px;
-}
+width: 100%;
 `;
 
 const Article = styled.article<TElementWithImage>`

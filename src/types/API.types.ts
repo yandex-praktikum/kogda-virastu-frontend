@@ -7,7 +7,6 @@ import {
   TAPIComments, TAPIParamsObject, TAPIPatchArticleData,
   TAPIProfile,
   TAPITags,
-  TAPIPopularTags,
   TAPIUser,
 } from '../services/api.types';
 

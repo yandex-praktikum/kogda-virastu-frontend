@@ -1,20 +1,9 @@
 /* eslint-disable */
-import React, {
-    useEffect, useMemo, FC, MouseEventHandler,
-  } from 'react';
+import { useMemo, FC } from 'react';
   import styled, { useTheme } from 'styled-components';
   
   import ReactDOM from 'react-dom';
-  import { FormattedMessage } from 'react-intl';
-  import {
-    ConfirmDeleteButton, CrossIcon, HeaderTwoText, RegularText,
-  } from '../ui-lib';
-  
-  import { mobileBreakpoint, mobileViewModal } from '../constants';
-  import { TModalProps } from '../types/widgets.types';
-  
-  const modalStepWidth = (600 - 280) / (mobileViewModal - mobileBreakpoint);
-  const modalStepHeight = (320 - 342) / (mobileViewModal - mobileBreakpoint);
+  import { RegularText } from '../ui-lib';
 
   const ModalOverlay = styled.div`
   position: fixed;
