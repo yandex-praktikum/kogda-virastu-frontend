@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 
 interface ITagProps extends ITagButtonProps {
   tag: string,
-  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
+  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => void,
   deactivateTag?: MouseEventHandler<SVGSVGElement>,
 }
 
@@ -41,7 +41,6 @@ const Tag: FC<ITagProps> = ({
   }, isActive, deactivateTag, pointer, isShowIcon,
 }) => {
   const theme = useTheme();
-  console.log(isShowIcon);
 
   return (
     <Button
@@ -50,7 +49,7 @@ const Tag: FC<ITagProps> = ({
       isShowIcon={isShowIcon}
       type='button'
       key={tag}
-      onClick={(e) => handleClick(e, tag)}>
+      onClick={(e) => handleClick(e, tag, isActive)}>
       #
       {tag}
       {' '}
