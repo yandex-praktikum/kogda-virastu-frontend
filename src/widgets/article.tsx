@@ -1,5 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
 import { FormattedDate } from 'react-intl';
+import DOMPurify from 'isomorphic-dompurify';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -89,12 +90,29 @@ const ArticleImage = styled.img`
   height: 100%;
 `;
 
-const ArticleBody = styled.p`
+const ArticleBody = styled.div`
   font-family: ${({ theme: { text18: { family } } }) => family};
   font-size: ${({ theme: { text18: { size } } }) => size}px ;
   line-height: ${({ theme: { text18: { height } } }) => height}px;
   font-weight: ${({ theme: { text18: { weight } } }) => weight};
   margin: 0;
+
+  > blockquote {
+    border-left: 4px solid #ccc;
+    margin: 5px 0 5px;
+    padding-left: 16px;
+  }
+
+  > pre {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: visible;
+    white-space: pre-wrap;
+    margin: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+
   @media screen and (max-width:768px) {
     font-family: ${({ theme: { text16: { family } } }) => family};
     font-size: ${({ theme: { text16: { size } } }) => size}px ;
@@ -117,6 +135,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
+  const articleBody = DOMPurify.sanitize(article?.body || '');
 
   const onClickDelete = () => {
     if (article) {
@@ -168,7 +187,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{article.body}</ArticleBody>
+      <ArticleBody dangerouslySetInnerHTML={{ __html: articleBody }} />
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );
