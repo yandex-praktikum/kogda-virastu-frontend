@@ -1,11 +1,11 @@
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 import FollowedTags from '../followed-tags';
+import TagModal from '../tag-modal';
 
 import {
   setUsernameProfile,
@@ -48,7 +48,6 @@ const SettingsForm: FC = () => {
 
   const dispatch = useDispatch();
   const theme = useTheme();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(setFormProfile({
@@ -59,12 +58,6 @@ const SettingsForm: FC = () => {
       image: profile.image || '',
     }));
   }, [dispatch, profile]);
-
-  // useEffect(() => {
-  //   if (isSettingsUpdateSucceeded) {
-  //     navigate('/');
-  //   }
-  // }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
@@ -95,6 +88,9 @@ const SettingsForm: FC = () => {
 
   return (
     <FormContainer>
+      {isSettingsUpdateSucceeded && (
+        <TagModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message='Данные профиля обновлены' />
+      )}
       <FormTitle>
         <FormattedMessage id='usersettings' />
       </FormTitle>
