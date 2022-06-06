@@ -18,27 +18,6 @@ type TLists = {
   rowReverse?: boolean;
 };
 
-// const Lists = styled.ul<TLists>`
-//     display: flex;
-//     box-sizing:border-box;
-//     flex-wrap:wrap;
-//     flex-direction: ${({ rowReverse }) => rowReverse && 'row-reverse'};
-//     gap: 4px 24px;
-//     //width:526px;
-//     white-space: pre-line;
-//     padding:0;
-//     @media screen and (max-width:768px) {
-//         max-width:453px;
-//         ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
-//      }
-//      @media screen and (max-width:600px) {
-//         max-width:352px;
-//         margin:0;
-
-//         flex-direction: row;
-//      }
-// `;
-
 const Lists = styled.ul<TLists>`
     display: flex;
     box-sizing:border-box;
@@ -102,10 +81,10 @@ const BarTags: FC<TBarTags & TLists> = ({
   return (
     <>
       {isTagFollowing && tagname && (
-        <TagModal message={`Вы подписались на тег #${tagname}`} />
+        <TagModal isTagFollowing={isTagFollowing} message={`Вы подписались на тег #${tagname}`} />
       )}
       {isTagUnFollowing && tagname && (
-        <TagModal message={`Вы отписались от тега #${tagname}`} />
+        <TagModal isTagUnFollowing={isTagUnFollowing} message={`Вы отписались от тега #${tagname}`} />
       )}
       <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
         {tagList.map((tag) => (

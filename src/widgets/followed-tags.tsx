@@ -1,11 +1,10 @@
-/* eslint-disable */
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import Tag from './tag';
 import { HeaderFiveText } from '../ui-lib';
-import  unfollowTagThunk  from '../thunks/unfollow-tag-thunk';
+import unfollowTagThunk from '../thunks/unfollow-tag-thunk';
 import TagModal from './tag-modal';
 import getUserTagsThunk from '../thunks/get-user-tags-thunk';
 
@@ -29,7 +28,7 @@ const TagList = styled.div`
 
 const FollowedTags: FC = () => {
   const dispatch = useDispatch();
-  const followingTags  = useSelector((state) => state.all.followingTags);
+  const followingTags = useSelector((state) => state.all.followingTags);
   const currentUser = useSelector((state) => state.profile);
   const user = currentUser.username;
   const isTagUnFollowing = useSelector((state) => state.api.isTagUnfollowing);
@@ -45,16 +44,16 @@ const FollowedTags: FC = () => {
     e.stopPropagation();
     dispatch(unfollowTagThunk(tag));
     setTimeout(() => {
-        dispatch(getUserTagsThunk());
-      }, 300);
+      dispatch(getUserTagsThunk());
+    }, 300);
   };
 
   if (followingTags && followingTags?.length !== 0) {
     return (
       <PopularTagsContainer>
-      {isTagUnFollowing && tagname && (
-        <TagModal message={`Вы отписались от тега #${tagname}`} />
-      )}
+        {isTagUnFollowing && tagname && (
+        <TagModal isTagUnFollowing={isTagUnFollowing} message={`Вы отписались от тега #${tagname}`} />
+        )}
         <HeaderFiveText paddingCSS='padding-bottom: 16px;'>
           <FormattedMessage id='followedTags' />
         </HeaderFiveText>
@@ -71,9 +70,8 @@ const FollowedTags: FC = () => {
           }
         </TagList>
       </PopularTagsContainer>
-
     );
-  } 
+  }
   return (
     null
   );

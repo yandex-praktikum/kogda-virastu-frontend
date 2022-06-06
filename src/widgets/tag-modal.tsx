@@ -1,9 +1,16 @@
 /* eslint-disable */
 import { useMemo, FC } from 'react';
-  import styled, { useTheme } from 'styled-components';
+  import styled, { useTheme, css } from 'styled-components';
   
   import ReactDOM from 'react-dom';
   import { RegularText } from '../ui-lib';
+
+  interface IProps {
+    isTagFollowing?: boolean;
+    isTagUnFollowing?: boolean;
+    isSettingsUpdateSucceeded?: boolean;
+    onClick?: () => void;
+  }
 
   const ModalOverlay = styled.div`
   position: fixed;
@@ -19,7 +26,7 @@ import { useMemo, FC } from 'react';
   z-index: 95;
 `;
  
-  const ModalDialog = styled.div`
+  const ModalDialog = styled.div<IProps>`
     position: relative;
     width: 267px;
     height: 32px;
@@ -30,21 +37,42 @@ import { useMemo, FC } from 'react';
     align-items: center;
     padding: 5px 30px 0;
     background-color: black;
+    opacity: 0;
+    transition: opacity 500ms linear;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08), 0 0 4px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     @media screen and (max-width: 420px) {
       width: 200px;
     }
+    
+  ${({ isTagFollowing }) =>
+  isTagFollowing&&
+  css`
+    opacity: 1;
+    transition: opacity 500ms linear;
+  `}
+  ${({ isTagUnFollowing }) =>
+  isTagUnFollowing&&
+  css`
+    opacity: 1;
+    transition: opacity 500ms linear;
+  `}
+  ${({ isSettingsUpdateSucceeded }) =>
+  isSettingsUpdateSucceeded&&
+  css`
+    opacity: 1;
+    transition: opacity 500ms linear;
+  `}
   `;
   
-  const TagModal: FC<any> = ({message}) => {
+  const TagModal: FC<any> = ({message, isTagFollowing, isTagUnFollowing, isSettingsUpdateSucceeded}) => {
     const theme = useTheme();
     const portalRoot = useMemo(() => document.getElementById('modal'), []) as Element;
 
     return ReactDOM.createPortal(
       (
         <ModalOverlay>
-          <ModalDialog>
+          <ModalDialog isTagFollowing={isTagFollowing} isTagUnFollowing={isTagUnFollowing} isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} >
             <RegularText
               size='large'
               weight={400}
