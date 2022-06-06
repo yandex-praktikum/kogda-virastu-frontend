@@ -60,11 +60,11 @@ const SettingsForm: FC = () => {
     }));
   }, [dispatch, profile]);
 
-  useEffect(() => {
-    if (isSettingsUpdateSucceeded) {
-      navigate('/');
-    }
-  }, [dispatch, isSettingsUpdateSucceeded, navigate]);
+  // useEffect(() => {
+  //   if (isSettingsUpdateSucceeded) {
+  //     navigate('/');
+  //   }
+  // }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
