@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import styled from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
-import { useSelector } from '../services/hooks';
-
+import { useSelector, useDispatch } from '../services/hooks';
 import Tag from './tag';
+import { setSubscribeTags } from '../store';
+import subscribeTagThunk from '../thunks/subscribe-tag-thunk';
+import unsubscribeTagThunk from '../thunks/unsubscribe-tag-thunk';
 
 type TBarTags = {
   tagList: string[],
@@ -13,6 +15,9 @@ type TLists = {
   isHasImage?: boolean,
   rowReverse?: boolean;
 };
+interface IHandleClickTag {
+  (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean | undefined) : void | undefined;
+}
 
 const Lists = styled.ul<TLists>`
     display: flex;
@@ -45,13 +50,32 @@ const List = styled.li`
 `;
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
-  const { selectedTags } = useSelector((state) => state.view);
-  const handleClick = (e: React.MouseEvent, tag: string) => console.log('click Tag', tag);
+  const { tagsFollow } = useSelector((state) => state.view);
+  const dispatch = useDispatch();
+  const handleClickTag: IHandleClickTag = (e, tag, isActive) => {
+    e.preventDefault();
+    if (!isActive) {
+      dispatch(subscribeTagThunk(tag));
+      if (tagsFollow) {
+        dispatch(setSubscribeTags([...tagsFollow, tag]));
+      } else {
+        dispatch(setSubscribeTags([tag]));
+      }
+    } else {
+      dispatch(unsubscribeTagThunk(tag));
+      dispatch(setSubscribeTags(tagsFollow!.filter((el) => el !== tag)));
+    }
+  };
   return (
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List key={nanoid(10)}>
-          <Tag tag={tag} handleClick={handleClick} isActive={!!selectedTags?.includes(tag)} />
+          <Tag
+            tag={tag}
+            pointer
+            isShowIcon={false}
+            isActive={!!tagsFollow?.includes(tag)}
+            handleClick={handleClickTag} />
         </List>
       ))}
     </Lists>

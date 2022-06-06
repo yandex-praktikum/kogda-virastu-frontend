@@ -32,6 +32,9 @@ type TAPIState = {
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
   isAllPostsRequested: boolean,
+  isTagSubscribed: boolean,
+  isUnsubscribeTagDeleting: boolean,
+  isSubscribeTagsFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -65,6 +68,9 @@ const initialState : TAPIState = {
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
   isAllPostsRequested: false,
+  isTagSubscribed: false,
+  isUnsubscribeTagDeleting: false,
+  isSubscribeTagsFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -320,6 +326,33 @@ const apiSlice = createSlice({
       isSettingsUpdateSucceeded: false,
       errorObject: action.payload,
     }),
+    subscribeTagRequested: (state) => ({
+      ...state, isTagSubscribed: true,
+    }),
+    subscribeTagSucceeded: (state) => ({
+      ...state, isTagSubscribed: false,
+    }),
+    subscribeTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagSubscribed: false, errorObject: action.payload,
+    }),
+    unsubscribeTagRequested: (state) => ({
+      ...state, isUnsubscribeTagDeleting: true,
+    }),
+    unsubscribeTagSucceeded: (state) => ({
+      ...state, isUnsubscribeTagDeleting: false,
+    }),
+    unsubscribeTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUnsubscribeTagDeleting: false, errorObject: action.payload,
+    }),
+    subscribeTagsFetchRequested: (state) => ({
+      ...state, isSubscribeTagsFetching: true,
+    }),
+    subscribeTagsFetchSucceeded: (state) => ({
+      ...state, isSubscribeTagsFetching: false,
+    }),
+    subscribeTagsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isSubscribeTagsFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -402,5 +435,14 @@ export const {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  subscribeTagRequested,
+  subscribeTagSucceeded,
+  subscribeTagFailed,
+  unsubscribeTagRequested,
+  unsubscribeTagSucceeded,
+  unsubscribeTagFailed,
+  subscribeTagsFetchRequested,
+  subscribeTagsFetchSucceeded,
+  subscribeTagsFetchFailed,
 } = apiSlice.actions;
 export default apiReducer;
