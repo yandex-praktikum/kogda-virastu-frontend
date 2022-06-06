@@ -35,6 +35,7 @@ const en: TVocabulary = {
   refreshUser: 'Update settings',
   usersettings: 'Your setings',
   publishArticle: 'Publish your material',
+  profileUpdated: 'Profile updated successfully',
   pageMessage: 'Page not found. To read blog, go to Home',
   publishComment: 'Post comment',
   loading: 'Please wait, loading...',
