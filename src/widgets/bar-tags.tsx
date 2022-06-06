@@ -15,6 +15,9 @@ type TLists = {
   isHasImage?: boolean,
   rowReverse?: boolean;
 };
+interface IHandleClickTag {
+  (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean | undefined) : void | undefined;
+}
 
 const Lists = styled.ul<TLists>`
     display: flex;
@@ -49,7 +52,7 @@ const List = styled.li`
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
   const dispatch = useDispatch();
-  const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive:boolean) => {
+  const handleClickTag: IHandleClickTag = (e, tag, isActive) => {
     e.preventDefault();
     if (!isActive) {
       dispatch(subscribeTagThunk(tag));

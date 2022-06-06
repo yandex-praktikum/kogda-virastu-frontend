@@ -15,6 +15,7 @@ const unsubscribeTagThunk: AppThunk = (unsubscribeTag: string) => async (dispatc
     await deleteUnsubscribeTag(unsubscribeTag);
     dispatch(unsubscribeTagSucceeded());
   } catch (error) {
+    console.log('unsubscribeTagThunk-error', error);
     dispatch(unsubscribeTagFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };
