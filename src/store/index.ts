@@ -75,6 +75,7 @@ import {
   clearPage,
   setTopFeed,
   clearTopFeed,
+  setTagsFollow,
 } from './viewSlice';
 
 import {
@@ -155,6 +156,15 @@ import {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  tagFollowRequested,
+  tagFollowSucceeded,
+  tagFollowFailed,
+  tagFollowDeleteRequested,
+  tagFollowDeleteSucceeded,
+  tagFollowDeleteFailed,
+  tagsFollowFetchRequested,
+  tagsFollowFetchSucceeded,
+  tagsFollowFetchFailed,
 } from './apiSlice';
 
 import {
@@ -314,4 +324,14 @@ export {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  tagFollowRequested,
+  tagFollowSucceeded,
+  tagFollowFailed,
+  setTagsFollow,
+  tagFollowDeleteRequested,
+  tagFollowDeleteSucceeded,
+  tagFollowDeleteFailed,
+  tagsFollowFetchRequested,
+  tagsFollowFetchSucceeded,
+  tagsFollowFetchFailed,
 };

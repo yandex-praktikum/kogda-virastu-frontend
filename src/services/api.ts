@@ -18,6 +18,7 @@ import {
   TAPIParamsObject,
   TAPIArticle,
   TAPITags,
+  TAPITag,
   TAPIComments,
   TAPIComment,
   TAPIProfile,
@@ -40,6 +41,7 @@ import {
   IPostComment,
   IProfile,
   IRegisterUser,
+  ITag,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -194,7 +196,7 @@ export const patchCurrentUser : IPatchUser = (
       res = { ...res, bio };
     }
     if (image) {
-      res = { ...res, link: image };
+      res = { ...res, image };
     }
     if (nickname) {
       res = { ...res, nickname };
@@ -368,6 +370,30 @@ export const deleteFollowProfile : IProfile = (username: string) : AxiosPromise<
   const requestConfig : AxiosRequestConfig = {
     url: `${PROFILES_ROUTE}/${username}/follow`,
     method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const postTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/${tag}/follow`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const deleteTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/${tag}/follow`,
+    method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchTagsFollow : IFetchTags = () : AxiosPromise<TAPITags> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/follow`,
+    method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

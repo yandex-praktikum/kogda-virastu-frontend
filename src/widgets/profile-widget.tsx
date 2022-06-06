@@ -73,7 +73,6 @@ const ProfileWidgetButton: FC<{
   if (isUser) {
     return null;
   }
-
   return (
     isFollow ? <UnfollowButton onClick={() => dispatch(unfollowProfileThunk())} />
       : <FollowButton onClick={() => dispatch(followProfileThunk())} />

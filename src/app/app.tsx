@@ -8,11 +8,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 
 import {
-  deleteArticleThunk,
-  getAllPostsThunk,
-  getAllTagsThunk,
-  getPublicFeedThunk,
-  getUserThunk,
+  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -29,6 +25,7 @@ import Editor from '../pages/editor';
 import { Modal } from '../widgets';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
+import getTagsFollowThunk from '../thunks/get-tags-follow-thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,18 +34,19 @@ const App = () => {
   const { isDeleteConfirmOpen } = useSelector((state) => state.system);
   const { username, nickname } = useSelector((state) => state.profile);
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
-  const onConfirmDelete: IGenericVoidHandler = () => {
+  const onConfirmDelete : IGenericVoidHandler = () => {
     batch(() => {
       dispatch(deleteArticleThunk(slug));
       dispatch(closeConfirm());
     });
   };
-  const onConfirmClose: IGenericVoidHandler = () => dispatch(closeConfirm());
+  const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
 
   useEffect(() => {
     batch(() => {
       dispatch(getAllPostsThunk());
       dispatch(getAllTagsThunk());
+      dispatch(getTagsFollowThunk());
     });
     if (jwt.test()) {
       batch(() => {
@@ -67,8 +65,10 @@ const App = () => {
 
   return (
     <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
-      <ThemeProvider
-        theme={themes[currentTheme ?? defaultTheme] ?? basicThemes[currentTheme ?? defaultTheme]}>
+      <ThemeProvider theme={
+        themes[currentTheme ?? defaultTheme]
+        ?? basicThemes[currentTheme ?? defaultTheme]
+      }>
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
