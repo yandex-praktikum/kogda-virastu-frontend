@@ -48,20 +48,23 @@ const List = styled.li`
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
-
   const dispatch = useDispatch();
+  const pointer = !rowReverse;
+
   const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => {
     e.preventDefault();
-    if (!isActive) {
-      dispatch(addTagFollowThunk(tag));
-      if (tagsFollow) {
-        dispatch(setTagsFollow([...tagsFollow, tag]));
+    if (pointer) {
+      if (!isActive) {
+        dispatch(addTagFollowThunk(tag));
+        if (tagsFollow) {
+          dispatch(setTagsFollow([...tagsFollow, tag]));
+        } else {
+          dispatch(setTagsFollow([tag]));
+        }
       } else {
-        dispatch(setTagsFollow([tag]));
+        dispatch(deleteTagFollowThunk(tag));
+        dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
       }
-    } else {
-      dispatch(deleteTagFollowThunk(tag));
-      dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
     }
   };
 
@@ -71,7 +74,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
         <List key={nanoid(10)}>
           <Tag
             tag={tag}
-            pointer
+            pointer={pointer}
             isShowIcon={false}
             isActive={!!tagsFollow?.includes(tag)}
             handleClick={handleClickTag} />
