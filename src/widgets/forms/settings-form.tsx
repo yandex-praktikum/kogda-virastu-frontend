@@ -89,7 +89,7 @@ const SettingsForm: FC = () => {
   return (
     <FormContainer>
       {isSettingsUpdateSucceeded && (
-        <TagModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message='Данные профиля обновлены' />
+        <TagModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message={<FormattedMessage id='profileUpdated' />} />
       )}
       <FormTitle>
         <FormattedMessage id='usersettings' />

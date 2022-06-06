@@ -35,6 +35,7 @@ const ru: TVocabulary = {
   refreshUser: 'Обновить настройки',
   usersettings: 'Ваши настройки',
   publishArticle: 'Опубликовать запись',
+  profileUpdated: 'Профиль успешно обновлен',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
   publishComment: 'Опубликовать комментарий',
   loading: 'Подождите, данные загружаются...',
