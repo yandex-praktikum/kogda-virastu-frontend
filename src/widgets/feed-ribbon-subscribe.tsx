@@ -15,38 +15,13 @@ import {
 import PopularTags from './popular-tags';
 import Slider from './slider';
 import TopAnnounceWidget from './top-announce-widget';
+import { RibbonWrapper, ItemWrapper } from './feed-ribbon';
 
 export const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 export const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
 export const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileViewThreshold);
 export const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
 
-export const RibbonWrapper = styled.ul`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  list-style: none outside;
-  margin: 0;
-  padding: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
-  gap: 32px;
-`;
-
-export const ItemWrapper = styled.li`
-  list-style: none outside;
-  margin: 0;
-  padding: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
-`;
 export const MainContainer = styled.div`
   display: flex;
   margin: 56px 0 0 0;

@@ -9,7 +9,7 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 
-const RibbonWrapper = styled.ul`
+export const RibbonWrapper = styled.ul`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -36,7 +36,7 @@ const RibbonWrapper = styled.ul`
 }
 `;
 
-const ItemWrapper = styled.li`
+export const ItemWrapper = styled.li`
   list-style: none outside;
   max-width: calc(50% - 32px);
   width: 100%;
