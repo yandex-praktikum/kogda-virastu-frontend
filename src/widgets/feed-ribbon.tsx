@@ -90,7 +90,6 @@ const FeedRibbon : FC = () => {
   } else {
     posts = privatePosts;
   }
-  
   if (!posts) {
     return (
       <RegularText size='large' weight={500}>
@@ -99,7 +98,7 @@ const FeedRibbon : FC = () => {
     );
   }
 
-  function compare (a: TArticle, b: TArticle) : number {
+  function compare(a: TArticle, b: TArticle) : number {
     return Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
   }
 
