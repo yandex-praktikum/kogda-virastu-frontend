@@ -25,6 +25,7 @@ import Editor from '../pages/editor';
 import { Modal } from '../widgets';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
+import FeedRibbonSubscribe from '../widgets/feed-ribbon-subscribe';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path='/article' element={<FeedRibbonSubscribe />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Register />} />
           <Route path='/editArticle' element={<Editor />} />
