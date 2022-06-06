@@ -2,16 +2,20 @@ import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
+import { postTagFollow } from '../services/api';
+import { useDispatch, useSelector } from '../services/hooks';
+import getColorTag from '../services/helpers/get-color-tag';
 
 interface ITagProps extends ITagButtonProps {
   tag: string,
-  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
+  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => void,
   deactivateTag?: MouseEventHandler<SVGSVGElement>,
 }
 
 interface ITagButtonProps {
   isActive: boolean;
   pointer?: boolean;
+  isShowIcon?: boolean;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -25,7 +29,7 @@ const Button = styled.button<ITagButtonProps>`
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
     align-items: center;
-    color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
+    color: ${({ isActive, theme, isShowIcon }) => getColorTag(isActive, isShowIcon, theme.button.red.default, theme.button.blue.default, theme.secondaryText)};
     background-color: transparent;
 
     :active {
@@ -34,7 +38,8 @@ const Button = styled.button<ITagButtonProps>`
   `;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick = () => {}, isActive, deactivateTag, pointer,
+  tag, handleClick = () => {
+  }, isActive, deactivateTag, pointer, isShowIcon,
 }) => {
   const theme = useTheme();
 
@@ -42,13 +47,14 @@ const Tag: FC<ITagProps> = ({
     <Button
       isActive={isActive}
       pointer={pointer}
+      isShowIcon={isShowIcon}
       type='button'
       key={tag}
-      onClick={(e) => handleClick(e, tag)}>
+      onClick={(e) => handleClick(e, tag, isActive)}>
       #
       {tag}
       {' '}
-      {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
+      {isActive && isShowIcon && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
     </Button>
   );
 };
@@ -57,6 +63,7 @@ Tag.defaultProps = {
   handleClick: undefined,
   deactivateTag: undefined,
   pointer: false,
+  isShowIcon: true,
 };
 
 export default Tag;

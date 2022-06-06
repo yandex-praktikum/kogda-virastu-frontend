@@ -32,6 +32,9 @@ type TAPIState = {
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
   isAllPostsRequested: boolean,
+  isTagFollowing: boolean,
+  isTagFollowDeleting: boolean,
+  isTagsFollowFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -65,6 +68,9 @@ const initialState : TAPIState = {
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
   isAllPostsRequested: false,
+  isTagFollowing: false,
+  isTagFollowDeleting: false,
+  isTagsFollowFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -320,6 +326,33 @@ const apiSlice = createSlice({
       isSettingsUpdateSucceeded: false,
       errorObject: action.payload,
     }),
+    tagFollowRequested: (state) => ({
+      ...state, isTagFollowing: true,
+    }),
+    tagFollowSucceeded: (state) => ({
+      ...state, isTagFollowing: false,
+    }),
+    tagFollowFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagFollowing: false, errorObject: action.payload,
+    }),
+    tagFollowDeleteRequested: (state) => ({
+      ...state, isTagFollowDeleting: true,
+    }),
+    tagFollowDeleteSucceeded: (state) => ({
+      ...state, isTagFollowDeleting: false,
+    }),
+    tagFollowDeleteFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagFollowDeleting: false, errorObject: action.payload,
+    }),
+    tagsFollowFetchRequested: (state) => ({
+      ...state, isTagsFollowFetching: true,
+    }),
+    tagsFollowFetchSucceeded: (state) => ({
+      ...state, isTagsFollowFetching: false,
+    }),
+    tagsFollowFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagsFollowFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -402,5 +435,15 @@ export const {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  tagFollowRequested,
+  tagFollowSucceeded,
+  tagFollowFailed,
+  tagFollowDeleteRequested,
+  tagFollowDeleteSucceeded,
+  tagFollowDeleteFailed,
+  tagsFollowFetchRequested,
+  tagsFollowFetchSucceeded,
+  tagsFollowFetchFailed,
 } = apiSlice.actions;
+
 export default apiReducer;

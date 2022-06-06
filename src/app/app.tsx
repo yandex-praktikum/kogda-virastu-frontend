@@ -25,6 +25,7 @@ import Editor from '../pages/editor';
 import { Modal } from '../widgets';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
+import getTagsFollowThunk from '../thunks/get-tags-follow-thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const App = () => {
     batch(() => {
       dispatch(getAllPostsThunk());
       dispatch(getAllTagsThunk());
+      dispatch(getTagsFollowThunk());
     });
     if (jwt.test()) {
       batch(() => {

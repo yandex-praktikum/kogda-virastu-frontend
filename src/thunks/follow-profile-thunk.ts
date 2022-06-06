@@ -18,7 +18,9 @@ const followProfileThunk: AppThunk = () => async (dispatch, getState) => {
   dispatch(followProfilePostRequested());
   try {
     const { data } = await postFollowProfile(username) as AxiosResponse<TAPIProfile>;
+    console.log(data);
     batch(() => {
+      console.log(data);
       dispatch(setViewProfile(data.profile));
       dispatch(followProfilePostSucceeded());
     });
