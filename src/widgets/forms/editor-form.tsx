@@ -109,10 +109,8 @@ const EditorForm: FC = () => {
     evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  const onChangeBody : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
-    dispatch(setBody(evt.target.value));
-    // eslint-disable-next-line no-param-reassign
-    evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
+  const onChangeBody = (value: string) => {
+    dispatch(setBody(value));
   };
 
   const onChangeTags : ChangeEventHandler<HTMLInputElement> = (evt) => {
