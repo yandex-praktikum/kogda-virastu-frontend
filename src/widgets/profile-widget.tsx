@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import {
-  AvatarIcon, FollowButton, HeaderTwoText, UnfollowButton,
+  AvatarIcon, FollowButton, HeaderTwoText, RegularText, UnfollowButton,
 } from '../ui-lib';
 import { TAvatarSizes } from '../types/styles.types';
 import { useDispatch } from '../services/hooks';
@@ -14,6 +14,7 @@ type TProfileWidget = {
   userName: string | undefined,
   isFollow: boolean,
   userImage: string | undefined,
+  bio: string | undefined,
 
   isUser: boolean,
   size: TAvatarSizes,
@@ -66,6 +67,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
   userName,
   isFollow,
   userImage,
+  bio,
   isUser,
   size,
   distance,
@@ -75,6 +77,7 @@ const ProfileWidget: FC<TProfileWidget> = ({
     <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
     <HeaderTwoText>{userName}</HeaderTwoText>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
+    <RegularText size='large' weight={400} align='text-align: center'>{bio}</RegularText>
   </ProfileContainer>
 
 );
