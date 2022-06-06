@@ -40,7 +40,6 @@ const App = () => {
     });
   };
   const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
-
   useEffect(() => {
     batch(() => {
       dispatch(getAllPostsThunk());

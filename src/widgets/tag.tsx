@@ -26,7 +26,8 @@ const Button = styled.button<ITagButtonProps>`
     display: flex;
     align-items: center;
     color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
-    background-color: transparent;
+    // background-color: transparent;
+    background-color: rgb(211 233 235);
 
     :active {
       outline: none;
