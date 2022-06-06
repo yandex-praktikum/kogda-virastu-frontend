@@ -168,7 +168,9 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{article.body}</ArticleBody>
+      <ArticleBody>
+        <div dangerouslySetInnerHTML={{ __html: article.body }} />
+      </ArticleBody>
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );
