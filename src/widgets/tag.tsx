@@ -4,6 +4,7 @@ import { CrossIcon } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 import { postTagFollow } from '../services/api';
 import { useDispatch, useSelector } from '../services/hooks';
+import getColorTag from '../services/helpers/get-color-tag';
 
 interface ITagProps extends ITagButtonProps {
   tag: string,
@@ -28,7 +29,7 @@ const Button = styled.button<ITagButtonProps>`
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
     align-items: center;
-    color: ${({ isActive, theme }) => (isActive ? theme.button.red.default : theme.secondaryText)};
+    color: ${({ isActive, theme, isShowIcon }) => getColorTag(isActive, isShowIcon, theme.button.red.default, theme.button.blue.default, theme.secondaryText)};
     background-color: transparent;
 
     :active {
