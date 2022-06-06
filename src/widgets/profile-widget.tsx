@@ -76,8 +76,8 @@ const ProfileWidget: FC<TProfileWidget> = ({
   <ProfileContainer>
     <AvatarIcon name={userName ?? ''} image={userImage} size={size} distance={distance} color={color} />
     <HeaderTwoText>{userName}</HeaderTwoText>
+    <RegularText size='large' weight={400} align='center'>{bio}</RegularText>
     <ProfileWidgetButton isUser={isUser} isFollow={isFollow} />
-    <RegularText size='large' weight={400} align='text-align: center'>{bio}</RegularText>
   </ProfileContainer>
 
 );
