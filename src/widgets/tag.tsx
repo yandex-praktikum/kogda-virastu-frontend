@@ -10,7 +10,7 @@ interface ITagProps extends ITagButtonProps {
 }
 interface ITagSetFormProps {
   tag: string,
-  deactivateTag: MouseEventHandler<SVGSVGElement>,
+  deleteTag: MouseEventHandler<SVGSVGElement>,
 }
 interface ITagButtonProps {
   isActive: boolean;
@@ -61,7 +61,7 @@ const Tag: FC<ITagProps> = ({
   );
 };
 export const TagSetForm: FC<ITagSetFormProps> = ({
-  tag, deactivateTag,
+  tag, deleteTag,
 }) => {
   const theme = useTheme();
   return (
@@ -73,7 +73,7 @@ export const TagSetForm: FC<ITagSetFormProps> = ({
       #
       {tag}
       {' '}
-      <CrossIcon color={theme.secondaryText} onClick={deactivateTag} />
+      <CrossIcon color={theme.secondaryText} onClick={deleteTag} />
     </Button>
   );
 };

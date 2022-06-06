@@ -3,11 +3,11 @@ import React, {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
-// import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { TagSetForm } from '../tag';
 import { LabelStyle } from '../../ui-lib/inputs/text-fields-styles';
+import unsubscribeTagThunk from '../../thunks/unsubscribe-tag-thunk';
 
 import {
   setUsernameProfile,
@@ -18,6 +18,7 @@ import {
   setFormProfile,
   setPasswordProfile,
   setSelectedTags,
+  setSubscribeTags,
 } from '../../store';
 
 import { patchCurrentUserThunk } from '../../thunks';
@@ -90,11 +91,6 @@ const SettingsForm: FC = () => {
       dispatch(setSelectedTags([tag]));
     }
   };
-  const deactivateTag = (e: React.MouseEvent, tag: string) => {
-    e.stopPropagation();
-    dispatch(setSelectedTags(selectedTags!.filter((el) => el !== tag)));
-  };
-
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
   useEffect(() => {
@@ -130,6 +126,10 @@ const SettingsForm: FC = () => {
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
+  const deleteTag = (e: React.MouseEvent, tag: string) => {
+    dispatch(unsubscribeTagThunk(tag));
+    dispatch(setSubscribeTags(tagsFollow!.filter((el) => el !== tag)));
+  };
   if (tagsFollow) {
     return (
       <FormContainer>
@@ -156,7 +156,7 @@ const SettingsForm: FC = () => {
                   <TagSetForm
                     key={tag}
                     tag={tag}
-                    deactivateTag={(e) => deactivateTag(e, tag)} />
+                    deleteTag={(e) => deleteTag(e, tag)} />
                 ))
               }
             </TagListForm>
