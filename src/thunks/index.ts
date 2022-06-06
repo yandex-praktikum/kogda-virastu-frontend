@@ -22,7 +22,7 @@ import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
 import followTagThunk from './follow-tag-thunk';
 import unfollowTagThunk from './unfollow-tag-thunk';
-import getFollowTagsThunk from './unfollow-tag-thunk';
+import getFollowTagsThunk from './get-follow-tags-thunk';
 
 export {
   createCommentThunk,
@@ -49,5 +49,5 @@ export {
   getAllPostsThunk,
   followTagThunk,
   unfollowTagThunk,
-  getFollowTagsThunk
+  getFollowTagsThunk,
 };

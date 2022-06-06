@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
-import {followTagThunk, unfollowTagThunk} from '../thunks';
+import { followTagThunk, unfollowTagThunk } from '../thunks';
 import { setFollowTags } from '../store';
 
 import Tag from './tag';
@@ -48,16 +48,13 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
   const dispatch = useDispatch();
   const handleClick = (evt:React.MouseEvent, tag: string) => {
     evt.preventDefault();
-    if (followTags && isLoggedIn) {
-      console.log(followTags)
-      if (followTags.includes(tag)) {
-        dispatch(unfollowTagThunk(tag));
-        dispatch(setFollowTags(followTags!.filter((el) => el !== tag)));
-      } else {
-        dispatch(followTagThunk(tag));
-        dispatch(setFollowTags([...followTags, tag]));
-      }
-    } else if (isLoggedIn){
+    if (followTags && isLoggedIn && followTags.includes(tag)) {
+      dispatch(unfollowTagThunk(tag));
+      dispatch(setFollowTags(followTags.filter((el) => el !== tag)));
+    } else if (followTags && isLoggedIn) {
+      dispatch(followTagThunk(tag));
+      dispatch(setFollowTags([...followTags, tag]));
+    } else {
       dispatch(followTagThunk(tag));
       dispatch(setFollowTags([tag]));
     }
@@ -67,7 +64,11 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List key={nanoid(10)}>
-          <Tag tag={tag} pointer handleClick={handleClick} isActive={followTags?.includes(tag) || false} />
+          <Tag
+            tag={tag}
+            pointer
+            handleClick={handleClick}
+            isFollowing={followTags?.includes(tag) || false} />
         </List>
       ))}
     </Lists>

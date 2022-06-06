@@ -9,7 +9,6 @@ import {
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-
 const followTagThunk: AppThunk = (tag: string) => async (dispatch) => {
   dispatch(followTagRequested());
   try {

@@ -4,7 +4,7 @@ import {
   followProfilePostRequested,
   followProfilePostSucceeded,
   followProfilePostFailed,
-  setViewProfile
+  setViewProfile,
 } from '../store';
 import { postFollowProfile } from '../services/api';
 import { AppThunk } from '../store/store.types';
