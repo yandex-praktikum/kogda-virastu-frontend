@@ -11,27 +11,12 @@ import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
-    width: 359px;
+    //width: 359px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 32px;
-
-    @media screen and (max-width: 1300px) {
-        width: 297px;
-    }
-
-    @media screen and (max-width: 1023px) {
-        width: 227px;
-    }
-
-    @media screen and (max-width: 765px) {
-        width: 359px;
-    }
-
-    @media screen and (max-width:720px) {
-      width: 280px;
-    };
 `;
 
 const ArticleName = styled.h2`
@@ -88,7 +73,10 @@ const ContentContainer = styled.div<TElementWithImage>`
 `;
 
 const ArticleImage = styled.img`
-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
 
 const Article = styled.article<TElementWithImage>`
@@ -140,6 +128,20 @@ type TArticleFullPreview = {
   onLikeClick: MouseEventHandler,
 };
 
+const ImageContainer = styled.div`
+  width: 100%;
+  max-height: 205px;
+  height: 20vw;
+
+  @media screen and (max-width: 765px) {
+    height: 170px;
+  }
+
+  @media screen and (max-width: 720px) {
+    height: 150px;
+  }
+`
+
 const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => {
   const articleBody = DOMPurify.sanitize(article?.body || '');
 
@@ -155,19 +157,18 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
         onLikeClick={onLikeClick} />
       <ContentContainer image={article.link}>
         <ArticleName>{article.title}</ArticleName>
-        {article.link && <ArticleImage src={article.link} />}
+        {article.link && <ImageContainer><ArticleImage src={article.link} /></ImageContainer>}
         <Article image={article.link} dangerouslySetInnerHTML={{ __html: articleBody }} />
+        <BarTagsWrapper image={article.link}>
+          <PreviewTags
+            isHasImage={!!article.link}
+            rowReverse
+            tagList={article.tagList} />
+        </BarTagsWrapper>
         <Link className='link' to={`/article/${article.slug}`}>
           <FormattedMessage id='articleEnter' />
         </Link>
-        <BarTagsWrapper image={article.link}>
-        <PreviewTags
-          isHasImage={!!article.link}
-          rowReverse
-          tagList={article.tagList} />
-        </BarTagsWrapper>
       </ContentContainer>
-      <Divider distance={0} />
     </ArticleCardContainer>
   );
 };

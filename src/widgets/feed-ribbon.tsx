@@ -8,22 +8,6 @@ import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { dividerGray } from '../constants/colors';
 
-// const RibbonWrapper = styled.ul`
-// width: 100%;
-//   height: 100%;
-//   display: flex;
-//   flex-flow: column nowrap;
-//   justify-content: flex-start;
-//   align-items: center;
-//   list-style: none outside;
-//   margin: 0;
-//   padding: 0;
-//   margin-block-start: 0;
-//   margin-block-end: 0;
-//   padding-inline-start: 0;
-//   padding-inline-end: 0;
-//   gap: 32px;
-// `;
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -48,6 +32,7 @@ const RibbonWrapper = styled.ul`
 `;
 
 const ItemWrapper = styled.li`
+  overflow: hidden;
   max-width: 359px;
   display: flex;
   flex-direction: column;
@@ -108,7 +93,7 @@ const FeedRibbon : FC = () => {
               <ArticleFullPreview
                 article={post}
                 onLikeClick={onClick} />
-              {window.innerWidth > 765 && <Divider width={110} distance={0} />}
+              {window.innerWidth > 765 && <Divider width={111} distance={0} />}
             </ItemWrapper>
           );
         })}
@@ -118,6 +103,4 @@ const FeedRibbon : FC = () => {
 };
 
 export default FeedRibbon;
-// грид поста;
-// ! из-за него всё летит;
-// 2 поста;
+
