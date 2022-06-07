@@ -60,7 +60,7 @@ export const MainContainer = styled.div`
 `;
 export const LeftColumn = styled.div`
   overflow: hidden;
-  min-width: 453px;
+  min-width: 474px;
 `;
 
 export const RightColumn = styled.aside`
@@ -69,12 +69,7 @@ export const RightColumn = styled.aside`
   align-self: flex-start;
   flex-direction: column;
   max-width: 360px;
-  @media screen and (max-width: 1600px) {
-    width: calc(
-      359px - ${desktopToTabletAsideWidthStep} *
-        (${desktopBreakpoint}px - 100vw)
-    );
-  }
+
   @media screen and (max-width: 768px) {
     align-items: center;
     justify-content: center;

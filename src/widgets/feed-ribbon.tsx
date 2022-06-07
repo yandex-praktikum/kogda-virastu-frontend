@@ -31,16 +31,15 @@ const RibbonWrapper = styled.ul`
     padding-left: 5%;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 769px) {
     column-gap: 20px;
     row-gap: 32px;
-    max-width: 473px;
+    max-width: 474px;
     padding: 0;
   }
 
   @media screen and (max-width: 765px) {
     flex-flow: column nowrap;
-    padding: 0;
   }
 `;
 
@@ -56,7 +55,7 @@ const ItemWrapper = styled.li`
   padding-inline-end: 0;
 
   @media screen and (max-width: 800px) {
-    max-width: calc(50% - 20px);
+    max-width: calc(50% - 10px);
   }
 
   @media screen and (max-width: 765px) {
@@ -89,7 +88,7 @@ const Links = styled.div`
     padding-left: 5%;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 769px) {
     padding: 0;
   }
 `;
