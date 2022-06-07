@@ -11,9 +11,9 @@ interface ITagProps extends ITagButtonProps {
 
 interface ITagButtonProps {
   isActive?: boolean;
-  pointer?: boolean;
   isFollowing?: boolean;
   isTagInSetting?: boolean;
+  pointer?: boolean;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -26,9 +26,9 @@ const Button = styled.button<ITagButtonProps>`
     line-height: ${({ theme }) => theme.text18Sans.height}px;
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
-    align-items: center;
-    color: ${({ isActive, isFollowing, theme }) => (isActive ? theme.button.blue.default : isFollowing ? theme.button.red.default : theme.secondaryText)};
+    align-items: center;    
     background-color: transparent;
+    color: ${({ theme, isActive, isFollowing }) => getPropOnCondition(!isActive, theme.button.blue.default, getPropOnCondition(!isFollowing, theme.button.red.default, theme.secondaryText))};
 
     :active {
       outline: none;

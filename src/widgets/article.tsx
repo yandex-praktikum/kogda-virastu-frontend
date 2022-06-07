@@ -2,13 +2,13 @@ import React, { FC, MouseEventHandler } from 'react';
 import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import parse from 'html-react-parser';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk, deleteLikeThunk,
+  followTagThunk, unfollowTagThunk,
 } from '../thunks';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
-import { openConfirm } from '../store';
+import { openConfirm, setFollowTags } from '../store';
 import BarTags from './bar-tags';
 import Likes from './likes';
 
@@ -90,7 +90,7 @@ const ArticleImage = styled.img`
   height: 100%;
 `;
 
-const ArticleBody = styled.div`
+const ArticleBody = styled.p`
   font-family: ${({ theme: { text18: { family } } }) => family};
   font-size: ${({ theme: { text18: { size } } }) => size}px ;
   line-height: ${({ theme: { text18: { height } } }) => height}px;
@@ -140,6 +140,22 @@ const Article: FC<TArticleProps> = ({ slug }) => {
     }
   };
 
+  const { isLoggedIn } = useSelector((state) => state.system);
+  const { followTags } = useSelector((state) => state.view);
+  const handleClickFollow = (evt:React.MouseEvent, tag: string) => {
+    evt.preventDefault();
+    if (followTags && isLoggedIn && followTags.includes(tag)) {
+      dispatch(unfollowTagThunk(tag));
+      dispatch(setFollowTags(followTags.filter((el) => el !== tag)));
+    } else if (followTags && isLoggedIn) {
+      dispatch(followTagThunk(tag));
+      dispatch(setFollowTags([...followTags, tag]));
+    } else {
+      dispatch(followTagThunk(tag));
+      dispatch(setFollowTags([tag]));
+    }
+  };
+
   if (!article) {
     return null;
   }
@@ -169,8 +185,8 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{parse(article.body)}</ArticleBody>
-      <BarTags tagList={article.tagList} />
+      <ArticleBody>{article.body}</ArticleBody>
+      <BarTags tagList={article.tagList} handleClick={handleClickFollow} />
     </ArticleContainer>
   );
 };

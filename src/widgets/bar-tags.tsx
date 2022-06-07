@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
-import { useSelector, useDispatch } from '../services/hooks';
-import { followTagThunk, unfollowTagThunk } from '../thunks';
+import { useSelector } from '../services/hooks';
 
 import Tag from './tag';
 
 type TBarTags = {
   tagList: string[],
+  handleClick?: (ev:React.MouseEvent, tag: string) => void,
 };
 
 type TLists = {
   isHasImage?: boolean,
-  rowReverse?: boolean;
+  rowReverse?: boolean,
 };
 
 const Lists = styled.ul<TLists>`
@@ -41,18 +41,13 @@ const List = styled.li`
     list-style-type: none;
 `;
 
-const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
-  const { followTags } = useSelector((state) => state.view);
-  const { isLoggedIn } = useSelector((state) => state.system);
-  const dispatch = useDispatch();
-  const handleClick = (evt:React.MouseEvent, tag: string) => {
-    evt.preventDefault();
-    if (followTags && isLoggedIn && followTags.includes(tag)) {
-      dispatch(unfollowTagThunk(tag));
-    } else if (isLoggedIn) {
-      dispatch(followTagThunk(tag));
-    }
-  };
+const BarTags: FC<TBarTags & TLists> = ({
+  tagList,
+  handleClick = () => {},
+  isHasImage = false,
+  rowReverse = false,
+}) => {
+  const { selectedTags, followTags } = useSelector((state) => state.view);
 
   return (
     <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
@@ -60,9 +55,9 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
         <List key={nanoid(10)}>
           <Tag
             tag={tag}
-            pointer
-            handleClick={handleClick}
-            isFollowing={followTags?.includes(tag) || false} />
+            isActive={!!selectedTags?.includes(tag)}
+            isFollowing={!!followTags?.includes(tag)}
+            handleClick={handleClick} />
         </List>
       ))}
     </Lists>
@@ -72,6 +67,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
 BarTags.defaultProps = {
   isHasImage: false,
   rowReverse: false,
+  handleClick: undefined,
 };
 
 export default BarTags;
