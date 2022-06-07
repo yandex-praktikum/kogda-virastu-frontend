@@ -8,7 +8,6 @@ import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { dividerGray } from '../constants/colors';
 
-
 const RibbonWrapper = styled.ul`
   width: 100%;
   height: 100%;
@@ -103,4 +102,3 @@ const FeedRibbon : FC = () => {
 };
 
 export default FeedRibbon;
-
