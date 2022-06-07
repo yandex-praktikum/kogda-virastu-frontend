@@ -7,6 +7,7 @@ type TUserState = {
   bio?: string | null,
   image?: string | null,
   nickname?: string | null,
+  tags: Array<string> | null,
 };
 
 const initialState: TUserState = {
@@ -15,6 +16,7 @@ const initialState: TUserState = {
   bio: null,
   image: null,
   nickname: null,
+  tags: null,
 };
 
 const userSlice = createSlice({
