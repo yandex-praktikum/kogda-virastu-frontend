@@ -1,12 +1,14 @@
-import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
+import React, {
+  FC, MouseEventHandler, useEffect, useState,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
 import { Divider, RegularText } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
-import { NavLink } from 'react-router-dom';
 import { TArticle } from '../services/types';
 
 const RibbonWrapper = styled.ul`
@@ -122,28 +124,33 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const renderArticle = (arr: Array<TArticle>) => {
-    return arr.map((post, i) => {
-      const onClick: MouseEventHandler = () => {
-        if (post.favorited) {
-          dispatch(deleteLikeThunk(post.slug));
-        } else {
-          dispatch(addLikeThunk(post.slug));
-        }
-      };
+  const allPosts = posts.filter(
+    (post) => post.tagList.some((tag) => tags.includes(tag) || !tags || tags.length < 1),
+  );
 
-      return (
-        <React.Fragment key={post.slug}>
-          <ItemWrapper>
-            <ArticleFullPreview article={post} onLikeClick={onClick} />
-          </ItemWrapper>
-          {i % 2 && i !== posts.length - 1 && mobileScreen ? (
-            <Divider distance={0} />
-          ) : null}
-        </React.Fragment>
-      );
-    });
-  };
+  const authorPosts = posts.filter((post) => post.author.following);
+
+  const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
+    const onClick: MouseEventHandler = () => {
+      if (post.favorited) {
+        dispatch(deleteLikeThunk(post.slug));
+      } else {
+        dispatch(addLikeThunk(post.slug));
+      }
+    };
+
+    return (
+      <React.Fragment key={post.slug}>
+        <ItemWrapper>
+          <ArticleFullPreview article={post} onLikeClick={onClick} />
+        </ItemWrapper>
+        {i % 2 && i !== arr.length - 1 && mobileScreen ? (
+          <Divider distance={0} />
+        ) : null}
+      </React.Fragment>
+    );
+  });
+
   return (
     <>
       <Links>
@@ -156,16 +163,8 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
       </Links>
       <ScrollRibbon>
         <RibbonWrapper>
-          {type === 'all' &&
-            renderArticle(
-              posts.filter((post) =>
-                post.tagList.some(
-                  (tag) => tags.includes(tag) || !tags || tags.length < 1
-                )
-              )
-            )}
-          {type === 'subscribe' &&
-            renderArticle(posts.filter((post) => post.author.following))}
+          {type === 'all' && renderArticle(allPosts)}
+          {type === 'subscribe' && renderArticle(authorPosts)}
         </RibbonWrapper>
       </ScrollRibbon>
     </>
