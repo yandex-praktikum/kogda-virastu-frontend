@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { batch } from 'react-redux';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
-
 import { ProfileWidget, FeedRibbon } from '../widgets';
 import {
   getPublicFeedThunk,
@@ -36,6 +36,15 @@ const Profile: FC = () => {
   const { isProfileNotFound } = useSelector((state) => state.api);
   const totalCount = useSelector((state) => state.all.articlesCount);
   const { username } = useParams<{ username: string }>();
+
+  const FeedConteiner = styled.div`
+  margin: 0 auto;
+
+
+   /*  @media screen and (max-width:320px) {
+        width:280px;
+    } */
+`;
 
   useEffect(() => {
     batch(() => {
@@ -75,8 +84,9 @@ const Profile: FC = () => {
         distance={0}
         color=''
         bio={profile.bio} />
-      <FeedRibbon />
-
+      <FeedConteiner>
+        <FeedRibbon />
+      </FeedConteiner>
     </ProfilePageLayout>
 
   );

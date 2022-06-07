@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { blue } from '../constants/colors';
+import { useDispatch, useSelector } from '../services/hooks';
+import { getPrivateFeedThunk, getPublicFeedThunk } from '../thunks';
+import { FeedTypes } from '../types/types';
 
 const FilterConteiner = styled.div`
   width: 100%;
@@ -34,11 +37,34 @@ cursor: pointer;
 border-bottom: 2px solid ${blue};
 `;
 
-const FeedFilter: React.FC = () => (
-  <FilterConteiner>
-    <FilterButtonActive type='button'>Все посты</FilterButtonActive>
-    <FilterButton type='button'>Мои подписки</FilterButton>
-  </FilterConteiner>
-);
+const FeedFilter: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const type = useSelector((state) => state.view.feedType);
+
+  const getPrivateFeed = () => {
+    dispatch(getPrivateFeedThunk());
+  };
+
+  const getPublicFeed = () => {
+    dispatch(getPublicFeedThunk());
+  };
+
+  return (
+    <FilterConteiner>
+      {type === FeedTypes.public ? (
+        <>
+          <FilterButtonActive type='button' onClick={getPublicFeed}>Все посты</FilterButtonActive>
+          <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
+        </>
+      ) : (
+        <>
+          <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
+          <FilterButtonActive type='button' onClick={getPrivateFeed}>Мои подписки</FilterButtonActive>
+        </>
+      )}
+    </FilterConteiner>
+  );
+};
 
 export default FeedFilter;
