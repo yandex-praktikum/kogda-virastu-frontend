@@ -48,6 +48,7 @@ import {
   FieldTags,
   FieldNick,
   FieldProfileImage,
+  FieldRegistrationCode,
 }
   from './inputs/input-fields';
 import {
@@ -125,4 +126,5 @@ export {
   MenuSettingsButton,
   MenuLogoutButton,
   FieldTextComment,
+  FieldRegistrationCode,
 };

@@ -43,6 +43,8 @@ const en: TVocabulary = {
   goPageOnPage: 'To read the blog, go to ',
   npPageLink: 'Main',
   nickname: 'Display name',
+  registerCode: 'Enter registration code',
+
 };
 
 export default en;

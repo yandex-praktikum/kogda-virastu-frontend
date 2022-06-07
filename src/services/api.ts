@@ -137,11 +137,12 @@ export const registerUser : IRegisterUser = (
   username: string,
   email: string,
   password: string,
-  nickname,
+  nickname: string | undefined,
+  invite: string | undefined,
 ) : AxiosPromise<TAPIAuth> => {
   const registerData : TAPINewUser = {
     user: {
-      username, email, password, nickname,
+      username, email, password, nickname, invite,
     },
   };
   const requestConfig : AxiosRequestConfig = {

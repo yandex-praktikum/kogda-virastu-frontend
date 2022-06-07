@@ -19,6 +19,7 @@ import {
   changeEmailRegister,
   changePasswordRegister,
   changeNicknameRegister,
+  changeInviteRegister,
   resetFormRegister,
 } from './registerFormSubSlice';
 
@@ -334,4 +335,5 @@ export {
   tagsFollowFetchRequested,
   tagsFollowFetchSucceeded,
   tagsFollowFetchFailed,
+  changeInviteRegister,
 };
