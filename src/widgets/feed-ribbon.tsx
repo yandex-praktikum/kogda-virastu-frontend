@@ -34,6 +34,8 @@ const RibbonWrapper = styled.ul`
   @media screen and (max-width: 800px) {
     column-gap: 20px;
     row-gap: 32px;
+    max-width: 473px;
+    padding: 0;
   }
 
   @media screen and (max-width: 765px) {
@@ -80,7 +82,16 @@ const notActiveStyle = {
   color: '#62626A',
 };
 const Links = styled.div`
-  display: flex;
+    display: flex;
+    padding: 0;
+
+  @media screen and (max-width: 1100px) {
+    padding-left: 5%;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 0;
+  }
 `;
 
 type TFeedRibbon = {

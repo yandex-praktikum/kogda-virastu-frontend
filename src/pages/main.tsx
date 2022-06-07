@@ -1,7 +1,6 @@
 import React, { useEffect, FC } from 'react';
 import { batch } from 'react-redux';
 import styled from 'styled-components';
-import { NavLink, Route, Routes } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/popular-tags';
@@ -31,8 +30,7 @@ export const MainSection = styled.main`
 export const MainContainer = styled.div`
   display: flex;
   margin: 56px 0 0 0;
-  gap: 0
-    calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
+  column-gap: 32px;
   justify-content: center;
   align-items: flex-start;
   max-width: 1140px;
@@ -41,8 +39,7 @@ export const MainContainer = styled.div`
 
   @media screen and (max-width: ${tabletBreakpoint}px) {
     padding: 0 24px;
-    gap: 0
-      calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw));
+    column-gap: 20px;
     width: calc(
       720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw)
     );
@@ -103,18 +100,11 @@ const Main: FC = () => {
     }
   }, [dispatch, articles]);
 
-  // const activeLink = ({ isActive }: { isActive: boolean }) => {
-  //   if (isActive) {
-  //     return activeStyle;
-  //   }
-  //   return notActiveStyle;
-  // };
-
   return (
     <MainSection>
       <MainContainer>
         <LeftColumn>
-            <FeedRibbon type='all' />      
+          <FeedRibbon type='all' />
         </LeftColumn>
         <RightColumn>
           <PopularTags />
