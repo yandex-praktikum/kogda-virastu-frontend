@@ -36,7 +36,7 @@ module.exports = {
   },
   ignorePatterns: ['*.cjs', 'src/reportWebVitals.js', 'src/reportWebVitals.ts'],
   rules: {
-    "linebreak-style": ["error", "windows"], // убрать 
+    // "linebreak-style": ["error", "windows"], // убрать 
     'no-underscore-dangle': ['error', {
       allow: ['_id', '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'],
       enforceInMethodNames: true,
