@@ -146,13 +146,8 @@ const Article: FC<TArticleProps> = ({ slug }) => {
     evt.preventDefault();
     if (followTags && isLoggedIn && followTags.includes(tag)) {
       dispatch(unfollowTagThunk(tag));
-      dispatch(setFollowTags(followTags.filter((el) => el !== tag)));
-    } else if (followTags && isLoggedIn) {
+    } else if (isLoggedIn) {
       dispatch(followTagThunk(tag));
-      dispatch(setFollowTags([...followTags, tag]));
-    } else {
-      dispatch(followTagThunk(tag));
-      dispatch(setFollowTags([tag]));
     }
   };
 
