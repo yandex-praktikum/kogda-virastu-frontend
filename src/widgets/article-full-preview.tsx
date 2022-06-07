@@ -130,7 +130,9 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
     <ContentContainer image={article.link}>
       <ArticleName>{article.title}</ArticleName>
       {article.link && <ArticleImage src={article.link} />}
-      <Article image={article.link}>{article.body}</Article>
+      <Article image={article.link}>
+        <div dangerouslySetInnerHTML={{ __html: article.body }} />
+      </Article>
       <BarTagsWrapper image={article.link}>
         <BarTags
           isHasImage={!!article.link}
