@@ -8,7 +8,8 @@ import {
   TAPIProfile,
   TAPITags,
   TAPIUser,
-  TAPITag
+  TAPITag,
+  TAPIInvite,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -84,6 +85,10 @@ export interface ITag {
   (tag: string) : AxiosPromise<TAPITag>
 }
 
+export interface IInvite {
+  (): AxiosPromise<TAPIInvite>
+}
+
 export type {
   TAPIArticle,
   TAPIArticles,
@@ -92,5 +97,6 @@ export type {
   TAPIProfile,
   TAPITags,
   TAPIUser,
-  TAPITag
+  TAPITag,
+  TAPIInvite,
 };

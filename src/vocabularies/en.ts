@@ -44,6 +44,7 @@ const en: TVocabulary = {
   npPageLink: 'Main',
   nickname: 'Display name',
   registerCode: 'Enter registration code',
+  generateСode: 'Generate code',
 
 };
 

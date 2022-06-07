@@ -1,5 +1,5 @@
 import {
-  TArticle, TComment, TProfile, TTags, TUser, TTag
+  TArticle, TComment, TProfile, TTags, TUser, TTag, TInvite
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -10,6 +10,7 @@ export type TAPINewUser = {
     nickname?: string;
     invite?: string;
   }
+  invite: string | undefined
 };
 
 export type TAPIAuth = {
@@ -100,3 +101,7 @@ export type TAPIError = {
 export type TAPITag = {
   tag: TTag;
 };
+
+export type TAPIInvite = {
+  code: TInvite
+}

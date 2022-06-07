@@ -44,6 +44,7 @@ const ru: TVocabulary = {
   npPageLink: 'Главную',
   nickname: 'Отображаемое имя',
   registerCode: 'Введите код  регистрации',
+  generateСode: 'Сгенерировать код',
 };
 
 export default ru;

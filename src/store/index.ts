@@ -46,7 +46,7 @@ import {
   setAllVocabularies,
 } from './allSlice';
 
-import { setUser, clearUser } from './userSlice';
+import { setUser, clearUser, setInviteCode } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
@@ -166,6 +166,9 @@ import {
   tagsFollowFetchRequested,
   tagsFollowFetchSucceeded,
   tagsFollowFetchFailed,
+  inviteGetRequested,
+  inviteGetSucceeded,
+  inviteGetFailed,
 } from './apiSlice';
 
 import {
@@ -336,4 +339,8 @@ export {
   tagsFollowFetchSucceeded,
   tagsFollowFetchFailed,
   changeInviteRegister,
+  setInviteCode,
+  inviteGetRequested,
+  inviteGetSucceeded,
+  inviteGetFailed,
 };

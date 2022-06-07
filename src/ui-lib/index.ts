@@ -36,6 +36,7 @@ import {
   MenuNewPostButton,
   MenuSettingsButton,
   MenuLogoutButton,
+  GenerateCodeButton,
 } from './buttons';
 
 import {
@@ -127,4 +128,5 @@ export {
   MenuLogoutButton,
   FieldTextComment,
   FieldRegistrationCode,
+  GenerateCodeButton,
 };
