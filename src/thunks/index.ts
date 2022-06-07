@@ -20,6 +20,7 @@ import postArticleThunk from './post-article-thunk';
 import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
+import getInviteThunk from './get-invite-thunk';
 
 export {
   createCommentThunk,
@@ -44,4 +45,5 @@ export {
   setTopLikedThunk,
   setNewPostsThunk,
   getAllPostsThunk,
+  getInviteThunk,
 };

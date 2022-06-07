@@ -282,6 +282,12 @@ export const PublishCommentButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disab
   </BasicNormalButton>
 );
 
+export const GenerateCodeButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <FormattedMessage id='generateСode' />
+  </BasicNormalButton>
+);
+
 export const MenuSettingsButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (

@@ -7,5 +7,6 @@ export const ARTICLES_ROUTE = '/articles';
 export const FEED_ROUTE = `${ARTICLES_ROUTE}/feed`;
 export const TAGS_ROUTE = '/tags';
 export const PROFILES_ROUTE = '/profiles';
+export const INVITE_ROUTE = '/user/invites/new';
 
 export const JWT = 'JWT-RT-BLG';
