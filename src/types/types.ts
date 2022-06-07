@@ -61,3 +61,5 @@ export enum UserArticlesTypes {
   favorite = 'favorite',
 
 }
+
+export type TTag = string;
