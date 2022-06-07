@@ -2,9 +2,12 @@ import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
+import { TagSetForm } from '../tag';
+import { LabelStyle } from '../../ui-lib/inputs/text-fields-styles';
+import unsubscribeTagThunk from '../../thunks/unsubscribe-tag-thunk';
 
 import {
   setUsernameProfile,
@@ -14,6 +17,8 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  setSelectedTags,
+  setSubscribeTags,
 } from '../../store';
 
 import { patchCurrentUserThunk } from '../../thunks';
@@ -36,19 +41,37 @@ import {
   FieldAboutUser,
 } from '../../ui-lib';
 
+const TagListForm = styled.div`
+  max-width: 360px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+`;
+const ContainerTags = styled.div`
+     width: 100%;
+     margin: 0;
+     padding: 0;
+    position: relative;
+     display: flex;
+  flex-flow: column nowrap;
+  // justify-content: space-between;
+  // align-items: center;
+     @media screen and (max-width:768px) {
+        font-size: 16px;
+     }
+ `;
+
 const SettingsForm: FC = () => {
   const {
     bio, email, image, username, password, nickname,
   } = useSelector((state) => state.forms.profile);
 
-  const profile = useSelector((state) => state.profile);
-
-  const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
-
   const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
-
+  const profile = useSelector((state) => state.profile);
   useEffect(() => {
     dispatch(setFormProfile({
       username: profile.username || '',
@@ -58,6 +81,18 @@ const SettingsForm: FC = () => {
       image: profile.image || '',
     }));
   }, [dispatch, profile]);
+
+  const { tagsFollow } = useSelector((state) => state.view);
+  const { selectedTags } = useSelector((state) => state.view);
+  const handleClick = (ev:React.MouseEvent, tag: string) => {
+    ev.preventDefault();
+    if (selectedTags) {
+      dispatch(setSelectedTags([...selectedTags, tag]));
+    } else {
+      dispatch(setSelectedTags([tag]));
+    }
+  };
+  const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
   useEffect(() => {
     if (isSettingsUpdateSucceeded) {
@@ -92,31 +127,54 @@ const SettingsForm: FC = () => {
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
-
+  const deleteTag = (e: React.MouseEvent, tag: string) => {
+    dispatch(unsubscribeTagThunk(tag));
+    dispatch(setSubscribeTags(tagsFollow!.filter((el) => el !== tag)));
+  };
+  if (tagsFollow) {
+    return (
+      <FormContainer>
+        <FormTitle>
+          <FormattedMessage id='usersettings' />
+        </FormTitle>
+        <Form onSubmit={submitForm}>
+          <InputFieldset rowGap={16}>
+            <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+            <FieldLogin value={username ?? ''} onChange={changeUsername} />
+            <FieldNick value={nickname ?? ''} onChange={changeNickname} />
+            <FieldAboutUser
+              onChange={changeBioProfile}
+              value={bio ?? ''}
+              minHeight={theme.text18.height * 5} />
+            <FieldEmail value={email ?? ''} onChange={changeEmail} />
+            <FieldPassword value={password ?? ''} onChange={changePassword} />
+          </InputFieldset>
+          <ContainerTags>
+            <LabelStyle>
+              <FormattedMessage id='tagsInForm' />
+            </LabelStyle>
+            <TagListForm>
+              {
+                tagsFollow.length > 0 ? tagsFollow.map((tag) => (
+                  <TagSetForm
+                    key={tag}
+                    tag={tag}
+                    deleteTag={(e) => deleteTag(e, tag)} />
+                )) : <FormattedMessage id='messageAboutMissingTags' />
+              }
+            </TagListForm>
+          </ContainerTags>
+          <ButtonContainer>
+            <UpdateProfileButton disabled={isSettingsPatching} />
+          </ButtonContainer>
+        </Form>
+      </FormContainer>
+    );
+  }
   return (
-    <FormContainer>
-      <FormTitle>
-        <FormattedMessage id='usersettings' />
-      </FormTitle>
-      <Form onSubmit={submitForm}>
-        <InputFieldset rowGap={16}>
-          <FieldProfileImage value={image ?? ''} onChange={changeImage} />
-          <FieldLogin value={username ?? ''} onChange={changeUsername} />
-          <FieldNick value={nickname ?? ''} onChange={changeNickname} />
-          <FieldAboutUser
-            onChange={changeBioProfile}
-            value={bio ?? ''}
-            minHeight={theme.text18.height * 5} />
-          <FieldEmail value={email ?? ''} onChange={changeEmail} />
-          <FieldPassword value={password ?? ''} onChange={changePassword} />
-        </InputFieldset>
-        <ButtonContainer>
-          <UpdateProfileButton disabled={isSettingsPatching} />
-        </ButtonContainer>
-      </Form>
-    </FormContainer>
-
+    <div>Loading Tags...</div>
   );
 };
 
 export default SettingsForm;
+// labelText={intl.messages.userName as string

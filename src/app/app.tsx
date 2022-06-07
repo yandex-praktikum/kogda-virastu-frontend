@@ -4,9 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
-
 import { jwt } from '../services/api';
-
 import {
   deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
 } from '../thunks';
@@ -23,9 +21,9 @@ import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
-
 import { IGenericVoidHandler } from '../types/widgets.types';
 import FeedRibbonSubscribe from '../widgets/feed-ribbon-subscribe';
+import getSubscribeTagsThunk from '../thunks/get-subscribe-tags-thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,11 +39,11 @@ const App = () => {
     });
   };
   const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
-
   useEffect(() => {
     batch(() => {
       dispatch(getAllPostsThunk());
       dispatch(getAllTagsThunk());
+      dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {
       batch(() => {

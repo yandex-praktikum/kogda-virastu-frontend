@@ -18,12 +18,16 @@ export const RibbonWrapper = styled.ul`
   justify-content: space-between;
   list-style: none outside;
   margin: 0;
+  padding: 0;
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  padding-left: 5%;
-  gap: 32px;
+  row-gap: 32px;
+
+  @media screen and (max-width: 1100px) {
+    padding-left: 5%;
+}
 
   @media screen and (max-width: 800px) {
     column-gap: 20px;
@@ -38,7 +42,7 @@ export const RibbonWrapper = styled.ul`
 
 export const ItemWrapper = styled.li`
   list-style: none outside;
-  max-width: calc(50% - 32px);
+  max-width: calc(50% - 16px);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -76,6 +80,9 @@ const FeedRibbon : FC = () => {
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
+  if (posts) {
+    posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag))));
+  }
   if (!posts || isPublicFeedFetching) {
     return (
       <RegularText size='large' weight={500}>
