@@ -1,15 +1,15 @@
 const getColorTag = (
   isActive : boolean | undefined,
-  isShowIcon : boolean | undefined,
-  activeColorFollow: string,
-  activeColorPopular: string,
+  isLocationArticle : boolean | undefined,
+  activeColorFollowArticle : string,
+  activeColor : string,
   baseColor : string,
 ) : string => {
-  if (isActive && !isShowIcon) {
-    return activeColorFollow;
+  if (isActive && isLocationArticle) {
+    return activeColorFollowArticle;
   }
-  if (isActive && isShowIcon) {
-    return activeColorPopular;
+  if (isActive && !isLocationArticle) {
+    return activeColor;
   }
   return baseColor;
 };

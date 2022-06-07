@@ -81,6 +81,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
             tag={tag}
             pointer={pointer}
             isShowIcon={false}
+            isLocationArticle={pointer}
             isActive={!!tagsFollow?.includes(tag)}
             handleClick={handleClickTag} />
         </List>

@@ -16,6 +16,7 @@ interface ITagButtonProps {
   isActive: boolean;
   pointer?: boolean;
   isShowIcon?: boolean;
+  isLocationArticle?: boolean;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -29,7 +30,7 @@ const Button = styled.button<ITagButtonProps>`
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
     align-items: center;
-    color: ${({ isActive, theme, isShowIcon }) => getColorTag(isActive, isShowIcon, theme.button.red.default, theme.button.blue.default, theme.secondaryText)};
+    color: ${({ isActive, theme, isLocationArticle }) => getColorTag(isActive, isLocationArticle, theme.button.red.default, theme.button.blue.default, theme.secondaryText)};
     background-color: transparent;
 
     :active {
@@ -39,7 +40,7 @@ const Button = styled.button<ITagButtonProps>`
 
 const Tag: FC<ITagProps> = ({
   tag, handleClick = () => {
-  }, isActive, deactivateTag, pointer, isShowIcon,
+  }, isActive, deactivateTag, pointer, isShowIcon, isLocationArticle,
 }) => {
   const theme = useTheme();
 
@@ -48,6 +49,7 @@ const Tag: FC<ITagProps> = ({
       isActive={isActive}
       pointer={pointer}
       isShowIcon={isShowIcon}
+      isLocationArticle={isLocationArticle}
       type='button'
       key={tag}
       onClick={(e) => handleClick(e, tag, isActive)}>
@@ -64,6 +66,7 @@ Tag.defaultProps = {
   deactivateTag: undefined,
   pointer: false,
   isShowIcon: true,
+  isLocationArticle: false,
 };
 
 export default Tag;
