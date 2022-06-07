@@ -26,6 +26,8 @@ import { Modal } from '../widgets';
 
 import { IGenericVoidHandler } from '../types/widgets.types';
 import FeedRibbonSubscribe from '../widgets/feed-ribbon-subscribe';
+import getSubscribeTagsThunk from '../thunks/get-subscribe-tags-thunk';
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,11 +43,11 @@ const App = () => {
     });
   };
   const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
-
   useEffect(() => {
     batch(() => {
       dispatch(getAllPostsThunk());
       dispatch(getAllTagsThunk());
+      dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {
       batch(() => {

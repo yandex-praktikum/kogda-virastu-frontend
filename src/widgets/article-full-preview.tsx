@@ -12,18 +12,6 @@ const ArticleCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
-
-    @media screen and (max-width: 1050px) {
-        //width: 453px;
-    }
-
-    // @media screen and (max-width: 600px) {
-    //     width: 280px;
-    // }
-
-   /*  @media screen and (max-width:320px) {
-        width:280px;
-    } */
 `;
 
 const ArticleName = styled.h2`
@@ -44,7 +32,6 @@ const ArticleName = styled.h2`
  @media screen and (max-width: 320px) {
     grid-column: 1/1;
 }
-
 `;
 
 type TElementWithImage = {
@@ -56,12 +43,9 @@ const BarTagsWrapper = styled.div<TElementWithImage>`
   @media screen and (max-width:600px) {
     ${({ image }) => getPropOnCondition(!!image, 'grid-row: 3/4', 'grid-row: 4/5 ')};
   }
-
 `;
 
 const ContentContainer = styled.div<TElementWithImage>`
-    //display: grid;
-    //grid-template-columns: 1fr 6fr;
     display: flex;
     flex-direction: column;
     gap: 16px;
