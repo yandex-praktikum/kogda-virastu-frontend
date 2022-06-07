@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
 import { followTagThunk, unfollowTagThunk } from '../thunks';
-import { setFollowTags } from '../store';
 
 import Tag from './tag';
 
@@ -50,13 +49,8 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
     evt.preventDefault();
     if (followTags && isLoggedIn && followTags.includes(tag)) {
       dispatch(unfollowTagThunk(tag));
-      dispatch(setFollowTags(followTags.filter((el) => el !== tag)));
-    } else if (followTags && isLoggedIn) {
+    } else if (isLoggedIn) {
       dispatch(followTagThunk(tag));
-      dispatch(setFollowTags([...followTags, tag]));
-    } else {
-      dispatch(followTagThunk(tag));
-      dispatch(setFollowTags([tag]));
     }
   };
 

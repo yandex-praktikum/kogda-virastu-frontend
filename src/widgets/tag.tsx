@@ -13,6 +13,7 @@ interface ITagButtonProps {
   isActive?: boolean;
   pointer?: boolean;
   isFollowing?: boolean;
+  isTagInSetting?: boolean;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -35,7 +36,7 @@ const Button = styled.button<ITagButtonProps>`
   `;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick = () => {}, isActive, isFollowing, deactivateTag, pointer,
+  tag, handleClick = () => {}, isActive, isFollowing, deactivateTag, pointer, isTagInSetting,
 }) => {
   const theme = useTheme();
 
@@ -43,6 +44,7 @@ const Tag: FC<ITagProps> = ({
     <Button
       isActive={isActive}
       isFollowing={isFollowing}
+      isTagInSetting={isTagInSetting}
       pointer={pointer}
       type='button'
       key={tag}
@@ -51,6 +53,8 @@ const Tag: FC<ITagProps> = ({
       {tag}
       {' '}
       {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
+      {isTagInSetting && deactivateTag
+      && <CrossIcon color={theme.secondaryText} onClick={deactivateTag} />}
     </Button>
   );
 };
@@ -61,6 +65,7 @@ Tag.defaultProps = {
   pointer: false,
   isActive: false,
   isFollowing: false,
+  isTagInSetting: false,
 };
 
 export default Tag;
