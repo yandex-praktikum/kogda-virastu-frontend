@@ -32,7 +32,6 @@ const ArticlePageWrapper = styled.div`
   @media screen and (max-width:1035px) {
       max-width: 453px;
     }
-    border: red 1px dashed;
 `;
 
 const CommentInputWrapper = styled.div`
@@ -45,8 +44,6 @@ const CommentTitle = styled.p`
   font-weight: ${({ theme: { fourthLevelHeading: { weight } } }) => weight};
   line-height: ${({ theme: { fourthLevelHeading: { height } } }) => height}px;
   margin: 48px 0 24px;
-  border: blue 1px dashed;
-  
 `;
 
 const ArticleSection = styled.section`
@@ -59,7 +56,6 @@ const ArticleSection = styled.section`
     position: relative;
     z-index: 10;
     padding-top: 56px;
-    border: black 1px dashed;
 
     @media screen and (max-width:${tabletBreakpoint}px) {
       padding: 48px 24px 0 24px;

@@ -46,6 +46,7 @@ const TagListForm = styled.div`
   display: flex;
   flex-wrap: wrap;
   column-gap: 24px;
+  padding-top: 10px;
   padding-bottom: 30px;
 `;
 const ContainerTags = styled.div`
@@ -149,15 +150,17 @@ const SettingsForm: FC = () => {
             <FieldPassword value={password ?? ''} onChange={changePassword} />
           </InputFieldset>
           <ContainerTags>
-            <LabelStyle>Tеги</LabelStyle>
+            <LabelStyle>
+              <FormattedMessage id='tagsInForm' />
+            </LabelStyle>
             <TagListForm>
               {
-                tagsFollow.map((tag) => (
+                tagsFollow.length > 0 ? tagsFollow.map((tag) => (
                   <TagSetForm
                     key={tag}
                     tag={tag}
                     deleteTag={(e) => deleteTag(e, tag)} />
-                ))
+                )) : <FormattedMessage id='messageAboutMissingTags' />
               }
             </TagListForm>
           </ContainerTags>
