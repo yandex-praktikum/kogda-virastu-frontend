@@ -165,7 +165,7 @@ import {
   followTagsFetchFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
-  unfollowTagFailed
+  unfollowTagFailed,
 } from './apiSlice';
 
 import {
@@ -335,5 +335,5 @@ export {
   followTagsFetchFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
-  unfollowTagFailed
+  unfollowTagFailed,
 };

@@ -41,7 +41,7 @@ import {
   IPostComment,
   IProfile,
   IRegisterUser,
-  ITag
+  ITag,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {

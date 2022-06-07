@@ -443,6 +443,6 @@ export const {
   followTagsFetchFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
-  unfollowTagFailed
+  unfollowTagFailed,
 } = apiSlice.actions;
 export default apiReducer;
