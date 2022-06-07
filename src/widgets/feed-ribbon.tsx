@@ -48,6 +48,7 @@ const RibbonWrapper = styled.ul`
 `;
 
 const ItemWrapper = styled.li`
+  overflow: hidden;
   max-width: 359px;
   display: flex;
   flex-direction: column;
@@ -108,7 +109,7 @@ const FeedRibbon : FC = () => {
               <ArticleFullPreview
                 article={post}
                 onLikeClick={onClick} />
-              {window.innerWidth > 765 && <Divider width={110} distance={0} />}
+              {window.innerWidth > 765 && <Divider width={111} distance={0} />}
             </ItemWrapper>
           );
         })}
