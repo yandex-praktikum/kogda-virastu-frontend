@@ -17,22 +17,6 @@ const ArticleCardContainer = styled.div`
     flex-direction: column;
     gap: 16px;
     margin-bottom: 32px;
-
-    // @media screen and (max-width: 1300px) {
-    //     width: 297px;
-    // }
-
-    // @media screen and (max-width: 1023px) {
-    //     width: 227px;
-    // }
-
-    // @media screen and (max-width: 765px) {
-    //     width: 359px;
-    // }
-
-    // @media screen and (max-width:720px) {
-    //   width: 280px;
-    // };
 `;
 
 const ArticleName = styled.h2`

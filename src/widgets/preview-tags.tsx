@@ -20,7 +20,6 @@ const Lists = styled.ul<TLists>`
   flex-wrap: wrap;
   flex-direction: 'row';
   gap: 4px 24px;
-  //width:526px;
   white-space: pre-line;
   padding: 0;
   
