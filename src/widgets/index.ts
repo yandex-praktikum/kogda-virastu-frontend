@@ -18,6 +18,7 @@ import ScrollRibbon from './scroll-ribbon';
 import FeedRibbon from './feed-ribbon';
 import Slider from './slider';
 import ProfileFeed from './profile-feed';
+import FollowTags from './follow-tags';
 
 export {
   Author,
@@ -40,4 +41,5 @@ export {
   CommentList,
   Slider,
   ProfileFeed,
+  FollowTags,
 };

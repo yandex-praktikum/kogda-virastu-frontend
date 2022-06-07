@@ -10,8 +10,10 @@ interface ITagProps extends ITagButtonProps {
 }
 
 interface ITagButtonProps {
-  isActive: boolean;
+  isActive?: boolean;
   pointer?: boolean;
+  isFollowing?: boolean;
+  isTagInSetting?: boolean;
 }
 
 const Button = styled.button<ITagButtonProps>`
@@ -25,7 +27,7 @@ const Button = styled.button<ITagButtonProps>`
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;
     align-items: center;
-    color: ${({ isActive, theme }) => (isActive ? theme.button.blue.default : theme.secondaryText)};
+    color: ${({ isActive, isFollowing, theme }) => (isActive ? theme.button.blue.default : isFollowing ? theme.button.red.default : theme.secondaryText)};
     background-color: transparent;
 
     :active {
@@ -34,13 +36,15 @@ const Button = styled.button<ITagButtonProps>`
   `;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick = () => {}, isActive, deactivateTag, pointer,
+  tag, handleClick = () => {}, isActive, isFollowing, deactivateTag, pointer, isTagInSetting,
 }) => {
   const theme = useTheme();
 
   return (
     <Button
       isActive={isActive}
+      isFollowing={isFollowing}
+      isTagInSetting={isTagInSetting}
       pointer={pointer}
       type='button'
       key={tag}
@@ -49,6 +53,8 @@ const Tag: FC<ITagProps> = ({
       {tag}
       {' '}
       {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
+      {isTagInSetting && deactivateTag
+      && <CrossIcon color={theme.secondaryText} onClick={deactivateTag} />}
     </Button>
   );
 };
@@ -57,6 +63,9 @@ Tag.defaultProps = {
   handleClick: undefined,
   deactivateTag: undefined,
   pointer: false,
+  isActive: false,
+  isFollowing: false,
+  isTagInSetting: false,
 };
 
 export default Tag;

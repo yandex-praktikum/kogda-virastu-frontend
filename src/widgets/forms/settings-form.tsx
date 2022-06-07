@@ -36,6 +36,8 @@ import {
   FieldAboutUser,
 } from '../../ui-lib';
 
+import FollowTags from '../follow-tags';
+
 const SettingsForm: FC = () => {
   const {
     bio, email, image, username, password, nickname,
@@ -110,6 +112,7 @@ const SettingsForm: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
+        <FollowTags />
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
         </ButtonContainer>
