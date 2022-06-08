@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TArticles, TTags, TPopularTags } from '../types/types';
+import { TArticles, TPopularTags } from '../types/types';
 import { TThemes } from '../types/styles.types';
 import themes from '../themes';
 import { TVocabularies } from '../types/vocabularies.types';
