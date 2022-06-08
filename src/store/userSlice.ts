@@ -7,6 +7,7 @@ type TUserState = {
   bio?: string | null,
   image?: string | null,
   nickname?: string | null,
+  friendInvite: string | null,
 };
 
 const initialState: TUserState = {
@@ -15,6 +16,7 @@ const initialState: TUserState = {
   bio: null,
   image: null,
   nickname: null,
+  friendInvite: null,
 };
 
 const userSlice = createSlice({
@@ -25,9 +27,12 @@ const userSlice = createSlice({
     clearUser: (state) => ({
       ...state, ...initialState,
     }),
+    setInviteCode: (state, action: PayloadAction<string>) => ({
+      ...state, friendInvite: action.payload,
+    }),
   },
 });
 
 const userReducer = userSlice.reducer;
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, setInviteCode } = userSlice.actions;
 export default userReducer;

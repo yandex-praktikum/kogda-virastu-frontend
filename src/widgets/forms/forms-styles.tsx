@@ -67,7 +67,7 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const TagsTitle = styled.p`
-  margin: 20px 0 4px 0;
+  margin: 30px 0 4px 0;
   color: ${({ theme }) => theme.secondaryText};
   font-size: ${({ theme }) => theme.text16Sans.size}px;
   font-family: ${({ theme }) => theme.text16Sans.family};
@@ -82,4 +82,16 @@ export const TagsContainer = styled.div`
   column-gap: 24px;
   row-gap: 8px;
   padding-bottom: 24px;
+`;
+
+export const InviteButtonContainer = styled.div`
+
+`;
+
+export const InviteCodeText = styled.p`
+word-break: break-all;
+`;
+
+export const InviteCodeLink = styled(FormLoginLink)`
+word-break: break-all;
 `;

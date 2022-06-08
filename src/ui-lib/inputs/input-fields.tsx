@@ -262,3 +262,29 @@ export const FieldTags: FC<TFieldInput> = ({
       labelText={intl.messages.tags as string} />
   );
 };
+export const FieldRegistrationCode: FC<TFieldInput> = ({
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  disabled = false,
+}) => {
+  const intl = useIntl();
+  return (
+    <InputField
+      placeholder={placeholder}
+      name='tags'
+      type='text'
+      errorText={errorText}
+      error={error}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      labelText={intl.messages.registerCode as string} />
+  );
+};

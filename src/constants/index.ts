@@ -8,6 +8,7 @@ import {
   TAGS_ROUTE,
   PROFILES_ROUTE,
   JWT,
+  INVITE_ROUTE,
 } from './api.constants';
 
 import {
@@ -37,4 +38,5 @@ export {
   mobileViewModal,
   headerHeightAtBreakpoint,
   footerHeightAtBreakpoint,
+  INVITE_ROUTE,
 };

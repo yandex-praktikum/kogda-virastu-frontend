@@ -9,6 +9,7 @@ import {
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+  INVITE_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -24,6 +25,7 @@ import {
   TAPIProfile,
   TAPIAuth,
   TAPIPatchUserData, TAPIPatchArticleData,
+  TAPIInvite,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -42,6 +44,7 @@ import {
   IProfile,
   IRegisterUser,
   ITag,
+  IInvite,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -137,9 +140,11 @@ export const registerUser : IRegisterUser = (
   username: string,
   email: string,
   password: string,
-  nickname,
+  nickname: string | undefined,
+  invite: string | undefined,
 ) : AxiosPromise<TAPIAuth> => {
   const registerData : TAPINewUser = {
+    invite,
     user: {
       username, email, password, nickname,
     },
@@ -394,6 +399,14 @@ export const fetchTagsFollow : IFetchTags = () : AxiosPromise<TAPITags> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/follow`,
     method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchInviteCode : IInvite = () : AxiosPromise<TAPIInvite> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: INVITE_ROUTE,
+    method: 'post',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };
