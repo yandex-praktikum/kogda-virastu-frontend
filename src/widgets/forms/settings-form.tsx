@@ -1,5 +1,5 @@
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect,
+  ChangeEventHandler, FC, FormEventHandler, useEffect, MouseEventHandler,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -14,9 +14,10 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  setInviteCode,
 } from '../../store';
 
-import { patchCurrentUserThunk } from '../../thunks';
+import { patchCurrentUserThunk, getInviteThunk } from '../../thunks';
 
 import {
   ButtonContainer,
@@ -24,6 +25,10 @@ import {
   FormContainer,
   FormTitle,
   InputFieldset,
+  InviteButtonContainer,
+  InviteCodeText,
+  FormLoginLink,
+  InviteCodeLink,
 } from './forms-styles';
 
 import {
@@ -34,6 +39,7 @@ import {
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
+  GenerateCodeButton,
 } from '../../ui-lib';
 
 const SettingsForm: FC = () => {
@@ -91,6 +97,10 @@ const SettingsForm: FC = () => {
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
+  const createInviteCode : MouseEventHandler<HTMLButtonElement> = (evt) => {
+    evt.preventDefault();
+    dispatch(getInviteThunk());
+  };
 
   return (
     <FormContainer>
@@ -109,6 +119,11 @@ const SettingsForm: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
+        <InviteButtonContainer>
+          <GenerateCodeButton disabled={false} onClick={createInviteCode} />
+          <InviteCodeText>{profile.friendInvite}</InviteCodeText>
+          {profile.friendInvite && <InviteCodeLink to={{ pathname: `/registration?=${profile.friendInvite || ''}` }}>{`/registration?=${profile.friendInvite || ''}`}</InviteCodeLink>}
+        </InviteButtonContainer>
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
         </ButtonContainer>

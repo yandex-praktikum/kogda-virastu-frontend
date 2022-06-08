@@ -4,6 +4,7 @@ export type TUser = {
   bio?: string;
   image?:string;
   nickname?: string;
+  friendInvite? : string,
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -62,3 +63,5 @@ export enum UserArticlesTypes {
 }
 
 export type TTag = string;
+
+export type TInvite = string;

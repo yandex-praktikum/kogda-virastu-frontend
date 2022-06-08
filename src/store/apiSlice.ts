@@ -35,6 +35,7 @@ type TAPIState = {
   isTagFollowing: boolean,
   isTagFollowDeleting: boolean,
   isTagsFollowFetching: boolean,
+  isInviteFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -71,6 +72,7 @@ const initialState : TAPIState = {
   isTagFollowing: false,
   isTagFollowDeleting: false,
   isTagsFollowFetching: false,
+  isInviteFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -353,11 +355,23 @@ const apiSlice = createSlice({
     tagsFollowFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isTagsFollowFetching: false, errorObject: action.payload,
     }),
+    inviteGetRequested: (state) => ({
+      ...state, isInviteFetching: true,
+    }),
+    inviteGetSucceeded: (state) => ({
+      ...state, isInviteFetching: false,
+    }),
+    inviteGetFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
 const apiReducer = apiSlice.reducer;
 export const {
+  inviteGetRequested,
+  inviteGetSucceeded,
+  inviteGetFailed,
   setSuccessMessage,
   setErrorMessage,
   clearSuccessMessage,

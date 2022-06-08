@@ -65,3 +65,15 @@ export const ButtonsWrapper = styled.div`
   flex-direction: column;
   gap: 24px
 `;
+
+export const InviteButtonContainer = styled.div`
+
+`;
+
+export const InviteCodeText = styled.p`
+word-break: break-all;
+`;
+
+export const InviteCodeLink = styled(FormLoginLink)`
+word-break: break-all;
+`;

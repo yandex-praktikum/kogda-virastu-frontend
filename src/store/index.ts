@@ -19,6 +19,7 @@ import {
   changeEmailRegister,
   changePasswordRegister,
   changeNicknameRegister,
+  changeInviteRegister,
   resetFormRegister,
 } from './registerFormSubSlice';
 
@@ -45,7 +46,7 @@ import {
   setAllVocabularies,
 } from './allSlice';
 
-import { setUser, clearUser } from './userSlice';
+import { setUser, clearUser, setInviteCode } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
@@ -165,6 +166,9 @@ import {
   tagsFollowFetchRequested,
   tagsFollowFetchSucceeded,
   tagsFollowFetchFailed,
+  inviteGetRequested,
+  inviteGetSucceeded,
+  inviteGetFailed,
 } from './apiSlice';
 
 import {
@@ -334,4 +338,9 @@ export {
   tagsFollowFetchRequested,
   tagsFollowFetchSucceeded,
   tagsFollowFetchFailed,
+  changeInviteRegister,
+  setInviteCode,
+  inviteGetRequested,
+  inviteGetSucceeded,
+  inviteGetFailed,
 };
