@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import Tag from './tag';
 import { HeaderFiveText } from '../ui-lib';
@@ -28,6 +28,7 @@ const TagList = styled.div`
 
 const FollowedTags: FC = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
   const followingTags = useSelector((state) => state.all.followingTags);
   const currentUser = useSelector((state) => state.profile);
   const user = currentUser.username;
@@ -52,7 +53,7 @@ const FollowedTags: FC = () => {
     return (
       <PopularTagsContainer>
         {isTagUnFollowing && tagname && (
-        <TagModal isTagUnFollowing={isTagUnFollowing} message={`Вы отписались от тега #${tagname}`} />
+        <TagModal isTagUnFollowing={isTagUnFollowing} message={`${intl.messages.unsubscribeTag as string} #${tagname}`} />
         )}
         <HeaderFiveText paddingCSS='padding-bottom: 16px;'>
           <FormattedMessage id='followedTags' />
