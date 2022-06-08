@@ -25,6 +25,8 @@ import {
   FormContainer,
   FormTitle,
   InputFieldset,
+  TagsContainer,
+  TagsTitle,
   InviteButtonContainer,
   InviteCodeText,
   FormLoginLink,
@@ -41,6 +43,7 @@ import {
   FieldAboutUser,
   GenerateCodeButton,
 } from '../../ui-lib';
+import Tag from '../tag';
 
 const SettingsForm: FC = () => {
   const {
@@ -49,6 +52,7 @@ const SettingsForm: FC = () => {
 
   const profile = useSelector((state) => state.profile);
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
+  const { tagsFollow } = useSelector((state) => state.view);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -124,6 +128,20 @@ const SettingsForm: FC = () => {
           <InviteCodeText>{profile.friendInvite}</InviteCodeText>
           {profile.friendInvite && <InviteCodeLink to={{ pathname: `/registration?=${profile.friendInvite || ''}` }}>{`/registration?=${profile.friendInvite || ''}`}</InviteCodeLink>}
         </InviteButtonContainer>
+        <TagsTitle>
+          Теги
+        </TagsTitle>
+        <TagsContainer>
+          {
+            tagsFollow?.map((tag) => (
+              <Tag
+                key={tag}
+                tag={tag}
+                isActive={false}
+                isShowIcon={!false} />
+            ))
+          }
+        </TagsContainer>
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
         </ButtonContainer>

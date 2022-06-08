@@ -66,6 +66,24 @@ export const ButtonsWrapper = styled.div`
   gap: 24px
 `;
 
+export const TagsTitle = styled.p`
+  margin: 30px 0 4px 0;
+  color: ${({ theme }) => theme.secondaryText};
+  font-size: ${({ theme }) => theme.text16Sans.size}px;
+  font-family: ${({ theme }) => theme.text16Sans.family};
+  font-weight: ${({ theme }) => theme.text16Sans.weight};
+  line-height: ${({ theme }) => theme.text16Sans.height}px;
+`;
+
+export const TagsContainer = styled.div`
+  max-width: 508px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 8px;
+  padding-bottom: 24px;
+`;
+
 export const InviteButtonContainer = styled.div`
 
 `;
