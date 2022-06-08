@@ -7,7 +7,7 @@ type TUserState = {
   bio?: string | null,
   image?: string | null,
   nickname?: string | null,
-  friendInvite?: string | null,
+  friendInvite: string | null,
 };
 
 const initialState: TUserState = {

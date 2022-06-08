@@ -74,6 +74,6 @@ export const InviteCodeText = styled.p`
 word-break: break-all;
 `;
 
-export const InviteCodeLink = styled.link`
-
+export const InviteCodeLink = styled(FormLoginLink)`
+word-break: break-all;
 `;
