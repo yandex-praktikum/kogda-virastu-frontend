@@ -15,6 +15,7 @@ import {
   setFormProfile,
   setPasswordProfile,
   setInviteCode,
+  setTagsFollow,
 } from '../../store';
 
 import { patchCurrentUserThunk, getInviteThunk } from '../../thunks';
@@ -44,6 +45,7 @@ import {
   GenerateCodeButton,
 } from '../../ui-lib';
 import Tag from '../tag';
+import deleteTagFollowThunk from '../../thunks/delete-tag-follow-thunk';
 
 const SettingsForm: FC = () => {
   const {
@@ -105,6 +107,11 @@ const SettingsForm: FC = () => {
     evt.preventDefault();
     dispatch(getInviteThunk());
   };
+  const deactivateTag = (e: React.MouseEvent, tag: string) => {
+    e.stopPropagation();
+    dispatch(deleteTagFollowThunk(tag));
+    dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
+  };
 
   return (
     <FormContainer>
@@ -138,6 +145,7 @@ const SettingsForm: FC = () => {
                 key={tag}
                 tag={tag}
                 isActive={false}
+                deactivateTag={(e) => deactivateTag(e, tag)}
                 isShowIcon={!false} />
             ))
           }
