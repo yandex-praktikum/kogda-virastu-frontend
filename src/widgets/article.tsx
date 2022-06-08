@@ -117,6 +117,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
+  console.log(article?.tagList);
 
   const onClickDelete = () => {
     if (article) {

@@ -2,8 +2,6 @@ import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
-import { postTagFollow } from '../services/api';
-import { useDispatch, useSelector } from '../services/hooks';
 import getColorTag from '../services/helpers/get-color-tag';
 
 interface ITagProps extends ITagButtonProps {
@@ -43,6 +41,7 @@ const Tag: FC<ITagProps> = ({
   }, isActive, deactivateTag, pointer, isShowIcon, isLocationArticle,
 }) => {
   const theme = useTheme();
+  const colorIcon = isActive ? theme.markedText : theme.secondaryText;
 
   return (
     <Button
@@ -56,7 +55,7 @@ const Tag: FC<ITagProps> = ({
       #
       {tag}
       {' '}
-      {isActive && isShowIcon && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
+      {isShowIcon && <CrossIcon color={colorIcon} onClick={deactivateTag} />}
     </Button>
   );
 };
@@ -65,7 +64,7 @@ Tag.defaultProps = {
   handleClick: undefined,
   deactivateTag: undefined,
   pointer: false,
-  isShowIcon: true,
+  isShowIcon: false,
   isLocationArticle: false,
 };
 
