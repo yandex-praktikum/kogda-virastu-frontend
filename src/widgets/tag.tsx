@@ -21,9 +21,9 @@ const Button = styled.button<ITagButtonProps>`
 
     padding: 0;
     border: none;
-    font-family: ${({ theme }) => theme.text18Sans.family};
-    font-weight: ${({ theme }) => theme.text18Sans.weight};
-    font-size: ${({ theme }) => theme.text18Sans.size}px;
+    font-family: ${({ theme }) => theme.text16SubSans.family};
+    font-weight: ${({ theme }) => theme.text16SubSans.weight};
+    font-size: ${({ theme }) => theme.text16SubSans.size}px;
     line-height: ${({ theme }) => theme.text18Sans.height}px;
     cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
     display: flex;

@@ -2,7 +2,7 @@ import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled, { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 
@@ -24,6 +24,8 @@ import {
   FormContainer,
   FormTitle,
   InputFieldset,
+  TagsContainer,
+  TagsTitle,
 } from './forms-styles';
 
 import {
@@ -35,15 +37,7 @@ import {
   UpdateProfileButton,
   FieldAboutUser,
 } from '../../ui-lib';
-import BarTags from '../bar-tags';
 import Tag from '../tag';
-
-const TagsContainer = styled.div`
-  max-width: 360px;
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 24px;
-`;
 
 const SettingsForm: FC = () => {
   const {
@@ -53,7 +47,6 @@ const SettingsForm: FC = () => {
   const profile = useSelector((state) => state.profile);
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
   const { tagsFollow } = useSelector((state) => state.view);
-  // console.log(tagsFollow);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -120,18 +113,22 @@ const SettingsForm: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
-        {tagsFollow && (
-          tagsFollow.map((tag) => (
-            <Tag
-              key={tag}
-              tag={tag}
-              isActive={false}
-              isShowIcon={!false}
-              pointer />
-              // handleClick={handleClick}
-              // deactivateTag={(e) => deactivateTag(e, tag)}
-          ))
-        )}
+        <TagsTitle>
+          Теги
+        </TagsTitle>
+        <TagsContainer>
+          {
+            tagsFollow?.map((tag) => (
+              <Tag
+                key={tag}
+                tag={tag}
+                isActive={false}
+                isShowIcon={!false} />
+                // handleClick={handleClick}
+                // deactivateTag={(e) => deactivateTag(e, tag)}
+            ))
+          }
+        </TagsContainer>
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
         </ButtonContainer>
