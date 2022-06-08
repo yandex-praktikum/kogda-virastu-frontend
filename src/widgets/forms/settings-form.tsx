@@ -1,7 +1,7 @@
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect, MouseEventHandler,
 } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
@@ -27,6 +27,7 @@ import {
   InputFieldset,
   InviteButtonContainer,
   InviteCodeText,
+  FormLoginLink,
   InviteCodeLink,
 } from './forms-styles';
 
@@ -69,10 +70,6 @@ const SettingsForm: FC = () => {
     }
   //  return () => { dispatch(settingsResetUpdateSucceeded()); };
   }, [dispatch, isSettingsUpdateSucceeded, navigate]);
-
-  useEffect(() => {
-    console.log(profile.friendInvite);
-  }, [profile.friendInvite]);
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
@@ -125,7 +122,7 @@ const SettingsForm: FC = () => {
         <InviteButtonContainer>
           <GenerateCodeButton disabled={false} onClick={createInviteCode} />
           <InviteCodeText>{profile.friendInvite}</InviteCodeText>
-          {/* <Link to='/registration'>{profile.friendInvite}</Link> */}
+          {profile.friendInvite && <InviteCodeLink to={{ pathname: `/registration?=${profile.friendInvite || ''}` }}>{`/registration?=${profile.friendInvite || ''}`}</InviteCodeLink>}
         </InviteButtonContainer>
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
@@ -28,6 +28,7 @@ const RegisterForm: FC = () => {
   const { isLoggedIn } = useSelector((state) => state.system);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { search } = useLocation();
 
   const onChangeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeEmailRegister(evt.target.value));
@@ -58,6 +59,13 @@ const RegisterForm: FC = () => {
     }
     dispatch(resetFormRegister());
   }, [dispatch, isLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (search) {
+      const code = search.substring(2);
+      dispatch(changeInviteRegister(code));
+    }
+  }, [search, dispatch]);
 
   return (
     <FormContainer>
