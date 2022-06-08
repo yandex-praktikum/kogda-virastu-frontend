@@ -19,6 +19,7 @@ import {
   TAPIParamsObject,
   TAPIArticle,
   TAPITags,
+  TAPIPopularTags,
   TAPITag,
   TAPIComments,
   TAPIComment,
@@ -34,6 +35,7 @@ import {
   IFetchArticles,
   IFetchComments,
   IFetchTags,
+  IFetchPopularTags,
   IFetchUser,
   ILikeArticle,
   ILoginUser,
@@ -316,9 +318,25 @@ export const deleteLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TA
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchTags : IFetchTags = () : AxiosPromise<TAPITags> => {
+export const fetchTags : IFetchPopularTags = () : AxiosPromise<TAPIPopularTags> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/top`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const deleteTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/${tag}/follow`,
+    method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchTagsFollow : IFetchTags = () : AxiosPromise<TAPITags> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/follow`,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
@@ -383,22 +401,6 @@ export const postTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/${tag}/follow`,
     method: 'post',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
-export const deleteTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: `${TAGS_ROUTE}/${tag}/follow`,
-    method: 'delete',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
-export const fetchTagsFollow : IFetchTags = () : AxiosPromise<TAPITags> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: `${TAGS_ROUTE}/follow`,
-    method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

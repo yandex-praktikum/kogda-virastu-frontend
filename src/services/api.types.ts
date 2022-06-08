@@ -75,6 +75,10 @@ export type TAPIPatchArticleData = {
 };
 
 export type TAPITags = {
+  tags: TTags;
+};
+
+export type TAPIPopularTags = {
   tags: TPopularTags;
 };
 
