@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
 import { HeaderThreeText } from '../ui-lib';
+import { TTags } from '../types/types';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -28,6 +29,14 @@ const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
   const { selectedTags } = useSelector((state) => state.view);
+  const [popularTags, setPopularTags] = useState<TTags>([]);
+
+  useEffect(() => {
+    const popTags = tags && tags.map((tag) => tag.name);
+    if (popTags) {
+      setPopularTags(popTags);
+    }
+  }, [tags]);
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
@@ -43,7 +52,7 @@ const PopularTags: FC = () => {
     dispatch(setSelectedTags(selectedTags!.filter((el) => el !== tag)));
   };
 
-  if (tags) {
+  if (popularTags) {
     return (
       <PopularTagsContainer>
         <HeaderThreeText paddingCSS='padding-bottom: 16px;'>
@@ -51,9 +60,9 @@ const PopularTags: FC = () => {
         </HeaderThreeText>
         <TagList>
           {
-            tags.map((tag) => (
+            popularTags.map((tag) => (
               <Tag
-                key={tag}
+                key={Math.random()}
                 tag={tag}
                 pointer
                 handleClick={handleClick}
