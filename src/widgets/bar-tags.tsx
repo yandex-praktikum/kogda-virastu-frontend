@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
-
 import Tag from './tag';
 import followTagThunk from '../thunks/follow-tag-thunk';
 import unfollowTagThunk from '../thunks/unfollow-tag-thunk';
@@ -58,6 +58,7 @@ const BarTags: FC<TBarTags & TLists> = ({
   const tagname = useSelector((state) => state.view.tag);
   const user = currentUser.username;
   const dispatch = useDispatch();
+  const intl = useIntl();
   const followingTags = useSelector((state) => state.all.followingTags);
   const handleClick = (ev: React.MouseEvent, tag: string) => {
     ev.preventDefault();
@@ -81,10 +82,10 @@ const BarTags: FC<TBarTags & TLists> = ({
   return (
     <>
       {isTagFollowing && tagname && (
-        <TagModal isTagFollowing={isTagFollowing} message={`Вы подписались на тег #${tagname}`} />
+        <TagModal isTagFollowing={isTagFollowing} message={`${intl.messages.subscribeTag as string} #${tagname}`} />
       )}
       {isTagUnFollowing && tagname && (
-        <TagModal isTagUnFollowing={isTagUnFollowing} message={`Вы отписались от тега #${tagname}`} />
+        <TagModal isTagUnFollowing={isTagUnFollowing} message={`${intl.messages.unsubscribeTag as string} #${tagname}`} />
       )}
       <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
         {tagList.map((tag) => (

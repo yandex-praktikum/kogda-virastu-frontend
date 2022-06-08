@@ -45,6 +45,9 @@ const en: TVocabulary = {
   goPageOnPage: 'To read the blog, go to ',
   npPageLink: 'Main',
   nickname: 'Display name',
+  invite: 'Your Invite',
+  subscribeTag: 'Subscribed to tag',
+  unsubscribeTag: 'Unsubscribed from tag',
 };
 
 export default en;

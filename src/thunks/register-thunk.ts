@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import { AxiosError } from 'axios';
 import { batch } from 'react-redux';
 import { AppThunk } from '../store/store.types';
@@ -17,15 +18,16 @@ const registerThunk: AppThunk = () => async (dispatch, getState) => {
   const emailReg = reg.email ?? '';
   const passwordReg = reg.password ?? '';
   const nicknameReg = reg.nickname ?? '';
+  const inviteReg = reg.invite ?? '';
   dispatch(userRegistrationRequested());
   try {
     const {
       data: {
         user: {
-          username, email, token, bio = '', image = '', nickname = '',
+          username, email, token, bio = '', image = '', nickname = '', invite = '',
         },
       },
-    } = await registerUser(usernameReg, emailReg, passwordReg, nicknameReg);
+    } = await registerUser(usernameReg, emailReg, passwordReg, nicknameReg, inviteReg);
     jwt.set(token);
     batch(() => {
       dispatch(setUser({
@@ -34,6 +36,7 @@ const registerThunk: AppThunk = () => async (dispatch, getState) => {
         bio,
         image,
         nickname,
+        invite,
       }));
       dispatch(userRegistrationSucceeded());
     });

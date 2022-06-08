@@ -10,18 +10,19 @@ import {
   changePasswordRegister,
   resetFormRegister,
   changeNicknameRegister,
+  changeInviteRegister,
 } from '../../store';
 import { registerThunk } from '../../thunks';
 import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldInvite,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname,
+    username, email, password, nickname, invite,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
@@ -38,6 +39,10 @@ const RegisterForm: FC = () => {
 
   const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeUsernameRegister(evt.target.value));
+  };
+
+  const onChangeInvite : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeInviteRegister(evt.target.value));
   };
 
   const onChangeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -69,6 +74,7 @@ const RegisterForm: FC = () => {
           <FieldLogin value={username ?? ''} onChange={onChangeUsername} />
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
+          <FieldInvite value={invite ?? ''} onChange={onChangeInvite} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
         </InputFieldset>
         <ButtonContainer>

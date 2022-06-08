@@ -4,6 +4,7 @@ export type TUser = {
   bio?: string;
   image?:string;
   nickname?: string;
+  invite?: string;
 };
 
 // Исправлено и переименовано по модели данных сервера
