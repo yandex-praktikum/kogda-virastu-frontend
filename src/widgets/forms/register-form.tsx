@@ -67,10 +67,6 @@ const RegisterForm: FC = () => {
     }
   }, [search, dispatch]);
 
-  // useEffect(() => {
-  //   console.log(invite);
-  // }, [invite]);
-
   return (
     <FormContainer>
       <FormTitle>
