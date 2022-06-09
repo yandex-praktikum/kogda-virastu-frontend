@@ -108,9 +108,9 @@ const Main: FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
+
   useEffect(() => {
     batch(() => {
-      dispatch(getPublicFeedThunk());
       dispatch(setNewPostsThunk());
     });
   }, [dispatch]);

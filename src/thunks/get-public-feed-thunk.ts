@@ -1,6 +1,6 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
-import { fetchPublicFeed } from '../services/api';
+import { fetchPublicFeed, fetchPrivateFeed } from '../services/api';
 import {
   publicFeedFailed,
   publicFeedRequested,
