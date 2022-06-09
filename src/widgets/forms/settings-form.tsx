@@ -14,6 +14,7 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  setConfirmPasswordProfile,
   setInviteCode,
   setTagsFollow,
 } from '../../store';
@@ -44,19 +45,18 @@ import {
   UpdateProfileButton,
   FieldAboutUser,
   GenerateCodeButton,
+  FieldConfirmPasswordProfile,
 } from '../../ui-lib';
 import Tag from '../tag';
 import deleteTagFollowThunk from '../../thunks/delete-tag-follow-thunk';
 
 const SettingsForm: FC = () => {
   const {
-    bio, email, image, username, password, nickname,
+    bio, email, image, username, password, nickname, confirmPassword,
   } = useSelector((state) => state.forms.profile);
-
   const profile = useSelector((state) => state.profile);
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
   const { tagsFollow } = useSelector((state) => state.view);
-
   const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
@@ -77,36 +77,39 @@ const SettingsForm: FC = () => {
     if (isSettingsUpdateSucceeded) {
       navigate('/');
     }
-  //  return () => { dispatch(settingsResetUpdateSucceeded()); };
+    //  return () => { dispatch(settingsResetUpdateSucceeded()); };
   }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
-  const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
+  const submitForm: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     dispatch(patchCurrentUserThunk());
   };
 
-  const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const changeImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setImageProfile(evt.target.value));
   };
 
-  const changeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const changeUsername: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setUsernameProfile(evt.target.value));
   };
 
-  const changeBioProfile : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+  const changeBioProfile: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
     dispatch(setBioProfile(evt.target.value));
   };
 
-  const changeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const changeEmail: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setEmailProfile(evt.target.value));
   };
-  const changeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const changeNickname: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setNicknameProfile(evt.target.value));
   };
-  const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const changePassword: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
-  const createInviteCode : MouseEventHandler<HTMLButtonElement> = (evt) => {
+  const changeConfirmPassword: ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(setConfirmPasswordProfile(evt.target.value));
+  };
+  const createInviteCode: MouseEventHandler<HTMLButtonElement> = (evt) => {
     evt.preventDefault();
     dispatch(getInviteThunk());
   };
@@ -138,6 +141,7 @@ const SettingsForm: FC = () => {
             minHeight={theme.text18.height * 5} />
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
+          <FieldConfirmPasswordProfile value={confirmPassword ?? ''} onChange={changeConfirmPassword} />
         </InputFieldset>
         <InviteButtonContainer>
           <GenerateCodeButton disabled={false} onClick={createInviteCode} />

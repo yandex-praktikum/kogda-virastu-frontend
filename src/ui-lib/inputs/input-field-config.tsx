@@ -8,6 +8,7 @@ import { TInputFieldType } from '../../types/styles.types';
 const InputStyle = styled.input<{ error: boolean }>`
 box-sizing: border-box;
 padding-right: 20px;
+border-radius: 8px;
  ${TextFieldStyle}
  `;
 
@@ -20,6 +21,7 @@ const ContainerInput = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
      @media screen and (max-width:768px) {
         font-size: 16px;
      }
@@ -48,7 +50,7 @@ interface IInputInterface {
   onFocus?: FocusEventHandler<HTMLInputElement>;
 }
 
-const InputField :FC<IInputInterface> = ({
+const InputField: FC<IInputInterface> = ({
   type, placeholder, value, name, error = false, icon = null, errorText = '', onChange, onIconClick, onBlur, onFocus,
   disabled = false, labelText = '',
 }: IInputInterface) => (
