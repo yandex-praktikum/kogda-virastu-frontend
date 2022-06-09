@@ -49,6 +49,7 @@ const en: TVocabulary = {
   invite: 'Your Invite',
   subscribeTag: 'Subscribed to tag',
   unsubscribeTag: 'Unsubscribed from tag',
+  generateInvite: 'Generate code',
 };
 
 export default en;
