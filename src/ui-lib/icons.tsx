@@ -157,7 +157,7 @@ export const CheckIcon = styled(CheckPic)<TIconProps>`
 
 export const HomeIcon = styled(HomePic)<TIconProps>`
   width: 24px;
-  height: 24px;
+  height: 24px; 
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
   & > path {

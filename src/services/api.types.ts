@@ -22,6 +22,7 @@ export type TAPIAuth = {
     token: string;
     nickname: string;
     invite: string;
+    roles: string[];
   };
 };
 

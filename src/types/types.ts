@@ -5,6 +5,7 @@ export type TUser = {
   image?:string;
   nickname?: string;
   invite?: string;
+  roles?: string[];
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -16,6 +17,7 @@ export type TProfile = {
   bio?: string;
   nickname?: string;
   followingTags?: Array<string>;
+  roles?: string;
 };
 
 export type TTags = Array<string>;

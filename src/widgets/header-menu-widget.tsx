@@ -5,7 +5,7 @@ import { batch } from 'react-redux';
 import { jwt } from '../services/api';
 
 import {
-  OpenMenuButton, MenuSettingsButton, MenuNewPostButton, MenuLogoutButton,
+  OpenMenuButton, MenuSettingsButton, MenuNewPostButton, MenuLogoutButton, MenuAdminButton,
 } from '../ui-lib';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
@@ -37,6 +37,7 @@ const HeaderMenuWidget : FC = () => {
   const { isLoggedIn } = useSelector((state) => state.system);
   const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/profile/${username || ''}`);
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/settings');
+  const onAdminClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/admin');
   const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(clearViewArticle());
     navigate('/editArticle');
@@ -59,6 +60,7 @@ const HeaderMenuWidget : FC = () => {
       <OpenMenuButton onClick={onProfileClick} name={(nickname ?? username) || ''} image={image || ''} />
       <MenuNewPostButton onClick={onNewPostClick} />
       <MenuSettingsButton onClick={onUpdateProfileClick} />
+      <MenuAdminButton onClick={onAdminClick} />
       <MenuLogoutButton onClick={onLogoutClick} />
     </HeaderMenuWrapper>
   );
