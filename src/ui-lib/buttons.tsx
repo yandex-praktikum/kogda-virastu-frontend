@@ -30,10 +30,12 @@ type TBasicButtonProps = {
 
 export const BasicNormalButton = styled.button<TBasicButtonProps>`
  // width: 100%;
+  max-height: 40px;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
   box-sizing: border-box;
+  float: left;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -51,6 +53,33 @@ export const BasicNormalButton = styled.button<TBasicButtonProps>`
     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   `;
+
+export const MarginedNormalButton = styled.button<TBasicButtonProps>`
+  // width: 100%;
+   max-height: 40px;
+   padding: 8px 16px;
+   border-radius: 4px;
+   border-width: 0;
+   box-sizing: border-box;
+   float: left;
+   margin: 0 8px 0 0;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: flex-start;
+   align-items: center;
+   background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].default, button[colorScheme].disabled)};
+   color: ${({ colorScheme, theme: { button } }) => button[colorScheme].font};
+ 
+   &:hover {
+     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].hover, button[colorScheme].disabled)};
+     }
+   &:active {
+     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+     }
+   &:focus {
+     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
+     }
+   `;
 
 const BasicInvertedButton = styled.button<TBasicButtonProps>`
   padding: 8px 16px;
@@ -366,3 +395,10 @@ export const HeaderLoginButton : FC<TButtonProps> = ({ onClick, disabled = false
     </BasicNormalButton>
   );
 };
+export const GenerateInviteButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <MarginedNormalButton colorScheme='blue' disabled={disabled} type='button' onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='generateInvite' />
+    </RegularText>
+  </MarginedNormalButton>
+);

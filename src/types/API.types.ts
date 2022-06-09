@@ -67,6 +67,10 @@ export interface IFetchPopularTags {
   () : AxiosPromise<any>
 }
 
+export interface IPostInviteGeneration {
+  () : AxiosPromise<string>
+}
+
 export interface IFetchComments {
   (slug: string) : AxiosPromise<TAPIComments>;
 }

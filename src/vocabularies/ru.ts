@@ -48,6 +48,7 @@ const ru: TVocabulary = {
   invite: 'Код приглашения',
   subscribeTag: 'Вы подписались на тег',
   unsubscribeTag: 'Вы отписались от тега',
+  generateInvite: 'Сгенерировать код',
 };
 
 export default ru;

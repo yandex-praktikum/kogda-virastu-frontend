@@ -48,7 +48,7 @@ import {
   setAllVocabularies,
 } from './allSlice';
 
-import { setUser, clearUser } from './userSlice';
+import { setUser, clearUser, setGeneratedInvite } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
@@ -162,6 +162,8 @@ import {
   followTagSucceeded,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  generateInviteRequested,
+  generateInviteSucceeded,
 } from './apiSlice';
 
 import {
@@ -328,4 +330,7 @@ export {
   followTagSucceeded,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  generateInviteRequested,
+  generateInviteSucceeded,
+  setGeneratedInvite,
 };
