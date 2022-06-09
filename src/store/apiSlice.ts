@@ -34,6 +34,7 @@ type TAPIState = {
   isAllPostsRequested: boolean,
   isTagFollowing: boolean,
   isTagUnfollowing: boolean,
+  isInviteGenerating: boolean,
 };
 
 const initialState : TAPIState = {
@@ -69,6 +70,7 @@ const initialState : TAPIState = {
   isAllPostsRequested: false,
   isTagFollowing: false,
   isTagUnfollowing: false,
+  isInviteGenerating: false,
 };
 
 const apiSlice = createSlice({
@@ -336,6 +338,12 @@ const apiSlice = createSlice({
     unfollowTagSucceeded: (state) => ({
       ...state, isTagUnfollowing: false,
     }),
+    generateInviteRequested: (state) => ({
+      ...state, isInviteGenerating: true,
+    }),
+    generateInviteSucceeded: (state) => ({
+      ...state, isInviteGenerating: false,
+    }),
   },
 });
 
@@ -422,5 +430,7 @@ export const {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  generateInviteRequested,
+  generateInviteSucceeded,
 } = apiSlice.actions;
 export default apiReducer;

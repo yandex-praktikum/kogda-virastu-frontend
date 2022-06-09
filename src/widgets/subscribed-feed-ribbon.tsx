@@ -7,7 +7,7 @@ import { RegularText, Divider } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 
-import { addLikeThunk, deleteLikeThunk, getPublicFeedThunk } from '../thunks';
+import { addLikeThunk, deleteLikeThunk, getPrivateFeedThunk } from '../thunks';
 import { dividerGray } from '../constants/colors';
 
 const RibbonWrapper = styled.ul`
@@ -64,7 +64,7 @@ const ItemWrapper = styled.li`
   };
 `;
 
-const FeedRibbon : FC = () => {
+const SubscribedFeedRibbon : FC = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
@@ -72,7 +72,7 @@ const FeedRibbon : FC = () => {
 
   useEffect(() => {
     batch(() => {
-      dispatch(getPublicFeedThunk());
+      dispatch(getPrivateFeedThunk());
     });
   }, [dispatch]);
 
@@ -110,4 +110,4 @@ const FeedRibbon : FC = () => {
   );
 };
 
-export default FeedRibbon;
+export default SubscribedFeedRibbon;

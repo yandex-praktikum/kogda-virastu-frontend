@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import FeedRibbon from './feed-ribbon';
 import { TTabProps } from '../types/styles.types';
+import SubscribedFeedRibbon from './subscribed-feed-ribbon';
 
 const TabsContainer = styled.div`
   overflow: hidden;
@@ -43,7 +44,7 @@ const TabArticle: FC = () => {
         <TabMySubscriptions border={activeTab === 2 ? '2px solid #008AFF' : 'none'} onClick={() => togglTab(2)}>Мои подписки</TabMySubscriptions>
       </TabsContainer>
       {activeTab === 1 && <FeedRibbon />}
-      {activeTab === 2 && <FeedRibbon />}
+      {activeTab === 2 && <SubscribedFeedRibbon />}
     </>
   );
 };

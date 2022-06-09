@@ -42,6 +42,7 @@ import {
   IProfile,
   ITag,
   IRegisterUser,
+  IPostInviteGeneration,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -404,6 +405,14 @@ export const fetchPopularTags : IFetchPopularTags = () : AxiosPromise<[]> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/top`,
     method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const postGenerateInvite: IPostInviteGeneration = () => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${USER_ROUTE}/invites/new`,
+    method: 'post',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

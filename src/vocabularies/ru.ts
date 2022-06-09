@@ -11,6 +11,7 @@ const ru: TVocabulary = {
   mainSubtitle: 'Каково быть джуном  в турбулентном мире',
   popularTags: 'Популярные тэги',
   followedTags: 'Подписка на тэги:',
+  followedUsers: 'Подписка на пользователей:',
   popularContent: 'Популярные материалы',
   articleEnter: 'Читать дальше',
   freshContent: 'Свежие материалы',
@@ -49,6 +50,7 @@ const ru: TVocabulary = {
   invite: 'Код приглашения',
   subscribeTag: 'Вы подписались на тег',
   unsubscribeTag: 'Вы отписались от тега',
+  generateInvite: 'Сгенерировать код',
 };
 
 export default ru;

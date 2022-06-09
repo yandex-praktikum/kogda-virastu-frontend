@@ -11,6 +11,7 @@ const en: TVocabulary = {
   mainSubtitle: 'What it’s like to be a junior in a turbulent world',
   popularTags: 'Popular tags',
   followedTags: 'Subscribed to tags:',
+  followedUsers: 'Subscribed to users:',
   popularContent: 'Popular content',
   articleEnter: 'Read More',
   freshContent: 'New content',
@@ -49,6 +50,7 @@ const en: TVocabulary = {
   invite: 'Your Invite',
   subscribeTag: 'Subscribed to tag',
   unsubscribeTag: 'Unsubscribed from tag',
+  generateInvite: 'Generate code',
 };
 
 export default en;

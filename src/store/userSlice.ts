@@ -9,6 +9,7 @@ type TUserState = {
   nickname?: string | null,
   invite: string | null,
   roles: string[] | null,
+  generatedInvite?: string | null;
 };
 
 const initialState: TUserState = {
@@ -19,18 +20,27 @@ const initialState: TUserState = {
   nickname: null,
   invite: null,
   roles: null,
+  generatedInvite: null,
 };
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<TUser>) => ({ ...state, ...action.payload }),
+    setUser: (state, action: PayloadAction<TUser>) => ({
+      ...state,
+      ...action.payload,
+    }),
+    setGeneratedInvite: (state, action: PayloadAction<string>) => ({
+      ...state,
+      generatedInvite: action.payload,
+    }),
     clearUser: (state) => ({
-      ...state, ...initialState,
+      ...state,
+      ...initialState,
     }),
   },
 });
 
 const userReducer = userSlice.reducer;
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, setGeneratedInvite } = userSlice.actions;
 export default userReducer;

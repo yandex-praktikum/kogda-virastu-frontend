@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 import FollowedTags from '../followed-tags';
 import TagModal from '../tag-modal';
+import GenerateInviteContainer from '../generate-invite-widget';
 
 import {
   setUsernameProfile,
@@ -44,7 +45,9 @@ const SettingsForm: FC = () => {
 
   const profile = useSelector((state) => state.profile);
 
-  const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
+  const {
+    isSettingsPatching, isSettingsUpdateSucceeded,
+  } = useSelector((state) => state.api);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -106,6 +109,7 @@ const SettingsForm: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
+        <GenerateInviteContainer />
         <FollowedTags />
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
