@@ -79,6 +79,10 @@ export type TAPITag = {
   tag: string;
 };
 
+export type TAPIInvite = {
+  code: string;
+};
+
 export type TAPIComment = {
   comment: TComment;
 };

@@ -23,7 +23,7 @@ import {
   TAPIComment,
   TAPIProfile,
   TAPIAuth,
-  TAPIPatchUserData, TAPIPatchArticleData,
+  TAPIPatchUserData, TAPIPatchArticleData, TAPIInvite,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -32,7 +32,6 @@ import {
   IFetchArticles,
   IFetchComments,
   IFetchTags,
-  IFetchUser,
   ILikeArticle,
   ILoginUser,
   IPatchArticle,
@@ -42,6 +41,7 @@ import {
   IProfile,
   IRegisterUser,
   ITag,
+  IFetchInvite,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -152,7 +152,7 @@ export const registerUser : IRegisterUser = (
   return blogAPI(requestConfig);
 };
 
-export const fetchCurrentUser : IFetchUser = () : AxiosPromise<TAPIAuth> => {
+export const fetchCurrentUser : () => AxiosPromise<TAPIAuth> = () : AxiosPromise<TAPIAuth> => {
   const requestConfig: AxiosRequestConfig = {
     url: USER_ROUTE,
     method: 'get',
@@ -394,6 +394,13 @@ export const unfollowTag : ITag = (tag: string) : AxiosPromise<TAPITag> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/${tag}/follow`,
     method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+export const fetchInviteCode: IFetchInvite = () : AxiosPromise<TAPIInvite> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `${USER_ROUTE}/invites/new`,
+    method: 'post',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

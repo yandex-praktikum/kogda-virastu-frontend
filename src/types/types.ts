@@ -60,5 +60,7 @@ export enum FeedTypes {
 export enum UserArticlesTypes {
   my = 'my',
   favorite = 'favorite',
-
 }
+export type TInvite = {
+  code: string;
+};

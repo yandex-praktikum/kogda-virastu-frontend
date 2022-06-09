@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { greySecondary } from '../../constants/colors';
 
 type TInputFieldsetProps = {
   rowGap: number;
@@ -59,9 +60,50 @@ export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
 export const ButtonContainer = styled.div`
   align-self: flex-end;
 `;
+export const ContainerInvite = styled.div`
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  grid-template-columns: 240px 290px;
+  align-items: start;
+  
+  @media(max-width: 600px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    
+    margin-left: 10px;
+  }
+`;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px
+`;
+
+export const InviteCode = styled.span`
+  font-size: ${({ theme }) => theme.text18Sans.size}px;
+  font-family: ${({ theme }) => theme.text18Sans.family};
+  font-weight: ${({ theme }) => theme.text18Sans.weight};
+  line-height: ${({ theme }) => theme.text18Sans.height}px;
+  color: ${greySecondary};
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  
+}
+ 
+`;
+export const LinkStyle = styled(Link)`
+    color: ${((props) => props.theme.markedText)};
+    grid-column : span 2;
+    text-decoration-style: dashed;
+    
+    @media(max-width: 600px) {
+    grid-column: span 1;
+
+  }
 `;

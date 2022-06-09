@@ -32,6 +32,7 @@ const en: TVocabulary = {
   urlImage: 'User avatar URL',
   newPassword: 'New password',
   refreshUser: 'Update settings',
+  generateInviteCode: 'Generate invite code',
   usersettings: 'Your setings',
   publishArticle: 'Publish your material',
   pageMessage: 'Page not found. To read blog, go to Home',
@@ -46,6 +47,7 @@ const en: TVocabulary = {
   viewAllArticle: 'All posts',
   mySubscriptions: 'My subscriptions',
   zeroSubscriptions: 'You are not subscribed to anyone',
+  copyText: 'Click to copy the code or link',
 };
 
 export default en;

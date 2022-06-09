@@ -1,5 +1,9 @@
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect,
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  MouseEvent,
+  useEffect,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -16,14 +20,15 @@ import {
   setPasswordProfile,
 } from '../../store';
 
-import { patchCurrentUserThunk } from '../../thunks';
+import { patchCurrentUserThunk, getInviteCodeThunk } from '../../thunks';
 
 import {
-  ButtonContainer,
+  ButtonContainer, ContainerInvite, InviteCode,
   Form,
   FormContainer,
   FormTitle,
   InputFieldset,
+  LinkStyle,
 } from './forms-styles';
 
 import {
@@ -34,9 +39,11 @@ import {
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
+  GenerateInviteCodeButton, RegularText,
 } from '../../ui-lib';
 
 import FollowTags from '../follow-tags';
+import { blue } from '../../constants/colors';
 
 const SettingsForm: FC = () => {
   const {
@@ -46,6 +53,8 @@ const SettingsForm: FC = () => {
   const profile = useSelector((state) => state.profile);
 
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
+
+  const { generatedCode } = useSelector((state) => state.view);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -66,7 +75,7 @@ const SettingsForm: FC = () => {
       navigate('/');
     }
   //  return () => { dispatch(settingsResetUpdateSucceeded()); };
-  }, [dispatch, isSettingsUpdateSucceeded, navigate]);
+  }, [isSettingsUpdateSucceeded, navigate]);
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
@@ -95,6 +104,11 @@ const SettingsForm: FC = () => {
     dispatch(setPasswordProfile(evt.target.value));
   };
 
+  const copyToClipBoard = (e: MouseEvent<HTMLElement>, text: string) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(text).then((r) => r).catch((evt: string) => evt);
+  };
+
   return (
     <FormContainer>
       <FormTitle>
@@ -112,6 +126,27 @@ const SettingsForm: FC = () => {
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
           <FieldPassword value={password ?? ''} onChange={changePassword} />
         </InputFieldset>
+        <ContainerInvite>
+          <GenerateInviteCodeButton onClick={() => dispatch(getInviteCodeThunk())} />
+          {generatedCode ? (
+            <>
+              <InviteCode
+                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, generatedCode)}>
+                {generatedCode}
+              </InviteCode>
+              <LinkStyle
+                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `http://localhost:4100/registration?=${generatedCode}`)}
+                color={blue}
+                to={`/registration?=${generatedCode}`}>
+                http://localhost:4100/registration
+              </LinkStyle>
+              <RegularText size='small' weight={400}>
+                <FormattedMessage id='copyText' />
+              </RegularText>
+            </>
+          )
+            : null}
+        </ContainerInvite>
         <FollowTags />
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
