@@ -67,6 +67,7 @@ const PopularTags: FC = () => {
                 pointer
                 handleClick={handleClick}
                 isActive={selectedTags?.includes(tag) || false}
+                isShowIcon={selectedTags?.includes(tag) || false}
                 deactivateTag={(e) => deactivateTag(e, tag)} />
             ))
           }
