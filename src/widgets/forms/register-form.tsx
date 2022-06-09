@@ -16,7 +16,7 @@ import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword, InvationCode, RegisterButton,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
@@ -34,6 +34,11 @@ const RegisterForm: FC = () => {
 
   const onChangePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changePasswordRegister(evt.target.value));
+  };
+
+  const onConfirmPassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    console.log(evt.target.value);
+    // dispatch(changePasswordRegister(evt.target.value));
   };
 
   const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -70,6 +75,8 @@ const RegisterForm: FC = () => {
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldPassword value='' label='Подтвердите пароль' onChange={onConfirmPassword} />
+          <InvationCode value='' onChange={onConfirmPassword} />
         </InputFieldset>
         <ButtonContainer>
           <RegisterButton disabled={isUserRegistering} />
