@@ -15,6 +15,7 @@ import {
   setFormProfile,
   setPasswordProfile,
   setInviteCode,
+  setTagsFollow,
 } from '../../store';
 
 import { patchCurrentUserThunk, getInviteThunk } from '../../thunks';
@@ -25,6 +26,8 @@ import {
   FormContainer,
   FormTitle,
   InputFieldset,
+  TagsContainer,
+  TagsTitle,
   InviteButtonContainer,
   InviteCodeText,
   FormLoginLink,
@@ -41,6 +44,8 @@ import {
   FieldAboutUser,
   GenerateCodeButton,
 } from '../../ui-lib';
+import Tag from '../tag';
+import deleteTagFollowThunk from '../../thunks/delete-tag-follow-thunk';
 
 const SettingsForm: FC = () => {
   const {
@@ -49,6 +54,7 @@ const SettingsForm: FC = () => {
 
   const profile = useSelector((state) => state.profile);
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
+  const { tagsFollow } = useSelector((state) => state.view);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -101,6 +107,11 @@ const SettingsForm: FC = () => {
     evt.preventDefault();
     dispatch(getInviteThunk());
   };
+  const deactivateTag = (e: React.MouseEvent, tag: string) => {
+    e.stopPropagation();
+    dispatch(deleteTagFollowThunk(tag));
+    dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
+  };
 
   return (
     <FormContainer>
@@ -124,6 +135,21 @@ const SettingsForm: FC = () => {
           <InviteCodeText>{profile.friendInvite}</InviteCodeText>
           {profile.friendInvite && <InviteCodeLink to={{ pathname: `/registration?=${profile.friendInvite || ''}` }}>{`/registration?=${profile.friendInvite || ''}`}</InviteCodeLink>}
         </InviteButtonContainer>
+        <TagsTitle>
+          Теги
+        </TagsTitle>
+        <TagsContainer>
+          {
+            tagsFollow?.map((tag) => (
+              <Tag
+                key={tag}
+                tag={tag}
+                isActive={false}
+                deactivateTag={(e) => deactivateTag(e, tag)}
+                isShowIcon={!false} />
+            ))
+          }
+        </TagsContainer>
         <ButtonContainer>
           <UpdateProfileButton disabled={isSettingsPatching} />
         </ButtonContainer>
