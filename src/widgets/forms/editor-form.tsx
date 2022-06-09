@@ -47,6 +47,7 @@ const EditorForm: FC = () => {
   const {
     title, description, body, tags, link,
   } = useSelector((state) => state.forms.article) ?? {};
+
   const {
     isArticleFetching,
     isArticlePostingSucceeded,
@@ -55,6 +56,7 @@ const EditorForm: FC = () => {
     isArticlePatching,
     isArticlePosting,
   } = useSelector((state) => state.api);
+
   const { slug } = useParams();
   const initialArticle = useSelector((state) => state.view.article);
   const [isPosted, setPostRequested] = useState(false);
