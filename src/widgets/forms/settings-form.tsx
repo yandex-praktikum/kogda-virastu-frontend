@@ -46,7 +46,7 @@ const SettingsForm: FC = () => {
   const profile = useSelector((state) => state.profile);
 
   const {
-    isSettingsPatching, isSettingsUpdateSucceeded, isInviteGenerating,
+    isSettingsPatching, isSettingsUpdateSucceeded,
   } = useSelector((state) => state.api);
 
   const dispatch = useDispatch();

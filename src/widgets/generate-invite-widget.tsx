@@ -1,6 +1,5 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { GenerateInviteButton } from '../ui-lib/buttons';
 import { useDispatch, useSelector } from '../services/hooks';
 import generateInviteThunk from '../thunks/generate-invite-thunk';
