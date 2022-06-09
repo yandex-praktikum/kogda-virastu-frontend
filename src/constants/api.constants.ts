@@ -1,5 +1,5 @@
-// export const API_ROOT = 'http://localhost:3000/api';
-export const API_ROOT = 'https://redtypes.ru/blog/api';
+export const API_ROOT = 'http://localhost:3000/api';
+// export const API_ROOT = 'https://redtypes.ru/blog/api';
 export const WYSIWYG_EDITOR = '01ce39mahu5917xfaly0h6vjde1py3u0lvhka34tepqmt8na';
 
 export const REGISTER_ROUTE = '/users';
