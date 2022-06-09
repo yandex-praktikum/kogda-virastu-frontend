@@ -45,7 +45,8 @@ const en: TVocabulary = {
   nickname: 'Display name',
   registerCode: 'Enter registration code',
   generateСode: 'Generate code',
-
+  textCode: 'Copy the invitation',
+  textSuccesCode: 'Link copied to clipboard',
 };
 
 export default en;

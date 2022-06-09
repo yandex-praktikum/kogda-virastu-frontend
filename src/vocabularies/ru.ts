@@ -45,6 +45,8 @@ const ru: TVocabulary = {
   nickname: 'Отображаемое имя',
   registerCode: 'Введите код  регистрации',
   generateСode: 'Сгенерировать код',
+  textCode: 'Скопировать ссылку-приглашение',
+  textSuccesCode: 'Ссылка скопирована в буфер обмена',
 };
 
 export default ru;

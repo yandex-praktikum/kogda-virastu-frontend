@@ -1,9 +1,9 @@
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect, MouseEventHandler,
+  ChangeEventHandler, FC, FormEventHandler, useEffect, MouseEventHandler, useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 
 import {
@@ -32,6 +32,7 @@ import {
   InviteCodeText,
   FormLoginLink,
   InviteCodeLink,
+  InviteCodeSuccess,
 } from './forms-styles';
 
 import {
@@ -59,6 +60,8 @@ const SettingsForm: FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
+  const intl = useIntl();
+  const [codeSuccess, setCodeSuccess] = useState(false);
 
   useEffect(() => {
     dispatch(setFormProfile({
@@ -112,6 +115,12 @@ const SettingsForm: FC = () => {
     dispatch(deleteTagFollowThunk(tag));
     dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
   };
+  const copyCode = () => {
+    navigator.clipboard.writeText(`/registration?=${profile.friendInvite || ''}`)
+      .then(() => setCodeSuccess(true))
+      .then(() => setTimeout(() => setCodeSuccess(false), 5000))
+      .catch(() => {});
+  };
 
   return (
     <FormContainer>
@@ -132,8 +141,10 @@ const SettingsForm: FC = () => {
         </InputFieldset>
         <InviteButtonContainer>
           <GenerateCodeButton disabled={false} onClick={createInviteCode} />
-          <InviteCodeText>{profile.friendInvite}</InviteCodeText>
-          {profile.friendInvite && <InviteCodeLink to={{ pathname: `/registration?=${profile.friendInvite || ''}` }}>{`/registration?=${profile.friendInvite || ''}`}</InviteCodeLink>}
+          {profile.friendInvite
+          && <InviteCodeText onClick={copyCode}>{intl.messages.textCode as string}</InviteCodeText>}
+          {codeSuccess
+          && <InviteCodeSuccess>{intl.messages.textSuccesCode as string}</InviteCodeSuccess>}
         </InviteButtonContainer>
         <TagsTitle>
           Теги
