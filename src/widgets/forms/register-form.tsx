@@ -8,6 +8,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   resetFormRegister,
   changeNicknameRegister,
 } from '../../store';
@@ -16,12 +17,12 @@ import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldConfirmPassword,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname,
+    username, email, password, nickname, confirmpassword,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
@@ -36,6 +37,10 @@ const RegisterForm: FC = () => {
     dispatch(changePasswordRegister(evt.target.value));
   };
 
+  const onChangeConfirmPassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeConfirmPasswordRegister(evt.target.value));
+  };
+
   const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeUsernameRegister(evt.target.value));
   };
@@ -46,7 +51,14 @@ const RegisterForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    dispatch(registerThunk());
+    if (password === confirmpassword
+      && password !== ''
+      && username !== ''
+      && email !== ''
+      && nickname !== ''
+      && confirmpassword !== '') {
+      dispatch(registerThunk());
+    }
   };
 
   useEffect(() => {
@@ -70,6 +82,7 @@ const RegisterForm: FC = () => {
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldConfirmPassword value={confirmpassword ?? ''} onChange={onChangeConfirmPassword} />
         </InputFieldset>
         <ButtonContainer>
           <RegisterButton disabled={isUserRegistering} />

@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 
 import {
@@ -14,6 +14,7 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  ConfirmPasswordProfile,
 } from '../../store';
 
 import { patchCurrentUserThunk } from '../../thunks';
@@ -31,6 +32,7 @@ import {
   FieldLogin,
   FieldNick,
   FieldPassword,
+  FieldConfirmPassword,
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
@@ -40,7 +42,7 @@ import FollowTags from '../follow-tags';
 
 const SettingsForm: FC = () => {
   const {
-    bio, email, image, username, password, nickname,
+    bio, email, image, username, password, nickname, confirmpassword,
   } = useSelector((state) => state.forms.profile);
 
   const profile = useSelector((state) => state.profile);
@@ -50,6 +52,7 @@ const SettingsForm: FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
+  const intl = useIntl();
 
   useEffect(() => {
     dispatch(setFormProfile({
@@ -70,7 +73,10 @@ const SettingsForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    dispatch(patchCurrentUserThunk());
+    if (password === confirmpassword
+      || ((password === '' || password === null) && (confirmpassword === '' || confirmpassword === null))) {
+      dispatch(patchCurrentUserThunk());
+    }
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -91,6 +97,9 @@ const SettingsForm: FC = () => {
   const changeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setNicknameProfile(evt.target.value));
   };
+  const ConfirmChangePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(ConfirmPasswordProfile(evt.target.value));
+  };
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
@@ -110,7 +119,8 @@ const SettingsForm: FC = () => {
             value={bio ?? ''}
             minHeight={theme.text18.height * 5} />
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
-          <FieldPassword value={password ?? ''} onChange={changePassword} />
+          <FieldPassword label={intl.messages.newPassword as string} value={password ?? ''} onChange={changePassword} />
+          <FieldConfirmPassword value={confirmpassword ?? ''} onChange={ConfirmChangePassword} />
         </InputFieldset>
         <FollowTags />
         <ButtonContainer>
@@ -118,7 +128,6 @@ const SettingsForm: FC = () => {
         </ButtonContainer>
       </Form>
     </FormContainer>
-
   );
 };
 
