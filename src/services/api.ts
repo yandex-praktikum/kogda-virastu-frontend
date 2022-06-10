@@ -137,11 +137,13 @@ export const registerUser : IRegisterUser = (
   username: string,
   email: string,
   password: string,
-  nickname,
+  nickname: string,
+  invite: string,
 ) : AxiosPromise<TAPIAuth> => {
   const registerData : TAPINewUser = {
+    invite,
     user: {
-      username, email, password, nickname,
+      username, email, password, nickname, invite,
     },
   };
   const requestConfig : AxiosRequestConfig = {
@@ -149,7 +151,7 @@ export const registerUser : IRegisterUser = (
     data: registerData,
     method: 'post',
   };
-  return blogAPI(requestConfig);
+  return blogAPI(injectBearerToken(requestConfig));
 };
 
 export const fetchCurrentUser : () => AxiosPromise<TAPIAuth> = () : AxiosPromise<TAPIAuth> => {

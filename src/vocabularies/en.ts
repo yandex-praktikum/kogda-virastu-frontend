@@ -29,6 +29,7 @@ const en: TVocabulary = {
   userName: 'User Name',
   userEmail: 'Email',
   password: 'Password',
+  invite: 'Invite code',
   urlImage: 'User avatar URL',
   newPassword: 'New password',
   refreshUser: 'Update settings',

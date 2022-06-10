@@ -49,6 +49,7 @@ import {
   FieldTags,
   FieldNick,
   FieldProfileImage,
+  FieldInviteCode,
 }
   from './inputs/input-fields';
 import {
@@ -127,4 +128,5 @@ export {
   MenuSettingsButton,
   MenuLogoutButton,
   FieldTextComment,
+  FieldInviteCode,
 };

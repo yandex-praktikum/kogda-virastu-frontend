@@ -3,10 +3,12 @@ import {
 } from '../types/types';
 
 export type TAPINewUser = {
+  invite: string,
   user: {
     username: string;
     email: string;
     password: string;
+    invite: string;
     nickname?: string;
   }
 };
@@ -18,7 +20,8 @@ export type TAPIAuth = {
     bio?: string;
     image?: string;
     token: string;
-    nickname: string
+    nickname: string,
+    invite: string,
   };
 };
 

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
@@ -10,24 +10,32 @@ import {
   changePasswordRegister,
   resetFormRegister,
   changeNicknameRegister,
+  changeInviteCodeRegister,
 } from '../../store';
 import { registerThunk } from '../../thunks';
 import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldInviteCode,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname,
+    username, email, password, nickname, invite,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const param:string | null = searchParams.get('');
 
+  const onFocusInput : ChangeEventHandler<HTMLInputElement> = () => {
+    if (param != null) {
+      dispatch(changeInviteCodeRegister(param));
+    }
+  };
   const onChangeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeEmailRegister(evt.target.value));
   };
@@ -42,6 +50,10 @@ const RegisterForm: FC = () => {
 
   const onChangeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeNicknameRegister(evt.target.value));
+  };
+
+  const onChangeInviteCode: ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeInviteCodeRegister(evt.target.value));
   };
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
@@ -66,10 +78,11 @@ const RegisterForm: FC = () => {
       </FormLoginLink>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={16}>
-          <FieldLogin value={username ?? ''} onChange={onChangeUsername} />
+          <FieldLogin value={username ?? ''} onChange={onChangeUsername} onFocus={onFocusInput} />
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldInviteCode value={invite ?? param ?? ''} onChange={onChangeInviteCode} />
         </InputFieldset>
         <ButtonContainer>
           <RegisterButton disabled={isUserRegistering} />
