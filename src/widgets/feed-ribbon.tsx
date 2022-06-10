@@ -1,6 +1,4 @@
-import React, {
-  FC, MouseEventHandler, useEffect, useState,
-} from 'react';
+import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -81,8 +79,8 @@ const notActiveStyle = {
   color: '#62626A',
 };
 const Links = styled.div`
-    display: flex;
-    padding: 0;
+  display: flex;
+  padding: 0;
 
   @media screen and (max-width: 1100px) {
     padding-left: 5%;
@@ -115,6 +113,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }, []);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
+  const { tagsFollow } = useSelector((state) => state.view);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
   if (posts) {
@@ -134,32 +133,36 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const allPosts = posts.filter(
-    (post) => post.tagList.some((tag) => tags.includes(tag) || !tags || tags.length < 1),
+  const allPosts = posts.filter((post) =>
+    post.tagList.find((tag) => tags.includes(tag) || !tags || tags.length < 1)
+  );
+  const authorPosts = posts.filter(
+    (post) =>
+      post.author.following ||
+      post.tagList.some((tag) => tagsFollow?.includes(tag))
   );
 
-  const authorPosts = posts.filter((post) => post.author.following);
+  const renderArticle = (arr: Array<TArticle>) =>
+    arr.map((post, i) => {
+      const onClick: MouseEventHandler = () => {
+        if (post.favorited) {
+          dispatch(deleteLikeThunk(post.slug));
+        } else {
+          dispatch(addLikeThunk(post.slug));
+        }
+      };
 
-  const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
-    const onClick: MouseEventHandler = () => {
-      if (post.favorited) {
-        dispatch(deleteLikeThunk(post.slug));
-      } else {
-        dispatch(addLikeThunk(post.slug));
-      }
-    };
-
-    return (
-      <React.Fragment key={post.slug}>
-        <ItemWrapper>
-          <ArticleFullPreview article={post} onLikeClick={onClick} />
-        </ItemWrapper>
-        {i % 2 && i !== arr.length - 1 && mobileScreen ? (
-          <Divider distance={0} />
-        ) : null}
-      </React.Fragment>
-    );
-  });
+      return (
+        <React.Fragment key={post.slug}>
+          <ItemWrapper>
+            <ArticleFullPreview article={post} onLikeClick={onClick} />
+          </ItemWrapper>
+          {i % 2 && i !== arr.length - 1 && mobileScreen ? (
+            <Divider distance={0} />
+          ) : null}
+        </React.Fragment>
+      );
+    });
 
   return (
     <>
