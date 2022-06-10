@@ -18,6 +18,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
   changeInviteCodeRegister,
   resetFormRegister,
@@ -31,6 +32,7 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  ConfirmPasswordProfile,
   resetFormProfile,
 
 } from './profileFormSubSlice';
@@ -201,6 +203,7 @@ export {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
   changeInviteCodeRegister,
   resetFormRegister,
@@ -211,6 +214,7 @@ export {
   setImageProfile,
   setFormProfile,
   setPasswordProfile,
+  ConfirmPasswordProfile,
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,

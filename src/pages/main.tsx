@@ -13,6 +13,7 @@ import {
 } from '../thunks';
 import { FeedRibbon, Slider } from '../widgets';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
+import { settingsResetUpdateSucceeded } from '../store';
 
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
@@ -83,6 +84,8 @@ const Main : FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
+  window.scrollTo(0, 0);
+  dispatch(settingsResetUpdateSucceeded());
   useEffect(() => {
     batch(() => {
       dispatch(getPublicFeedThunk());

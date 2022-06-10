@@ -30,6 +30,7 @@ const ru: TVocabulary = {
   userEmail: 'Email',
   password: 'Пароль',
   invite: 'Введите код регистрации',
+  confirmPassword: 'Подтвердите пароль',
   urlImage: 'URL изображения профиля',
   newPassword: 'Новый пароль',
   refreshUser: 'Обновить настройки',

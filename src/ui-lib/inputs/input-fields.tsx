@@ -211,6 +211,54 @@ FieldPassword.defaultProps = {
   name: 'FieldPassword',
 };
 
+export const FieldConfirmPassword: FC<TFieldInput & { label?: string, name?: string }> = ({
+  name = 'FieldConfirmPassword',
+  label = undefined,
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  disabled = false,
+}) => {
+  const intl = useIntl();
+  const [passwordState,
+    setPasswordState] = useState<'password' | 'text'>('password');
+  const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color='grey' />);
+  const onIconClick = () => {
+    if (passwordState === 'password') {
+      setPasswordState('text');
+      setPasswordIcon(<EyeIcon color='grey' />);
+    } else {
+      setPasswordState('password');
+      setPasswordIcon(<EyeNoIcon color='grey' />);
+    }
+  };
+  return (
+    <InputField
+      placeholder={placeholder}
+      name={name}
+      type={passwordState}
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      disabled={disabled}
+      value={value}
+      onChange={onChange}
+      labelText={label || intl.messages.confirmPassword as string}
+      icon={passwordIcon}
+      onIconClick={onIconClick} />
+  );
+};
+
+FieldConfirmPassword.defaultProps = {
+  label: undefined,
+  name: 'FieldConfirmPassword',
+};
+
 export const FieldDescriptionArticle: FC<TFieldInput> = ({
   value,
   onFocus = undefined,
