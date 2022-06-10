@@ -41,6 +41,7 @@ const FeedFilter: React.FC = () => {
   const dispatch = useDispatch();
 
   const type = useSelector((state) => state.view.feedType);
+  console.log(type);
 
   const getPrivateFeed = () => {
     dispatch(getPrivateFeedThunk());
