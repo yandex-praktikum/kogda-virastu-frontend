@@ -1,5 +1,8 @@
 import React, {
-  FC, MouseEventHandler, useEffect, useState,
+  FC,
+  MouseEventHandler,
+  useEffect,
+  useState,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
@@ -81,8 +84,8 @@ const notActiveStyle = {
   color: '#62626A',
 };
 const Links = styled.div`
-    display: flex;
-    padding: 0;
+  display: flex;
+  padding: 0;
 
   @media screen and (max-width: 1100px) {
     padding-left: 5%;
@@ -115,6 +118,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }, []);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
+  const { tagsFollow } = useSelector((state) => state.view);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
   if (posts) {
@@ -135,11 +139,11 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   };
 
   const allPosts = posts.filter(
-    (post) => post.tagList.some((tag) => tags.includes(tag) || !tags || tags.length < 1),
+    (post) => post.tagList.find((tag) => tags.includes(tag) || !tags || tags.length < 1),
   );
-
-  const authorPosts = posts.filter((post) => post.author.following);
-
+  const authorPosts = posts.filter(
+    (post) => post.author.following || post.tagList.some((tag) => tagsFollow?.includes(tag)),
+  );
   const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
     const onClick: MouseEventHandler = () => {
       if (post.favorited) {
@@ -148,7 +152,6 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         dispatch(addLikeThunk(post.slug));
       }
     };
-
     return (
       <React.Fragment key={post.slug}>
         <ItemWrapper>
