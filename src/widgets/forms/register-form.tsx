@@ -18,7 +18,8 @@ import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldInviteCode, FieldConfirmPassword
+  FieldEmail,
+  FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldInviteCode, FieldConfirmPassword,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
