@@ -47,7 +47,7 @@ import {
   FieldDescriptionArticle,
   FieldTags,
   FieldNick,
-  InvationCode,
+  InvitionCode,
   FieldProfileImage,
 }
   from './inputs/input-fields';
@@ -109,7 +109,7 @@ export {
   FieldEmail,
   FieldPassword,
   FieldNick,
-  InvationCode,
+  InvitionCode,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTags,

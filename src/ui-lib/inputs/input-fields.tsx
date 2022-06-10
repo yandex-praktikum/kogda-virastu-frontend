@@ -110,7 +110,7 @@ export const FieldNick: FC<TFieldInput> = ({
       labelText={intl.messages.nickname as string} />
   );
 };
-export const InvationCode: FC<TFieldInput> = ({
+export const InvitionCode: FC<TFieldInput> = ({
   value,
   onFocus = undefined,
   onBlur = undefined,
