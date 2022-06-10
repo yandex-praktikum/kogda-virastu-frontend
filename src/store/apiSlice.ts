@@ -36,7 +36,6 @@ type TAPIState = {
   isTagFollowDeleting: boolean,
   isTagsFollowFetching: boolean,
   isInviteFetching: boolean,
-  isVisible: boolean,
 };
 
 const initialState : TAPIState = {
@@ -74,7 +73,6 @@ const initialState : TAPIState = {
   isTagFollowDeleting: false,
   isTagsFollowFetching: false,
   isInviteFetching: false,
-  isVisible: false,
 };
 
 const apiSlice = createSlice({
@@ -334,10 +332,10 @@ const apiSlice = createSlice({
       ...state, isTagFollowing: true,
     }),
     tagFollowSucceeded: (state) => ({
-      ...state, isTagFollowing: false, isVisible: true,
+      ...state, isTagFollowing: false,
     }),
     tagFollowFailed: (state, action: PayloadAction<TAPIError>) => ({
-      ...state, isTagFollowing: false, errorObject: action.payload, isVisible: false,
+      ...state, isTagFollowing: false, errorObject: action.payload,
     }),
     tagFollowDeleteRequested: (state) => ({
       ...state, isTagFollowDeleting: true,

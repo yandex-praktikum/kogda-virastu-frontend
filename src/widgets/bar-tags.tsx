@@ -86,7 +86,6 @@ const MessageContainer = styled.div<TMessageContainer>`
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
-  const { isVisible } = useSelector((state) => state.api);
   const dispatch = useDispatch();
   const pointer = !rowReverse;
   const theme = useTheme();
@@ -101,14 +100,8 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
         setVisible(true);
         setTagName(tag);
         setTimeout(() => setVisible(false), 2000);
-        // if (tagsFollow) {
-        //   dispatch(setTagsFollow([...tagsFollow, tag]));
-        // } else {
-        //   dispatch(setTagsFollow([tag]));
-        // }
       } else {
         dispatch(deleteTagFollowThunk(tag));
-        // dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
       }
     }
   };
