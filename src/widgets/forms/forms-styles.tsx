@@ -9,7 +9,7 @@ type TInputFieldsetProps = {
 export const FormContainer = styled.div`
   padding: 16px 0 0 0;
   max-width: 540px;
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@ export const FormLoginLink = styled(Link)`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 98%;
 `;
 
 export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
@@ -65,13 +65,11 @@ export const ContainerInvite = styled.div`
   gap: 8px;
   width: 100%;
   grid-template-columns: 240px 290px;
-  align-items: start;
+  align-items: center;
   
   @media(max-width: 600px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    
-    margin-left: 10px;
+    grid-template-columns: 240px;
+    grid-template-rows: 1fr 1fr;
   }
 `;
 
@@ -99,11 +97,9 @@ export const InviteCode = styled.span`
 `;
 export const LinkStyle = styled(Link)`
     color: ${((props) => props.theme.markedText)};
-    grid-column : span 2;
     text-decoration-style: dashed;
-    
     @media(max-width: 600px) {
-    grid-column: span 1;
+    grid-column: span 2;
 
   }
 `;

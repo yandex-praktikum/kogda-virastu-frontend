@@ -48,7 +48,7 @@ const ru: TVocabulary = {
   viewAllArticle: 'Все посты',
   mySubscriptions: 'Мои подписки',
   zeroSubscriptions: 'У вас пока нет активных подписок',
-  copyText: 'Кликните, чтобы скопировать код или ссылку',
+  copyText: 'Скопировать ссылку-приглашение',
 };
 
 export default ru;

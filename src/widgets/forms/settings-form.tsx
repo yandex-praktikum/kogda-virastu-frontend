@@ -23,7 +23,7 @@ import {
 import { patchCurrentUserThunk, getInviteCodeThunk } from '../../thunks';
 
 import {
-  ButtonContainer, ContainerInvite, InviteCode,
+  ButtonContainer, ContainerInvite,
   Form,
   FormContainer,
   FormTitle,
@@ -39,11 +39,11 @@ import {
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
-  GenerateInviteCodeButton, RegularText,
+  GenerateInviteCodeButton,
 } from '../../ui-lib';
 
 import FollowTags from '../follow-tags';
-import { blue } from '../../constants/colors';
+import { greySecondary } from '../../constants/colors';
 
 const SettingsForm: FC = () => {
   const {
@@ -129,21 +129,12 @@ const SettingsForm: FC = () => {
         <ContainerInvite>
           <GenerateInviteCodeButton onClick={() => dispatch(getInviteCodeThunk())} />
           {generatedCode ? (
-            <>
-              <InviteCode
-                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, generatedCode)}>
-                {generatedCode}
-              </InviteCode>
-              <LinkStyle
-                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `http://localhost:4100/registration?=${generatedCode}`)}
-                color={blue}
-                to={`/registration?=${generatedCode}`}>
-                http://localhost:4100/registration
-              </LinkStyle>
-              <RegularText size='small' weight={400}>
-                <FormattedMessage id='copyText' />
-              </RegularText>
-            </>
+            <LinkStyle
+              onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `http://localhost:4100/registration?=${generatedCode}`)}
+              to={`/registration?=${generatedCode}`}
+              color={greySecondary}>
+              <FormattedMessage id='copyText' />
+            </LinkStyle>
           )
             : null}
         </ContainerInvite>
