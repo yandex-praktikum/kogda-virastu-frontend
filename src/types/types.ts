@@ -56,6 +56,7 @@ export type TComments = Array<TComment>;
 export enum FeedTypes {
   public = 'public',
   private = 'private',
+  moderation = 'moderation',
   tags = 'tags',
 }
 export enum UserArticlesTypes {

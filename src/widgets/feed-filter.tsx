@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { getPrivateFeedThunk, getPublicFeedThunk } from '../thunks';
 import { FeedTypes } from '../types/types';
 
-const FilterConteiner = styled.div`
+const FilterContainer = styled.div`
   width: 100%;
   height: 56px;
   font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`};
@@ -42,6 +42,10 @@ const FeedFilter: React.FC = () => {
 
   const type = useSelector((state) => state.view.feedType);
 
+  const publicType = type === FeedTypes.public;
+  const privateType = type === FeedTypes.private;
+  const moderationType = type === FeedTypes.moderation;
+
   const getPrivateFeed = () => {
     dispatch(getPrivateFeedThunk());
   };
@@ -50,20 +54,34 @@ const FeedFilter: React.FC = () => {
     dispatch(getPublicFeedThunk());
   };
 
+  const getModerationFeed = () => {
+    //
+  };
+
   return (
-    <FilterConteiner>
-      {type === FeedTypes.public ? (
+    <FilterContainer>
+      {publicType && (
         <>
           <FilterButtonActive type='button' onClick={getPublicFeed}>Все посты</FilterButtonActive>
           <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
+          <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>
         </>
-      ) : (
+      )}
+      {privateType && (
         <>
           <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
           <FilterButtonActive type='button' onClick={getPrivateFeed}>Мои подписки</FilterButtonActive>
+          <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>
         </>
       )}
-    </FilterConteiner>
+      {moderationType && (
+        <>
+          <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
+          <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
+          <FilterButtonActive type='button' onClick={getModerationFeed}>На модерации</FilterButtonActive>
+        </>
+      )}
+    </FilterContainer>
   );
 };
 
