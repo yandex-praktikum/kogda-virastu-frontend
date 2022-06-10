@@ -2,12 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
 import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   resetFormRegister,
   changeNicknameRegister,
   changeInviteRegister,
@@ -17,15 +18,18 @@ import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldInvite,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword,
+  FieldConfirmPassword,
+  RegisterButton, FieldInvite,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname, invite,
+    username, email, password, confirmPassword, nickname, invite,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
+  const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,6 +39,10 @@ const RegisterForm: FC = () => {
 
   const onChangePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changePasswordRegister(evt.target.value));
+  };
+
+  const onChangeConfirmPassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeConfirmPasswordRegister(evt.target.value));
   };
 
   const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -51,7 +59,9 @@ const RegisterForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    dispatch(registerThunk());
+    if (password === confirmPassword) {
+      dispatch(registerThunk());
+    }
   };
 
   useEffect(() => {
@@ -75,10 +85,12 @@ const RegisterForm: FC = () => {
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldInvite value={invite ?? ''} onChange={onChangeInvite} />
-          <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldPassword value={password ?? ''} onChange={onChangePassword} error={confirmPassword !== password} />
+          <FieldConfirmPassword value={confirmPassword ?? ''} onChange={onChangeConfirmPassword} error={confirmPassword !== password} errorText={confirmPassword !== password ? intl.messages.passwordsAreNotEqual as string : ''} />
         </InputFieldset>
         <ButtonContainer>
-          <RegisterButton disabled={isUserRegistering} />
+          <RegisterButton disabled={isUserRegistering || (!password && !confirmPassword)
+            || confirmPassword !== password} />
         </ButtonContainer>
       </Form>
     </FormContainer>
