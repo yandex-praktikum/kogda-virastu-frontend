@@ -141,6 +141,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
       post.author.following ||
       post.tagList.some((tag) => tagsFollow?.includes(tag))
   );
+  const moderationPosts = posts.filter((post) => post.state === 'pending');
 
   const renderArticle = (arr: Array<TArticle>) =>
     arr.map((post, i) => {
@@ -173,11 +174,15 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         <NavLink to='/article' style={activeLink}>
           Мои подписки
         </NavLink>
+        <NavLink to='/moderation' style={activeLink}>
+          На модерации
+        </NavLink>
       </Links>
       <ScrollRibbon>
         <RibbonWrapper>
           {type === 'all' && renderArticle(allPosts)}
           {type === 'subscribe' && renderArticle(authorPosts)}
+          {type === 'moderation' && renderArticle(moderationPosts)}
         </RibbonWrapper>
       </ScrollRibbon>
     </>
