@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent, useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled, { keyframes, useTheme } from 'styled-components';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
 import { setTagsFollow } from '../store';
@@ -7,6 +7,7 @@ import Tag from './tag';
 import addTagFollowThunk from '../thunks/add-tag-follow-thunk';
 import deleteTagFollowThunk from '../thunks/delete-tag-follow-thunk';
 import { RegularText } from '../ui-lib';
+import { postTagFollow } from '../services/api';
 
 type TBarTags = {
   tagList: string[],
@@ -15,6 +16,11 @@ type TBarTags = {
 type TLists = {
   isHasImage?: boolean,
   rowReverse?: boolean;
+};
+
+type TMessageContainer = {
+  visible: boolean,
+  an: boolean,
 };
 
 const Lists = styled.ul<TLists>`
@@ -53,7 +59,17 @@ const List = styled.li`
     list-style-type: none;
 `;
 
-const MessageContainer = styled.div`
+const fade = keyframes`
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+`;
+
+const MessageContainer = styled.div<TMessageContainer>`
   padding: 0 16px;
   height: 32px;
   background-color: rgba(10, 10, 11, 0.9);
@@ -64,10 +80,13 @@ const MessageContainer = styled.div`
   position: absolute;
   top: -56px;
   left: calc(50% - 267px / 2);
+  visibility: ${({ visible }) => visible && 'visible'};
+  animation: ${({ visible }) => visible && fade} 1s linear 1s;
 `;
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
+  const { isVisible } = useSelector((state) => state.api);
   const dispatch = useDispatch();
   const pointer = !rowReverse;
   const theme = useTheme();
@@ -82,14 +101,14 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
         setVisible(true);
         setTagName(tag);
         setTimeout(() => setVisible(false), 2000);
-        if (tagsFollow) {
-          dispatch(setTagsFollow([...tagsFollow, tag]));
-        } else {
-          dispatch(setTagsFollow([tag]));
-        }
+        // if (tagsFollow) {
+        //   dispatch(setTagsFollow([...tagsFollow, tag]));
+        // } else {
+        //   dispatch(setTagsFollow([tag]));
+        // }
       } else {
         dispatch(deleteTagFollowThunk(tag));
-        dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
+        // dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
       }
     }
   };
@@ -106,7 +125,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
             isActive={!!tagsFollow?.includes(tag)}
             handleClick={handleClickTag} />
           {visible && (
-            <MessageContainer>
+            <MessageContainer visible={visible} an={!visible}>
               <RegularText
                 size='medium'
                 weight={500}
