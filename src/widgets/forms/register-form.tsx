@@ -16,12 +16,13 @@ import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword, InvitionCode, RegisterButton,
 } from '../../ui-lib';
+import { changeConfirmPasswordRegister, changeInvitionCode } from '../../store/registerFormSubSlice';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname,
+    username, email, password, confirmPassword, nickname, invitionCode,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
@@ -34,6 +35,14 @@ const RegisterForm: FC = () => {
 
   const onChangePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changePasswordRegister(evt.target.value));
+  };
+
+  const onConfirmPassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeConfirmPasswordRegister(evt.target.value));
+  };
+
+  const onChangeInvitionCode : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeInvitionCode(evt.target.value));
   };
 
   const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -70,6 +79,8 @@ const RegisterForm: FC = () => {
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldPassword value={confirmPassword ?? ''} label='Подтвердите пароль' onChange={onConfirmPassword} />
+          <InvitionCode value={invitionCode ?? ''} onChange={onChangeInvitionCode} />
         </InputFieldset>
         <ButtonContainer>
           <RegisterButton disabled={isUserRegistering} />
