@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { blue } from '../constants/colors';
 import { useDispatch, useSelector } from '../services/hooks';
-import { getPrivateFeedThunk, getPublicFeedThunk } from '../thunks';
+import { getPrivateFeedThunk, getPublicFeedThunk, getModerationFeedThunk } from '../thunks';
 import { FeedTypes } from '../types/types';
 
 const FilterContainer = styled.div`
@@ -55,7 +55,7 @@ const FeedFilter: React.FC = () => {
   };
 
   const getModerationFeed = () => {
-    //
+    dispatch(getModerationFeedThunk());
   };
 
   return (

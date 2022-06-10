@@ -6,6 +6,7 @@ import {
   REGISTER_ROUTE,
   USER_ROUTE,
   ARTICLES_ROUTE,
+  ADMIN_FEED_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
@@ -246,6 +247,20 @@ export const fetchPrivateFeed : IFetchArticles = (
   const requestConfig : AxiosRequestConfig = {
     url: FEED_ROUTE,
     params: makeParams(limit, offset, tag),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchModerationFeed: IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  const {
+    limit, offset, tag, author,
+  } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: ADMIN_FEED_ROUTE,
+    params: makeParams(limit, offset, tag, author),
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));

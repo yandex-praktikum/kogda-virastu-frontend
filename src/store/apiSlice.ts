@@ -13,6 +13,7 @@ type TAPIState = {
   isArticleFetching: boolean,
   isArticleNotFound: boolean,
   isPrivateFeedFetching: boolean,
+  isModerationFeedFetching: boolean,
   isArticlePosting: boolean,
   isArticlePostingSucceeded: boolean,
   isArticleDeleting: boolean,
@@ -50,6 +51,7 @@ const initialState : TAPIState = {
   isArticleFetching: false,
   isArticleNotFound: false,
   isPrivateFeedFetching: false,
+  isModerationFeedFetching: false,
   isArticlePosting: false,
   isArticlePostingSucceeded: false,
   isArticleDeleting: false,
@@ -174,6 +176,15 @@ const apiSlice = createSlice({
     }),
     privateFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isPrivateFeedFetching: false, errorObject: action.payload,
+    }),
+    moderationFeedRequested: (state) => ({
+      ...state, isModerationFeedFetching: true,
+    }),
+    moderationFeedSucceeded: (state) => ({
+      ...state, isModerationFeedFetching: false,
+    }),
+    moderationFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isModerationFeedFetching: false, errorObject: action.payload,
     }),
     articlePostRequested: (state) => ({
       ...state, isArticlePosting: true, sArticlePostingSucceeded: false,
@@ -399,6 +410,9 @@ export const {
   privateFeedRequested,
   privateFeedSucceeded,
   privateFeedFailed,
+  moderationFeedRequested,
+  moderationFeedSucceeded,
+  moderationFeedFailed,
   articlePostRequested,
   articlePostSucceeded,
   articlePostFailed,
