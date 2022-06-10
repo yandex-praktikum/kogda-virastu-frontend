@@ -29,6 +29,7 @@ const ru: TVocabulary = {
   userName: 'Имя пользователя',
   userEmail: 'Email',
   password: 'Пароль',
+  confimPassword: 'Подтвердите пароль',
   urlImage: 'URL изображения профиля',
   newPassword: 'Новый пароль',
   refreshUser: 'Обновить настройки',
@@ -45,6 +46,8 @@ const ru: TVocabulary = {
   nickname: 'Отображаемое имя',
   registerCode: 'Введите код  регистрации',
   generateСode: 'Сгенерировать код',
+  textCode: 'Скопировать ссылку-приглашение',
+  textSuccesCode: 'Ссылка скопирована в буфер обмена',
 };
 
 export default ru;

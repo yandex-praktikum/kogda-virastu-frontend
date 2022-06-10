@@ -1,8 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import InputField from './input-field-config';
 import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
 import { TFieldInput } from '../../types/styles.types';
+import { useSelector, useDispatch } from '../../services/hooks';
+import { setPasswordCorrectRegister, setPasswordInCorrectRegister } from '../../store/registerFormSubSlice';
+import { setPasswordCorrectProfile, setPasswordInCorrectProfile } from '../../store/profileFormSubSlice';
 
 export const FieldUrl: FC<TFieldInput> = ({
   value,
@@ -182,6 +185,125 @@ export const FieldPassword: FC<TFieldInput & { label?: string, name?: string }> 
 FieldPassword.defaultProps = {
   label: undefined,
   name: 'FieldPassword',
+};
+
+// Поле для подтверждения пароля
+export const FieldConfirmPasswordRegister: FC<TFieldInput & { label?: string, name?: string }> = ({
+  name = 'FieldConfirmPassword',
+  label = undefined,
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = 'Пароль не совпадает',
+  disabled = false,
+}) => {
+  const {
+    password, confirmPassword, isPasswordCorrect,
+  } = useSelector((state) => state.forms.register);
+  const dispatch = useDispatch();
+  const intl = useIntl();
+  const [confirmPasswordState,
+    setConfirmPassword] = useState<'password' | 'text'>('password');
+  const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color='grey' />);
+  const onIconClick = () => {
+    if (confirmPasswordState === 'password') {
+      setConfirmPassword('text');
+      setPasswordIcon(<EyeIcon color='grey' />);
+    } else {
+      setConfirmPassword('password');
+      setPasswordIcon(<EyeNoIcon color='grey' />);
+    }
+  };
+  useEffect(() => {
+    if (password === confirmPassword) {
+      dispatch(setPasswordCorrectRegister());
+    } else {
+      dispatch(setPasswordInCorrectRegister());
+    }
+  }, [password, confirmPassword, dispatch]);
+  return (
+    <InputField
+      placeholder={placeholder}
+      name={name}
+      type={confirmPasswordState}
+      errorText={errorText}
+      error={isPasswordCorrect}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      disabled={disabled}
+      value={value}
+      onChange={onChange}
+      labelText={label || intl.messages.confimPassword as string}
+      icon={passwordIcon}
+      onIconClick={onIconClick} />
+  );
+};
+
+FieldConfirmPasswordRegister.defaultProps = {
+  label: undefined,
+  name: 'FieldConfirmPassword',
+};
+
+export const FieldConfirmPasswordProfile: FC<TFieldInput & { label?: string, name?: string }> = ({
+  name = 'FieldConfirmPassword',
+  label = undefined,
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = 'Пароль не совпадает',
+  disabled = false,
+}) => {
+  const {
+    password, confirmPassword, isPasswordCorrect,
+  } = useSelector((state) => state.forms.profile);
+  const dispatch = useDispatch();
+  const intl = useIntl();
+  const [confirmPasswordState,
+    setConfirmPassword] = useState<'password' | 'text'>('password');
+  const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color='grey' />);
+  const onIconClick = () => {
+    if (confirmPasswordState === 'password') {
+      setConfirmPassword('text');
+      setPasswordIcon(<EyeIcon color='grey' />);
+    } else {
+      setConfirmPassword('password');
+      setPasswordIcon(<EyeNoIcon color='grey' />);
+    }
+  };
+  useEffect(() => {
+    if (password === confirmPassword) {
+      dispatch(setPasswordCorrectProfile());
+    } else {
+      dispatch(setPasswordInCorrectProfile());
+    }
+  }, [password, confirmPassword, dispatch]);
+  return (
+    <InputField
+      placeholder={placeholder}
+      name={name}
+      type={confirmPasswordState}
+      errorText={errorText}
+      error={isPasswordCorrect}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      disabled={disabled}
+      value={value}
+      onChange={onChange}
+      labelText={label || intl.messages.confimPassword as string}
+      icon={passwordIcon}
+      onIconClick={onIconClick} />
+  );
+};
+
+FieldConfirmPasswordProfile.defaultProps = {
+  label: undefined,
+  name: 'FieldConfirmPassword',
 };
 
 export const FieldDescriptionArticle: FC<TFieldInput> = ({

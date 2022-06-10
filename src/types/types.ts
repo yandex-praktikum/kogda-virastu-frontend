@@ -4,7 +4,8 @@ export type TUser = {
   bio?: string;
   image?:string;
   nickname?: string;
-  friendInvite? : string,
+  friendInvite?: string,
+  confirmPassword?: null | string,
 };
 
 // Исправлено и переименовано по модели данных сервера
