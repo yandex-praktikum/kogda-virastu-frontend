@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  FC,
-} from 'react';
+import React, { useEffect, FC } from 'react';
 import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
@@ -9,36 +6,43 @@ import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/popular-tags';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
-  setTopLikedThunk, setNewPostsThunk, getPublicFeedThunk,
+  desktopBreakpoint,
+  mobileViewThreshold,
+  tabletBreakpoint,
+} from '../constants';
+import {
+  setTopLikedThunk,
+  setNewPostsThunk,
+  getPublicFeedThunk,
 } from '../thunks';
 import { FeedRibbon, Slider } from '../widgets';
-import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
 
-const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
-const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
-const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileViewThreshold);
-const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
+export const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
+export const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
+export const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileViewThreshold);
+export const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
 
-const MainSection = styled.main`
-display: flex;
-justify-content: center;
-margin: 0;
-
+export const MainSection = styled.main`
+  display: flex;
+  justify-content: center;
+  margin: 0;
 `;
-const MainContainer = styled.div`
- display: flex;
-    margin: 56px 0 0 0;
-    gap: 0 calc(80px - ${desktopToTabletGapStep} * (${desktopBreakpoint}px - 100vw));
-    justify-content: center;
-    align-items: flex-start;
-    max-width:1140px;
-    position: relative;
-    z-index: 10;
+export const MainContainer = styled.div`
+  display: flex;
+  margin: 56px 0 0 0;
+  column-gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1140px;
+  position: relative;
+  z-index: 10;
 
-    @media screen and (max-width:${tabletBreakpoint}px) {
-      padding: 0 24px;
-      gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
-      width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
+  @media screen and (max-width: ${tabletBreakpoint}px) {
+    padding: 0 24px;
+    column-gap: 20px;
+    width: calc(
+      720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw)
+    );
   }
   @media screen and (max-width: 765px) {
     flex-direction: column-reverse;
@@ -49,27 +53,24 @@ const MainContainer = styled.div`
     gap: 40px;
   }
 
-
   @media screen and (max-width: ${mobileViewThreshold}px) {
-    padding:0 20px;
+    padding: 0 20px;
     width: 280px;
   }
 `;
-const LeftColumn = styled.div`
-overflow: hidden;
+export const LeftColumn = styled.div`
+  overflow: hidden;
+  min-width: 474px;
 `;
 
-const RightColumn = styled.aside`
-    display: flex;
-    overflow: hidden;
-    align-self: flex-start;
-    flex-direction: column;
-    max-width: 360px;
-    @media screen and (max-width:1600px) {
-      width: calc(359px - ${desktopToTabletAsideWidthStep} * (${desktopBreakpoint}px - 100vw));
-    }
-  @media screen and (max-width:768px) {
+export const RightColumn = styled.aside`
+  display: flex;
+  overflow: hidden;
+  align-self: flex-start;
+  flex-direction: column;
+  max-width: 360px;
 
+  @media screen and (max-width: 768px) {
     align-items: center;
     justify-content: center;
     @media screen and (max-width: 765px) {
@@ -77,7 +78,8 @@ const RightColumn = styled.aside`
     }
   }
 `;
-const Main : FC = () => {
+
+const Main: FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
@@ -87,17 +89,17 @@ const Main : FC = () => {
       dispatch(setNewPostsThunk());
     });
   }, [dispatch]);
-
   useEffect(() => {
     if (articles && articles.length > 0) {
       dispatch(setTopLikedThunk());
     }
   }, [dispatch, articles]);
+
   return (
     <MainSection>
       <MainContainer>
         <LeftColumn>
-          <FeedRibbon />
+          <FeedRibbon type='all' />
         </LeftColumn>
         <RightColumn>
           <PopularTags />
