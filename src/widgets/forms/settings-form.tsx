@@ -16,7 +16,6 @@ import {
   setPasswordProfile,
   setConfirmPasswordProfile,
   setInviteCode,
-  setTagsFollow,
 } from '../../store';
 
 import { patchCurrentUserThunk, getInviteThunk } from '../../thunks';
