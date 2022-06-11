@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect,
+  ChangeEventHandler, FC, FormEventHandler, useEffect, FocusEventHandler,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
@@ -28,6 +28,8 @@ const RegisterForm: FC = () => {
   const { isLoggedIn } = useSelector((state) => state.system);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const inviteFromUrl: string | null = searchParams.get('');
 
   const onChangeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeEmailRegister(evt.target.value));
@@ -43,6 +45,10 @@ const RegisterForm: FC = () => {
 
   const onChangeInvite : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeInviteRegister(evt.target.value));
+  };
+
+  const onFocusEmail : FocusEventHandler<HTMLInputElement> = () => {
+    if (inviteFromUrl != null) dispatch(changeInviteRegister(inviteFromUrl));
   };
 
   const onChangeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -73,8 +79,8 @@ const RegisterForm: FC = () => {
         <InputFieldset rowGap={16}>
           <FieldLogin value={username ?? ''} onChange={onChangeUsername} />
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
-          <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
-          <FieldInvite value={invite ?? ''} onChange={onChangeInvite} />
+          <FieldEmail value={email ?? ''} onChange={onChangeEmail} onFocus={onFocusEmail} />
+          <FieldInvite value={invite ?? inviteFromUrl ?? ''} onChange={onChangeInvite} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
         </InputFieldset>
         <ButtonContainer>
