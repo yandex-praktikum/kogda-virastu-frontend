@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useMemo, FC } from 'react';
   import styled, { useTheme, css } from 'styled-components';
-  
+
   import ReactDOM from 'react-dom';
   import { RegularText } from '../ui-lib';
 
@@ -25,7 +25,7 @@ import { useMemo, FC } from 'react';
   align-items: center;
   z-index: 95;
 `;
- 
+
   const ModalDialog = styled.div<IProps>`
     position: relative;
     width: 267px;
@@ -44,7 +44,7 @@ import { useMemo, FC } from 'react';
     @media screen and (max-width: 420px) {
       width: 200px;
     }
-    
+
   ${({ isTagFollowing }) =>
   isTagFollowing&&
   css`
@@ -64,15 +64,15 @@ import { useMemo, FC } from 'react';
     transition: opacity 500ms linear;
   `}
   `;
-  
-  const TagModal: FC<any> = ({message, isTagFollowing, isTagUnFollowing, isSettingsUpdateSucceeded}) => {
+
+  const TagModal: FC<any> = ({message, isTagFollowing, isTagUnFollowing, isSettingsUpdateSucceeded, isPasswordsNotEquals}) => {
     const theme = useTheme();
     const portalRoot = useMemo(() => document.getElementById('modal'), []) as Element;
 
     return ReactDOM.createPortal(
       (
         <ModalOverlay>
-          <ModalDialog isTagFollowing={isTagFollowing} isTagUnFollowing={isTagUnFollowing} isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} >
+          <ModalDialog isTagFollowing={isTagFollowing} isTagUnFollowing={isTagUnFollowing} isSettingsUpdateSucceeded={isSettingsUpdateSucceeded}>
             <RegularText
               size='large'
               weight={400}
@@ -87,6 +87,5 @@ import { useMemo, FC } from 'react';
       ), portalRoot,
     );
   };
-  
+
   export default TagModal;
-  
