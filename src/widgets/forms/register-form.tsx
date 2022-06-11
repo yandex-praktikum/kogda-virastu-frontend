@@ -8,6 +8,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   resetFormRegister,
   changeNicknameRegister,
   changeInviteRegister,
@@ -18,11 +19,12 @@ import {
 } from './forms-styles';
 import {
   FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldRegistrationCode,
+  FieldConfirmPasswordRegister,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname, invite,
+    username, email, password, confirmPassword, nickname, invite,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
@@ -30,25 +32,29 @@ const RegisterForm: FC = () => {
   const dispatch = useDispatch();
   const { search } = useLocation();
 
-  const onChangeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeEmail: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeEmailRegister(evt.target.value));
   };
 
-  const onChangePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changePasswordRegister(evt.target.value));
   };
 
-  const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeConfirmPassword: ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeConfirmPasswordRegister(evt.target.value));
+  };
+
+  const onChangeUsername: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeUsernameRegister(evt.target.value));
   };
 
-  const onChangeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeNickname: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeNicknameRegister(evt.target.value));
   };
-  const onChangeInviteCode : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeInviteCode: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeInviteRegister(evt.target.value));
   };
-  const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
+  const submitForm: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     dispatch(registerThunk());
   };
@@ -81,6 +87,7 @@ const RegisterForm: FC = () => {
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldConfirmPasswordRegister value={confirmPassword ?? ''} onChange={onChangeConfirmPassword} />
           <FieldRegistrationCode value={invite ?? ''} onChange={onChangeInviteCode} />
         </InputFieldset>
         <ButtonContainer>
