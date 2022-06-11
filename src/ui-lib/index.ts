@@ -29,6 +29,7 @@ import {
   LoginButton,
   RegisterButton,
   UpdateProfileButton,
+  GenerateInviteCodeButton,
   PostCommentButton,
   PublishPostButton,
   SavePostButton,
@@ -49,6 +50,7 @@ import {
   FieldTags,
   FieldNick,
   FieldProfileImage,
+  FieldInviteCode,
 }
   from './inputs/input-fields';
 import {
@@ -99,6 +101,7 @@ export {
   LoginButton,
   RegisterButton,
   UpdateProfileButton,
+  GenerateInviteCodeButton,
   PostCommentButton,
   PublishPostButton,
   SavePostButton,
@@ -127,4 +130,5 @@ export {
   MenuSettingsButton,
   MenuLogoutButton,
   FieldTextComment,
+  FieldInviteCode,
 };

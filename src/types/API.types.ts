@@ -8,11 +8,15 @@ import {
   TAPIProfile,
   TAPITags,
   TAPITag,
-  TAPIUser,
+  TAPIUser, TAPIInvite,
 } from '../services/api.types';
 
 export interface IRegisterUser {
-  (username: string, email: string, password: string, nickname?: string) : AxiosPromise<TAPIAuth>;
+  (username: string,
+    email: string,
+    password: string,
+    invite: string,
+    nickname: string) : AxiosPromise<TAPIAuth>;
 }
 
 export interface ILoginUser {
@@ -83,6 +87,9 @@ export interface IDeleteComment {
 export interface IProfile {
   (username: string) : AxiosPromise<TAPIProfile | null>
 }
+interface IFetchInvite {
+  () : AxiosPromise<TAPIInvite>;
+}
 
 export type {
   TAPIArticle,
@@ -90,6 +97,8 @@ export type {
   TAPIComment,
   TAPIComments,
   TAPIProfile,
+  TAPIInvite,
   TAPITags,
+  IFetchInvite,
   TAPIUser,
 };

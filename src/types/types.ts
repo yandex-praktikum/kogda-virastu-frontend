@@ -4,6 +4,7 @@ export type TUser = {
   bio?: string;
   image?:string;
   nickname?: string;
+  invite?: string;
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -60,5 +61,7 @@ export enum FeedTypes {
 export enum UserArticlesTypes {
   my = 'my',
   favorite = 'favorite',
-
 }
+export type TInvite = {
+  code: string;
+};

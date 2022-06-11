@@ -6,6 +6,7 @@ type TRegisterFormState = {
   password: string | null,
   confirmpassword: string | null,
   nickname: string | null,
+  invite: string | null,
 };
 
 const initialState: TRegisterFormState = {
@@ -14,6 +15,7 @@ const initialState: TRegisterFormState = {
   password: null,
   confirmpassword: null,
   nickname: null,
+  invite: null,
 };
 
 const registerFormSubSlice = createSlice({
@@ -37,6 +39,9 @@ const registerFormSubSlice = createSlice({
     changeNicknameRegister: (state, action: PayloadAction<string>) => ({
       ...state, nickname: action.payload,
     }),
+    changeInviteCodeRegister: (state, action: PayloadAction<string>) => ({
+      ...state, invite: action.payload,
+    }),
     resetFormRegister: (state) => ({
       ...state, ...initialState,
     }),
@@ -50,6 +55,7 @@ export const {
   changePasswordRegister,
   changeConfirmPasswordRegister,
   changeNicknameRegister,
+  changeInviteCodeRegister,
   resetFormRegister,
 } = registerFormSubSlice.actions;
 export default registerReducer;

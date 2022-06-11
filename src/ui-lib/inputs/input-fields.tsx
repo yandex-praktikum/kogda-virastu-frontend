@@ -179,6 +179,33 @@ export const FieldPassword: FC<TFieldInput & { label?: string, name?: string }> 
   );
 };
 
+export const FieldInviteCode: FC<TFieldInput> = ({
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  disabled = false,
+}) => {
+  const intl = useIntl();
+  return (
+    <InputField
+      placeholder={placeholder}
+      name='InviteCode'
+      type='text'
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      labelText={intl.messages.invite as string} />
+  );
+};
+
 FieldPassword.defaultProps = {
   label: undefined,
   name: 'FieldPassword',
