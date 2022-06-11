@@ -1,4 +1,9 @@
-import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
+import React, {
+  FC,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -133,36 +138,31 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const allPosts = posts.filter((post) =>
-    post.tagList.find((tag) => tags.includes(tag) || !tags || tags.length < 1)
+  const allPosts = posts.filter(
+    (post) => post.tagList.find((tag) => tags.includes(tag) || !tags || tags.length < 1),
   );
   const authorPosts = posts.filter(
-    (post) =>
-      post.author.following ||
-      post.tagList.some((tag) => tagsFollow?.includes(tag))
+    (post) => post.author.following || post.tagList.some((tag) => tagsFollow?.includes(tag)),
   );
-
-  const renderArticle = (arr: Array<TArticle>) =>
-    arr.map((post, i) => {
-      const onClick: MouseEventHandler = () => {
-        if (post.favorited) {
-          dispatch(deleteLikeThunk(post.slug));
-        } else {
-          dispatch(addLikeThunk(post.slug));
-        }
-      };
-
-      return (
-        <React.Fragment key={post.slug}>
-          <ItemWrapper>
-            <ArticleFullPreview article={post} onLikeClick={onClick} />
-          </ItemWrapper>
-          {i % 2 && i !== arr.length - 1 && mobileScreen ? (
-            <Divider distance={0} />
-          ) : null}
-        </React.Fragment>
-      );
-    });
+  const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
+    const onClick: MouseEventHandler = () => {
+      if (post.favorited) {
+        dispatch(deleteLikeThunk(post.slug));
+      } else {
+        dispatch(addLikeThunk(post.slug));
+      }
+    };
+    return (
+      <React.Fragment key={post.slug}>
+        <ItemWrapper>
+          <ArticleFullPreview article={post} onLikeClick={onClick} />
+        </ItemWrapper>
+        {i % 2 && i !== arr.length - 1 && mobileScreen ? (
+          <Divider distance={0} />
+        ) : null}
+      </React.Fragment>
+    );
+  });
 
   return (
     <>
