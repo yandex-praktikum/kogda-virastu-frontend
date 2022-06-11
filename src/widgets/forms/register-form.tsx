@@ -89,16 +89,13 @@ const RegisterForm: FC = () => {
         <InputFieldset rowGap={16}>
           <FieldLogin value={username ?? ''} onChange={onChangeUsername} />
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
-<<<<<<< HEAD
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} onFocus={onFocusEmail} />
           <FieldInvite value={invite ?? inviteFromUrl ?? ''} onChange={onChangeInvite} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} />
-=======
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
           <FieldInvite value={invite ?? ''} onChange={onChangeInvite} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} error={confirmPassword !== password} />
           <FieldConfirmPassword value={confirmPassword ?? ''} onChange={onChangeConfirmPassword} error={confirmPassword !== password} errorText={confirmPassword !== password ? intl.messages.passwordsAreNotEqual as string : ''} />
->>>>>>> 45d5c48af749277969d9868d978ca778e54d89c5
         </InputFieldset>
         <ButtonContainer>
           <RegisterButton disabled={isUserRegistering || (!password && !confirmPassword)
