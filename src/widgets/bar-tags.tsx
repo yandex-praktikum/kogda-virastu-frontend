@@ -20,7 +20,6 @@ type TLists = {
 
 type TMessageContainer = {
   visible: boolean,
-  an: boolean,
 };
 
 const Lists = styled.ul<TLists>`
@@ -86,10 +85,10 @@ const MessageContainer = styled.div<TMessageContainer>`
 
 const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
+  const { isVisible } = useSelector((state) => state.api);
   const dispatch = useDispatch();
   const pointer = !rowReverse;
   const theme = useTheme();
-  const [visible, setVisible] = useState(false);
   const [tagName, setTagName] = useState('');
 
   const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => {
@@ -97,9 +96,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
     if (pointer) {
       if (!isActive) {
         dispatch(addTagFollowThunk(tag));
-        setVisible(true);
         setTagName(tag);
-        setTimeout(() => setVisible(false), 2000);
       } else {
         dispatch(deleteTagFollowThunk(tag));
       }
@@ -117,8 +114,8 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
             isLocationArticle={pointer}
             isActive={!!tagsFollow?.includes(tag)}
             handleClick={handleClickTag} />
-          {visible && (
-            <MessageContainer visible={visible} an={!visible}>
+          {isVisible && (
+            <MessageContainer visible={isVisible}>
               <RegularText
                 size='medium'
                 weight={500}

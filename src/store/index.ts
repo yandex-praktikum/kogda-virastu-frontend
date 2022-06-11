@@ -169,6 +169,7 @@ import {
   inviteGetRequested,
   inviteGetSucceeded,
   inviteGetFailed,
+  tagFollowVisible,
 } from './apiSlice';
 
 import {
@@ -343,4 +344,5 @@ export {
   inviteGetRequested,
   inviteGetSucceeded,
   inviteGetFailed,
+  tagFollowVisible,
 };
