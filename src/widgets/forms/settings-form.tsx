@@ -116,7 +116,6 @@ const SettingsForm: FC = () => {
   const deactivateTag = (e: React.MouseEvent, tag: string) => {
     e.stopPropagation();
     dispatch(deleteTagFollowThunk(tag));
-    dispatch(setTagsFollow(tagsFollow!.filter((el) => el !== tag)));
   };
   const copyCode = () => {
     navigator.clipboard.writeText(`/registration?=${profile.friendInvite || ''}`)
