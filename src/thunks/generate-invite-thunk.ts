@@ -1,26 +1,29 @@
-/* eslint-disable */
-import { AxiosError, AxiosResponse } from 'axios';
-import { generateInviteRequested, generateInviteSucceeded, setGeneratedInvite } from '../store';
+import { AxiosError } from 'axios';
+import {
+  generateInviteRequested,
+  generateInviteSucceeded,
+  setGeneratedInvite,
+  generateInviteFailed,
+} from '../store';
 import { AppThunk } from '../store/store.types';
+import { makeErrorObject } from '../services/helpers';
 import { postGenerateInvite } from '../services/api';
-import { TAPIProfile, TAPIError } from '../services/api.types';
+import { TAPIError } from '../services/api.types';
 
 const generateInviteThunk: AppThunk = () => async (dispatch) => {
   try {
     dispatch(generateInviteRequested());
     const {
       data: { code },
-    } = await postGenerateInvite() as AxiosResponse<any>;
-    if (code) {dispatch(setGeneratedInvite(code))};
-    setTimeout(() => {
-      dispatch(generateInviteSucceeded());
-    }, 200);
-    // setTimeout(() => {
-    //   dispatch(dispatch(clearTag()))
-    // }, 1000);
+    } = (await postGenerateInvite());
+    if (code) {
+      dispatch(setGeneratedInvite(code));
+    }
+    dispatch(generateInviteSucceeded());
   } catch (error) {
-    // dispatch(followProfilePostFailed(makeErrorObject(error as AxiosError<TAPIError>)));
+    dispatch(
+      generateInviteFailed(makeErrorObject(error as AxiosError<TAPIError>)),
+    );
   }
 };
-
 export default generateInviteThunk;

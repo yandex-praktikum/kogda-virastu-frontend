@@ -18,11 +18,13 @@ import {
   TAPIParamsObject,
   TAPIArticle,
   TAPITags,
+  TAPIPopularTags,
   TAPIComments,
   TAPIComment,
   TAPIProfile,
   TAPIAuth,
-  TAPIPatchUserData, TAPIPatchArticleData,
+  TAPIPatchUserData,
+  TAPIPatchArticleData,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -144,7 +146,7 @@ export const registerUser : IRegisterUser = (
   const registerData : TAPINewUser = {
     invite,
     user: {
-      username, email, password, nickname, invite,
+      username, email, password, nickname,
     },
   };
   const requestConfig : AxiosRequestConfig = {
@@ -401,7 +403,7 @@ export const fetchUserTags : IFetchTags = () : AxiosPromise<TAPITags> => {
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchPopularTags : IFetchPopularTags = () : AxiosPromise<[]> => {
+export const fetchPopularTags : IFetchPopularTags = () : AxiosPromise<TAPIPopularTags> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/top`,
     method: 'get',

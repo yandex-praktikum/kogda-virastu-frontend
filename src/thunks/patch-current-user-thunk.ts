@@ -44,7 +44,7 @@ const patchCurrentUserThunk: AppThunk = () => async (dispatch, getState) => {
     setTimeout(() => {
       dispatch(settingsResetUpdateSucceeded());
     }, 1000);
-} catch (error) {
+  } catch (error) {
     dispatch(settingsPatchFailed(makeErrorObject(error as AxiosError<TAPIError>)));
   }
 };

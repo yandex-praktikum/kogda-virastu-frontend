@@ -6,8 +6,10 @@ import { useMemo, FC } from 'react';
   import { RegularText } from '../ui-lib';
 
   interface IProps {
+    message?: string;
     isTagFollowing?: boolean;
     isTagUnFollowing?: boolean;
+    isInviteCopying?: boolean;
     isSettingsUpdateSucceeded?: boolean;
     onClick?: () => void;
   }
@@ -63,16 +65,22 @@ import { useMemo, FC } from 'react';
     opacity: 1;
     transition: opacity 500ms linear;
   `}
+  ${({ isInviteCopying }) =>
+  isInviteCopying&&
+  css`
+    opacity: 1;
+    transition: opacity 500ms linear;
+  `}
   `;
 
-  const TagModal: FC<any> = ({message, isTagFollowing, isTagUnFollowing, isSettingsUpdateSucceeded, isPasswordsNotEquals}) => {
+  const InfoModal: FC<IProps> = ({message, isTagFollowing, isTagUnFollowing, isSettingsUpdateSucceeded, isInviteCopying}) => {
     const theme = useTheme();
     const portalRoot = useMemo(() => document.getElementById('modal'), []) as Element;
 
     return ReactDOM.createPortal(
       (
         <ModalOverlay>
-          <ModalDialog isTagFollowing={isTagFollowing} isTagUnFollowing={isTagUnFollowing} isSettingsUpdateSucceeded={isSettingsUpdateSucceeded}>
+          <ModalDialog isTagFollowing={isTagFollowing} isInviteCopying={isInviteCopying} isTagUnFollowing={isTagUnFollowing} isSettingsUpdateSucceeded={isSettingsUpdateSucceeded}>
             <RegularText
               size='large'
               weight={400}
@@ -88,4 +96,4 @@ import { useMemo, FC } from 'react';
     );
   };
 
-  export default TagModal;
+  export default InfoModal;

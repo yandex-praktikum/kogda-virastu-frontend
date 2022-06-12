@@ -7,7 +7,7 @@ import Tag from './tag';
 import followTagThunk from '../thunks/follow-tag-thunk';
 import unfollowTagThunk from '../thunks/unfollow-tag-thunk';
 import getUserTagsThunk from '../thunks/get-user-tags-thunk';
-import TagModal from './tag-modal';
+import InfoModal from './info-modal';
 
 type TBarTags = {
   tagList: string[];
@@ -82,10 +82,10 @@ const BarTags: FC<TBarTags & TLists> = ({
   return (
     <>
       {isTagFollowing && tagname && (
-        <TagModal isTagFollowing={isTagFollowing} message={`${intl.messages.subscribeTag as string} #${tagname}`} />
+        <InfoModal isTagFollowing={isTagFollowing} message={`${intl.messages.subscribeTag as string} #${tagname}`} />
       )}
       {isTagUnFollowing && tagname && (
-        <TagModal isTagUnFollowing={isTagUnFollowing} message={`${intl.messages.unsubscribeTag as string} #${tagname}`} />
+        <InfoModal isTagUnFollowing={isTagUnFollowing} message={`${intl.messages.unsubscribeTag as string} #${tagname}`} />
       )}
       <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
         {tagList.map((tag) => (

@@ -1,6 +1,6 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect, FocusEventHandler,
+  ChangeEventHandler, FC, FormEventHandler, useEffect, FocusEventHandler, useRef,
 } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
@@ -32,8 +32,13 @@ const RegisterForm: FC = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
-  const inviteFromUrl: string | null = searchParams.get('');
+  const extractUrlInvite = (prefix: string, s:string) => s.substring(prefix.length);
+  const inviteFromUrl = useRef('');
+  useEffect(() => {
+    if (window.location.href.indexOf('?=')) {
+      inviteFromUrl.current = (extractUrlInvite(`${window.location.origin}/registration?=`, `${window.location.href}`));
+    }
+  }, [dispatch, inviteFromUrl]);
 
   const onChangeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeEmailRegister(evt.target.value));
@@ -56,7 +61,7 @@ const RegisterForm: FC = () => {
   };
 
   const onFocusEmail : FocusEventHandler<HTMLInputElement> = () => {
-    if (inviteFromUrl != null) dispatch(changeInviteRegister(inviteFromUrl));
+    if (inviteFromUrl != null) dispatch(changeInviteRegister(inviteFromUrl.current));
   };
 
   const onChangeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -90,10 +95,7 @@ const RegisterForm: FC = () => {
           <FieldLogin value={username ?? ''} onChange={onChangeUsername} />
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
           <FieldEmail value={email ?? ''} onChange={onChangeEmail} onFocus={onFocusEmail} />
-          <FieldInvite value={invite ?? inviteFromUrl ?? ''} onChange={onChangeInvite} />
-          <FieldPassword value={password ?? ''} onChange={onChangePassword} />
-          <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
-          <FieldInvite value={invite ?? ''} onChange={onChangeInvite} />
+          <FieldInvite value={invite ?? inviteFromUrl.current ?? ''} onChange={onChangeInvite} />
           <FieldPassword value={password ?? ''} onChange={onChangePassword} error={confirmPassword !== password} />
           <FieldConfirmPassword value={confirmPassword ?? ''} onChange={onChangeConfirmPassword} error={confirmPassword !== password} errorText={confirmPassword !== password ? intl.messages.passwordsAreNotEqual as string : ''} />
         </InputFieldset>

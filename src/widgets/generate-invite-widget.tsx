@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
+import { useIntl } from 'react-intl';
 import styled from 'styled-components';
-import { GenerateInviteButton } from '../ui-lib/buttons';
+import { GenerateInviteButton, CopyInviteButton } from '../ui-lib/buttons';
 import { useDispatch, useSelector } from '../services/hooks';
 import generateInviteThunk from '../thunks/generate-invite-thunk';
-import { RegularText } from '../ui-lib/text-elements';
+import { copyInviteRequested, copyInviteSucceeded, copyInviteFailed } from '../store';
+import InfoModal from './info-modal';
+import { TAPIError } from '../services/api.types';
 
 const GenerateInviteContainer = styled.div`
   margin-top: 10px;
@@ -21,30 +24,45 @@ const GenerateInviteContainer = styled.div`
   }
 `;
 
-const CodeContainer = styled.div`
-  width: 100%;
-  overflow-wrap: break-word;
-`;
-
 const InviteGenerationContainer: FC = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
   const { isInviteGenerating } = useSelector((state) => state.api);
-  const generatedInvite = useSelector((state) => state.profile.generatedInvite);
+  const { isInviteCopying } = useSelector((state) => state.api);
+  const generatedInvite = useSelector(
+    (state) => state.forms.profile.generatedInvite,
+  );
+
+  const copyLinkToClipboard = () => {
+    if (generatedInvite) {
+      dispatch(copyInviteRequested());
+      const inviteLink = `${window.location.origin}/registration?=${generatedInvite}`;
+      navigator.clipboard.writeText(inviteLink).then(() => {
+        setTimeout(() => {
+          dispatch(copyInviteSucceeded());
+        }, 1000);
+        return null;
+      }).catch((e) => {
+        dispatch(
+          copyInviteFailed(e as TAPIError),
+        );
+      });
+    }
+  };
 
   return (
     <GenerateInviteContainer>
-      <CodeContainer>
-        <GenerateInviteButton
-          disabled={isInviteGenerating}
-          onClick={() => dispatch(generateInviteThunk())} />
-        <RegularText
-          size='large'
-          weight={400}
-          font-family='Alegreya'
-          color='#62626A'>
-          {generatedInvite && `${generatedInvite}`}
-        </RegularText>
-      </CodeContainer>
+      {isInviteCopying && (
+        <InfoModal isInviteCopying={isInviteCopying} message={`${intl.messages.inviteCopied as string}`} />
+      )}
+      <GenerateInviteButton
+        disabled={isInviteGenerating}
+        onClick={() => dispatch(generateInviteThunk())} />
+      {generatedInvite && (
+        <CopyInviteButton
+          disabled={isInviteCopying}
+          onClick={() => copyLinkToClipboard()} />
+      )}
     </GenerateInviteContainer>
   );
 };
