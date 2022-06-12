@@ -27,7 +27,7 @@ const TagList = styled.div`
 const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
-  const { selectedTags } = useSelector((state) => state.view);
+  const { selectedTags, tagsFollow } = useSelector((state) => state.view);
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
@@ -51,13 +51,14 @@ const PopularTags: FC = () => {
         </HeaderThreeText>
         <TagList>
           {
-            tags.map((tag) => (
+            tagsFollow?.map((tag) => (
               <Tag
                 key={tag}
                 tag={tag}
                 pointer
                 handleClick={handleClick}
                 isActive={selectedTags?.includes(tag) || false}
+                isShowIcon={selectedTags?.includes(tag) || false}
                 deactivateTag={(e) => deactivateTag(e, tag)} />
             ))
           }

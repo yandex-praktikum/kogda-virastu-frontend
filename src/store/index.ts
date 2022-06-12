@@ -18,6 +18,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
   changeInviteRegister,
   resetFormRegister,
@@ -31,6 +32,7 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  setConfirmPasswordProfile,
   resetFormProfile,
 
 } from './profileFormSubSlice';
@@ -169,6 +171,7 @@ import {
   inviteGetRequested,
   inviteGetSucceeded,
   inviteGetFailed,
+  tagFollowVisible,
 } from './apiSlice';
 
 import {
@@ -203,6 +206,7 @@ export {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
   resetFormRegister,
   setUsernameProfile,
@@ -212,6 +216,7 @@ export {
   setImageProfile,
   setFormProfile,
   setPasswordProfile,
+  setConfirmPasswordProfile,
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
@@ -343,4 +348,5 @@ export {
   inviteGetRequested,
   inviteGetSucceeded,
   inviteGetFailed,
+  tagFollowVisible,
 };

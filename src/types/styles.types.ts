@@ -28,6 +28,7 @@ export type TTheme = {
     borderActive: string;
     disabledInput: string;
     errorColor: string;
+    secondaryText: string,
   },
   button: {
     [key: string]: TColorSet,
@@ -145,6 +146,8 @@ export type TFieldInput = {
   error?: boolean;
   disabled?: boolean;
   errorText?: string;
+  confirmPassword?: string | null;
+
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
