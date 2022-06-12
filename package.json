@@ -29,9 +29,9 @@
         "typescript": "^4.6.3"
     },
     "dependencies": {
+        "@editorjs/editorjs": "^2.24.3",
         "@reduxjs/toolkit": "^1.8.1",
         "axios": "^0.27.2",
-        "draft-js": "^0.11.7",
         "history": "^4.6.3",
         "marked": "^0.3.6",
         "prop-types": "^15.5.10",

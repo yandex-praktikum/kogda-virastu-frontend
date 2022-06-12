@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import EditorJS from '@editorjs/editorjs';
 import { useSelector, useDispatch } from '../../services/hooks';
 
 import {
@@ -66,6 +67,15 @@ const EditorForm: FC = () => {
     }
   }, [initialArticle, dispatch]);
 
+  useEffect(() => {
+    const editor = new EditorJS({
+      /**
+       * Id of Element that should contain Editor instance
+       */
+      holder: 'editorjs',
+    });
+  }, []);
+
   useEffect(
     () => {
       if (isPosted && isArticlePatchingSucceeded) {
@@ -99,31 +109,31 @@ const EditorForm: FC = () => {
     return <div>Подождите...</div>;
   }
 
-  const onChangeTitle : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeTitle: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setTitle(evt.target.value));
   };
 
-  const onChangeDescription : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+  const onChangeDescription: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
     dispatch(setDescription(evt.target.value));
     // eslint-disable-next-line no-param-reassign
     evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  const onChangeBody : ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
-    dispatch(setBody(evt.target.value));
-    // eslint-disable-next-line no-param-reassign
-    evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
-  };
+  // const onChangeBody: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+  //   dispatch(setBody(evt.target.value));
+  //   // eslint-disable-next-line no-param-reassign
+  //   evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
+  // };
 
-  const onChangeTags : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeTags: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setTags(evt.target.value));
   };
 
-  const onChangeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setImage(evt.target.value));
   };
 
-  const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
+  const submitForm: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     setPostRequested(true);
     if (slug) {
@@ -174,10 +184,17 @@ const EditorForm: FC = () => {
           <FieldUrl
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
-          <FieldTextArticle
+          <div
+            id='editorjs'
+            style={{
+              width: '100%', border: '1px solid grey', borderRadius: '10px', padding: '5px',
+
+            }} />
+
+          {/* <FieldTextArticle
             value={body === '' ? '' : body || initialArticle?.body || ''}
             onChange={onChangeBody}
-            minHeight={300} />
+            minHeight={300} /> */}
           <FieldTags
             value={tags === '' ? '' : tags || ''}
             onChange={onChangeTags} />
