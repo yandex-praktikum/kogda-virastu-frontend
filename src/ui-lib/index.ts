@@ -18,6 +18,8 @@ import {
   PaperClipIcon,
   EyeIcon,
   EyeNoIcon,
+  ArrowLeft,
+  ArrowRight,
 } from './icons';
 
 import {
@@ -131,4 +133,6 @@ export {
   MenuLogoutButton,
   FieldTextComment,
   FieldInviteCode,
+  ArrowLeft,
+  ArrowRight,
 };
