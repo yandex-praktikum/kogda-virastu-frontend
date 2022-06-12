@@ -34,6 +34,7 @@ import {
   setPasswordProfile,
   setConfirmPasswordProfile,
   resetFormProfile,
+  setGeneratedInvite,
 
 } from './profileFormSubSlice';
 
@@ -50,7 +51,7 @@ import {
   setAllVocabularies,
 } from './allSlice';
 
-import { setUser, clearUser, setGeneratedInvite } from './userSlice';
+import { setUser, clearUser } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
@@ -162,10 +163,16 @@ import {
   articlePostClear,
   followTagRequested,
   followTagSucceeded,
+  followTagFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  unfollowTagFailed,
   generateInviteRequested,
   generateInviteSucceeded,
+  generateInviteFailed,
+  copyInviteRequested,
+  copyInviteSucceeded,
+  copyInviteFailed,
 } from './apiSlice';
 
 import {
@@ -332,9 +339,15 @@ export {
   articlePostClear,
   followTagRequested,
   followTagSucceeded,
+  followTagFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  unfollowTagFailed,
   generateInviteRequested,
   generateInviteSucceeded,
+  generateInviteFailed,
   setGeneratedInvite,
+  copyInviteRequested,
+  copyInviteSucceeded,
+  copyInviteFailed,
 };

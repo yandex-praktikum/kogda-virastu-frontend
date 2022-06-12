@@ -5,7 +5,6 @@ export type TUser = {
   image?:string;
   nickname?: string;
   invite?: string;
-  generatedInvite?: string;
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -20,6 +19,11 @@ export type TProfile = {
 };
 
 export type TTags = Array<string>;
+
+export type TPopularTags = {
+  count: number;
+  name: string;
+};
 
 export type TArticle = {
   author: TProfile;

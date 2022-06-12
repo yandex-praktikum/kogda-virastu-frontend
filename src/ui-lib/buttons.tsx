@@ -76,9 +76,6 @@ export const MarginedNormalButton = styled.button<TBasicButtonProps>`
    &:active {
      background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
      }
-   &:focus {
-     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
-     }
    `;
 
 const BasicInvertedButton = styled.button<TBasicButtonProps>`
@@ -399,6 +396,21 @@ export const GenerateInviteButton : FC<TButtonProps> = ({ onClick, disabled = fa
   <MarginedNormalButton colorScheme='blue' disabled={disabled} type='button' onClick={onClick}>
     <RegularText size='large' weight={500}>
       <FormattedMessage id='generateInvite' />
+    </RegularText>
+  </MarginedNormalButton>
+);
+export const CopyInviteButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <MarginedNormalButton
+    colorScheme='menu'
+    disabled={disabled}
+    type='button'
+    onClick={onClick}>
+    <RegularText
+      size='large'
+      weight={400}
+      font-family='Alegreya'
+      color='#62626A'>
+      <FormattedMessage id='copyInvite' />
     </RegularText>
   </MarginedNormalButton>
 );

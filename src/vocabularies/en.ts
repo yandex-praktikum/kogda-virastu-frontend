@@ -53,6 +53,8 @@ const en: TVocabulary = {
   subscribeTag: 'Subscribed to tag',
   unsubscribeTag: 'Unsubscribed from tag',
   generateInvite: 'Generate code',
+  copyInvite: 'Copy invite link',
+  inviteCopied: 'Link copied to clipboard',
 };
 
 export default en;

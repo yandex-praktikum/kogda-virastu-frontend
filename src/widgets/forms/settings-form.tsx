@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 import { useIntl, FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 import FollowedTags from '../followed-tags';
-import TagModal from '../tag-modal';
+import InfoModal from '../info-modal';
 import GenerateInviteContainer from '../generate-invite-widget';
 
 import {
@@ -97,7 +97,7 @@ const SettingsForm: FC = () => {
   return (
     <FormContainer>
       {isSettingsUpdateSucceeded && (
-        <TagModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message={<FormattedMessage id='profileUpdated' />} />
+        <InfoModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message={`${intl.messages.profileUpdated as string}`} />
       )}
       <FormTitle>
         <FormattedMessage id='usersettings' />

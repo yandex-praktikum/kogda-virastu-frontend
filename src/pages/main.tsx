@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { useEffect, FC } from 'react';
 import { batch } from 'react-redux';
 import styled from 'styled-components';
@@ -9,20 +8,9 @@ import { useSelector, useDispatch } from '../services/hooks';
 import {
   setTopLikedThunk,
   setNewPostsThunk,
-  getPublicFeedThunk,
 } from '../thunks';
 import { Slider } from '../widgets';
-import {
-  desktopBreakpoint,
-  mobileViewThreshold,
-  tabletBreakpoint,
-} from '../constants';
 import TabArticle from '../widgets/tab-article';
-
-const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
-const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
-const tabletToMobileMainWidthStop = (720 - 595) / (tabletBreakpoint - mobileViewThreshold);
-const desktopToTabletAsideWidthStep = (359 - 227) / (desktopBreakpoint - tabletBreakpoint);
 
 const MainSection = styled.main`
   display: flex;

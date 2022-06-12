@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
@@ -6,15 +5,13 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
 import { HeaderThreeText } from '../ui-lib';
-import getPopularTags from '../thunks/get-popular-tags-thunk';
-import { fetchPopularTags } from '../services/api';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
   position: relative;
   z-index: 10;
 
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 768px) {
     margin-bottom: 40px;
   }
 `;
@@ -28,10 +25,9 @@ const TagList = styled.div`
 
 const PopularTags: FC = () => {
   const dispatch = useDispatch();
-  const { tags } = useSelector((state) => state.all);
   const { popularTags } = useSelector((state) => state.all);
   const { selectedTags } = useSelector((state) => state.view);
-  const handleClick = (ev:React.MouseEvent, tag: string) => {
+  const handleClick = (ev: React.MouseEvent, tag: string) => {
     ev.preventDefault();
     if (selectedTags) {
       dispatch(setSelectedTags([...selectedTags, tag]));
@@ -42,7 +38,9 @@ const PopularTags: FC = () => {
 
   const deactivateTag = (e: React.MouseEvent, tag: string) => {
     e.stopPropagation();
-    dispatch(setSelectedTags(selectedTags!.filter((el) => el !== tag)));
+    if (selectedTags) {
+      dispatch(setSelectedTags(selectedTags.filter((el) => el !== tag)));
+    }
   };
 
   if (popularTags) {
@@ -52,24 +50,19 @@ const PopularTags: FC = () => {
           <FormattedMessage id='popularTags' />
         </HeaderThreeText>
         <TagList>
-          {
-            popularTags.map((tag) => (
-              <Tag
-                key={tag}
-                tag={tag}
-                pointer
-                handleClick={handleClick}
-                isActive={selectedTags?.includes(tag) || false}
-                deactivateTag={(e) => deactivateTag(e, tag)} />
-            ))
-          }
+          {popularTags.map((tag) => (
+            <Tag
+              key={tag}
+              tag={tag}
+              pointer
+              handleClick={handleClick}
+              isActive={selectedTags?.includes(tag) || false}
+              deactivateTag={(e) => deactivateTag(e, tag)} />
+          ))}
         </TagList>
       </PopularTagsContainer>
-
     );
   }
-  return (
-    <div>Loading Tags...</div>
-  );
+  return <div>Loading Tags...</div>;
 };
 export default PopularTags;

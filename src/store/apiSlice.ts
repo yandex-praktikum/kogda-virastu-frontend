@@ -35,6 +35,7 @@ type TAPIState = {
   isTagFollowing: boolean,
   isTagUnfollowing: boolean,
   isInviteGenerating: boolean,
+  isInviteCopying: boolean,
 };
 
 const initialState : TAPIState = {
@@ -71,6 +72,7 @@ const initialState : TAPIState = {
   isTagFollowing: false,
   isTagUnfollowing: false,
   isInviteGenerating: false,
+  isInviteCopying: false,
 };
 
 const apiSlice = createSlice({
@@ -332,17 +334,35 @@ const apiSlice = createSlice({
     followTagSucceeded: (state) => ({
       ...state, isTagFollowing: false,
     }),
+    followTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagFollowing: false, errorObject: action.payload,
+    }),
     unfollowTagRequested: (state) => ({
       ...state, isTagUnfollowing: true,
     }),
     unfollowTagSucceeded: (state) => ({
       ...state, isTagUnfollowing: false,
     }),
+    unfollowTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagUnfollowing: false, errorObject: action.payload,
+    }),
     generateInviteRequested: (state) => ({
       ...state, isInviteGenerating: true,
     }),
     generateInviteSucceeded: (state) => ({
       ...state, isInviteGenerating: false,
+    }),
+    generateInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteGenerating: false, errorObject: action.payload,
+    }),
+    copyInviteRequested: (state) => ({
+      ...state, isInviteCopying: true,
+    }),
+    copyInviteSucceeded: (state) => ({
+      ...state, isInviteCopying: false,
+    }),
+    copyInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteCopying: false, errorObject: action.payload,
     }),
   },
 });
@@ -351,8 +371,10 @@ const apiReducer = apiSlice.reducer;
 export const {
   followTagRequested,
   followTagSucceeded,
+  followTagFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  unfollowTagFailed,
   setSuccessMessage,
   setErrorMessage,
   clearSuccessMessage,
@@ -432,5 +454,9 @@ export const {
   articlePostClear,
   generateInviteRequested,
   generateInviteSucceeded,
+  generateInviteFailed,
+  copyInviteRequested,
+  copyInviteSucceeded,
+  copyInviteFailed,
 } = apiSlice.actions;
 export default apiReducer;
