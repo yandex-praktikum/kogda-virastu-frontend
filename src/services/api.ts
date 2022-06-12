@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable */
 import axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
   API_ROOT,

@@ -1,13 +1,12 @@
-/* eslint-disable*/
 import React, { FC, MouseEventHandler, MouseEvent } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CrossIcon } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 interface ITagProps extends ITagButtonProps {
-  tag: string,
-  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void,
-  deactivateTag?: MouseEventHandler<SVGSVGElement>,
+  tag: string;
+  handleClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
+  deactivateTag?: MouseEventHandler<SVGSVGElement>;
 }
 
 interface ITagButtonProps {
@@ -18,26 +17,33 @@ interface ITagButtonProps {
 }
 
 const Button = styled.button<ITagButtonProps>`
+  padding: 0;
+  border: none;
+  font-family: ${({ theme }) => theme.text18Sans.family};
+  font-weight: ${({ theme }) => theme.text18Sans.weight};
+  font-size: ${({ theme }) => theme.text18Sans.size}px;
+  line-height: ${({ theme }) => theme.text18Sans.height}px;
+  cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
+  display: flex;
+  align-items: center;
+  color: ${({ isActive, theme, isFollowing }) => (isActive && theme.button.blue.default)
+    || (isFollowing && theme.button.red.default)
+    || theme.secondaryText};
+  background-color: transparent;
 
-    padding: 0;
-    border: none;
-    font-family: ${({ theme }) => theme.text18Sans.family};
-    font-weight: ${({ theme }) => theme.text18Sans.weight};
-    font-size: ${({ theme }) => theme.text18Sans.size}px;
-    line-height: ${({ theme }) => theme.text18Sans.height}px;
-    cursor: ${({ pointer }) => getPropOnCondition(pointer, 'inherit', 'pointer')};
-    display: flex;
-    align-items: center;
-    color: ${({ isActive, theme, isFollowing }) => (isActive ? theme.button.blue.default : isFollowing ? theme.button.red.default : theme.secondaryText)};
-    background-color: transparent;
-
-    :active {
-      outline: none;
-    }
-  `;
+  :active {
+    outline: none;
+  }
+`;
 
 const Tag: FC<ITagProps> = ({
-  tag, handleClick = () => {}, isActive, deactivateTag, pointer, isFollowing, isDefault
+  tag,
+  handleClick = () => {},
+  isActive,
+  deactivateTag,
+  pointer,
+  isFollowing,
+  isDefault,
 }) => {
   const theme = useTheme();
 
@@ -53,8 +59,12 @@ const Tag: FC<ITagProps> = ({
       #
       {tag}
       {' '}
-      {isActive && deactivateTag && <CrossIcon color={theme.markedText} onClick={deactivateTag} />}
-      {isDefault && deactivateTag && <CrossIcon color={theme.secondaryText} onClick={deactivateTag} />}
+      {isActive && deactivateTag && (
+        <CrossIcon color={theme.markedText} onClick={deactivateTag} />
+      )}
+      {isDefault && deactivateTag && (
+        <CrossIcon color={theme.secondaryText} onClick={deactivateTag} />
+      )}
     </Button>
   );
 };
