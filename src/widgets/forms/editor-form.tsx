@@ -42,6 +42,24 @@ import {
   FieldTextArticle,
 } from '../../ui-lib';
 
+const BodyEditor: FC = () => {
+  useEffect(() => {
+    const editor = new EditorJS({
+      holder: 'editorjs',
+    });
+  }, []);
+
+  return (
+    <div
+      id='editorjs'
+      style={{
+        width: '100%', border: '1px solid grey', borderRadius: '10px', padding: '5px',
+
+      }} />
+
+  );
+};
+
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,15 +84,6 @@ const EditorForm: FC = () => {
       dispatch(setTags(initialArticle.tagList.toString()));
     }
   }, [initialArticle, dispatch]);
-
-  useEffect(() => {
-    const editor = new EditorJS({
-      /**
-       * Id of Element that should contain Editor instance
-       */
-      holder: 'editorjs',
-    });
-  }, []);
 
   useEffect(
     () => {
@@ -184,13 +193,7 @@ const EditorForm: FC = () => {
           <FieldUrl
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
-          <div
-            id='editorjs'
-            style={{
-              width: '100%', border: '1px solid grey', borderRadius: '10px', padding: '5px',
-
-            }} />
-
+          <BodyEditor />
           {/* <FieldTextArticle
             value={body === '' ? '' : body || initialArticle?.body || ''}
             onChange={onChangeBody}
