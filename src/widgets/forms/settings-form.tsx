@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from '../../services/hooks';
 import { TagSetForm } from '../tag';
 import { LabelStyle } from '../../ui-lib/inputs/text-fields-styles';
 import unsubscribeTagThunk from '../../thunks/unsubscribe-tag-thunk';
+// import Preloader from '../preloader';
 
 import {
   setUsernameProfile,
@@ -177,4 +178,3 @@ const SettingsForm: FC = () => {
 };
 
 export default SettingsForm;
-// labelText={intl.messages.userName as string
