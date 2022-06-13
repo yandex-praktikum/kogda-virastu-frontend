@@ -30,6 +30,7 @@ const RibbonWrapper = styled.ul`
 `;
 
 const ItemWrapper = styled.li`
+  position: relative;
   width: 100%;
   max-width: 360px;
   height: 100%;
@@ -40,7 +41,16 @@ const ItemWrapper = styled.li`
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  border-bottom: 1px solid #CCCCCC;
+
+  ::after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 150%;
+    // height: 1px;
+    border-bottom: 1px solid #CCCCCC;
+  }
 
   @media screen and (max-width: 1030px) {
     max-width: 226px;
