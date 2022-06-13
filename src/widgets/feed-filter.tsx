@@ -41,10 +41,14 @@ const FeedFilter: React.FC = () => {
   const dispatch = useDispatch();
 
   const type = useSelector((state) => state.view.feedType);
+  const { roles } = useSelector((state) => state.profile);
 
   const publicType = type === FeedTypes.public;
   const privateType = type === FeedTypes.private;
   const moderationType = type === FeedTypes.moderation;
+
+  const admin = roles?.filter((role) => role === 'admin').toString();
+  const user = roles?.filter((role) => role === 'user').toString();
 
   const getPrivateFeed = () => {
     dispatch(getPrivateFeedThunk());
@@ -63,22 +67,22 @@ const FeedFilter: React.FC = () => {
       {publicType && (
         <>
           <FilterButtonActive type='button' onClick={getPublicFeed}>Все посты</FilterButtonActive>
-          <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
-          <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>
+          {user && <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>}
+          {admin && <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>}
         </>
       )}
       {privateType && (
         <>
           <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
-          <FilterButtonActive type='button' onClick={getPrivateFeed}>Мои подписки</FilterButtonActive>
-          <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>
+          {user && <FilterButtonActive type='button' onClick={getPrivateFeed}>Мои подписки</FilterButtonActive>}
+          {admin && <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>}
         </>
       )}
       {moderationType && (
         <>
           <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
-          <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
-          <FilterButtonActive type='button' onClick={getModerationFeed}>На модерации</FilterButtonActive>
+          {user && <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>}
+          {admin && <FilterButtonActive type='button' onClick={getModerationFeed}>На модерации</FilterButtonActive>}
         </>
       )}
     </FilterContainer>

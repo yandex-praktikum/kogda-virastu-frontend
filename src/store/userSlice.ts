@@ -7,6 +7,7 @@ type TUserState = {
   bio?: string | null,
   image?: string | null,
   nickname?: string | null,
+  roles?: Array<string>,
   friendInvite: string | null,
 };
 
@@ -16,6 +17,7 @@ const initialState: TUserState = {
   bio: null,
   image: null,
   nickname: null,
+  roles: [],
   friendInvite: null,
 };
 

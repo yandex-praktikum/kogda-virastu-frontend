@@ -13,7 +13,11 @@ import {
 } from '../services/api.types';
 
 export interface IRegisterUser {
-  (username: string, email: string, password: string, nickname?: string, invite?: string) : AxiosPromise<TAPIAuth>;
+  (username: string,
+    email: string,
+    password: string,
+    nickname?: string,
+    invite?: string,) : AxiosPromise<TAPIAuth>;
 }
 
 export interface ILoginUser {

@@ -1,6 +1,7 @@
 export type TUser = {
   email: string;
   username: string;
+  roles?: Array<string>,
   bio?: string;
   image?:string;
   nickname?: string;
