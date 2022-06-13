@@ -20,6 +20,7 @@ import {
   EyeNoIcon,
   ArrowLeft,
   ArrowRight,
+  PreloaderBox,
 } from './icons';
 
 import {
@@ -131,4 +132,5 @@ export {
   FieldTextComment,
   ArrowLeft,
   ArrowRight,
+  PreloaderBox,
 };

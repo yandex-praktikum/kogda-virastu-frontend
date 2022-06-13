@@ -13,6 +13,7 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { TArticle } from '../services/types';
+// import Preloader from './preloader';
 
 const RibbonWrapper = styled.ul`
   box-sizing: border-box;
@@ -118,9 +119,9 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }, []);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
+  const { isPublicFeedFetching } = useSelector((state) => state.api);
   const { tagsFollow } = useSelector((state) => state.view);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
-  const { isPublicFeedFetching } = useSelector((state) => state.api);
   if (posts) {
     posts.filter((post) => post.tagList.some((tag) => tags.includes(tag)));
   }
@@ -138,10 +139,10 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const allPosts = posts.filter(
+  const allPosts = posts?.filter(
     (post) => post.tagList.find((tag) => tags.includes(tag) || !tags || tags.length < 1),
   );
-  const authorPosts = posts.filter(
+  const authorPosts = posts?.filter(
     (post) => post.author.following || post.tagList.some((tag) => tagsFollow?.includes(tag)),
   );
   const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
