@@ -80,6 +80,7 @@ import {
   clearPage,
   setTopFeed,
   clearTopFeed,
+  copyGeneratedInviteCode,
 } from './viewSlice';
 
 import {
@@ -342,4 +343,5 @@ export {
   unfollowTagRequested,
   unfollowTagSucceeded,
   unfollowTagFailed,
+  copyGeneratedInviteCode,
 };

@@ -19,6 +19,7 @@ import {
   setFormProfile,
   setPasswordProfile,
   ConfirmPasswordProfile,
+  copyGeneratedInviteCode,
 } from '../../store';
 
 import { patchCurrentUserThunk, getInviteCodeThunk } from '../../thunks';
@@ -29,7 +30,7 @@ import {
   FormContainer,
   FormTitle,
   InputFieldset,
-  LinkStyle,
+  LinkStyle, MessageCopySuccess,
 } from './forms-styles';
 
 import {
@@ -56,7 +57,7 @@ const SettingsForm: FC = () => {
 
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
-  const { generatedCode } = useSelector((state) => state.view);
+  const { generatedCode, copyGeneratedCode } = useSelector((state) => state.view);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -112,10 +113,12 @@ const SettingsForm: FC = () => {
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
-
   const copyToClipBoard = (e: MouseEvent<HTMLElement>, text: string) => {
     e.preventDefault();
-    navigator.clipboard.writeText(text).then((r) => r).catch((evt: string) => evt);
+    navigator.clipboard.writeText(text)
+      .then(() => setTimeout(() => dispatch(copyGeneratedInviteCode()), 2000))
+      .finally(() => dispatch(copyGeneratedInviteCode()))
+      .catch((evt: string) => evt);
   };
 
   return (
@@ -139,12 +142,21 @@ const SettingsForm: FC = () => {
         <ContainerInvite>
           <GenerateInviteCodeButton onClick={() => dispatch(getInviteCodeThunk())} />
           {generatedCode ? (
-            <LinkStyle
-              onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `http://localhost:4100/registration?=${generatedCode}`)}
-              to={`/registration?=${generatedCode}`}
-              color={greySecondary}>
-              <FormattedMessage id='copyText' />
-            </LinkStyle>
+            <>
+              {copyGeneratedCode
+                ? (
+                  <MessageCopySuccess>
+                    <FormattedMessage id='copyTextSuccess' />
+                  </MessageCopySuccess>
+                )
+                : null}
+              <LinkStyle
+                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `${window.location.origin}/registration?=${generatedCode}`)}
+                to={`/registration?=${generatedCode}`}
+                color={greySecondary}>
+                <FormattedMessage id='copyText' />
+              </LinkStyle>
+            </>
           )
             : null}
         </ContainerInvite>
