@@ -45,6 +45,7 @@ const en: TVocabulary = {
   nickname: 'Display name',
   tagsInForm: 'Tags',
   messageAboutMissingTags: '&nbsp;&nbsp;You don\'t have subscriptions to tags',
+  youSubscribedToTheTag: 'You subscribed to the tag #',
 };
 
 export default en;

@@ -62,6 +62,7 @@ export const MainContainer = styled.div`
 export const LeftColumn = styled.div`
   overflow: hidden;
   min-width: 474px;
+  
 `;
 
 export const RightColumn = styled.aside`

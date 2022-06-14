@@ -7,17 +7,13 @@ const PreloaderContainer = styled.div`
           to { transform: rotate(360deg); }
         }
         animation: 1s rotate360 infinite linear;
+        margin: 10% auto;
         width: 32px;
         height: 32px;
         display: flex;
-        align-items: star;
     `;
-const Preloader: FC<{
-  color: string
-}> = ({
-  color,
-}) => {
-  console.log('color', color);
+const Preloader: FC = () => {
+  const color = '$secondary-text';
   return (
     <PreloaderContainer>
       <PreloaderBox color={color} />
