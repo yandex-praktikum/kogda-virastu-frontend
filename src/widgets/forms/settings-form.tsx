@@ -113,7 +113,6 @@ const SettingsForm: FC = () => {
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
-
   const copyToClipBoard = (e: MouseEvent<HTMLElement>, text: string) => {
     e.preventDefault();
     navigator.clipboard.writeText(text)
@@ -152,7 +151,7 @@ const SettingsForm: FC = () => {
                 )
                 : null}
               <LinkStyle
-                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `http://localhost:4100/registration?=${generatedCode}`)}
+                onClick={(e: MouseEvent<HTMLElement>) => copyToClipBoard(e, `${window.location.origin}/registration?=${generatedCode}`)}
                 to={`/registration?=${generatedCode}`}
                 color={greySecondary}>
                 <FormattedMessage id='copyText' />
