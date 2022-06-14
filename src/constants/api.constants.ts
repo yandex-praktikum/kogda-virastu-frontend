@@ -1,4 +1,5 @@
-export const API_ROOT = 'https://api.kogda-virastu.com';
+// export const API_ROOT = 'https://api.kogda-virastu.com';
+export const API_ROOT = 'http://localhost:3000/api/v1';
 // export const API_ROOT = 'https://redtypes.ru/blog/api';
 export const WYSIWYG_EDITOR = '01ce39mahu5917xfaly0h6vjde1py3u0lvhka34tepqmt8na';
 

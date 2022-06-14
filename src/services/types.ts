@@ -3,6 +3,7 @@ export type TUser = {
   username: string;
   bio?: string;
   image?:string;
+  roles?: Array<string>;
 };
 
 export type TProfile = {
@@ -11,6 +12,7 @@ export type TProfile = {
   username: string;
   email: string;
   bio?: string;
+  roles?: Array<string>;
 };
 
 export type TTags = Array<string>;
