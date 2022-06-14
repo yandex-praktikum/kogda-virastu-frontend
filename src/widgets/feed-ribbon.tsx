@@ -22,17 +22,19 @@ const RibbonWrapper = styled.ul`
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  column-gap: 32px;
   row-gap: 32px;
+  
   @media screen and (max-width: 765px) {
     grid-template-columns: 1fr;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ItemWrapper = styled.li`
   position: relative;
   width: 100%;
-  max-width: 360px;
   height: 100%;
   list-style: none outside;
   margin: 0 auto;
@@ -41,25 +43,11 @@ const ItemWrapper = styled.li`
   margin-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
+  border-bottom: 1px solid #CCC;
 
-  ::after {
-    content: ' ';
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 150%;
-    // height: 1px;
-    border-bottom: 1px solid #CCCCCC;
+  @media screen and (max-width: 765px) {
+    border-bottom: none;
   }
-
-  @media screen and (max-width: 1030px) {
-    max-width: 226px;
-}
-
-@media screen and (max-width: 765px) {
-  width: 100%;
-  max-width: none;
-}
 `;
 
 const FeedRibbon : FC = () => {

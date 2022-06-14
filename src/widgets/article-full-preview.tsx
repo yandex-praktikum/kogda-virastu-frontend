@@ -10,17 +10,21 @@ import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+
+  @media screen and (max-width: 1300px) {
+    max-width: 320px;
+  }
+  @media screen and (max-width: 1030px) {
+    max-width: 226px;
+  }
+  @media screen and (max-width: 765px) {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    @media screen and (max-width: 600px) {
-        width: 280px;
-    }
-
-   /*  @media screen and (max-width:320px) {
-        width:280px;
-    } */
+    max-width: none;
+  }
 `;
 
 const ArticleName = styled.h2`
