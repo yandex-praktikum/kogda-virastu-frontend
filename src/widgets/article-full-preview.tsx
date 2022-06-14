@@ -157,7 +157,6 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
       <Article image={article.link}>{article.body}</Article>
       <BarTagsWrapper image={article.link}>
         <BarTags
-          isHasImage={!!article.link}
           rowReverse
           tagList={article.tagList} />
       </BarTagsWrapper>
