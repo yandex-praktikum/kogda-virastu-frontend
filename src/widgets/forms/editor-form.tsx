@@ -149,8 +149,6 @@ const EditorForm: FC = () => {
   const onChangeBody = (evt: EventInfo, editor: ClassicEditor) => {
     const data: string = editor.getData();
     dispatch(setBody(data));
-    // eslint-disable-next-line no-param-reassign
-    // evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
   const onChangeTags: ChangeEventHandler<HTMLInputElement> = (evt) => {
