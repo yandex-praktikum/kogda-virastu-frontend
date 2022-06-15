@@ -1,8 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
-import { RegularText } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
@@ -54,23 +52,15 @@ const FeedRibbon : FC = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
-  const { isPublicFeedFetching } = useSelector((state) => state.api);
 
   if (posts) {
     posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag))));
   }
 
-  if (!posts || isPublicFeedFetching) {
-    return (
-      <RegularText size='large' weight={500}>
-        <FormattedMessage id='loading' />
-      </RegularText>
-    );
-  }
   return (
     <ScrollRibbon>
       <RibbonWrapper>
-        {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
+        {posts?.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
             || !tags
             || tags.length < 1))).map((post) => {
           const onClick : MouseEventHandler = () => {
