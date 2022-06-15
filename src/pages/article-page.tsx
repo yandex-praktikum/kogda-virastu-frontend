@@ -95,7 +95,7 @@ const RightColumn = styled.aside`
     }
   }
 `;
-
+/** страница '/article/:slug' */
 const ArticlePage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -46,6 +46,7 @@ const ru: TVocabulary = {
   tagsInForm: 'Теги',
   messageAboutMissingTags: 'У Вас нет подписок на теги',
   invationCode: 'Введите код регистрации',
+  youSubscribedToTheTag: 'Вы подписались на тег #',
 };
 
 export default ru;

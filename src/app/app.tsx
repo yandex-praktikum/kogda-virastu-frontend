@@ -59,7 +59,6 @@ const App = () => {
       dispatch(setLanguage(language));
     }
   }, [dispatch, langNames]);
-
   return (
     <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
       <ThemeProvider theme={
