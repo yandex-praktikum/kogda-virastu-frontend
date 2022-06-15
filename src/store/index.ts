@@ -18,7 +18,9 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
+  changeInviteCodeRegister,
   resetFormRegister,
 } from './registerFormSubSlice';
 
@@ -30,6 +32,7 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  ConfirmPasswordProfile,
   resetFormProfile,
 
 } from './profileFormSubSlice';
@@ -77,6 +80,7 @@ import {
   clearPage,
   setTopFeed,
   clearTopFeed,
+  copyGeneratedInviteCode,
 } from './viewSlice';
 
 import {
@@ -200,7 +204,9 @@ export {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
+  changeInviteCodeRegister,
   resetFormRegister,
   setUsernameProfile,
   setNicknameProfile,
@@ -209,6 +215,7 @@ export {
   setImageProfile,
   setFormProfile,
   setPasswordProfile,
+  ConfirmPasswordProfile,
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
@@ -336,4 +343,5 @@ export {
   unfollowTagRequested,
   unfollowTagSucceeded,
   unfollowTagFailed,
+  copyGeneratedInviteCode,
 };

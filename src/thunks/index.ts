@@ -23,6 +23,7 @@ import getAllPostsThunk from './get-all-posts-thunk';
 import followTagThunk from './follow-tag-thunk';
 import unfollowTagThunk from './unfollow-tag-thunk';
 import getFollowTagsThunk from './get-follow-tags-thunk';
+import getInviteCodeThunk from './get-inviteCode-thunk';
 
 export {
   createCommentThunk,
@@ -50,4 +51,5 @@ export {
   followTagThunk,
   unfollowTagThunk,
   getFollowTagsThunk,
+  getInviteCodeThunk,
 };

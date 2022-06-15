@@ -237,6 +237,14 @@ export const UnfollowButton : FC<TButtonProps> = ({ onClick, disabled = false })
   );
 };
 
+export const GenerateInviteCodeButton : FC<TButtonProps> = ({ onClick }) => (
+  <BasicNormalButton type='button' colorScheme='blue' onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='generateInviteCode' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
 export const PostCommentButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
     <RegularText size='large' weight={500}>
@@ -268,6 +276,7 @@ export const UpdateProfileButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabl
     </RegularText>
   </BasicNormalButton>
 );
+
 export const PublishPostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
   <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <RegularText size='large' weight={500}>

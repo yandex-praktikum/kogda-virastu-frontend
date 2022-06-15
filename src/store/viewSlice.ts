@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-  FeedTypes, TArticle, TArticles, TComment, TComments, TProfile, TTags, UserArticlesTypes,
+  FeedTypes,
+  TArticle,
+  TArticles,
+  TComment,
+  TComments,
+  TProfile,
+  TTags,
+  UserArticlesTypes,
 } from '../types/types';
 
 type TViewState = {
@@ -21,6 +28,8 @@ type TViewState = {
   feedType: FeedTypes;
   articlesType: UserArticlesTypes;
   topFeed: TArticles | null;
+  generatedCode: string | null;
+  copyGeneratedCode: boolean;
 };
 
 const initialState: TViewState = {
@@ -40,6 +49,8 @@ const initialState: TViewState = {
   feedType: FeedTypes.public,
   articlesType: UserArticlesTypes.my,
   topFeed: null,
+  generatedCode: null,
+  copyGeneratedCode: false,
 };
 
 const viewSlice = createSlice({
@@ -127,6 +138,12 @@ const viewSlice = createSlice({
     setArtistProfile: (state, action: PayloadAction<UserArticlesTypes>) => ({
       ...state, articlesType: action.payload,
     }),
+    setGeneratedInviteCode: (state, action: PayloadAction<string>) => ({
+      ...state, generatedCode: action.payload,
+    }),
+    copyGeneratedInviteCode: (state) => ({
+      ...state, copyGeneratedCode: !state.copyGeneratedCode,
+    }),
   },
 });
 
@@ -158,6 +175,8 @@ export const {
   setArtistProfile,
   setTopFeed,
   clearTopFeed,
+  setGeneratedInviteCode,
+  copyGeneratedInviteCode,
 } = viewSlice.actions;
 const viewReducer = viewSlice.reducer;
 export default viewReducer;

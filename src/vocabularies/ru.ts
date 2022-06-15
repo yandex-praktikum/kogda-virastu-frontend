@@ -30,8 +30,12 @@ const ru: TVocabulary = {
   userEmail: 'Email',
   password: 'Пароль',
   profileImage: 'Изображение профиля',
+  invite: 'Введите код регистрации',
+  confirmPassword: 'Подтвердите пароль',
+  urlImage: 'URL изображения профиля',
   newPassword: 'Новый пароль',
   refreshUser: 'Обновить настройки',
+  generateInviteCode: 'Создать код-приглашение',
   usersettings: 'Ваши настройки',
   publishArticle: 'Опубликовать запись',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
@@ -46,6 +50,8 @@ const ru: TVocabulary = {
   viewAllArticle: 'Все посты',
   mySubscriptions: 'Мои подписки',
   zeroSubscriptions: 'У вас пока нет активных подписок',
+  copyText: 'Скопировать ссылку-приглашение',
+  copyTextSuccess: 'Ссылка скопирована в буфер обмена',
 };
 
 export default ru;
