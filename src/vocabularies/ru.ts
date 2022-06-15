@@ -49,6 +49,8 @@ const ru: TVocabulary = {
   decline: 'Отклонить',
   published: 'Опубликована',
   removePublish: 'снять с публикации',
+  invationCode: 'Введите код регистрации',
+  youSubscribedToTheTag: 'Вы подписались на тег #',
 };
 
 export default ru;

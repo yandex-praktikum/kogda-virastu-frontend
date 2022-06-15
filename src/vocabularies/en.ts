@@ -49,6 +49,7 @@ const en: TVocabulary = {
   decline: 'Decline',
   published: 'Published',
   removePublish: 'Remove from publication',
+  youSubscribedToTheTag: 'You subscribed to the tag #',
 };
 
 export default en;

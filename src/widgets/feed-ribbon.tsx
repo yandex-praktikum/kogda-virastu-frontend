@@ -13,6 +13,7 @@ import { TArticle } from '../services/types';
 import { ArticleAdminPublishActions } from './article';
 import declineArticleAdminThunk from '../thunks/decline-article-admin-thunk';
 import publishArticleAdminThunk from '../thunks/publish-article-admin-thunk';
+import Preloader from './preloader';
 
 const RibbonWrapper = styled.ul`
   box-sizing: border-box;
@@ -129,9 +130,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }
   if (!posts || isPublicFeedFetching) {
     return (
-      <RegularText size='large' weight={500}>
-        <FormattedMessage id='loading' />
-      </RegularText>
+      <Preloader />
     );
   }
   const activeLink = ({ isActive }: { isActive: boolean }) => {
@@ -172,7 +171,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         dispatch(addLikeThunk(post.slug));
       }
     };
-
+            
     return (
       <React.Fragment key={post.slug}>
         <ItemWrapper>

@@ -1,5 +1,5 @@
-import React, { FC, MouseEventHandler } from 'react';
-import { FormattedDate } from 'react-intl';
+import React, { FC, MouseEventHandler, useState } from 'react';
+import { FormattedDate, FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
@@ -8,7 +8,7 @@ import {
 } from '../thunks';
 import { DeletePostButton, EditPostButton, PublishPostButton } from '../ui-lib';
 import { openConfirm } from '../store';
-import BarTags from './bar-tags';
+import BarTags, { MessageSubscriptionTag, MessageText } from './bar-tags';
 import Likes from './likes';
 import {
   PublishAdminPostButton,
@@ -109,6 +109,7 @@ const ArticleImage = styled.img`
 `;
 
 const ArticleBody = styled.p`
+  position: relative;
   font-family: ${({ theme: { text18: { family } } }) => family};
   font-size: ${({ theme: { text18: { size } } }) => size}px ;
   line-height: ${({ theme: { text18: { height } } }) => height}px;
@@ -152,6 +153,8 @@ const ArticleAdminPublishedActions: FC<TArticleAdminPublishedActions> = ({
 const Article: FC<TArticleProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [active, setActiveState] = useState(false);
+  const [tagText, setTagState] = useState('');
 
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile);
@@ -247,8 +250,17 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && <ArticleImage src={article.link} />}
       <ArticleBody>
         <div dangerouslySetInnerHTML={{ __html: article.body }} />
+        <MessageSubscriptionTag active={active}>
+          <MessageText>
+            <FormattedMessage id='youSubscribedToTheTag' />
+            { tagText }
+          </MessageText>
+        </MessageSubscriptionTag>
       </ArticleBody>
-      <BarTags tagList={article.tagList} />
+      <BarTags
+        setTagState={setTagState}
+        setActiveState={setActiveState}
+        tagList={article.tagList} />
     </ArticleContainer>
   );
 };

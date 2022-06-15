@@ -18,6 +18,9 @@ import {
   PaperClipIcon,
   EyeIcon,
   EyeNoIcon,
+  ArrowLeft,
+  ArrowRight,
+  PreloaderBox,
 } from './icons';
 
 import {
@@ -47,6 +50,7 @@ import {
   FieldDescriptionArticle,
   FieldTags,
   FieldNick,
+  InvitionCode,
   FieldProfileImage,
 }
   from './inputs/input-fields';
@@ -108,6 +112,7 @@ export {
   FieldEmail,
   FieldPassword,
   FieldNick,
+  InvitionCode,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTags,
@@ -125,4 +130,7 @@ export {
   MenuSettingsButton,
   MenuLogoutButton,
   FieldTextComment,
+  ArrowLeft,
+  ArrowRight,
+  PreloaderBox,
 };
