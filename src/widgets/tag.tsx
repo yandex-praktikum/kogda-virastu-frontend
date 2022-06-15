@@ -44,7 +44,6 @@ const Tag: FC<ITagProps> = ({
   tag, handleClick = () => {}, isActive = true, deactivateTag, pointer, isShowIcon,
 }) => {
   const theme = useTheme();
-
   return (
     <Button
       isActive={isActive}

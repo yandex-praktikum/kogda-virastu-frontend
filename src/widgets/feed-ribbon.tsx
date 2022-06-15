@@ -10,6 +10,7 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { TArticle } from '../services/types';
+import Preloader from './preloader';
 
 const RibbonWrapper = styled.ul`
   box-sizing: border-box;
@@ -126,9 +127,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }
   if (!posts || isPublicFeedFetching) {
     return (
-      <RegularText size='large' weight={500}>
-        <FormattedMessage id='loading' />
-      </RegularText>
+      <Preloader />
     );
   }
   const activeLink = ({ isActive }: { isActive: boolean }) => {
@@ -157,7 +156,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         dispatch(addLikeThunk(post.slug));
       }
     };
-
+            
     return (
       <React.Fragment key={post.slug}>
         <ItemWrapper>

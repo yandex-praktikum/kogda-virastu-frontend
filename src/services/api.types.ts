@@ -8,7 +8,8 @@ export type TAPINewUser = {
     email: string;
     password: string;
     nickname?: string;
-  }
+  },
+  invite: string
 };
 
 export type TAPIAuth = {

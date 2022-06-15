@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
 import { HeaderThreeText } from '../ui-lib';
+import Preloader from './preloader';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -42,32 +43,37 @@ const PopularTags: FC = () => {
     e.stopPropagation();
     dispatch(setSelectedTags(selectedTags!.filter((el) => el !== tag)));
   };
-
-  if (tags) {
-    return (
-      <PopularTagsContainer>
-        <HeaderThreeText paddingCSS='padding-bottom: 16px;'>
-          <FormattedMessage id='popularTags' />
-        </HeaderThreeText>
-        <TagList>
-          {
-            tags.map((tag) => (
-              <Tag
-                key={tag}
-                tag={tag}
-                pointer
-                handleClick={handleClick}
-                isActive={selectedTags?.includes(tag) || false}
-                deactivateTag={(e) => deactivateTag(e, tag)} />
-            ))
-          }
-        </TagList>
-      </PopularTagsContainer>
-
-    );
-  }
+  // if (tags) {
   return (
-    <div>Loading Tags...</div>
+    <PopularTagsContainer>
+      <HeaderThreeText paddingCSS='padding-bottom: 16px;'>
+        <FormattedMessage id='popularTags' />
+      </HeaderThreeText>
+      {
+        tags
+          ? (
+            <TagList>
+              {
+                tags.map((tag) => (
+                  <Tag
+                    key={tag}
+                    tag={tag}
+                    pointer
+                    handleClick={handleClick}
+                    isActive={selectedTags?.includes(tag) || false}
+                    deactivateTag={(e) => deactivateTag(e, tag)} />
+                ))
+              }
+            </TagList>
+          )
+          : <Preloader />
+      }
+    </PopularTagsContainer>
   );
+  // }
+  // return (
+  //   <Preloader />
+  // <div>Loading Tags...</div>
+  // );
 };
 export default PopularTags;

@@ -110,6 +110,32 @@ export const FieldNick: FC<TFieldInput> = ({
       labelText={intl.messages.nickname as string} />
   );
 };
+export const InvitionCode: FC<TFieldInput> = ({
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  disabled = false,
+}) => {
+  const intl = useIntl();
+  return (
+    <InputField
+      placeholder={placeholder}
+      name='InvationCode'
+      type='text'
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      labelText={intl.messages.invationCode as string} />
+  );
+};
 export const FieldEmail: FC<TFieldInput> = ({
   value,
   onFocus = undefined,
