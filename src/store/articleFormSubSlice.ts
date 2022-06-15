@@ -30,7 +30,7 @@ const articleSubSlice = createSlice({
     setBody: (state, action: PayloadAction<string>) => ({
       ...state, body: action.payload,
     }),
-    setImage: (state, action: PayloadAction<string>) => ({
+    setImage: (state, action: PayloadAction<string | null>) => ({
       ...state, link: action.payload,
     }),
     setTags: (state, action: PayloadAction<string>) => ({

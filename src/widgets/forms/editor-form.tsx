@@ -114,7 +114,18 @@ const EditorForm: FC = () => {
   };
 
   const onChangeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    dispatch(setImage(evt.target.value));
+    let imgString: string | null = '';
+    const reader = new FileReader();
+    if (evt.target.files) {
+      const imageSelected = evt.target.files[0];
+      if (imageSelected.type.startsWith('image/')) {
+        reader.readAsDataURL(imageSelected);
+        reader.onloadend = () => {
+          imgString = reader.result && reader.result.toString();
+          dispatch(setImage(imgString));
+        };
+      }
+    }
   };
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
@@ -166,7 +177,6 @@ const EditorForm: FC = () => {
             }
             onChange={onChangeDescription} />
           <FieldUrl
-            value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
           <Editor />
           <FieldTags

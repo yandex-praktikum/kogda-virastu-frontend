@@ -1,5 +1,5 @@
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect,
+  ChangeEventHandler, FC, FormEventHandler, useEffect, useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -34,6 +34,7 @@ import {
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
+  AvatarIcon,
 } from '../../ui-lib';
 
 import FollowTags from '../follow-tags';
@@ -74,7 +75,18 @@ const SettingsForm: FC = () => {
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    dispatch(setImageProfile(evt.target.value));
+    let imgString: string | null = '';
+    const reader = new FileReader();
+    if (evt.target.files) {
+      const imageSelected = evt.target.files[0];
+      if (imageSelected.type.startsWith('image/')) {
+        reader.readAsDataURL(imageSelected);
+        reader.onloadend = () => {
+          imgString = reader.result && reader.result.toString();
+          dispatch(setImageProfile(imgString));
+        };
+      }
+    }
   };
 
   const changeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -102,7 +114,7 @@ const SettingsForm: FC = () => {
       </FormTitle>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={16}>
-          <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+          <FieldProfileImage onChange={changeImage} />
           <FieldLogin value={username ?? ''} onChange={changeUsername} />
           <FieldNick value={nickname ?? ''} onChange={changeNickname} />
           <FieldAboutUser
