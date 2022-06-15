@@ -3,10 +3,11 @@ import React, { FC, MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import parse from 'html-react-parser';
 import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
 import BarTags from './bar-tags';
-import { Divider } from '../ui-lib';
+// import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
@@ -85,7 +86,7 @@ const ContentContainer = styled.div<TElementWithImage>`
         }
         @media screen and (max-width: 600px) {                  // 'grid-row: 5/6 ' : 'grid-row: 4/5'
 
-        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
+        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))}
         margin-top: -8px;
     }
     }
@@ -154,7 +155,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
     <ContentContainer image={article.link}>
       <ArticleName>{article.title}</ArticleName>
       {article.link && <ArticleImage src={article.link} />}
-      <Article image={article.link}>{article.body}</Article>
+      <Article image={article.link}>{parse(article.body)}</Article>
       <BarTagsWrapper image={article.link}>
         <BarTags
           rowReverse
