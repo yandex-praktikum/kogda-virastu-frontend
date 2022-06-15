@@ -131,7 +131,21 @@ const ArticleBody = styled.div`
       line-height: ${({ theme: { text16: { height } } }) => height}px;
       font-weight: ${({ theme: { text16: { weight } } }) => weight}
     }
- }
+  }
+
+  li {
+      font-family: ${({ theme: { text18: { family } } }) => family};
+      font-size: ${({ theme: { text18: { size } } }) => size}px ;
+      line-height: ${({ theme: { text18: { height } } }) => height}px;
+      font-weight: ${({ theme: { text18: { weight } } }) => weight};
+      margin: 0;
+      @media screen and (max-width:768px) {
+        font-family: ${({ theme: { text16: { family } } }) => family};
+        font-size: ${({ theme: { text16: { size } } }) => size}px ;
+        line-height: ${({ theme: { text16: { height } } }) => height}px;
+        font-weight: ${({ theme: { text16: { weight } } }) => weight}
+      }
+    }
 `;
 
 const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }) => (

@@ -16,5 +16,6 @@ declare module '@ckeditor/ckeditor5-react' {
     onFocus?: (event: Event, editor: ClassicEditor) => void;
     onError?: (event: Event, editor: ClassicEditor) => void;
   }>;
+  // eslint-disable-next-line import/prefer-default-export
   export { CKEditor };
 }

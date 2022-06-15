@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
+import EventInfo from '@ckeditor/ckeditor5-utils/src/eventinfo';
 import { useSelector, useDispatch } from '../../services/hooks';
 
 import {
@@ -84,7 +85,21 @@ const Editor = styled.div`
       line-height: ${({ theme: { text16: { height } } }) => height}px;
       font-weight: ${({ theme: { text16: { weight } } }) => weight}
     }
- }
+  }
+
+  li {
+      font-family: ${({ theme: { text18: { family } } }) => family};
+      font-size: ${({ theme: { text18: { size } } }) => size}px ;
+      line-height: ${({ theme: { text18: { height } } }) => height}px;
+      font-weight: ${({ theme: { text18: { weight } } }) => weight};
+      margin: 0;
+      @media screen and (max-width:768px) {
+        font-family: ${({ theme: { text16: { family } } }) => family};
+        font-size: ${({ theme: { text16: { size } } }) => size}px ;
+        line-height: ${({ theme: { text16: { height } } }) => height}px;
+        font-weight: ${({ theme: { text16: { weight } } }) => weight}
+      }
+    }
 `;
 
 const EditorForm: FC = () => {
@@ -155,7 +170,7 @@ const EditorForm: FC = () => {
     evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  const onChangeBody = (evt, editor) => {
+  const onChangeBody = (evt: EventInfo, editor: ClassicEditor) => {
     const data: string = editor.getData();
     dispatch(setBody(data));
     // eslint-disable-next-line no-param-reassign
