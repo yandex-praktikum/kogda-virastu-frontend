@@ -19,7 +19,8 @@ export type TAPIAuth = {
     bio?: string;
     image?: string;
     token: string;
-    nickname: string
+    nickname: string;
+    roles: Array<string>;
   };
 };
 

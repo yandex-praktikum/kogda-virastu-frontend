@@ -106,6 +106,7 @@ const ArticlePage: FC = () => {
   const { isArticleNotFound, isArticleRemoved } = useSelector((state) => state.api);
   const { articles } = useSelector((state) => state.all);
 
+  // console.log(profile);
   useEffect(() => {
     batch(() => {
       dispatch(resetArticle());

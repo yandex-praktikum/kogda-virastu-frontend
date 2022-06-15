@@ -29,7 +29,6 @@ type TBasicButtonProps = {
 };
 
 export const BasicNormalButton = styled.button<TBasicButtonProps>`
- // width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
@@ -51,6 +50,10 @@ export const BasicNormalButton = styled.button<TBasicButtonProps>`
     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   `;
+
+const PublishNormalButton = styled(BasicNormalButton)`
+  /* width: 137px !important; */
+`;
 
 const BasicInvertedButton = styled.button<TBasicButtonProps>`
   padding: 8px 16px;
@@ -115,7 +118,70 @@ export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false })
     </BasicNormalButton>
   );
 };
-export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+
+export const PublishAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <PublishNormalButton
+      colorScheme='blue'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='Опубликовать' />
+      </RegularText>
+    </PublishNormalButton>
+  );
+};
+
+export const RejectAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <PublishNormalButton
+      colorScheme='red'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='Отклонить' />
+      </RegularText>
+    </PublishNormalButton>
+  );
+};
+
+export const PublishedAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = true }) => {
+  const theme = useTheme();
+  return (
+    <PublishNormalButton
+      colorScheme='blue'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='Опубликована' />
+      </RegularText>
+    </PublishNormalButton>
+  );
+};
+
+export const RemovePublicationAdminPostButton: FC<TButtonProps> = ({
+  onClick,
+  disabled = false,
+}) => {
+  const theme = useTheme();
+  return (
+    <PublishNormalButton
+      colorScheme='red'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='Снять с публикации' />
+      </RegularText>
+    </PublishNormalButton>
+  );
+};
+
+export const DeletePostButton : FC<TButtonProps> = ({
+  onClick,
+  disabled = false,
+}) => {
   const theme = useTheme();
   const {
     status: {

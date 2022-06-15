@@ -4,6 +4,7 @@ export type TUser = {
   bio?: string;
   image?:string;
   nickname?: string;
+  roles?: Array<string>;
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -14,6 +15,7 @@ export type TProfile = {
   email: string;
   bio?: string;
   nickname?: string;
+  roles?: Array<string>;
 };
 
 export type TTags = Array<string>;
@@ -27,6 +29,7 @@ export type TArticle = {
   favorited: boolean;
   favoritesCount: number;
   slug: string;
+  state?: string;
   tagList: TTags;
   title: string;
   updatedAt: string;

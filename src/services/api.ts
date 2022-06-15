@@ -304,6 +304,30 @@ export const patchArticle : IPatchArticle = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const publishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/publish`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/decline`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const removePublishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/hold`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const postLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}/favorite`,
