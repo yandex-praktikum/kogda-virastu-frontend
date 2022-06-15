@@ -127,7 +127,7 @@ export const PublishAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = 
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Опубликовать' />
+        <FormattedMessage id='publish' />
       </RegularText>
     </PublishNormalButton>
   );
@@ -141,7 +141,7 @@ export const RejectAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = f
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Отклонить' />
+        <FormattedMessage id='decline' />
       </RegularText>
     </PublishNormalButton>
   );
@@ -155,7 +155,7 @@ export const PublishedAdminPostButton : FC<TButtonProps> = ({ onClick, disabled 
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Опубликована' />
+        <FormattedMessage id='published' />
       </RegularText>
     </PublishNormalButton>
   );
@@ -172,7 +172,7 @@ export const RemovePublicationAdminPostButton: FC<TButtonProps> = ({
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Снять с публикации' />
+        <FormattedMessage id='removePublish' />
       </RegularText>
     </PublishNormalButton>
   );

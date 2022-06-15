@@ -29,7 +29,7 @@ type TArticleActionsProps = {
   onClickDelete: MouseEventHandler<HTMLButtonElement>;
 };
 
-type TArticleAdminPublishActions = {
+export type TArticleAdminPublishActions = {
   onClickPublish: MouseEventHandler<HTMLButtonElement>;
   onClickReject: MouseEventHandler<HTMLButtonElement>;
 };
@@ -129,7 +129,7 @@ const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }
   </ArticleActionsContainer>
 );
 
-const ArticleAdminPublishActions: FC<TArticleAdminPublishActions> = ({
+export const ArticleAdminPublishActions: FC<TArticleAdminPublishActions> = ({
   onClickPublish,
   onClickReject,
 }) => (

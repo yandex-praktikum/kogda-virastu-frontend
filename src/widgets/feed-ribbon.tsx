@@ -10,6 +10,9 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { TArticle } from '../services/types';
+import { ArticleAdminPublishActions } from './article';
+import declineArticleAdminThunk from '../thunks/decline-article-admin-thunk';
+import publishArticleAdminThunk from '../thunks/publish-article-admin-thunk';
 
 const RibbonWrapper = styled.ul`
   box-sizing: border-box;
@@ -138,6 +141,18 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
+  const onClickReject = (slug: string) => {
+    if (slug) {
+      dispatch(declineArticleAdminThunk(slug));
+    }
+  };
+
+  const onClickPublish = (slug: string) => {
+    if (slug) {
+      dispatch(publishArticleAdminThunk(slug));
+    }
+  };
+
   const allPosts = posts.filter(
     (post) => post.tagList.find(
       (tag) => tags.includes(tag) || !tags || tags.length < 1,
@@ -162,6 +177,11 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
       <React.Fragment key={post.slug}>
         <ItemWrapper>
           <ArticleFullPreview article={post} onLikeClick={onClick} />
+          {isAdmin && post.state === 'pending' && (
+        <ArticleAdminPublishActions
+          onClickPublish={() => onClickPublish(post.slug)}
+          onClickReject={() => onClickReject(post.slug)} />
+      )}
         </ItemWrapper>
         {i % 2 && i !== arr.length - 1 && mobileScreen ? (
           <Divider distance={0} />

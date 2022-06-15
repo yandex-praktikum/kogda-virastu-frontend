@@ -45,6 +45,10 @@ const ru: TVocabulary = {
   nickname: 'Отображаемое имя',
   tagsInForm: 'Теги',
   messageAboutMissingTags: 'У Вас нет подписок на теги',
+  publish: 'Опубликовать',
+  decline: 'Отклонить',
+  published: 'Опубликована',
+  removePublish: 'снять с публикации',
 };
 
 export default ru;
