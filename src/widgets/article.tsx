@@ -2,7 +2,7 @@ import React, { FC, MouseEventHandler } from 'react';
 import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk, deleteLikeThunk,
@@ -91,16 +91,46 @@ const ArticleImage = styled.img`
 `;
 
 const ArticleBody = styled.div`
-  font-family: ${({ theme: { text18: { family } } }) => family};
-  font-size: ${({ theme: { text18: { size } } }) => size}px ;
-  line-height: ${({ theme: { text18: { height } } }) => height}px;
-  font-weight: ${({ theme: { text18: { weight } } }) => weight};
-  margin: 0;
-  @media screen and (max-width:768px) {
-    font-family: ${({ theme: { text16: { family } } }) => family};
-    font-size: ${({ theme: { text16: { size } } }) => size}px ;
-    line-height: ${({ theme: { text16: { height } } }) => height}px;
-    font-weight: ${({ theme: { text16: { weight } } }) => weight};
+  h2 {
+    margin: 0;
+    font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
+    font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
+    line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
+    font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
+    color: ${({ theme: { primaryText } }) => primaryText};
+  }
+
+  h3 {
+    margin: 0;
+    font-size: ${({ theme: { thirdLevelHeading: { size } } }) => `${size}px`} ;
+    font-family: ${({ theme: { thirdLevelHeading: { family } } }) => family};
+    line-height: ${({ theme: { thirdLevelHeading: { height } } }) => `${height}px`} ;
+    font-weight: ${({ theme: { thirdLevelHeading: { weight } } }) => weight};
+    color: ${({ theme: { primaryText } }) => primaryText};
+  }
+
+  h4 {
+    margin: 0;
+    font-size: ${({ theme: { fourthLevelHeading: { size } } }) => `${size}px`} ;
+    font-family: ${({ theme: { fourthLevelHeading: { family } } }) => family};
+    line-height: ${({ theme: { fourthLevelHeading: { height } } }) => `${height}px`} ;
+    font-weight: ${({ theme: { fourthLevelHeading: { weight } } }) => weight};
+    color: ${({ theme: { primaryText } }) => primaryText};
+  }
+
+  p {
+    margin: 0;
+    font-family: ${({ theme: { text18: { family } } }) => family};
+    font-size: ${({ theme: { text18: { size } } }) => size}px ;
+    line-height: ${({ theme: { text18: { height } } }) => height}px;
+    font-weight: ${({ theme: { text18: { weight } } }) => weight};
+    margin: 0;
+    @media screen and (max-width:768px) {
+      font-family: ${({ theme: { text16: { family } } }) => family};
+      font-size: ${({ theme: { text16: { size } } }) => size}px ;
+      line-height: ${({ theme: { text16: { height } } }) => height}px;
+      font-weight: ${({ theme: { text16: { weight } } }) => weight}
+    }
  }
 `;
 
@@ -169,7 +199,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{ReactHtmlParser(article.body)}</ArticleBody>
+      <ArticleBody>{parse(article.body)}</ArticleBody>
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );

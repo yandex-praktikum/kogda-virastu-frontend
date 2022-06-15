@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { EditorConfig } from '@ckeditor/ckeditor5-core/src/editor/editorconfig';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from '../../services/hooks';
 
 import {
@@ -41,8 +41,51 @@ import {
   PublishPostButton,
   SavePostButton,
   FieldAboutArticle,
-  FieldTextArticle,
 } from '../../ui-lib';
+
+const Editor = styled.div`
+  h2 {
+    margin: 0;
+    font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
+    font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
+    line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
+    font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
+    color: ${({ theme: { primaryText } }) => primaryText};
+  }
+
+  h3 {
+    margin: 0;
+    font-size: ${({ theme: { thirdLevelHeading: { size } } }) => `${size}px`} ;
+    font-family: ${({ theme: { thirdLevelHeading: { family } } }) => family};
+    line-height: ${({ theme: { thirdLevelHeading: { height } } }) => `${height}px`} ;
+    font-weight: ${({ theme: { thirdLevelHeading: { weight } } }) => weight};
+    color: ${({ theme: { primaryText } }) => primaryText};
+  }
+
+  h4 {
+    margin: 0;
+    font-size: ${({ theme: { fourthLevelHeading: { size } } }) => `${size}px`} ;
+    font-family: ${({ theme: { fourthLevelHeading: { family } } }) => family};
+    line-height: ${({ theme: { fourthLevelHeading: { height } } }) => `${height}px`} ;
+    font-weight: ${({ theme: { fourthLevelHeading: { weight } } }) => weight};
+    color: ${({ theme: { primaryText } }) => primaryText};
+  }
+
+  p {
+    margin: 0;
+    font-family: ${({ theme: { text18: { family } } }) => family};
+    font-size: ${({ theme: { text18: { size } } }) => size}px ;
+    line-height: ${({ theme: { text18: { height } } }) => height}px;
+    font-weight: ${({ theme: { text18: { weight } } }) => weight};
+    margin: 0;
+    @media screen and (max-width:768px) {
+      font-family: ${({ theme: { text16: { family } } }) => family};
+      font-size: ${({ theme: { text16: { size } } }) => size}px ;
+      line-height: ${({ theme: { text16: { height } } }) => height}px;
+      font-weight: ${({ theme: { text16: { weight } } }) => weight}
+    }
+ }
+`;
 
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
@@ -179,15 +222,13 @@ const EditorForm: FC = () => {
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
 
-          <CKEditor
-            editor={ClassicEditor}
-            onChange={onChangeBody}
-            data={body === '' ? '' : body || initialArticle?.body || ''} />
+          <Editor>
+            <CKEditor
+              editor={ClassicEditor}
+              onChange={onChangeBody}
+              data={body === '' ? '' : body || initialArticle?.body || ''} />
+          </Editor>
 
-          {/* <FieldTextArticle
-
-            onChange={onChangeBody}
-            minHeight={300} /> */}
           <FieldTags
             value={tags === '' ? '' : tags || ''}
             onChange={onChangeTags} />
