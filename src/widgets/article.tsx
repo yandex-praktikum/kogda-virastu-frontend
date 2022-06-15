@@ -2,6 +2,7 @@ import React, { FC, MouseEventHandler } from 'react';
 import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import ReactHtmlParser from 'react-html-parser';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk, deleteLikeThunk,
@@ -89,7 +90,7 @@ const ArticleImage = styled.img`
   height: 100%;
 `;
 
-const ArticleBody = styled.p`
+const ArticleBody = styled.div`
   font-family: ${({ theme: { text18: { family } } }) => family};
   font-size: ${({ theme: { text18: { size } } }) => size}px ;
   line-height: ${({ theme: { text18: { height } } }) => height}px;
@@ -168,7 +169,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{article.body}</ArticleBody>
+      <ArticleBody>{ReactHtmlParser(article.body)}</ArticleBody>
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );

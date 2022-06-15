@@ -3,7 +3,9 @@ import React, {
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import EditorJS from '@editorjs/editorjs';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { EditorConfig } from '@ckeditor/ckeditor5-core/src/editor/editorconfig';
 import { useSelector, useDispatch } from '../../services/hooks';
 
 import {
@@ -41,24 +43,6 @@ import {
   FieldAboutArticle,
   FieldTextArticle,
 } from '../../ui-lib';
-
-const BodyEditor: FC = () => {
-  useEffect(() => {
-    const editor = new EditorJS({
-      holder: 'editorjs',
-    });
-  }, []);
-
-  return (
-    <div
-      id='editorjs'
-      style={{
-        width: '100%', border: '1px solid grey', borderRadius: '10px', padding: '5px',
-
-      }} />
-
-  );
-};
 
 const EditorForm: FC = () => {
   const dispatch = useDispatch();
@@ -128,11 +112,12 @@ const EditorForm: FC = () => {
     evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
   };
 
-  // const onChangeBody: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
-  //   dispatch(setBody(evt.target.value));
-  //   // eslint-disable-next-line no-param-reassign
-  //   evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
-  // };
+  const onChangeBody = (evt, editor) => {
+    const data: string = editor.getData();
+    dispatch(setBody(data));
+    // eslint-disable-next-line no-param-reassign
+    // evt.target.style.height = `${evt.target.scrollHeight + 2}px`;
+  };
 
   const onChangeTags: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setTags(evt.target.value));
@@ -193,9 +178,14 @@ const EditorForm: FC = () => {
           <FieldUrl
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
-          <BodyEditor />
+
+          <CKEditor
+            editor={ClassicEditor}
+            onChange={onChangeBody}
+            data={body === '' ? '' : body || initialArticle?.body || ''} />
+
           {/* <FieldTextArticle
-            value={body === '' ? '' : body || initialArticle?.body || ''}
+
             onChange={onChangeBody}
             minHeight={300} /> */}
           <FieldTags
