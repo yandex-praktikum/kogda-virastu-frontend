@@ -45,31 +45,9 @@ import {
 } from '../../ui-lib';
 
 const Editor = styled.div`
-  h2 {
-    margin: 0;
-    font-size: ${({ theme: { secondLevelHeading: { size } } }) => `${size}px`} ;
-    font-family: ${({ theme: { secondLevelHeading: { family } } }) => family};
-    line-height: ${({ theme: { secondLevelHeading: { height } } }) => `${height}px`} ;
-    font-weight: ${({ theme: { secondLevelHeading: { weight } } }) => weight};
-    color: ${({ theme: { primaryText } }) => primaryText};
-  }
-
-  h3 {
-    margin: 0;
-    font-size: ${({ theme: { thirdLevelHeading: { size } } }) => `${size}px`} ;
-    font-family: ${({ theme: { thirdLevelHeading: { family } } }) => family};
-    line-height: ${({ theme: { thirdLevelHeading: { height } } }) => `${height}px`} ;
-    font-weight: ${({ theme: { thirdLevelHeading: { weight } } }) => weight};
-    color: ${({ theme: { primaryText } }) => primaryText};
-  }
-
-  h4 {
-    margin: 0;
-    font-size: ${({ theme: { fourthLevelHeading: { size } } }) => `${size}px`} ;
-    font-family: ${({ theme: { fourthLevelHeading: { family } } }) => family};
-    line-height: ${({ theme: { fourthLevelHeading: { height } } }) => `${height}px`} ;
-    font-weight: ${({ theme: { fourthLevelHeading: { weight } } }) => weight};
-    color: ${({ theme: { primaryText } }) => primaryText};
+  div {
+    max-width: 100%;
+    overflow: hidden;
   }
 
   p {
@@ -78,7 +56,6 @@ const Editor = styled.div`
     font-size: ${({ theme: { text18: { size } } }) => size}px ;
     line-height: ${({ theme: { text18: { height } } }) => height}px;
     font-weight: ${({ theme: { text18: { weight } } }) => weight};
-    margin: 0;
     @media screen and (max-width:768px) {
       font-family: ${({ theme: { text16: { family } } }) => family};
       font-size: ${({ theme: { text16: { size } } }) => size}px ;
@@ -92,7 +69,6 @@ const Editor = styled.div`
       font-size: ${({ theme: { text18: { size } } }) => size}px ;
       line-height: ${({ theme: { text18: { height } } }) => height}px;
       font-weight: ${({ theme: { text18: { weight } } }) => weight};
-      margin: 0;
       @media screen and (max-width:768px) {
         font-family: ${({ theme: { text16: { family } } }) => family};
         font-size: ${({ theme: { text16: { size } } }) => size}px ;
@@ -239,6 +215,12 @@ const EditorForm: FC = () => {
 
           <Editor>
             <CKEditor
+              config={{
+                toolbar: {
+                  items: ['bold', 'italic', 'link', '|', 'numberedList', 'bulletedList', '|', 'outdent', 'indent', '|', 'undo', 'redo'],
+                  shouldNotGroupWhenFull: true,
+                },
+              }}
               editor={ClassicEditor}
               onChange={onChangeBody}
               data={body === '' ? '' : body || initialArticle?.body || ''} />
