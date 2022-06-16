@@ -5,6 +5,7 @@ const ru: TVocabulary = {
   userLogin: 'Войти',
   newArticle: 'Новая запись',
   settings: 'Настройки',
+  adminPanel: 'Админка',
   exitProfile: 'Выйти',
   mainTitle: 'Когда вырасту',
   mainSubtitle: 'Каково быть джуном  в турбулентном мире',
@@ -48,6 +49,7 @@ const ru: TVocabulary = {
   generateСode: 'Сгенерировать код',
   textCode: 'Скопировать ссылку-приглашение',
   textSuccesCode: 'Ссылка скопирована в буфер обмена',
+  popupMessage: 'Вы подписались на тег #',
 };
 
 export default ru;

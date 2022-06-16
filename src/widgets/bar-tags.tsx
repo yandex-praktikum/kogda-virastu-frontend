@@ -1,5 +1,6 @@
 import React, { FC, MouseEvent, useState } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
 import Tag from './tag';
@@ -125,7 +126,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
                 color={theme.button.blue.font}
                 align='center'
                 sansSerif>
-                Вы подписались на тег #
+                <FormattedMessage id='popupMessage' />
                 {tagName}
               </RegularText>
             </MessageContainer>

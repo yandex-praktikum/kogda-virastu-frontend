@@ -35,6 +35,7 @@ import {
   ConfirmDeleteButton,
   MenuNewPostButton,
   MenuSettingsButton,
+  MenuAdminButton,
   MenuLogoutButton,
   GenerateCodeButton,
 } from './buttons';
@@ -129,6 +130,7 @@ export {
   RegularText,
   MenuNewPostButton,
   MenuSettingsButton,
+  MenuAdminButton,
   MenuLogoutButton,
   FieldTextComment,
   FieldRegistrationCode,
