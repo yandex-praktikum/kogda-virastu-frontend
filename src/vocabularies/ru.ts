@@ -50,6 +50,8 @@ const ru: TVocabulary = {
   textCode: 'Скопировать ссылку-приглашение',
   textSuccesCode: 'Ссылка скопирована в буфер обмена',
   popupMessage: 'Вы подписались на тег #',
+  userList: 'Список пользователей',
+  tagsTitle: 'Теги',
 };
 
 export default ru;

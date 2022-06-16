@@ -50,6 +50,8 @@ const en: TVocabulary = {
   textCode: 'Copy the invitation',
   textSuccesCode: 'Link copied to clipboard',
   popupMessage: 'You have subscribed to the tag #',
+  userList: 'User List',
+  tagsTitle: 'Tags',
 };
 
 export default en;
