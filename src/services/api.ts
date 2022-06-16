@@ -418,3 +418,12 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
   };
   return blogAPI(injectBearerToken(requestConfig));
 };
+
+export const fetchTopArticles : IFetchArticles = () : AxiosPromise<TAPIArticles> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ARTICLES_ROUTE}/top`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
