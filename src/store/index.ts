@@ -16,9 +16,21 @@ import {
 
 import {
   changeUsernameRegister,
+  changeUsernameErrMsg,
+  changeUsernameErr,
   changeEmailRegister,
+  changeEmailErrMsg,
+  changeEmailErr,
   changePasswordRegister,
+  changePasswordErrMsg,
+  changePasswordErr,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
+  changeNicknameErrMsg,
+  changeNicknameErr,
+  changeInvitionCode,
+  changeInvitionCodeErrMsg,
+  changeInvitionCodeErr,
   resetFormRegister,
 } from './registerFormSubSlice';
 
@@ -31,7 +43,7 @@ import {
   setFormProfile,
   setPasswordProfile,
   resetFormProfile,
-
+  setConfirmPasswordProfile,
 } from './profileFormSubSlice';
 
 import {
@@ -334,4 +346,17 @@ export {
   subscribeTagsFetchRequested,
   subscribeTagsFetchSucceeded,
   subscribeTagsFetchFailed,
+  changeUsernameErrMsg,
+  changeUsernameErr,
+  changeEmailErrMsg,
+  changeEmailErr,
+  changePasswordErrMsg,
+  changePasswordErr,
+  changeConfirmPasswordRegister,
+  changeNicknameErrMsg,
+  changeNicknameErr,
+  changeInvitionCode,
+  changeInvitionCodeErrMsg,
+  changeInvitionCodeErr,
+  setConfirmPasswordProfile,
 };

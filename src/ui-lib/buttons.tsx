@@ -245,6 +245,14 @@ export const PostCommentButton : FC<TButtonProps> = ({ onClick, disabled = false
   </BasicNormalButton>
 );
 
+export const GenerateInviteCode : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton type='button' colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='generateInviteCode' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
 export const RegisterButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = false }) => (
   <BasicNormalButton type='submit' colorScheme='blue' disabled={disabled}>
     <RegularText size='large' weight={500}>
