@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { AppThunk } from '../store/store.types';
 import {
   usersFetchRequested,
@@ -7,15 +7,13 @@ import {
   setUsers,
 } from '../store';
 import { fetchUsers } from '../services/api';
-import { TAPIError } from '../services/api.types';
+import { TAPIError, TAPIUserData } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
-
-/* eslint-disable*/
 
 const getUsersThunk: AppThunk = () => async (dispatch) => {
   dispatch(usersFetchRequested());
   try {
-    const { data: { users, usersCount } } = await fetchUsers();
+    const { data: { users } } = await fetchUsers() as AxiosResponse<TAPIUserData>;
     dispatch(setUsers(users));
     dispatch(usersFetchSucceeded());
   } catch (error) {
