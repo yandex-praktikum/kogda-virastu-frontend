@@ -9,6 +9,7 @@ import {
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+  ADMIN_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -22,7 +23,7 @@ import {
   TAPIComment,
   TAPIProfile,
   TAPIAuth,
-  TAPIPatchUserData, TAPIPatchArticleData,
+  TAPIPatchUserData, TAPIPatchArticleData, TAPIUser,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -43,6 +44,7 @@ import {
   ITag,
   IRegisterUser,
   IPostInviteGeneration,
+  IFetchUsers,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -413,6 +415,26 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
   const requestConfig : AxiosRequestConfig = {
     url: `${USER_ROUTE}/invites/new`,
     method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchUsers : any = () : AxiosPromise<[]> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_ROUTE}/users`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const patchRoles : any = (user: TAPIUser) : AxiosPromise<[]> => {
+  const rolesData = user.roles;
+  const usernameUrl = user.username;
+  console.log(user);
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_ROUTE}/users/${usernameUrl}/roles`,
+    method: 'patch',
+    data: rolesData,
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

@@ -75,7 +75,7 @@ export type TButtonProps = {
   disabled?: boolean;
 };
 
-export type TAvatarSizes = 'large' | 'small';
+export type TAvatarSizes = 'large' | 'small' | 'medium';
 
 export type TAvatarIconProps = {
   size: TAvatarSizes;
@@ -88,7 +88,7 @@ export type TAvatarIconProps = {
   name: string;
   image?: string;
   distance?: number;
-  color: string;
+  color?: string;
 };
 
 export type TAvatarButtonProps = {

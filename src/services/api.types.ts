@@ -34,7 +34,22 @@ export type TAPILoginUser = {
 };
 
 export type TAPIUser = {
-  user: TUser;
+  name: number | undefined;
+  roles: string[],
+  _id?: string[],
+  bio?: string[],
+  favorites?: string[],
+  followingUsers?: string[],
+  followingTags?: string[],
+  email: string,
+  salt? : string,
+  hash?: string,
+  nickname: string,
+  createdAt?: string,
+  updatedAt?: string,
+  __v?: number,
+  image?: string,
+  username: string,
 };
 
 export type TAPIPatchUserData = {
@@ -98,3 +113,10 @@ export type TAPIError = {
   errors: TAPIErrors;
   statusCode: number;
 };
+
+export type TAPIUsers = Array<TAPIUser> | null;
+
+export type TAPIUserData = {
+  users: Array<TAPIUser>;
+  usersCount?: number;
+}

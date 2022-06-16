@@ -35,6 +35,8 @@ type TAPIState = {
   isTagFollowing: boolean,
   isTagUnfollowing: boolean,
   isInviteGenerating: boolean,
+  areUsersFetching: boolean,
+  areRolesPatching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -71,6 +73,8 @@ const initialState : TAPIState = {
   isTagFollowing: false,
   isTagUnfollowing: false,
   isInviteGenerating: false,
+  areUsersFetching: false,
+  areRolesPatching: false,
 };
 
 const apiSlice = createSlice({
@@ -130,6 +134,15 @@ const apiSlice = createSlice({
     }),
     userFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserFetching: false, errorObject: action.payload,
+    }),
+    usersFetchRequested: (state) => ({
+      ...state, areUsersFetching: true,
+    }),
+    usersFetchSucceeded: (state) => ({
+      ...state, areUsersFetching: false,
+    }),
+    usersFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, areUsersFetching: false, errorObject: action.payload,
     }),
     userPatchRequested: (state) => ({
       ...state, isUserPatching: true,
@@ -344,6 +357,15 @@ const apiSlice = createSlice({
     generateInviteSucceeded: (state) => ({
       ...state, isInviteGenerating: false,
     }),
+    rolesPatchRequested: (state) => ({
+      ...state, areRolesPatching: true,
+    }),
+    rolesPatchSucceeded: (state) => ({
+      ...state, areRolesPatching: false,
+    }),
+    rolesPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, areRolesPatching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -432,5 +454,11 @@ export const {
   articlePostClear,
   generateInviteRequested,
   generateInviteSucceeded,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  rolesPatchRequested,
+  rolesPatchSucceeded,
+  rolesPatchFailed,
 } = apiSlice.actions;
 export default apiReducer;

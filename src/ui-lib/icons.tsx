@@ -35,6 +35,10 @@ const avatarSize : TAvatarSize = {
     width: 230,
     height: 230,
   },
+  medium: {
+    width: 40,
+    height: 40,
+  },
   small: {
     width: 24,
     height: 24,

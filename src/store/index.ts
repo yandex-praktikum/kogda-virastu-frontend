@@ -46,6 +46,7 @@ import {
   clearAll,
   setAllThemes,
   setAllVocabularies,
+  setUsers,
 } from './allSlice';
 
 import { setUser, clearUser, setGeneratedInvite } from './userSlice';
@@ -164,6 +165,12 @@ import {
   unfollowTagSucceeded,
   generateInviteRequested,
   generateInviteSucceeded,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  rolesPatchRequested,
+  rolesPatchSucceeded,
+  rolesPatchFailed,
 } from './apiSlice';
 
 import {
@@ -333,4 +340,11 @@ export {
   generateInviteRequested,
   generateInviteSucceeded,
   setGeneratedInvite,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  setUsers,
+  rolesPatchRequested,
+  rolesPatchSucceeded,
+  rolesPatchFailed,
 };

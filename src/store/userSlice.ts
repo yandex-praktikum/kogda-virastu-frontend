@@ -9,7 +9,7 @@ type TUserState = {
   nickname?: string | null,
   invite: string | null,
   roles: string[] | null,
-  generatedInvite?: string | null;
+  generatedInvite?: string | null,
 };
 
 const initialState: TUserState = {
