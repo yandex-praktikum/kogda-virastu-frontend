@@ -103,3 +103,7 @@ export type TAPIError = {
 export type TAPITag = {
   tag: TTag;
 };
+
+export type TAPIImageUrl = {
+  url: string;
+};

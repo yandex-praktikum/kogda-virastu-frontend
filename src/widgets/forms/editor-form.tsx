@@ -1,5 +1,5 @@
 import React, {
-  useEffect, FC, ChangeEventHandler, FormEventHandler, useState,
+  useEffect, FC, ChangeEventHandler, FormEventHandler, useState, useRef,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -59,6 +59,7 @@ const EditorForm: FC = () => {
   const initialArticle = useSelector((state) => state.view.article);
   const [isPosted, setPostRequested] = useState(false);
   const [isRemoving, setRemoveState] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialArticle?.tagList) {
@@ -124,10 +125,12 @@ const EditorForm: FC = () => {
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     setPostRequested(true);
+    const files = fileInput.current?.files;
+    const file = files && files.length ? files[0] : null;
     if (slug) {
-      dispatch(patchArticleThunk(slug));
+      dispatch(patchArticleThunk(slug, file));
     } else {
-      dispatch(postArticleThunk());
+      dispatch(postArticleThunk(file));
     }
   };
 
@@ -172,6 +175,7 @@ const EditorForm: FC = () => {
           <FieldUrl
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage} />
+          <input type='file' multiple name='data' ref={fileInput} />
           <FieldTextArticle
             value={body === '' ? '' : body || initialArticle?.body || ''}
             onChange={onChangeBody}

@@ -1,5 +1,9 @@
 import React, {
+<<<<<<< Updated upstream
   ChangeEventHandler, FC, FormEventHandler, useEffect, useState,
+=======
+  ChangeEventHandler, FC, FormEventHandler, useEffect, useRef,
+>>>>>>> Stashed changes
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
@@ -133,7 +137,11 @@ const SettingsForm: FC = () => {
   };
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
+<<<<<<< Updated upstream
   const passwordConfirmation = password && confirmPassword ? password !== confirmPassword : false;
+=======
+  const fileInput = useRef<HTMLInputElement>(null);
+>>>>>>> Stashed changes
 
   useEffect(() => {
     if (isSettingsUpdateSucceeded) {
@@ -146,7 +154,9 @@ const SettingsForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    dispatch(patchCurrentUserThunk());
+    const files = fileInput.current?.files;
+    const file = files && files.length ? files[0] : null;
+    dispatch(patchCurrentUserThunk(file));
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -203,6 +213,7 @@ const SettingsForm: FC = () => {
         <Form onSubmit={submitForm}>
           <InputFieldset rowGap={16}>
             <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+            <input type='file' multiple name='data' ref={fileInput} />
             <FieldLogin value={username ?? ''} onChange={changeUsername} />
             <FieldNick value={nickname ?? ''} onChange={changeNickname} />
             <FieldAboutUser
