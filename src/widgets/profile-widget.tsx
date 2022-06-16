@@ -63,11 +63,9 @@ const ProfileBio = styled.p`
 const ProfileWidgetButton: FC<{
   isUser: boolean,
   isFollow: boolean,
-
 }> = ({
   isUser,
   isFollow,
-
 }) => {
   const dispatch = useDispatch();
 

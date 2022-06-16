@@ -48,6 +48,8 @@ const ru: TVocabulary = {
   messageAboutMissingTags: 'У Вас нет подписок на теги',
   invitionCode: 'Введите код регистрации',
   generateInviteCode: 'Сгенерировать код',
+  invationCode: 'Введите код регистрации',
+  youSubscribedToTheTag: 'Вы подписались на тег #',
 };
 
 export default ru;

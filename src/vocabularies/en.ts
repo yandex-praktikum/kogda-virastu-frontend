@@ -48,6 +48,8 @@ const en: TVocabulary = {
   messageAboutMissingTags: '&nbsp;&nbsp;You don\'t have subscriptions to tags',
   invitionCode: 'Enter registration code',
   generateInviteCode: 'Generate code',
+  youSubscribedToTheTag: 'You subscribed to the tag #',
+
 };
 
 export default en;

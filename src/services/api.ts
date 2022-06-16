@@ -198,28 +198,34 @@ export const patchCurrentUser : IPatchUser = (
   user: TAPIPatchUserData,
 ) : AxiosPromise<TAPIAuth> => {
   const makePatchData = (data : TAPIPatchUserData) : TAPIPatchUserData => {
-    const {
-      username, email, password, bio, image, nickname,
-    } = data;
+    // const {
+    //   username, email, password, bio, image, nickname,
+    // } = data;
     let res = {};
-    if (username) {
-      res = { ...res, username };
-    }
-    if (email) {
-      res = { ...res, email };
-    }
-    if (password) {
-      res = { ...res, password };
-    }
-    if (bio) {
-      res = { ...res, bio };
-    }
-    if (image) {
-      res = { ...res, image };
-    }
-    if (nickname) {
-      res = { ...res, nickname };
-    }
+    Object.keys(data).forEach((key) => {
+      const d = data[key as keyof TAPIPatchUserData];
+      if (d) {
+        res = { ...res, [key]: d };
+      }
+    });
+    // if (username) {
+    //   res = { ...res, username };
+    // }
+    // if (email) {
+    //   res = { ...res, email };
+    // }
+    // if (password) {
+    //   res = { ...res, password };
+    // }
+    // if (bio) {
+    //   res = { ...res, bio };
+    // }
+    // if (image) {
+    //   res = { ...res, image };
+    // }
+    // if (nickname) {
+    //   res = { ...res, nickname };
+    // }
     return res;
   };
   const userData: TAPIPatchUserData = makePatchData(user);
@@ -311,6 +317,30 @@ export const patchArticle : IPatchArticle = (
     data: patchData,
   };
 
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const publishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/publish`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/decline`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const removePublishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/hold`,
+    method: 'post',
+  };
   return blogAPI(injectBearerToken(requestConfig));
 };
 

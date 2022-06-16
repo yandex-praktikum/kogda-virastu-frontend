@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from '../../services/hooks';
 import { TagSetForm } from '../tag';
 import { LabelStyle } from '../../ui-lib/inputs/text-fields-styles';
 import unsubscribeTagThunk from '../../thunks/unsubscribe-tag-thunk';
+import Preloader from '../preloader';
 
 import {
   setUsernameProfile,
@@ -248,7 +249,8 @@ const SettingsForm: FC = () => {
     );
   }
   return (
-    <div>Loading Tags...</div>
+    // <Preloader />
+    <div>.......Loading Tags SettingsForm...</div>
   );
 };
 
