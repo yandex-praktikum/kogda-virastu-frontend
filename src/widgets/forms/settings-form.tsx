@@ -1,9 +1,4 @@
-import React, {
-<<<<<<< Updated upstream
-  ChangeEventHandler, FC, FormEventHandler, useEffect, useState,
-=======
-  ChangeEventHandler, FC, FormEventHandler, useEffect, useRef,
->>>>>>> Stashed changes
+import React, { ChangeEventHandler, FC, FormEventHandler, useEffect, useState, useRef,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
@@ -137,11 +132,8 @@ const SettingsForm: FC = () => {
   };
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
-<<<<<<< Updated upstream
   const passwordConfirmation = password && confirmPassword ? password !== confirmPassword : false;
-=======
   const fileInput = useRef<HTMLInputElement>(null);
->>>>>>> Stashed changes
 
   useEffect(() => {
     if (isSettingsUpdateSucceeded) {
