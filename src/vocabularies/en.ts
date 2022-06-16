@@ -29,6 +29,7 @@ const en: TVocabulary = {
   userName: 'User Name',
   userEmail: 'Email',
   password: 'Password',
+  confirmPassword: 'Confirm password',
   urlImage: 'User avatar URL',
   newPassword: 'New password',
   refreshUser: 'Update settings',
@@ -45,7 +46,10 @@ const en: TVocabulary = {
   nickname: 'Display name',
   tagsInForm: 'Tags',
   messageAboutMissingTags: '&nbsp;&nbsp;You don\'t have subscriptions to tags',
+  invitionCode: 'Enter registration code',
+  generateInviteCode: 'Generate code',
   youSubscribedToTheTag: 'You subscribed to the tag #',
+
 };
 
 export default en;

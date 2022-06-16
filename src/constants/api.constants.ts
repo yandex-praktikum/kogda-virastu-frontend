@@ -7,6 +7,7 @@ export const WYSIWYG_EDITOR = '01ce39mahu5917xfaly0h6vjde1py3u0lvhka34tepqmt8na'
 export const REGISTER_ROUTE = '/users';
 export const LOGIN_ROUTE = '/users/login';
 export const USER_ROUTE = '/user';
+export const INVITE_ROUTE = '/user/invites/new';
 export const ARTICLES_ROUTE = '/articles';
 export const FEED_ROUTE = `${ARTICLES_ROUTE}/feed`;
 export const TAGS_ROUTE = '/tags';
