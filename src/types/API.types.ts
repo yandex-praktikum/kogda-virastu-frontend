@@ -9,6 +9,7 @@ import {
   TAPITags,
   TAPIPopularTags,
   TAPIUser,
+  TAPIUsersRequest,
   TAPIInvite,
 } from '../services/api.types';
 
@@ -81,6 +82,10 @@ export interface IPostComment {
   (slug: string, body: string) : AxiosPromise<TAPIComment>;
 }
 
+export interface IPatchRoles {
+  (user: string, roles: string[]) : AxiosPromise<TAPIUser>;
+}
+
 export interface IDeleteComment {
   (slug: string, id: string) : AxiosPromise<null>;
 }
@@ -91,6 +96,10 @@ export interface IProfile {
 
 export interface ITag {
   (tagname: string) : AxiosPromise<TAPIProfile | null>
+}
+
+export interface IFetchUsers {
+  () : AxiosPromise<TAPIUsersRequest | null>
 }
 
 export type {
