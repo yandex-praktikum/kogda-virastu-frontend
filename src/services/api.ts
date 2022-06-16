@@ -420,7 +420,7 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchUsers : any = () : AxiosPromise<[]> => {
+export const fetchUsers : IFetchUsers = () => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ADMIN_ROUTE}/users`,
     method: 'get',
@@ -431,14 +431,12 @@ export const fetchUsers : any = () : AxiosPromise<[]> => {
 export const patchRoles : IPatchRoles = (
   user: string,
   roles: string[],
-) : AxiosPromise<TAPIComment> => {
+) : AxiosPromise<TAPIUser> => {
   const rolesData = {
     roles,
   };
-  const usernameUrl = user;
-  console.log(roles);
   const requestConfig : AxiosRequestConfig = {
-    url: `${ADMIN_ROUTE}/users/${usernameUrl}/roles`,
+    url: `${ADMIN_ROUTE}/users/${user}/roles`,
     method: 'patch',
     data: rolesData,
   };

@@ -7,22 +7,15 @@ import {
 } from '../store';
 import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
-import { TAPIError } from '../services/api.types';
+import { TAPIError, TAPIUser } from '../services/api.types';
 
-/* eslint-disable*/
-
-const patchRolesThunk: AppThunk = (user: any) => async (dispatch) => {
+const patchRolesThunk: AppThunk = (user: TAPIUser) => async (dispatch) => {
   dispatch(rolesPatchRequested());
-  let roles;
-  if ((user.roles.indexOf("admin") > -1)) {
-    roles = ["user"]
-  } else {
-    roles = ["user", "admin"]
-  }
-  console.log(roles);
-  
+
+  const roles = user.roles.includes('admin') ? ['user'] : ['user', 'admin'];
+
   try {
-    await patchRoles(user.username, roles );
+    await patchRoles(user.username, roles);
     dispatch(rolesPatchSucceeded());
   } catch (error) {
     dispatch(rolesPatchFailed(makeErrorObject(error as AxiosError<TAPIError>)));

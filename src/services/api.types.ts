@@ -116,6 +116,11 @@ export type TAPIError = {
 
 export type TAPIUsers = Array<TAPIUser> | null;
 
+export type TAPIUsersRequest = {
+  users: Array<TAPIUser>;
+  usersCount: number;
+}
+
 export type TAPIUserData = {
   users: Array<TAPIUser>;
   usersCount?: number;

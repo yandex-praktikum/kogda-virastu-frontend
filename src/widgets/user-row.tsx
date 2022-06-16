@@ -4,7 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch } from '../services/hooks';
 import { AvatarIcon, Divider } from '../ui-lib';
 import { TAPIUser } from '../services/api.types';
-import { patchRolesThunk } from '../thunks';
+import { patchRolesThunk, getUsersThunk } from '../thunks';
 
 interface IUserRow {
   user: TAPIUser;
@@ -85,6 +85,9 @@ const UserRow: FC<IUserRow> = ({ user }) => {
   const toggle = () => {
     dispatch(patchRolesThunk(user));
     setChecked(!checked);
+    setTimeout(() => {
+      dispatch(getUsersThunk());
+    }, 300);
   };
 
   return (
