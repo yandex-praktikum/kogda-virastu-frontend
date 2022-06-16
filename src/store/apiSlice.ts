@@ -38,6 +38,7 @@ type TAPIState = {
   areUsersFetching: boolean,
   areRolesPatching: boolean,
   isInviteCopying: boolean,
+  areArticlesRequested: boolean,
 };
 
 const initialState : TAPIState = {
@@ -77,6 +78,7 @@ const initialState : TAPIState = {
   areUsersFetching: false,
   areRolesPatching: false,
   isInviteCopying: false,
+  areArticlesRequested: false,
 };
 
 const apiSlice = createSlice({
@@ -386,6 +388,15 @@ const apiSlice = createSlice({
     copyInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isInviteCopying: false, errorObject: action.payload,
     }),
+    topArticlesRequested: (state) => ({
+      ...state, areArticlesRequested: true,
+    }),
+    topArticlesSucceeded: (state) => ({
+      ...state, areArticlesRequested: false,
+    }),
+    topArticlesFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, areArticlesRequested: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -486,5 +497,8 @@ export const {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  topArticlesRequested,
+  topArticlesSucceeded,
+  topArticlesFailed,
 } = apiSlice.actions;
 export default apiReducer;

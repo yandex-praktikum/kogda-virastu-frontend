@@ -180,6 +180,9 @@ import {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  topArticlesRequested,
+  topArticlesSucceeded,
+  topArticlesFailed,
 } from './apiSlice';
 
 import {
@@ -364,4 +367,7 @@ export {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  topArticlesRequested,
+  topArticlesSucceeded,
+  topArticlesFailed,
 };

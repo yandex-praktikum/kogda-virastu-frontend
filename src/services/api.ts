@@ -421,6 +421,14 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchTopArticles : IFetchArticles = () : AxiosPromise<TAPIArticles> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ARTICLES_ROUTE}/top`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const fetchUsers : IFetchUsers = () => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ADMIN_ROUTE}/users`,
