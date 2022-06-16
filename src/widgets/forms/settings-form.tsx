@@ -42,7 +42,6 @@ import {
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
-  AvatarIcon,
   GenerateInviteCodeButton,
 } from '../../ui-lib';
 
@@ -91,16 +90,15 @@ const SettingsForm: FC = () => {
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    let imgString: string | null = '';
-    const reader = new FileReader();
+    // let imgString: string | null = '';
+    const formData = new FormData();
     if (evt.target.files) {
       const imageSelected = evt.target.files[0];
       if (imageSelected.type.startsWith('image/')) {
-        reader.readAsDataURL(imageSelected);
-        reader.onloadend = () => {
-          imgString = reader.result && reader.result.toString();
-          dispatch(setImageProfile(imgString));
-        };
+        formData.append('file', imageSelected);
+        // formData.onloadend = () => {
+        //   // dispatch(setImageProfile());
+        // };
       }
     }
   };
