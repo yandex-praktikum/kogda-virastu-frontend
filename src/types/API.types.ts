@@ -7,8 +7,10 @@ import {
   TAPIComments, TAPIParamsObject, TAPIPatchArticleData,
   TAPIProfile,
   TAPITags,
+  TAPIPopularTags,
   TAPIUser,
   TAPIUsersRequest,
+  TAPIInvite,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -65,11 +67,11 @@ export interface IFetchTags {
 }
 
 export interface IFetchPopularTags {
-  () : AxiosPromise<any>
+  () : AxiosPromise<TAPIPopularTags>
 }
 
 export interface IPostInviteGeneration {
-  () : AxiosPromise<string>
+  () : AxiosPromise<TAPIInvite>
 }
 
 export interface IFetchComments {

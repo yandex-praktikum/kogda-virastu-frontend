@@ -17,7 +17,7 @@ const ContainerInput = styled.div`
      padding: 0;
     position: relative;
      display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
      @media screen and (max-width:768px) {

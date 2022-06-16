@@ -5,7 +5,7 @@ import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
 import { TFieldInput } from '../../types/styles.types';
 
 export const FieldUrl: FC<TFieldInput> = ({
-  value,
+  value = '',
   onFocus = undefined,
   onBlur = undefined,
   onChange,
@@ -85,7 +85,7 @@ export const FieldLogin: FC<TFieldInput> = ({
   );
 };
 export const FieldNick: FC<TFieldInput> = ({
-  value,
+  value = '',
   onFocus = undefined,
   onBlur = undefined,
   onChange,
@@ -111,7 +111,7 @@ export const FieldNick: FC<TFieldInput> = ({
   );
 };
 export const FieldInvite: FC<TFieldInput> = ({
-  value,
+  value = '',
   onFocus = undefined,
   onBlur = undefined,
   onChange,
@@ -208,6 +208,54 @@ export const FieldPassword: FC<TFieldInput & { label?: string, name?: string }> 
 FieldPassword.defaultProps = {
   label: undefined,
   name: 'FieldPassword',
+};
+
+export const FieldConfirmPassword: FC<TFieldInput & { label?: string, name?: string }> = ({
+  name = 'FieldConfirmPassword',
+  label = undefined,
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = '',
+  disabled = false,
+}) => {
+  const intl = useIntl();
+  const [passwordState,
+    setPasswordState] = useState<'password' | 'text'>('password');
+  const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color='grey' />);
+  const onIconClick = () => {
+    if (passwordState === 'password') {
+      setPasswordState('text');
+      setPasswordIcon(<EyeIcon color='grey' />);
+    } else {
+      setPasswordState('password');
+      setPasswordIcon(<EyeNoIcon color='grey' />);
+    }
+  };
+  return (
+    <InputField
+      placeholder={placeholder}
+      name={name}
+      type={passwordState}
+      errorText={errorText}
+      error={error}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      disabled={disabled}
+      value={value}
+      onChange={onChange}
+      labelText={label || intl.messages.confirmPassword as string}
+      icon={passwordIcon}
+      onIconClick={onIconClick} />
+  );
+};
+
+FieldConfirmPassword.defaultProps = {
+  label: undefined,
+  name: 'FieldConfirmPassword',
 };
 
 export const FieldDescriptionArticle: FC<TFieldInput> = ({

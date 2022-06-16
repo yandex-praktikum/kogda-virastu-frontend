@@ -18,6 +18,7 @@ import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeNicknameRegister,
   changeInviteRegister,
   resetFormRegister,
@@ -31,7 +32,9 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  setConfirmPasswordProfile,
   resetFormProfile,
+  setGeneratedInvite,
 
 } from './profileFormSubSlice';
 
@@ -49,7 +52,7 @@ import {
   setUsers,
 } from './allSlice';
 
-import { setUser, clearUser, setGeneratedInvite } from './userSlice';
+import { setUser, clearUser } from './userSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
@@ -161,8 +164,10 @@ import {
   articlePostClear,
   followTagRequested,
   followTagSucceeded,
+  followTagFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  unfollowTagFailed,
   generateInviteRequested,
   generateInviteSucceeded,
   usersFetchRequested,
@@ -171,6 +176,10 @@ import {
   rolesPatchRequested,
   rolesPatchSucceeded,
   rolesPatchFailed,
+  generateInviteFailed,
+  copyInviteRequested,
+  copyInviteSucceeded,
+  copyInviteFailed,
 } from './apiSlice';
 
 import {
@@ -205,6 +214,7 @@ export {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   changeInviteRegister,
   changeNicknameRegister,
   resetFormRegister,
@@ -215,6 +225,7 @@ export {
   setImageProfile,
   setFormProfile,
   setPasswordProfile,
+  setConfirmPasswordProfile,
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
@@ -335,10 +346,13 @@ export {
   articlePostClear,
   followTagRequested,
   followTagSucceeded,
+  followTagFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  unfollowTagFailed,
   generateInviteRequested,
   generateInviteSucceeded,
+  generateInviteFailed,
   setGeneratedInvite,
   usersFetchRequested,
   usersFetchSucceeded,
@@ -347,4 +361,7 @@ export {
   rolesPatchRequested,
   rolesPatchSucceeded,
   rolesPatchFailed,
+  copyInviteRequested,
+  copyInviteSucceeded,
+  copyInviteFailed,
 };

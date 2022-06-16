@@ -1,15 +1,16 @@
-/* eslint-disable*/
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
-
 import { jwt } from '../services/api';
-
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk, getPopularTags,
+  deleteArticleThunk,
+  getAllPostsThunk,
+  getPublicFeedThunk,
+  getUserThunk,
+  getPopularTags,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -25,7 +26,6 @@ import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import Admin from '../pages/admin';
 import { Modal } from '../widgets';
-
 import { IGenericVoidHandler } from '../types/widgets.types';
 
 const App = () => {
@@ -35,13 +35,13 @@ const App = () => {
   const { isDeleteConfirmOpen } = useSelector((state) => state.system);
   const { username, nickname } = useSelector((state) => state.profile);
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
-  const onConfirmDelete : IGenericVoidHandler = () => {
+  const onConfirmDelete: IGenericVoidHandler = () => {
     batch(() => {
       dispatch(deleteArticleThunk(slug));
       dispatch(closeConfirm());
     });
   };
-  const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
+  const onConfirmClose: IGenericVoidHandler = () => dispatch(closeConfirm());
 
   useEffect(() => {
     batch(() => {
@@ -65,10 +65,11 @@ const App = () => {
 
   return (
     <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
-      <ThemeProvider theme={
-        themes[currentTheme ?? defaultTheme]
-        ?? basicThemes[currentTheme ?? defaultTheme]
-      }>
+      <ThemeProvider
+        theme={
+          themes[currentTheme ?? defaultTheme]
+          ?? basicThemes[currentTheme ?? defaultTheme]
+        }>
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
@@ -83,7 +84,9 @@ const App = () => {
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
-        {isDeleteConfirmOpen && <Modal onClose={onConfirmClose} onSubmit={onConfirmDelete} />}
+        {isDeleteConfirmOpen && (
+          <Modal onClose={onConfirmClose} onSubmit={onConfirmDelete} />
+        )}
       </ThemeProvider>
     </IntlProvider>
   );

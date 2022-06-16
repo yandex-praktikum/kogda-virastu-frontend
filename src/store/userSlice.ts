@@ -30,10 +30,6 @@ const userSlice = createSlice({
       ...state,
       ...action.payload,
     }),
-    setGeneratedInvite: (state, action: PayloadAction<string>) => ({
-      ...state,
-      generatedInvite: action.payload,
-    }),
     clearUser: (state) => ({
       ...state,
       ...initialState,
@@ -42,5 +38,5 @@ const userSlice = createSlice({
 });
 
 const userReducer = userSlice.reducer;
-export const { setUser, clearUser, setGeneratedInvite } = userSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
 export default userReducer;

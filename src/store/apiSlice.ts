@@ -37,6 +37,7 @@ type TAPIState = {
   isInviteGenerating: boolean,
   areUsersFetching: boolean,
   areRolesPatching: boolean,
+  isInviteCopying: boolean,
 };
 
 const initialState : TAPIState = {
@@ -75,6 +76,7 @@ const initialState : TAPIState = {
   isInviteGenerating: false,
   areUsersFetching: false,
   areRolesPatching: false,
+  isInviteCopying: false,
 };
 
 const apiSlice = createSlice({
@@ -345,11 +347,17 @@ const apiSlice = createSlice({
     followTagSucceeded: (state) => ({
       ...state, isTagFollowing: false,
     }),
+    followTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagFollowing: false, errorObject: action.payload,
+    }),
     unfollowTagRequested: (state) => ({
       ...state, isTagUnfollowing: true,
     }),
     unfollowTagSucceeded: (state) => ({
       ...state, isTagUnfollowing: false,
+    }),
+    unfollowTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagUnfollowing: false, errorObject: action.payload,
     }),
     generateInviteRequested: (state) => ({
       ...state, isInviteGenerating: true,
@@ -366,6 +374,18 @@ const apiSlice = createSlice({
     rolesPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, areRolesPatching: false, errorObject: action.payload,
     }),
+    generateInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteGenerating: false, errorObject: action.payload,
+    }),
+    copyInviteRequested: (state) => ({
+      ...state, isInviteCopying: true,
+    }),
+    copyInviteSucceeded: (state) => ({
+      ...state, isInviteCopying: false,
+    }),
+    copyInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteCopying: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -373,8 +393,10 @@ const apiReducer = apiSlice.reducer;
 export const {
   followTagRequested,
   followTagSucceeded,
+  followTagFailed,
   unfollowTagRequested,
   unfollowTagSucceeded,
+  unfollowTagFailed,
   setSuccessMessage,
   setErrorMessage,
   clearSuccessMessage,
@@ -460,5 +482,9 @@ export const {
   rolesPatchRequested,
   rolesPatchSucceeded,
   rolesPatchFailed,
+  generateInviteFailed,
+  copyInviteRequested,
+  copyInviteSucceeded,
+  copyInviteFailed,
 } = apiSlice.actions;
 export default apiReducer;

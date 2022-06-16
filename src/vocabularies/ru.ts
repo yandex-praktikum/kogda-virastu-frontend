@@ -32,12 +32,15 @@ const ru: TVocabulary = {
   userName: 'Имя пользователя',
   userEmail: 'Email',
   password: 'Пароль',
+  confirmPassword: 'Подтвердите пароль',
+  passwordsAreNotEqual: 'Пароли не совпадают',
   urlImage: 'URL изображения профиля',
   newPassword: 'Новый пароль',
   refreshUser: 'Обновить настройки',
   usersettings: 'Ваши настройки',
   publishArticle: 'Опубликовать запись',
   profileUpdated: 'Профиль успешно обновлен',
+  profileisNotUpdated: 'Профиль не был обновлен',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
   publishComment: 'Опубликовать комментарий',
   loading: 'Подождите, данные загружаются...',
@@ -51,6 +54,8 @@ const ru: TVocabulary = {
   subscribeTag: 'Вы подписались на тег',
   unsubscribeTag: 'Вы отписались от тега',
   generateInvite: 'Сгенерировать код',
+  copyInvite: 'Скопировать ссылку-приглашение',
+  inviteCopied: 'Ссылка скопирована в буфер обмена',
 };
 
 export default ru;

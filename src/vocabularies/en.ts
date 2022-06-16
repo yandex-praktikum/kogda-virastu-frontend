@@ -32,12 +32,15 @@ const en: TVocabulary = {
   userName: 'User Name',
   userEmail: 'Email',
   password: 'Password',
+  confirmPassword: 'Confirm password',
   urlImage: 'User avatar URL',
   newPassword: 'New password',
   refreshUser: 'Update settings',
   usersettings: 'Your setings',
   publishArticle: 'Publish your material',
   profileUpdated: 'Profile updated successfully',
+  profileisNotUpdated: 'Profile is not updated',
+  passwordsAreNotEqual: 'Passwords are not equal',
   pageMessage: 'Page not found. To read blog, go to Home',
   publishComment: 'Post comment',
   loading: 'Please wait, loading...',
@@ -51,6 +54,8 @@ const en: TVocabulary = {
   subscribeTag: 'Subscribed to tag',
   unsubscribeTag: 'Unsubscribed from tag',
   generateInvite: 'Generate code',
+  copyInvite: 'Copy invite link',
+  inviteCopied: 'Link copied to clipboard',
 };
 
 export default en;

@@ -23,6 +23,11 @@ export type TProfile = {
 
 export type TTags = Array<string>;
 
+export type TPopularTags = {
+  count: number;
+  name: string;
+};
+
 export type TArticle = {
   author: TProfile;
   body: string;

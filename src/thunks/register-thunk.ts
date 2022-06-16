@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import { AxiosError } from 'axios';
 import { batch } from 'react-redux';
 import { AppThunk } from '../store/store.types';

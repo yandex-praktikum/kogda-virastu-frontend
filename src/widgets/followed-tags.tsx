@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import Tag from './tag';
 import { HeaderFiveText } from '../ui-lib';
 import unfollowTagThunk from '../thunks/unfollow-tag-thunk';
-import TagModal from './tag-modal';
+import InfoModal from './info-modal';
 import getUserTagsThunk from '../thunks/get-user-tags-thunk';
 
 const PopularTagsContainer = styled.div`
@@ -53,7 +53,7 @@ const FollowedTags: FC = () => {
     return (
       <PopularTagsContainer>
         {isTagUnFollowing && tagname && (
-        <TagModal isTagUnFollowing={isTagUnFollowing} message={`${intl.messages.unsubscribeTag as string} #${tagname}`} />
+        <InfoModal isTagUnFollowing={isTagUnFollowing} message={`${intl.messages.unsubscribeTag as string} #${tagname}`} />
         )}
         <HeaderFiveText paddingCSS='padding-bottom: 16px;'>
           <FormattedMessage id='followedTags' />

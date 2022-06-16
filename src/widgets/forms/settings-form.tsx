@@ -2,10 +2,10 @@ import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect,
 } from 'react';
 import { useTheme } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
 import FollowedTags from '../followed-tags';
-import TagModal from '../tag-modal';
+import InfoModal from '../info-modal';
 import GenerateInviteContainer from '../generate-invite-widget';
 
 import {
@@ -16,6 +16,7 @@ import {
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
+  setConfirmPasswordProfile,
 } from '../../store';
 
 import { patchCurrentUserThunk } from '../../thunks';
@@ -33,6 +34,7 @@ import {
   FieldLogin,
   FieldNick,
   FieldPassword,
+  FieldConfirmPassword,
   FieldProfileImage,
   UpdateProfileButton,
   FieldAboutUser,
@@ -40,7 +42,7 @@ import {
 
 const SettingsForm: FC = () => {
   const {
-    bio, email, image, username, password, nickname,
+    bio, email, image, username, password, confirmPassword, nickname,
   } = useSelector((state) => state.forms.profile);
 
   const profile = useSelector((state) => state.profile);
@@ -48,10 +50,10 @@ const SettingsForm: FC = () => {
   const {
     isSettingsPatching, isSettingsUpdateSucceeded,
   } = useSelector((state) => state.api);
+  const intl = useIntl();
 
   const dispatch = useDispatch();
   const theme = useTheme();
-
   useEffect(() => {
     dispatch(setFormProfile({
       username: profile.username || '',
@@ -88,11 +90,14 @@ const SettingsForm: FC = () => {
   const changePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setPasswordProfile(evt.target.value));
   };
+  const changeConfirmPassword: ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(setConfirmPasswordProfile(evt.target.value));
+  };
 
   return (
     <FormContainer>
       {isSettingsUpdateSucceeded && (
-        <TagModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message={<FormattedMessage id='profileUpdated' />} />
+        <InfoModal isSettingsUpdateSucceeded={isSettingsUpdateSucceeded} message={`${intl.messages.profileUpdated as string}`} />
       )}
       <FormTitle>
         <FormattedMessage id='usersettings' />
@@ -107,12 +112,14 @@ const SettingsForm: FC = () => {
             value={bio ?? ''}
             minHeight={theme.text18.height * 5} />
           <FieldEmail value={email ?? ''} onChange={changeEmail} />
-          <FieldPassword value={password ?? ''} onChange={changePassword} />
+          <FieldPassword value={password ?? ''} onChange={changePassword} error={confirmPassword !== password} />
+          <FieldConfirmPassword value={confirmPassword ?? ''} onChange={changeConfirmPassword} error={confirmPassword !== password} errorText={confirmPassword !== password ? intl.messages.passwordsAreNotEqual as string : ''} />
         </InputFieldset>
         <GenerateInviteContainer />
         <FollowedTags />
         <ButtonContainer>
-          <UpdateProfileButton disabled={isSettingsPatching} />
+          <UpdateProfileButton disabled={isSettingsPatching || (!password && !confirmPassword)
+            || confirmPassword !== password} />
         </ButtonContainer>
       </Form>
     </FormContainer>

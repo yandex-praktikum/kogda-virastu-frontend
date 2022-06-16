@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { FC, MouseEventHandler } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 import styled from 'styled-components';
@@ -7,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
 import PreviewTags from './preview-tags';
-import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
@@ -140,7 +138,7 @@ const ImageContainer = styled.div`
   @media screen and (max-width: 720px) {
     height: 150px;
   }
-`
+`;
 
 const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => {
   const articleBody = DOMPurify.sanitize(article?.body || '');

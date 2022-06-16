@@ -142,7 +142,7 @@ export type TTabProps = {
   border: string;
 };
 
-export type TInputFieldType = 'text' | 'email' | 'password' | 'url';
+export type TInputFieldType = 'text' | 'email' | 'password' | 'confirmPassword' | 'url';
 
 export type TFieldInput = {
   value: string;

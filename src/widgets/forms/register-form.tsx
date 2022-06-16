@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect,
+  ChangeEventHandler, FC, FormEventHandler, useEffect, FocusEventHandler, useRef,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useSelector, useDispatch } from '../../services/hooks';
 import {
   changeUsernameRegister,
   changeEmailRegister,
   changePasswordRegister,
+  changeConfirmPasswordRegister,
   resetFormRegister,
   changeNicknameRegister,
   changeInviteRegister,
@@ -17,17 +18,27 @@ import {
   ButtonContainer, Form, FormContainer, FormLoginLink, FormTitle, InputFieldset,
 } from './forms-styles';
 import {
-  FieldEmail, FieldLogin, FieldNick, FieldPassword, RegisterButton, FieldInvite,
+  FieldEmail, FieldLogin, FieldNick, FieldPassword,
+  FieldConfirmPassword,
+  RegisterButton, FieldInvite,
 } from '../../ui-lib';
 
 const RegisterForm: FC = () => {
   const {
-    username, email, password, nickname, invite,
+    username, email, password, confirmPassword, nickname, invite,
   } = useSelector((state) => state.forms.register);
   const { isUserRegistering } = useSelector((state) => state.api);
   const { isLoggedIn } = useSelector((state) => state.system);
+  const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const extractUrlInvite = (prefix: string, s:string) => s.substring(prefix.length);
+  const inviteFromUrl = useRef('');
+  useEffect(() => {
+    if (window.location.href.indexOf('?=')) {
+      inviteFromUrl.current = (extractUrlInvite(`${window.location.origin}/registration?=`, `${window.location.href}`));
+    }
+  }, [dispatch, inviteFromUrl]);
 
   const onChangeEmail : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeEmailRegister(evt.target.value));
@@ -35,6 +46,10 @@ const RegisterForm: FC = () => {
 
   const onChangePassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changePasswordRegister(evt.target.value));
+  };
+
+  const onChangeConfirmPassword : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    dispatch(changeConfirmPasswordRegister(evt.target.value));
   };
 
   const onChangeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -45,13 +60,19 @@ const RegisterForm: FC = () => {
     dispatch(changeInviteRegister(evt.target.value));
   };
 
+  const onFocusEmail : FocusEventHandler<HTMLInputElement> = () => {
+    if (inviteFromUrl != null) dispatch(changeInviteRegister(inviteFromUrl.current));
+  };
+
   const onChangeNickname : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(changeNicknameRegister(evt.target.value));
   };
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    dispatch(registerThunk());
+    if (password === confirmPassword) {
+      dispatch(registerThunk());
+    }
   };
 
   useEffect(() => {
@@ -73,12 +94,14 @@ const RegisterForm: FC = () => {
         <InputFieldset rowGap={16}>
           <FieldLogin value={username ?? ''} onChange={onChangeUsername} />
           <FieldNick value={nickname ?? ''} onChange={onChangeNickname} />
-          <FieldEmail value={email ?? ''} onChange={onChangeEmail} />
-          <FieldInvite value={invite ?? ''} onChange={onChangeInvite} />
-          <FieldPassword value={password ?? ''} onChange={onChangePassword} />
+          <FieldEmail value={email ?? ''} onChange={onChangeEmail} onFocus={onFocusEmail} />
+          <FieldInvite value={invite ?? inviteFromUrl.current ?? ''} onChange={onChangeInvite} />
+          <FieldPassword value={password ?? ''} onChange={onChangePassword} error={confirmPassword !== password} />
+          <FieldConfirmPassword value={confirmPassword ?? ''} onChange={onChangeConfirmPassword} error={confirmPassword !== password} errorText={confirmPassword !== password ? intl.messages.passwordsAreNotEqual as string : ''} />
         </InputFieldset>
         <ButtonContainer>
-          <RegisterButton disabled={isUserRegistering} />
+          <RegisterButton disabled={isUserRegistering || (!password && !confirmPassword)
+            || confirmPassword !== password} />
         </ButtonContainer>
       </Form>
     </FormContainer>
