@@ -80,6 +80,10 @@ export interface IPostComment {
   (slug: string, body: string) : AxiosPromise<TAPIComment>;
 }
 
+export interface IPatchRoles {
+  (user: string, roles: string[]) : AxiosPromise<TAPIComment>;
+}
+
 export interface IDeleteComment {
   (slug: string, id: string) : AxiosPromise<null>;
 }

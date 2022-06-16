@@ -83,7 +83,6 @@ const UserRow: FC<IUserRow> = ({ user }) => {
   }, [user.roles]);
 
   const toggle = () => {
-    console.log(user);
     dispatch(patchRolesThunk(user));
     setChecked(!checked);
   };

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable */
 import axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
   API_ROOT,
@@ -45,6 +45,7 @@ import {
   IRegisterUser,
   IPostInviteGeneration,
   IFetchUsers,
+  IPatchRoles,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -427,10 +428,15 @@ export const fetchUsers : any = () : AxiosPromise<[]> => {
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const patchRoles : any = (user: TAPIUser) : AxiosPromise<[]> => {
-  const rolesData = user.roles;
-  const usernameUrl = user.username;
-  console.log(user);
+export const patchRoles : IPatchRoles = (
+  user: string,
+  roles: string[],
+) : AxiosPromise<TAPIComment> => {
+  const rolesData = {
+    roles,
+  };
+  const usernameUrl = user;
+  console.log(roles);
   const requestConfig : AxiosRequestConfig = {
     url: `${ADMIN_ROUTE}/users/${usernameUrl}/roles`,
     method: 'patch',
