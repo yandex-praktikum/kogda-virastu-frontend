@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, MouseEvent } from 'react';
+import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import styled, { useTheme } from 'styled-components';
@@ -7,10 +7,12 @@ import { getPropOnCondition } from '../services/helpers';
 import getColorTag from '../services/helpers/get-color-tag';
 import CheckboxPic from '../assets/images/icons/checkbox-icon.svg';
 
-const UserContainer = styled.div`
+const UserContainer = styled.li`
   margin: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 276px 194px 158px;
   gap: 8px;
+  justify-items: start;
   align-items: center;
 `;
 
@@ -57,7 +59,7 @@ const Input = styled.input`
   }
   
   :disabled:checked + ${SpanPseudo} {
-    background-image: url(https://code.s3.yandex.net/web-code/tick_grey.svg);
+    background-image: url(https://code.s3.yandex.net/web-code/tick_g''rey.svg);
 
   }
   
@@ -68,10 +70,21 @@ const Input = styled.input`
 
 const CheckBox: FC = () => {
   const theme = useTheme();
+  const [checked, setChecked] = useState(false);
+
+  const onChange = () => {
+    if (checked) {
+      console.log('click');
+      setChecked(false);
+    } else {
+      console.log('unClick');
+      setChecked(true);
+    }
+  };
 
   return (
     <Label>
-      <Input type='checkbox' name='admin' id='makeAdmin' value='makeAdmin' />
+      <Input type='checkbox' name='admin' id='makeAdmin' value='makeAdmin' onChange={onChange} checked={checked} />
       <SpanPseudo />
       <Span>
         <RegularText
@@ -93,7 +106,7 @@ const InputCheckbox = styled.input`
 const User: FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
-  console.log(theme);
+  const checked = true;
 
   return (
     <UserContainer>

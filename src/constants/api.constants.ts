@@ -9,5 +9,6 @@ export const FEED_ROUTE = `${ARTICLES_ROUTE}/feed`;
 export const TAGS_ROUTE = '/tags';
 export const PROFILES_ROUTE = '/profiles';
 export const INVITE_ROUTE = '/user/invites/new';
+export const ADMIN_USERS_ROUTE = '/admin/users';
 
 export const JWT = 'JWT-RT-BLG';

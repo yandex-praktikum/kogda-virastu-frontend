@@ -4,12 +4,15 @@ import {
   TAPIArticles,
   TAPIAuth,
   TAPIComment,
-  TAPIComments, TAPIParamsObject, TAPIPatchArticleData,
+  TAPIComments,
+  TAPIParamsObject,
+  TAPIPatchArticleData,
   TAPIProfile,
   TAPITags,
   TAPIUser,
   TAPITag,
   TAPIInvite,
+  TAPIUsers,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -87,6 +90,10 @@ export interface ITag {
 
 export interface IInvite {
   (): AxiosPromise<TAPIInvite>
+}
+
+export interface IFetchAllUsers {
+  () : AxiosPromise<TAPIUsers>;
 }
 
 export type {

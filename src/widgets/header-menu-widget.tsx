@@ -33,7 +33,9 @@ const HeaderMenuWrapper = styled.nav`
 const HeaderMenuWidget : FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { nickname, username, image } = useSelector((store) => store.profile);
+  const {
+    nickname, username, image, roles,
+  } = useSelector((store) => store.profile);
   const { isLoggedIn } = useSelector((state) => state.system);
   const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/profile/${username || ''}`);
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/settings');
@@ -52,6 +54,7 @@ const HeaderMenuWidget : FC = () => {
     jwt.remove();
     navigate('/');
   };
+  const isAdmin = roles?.some((role) => role === 'admin');
   if (!isLoggedIn || !username) {
     return null;
   }
@@ -60,7 +63,7 @@ const HeaderMenuWidget : FC = () => {
       <OpenMenuButton onClick={onProfileClick} name={(nickname ?? username) || ''} image={image || ''} />
       <MenuNewPostButton onClick={onNewPostClick} />
       <MenuSettingsButton onClick={onUpdateProfileClick} />
-      <MenuAdminButton onClick={onAdminPanelClick} />
+      {isAdmin && <MenuAdminButton onClick={onAdminPanelClick} />}
       <MenuLogoutButton onClick={onLogoutClick} />
     </HeaderMenuWrapper>
   );
