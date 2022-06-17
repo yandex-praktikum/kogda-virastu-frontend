@@ -24,7 +24,6 @@ import {
   getArticleThunk,
   patchArticleThunk,
   postArticleThunk,
-  postModerationArticleThunk,
 } from '../../thunks';
 import {
   ButtonContainer,
@@ -168,11 +167,6 @@ const EditorForm: FC = () => {
     } else {
       dispatch(postArticleThunk());
     }
-  };
-
-  const sub : FormEventHandler<HTMLFormElement> = (evt) => {
-    evt.preventDefault();
-    dispatch(postModerationArticleThunk(slug));
   };
 
   const deleteArticle = () => {

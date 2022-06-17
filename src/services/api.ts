@@ -7,7 +7,7 @@ import {
   USER_ROUTE,
   ARTICLES_ROUTE,
   MODERATION_ARTICLE_ROUTE,
-  ADMIN_FEED_ROUTE,
+  PENDING_FEED_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
@@ -227,21 +227,6 @@ export const patchCurrentUser : IPatchUser = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchFeed : IFetchArticles = (
-  url: string,
-  queryParams?: TAPIParamsObject,
-) : AxiosPromise<TAPIArticles> => {
-  const {
-    limit, offset, tag, author, favorited,
-  } = queryParams ?? {};
-  const requestConfig : AxiosRequestConfig = {
-    url: `${ADMIN_FEED_ROUTE}/${url}`,
-    params: makeParams(limit, offset, tag, author, favorited),
-    method: 'get',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
 export const fetchPublicFeed : IFetchArticles = (
   queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
@@ -268,14 +253,14 @@ export const fetchPrivateFeed : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchModerationFeed: IFetchArticles = (
+export const fetchPendingFeed: IFetchArticles = (
   queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
   const {
     limit, offset, tag, author,
   } = queryParams ?? {};
   const requestConfig : AxiosRequestConfig = {
-    url: ADMIN_FEED_ROUTE,
+    url: PENDING_FEED_ROUTE,
     params: makeParams(limit, offset, tag, author),
     method: 'get',
   };

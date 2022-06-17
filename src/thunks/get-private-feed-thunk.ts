@@ -12,7 +12,7 @@ import {
 import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError, TAPIParamsObject } from '../services/api.types';
-import { FeedTypes, TArticle } from '../types/types';
+import { FeedTypes } from '../types/types';
 
 const getPrivateFeedThunk: AppThunk = (
   params: TAPIParamsObject,

@@ -42,7 +42,7 @@ export interface IPatchUser {
 }
 
 export interface IFetchArticles {
-  (url: string, queryParams?: TAPIParamsObject) : AxiosPromise<TAPIArticles>;
+  (queryParams?: TAPIParamsObject) : AxiosPromise<TAPIArticles>;
 }
 
 export interface IFetchArticle {

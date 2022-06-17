@@ -12,7 +12,7 @@ import {
 import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError, TAPIParamsObject } from '../services/api.types';
-import { FeedTypes, TArticle } from '../types/types';
+import { FeedTypes } from '../types/types';
 
 const getPublicFeedThunk: AppThunk = (
   params: TAPIParamsObject,
@@ -24,7 +24,6 @@ const getPublicFeedThunk: AppThunk = (
     const
       { data: { articles, articlesCount } } = await fetchPublicFeed(params);
     batch(() => {
-      // const publishedArticles : Array<TArticle> = articles.filter((art) => art.state === 'published');
       dispatch(setViewFeed(articles));
       dispatch(setFeedCount(articlesCount));
       dispatch(publicFeedSucceeded());

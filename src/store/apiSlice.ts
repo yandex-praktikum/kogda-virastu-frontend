@@ -13,7 +13,7 @@ type TAPIState = {
   isArticleFetching: boolean,
   isArticleNotFound: boolean,
   isPrivateFeedFetching: boolean,
-  isModerationFeedFetching: boolean,
+  isPendingFeedFetching: boolean,
   isArticlePosting: boolean,
   isArticlePostingSucceeded: boolean,
   isArticleDeleting: boolean,
@@ -52,7 +52,7 @@ const initialState : TAPIState = {
   isArticleFetching: false,
   isArticleNotFound: false,
   isPrivateFeedFetching: false,
-  isModerationFeedFetching: false,
+  isPendingFeedFetching: false,
   isArticlePosting: false,
   isArticlePostingSucceeded: false,
   isArticleDeleting: false,
@@ -179,14 +179,14 @@ const apiSlice = createSlice({
     privateFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isPrivateFeedFetching: false, errorObject: action.payload,
     }),
-    moderationFeedRequested: (state) => ({
-      ...state, isModerationFeedFetching: true,
+    pendingFeedRequested: (state) => ({
+      ...state, isPendingFeedFetching: true,
     }),
-    moderationFeedSucceeded: (state) => ({
-      ...state, isModerationFeedFetching: false,
+    pendingFeedSucceeded: (state) => ({
+      ...state, isPendingFeedFetching: false,
     }),
-    moderationFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
-      ...state, isModerationFeedFetching: false, errorObject: action.payload,
+    pendingFeedFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isPendingFeedFetching: false, errorObject: action.payload,
     }),
     articlePostRequested: (state) => ({
       ...state, isArticlePosting: true, sArticlePostingSucceeded: false,
@@ -415,9 +415,9 @@ export const {
   privateFeedRequested,
   privateFeedSucceeded,
   privateFeedFailed,
-  moderationFeedRequested,
-  moderationFeedSucceeded,
-  moderationFeedFailed,
+  pendingFeedRequested,
+  pendingFeedSucceeded,
+  pendingFeedFailed,
   articlePostRequested,
   articlePostSucceeded,
   articlePostFailed,

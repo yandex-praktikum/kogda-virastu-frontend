@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { blue } from '../constants/colors';
 import { useDispatch, useSelector } from '../services/hooks';
-import { getPrivateFeedThunk, getPublicFeedThunk, getModerationFeedThunk, getFeedThunk } from '../thunks';
+import { getPrivateFeedThunk, getPublicFeedThunk, getPendingFeedThunk } from '../thunks';
 import { FeedTypes } from '../types/types';
 
 const FilterContainer = styled.div`
@@ -48,7 +48,6 @@ const FeedFilter: React.FC = () => {
   const moderationType = type === FeedTypes.moderation;
 
   const admin = roles?.filter((role) => role === 'admin').toString();
-  const user = roles?.filter((role) => role === 'user').toString();
 
   const getPrivateFeed = () => {
     dispatch(getPrivateFeedThunk());
@@ -58,8 +57,8 @@ const FeedFilter: React.FC = () => {
     dispatch(getPublicFeedThunk());
   };
 
-  const getModerationFeed = () => {
-    dispatch(getFeedThunk('pending'));
+  const getPendingFeed = () => {
+    dispatch(getPendingFeedThunk());
   };
 
   return (
@@ -67,22 +66,22 @@ const FeedFilter: React.FC = () => {
       {publicType && (
         <>
           <FilterButtonActive type='button' onClick={getPublicFeed}>Все посты</FilterButtonActive>
-          {user && <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>}
-          {admin && <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>}
+          <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
+          {admin && <FilterButton type='button' onClick={getPendingFeed}>На модерации</FilterButton>}
         </>
       )}
       {privateType && (
         <>
           <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
-          {user && <FilterButtonActive type='button' onClick={getPrivateFeed}>Мои подписки</FilterButtonActive>}
-          {admin && <FilterButton type='button' onClick={getModerationFeed}>На модерации</FilterButton>}
+          <FilterButtonActive type='button' onClick={getPrivateFeed}>Мои подписки</FilterButtonActive>
+          {admin && <FilterButton type='button' onClick={getPendingFeed}>На модерации</FilterButton>}
         </>
       )}
       {moderationType && (
         <>
           <FilterButton type='button' onClick={getPublicFeed}>Все посты</FilterButton>
-          {user && <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>}
-          {admin && <FilterButtonActive type='button' onClick={getModerationFeed}>На модерации</FilterButtonActive>}
+          <FilterButton type='button' onClick={getPrivateFeed}>Мои подписки</FilterButton>
+          {admin && <FilterButtonActive type='button' onClick={getPendingFeed}>На модерации</FilterButtonActive>}
         </>
       )}
     </FilterContainer>

@@ -14,8 +14,7 @@ import loginUserThunk from './login-user-thunk';
 import getCommentsThunk from './get-comments-thunk';
 import getPublicFeedThunk from './get-public-feed-thunk';
 import getPrivateFeedThunk from './get-private-feed-thunk';
-import getModerationFeedThunk from './get-moderation-feed-thunk';
-import getFeedThunk from './get-feed-thunk';
+import getPendingFeedThunk from './get-pending-feed-thunk';
 import getUserThunk from './get-user-thunk';
 import patchArticleThunk from './patch-article-thunk';
 import postArticleThunk from './post-article-thunk';
@@ -30,8 +29,7 @@ export {
   getArticleThunk,
   getCommentsThunk,
   getPrivateFeedThunk,
-  getModerationFeedThunk,
-  getFeedThunk,
+  getPendingFeedThunk,
   getPublicFeedThunk,
   getAllTagsThunk,
   deleteLikeThunk,
