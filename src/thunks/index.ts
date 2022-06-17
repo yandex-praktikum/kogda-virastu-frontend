@@ -21,7 +21,7 @@ import postArticleThunk from './post-article-thunk';
 import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
-import postProfileImageThunk from './post-profile-image-thunk';
+import postImageThunk from './post-image-thunk';
 import getUsersThunk from './get-users-thunk';
 import patchRolesThunk from './patch-roles-thunk';
 
@@ -49,7 +49,7 @@ export {
   setTopLikedThunk,
   setNewPostsThunk,
   getAllPostsThunk,
-  postProfileImageThunk,
+  postImageThunk,
   getUsersThunk,
   patchRolesThunk,
 };

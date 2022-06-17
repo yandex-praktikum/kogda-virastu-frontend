@@ -15,14 +15,13 @@ import {
   setUsernameProfile,
   setEmailProfile,
   setBioProfile,
-  setImageProfile,
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
   setConfirmPasswordProfile,
 } from '../../store';
 
-import { patchCurrentUserThunk, postProfileImageThunk } from '../../thunks';
+import { patchCurrentUserThunk, postImageThunk } from '../../thunks';
 
 import {
   ButtonContainer,
@@ -45,7 +44,7 @@ import {
 
 const SettingsForm: FC = () => {
   const {
-    bio, email, image, username, password, confirmPassword, nickname,
+    bio, email, username, password, confirmPassword, nickname,
   } = useSelector((state) => state.forms.profile);
 
   const profile = useSelector((state) => state.profile);
@@ -71,20 +70,16 @@ const SettingsForm: FC = () => {
 
   const submitForm: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    if (profile.image !== '') {
-      dispatch(postProfileImageThunk());
-    }
     dispatch(patchCurrentUserThunk());
   };
 
-
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    // if (evt.target.files) {
-    //   const imageSelected = evt.target.files[0];
-    //   console.log(imageSelected);
-    //   dispatch(setImageProfile(imageSelected));
-    dispatch(setImageProfile(evt.target.value));
+    if (evt.target.files) {
+      const profileImage = new FormData();
+      profileImage.append('file', evt.target.files[0]);
+      dispatch(postImageThunk(profileImage));
     }
+  };
 
   const changeUsername: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setUsernameProfile(evt.target.value));
@@ -120,7 +115,6 @@ const SettingsForm: FC = () => {
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={16}>
           <FieldProfileImage onChange={changeImage} />
-          {/* <button type='button' onClick={postProfileImageThunk()}>upload</button> */}
           <FieldLogin value={username ?? ''} onChange={changeUsername} />
           <FieldNick value={nickname ?? ''} onChange={changeNickname} />
           <FieldAboutUser

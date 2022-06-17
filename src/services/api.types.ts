@@ -55,7 +55,7 @@ export type TAPIPatchUserData = {
   email?: string;
   username?: string;
   bio?: string;
-  image?: string | File;
+  image?: string | FormData;
   password?: string;
   nickname?: string;
 };
@@ -111,6 +111,12 @@ export type TAPIComments = {
 
 export type TAPIProfile = {
   profile: TProfile;
+};
+
+export type TAPIResponse = {
+  data: {
+    url: string;
+  }
 };
 
 export type TAPIErrors = {

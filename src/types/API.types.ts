@@ -34,7 +34,7 @@ export interface IPatchUser {
     email?: string,
     password?: string,
     bio?: string,
-    image?: string | File,
+    image?: string | FormData,
     nickname?: string,
   }) : AxiosPromise<TAPIAuth>;
 }

@@ -204,7 +204,7 @@ export const patchCurrentUser : IPatchUser = (
       res = { ...res, bio };
     }
     if (image) {
-      res = { ...res, link: image };
+      res = { ...res, image };
     }
     if (nickname) {
       res = { ...res, nickname };
@@ -224,7 +224,6 @@ export const patchCurrentUser : IPatchUser = (
     data: patchData,
     method: 'put',
   };
-
   return blogAPI(injectBearerToken(requestConfig));
 };
 
@@ -422,13 +421,12 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const postProfileImage = (formData: any) => {
-  const postData = formData;
+export const uploadImage = (postData: string | FormData) => {
   const requestConfig : AxiosRequestConfig = {
     url: UPLOAD_ROUTE,
     method: 'post',
     data: postData,
-    // contentType: 'multipart/form-data'
+    headers: { 'Content-Type': 'multipart/form-data' },
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

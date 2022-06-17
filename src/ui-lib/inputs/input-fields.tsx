@@ -19,7 +19,7 @@ export const FieldUrl: FC<TFieldInput> = ({
     <InputField
       placeholder={placeholder}
       name='FieldURL'
-      type='url'
+      type='file'
       errorText={errorText}
       error={error}
       onFocus={onFocus}
