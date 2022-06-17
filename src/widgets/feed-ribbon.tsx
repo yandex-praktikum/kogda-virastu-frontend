@@ -7,7 +7,7 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { blue, greySecondary, primaryBlack } from '../constants/colors';
-import { TArticle } from '../types/types';
+import { TCompare } from '../types/types';
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -98,9 +98,7 @@ const FeedRibbon : FC = () => {
     );
   }
 
-  function compare(a: TArticle, b: TArticle) : number {
-    return Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
-  }
+  const compare:TCompare = (a, b) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
 
   if (posts.length !== 0) {
     const arrayForSort = [...posts];
