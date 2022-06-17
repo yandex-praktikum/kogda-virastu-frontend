@@ -65,3 +65,7 @@ export enum UserArticlesTypes {
 export type TInvite = {
   code: string;
 };
+
+export type TCompare = {
+  (a: TArticle, b: TArticle): number;
+};

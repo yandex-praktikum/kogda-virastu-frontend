@@ -8,7 +8,7 @@ import {
   followTagThunk, unfollowTagThunk,
 } from '../thunks';
 import { DeletePostButton, EditPostButton } from '../ui-lib';
-import { openConfirm, setFollowTags } from '../store';
+import { openConfirm } from '../store';
 import BarTags from './bar-tags';
 import Likes from './likes';
 
