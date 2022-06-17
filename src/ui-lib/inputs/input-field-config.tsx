@@ -61,7 +61,6 @@ const InputField :FC<IInputInterface> = ({
         error={error}
         type={type}
         placeholder={placeholder}
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         value={value}
         name={name}
         accept={accept}

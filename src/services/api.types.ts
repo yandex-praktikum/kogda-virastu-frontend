@@ -17,7 +17,7 @@ export type TAPIAuth = {
     email: string;
     username: string;
     bio?: string;
-    image?: string | File;
+    image?: string;
     token: string;
     nickname: string;
     invite: string;

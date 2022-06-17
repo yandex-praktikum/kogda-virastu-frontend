@@ -13,7 +13,7 @@ import {
 type TProfileWidget = {
   userName: string | undefined,
   isFollow: boolean,
-  userImage: string | File | undefined,
+  userImage: string | undefined,
   bio: string | undefined,
 
   isUser: boolean,

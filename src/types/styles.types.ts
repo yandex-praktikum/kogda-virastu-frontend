@@ -80,13 +80,13 @@ export type TAvatarSizes = 'large' | 'small';
 export type TAvatarIconProps = {
   size: TAvatarSizes;
   name: string;
-  image: string | File | undefined;
+  image: string | undefined;
   distance?: number;
   color?: string;
 } | {
   size: TAvatarSizes;
   name: string;
-  image?: string | File | undefined;
+  image?: string | undefined;
   distance?: number;
   color: string;
 };
@@ -145,7 +145,7 @@ export type TTabProps = {
 export type TInputFieldType = 'text' | 'email' | 'password' | 'confirmPassword' | 'url' | 'file';
 
 export type TFieldInput = {
-  value?: string | File;
+  value?: string;
   placeholder?: string;
   error?: boolean;
   disabled?: boolean;

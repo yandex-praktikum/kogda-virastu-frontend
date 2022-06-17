@@ -2,7 +2,7 @@ export type TUser = {
   email: string;
   username: string;
   bio?: string;
-  image?: File | string;
+  image?: string;
   nickname?: string;
   invite?: string;
 };
@@ -10,7 +10,7 @@ export type TUser = {
 // Исправлено и переименовано по модели данных сервера
 export type TProfile = {
   following: boolean;
-  image?: File | string;
+  image?: string;
   username: string;
   email: string;
   bio?: string;
