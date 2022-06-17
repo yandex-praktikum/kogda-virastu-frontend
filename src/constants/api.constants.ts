@@ -9,5 +9,6 @@ export const FEED_ROUTE = `${ARTICLES_ROUTE}/feed`;
 export const TAGS_ROUTE = '/tags';
 export const PROFILES_ROUTE = '/profiles';
 export const UPLOAD = '/upload';
+export const IMAGES_ROUTE = '/upload/images/';
 
 export const JWT = 'JWT-RT-BLG';

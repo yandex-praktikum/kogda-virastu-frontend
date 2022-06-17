@@ -14,7 +14,6 @@ import {
   setUsernameProfile,
   setEmailProfile,
   setBioProfile,
-  setImageProfile,
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
@@ -22,7 +21,11 @@ import {
   copyGeneratedInviteCode,
 } from '../../store';
 
-import { patchCurrentUserThunk, getInviteCodeThunk } from '../../thunks';
+import {
+  patchCurrentUserThunk,
+  getInviteCodeThunk,
+  uploadImageThunk,
+} from '../../thunks';
 
 import {
   ButtonContainer, ContainerInvite,
@@ -50,7 +53,7 @@ import { greySecondary } from '../../constants/colors';
 
 const SettingsForm: FC = () => {
   const {
-    bio, email, image, username, password, nickname, confirmpassword,
+    bio, email, username, password, nickname, confirmpassword,
   } = useSelector((state) => state.forms.profile);
 
   const profile = useSelector((state) => state.profile);
@@ -90,16 +93,10 @@ const SettingsForm: FC = () => {
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    // let imgString: string | null = '';
-    const formData = new FormData();
     if (evt.target.files) {
-      const imageSelected = evt.target.files[0];
-      if (imageSelected.type.startsWith('image/')) {
-        formData.append('file', imageSelected);
-        // formData.onloadend = () => {
-        //   // dispatch(setImageProfile());
-        // };
-      }
+      const formData = new FormData();
+      formData.append('file', evt.target.files[0]);
+      dispatch(uploadImageThunk(formData, 'profile'));
     }
   };
 

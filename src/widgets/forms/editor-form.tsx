@@ -9,7 +9,6 @@ import {
   setTitle,
   setDescription,
   setTags,
-  setImage,
   openConfirm,
   articleDeleteClear,
   articlePatchClear,
@@ -19,6 +18,7 @@ import {
   getArticleThunk,
   patchArticleThunk,
   postArticleThunk,
+  uploadImageThunk,
 } from '../../thunks';
 import {
   ButtonContainer,
@@ -45,7 +45,7 @@ const EditorForm: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
-    title, description, tags, link,
+    title, description, tags,
   } = useSelector((state) => state.forms.article) ?? {};
   const {
     isArticleFetching,
@@ -114,17 +114,10 @@ const EditorForm: FC = () => {
   };
 
   const onChangeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    let imgString: string | null = '';
-    const reader = new FileReader();
     if (evt.target.files) {
-      const imageSelected = evt.target.files[0];
-      if (imageSelected.type.startsWith('image/')) {
-        reader.readAsDataURL(imageSelected);
-        reader.onloadend = () => {
-          imgString = reader.result && reader.result.toString();
-          dispatch(setImage(imgString));
-        };
-      }
+      const formData = new FormData();
+      formData.append('file', evt.target.files[0]);
+      dispatch(uploadImageThunk(formData, 'article'));
     }
   };
 
