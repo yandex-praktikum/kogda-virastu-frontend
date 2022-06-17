@@ -17,6 +17,7 @@ import {
   getPublicFeedThunk,
 } from '../thunks';
 import { FeedRibbon, Slider } from '../widgets';
+import { settingsResetUpdateSucceeded } from '../store';
 
 export const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 export const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
@@ -91,6 +92,7 @@ const Main: FC = () => {
     batch(() => {
       dispatch(getPublicFeedThunk());
       dispatch(setNewPostsThunk());
+      dispatch(settingsResetUpdateSucceeded());
     });
   }, [dispatch]);
   useEffect(() => {
