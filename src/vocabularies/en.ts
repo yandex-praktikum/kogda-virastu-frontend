@@ -56,6 +56,10 @@ const en: TVocabulary = {
   generateInvite: 'Generate code',
   copyInvite: 'Copy invite link',
   inviteCopied: 'Link copied to clipboard',
+  makeAdmin: 'Make admin',
+  userList: 'User list',
+  admin: 'Admin',
+  user: 'User',
 };
 
 export default en;
