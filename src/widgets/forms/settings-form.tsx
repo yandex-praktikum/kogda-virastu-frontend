@@ -132,6 +132,7 @@ const SettingsForm: FC = () => {
     dispatch(unsubscribeTagThunk(tag));
     dispatch(setSubscribeTags(tagsFollow!.filter((el) => el !== tag)));
   };
+  console.log('tagsFollow', tagsFollow);
   if (tagsFollow) {
     return (
       <FormContainer>

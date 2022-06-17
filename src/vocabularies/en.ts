@@ -1,6 +1,6 @@
-import { TVocabulary } from '../types/vocabularies.types';
+import { TAddTVocabulary } from '../types/vocabularies.types';
 
-const en: TVocabulary = {
+const en: TAddTVocabulary = {
   headerLink: 'Main Page',
   userLogin: 'Login',
   newArticle: 'New post',
@@ -44,6 +44,7 @@ const en: TVocabulary = {
   npPageLink: 'Main',
   nickname: 'Display name',
   tagsInForm: 'Tags',
+  invationCode: 'Введите код регистрации',
   messageAboutMissingTags: '&nbsp;&nbsp;You don\'t have subscriptions to tags',
   youSubscribedToTheTag: 'You subscribed to the tag #',
 };
