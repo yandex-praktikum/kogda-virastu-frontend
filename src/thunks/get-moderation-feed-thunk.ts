@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { AppThunk } from '../store/store.types';
 import { TAPIParamsObject, TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
-import { FeedTypes } from '../types/types';
+import { FeedTypes, TArticle } from '../types/types';
 import { fetchModerationFeed } from '../services/api';
 import {
   moderationFeedRequested,
@@ -24,7 +24,8 @@ const getModerationFeedThunk: AppThunk = (
     const
       { data: { articles, articlesCount } } = await fetchModerationFeed(params);
     batch(() => {
-      dispatch(setViewFeed(articles));
+      const pendingArticles : Array<TArticle> = articles.filter((art) => art.state === 'pending');
+      dispatch(setViewFeed(pendingArticles));
       dispatch(setFeedCount(articlesCount));
       dispatch(moderationFeedSucceeded());
       dispatch(setFeedType(FeedTypes.moderation));

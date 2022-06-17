@@ -15,9 +15,11 @@ import getCommentsThunk from './get-comments-thunk';
 import getPublicFeedThunk from './get-public-feed-thunk';
 import getPrivateFeedThunk from './get-private-feed-thunk';
 import getModerationFeedThunk from './get-moderation-feed-thunk';
+import getFeedThunk from './get-feed-thunk';
 import getUserThunk from './get-user-thunk';
 import patchArticleThunk from './patch-article-thunk';
 import postArticleThunk from './post-article-thunk';
+import postModerationArticleThunk from './post-moderation-article-thunk';
 import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
@@ -29,6 +31,7 @@ export {
   getCommentsThunk,
   getPrivateFeedThunk,
   getModerationFeedThunk,
+  getFeedThunk,
   getPublicFeedThunk,
   getAllTagsThunk,
   deleteLikeThunk,
@@ -44,6 +47,7 @@ export {
   getUserThunk,
   patchArticleThunk,
   postArticleThunk,
+  postModerationArticleThunk,
   setTopLikedThunk,
   setNewPostsThunk,
   getAllPostsThunk,

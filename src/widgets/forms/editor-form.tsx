@@ -20,6 +20,7 @@ import {
   getArticleThunk,
   patchArticleThunk,
   postArticleThunk,
+  postModerationArticleThunk,
 } from '../../thunks';
 import {
   ButtonContainer,
@@ -133,6 +134,11 @@ const EditorForm: FC = () => {
     }
   };
 
+  const sub : FormEventHandler<HTMLFormElement> = (evt) => {
+    evt.preventDefault();
+    dispatch(postModerationArticleThunk(slug));
+  };
+
   const deleteArticle = () => {
     setRemoveState(true);
     dispatch(openConfirm());
@@ -160,7 +166,7 @@ const EditorForm: FC = () => {
       <FormTitle>
         <FormattedMessage id={makeMessageId()} />
       </FormTitle>
-      <Form onSubmit={submitForm}>
+      <Form onSubmit={sub}>
         <InputFieldset rowGap={24}>
           <FieldNameArticle
             value={title === '' ? '' : title || initialArticle?.title || ''}

@@ -6,6 +6,7 @@ import {
   REGISTER_ROUTE,
   USER_ROUTE,
   ARTICLES_ROUTE,
+  MODERATION_ARTICLE_ROUTE,
   ADMIN_FEED_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
@@ -226,6 +227,21 @@ export const patchCurrentUser : IPatchUser = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchFeed : IFetchArticles = (
+  url: string,
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  const {
+    limit, offset, tag, author, favorited,
+  } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_FEED_ROUTE}/${url}`,
+    params: makeParams(limit, offset, tag, author, favorited),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const fetchPublicFeed : IFetchArticles = (
   queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
@@ -271,6 +287,23 @@ export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIAr
     url: `${ARTICLES_ROUTE}/${slug}`,
     method: 'get',
   };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const postModerationArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/publish`,
+    method: 'post',
+    data: postData,
+  };
+
   return blogAPI(injectBearerToken(requestConfig));
 };
 
