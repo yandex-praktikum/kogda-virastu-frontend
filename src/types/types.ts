@@ -2,7 +2,7 @@ export type TUser = {
   email: string;
   username: string;
   bio?: string;
-  image?:string;
+  image?: string;
   nickname?: string;
   invite?: string;
   roles?: string[];

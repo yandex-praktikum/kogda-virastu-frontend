@@ -14,7 +14,8 @@ import {
 } from '../services/api.types';
 
 export interface IRegisterUser {
-  (username: string, email: string, password: string, nickname: string, invite: string) : AxiosPromise<TAPIAuth>;
+  (username: string, email: string, password: string, nickname: string, invite: string):
+  AxiosPromise<TAPIAuth>;
 }
 
 export interface ILoginUser {
@@ -33,7 +34,7 @@ export interface IPatchUser {
     email?: string,
     password?: string,
     bio?: string,
-    image?:string,
+    image?: string | FormData,
     nickname?: string,
   }) : AxiosPromise<TAPIAuth>;
 }

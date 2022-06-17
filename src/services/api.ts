@@ -48,6 +48,7 @@ import {
   IFetchUsers,
   IPatchRoles,
 } from '../types/API.types';
+import { UPLOAD_ROUTE } from '../constants/api.constants';
 
 const defaultRequestConfig : AxiosRequestConfig = {
   baseURL: API_ROOT,
@@ -203,7 +204,7 @@ export const patchCurrentUser : IPatchUser = (
       res = { ...res, bio };
     }
     if (image) {
-      res = { ...res, link: image };
+      res = { ...res, image };
     }
     if (nickname) {
       res = { ...res, nickname };
@@ -223,7 +224,6 @@ export const patchCurrentUser : IPatchUser = (
     data: patchData,
     method: 'put',
   };
-
   return blogAPI(injectBearerToken(requestConfig));
 };
 
@@ -417,6 +417,16 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
   const requestConfig : AxiosRequestConfig = {
     url: `${USER_ROUTE}/invites/new`,
     method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const uploadImage = (postData: string | FormData) => {
+  const requestConfig : AxiosRequestConfig = {
+    url: UPLOAD_ROUTE,
+    method: 'post',
+    data: postData,
+    headers: { 'Content-Type': 'multipart/form-data' },
   };
   return blogAPI(injectBearerToken(requestConfig));
 };
