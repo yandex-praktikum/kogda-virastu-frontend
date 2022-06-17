@@ -202,7 +202,7 @@ const EditorForm: FC = () => {
       <FormTitle>
         <FormattedMessage id={makeMessageId()} />
       </FormTitle>
-      <Form onSubmit={sub}>
+      <Form onSubmit={submitForm}>
         <InputFieldset rowGap={24}>
           <FieldNameArticle
             value={title === '' ? '' : title || initialArticle?.title || ''}

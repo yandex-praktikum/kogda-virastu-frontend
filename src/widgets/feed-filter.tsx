@@ -55,7 +55,7 @@ const FeedFilter: React.FC = () => {
   };
 
   const getPublicFeed = () => {
-    dispatch(getFeedThunk('published'));
+    dispatch(getPublicFeedThunk());
   };
 
   const getModerationFeed = () => {

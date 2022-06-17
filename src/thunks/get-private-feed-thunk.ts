@@ -24,8 +24,7 @@ const getPrivateFeedThunk: AppThunk = (
     const
       { data: { articles, articlesCount } } = await fetchPrivateFeed(params);
     batch(() => {
-      const publishedArticles : Array<TArticle> = articles.filter((art) => art.state === 'published');
-      dispatch(setViewFeed(publishedArticles));
+      dispatch(setViewFeed(articles));
       dispatch(setFeedCount(articlesCount));
       dispatch(privateFeedSucceeded());
       dispatch(setFeedType(FeedTypes.private));

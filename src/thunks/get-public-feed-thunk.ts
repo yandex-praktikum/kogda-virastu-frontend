@@ -24,8 +24,8 @@ const getPublicFeedThunk: AppThunk = (
     const
       { data: { articles, articlesCount } } = await fetchPublicFeed(params);
     batch(() => {
-      const publishedArticles : Array<TArticle> = articles.filter((art) => art.state === 'published');
-      dispatch(setViewFeed(publishedArticles));
+      // const publishedArticles : Array<TArticle> = articles.filter((art) => art.state === 'published');
+      dispatch(setViewFeed(articles));
       dispatch(setFeedCount(articlesCount));
       dispatch(publicFeedSucceeded());
       dispatch(setFeedType(FeedTypes.public));
