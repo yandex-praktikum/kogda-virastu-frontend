@@ -9,6 +9,7 @@ import {
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+  ADMIN_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -23,8 +24,7 @@ import {
   TAPIComment,
   TAPIProfile,
   TAPIAuth,
-  TAPIPatchUserData,
-  TAPIPatchArticleData,
+  TAPIPatchUserData, TAPIPatchArticleData, TAPIUser,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -45,6 +45,8 @@ import {
   ITag,
   IRegisterUser,
   IPostInviteGeneration,
+  IFetchUsers,
+  IPatchRoles,
 } from '../types/API.types';
 import { UPLOAD_ROUTE } from '../constants/api.constants';
 
@@ -422,13 +424,42 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
 
 export const postProfileImage = (formData: any) => {
   const postData = formData;
-
   const requestConfig : AxiosRequestConfig = {
     url: UPLOAD_ROUTE,
     method: 'post',
     data: postData,
     // contentType: 'multipart/form-data'
   };
+  return blogAPI(injectBearerToken(requestConfig));
+};
 
+export const fetchTopArticles : IFetchArticles = () : AxiosPromise<TAPIArticles> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ARTICLES_ROUTE}/top`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchUsers : IFetchUsers = () => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_ROUTE}/users`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const patchRoles : IPatchRoles = (
+  user: string,
+  roles: string[],
+) : AxiosPromise<TAPIUser> => {
+  const rolesData = {
+    roles,
+  };
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_ROUTE}/users/${user}/roles`,
+    method: 'patch',
+    data: rolesData,
+  };
   return blogAPI(injectBearerToken(requestConfig));
 };

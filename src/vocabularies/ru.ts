@@ -1,6 +1,7 @@
 import { TVocabulary } from '../types/vocabularies.types';
 
 const ru: TVocabulary = {
+  adminPanel: 'Админка',
   headerLink: 'Главная',
   userLogin: 'Войти',
   newArticle: 'Новая запись',

@@ -49,6 +49,7 @@ import {
   clearAll,
   setAllThemes,
   setAllVocabularies,
+  setUsers,
 } from './allSlice';
 
 import { setUser, clearUser } from './userSlice';
@@ -169,6 +170,12 @@ import {
   unfollowTagFailed,
   generateInviteRequested,
   generateInviteSucceeded,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  rolesPatchRequested,
+  rolesPatchSucceeded,
+  rolesPatchFailed,
   generateInviteFailed,
   copyInviteRequested,
   copyInviteSucceeded,
@@ -176,6 +183,9 @@ import {
   profileImagePostRequested,
   profileImagePostSucceeded,
   profileImagePostingFailed,
+  topArticlesRequested,
+  topArticlesSucceeded,
+  topArticlesFailed,
 } from './apiSlice';
 
 import {
@@ -350,10 +360,20 @@ export {
   generateInviteSucceeded,
   generateInviteFailed,
   setGeneratedInvite,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  setUsers,
+  rolesPatchRequested,
+  rolesPatchSucceeded,
+  rolesPatchFailed,
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
   profileImagePostRequested,
   profileImagePostSucceeded,
   profileImagePostingFailed,
+  topArticlesRequested,
+  topArticlesSucceeded,
+  topArticlesFailed,
 };

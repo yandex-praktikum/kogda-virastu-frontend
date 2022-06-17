@@ -1,6 +1,7 @@
 import { TVocabulary } from '../types/vocabularies.types';
 
 const en: TVocabulary = {
+  adminPanel: 'Admin panel',
   headerLink: 'Main Page',
   userLogin: 'Login',
   newArticle: 'New post',

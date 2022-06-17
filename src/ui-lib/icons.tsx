@@ -35,6 +35,10 @@ const avatarSize : TAvatarSize = {
     width: 230,
     height: 230,
   },
+  medium: {
+    width: 40,
+    height: 40,
+  },
   small: {
     width: 24,
     height: 24,
@@ -157,7 +161,7 @@ export const CheckIcon = styled(CheckPic)<TIconProps>`
 
 export const HomeIcon = styled(HomePic)<TIconProps>`
   width: 24px;
-  height: 24px;
+  height: 24px; 
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
   & > path {
