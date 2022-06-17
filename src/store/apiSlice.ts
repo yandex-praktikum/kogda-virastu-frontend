@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TAPIError } from '../services/api.types';
+import { TAPIError, TAPIResponse } from '../services/api.types';
 
 type TAPIState = {
   successMessage: string | null,
@@ -36,6 +36,8 @@ type TAPIState = {
   isUnfollowTag: boolean,
   isFollowTagsFetching: boolean,
   isGenerateInviteCodeFetching: boolean,
+  isUploadImageFetching: boolean,
+  uploadImageRes: TAPIResponse | null,
 };
 
 const initialState : TAPIState = {
@@ -73,6 +75,8 @@ const initialState : TAPIState = {
   isUnfollowTag: false,
   isFollowTagsFetching: false,
   isGenerateInviteCodeFetching: false,
+  isUploadImageFetching: false,
+  uploadImageRes: null,
 };
 
 const apiSlice = createSlice({
@@ -364,6 +368,18 @@ const apiSlice = createSlice({
     generateInviteCodeFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isGenerateInviteCodeFetching: false, errorObject: action.payload,
     }),
+    uploadImageRequested: (state) => ({
+      ...state, isUploadImageFetching: true,
+    }),
+    uploadImageSucceeded: (state, action: PayloadAction<TAPIResponse>) => ({
+      ...state, isUploadImageFetching: false, uploadImageRes: action.payload,
+    }),
+    resetUploadImageRes: (state) => ({
+      ...state, uploadImageRes: null,
+    }),
+    uploadImageFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUploadImageFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -458,5 +474,9 @@ export const {
   generateInviteCodeFailed,
   generateInviteCodeSucceeded,
   generateInviteCodeRequested,
+  uploadImageRequested,
+  uploadImageSucceeded,
+  uploadImageFailed,
+  resetUploadImageRes,
 } = apiSlice.actions;
 export default apiReducer;
