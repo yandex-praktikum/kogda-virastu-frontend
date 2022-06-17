@@ -56,7 +56,7 @@ const List = styled.li`
 
 const fade = keyframes`
   from {
-    opacity: 1;
+    opacity: .9;
   }
 
   to {
@@ -67,7 +67,8 @@ const fade = keyframes`
 const MessageContainer = styled.div<TMessageContainer>`
   padding: 0 16px;
   min-height: 32px;
-  background-color: rgba(10, 10, 11, 0.9);
+  background-color: ${({ theme }) => theme.primaryText};
+  opacity: .9;
   display: flex;
   max-width: 270px;
   justify-content: center;
@@ -93,6 +94,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
   const dispatch = useDispatch();
   const pointer = !rowReverse;
   const theme = useTheme();
+  console.log(theme);
   const [tagName, setTagName] = useState('');
 
   const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => {

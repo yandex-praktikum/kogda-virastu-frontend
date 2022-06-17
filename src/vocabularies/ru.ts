@@ -52,6 +52,9 @@ const ru: TVocabulary = {
   popupMessage: 'Вы подписались на тег #',
   userList: 'Список пользователей',
   tagsTitle: 'Теги',
+  user: 'Пользователь',
+  admin: 'Админ',
+  makeAdmin: 'Сделать админом',
 };
 
 export default ru;

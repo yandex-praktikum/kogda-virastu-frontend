@@ -52,6 +52,9 @@ const en: TVocabulary = {
   popupMessage: 'You have subscribed to the tag #',
   userList: 'User List',
   tagsTitle: 'Tags',
+  user: 'User',
+  admin: 'Admin',
+  makeAdmin: 'Make admin',
 };
 
 export default en;

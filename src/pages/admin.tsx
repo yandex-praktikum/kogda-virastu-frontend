@@ -5,11 +5,16 @@ import { FormattedMessage } from 'react-intl';
 import { useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 import { HeaderTwoText } from '../ui-lib';
+import User from '../widgets/user';
 
 const Page = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 56px;
+  gap: 40px;
 `;
 
 const AdminPanelContainer = styled.div`
@@ -19,6 +24,8 @@ const AdminPanelTable = styled.ul`
   margin: 0;
   display: flex;
   flex-direction: column;
+  padding: 0;
+
 `;
 
 const AdminPanel = () => {
@@ -40,7 +47,9 @@ const AdminPanel = () => {
       <HeaderTwoText>
         <FormattedMessage id='userList' />
       </HeaderTwoText>
-      <AdminPanelTable />
+      <AdminPanelTable>
+        <User />
+      </AdminPanelTable>
     </Page>
   );
 };
