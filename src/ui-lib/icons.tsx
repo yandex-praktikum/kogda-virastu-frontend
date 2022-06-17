@@ -114,7 +114,7 @@ export const AvatarIcon : FC<TAvatarIconProps> = ({
     color: blue,
     style: 'solid',
   };
-  if ((!image) || (!!image && !testImageUrl(image))) {
+  if ((!image)) { //  || (!!image && !testImageUrl(image)
     return (
       <DefaultAvatar
         width={`${avatarSize[size].width}px`}
@@ -127,7 +127,7 @@ export const AvatarIcon : FC<TAvatarIconProps> = ({
     <BasicAvatar
       borderProps={borderProps}
       bordered={!!image && size === 'small'}
-      alt={name}
+      // alt={name}
       src={image}
       width={`${avatarSize[size].width}px`}
       height={`${avatarSize[size].height}px`}

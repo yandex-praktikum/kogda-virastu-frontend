@@ -173,6 +173,9 @@ import {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  profileImagePostRequested,
+  profileImagePostSucceeded,
+  profileImagePostingFailed,
 } from './apiSlice';
 
 import {
@@ -350,4 +353,7 @@ export {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  profileImagePostRequested,
+  profileImagePostSucceeded,
+  profileImagePostingFailed,
 };

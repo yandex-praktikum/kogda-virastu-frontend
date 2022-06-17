@@ -46,6 +46,7 @@ import {
   IRegisterUser,
   IPostInviteGeneration,
 } from '../types/API.types';
+import { UPLOAD_ROUTE } from '../constants/api.constants';
 
 const defaultRequestConfig : AxiosRequestConfig = {
   baseURL: API_ROOT,
@@ -416,5 +417,18 @@ export const postGenerateInvite: IPostInviteGeneration = () => {
     url: `${USER_ROUTE}/invites/new`,
     method: 'post',
   };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const postProfileImage = (formData: any) => {
+  const postData = formData;
+
+  const requestConfig : AxiosRequestConfig = {
+    url: UPLOAD_ROUTE,
+    method: 'post',
+    data: postData,
+    // contentType: 'multipart/form-data'
+  };
+
   return blogAPI(injectBearerToken(requestConfig));
 };

@@ -36,6 +36,9 @@ type TAPIState = {
   isTagUnfollowing: boolean,
   isInviteGenerating: boolean,
   isInviteCopying: boolean,
+  profileImagePosting: boolean,
+  profileImagePostingSucceeded: boolean,
+  profileImagePostingFailed: boolean,
 };
 
 const initialState : TAPIState = {
@@ -73,6 +76,9 @@ const initialState : TAPIState = {
   isTagUnfollowing: false,
   isInviteGenerating: false,
   isInviteCopying: false,
+  profileImagePosting: false,
+  profileImagePostingSucceeded: false,
+  profileImagePostingFailed: false,
 };
 
 const apiSlice = createSlice({
@@ -364,6 +370,15 @@ const apiSlice = createSlice({
     copyInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isInviteCopying: false, errorObject: action.payload,
     }),
+    profileImagePostRequested: (state) => ({
+      ...state, profileImagePosting: true, profileImagePostingSucceeded: false,
+    }),
+    profileImagePostSucceeded: (state) => ({
+      ...state, profileImagePosting: false, profileImagePostingSucceeded: true,
+    }),
+    profileImagePostingFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, profileImagePostSucceeded: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -458,5 +473,8 @@ export const {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  profileImagePostRequested,
+  profileImagePostSucceeded,
+  profileImagePostingFailed,
 } = apiSlice.actions;
 export default apiReducer;

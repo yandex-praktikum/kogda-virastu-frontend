@@ -5,7 +5,7 @@ type TUserState = {
   username: string | null;
   email: string | null;
   bio?: string | null;
-  image?: string | null;
+  image?: string | File | null;
   nickname?: string | null;
   invite: string | null;
 };

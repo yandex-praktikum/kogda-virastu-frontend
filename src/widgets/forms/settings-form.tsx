@@ -19,7 +19,7 @@ import {
   setConfirmPasswordProfile,
 } from '../../store';
 
-import { patchCurrentUserThunk } from '../../thunks';
+import { patchCurrentUserThunk, postProfileImageThunk } from '../../thunks';
 
 import {
   ButtonContainer,
@@ -66,11 +66,18 @@ const SettingsForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
+    if (profile.image !== '') {
+      dispatch(postProfileImageThunk());
+    }
     dispatch(patchCurrentUserThunk());
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
-    dispatch(setImageProfile(evt.target.value));
+    if (evt.target.files) {
+      const imageSelected = evt.target.files[0];
+      console.log(imageSelected);
+      dispatch(setImageProfile(imageSelected));
+    }
   };
 
   const changeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -104,7 +111,8 @@ const SettingsForm: FC = () => {
       </FormTitle>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={16}>
-          <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+          <FieldProfileImage onChange={changeImage} />
+          {/* <button type='button' onClick={postProfileImageThunk()}>upload</button> */}
           <FieldLogin value={username ?? ''} onChange={changeUsername} />
           <FieldNick value={nickname ?? ''} onChange={changeNickname} />
           <FieldAboutUser
