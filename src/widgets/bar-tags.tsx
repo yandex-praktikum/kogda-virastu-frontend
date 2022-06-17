@@ -12,7 +12,6 @@ type TBarTags = {
 };
 
 type TLists = {
-  isHasImage?: boolean,
   rowReverse?: boolean;
 };
 
@@ -36,7 +35,6 @@ const Lists = styled.ul<TLists>`
     padding:0;
     @media screen and (max-width:768px) {
         max-width:453px;
-        ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
      }
      
      @media screen and (max-width:600px) {
@@ -48,7 +46,6 @@ const Lists = styled.ul<TLists>`
 `;
 
 Lists.defaultProps = {
-  isHasImage: false,
   rowReverse: false,
 };
 
@@ -89,7 +86,7 @@ const MessageContainer = styled.div<TMessageContainer>`
   }
 `;
 
-const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
+const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
   const { isVisible } = useSelector((state) => state.api);
   const dispatch = useDispatch();
@@ -110,7 +107,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
   };
 
   return (
-    <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
+    <Lists rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List key={nanoid(10)}>
           <Tag
@@ -140,7 +137,6 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
 };
 
 BarTags.defaultProps = {
-  isHasImage: false,
   rowReverse: false,
 };
 
