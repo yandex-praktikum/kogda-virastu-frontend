@@ -38,6 +38,9 @@ type TAPIState = {
   areUsersFetching: boolean,
   areRolesPatching: boolean,
   isInviteCopying: boolean,
+  profileImagePosting: boolean,
+  profileImagePostingSucceeded: boolean,
+  profileImagePostingFailed: boolean,
   areArticlesRequested: boolean,
 };
 
@@ -78,6 +81,9 @@ const initialState : TAPIState = {
   areUsersFetching: false,
   areRolesPatching: false,
   isInviteCopying: false,
+  profileImagePosting: false,
+  profileImagePostingSucceeded: false,
+  profileImagePostingFailed: false,
   areArticlesRequested: false,
 };
 
@@ -388,6 +394,15 @@ const apiSlice = createSlice({
     copyInviteFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isInviteCopying: false, errorObject: action.payload,
     }),
+    profileImagePostRequested: (state) => ({
+      ...state, profileImagePosting: true, profileImagePostingSucceeded: false,
+    }),
+    profileImagePostSucceeded: (state) => ({
+      ...state, profileImagePosting: false, profileImagePostingSucceeded: true,
+    }),
+    profileImagePostingFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, profileImagePostSucceeded: false, errorObject: action.payload,
+    }),
     topArticlesRequested: (state) => ({
       ...state, areArticlesRequested: true,
     }),
@@ -497,6 +512,9 @@ export const {
   copyInviteRequested,
   copyInviteSucceeded,
   copyInviteFailed,
+  profileImagePostRequested,
+  profileImagePostSucceeded,
+  profileImagePostingFailed,
   topArticlesRequested,
   topArticlesSucceeded,
   topArticlesFailed,

@@ -15,14 +15,13 @@ import {
   setUsernameProfile,
   setEmailProfile,
   setBioProfile,
-  setImageProfile,
   setNicknameProfile,
   setFormProfile,
   setPasswordProfile,
   setConfirmPasswordProfile,
 } from '../../store';
 
-import { patchCurrentUserThunk } from '../../thunks';
+import { patchCurrentUserThunk, postImageThunk } from '../../thunks';
 
 import {
   ButtonContainer,
@@ -45,7 +44,7 @@ import {
 
 const SettingsForm: FC = () => {
   const {
-    bio, email, image, username, password, confirmPassword, nickname,
+    bio, email, username, password, confirmPassword, nickname,
   } = useSelector((state) => state.forms.profile);
 
   const profile = useSelector((state) => state.profile);
@@ -74,8 +73,12 @@ const SettingsForm: FC = () => {
     dispatch(patchCurrentUserThunk());
   };
 
-  const changeImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
-    dispatch(setImageProfile(evt.target.value));
+  const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
+    if (evt.target.files) {
+      const profileImage = new FormData();
+      profileImage.append('file', evt.target.files[0]);
+      dispatch(postImageThunk(profileImage));
+    }
   };
 
   const changeUsername: ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -111,7 +114,7 @@ const SettingsForm: FC = () => {
       </FormTitle>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={16}>
-          <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+          <FieldProfileImage onChange={changeImage} />
           <FieldLogin value={username ?? ''} onChange={changeUsername} />
           <FieldNick value={nickname ?? ''} onChange={changeNickname} />
           <FieldAboutUser
