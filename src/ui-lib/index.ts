@@ -20,6 +20,7 @@ import {
   EyeNoIcon,
   ArrowLeft,
   ArrowRight,
+  PreloaderIcon,
 } from './icons';
 
 import {
@@ -135,4 +136,5 @@ export {
   FieldInviteCode,
   ArrowLeft,
   ArrowRight,
+  PreloaderIcon,
 };

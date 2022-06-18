@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from '../services/hooks';
 import Tag from './tag';
 import { unfollowTagThunk } from '../thunks';
+import Preloader from './preloader';
 
 const FollowTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -51,7 +52,7 @@ const FollowTags: FC = () => {
     );
   }
   return (
-    <div>Loading Tags...</div>
+    <Preloader color='black' />
   );
 };
 export default FollowTags;

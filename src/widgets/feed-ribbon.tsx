@@ -7,7 +7,8 @@ import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { blue, greySecondary, primaryBlack } from '../constants/colors';
-import { TArticle } from '../types/types';
+import { TCompare } from '../types/types';
+import Preloader from './preloader';
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -46,7 +47,7 @@ const ItemWrapper = styled.li`
 `;
 
 const TabContainer = styled.div`
-  
+
   display: flex;
   gap: 16px
 `;
@@ -92,15 +93,11 @@ const FeedRibbon : FC = () => {
   }
   if (!posts) {
     return (
-      <RegularText size='large' weight={500}>
-        <FormattedMessage id='loading' />
-      </RegularText>
+      <Preloader color='black' />
     );
   }
 
-  function compare(a: TArticle, b: TArticle) : number {
-    return Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
-  }
+  const compare:TCompare = (a, b) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
 
   if (posts.length !== 0) {
     const arrayForSort = [...posts];

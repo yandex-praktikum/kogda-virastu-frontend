@@ -18,7 +18,7 @@ const ru: TVocabulary = {
   sendComment: 'Отправить комментарий',
   articleName: 'Название статьи',
   articleAbout: 'О чем статья',
-  articleImage: 'URL изображения (опционально)',
+  articleImage: 'Изображение (опционально)',
   articleText: 'Текст статьи',
   tags: 'Теги (через запятую)',
   saveArticle: 'Сохранить запись',
@@ -29,6 +29,7 @@ const ru: TVocabulary = {
   userName: 'Имя пользователя',
   userEmail: 'Email',
   password: 'Пароль',
+  profileImage: 'Изображение профиля',
   invite: 'Введите код регистрации',
   confirmPassword: 'Подтвердите пароль',
   urlImage: 'URL изображения профиля',
@@ -50,6 +51,7 @@ const ru: TVocabulary = {
   mySubscriptions: 'Мои подписки',
   zeroSubscriptions: 'У вас пока нет активных подписок',
   copyText: 'Скопировать ссылку-приглашение',
+  copyTextSuccess: 'Ссылка скопирована в буфер обмена',
 };
 
 export default ru;

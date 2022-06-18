@@ -10,6 +10,7 @@ import { TArticle } from '../types/types';
 import {
   Divider, HeaderThreeText, ArrowLeft, ArrowRight,
 } from '../ui-lib';
+import Preloader from './preloader';
 
 const SlideContainer = styled.div`
 @keyframes show{
@@ -22,7 +23,7 @@ opacity:1;
 }
 opacity:0;
 transition: 1s;
-animation: show 3s 1;
+animation: show 1s 1;
 animation-fill-mode: forwards;
 animation-delay: 0s;
 display: flex;
@@ -101,6 +102,11 @@ const Slider: FC = () => {
       setPage(page + step);
     }
   };
+  if (data.length === 0) {
+    return (
+      <Preloader color='black' />
+    );
+  }
   return (
     <SlidersContainer>
       <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
@@ -126,7 +132,7 @@ const Slider: FC = () => {
               );
             })
           }
-          <ArrowRight color='$secondary-text' onClick={() => onClickArrow(1)} />
+          <ArrowRight color='$secondary-text' onClick={() => onClickArrow(+1)} />
         </>
       </BuletBar>
       <Divider distance={24} />
