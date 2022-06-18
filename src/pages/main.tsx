@@ -4,10 +4,7 @@ import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/popular-tags';
 import { useSelector, useDispatch } from '../services/hooks';
-import {
-  setTopLikedThunk,
-  setNewPostsThunk,
-} from '../thunks';
+import { setTopLikedThunk, setNewPostsThunk } from '../thunks';
 import { Slider } from '../widgets';
 import TabArticle from '../widgets/tab-article';
 import { Preloader } from '../ui-lib';
@@ -15,7 +12,8 @@ import { Preloader } from '../ui-lib';
 const MainSection = styled.main`
   display: flex;
   justify-content: center;
-  margin: 0;`;
+  margin: 0;
+`;
 
 const MainContainer = styled.div`
   display: flex;
@@ -104,24 +102,25 @@ const Main: FC = () => {
     }
   }, [dispatch, articles]);
 
-  if (loading) return <Preloader />;
-
   return (
-    <MainSection>
-      <MainContainer>
-        <LeftColumn>
-          <TabArticle />
-        </LeftColumn>
-        <RightColumn>
-          <PopularTags />
-          {window.innerWidth < 765 && <Slider />}
-          {window.innerWidth >= 765 && (
-            <TopAnnounceWidget
-              caption={intl.messages.popularContent as string} />
-          )}
-        </RightColumn>
-      </MainContainer>
-    </MainSection>
+    <>
+      {loading && <Preloader />}
+      <MainSection>
+        <MainContainer>
+          <LeftColumn>
+            <TabArticle />
+          </LeftColumn>
+          <RightColumn>
+            <PopularTags />
+            {window.innerWidth < 765 && <Slider />}
+            {window.innerWidth >= 765 && (
+              <TopAnnounceWidget
+                caption={intl.messages.popularContent as string} />
+            )}
+          </RightColumn>
+        </MainContainer>
+      </MainSection>
+    </>
   );
 };
 export default Main;
