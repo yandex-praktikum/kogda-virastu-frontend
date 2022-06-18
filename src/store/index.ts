@@ -81,6 +81,7 @@ import {
   setArtistProfile,
   clearPage,
   setTopFeed,
+  setNewFeed,
   clearTopFeed,
 } from './viewSlice';
 
@@ -376,4 +377,5 @@ export {
   topArticlesRequested,
   topArticlesSucceeded,
   topArticlesFailed,
+  setNewFeed,
 };

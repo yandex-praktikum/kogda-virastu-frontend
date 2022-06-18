@@ -7,10 +7,10 @@ import {
   Article,
   CommentInput,
   CommentList,
-  TopAnnounceWidget,
+  NewAnnounceWidget,
 } from '../widgets';
 import {
-  getArticleThunk, getCommentsThunk, setNewPostsThunk,
+  getArticleThunk, getCommentsThunk, setNewPostsThunk, setTopLikedThunk,
 } from '../thunks';
 import {
   clearArticleFetchNotFound, clearErrorMessage, clearErrorObject, resetArticle,
@@ -114,6 +114,7 @@ const ArticlePage: FC = () => {
   useEffect(() => {
     if (articles && articles?.length > 0) {
       dispatch(setNewPostsThunk());
+      dispatch(setTopLikedThunk());
     }
   }, [dispatch, articles]);
 
@@ -149,9 +150,8 @@ const ArticlePage: FC = () => {
         {!!slug && <CommentList slug={slug} />}
       </ArticlePageWrapper>
       <RightColumn>
-
         <Slider />
-        <TopAnnounceWidget caption={intl.messages.freshContent as string} />
+        <NewAnnounceWidget caption={intl.messages.freshContent as string} />
       </RightColumn>
     </ArticleSection>
   );

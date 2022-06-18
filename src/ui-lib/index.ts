@@ -22,6 +22,7 @@ import {
 
 import {
   EditPostButton,
+  ConfirmErrorButton,
   DeletePostButton,
   OpenMenuButton,
   FollowButton,
@@ -94,6 +95,7 @@ export {
   EyeIcon,
   EyeNoIcon,
   EditPostButton,
+  ConfirmErrorButton,
   DeletePostButton,
   OpenMenuButton,
   FollowButton,
