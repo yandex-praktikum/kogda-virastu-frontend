@@ -110,3 +110,7 @@ export type TAPIInvite = {
 export type TAPIUsers = {
   users: Array<TUser>;
 };
+
+export type TAPIRolesData = {
+  roles?: Array<string>;
+};

@@ -95,7 +95,6 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
   const pointer = !rowReverse;
   const theme = useTheme();
   const [tagName, setTagName] = useState('');
-
   const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => {
     e.preventDefault();
     if (pointer) {

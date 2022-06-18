@@ -29,6 +29,8 @@ import {
   TAPIPatchArticleData,
   TAPIInvite,
   TAPIUsers,
+  TAPIRolesData,
+  TAPIUser,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -49,6 +51,7 @@ import {
   ITag,
   IInvite,
   IFetchAllUsers,
+  IPatchUserRoles,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -419,6 +422,18 @@ export const fetchAllUsers : IFetchAllUsers = () : AxiosPromise<TAPIUsers> => {
   const requestConfig: AxiosRequestConfig = {
     url: ADMIN_USERS_ROUTE,
     method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const patchUserRoles : IPatchUserRoles = (
+  slug: string,
+  data: TAPIRolesData,
+) : AxiosPromise<TAPIUser> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_USERS_ROUTE}/${slug}/roles`,
+    method: 'patch',
+    data,
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

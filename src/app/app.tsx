@@ -23,7 +23,6 @@ import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
-
 import { IGenericVoidHandler } from '../types/widgets.types';
 import getTagsFollowThunk from '../thunks/get-tags-follow-thunk';
 import AdminPanel from '../pages/admin';

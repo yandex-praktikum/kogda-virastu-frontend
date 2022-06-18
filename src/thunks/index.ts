@@ -21,6 +21,7 @@ import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
 import getInviteThunk from './get-invite-thunk';
+import patchUserRolesThunk from './patch-user-roles-thunk';
 
 export {
   createCommentThunk,
@@ -46,4 +47,5 @@ export {
   setNewPostsThunk,
   getAllPostsThunk,
   getInviteThunk,
+  patchUserRolesThunk,
 };

@@ -175,6 +175,9 @@ import {
   allUsersFetchRequested,
   allUsersFetchSucceeded,
   allUsersFetchFailed,
+  userRolesFetchRequested,
+  userRolesFetchSucceeded,
+  userRolesFetchFailed,
 } from './apiSlice';
 
 import {
@@ -358,4 +361,7 @@ export {
   setAllUsers,
   allUsersFetchSucceeded,
   allUsersFetchFailed,
+  userRolesFetchRequested,
+  userRolesFetchSucceeded,
+  userRolesFetchFailed,
 };

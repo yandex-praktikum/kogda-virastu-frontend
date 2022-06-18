@@ -13,6 +13,7 @@ import {
   TAPITag,
   TAPIInvite,
   TAPIUsers,
+  TAPIRolesData,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -94,6 +95,10 @@ export interface IInvite {
 
 export interface IFetchAllUsers {
   () : AxiosPromise<TAPIUsers>;
+}
+
+export interface IPatchUserRoles {
+  (slug: string, data: TAPIRolesData) : AxiosPromise<TAPIUser>;
 }
 
 export type {
