@@ -56,6 +56,10 @@ const ru: TVocabulary = {
   generateInvite: 'Сгенерировать код',
   copyInvite: 'Скопировать ссылку-приглашение',
   inviteCopied: 'Ссылка скопирована в буфер обмена',
+  makeAdmin: 'Сделать админом',
+  userList: 'Список пользователей',
+  admin: 'Админ',
+  user: 'Пользователь',
 };
 
 export default ru;

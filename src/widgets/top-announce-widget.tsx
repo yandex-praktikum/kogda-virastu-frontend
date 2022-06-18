@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from '../services/hooks';
@@ -47,6 +46,12 @@ const ItemWrapper = styled.li`
   margin-inline-start: 0;
   margin-inline-end: 0;
   padding-inline-start: 0;
+
+  .link {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+  }
 `;
 
 const TopAnnounceWidget: FC<TTopAnnounceWidgetProps> = ({ caption }) => {
@@ -72,6 +77,7 @@ const TopAnnounceWidget: FC<TTopAnnounceWidgetProps> = ({ caption }) => {
               <ItemWrapper key={slug}>
                 {!!index && <Divider distance={24} />}
                 <BriefPostAnnounceWidget
+                  slug={slug}
                   username={username}
                   nickname={nickname ?? username}
                   image={image}
