@@ -147,8 +147,8 @@ const SettingsForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    
-    if (!passwordConfirmation)  {
+
+    if (!passwordConfirmation) {
       const files = fileInput.current?.files;
       const file = files && files.length ? files[0] : null;
       dispatch(patchCurrentUserThunk(file));
