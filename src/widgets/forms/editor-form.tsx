@@ -187,7 +187,7 @@ const EditorForm: FC = () => {
             }
             onChange={onChangeDescription} />
           <FieldUrl
-            value={selectedFileName || link || ''}
+            value={link === '' ? '' : selectedFileName || link || initialArticle?.link || ''}
             onChange={onChangeImage}
             onFocus={onFocusImage}
             fileInputRef={fileInput}
