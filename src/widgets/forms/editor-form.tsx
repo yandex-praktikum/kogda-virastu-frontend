@@ -1,5 +1,5 @@
 import React, {
-  useEffect, FC, ChangeEventHandler, FormEventHandler, useState, useRef,
+  FC, ChangeEventHandler, FormEventHandler, FocusEventHandler, useEffect, useState, useRef,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -59,6 +59,7 @@ const EditorForm: FC = () => {
   const initialArticle = useSelector((state) => state.view.article);
   const [isPosted, setPostRequested] = useState(false);
   const [isRemoving, setRemoveState] = useState(false);
+  const [selectedFileName, setSelectedFileName] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -122,6 +123,19 @@ const EditorForm: FC = () => {
     dispatch(setImage(evt.target.value));
   };
 
+  const onFocusImage: FocusEventHandler<HTMLInputElement> = () => {
+    if (fileInput.current) {
+      setSelectedFileName('');
+      fileInput.current.value = '';
+    }
+  };
+
+  const onSelectFile = () => {
+    const files = fileInput.current?.files;
+    const fileName = (files && files.length && files[0].name) || '';
+    setSelectedFileName(`Выбран файл: ${fileName}`);
+  };
+
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     setPostRequested(true);
@@ -173,9 +187,11 @@ const EditorForm: FC = () => {
             }
             onChange={onChangeDescription} />
           <FieldUrl
-            value={link === '' ? '' : link || initialArticle?.link || ''}
-            onChange={onChangeImage} />
-          <input type='file' multiple name='data' ref={fileInput} />
+            value={selectedFileName || link || ''}
+            onChange={onChangeImage}
+            onFocus={onFocusImage}
+            fileInputRef={fileInput}
+            onSelectFile={onSelectFile} />
           <FieldTextArticle
             value={body === '' ? '' : body || initialArticle?.body || ''}
             onChange={onChangeBody}

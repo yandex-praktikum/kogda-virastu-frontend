@@ -12,11 +12,11 @@ const InputStyle = styled.input<{ error: boolean }>`
 `;
 
 const ContainerInput = styled.div`
-     width: 100%;
-     margin: 0;
-     padding: 0;
-    position: relative;
-     display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
@@ -29,6 +29,7 @@ const ContainerIcon = styled.div`
   position: absolute;
   top:32px;
   right:16px;
+  cursor: pointer;
 `;
 
 interface IInputInterface {

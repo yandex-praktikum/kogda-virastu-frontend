@@ -12,7 +12,7 @@ import {
 import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError, TAPIPatchUserData } from '../services/api.types';
-import { ROOT } from '../constants/api.constants';
+import { API_ROOT } from '../constants/api.constants';
 
 const patchCurrentUserThunk: AppThunk = (file: File) => async (dispatch, getState) => {
   dispatch(settingsPatchRequested());
@@ -35,13 +35,13 @@ const patchCurrentUserThunk: AppThunk = (file: File) => async (dispatch, getStat
       const {
         data: {
           user: {
-            username, email, bio, nickname,
+            username, email, bio, image, nickname,
           },
         },
-      } = await patchCurrentUser(userData);
+      } = await patchCurrentUser({ ...userData, image: `${API_ROOT}${url}` });
       batch(() => {
         dispatch(setUser({
-          username, email, bio, image: `${ROOT}${url}`, nickname,
+          username, email, bio, image, nickname,
         }));
         dispatch(resetFormProfile());
         dispatch(settingsPatchSucceeded());

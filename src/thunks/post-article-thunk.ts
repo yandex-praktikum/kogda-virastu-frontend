@@ -9,7 +9,7 @@ import { postArticle, uploadImage } from '../services/api';
 import { makeErrorObject } from '../services/helpers';
 import makeTagList from '../services/helpers/make-tagList';
 import { TAPIError } from '../services/api.types';
-import { ROOT } from '../constants/api.constants';
+import { API_ROOT } from '../constants/api.constants';
 
 const postArticleThunk: AppThunk = (file: File) => async (dispatch, getState) => {
   dispatch(articlePostRequested());
@@ -26,7 +26,7 @@ const postArticleThunk: AppThunk = (file: File) => async (dispatch, getState) =>
         description,
         body,
         tagList,
-        link: `${ROOT}${url}`,
+        link: `${API_ROOT}${url}`,
       });
       dispatch(articlePostSucceeded());
     } else {
