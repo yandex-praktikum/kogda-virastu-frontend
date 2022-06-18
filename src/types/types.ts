@@ -7,6 +7,12 @@ export type TUser = {
   nickname?: string;
   friendInvite?: string,
   confirmPassword?: null | string,
+  roles?: Array<string>,
+  _id?: string,
+};
+
+export type TUsers = {
+  users: Array<TUser>,
 };
 
 // Исправлено и переименовано по модели данных сервера

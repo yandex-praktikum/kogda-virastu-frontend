@@ -1,5 +1,6 @@
 import React, { FC, MouseEvent, useState } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
 import Tag from './tag';
@@ -55,7 +56,7 @@ const List = styled.li`
 
 const fade = keyframes`
   from {
-    opacity: 1;
+    opacity: .9;
   }
 
   to {
@@ -66,7 +67,8 @@ const fade = keyframes`
 const MessageContainer = styled.div<TMessageContainer>`
   padding: 0 16px;
   min-height: 32px;
-  background-color: rgba(10, 10, 11, 0.9);
+  background-color: ${({ theme }) => theme.primaryText};
+  opacity: .9;
   display: flex;
   max-width: 270px;
   justify-content: center;
@@ -93,7 +95,6 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
   const pointer = !rowReverse;
   const theme = useTheme();
   const [tagName, setTagName] = useState('');
-
   const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => {
     e.preventDefault();
     if (pointer) {
@@ -125,7 +126,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
                 color={theme.button.blue.font}
                 align='center'
                 sansSerif>
-                Вы подписались на тег #
+                <FormattedMessage id='popupMessage' />
                 {tagName}
               </RegularText>
             </MessageContainer>

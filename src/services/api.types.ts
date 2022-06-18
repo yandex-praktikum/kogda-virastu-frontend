@@ -22,7 +22,7 @@ export type TAPIAuth = {
     image?: string;
     token: string;
     nickname: string,
-    invite?: string
+    invite?: string,
   };
 };
 
@@ -104,5 +104,13 @@ export type TAPITag = {
 };
 
 export type TAPIInvite = {
-  code: TInvite
+  code: TInvite;
+};
+
+export type TAPIUsers = {
+  users: Array<TUser>;
+};
+
+export type TAPIRolesData = {
+  roles?: Array<string>;
 };

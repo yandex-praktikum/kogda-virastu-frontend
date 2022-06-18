@@ -9,6 +9,7 @@ type TUserState = {
   nickname?: string | null,
   roles?: Array<string>,
   friendInvite: string | null,
+  roles?: Array<string> | null,
 };
 
 const initialState: TUserState = {
@@ -19,6 +20,7 @@ const initialState: TUserState = {
   nickname: null,
   roles: [],
   friendInvite: null,
+  roles: null,
 };
 
 const userSlice = createSlice({
