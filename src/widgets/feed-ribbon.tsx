@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
-import { RegularText, Divider } from '../ui-lib';
+import { RegularText, Divider, Preloader } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 
@@ -77,12 +77,9 @@ const FeedRibbon : FC = () => {
   }, [dispatch]);
 
   if (!posts || isPublicFeedFetching) {
-    return (
-      <RegularText size='large' weight={500}>
-        <FormattedMessage id='loading' />
-      </RegularText>
-    );
+    return <Preloader />;
   }
+
   return (
     <ScrollRibbon>
       <RibbonWrapper>

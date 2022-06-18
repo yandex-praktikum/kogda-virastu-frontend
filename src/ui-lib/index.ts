@@ -70,6 +70,8 @@ import {
 
 import Divider from './divider';
 
+import Preloader from './preloader';
+
 const GlobalStyles = createGlobalStyle`
   ${normalize}
 `;
@@ -131,4 +133,5 @@ export {
   MenuLogoutButton,
   FieldTextComment,
   MenuAdminButton,
+  Preloader,
 };

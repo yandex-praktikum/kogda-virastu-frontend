@@ -11,6 +11,7 @@ import {
 } from '../thunks';
 import { Slider } from '../widgets';
 import TabArticle from '../widgets/tab-article';
+import { Preloader } from '../ui-lib';
 
 const MainSection = styled.main`
   display: flex;
@@ -96,6 +97,7 @@ const Main: FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
+  const { loading } = useSelector((state) => state.api);
 
   useEffect(() => {
     batch(() => {
@@ -108,6 +110,9 @@ const Main: FC = () => {
       dispatch(setTopLikedThunk());
     }
   }, [dispatch, articles]);
+
+  if (loading) return <Preloader />;
+
   return (
     <MainSection>
       <MainContainer>

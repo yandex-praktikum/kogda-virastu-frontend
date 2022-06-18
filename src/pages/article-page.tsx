@@ -18,6 +18,7 @@ import {
 } from '../store';
 import Slider from '../widgets/slider';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
+import { Preloader } from '../ui-lib';
 
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
@@ -103,7 +104,7 @@ const ArticlePage: FC = () => {
   const { isLoggedIn } = useSelector((state) => state.system);
   const intl = useIntl();
   const { slug } = useParams();
-  const { isArticleNotFound, isArticleRemoved } = useSelector((state) => state.api);
+  const { isArticleNotFound, isArticleRemoved, loading } = useSelector((state) => state.api);
   const { articles } = useSelector((state) => state.all);
 
   useEffect(() => {
@@ -136,6 +137,8 @@ const ArticlePage: FC = () => {
       navigate('/');
     }
   }, [navigate, isArticleRemoved]);
+
+  if (loading) return <Preloader />;
 
   return (
     <ArticleSection>
