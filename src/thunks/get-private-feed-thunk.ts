@@ -9,7 +9,7 @@ import {
   setViewFeed,
 } from '../store';
 import { AppThunk } from '../store/store.types';
-import { makeErrorObject } from '../services/helpers';
+import { makeErrorObject, makeErrorMessage } from '../services/helpers';
 import { TAPIError, TAPIParamsObject } from '../services/api.types';
 
 const getPrivateFeedThunk: AppThunk = (

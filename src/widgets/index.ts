@@ -10,6 +10,7 @@ import TopAnnounceWidget from './top-announce-widget';
 import Comment from './comment';
 import CommentInput from './comment-input';
 import Modal from './modal';
+import ErrorModal from './error-modal';
 import CommentList from './comment-list';
 import Article from './article';
 import LoginForm from './forms/login-form';
@@ -34,6 +35,7 @@ export {
   Comment,
   CommentInput,
   Modal,
+  ErrorModal,
   Article,
   LoginForm,
   RegisterForm,

@@ -432,3 +432,10 @@ export const CopyInviteButton : FC<TButtonProps> = ({ onClick, disabled = false 
     </RegularText>
   </MarginedNormalButton>
 );
+export const ConfirmErrorButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <MarginedNormalButton colorScheme='blue' disabled={disabled} type='button' onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='confirmError' />
+    </RegularText>
+  </MarginedNormalButton>
+);

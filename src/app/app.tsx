@@ -13,7 +13,7 @@ import {
   getPopularTags,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
-import { closeConfirm, setLanguage } from '../store';
+import { closeConfirm, setLanguage, clearErrorObject } from '../store';
 import Header from '../widgets/Header';
 import Footer from '../widgets/Footer';
 import Profile from '../pages/profile';
@@ -25,7 +25,7 @@ import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import Admin from '../pages/admin';
-import { Modal } from '../widgets';
+import { Modal, ErrorModal } from '../widgets';
 import { IGenericVoidHandler } from '../types/widgets.types';
 
 const App = () => {
@@ -35,6 +35,7 @@ const App = () => {
   const { isDeleteConfirmOpen } = useSelector((state) => state.system);
   const { username, nickname } = useSelector((state) => state.profile);
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
+  const { errorObject } = useSelector((state) => state.api);
   const onConfirmDelete: IGenericVoidHandler = () => {
     batch(() => {
       dispatch(deleteArticleThunk(slug));
@@ -42,6 +43,7 @@ const App = () => {
     });
   };
   const onConfirmClose: IGenericVoidHandler = () => dispatch(closeConfirm());
+  const onConfirmErrorClose: IGenericVoidHandler = () => dispatch(clearErrorObject());
 
   useEffect(() => {
     batch(() => {
@@ -86,6 +88,9 @@ const App = () => {
         <Footer />
         {isDeleteConfirmOpen && (
           <Modal onClose={onConfirmClose} onSubmit={onConfirmDelete} />
+        )}
+        {errorObject && (
+          <ErrorModal onClose={onConfirmErrorClose} onSubmit={onConfirmErrorClose} />
         )}
       </ThemeProvider>
     </IntlProvider>

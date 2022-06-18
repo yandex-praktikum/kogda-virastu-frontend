@@ -69,6 +69,10 @@ const SubscribedFeedRibbon : FC = () => {
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
+  const isLogged = useSelector(
+    (state) => state.system.isLoggedIn
+      && !!state.profile.username,
+  );
 
   useEffect(() => {
     batch(() => {
@@ -83,30 +87,37 @@ const SubscribedFeedRibbon : FC = () => {
       </RegularText>
     );
   }
+  if (isLogged) {
+    return (
+      <ScrollRibbon>
+        <RibbonWrapper>
+          {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
+              || !tags
+              || tags.length < 1))).map((post) => {
+            const onClick : MouseEventHandler = () => {
+              if (post.favorited) {
+                dispatch(deleteLikeThunk(post.slug));
+              } else {
+                dispatch(addLikeThunk(post.slug));
+              }
+            };
+            return (
+              <ItemWrapper key={post.slug}>
+                <ArticleFullPreview
+                  article={post}
+                  onLikeClick={onClick} />
+                {window.innerWidth > 765 && <Divider width={111} distance={0} />}
+              </ItemWrapper>
+            );
+          })}
+        </RibbonWrapper>
+      </ScrollRibbon>
+    );
+  }
   return (
-    <ScrollRibbon>
-      <RibbonWrapper>
-        {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
-            || !tags
-            || tags.length < 1))).map((post) => {
-          const onClick : MouseEventHandler = () => {
-            if (post.favorited) {
-              dispatch(deleteLikeThunk(post.slug));
-            } else {
-              dispatch(addLikeThunk(post.slug));
-            }
-          };
-          return (
-            <ItemWrapper key={post.slug}>
-              <ArticleFullPreview
-                article={post}
-                onLikeClick={onClick} />
-              {window.innerWidth > 765 && <Divider width={111} distance={0} />}
-            </ItemWrapper>
-          );
-        })}
-      </RibbonWrapper>
-    </ScrollRibbon>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='errorUnathorized' />
+    </RegularText>
   );
 };
 
