@@ -147,9 +147,12 @@ const SettingsForm: FC = () => {
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    const files = fileInput.current?.files;
-    const file = files && files.length ? files[0] : null;
-    dispatch(patchCurrentUserThunk(file));
+    
+    if (!passwordConfirmation)  {
+      const files = fileInput.current?.files;
+      const file = files && files.length ? files[0] : null;
+      dispatch(patchCurrentUserThunk(file));
+    }
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -215,7 +218,11 @@ const SettingsForm: FC = () => {
               minHeight={theme.text18.height * 5} />
             <FieldEmail value={email ?? ''} onChange={changeEmail} />
             <FieldPassword value={password ?? ''} onChange={changePassword} />
-            <ConfirmPassword value={confirmPassword ?? ''} error={passwordConfirmation} onChange={onConfirmPassword} />
+            <ConfirmPassword
+              value={confirmPassword ?? ''}
+              error={passwordConfirmation}
+              onChange={onConfirmPassword}
+              required={password as unknown as boolean} />
           </InputFieldset>
           <ButtonContainerFlexStart>
             <GenerateInviteCode onClick={GenerateInviteCodeHandler} />
