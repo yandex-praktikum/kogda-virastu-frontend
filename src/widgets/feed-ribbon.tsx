@@ -8,7 +8,6 @@ import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { blue, greySecondary, primaryBlack } from '../constants/colors';
 import { TCompare } from '../types/types';
-import Preloader from './preloader';
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -47,7 +46,7 @@ const ItemWrapper = styled.li`
 `;
 
 const TabContainer = styled.div`
-
+  
   display: flex;
   gap: 16px
 `;
@@ -61,7 +60,7 @@ const Button = styled.button<IButtonProps>`
     color: ${greySecondary};
     border: none;
     ${({ active }) => active && `
-    border-bottom: 2px solid ${blue}; 
+    border-bottom: 2px solid ${blue};
     color: ${primaryBlack};
   `}
     cursor: pointer;
@@ -93,7 +92,9 @@ const FeedRibbon : FC = () => {
   }
   if (!posts) {
     return (
-      <Preloader color='black' />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='loading' />
+      </RegularText>
     );
   }
 

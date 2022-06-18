@@ -6,7 +6,6 @@ import { Divider, RegularText } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
-import Preloader from './preloader';
 
 const RibbonWrapper = styled.ul`
   width: 100%;
@@ -56,7 +55,7 @@ const ProfileFeed : FC = () => {
   if (!posts || isPublicFeedFetching) {
     return (
       <RegularText size='large' weight={500}>
-        <Preloader color='black' />
+        <FormattedMessage id='loading' />
       </RegularText>
     );
   }

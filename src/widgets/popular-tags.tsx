@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
 import { HeaderThreeText } from '../ui-lib';
-import Preloader from './preloader';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -69,7 +68,7 @@ const PopularTags: FC = () => {
     );
   }
   return (
-    <Preloader color='black' />
+    <div>Loading Tags...</div>
   );
 };
 export default PopularTags;

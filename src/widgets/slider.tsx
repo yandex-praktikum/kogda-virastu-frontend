@@ -10,7 +10,6 @@ import { TArticle } from '../types/types';
 import {
   Divider, HeaderThreeText, ArrowLeft, ArrowRight,
 } from '../ui-lib';
-import Preloader from './preloader';
 
 const SlideContainer = styled.div`
 @keyframes show{
@@ -102,11 +101,7 @@ const Slider: FC = () => {
       setPage(page + step);
     }
   };
-  if (data.length === 0) {
-    return (
-      <Preloader color='black' />
-    );
-  }
+
   return (
     <SlidersContainer>
       <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
