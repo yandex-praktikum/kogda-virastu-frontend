@@ -42,7 +42,6 @@ const Profile: FC = () => {
       dispatch(clearView());
     };
   }, [dispatch, username]);
-  console.log(profile);
 
   useEffect(() => {
     if (!!profile.username && !!totalCount) {

@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
 import { TArticle } from '../types/types';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
@@ -77,17 +76,16 @@ const TopAnnounceWidget: FC<TTopAnnounceWidgetProps> = ({ caption }) => {
             return (
               <ItemWrapper key={slug}>
                 {!!index && <Divider distance={24} />}
-                <Link className='link' to={`/article/${slug}`}>
-                  <BriefPostAnnounceWidget
-                    username={username}
-                    nickname={nickname ?? username}
-                    image={image}
-                    title={title}
-                    date={new Date(createdAt)}
-                    isLiked={favorited}
-                    likesCount={favoritesCount}
-                    onLikeClick={nope} />
-                </Link>
+                <BriefPostAnnounceWidget
+                  slug={slug}
+                  username={username}
+                  nickname={nickname ?? username}
+                  image={image}
+                  title={title}
+                  date={new Date(createdAt)}
+                  isLiked={favorited}
+                  likesCount={favoritesCount}
+                  onLikeClick={nope} />
               </ItemWrapper>
             );
           })}

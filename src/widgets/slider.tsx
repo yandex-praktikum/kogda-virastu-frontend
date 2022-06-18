@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, {
   FC, useState, MouseEventHandler,
 } from 'react';
-import { Link } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { LeftArrowIcon, RightArrowIcon } from '../ui-lib/icons';
 import BuletSlider from '../ui-lib/buledSlider';
@@ -36,15 +35,15 @@ width: 100%;
   }
 `;
 const SlidersContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-bottom: 22px;
-width: 100%;
-@media screen and (max-width: 765px) {
-    
-    margin-bottom: 0;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+  width: 100%;
+
+  @media screen and (max-width: 765px) {
+      margin-bottom: 0;
+  }
 `;
 type TSlide = {
   data: TArticle;
@@ -69,18 +68,16 @@ const Slide: FC<TSlide> = ({ data, name, page }) => {
   if (page === name) {
     return (
       <SlideContainer>
-        <Link className='link' to={`/article/${slug}`}>
-          <BriefPostAnnounceWidget
-            key={slug}
-            username={username}
-            nickname={nickname ?? username}
-            title={title}
-            image={image}
-            date={new Date(createdAt)}
-            isLiked={favorited}
-            likesCount={favoritesCount}
-            onLikeClick={nope} />
-        </Link>
+        <BriefPostAnnounceWidget
+          key={slug}
+          username={username}
+          nickname={nickname ?? username}
+          title={title}
+          image={image}
+          date={new Date(createdAt)}
+          isLiked={favorited}
+          likesCount={favoritesCount}
+          onLikeClick={nope} />
       </SlideContainer>
     );
   }
