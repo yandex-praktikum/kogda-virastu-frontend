@@ -60,6 +60,10 @@ const ru: TVocabulary = {
   errorLogin: 'Неверно введена пара логин/пароль',
   errorNotAdmin: 'У вас нет прав доступа к этой странице',
   confirmError: 'Ок',
+  makeAdmin: 'Сделать админом',
+  userList: 'Список пользователей',
+  admin: 'Админ',
+  user: 'Пользователь',
 };
 
 export default ru;

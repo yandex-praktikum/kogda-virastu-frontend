@@ -2,7 +2,6 @@ import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   Article,
@@ -107,11 +106,9 @@ const ArticlePage: FC = () => {
   const { articles } = useSelector((state) => state.all);
 
   useEffect(() => {
-    batch(() => {
-      dispatch(resetArticle());
-      dispatch(getCommentsThunk(slug));
-      dispatch(getArticleThunk(slug));
-    });
+    dispatch(resetArticle());
+    dispatch(getCommentsThunk(slug));
+    dispatch(getArticleThunk(slug));
   }, [dispatch, slug]);
 
   useEffect(() => {
@@ -122,11 +119,9 @@ const ArticlePage: FC = () => {
 
   useEffect(() => {
     if (isArticleNotFound) {
-      batch(() => {
-        dispatch(clearArticleFetchNotFound());
-        dispatch(clearErrorObject());
-        dispatch(clearErrorMessage());
-      });
+      dispatch(clearArticleFetchNotFound());
+      dispatch(clearErrorObject());
+      dispatch(clearErrorMessage());
       navigate('/no-article');
     }
   }, [dispatch, navigate, isArticleNotFound]);

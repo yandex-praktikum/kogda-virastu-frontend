@@ -60,6 +60,10 @@ const en: TVocabulary = {
   errorLogin: 'Incorrect login or password',
   errorNotAdmin: 'You have no rights to access this page',
   confirmError: 'Ok',
+  makeAdmin: 'Make admin',
+  userList: 'User list',
+  admin: 'Admin',
+  user: 'User',
 };
 
 export default en;

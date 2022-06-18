@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 import {
@@ -37,24 +36,19 @@ const App = () => {
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
   const { errorObject } = useSelector((state) => state.api);
   const onConfirmDelete: IGenericVoidHandler = () => {
-    batch(() => {
-      dispatch(deleteArticleThunk(slug));
-      dispatch(closeConfirm());
-    });
+    dispatch(deleteArticleThunk(slug));
+    dispatch(closeConfirm());
   };
   const onConfirmClose: IGenericVoidHandler = () => dispatch(closeConfirm());
   const onConfirmErrorClose: IGenericVoidHandler = () => dispatch(clearErrorObject());
 
   useEffect(() => {
-    batch(() => {
-      dispatch(getAllPostsThunk());
-      dispatch(getPopularTags());
-    });
+    dispatch(getAllPostsThunk());
+    dispatch(getPopularTags());
+
     if (jwt.test()) {
-      batch(() => {
-        dispatch(getUserThunk());
-        dispatch(getPublicFeedThunk());
-      });
+      dispatch(getUserThunk());
+      dispatch(getPublicFeedThunk());
     }
   }, [dispatch, username, nickname]);
 

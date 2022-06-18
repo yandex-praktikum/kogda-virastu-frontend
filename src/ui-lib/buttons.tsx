@@ -31,6 +31,7 @@ type TBasicButtonProps = {
 
 export const BasicNormalButton = styled.button<TBasicButtonProps>`
  // width: 100%;
+  cursor: pointer;
   max-height: 40px;
   padding: 8px 16px;
   border-radius: 4px;

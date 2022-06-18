@@ -1,7 +1,6 @@
 import React, { FC, MouseEventHandler, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import { RegularText, Divider } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
@@ -75,9 +74,7 @@ const SubscribedFeedRibbon : FC = () => {
   );
 
   useEffect(() => {
-    batch(() => {
-      dispatch(getPrivateFeedThunk());
-    });
+    dispatch(getPrivateFeedThunk());
   }, [dispatch]);
 
   if (!posts || isPublicFeedFetching) {
