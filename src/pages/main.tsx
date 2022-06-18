@@ -88,10 +88,11 @@ const RightColumn = styled.aside`
     }
   }
 `;
-const Main : FC = () => {
+const Main: FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
+  const { isLoggedIn } = useSelector((state) => state.system);
 
   useEffect(() => {
     batch(() => {
@@ -115,7 +116,7 @@ const Main : FC = () => {
     <MainSection>
       <MainContainer>
         <LeftColumn>
-          <FeedFilter />
+          {isLoggedIn && <FeedFilter />}
           <FeedRibbon />
         </LeftColumn>
         <RightColumn>
