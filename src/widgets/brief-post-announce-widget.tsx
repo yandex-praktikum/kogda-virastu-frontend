@@ -45,7 +45,6 @@ const BriefPostAnnounceWidget : React.FC<TBriefPostAnnounceProps> = ({
         isLiked={isLiked}
         likesCount={likesCount}
         onLikeClick={onLikeClick} />
-      {/* eslint-disable-next-line */}
       <HeaderFiveText onClick={() => navigate(`/article/${slug}`)} marginCSS='margin-right: 70px;' color={primaryBlack}>
         {title}
       </HeaderFiveText>

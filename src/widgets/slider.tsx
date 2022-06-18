@@ -69,6 +69,7 @@ const Slide: FC<TSlide> = ({ data, name, page }) => {
     return (
       <SlideContainer>
         <BriefPostAnnounceWidget
+          slug={slug}
           key={slug}
           username={username}
           nickname={nickname ?? username}

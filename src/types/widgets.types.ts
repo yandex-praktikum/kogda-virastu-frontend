@@ -23,7 +23,7 @@ export type TCommentAuthorHeadingProps = {
 
 export type TBriefPostAnnounceProps = {
   image?: string;
-  slug?: string;
+  slug: string;
   username: string;
   nickname: string;
   title: string;
