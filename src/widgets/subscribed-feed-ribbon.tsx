@@ -1,7 +1,6 @@
 import React, { FC, MouseEventHandler, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import { RegularText, Divider, Preloader } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
@@ -69,11 +68,13 @@ const SubscribedFeedRibbon : FC = () => {
   const posts = useSelector((state) => state.view.feed);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
+  const isLogged = useSelector(
+    (state) => state.system.isLoggedIn
+      && !!state.profile.username,
+  );
 
   useEffect(() => {
-    batch(() => {
-      dispatch(getPrivateFeedThunk());
-    });
+    dispatch(getPrivateFeedThunk());
   }, [dispatch]);
 
   if (!posts || isPublicFeedFetching) {
@@ -84,30 +85,37 @@ const SubscribedFeedRibbon : FC = () => {
     // );
     return <Preloader />;
   }
+  if (isLogged) {
+    return (
+      <ScrollRibbon>
+        <RibbonWrapper>
+          {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
+              || !tags
+              || tags.length < 1))).map((post) => {
+            const onClick : MouseEventHandler = () => {
+              if (post.favorited) {
+                dispatch(deleteLikeThunk(post.slug));
+              } else {
+                dispatch(addLikeThunk(post.slug));
+              }
+            };
+            return (
+              <ItemWrapper key={post.slug}>
+                <ArticleFullPreview
+                  article={post}
+                  onLikeClick={onClick} />
+                {window.innerWidth > 765 && <Divider width={111} distance={0} />}
+              </ItemWrapper>
+            );
+          })}
+        </RibbonWrapper>
+      </ScrollRibbon>
+    );
+  }
   return (
-    <ScrollRibbon>
-      <RibbonWrapper>
-        {posts.filter((post) => post.tagList.some((tag) => (tags.includes(tag)
-            || !tags
-            || tags.length < 1))).map((post) => {
-          const onClick : MouseEventHandler = () => {
-            if (post.favorited) {
-              dispatch(deleteLikeThunk(post.slug));
-            } else {
-              dispatch(addLikeThunk(post.slug));
-            }
-          };
-          return (
-            <ItemWrapper key={post.slug}>
-              <ArticleFullPreview
-                article={post}
-                onLikeClick={onClick} />
-              {window.innerWidth > 765 && <Divider width={111} distance={0} />}
-            </ItemWrapper>
-          );
-        })}
-      </RibbonWrapper>
-    </ScrollRibbon>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='errorUnathorized' />
+    </RegularText>
   );
 };
 

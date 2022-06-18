@@ -19,6 +19,8 @@ import { ReactComponent as MinusPic } from '../assets/images/icons/minus-icon.sv
 import { ReactComponent as CrossPic } from '../assets/images/icons/cross-icon.svg';
 import { ReactComponent as EyePic } from '../assets/images/icons/eye-icon.svg';
 import { ReactComponent as EyeNoPic } from '../assets/images/icons/eyeNo-icon.svg';
+import { ReactComponent as LeftArrowPic } from '../assets/images/icons/left-arrow.svg';
+import { ReactComponent as RightArrowPic } from '../assets/images/icons/right-arrow.svg';
 
 import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
 import { blue, greySecondary } from '../constants/colors';
@@ -255,6 +257,24 @@ export const EyeNoIcon = styled(EyeNoPic)<TIconProps>`
   height: 24px;
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+export const LeftArrowIcon = styled(LeftArrowPic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+export const RightArrowIcon = styled(RightArrowPic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin-left: ${({ distance }) => distance ?? 0}px;
   & > path {
     stroke: ${({ color }) => color};
     }

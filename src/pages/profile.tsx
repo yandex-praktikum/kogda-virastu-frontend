@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 
 import { ProfileWidget, FeedRibbon } from '../widgets';
@@ -39,15 +38,12 @@ const Profile: FC = () => {
   const { username } = useParams<{ username: string }>();
 
   useEffect(() => {
-    batch(() => {
-      dispatch(clearView());
-      dispatch(getUserProfileThunk(username));
-    });
+    dispatch(clearView());
+    dispatch(getUserProfileThunk(username));
     return () => {
       dispatch(clearView());
     };
   }, [dispatch, username]);
-  console.log(profile);
 
   useEffect(() => {
     if (!!profile.username && !!totalCount) {
@@ -57,11 +53,9 @@ const Profile: FC = () => {
 
   useEffect(() => {
     if (isProfileNotFound) {
-      batch(() => {
-        dispatch(clearProfileFetchNotFound());
-        dispatch(clearErrorObject());
-        dispatch(clearErrorMessage());
-      });
+      dispatch(clearProfileFetchNotFound());
+      dispatch(clearErrorObject());
+      dispatch(clearErrorMessage());
       navigate('/no-user');
     }
   }, [dispatch, navigate, isProfileNotFound]);

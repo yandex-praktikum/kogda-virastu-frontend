@@ -2,16 +2,15 @@ import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   Article,
   CommentInput,
   CommentList,
-  TopAnnounceWidget,
+  NewAnnounceWidget,
 } from '../widgets';
 import {
-  getArticleThunk, getCommentsThunk, setNewPostsThunk,
+  getArticleThunk, getCommentsThunk, setNewPostsThunk, setTopLikedThunk,
 } from '../thunks';
 import {
   clearArticleFetchNotFound, clearErrorMessage, clearErrorObject, resetArticle,
@@ -108,26 +107,23 @@ const ArticlePage: FC = () => {
   const { articles } = useSelector((state) => state.all);
 
   useEffect(() => {
-    batch(() => {
-      dispatch(resetArticle());
-      dispatch(getCommentsThunk(slug));
-      dispatch(getArticleThunk(slug));
-    });
+    dispatch(resetArticle());
+    dispatch(getCommentsThunk(slug));
+    dispatch(getArticleThunk(slug));
   }, [dispatch, slug]);
 
   useEffect(() => {
     if (articles && articles?.length > 0) {
       dispatch(setNewPostsThunk());
+      dispatch(setTopLikedThunk());
     }
   }, [dispatch, articles]);
 
   useEffect(() => {
     if (isArticleNotFound) {
-      batch(() => {
-        dispatch(clearArticleFetchNotFound());
-        dispatch(clearErrorObject());
-        dispatch(clearErrorMessage());
-      });
+      dispatch(clearArticleFetchNotFound());
+      dispatch(clearErrorObject());
+      dispatch(clearErrorMessage());
       navigate('/no-article');
     }
   }, [dispatch, navigate, isArticleNotFound]);
@@ -157,9 +153,8 @@ const ArticlePage: FC = () => {
         {!!slug && <CommentList slug={slug} />}
       </ArticlePageWrapper>
       <RightColumn>
-
         <Slider />
-        <TopAnnounceWidget caption={intl.messages.freshContent as string} />
+        <NewAnnounceWidget caption={intl.messages.freshContent as string} />
       </RightColumn>
     </ArticleSection>
   );

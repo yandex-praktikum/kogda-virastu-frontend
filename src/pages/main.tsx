@@ -1,5 +1,4 @@
 import React, { useEffect, FC } from 'react';
-import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
@@ -98,12 +97,6 @@ const Main: FC = () => {
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
   const { loading } = useSelector((state) => state.api);
-
-  useEffect(() => {
-    batch(() => {
-      dispatch(setNewPostsThunk());
-    });
-  }, [dispatch]);
 
   useEffect(() => {
     if (articles && articles.length > 0) {
