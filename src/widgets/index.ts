@@ -7,6 +7,7 @@ import ProfileWidget from './profile-widget';
 import AuthorHeadingMiniWidget from './author-heading-widget';
 import HeaderMenuWidget from './header-menu-widget';
 import TopAnnounceWidget from './top-announce-widget';
+import NewAnnounceWidget from './new-announce-widget';
 import Comment from './comment';
 import CommentInput from './comment-input';
 import Modal from './modal';
@@ -32,6 +33,7 @@ export {
   AuthorHeadingMiniWidget,
   HeaderMenuWidget,
   TopAnnounceWidget,
+  NewAnnounceWidget,
   Comment,
   CommentInput,
   Modal,

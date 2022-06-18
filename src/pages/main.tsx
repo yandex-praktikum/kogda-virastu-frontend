@@ -102,12 +102,6 @@ const Main: FC = () => {
     }
   }, [dispatch, articles]);
 
-  useEffect(() => {
-    if (articles && articles?.length > 0) {
-      dispatch(setNewPostsThunk());
-    }
-  }, [dispatch, articles]);
-
   return (
     <MainSection>
       <MainContainer>

@@ -94,11 +94,11 @@ const ErrorModal: FC<TModalProps> = ({ onClose, onSubmit }) => {
 
   let errorMessage = '';
   if (errorObject) {
-    console.log(errorObject);
     if (errorObject.statusCode === 401 && errorObject.url === '/api/articles/feed') errorMessage = `${intl.messages.errorUnathorized as string}`;
     else if (errorObject.statusCode === 401 && errorObject.url === '/api/users/login') errorMessage = `${intl.messages.errorLogin as string}`;
     else if (errorObject.statusCode === 401 && errorObject.url === '/api/admin/users') errorMessage = `${intl.messages.errorUnathorized as string}`;
     else if (errorObject.statusCode === 401 && errorObject.url?.includes('favorite')) errorMessage = `${intl.messages.errorUnathorized as string}`;
+    else if (errorObject.statusCode === 401 && errorObject.url?.includes('tags')) errorMessage = `${intl.messages.errorUnathorized as string}`;
     else if (errorObject.statusCode === 403 && errorObject.url === '/api/admin/users') errorMessage = `${intl.messages.errorNotAdmin as string}`;
     else { errorMessage = `${errorObject.message as string}`; }
   }

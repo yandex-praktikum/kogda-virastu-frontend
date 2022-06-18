@@ -1,13 +1,13 @@
 import { AppThunk } from '../store/store.types';
 
-import { setTopFeed } from '../store';
+import { setNewFeed } from '../store';
 
-import { compareCreatedDatesForTop, makeTopFeed } from '../services/helpers';
+import { compareCreatedDatesForTop, makeNewFeed } from '../services/helpers';
 
 const setNewPostsThunk: AppThunk = (qty = 5) => (dispatch, getState) => {
   const articles = getState().all.articles ?? [];
   setTimeout(() => {
-    dispatch(setTopFeed(makeTopFeed(articles, compareCreatedDatesForTop, qty as number)));
+    dispatch(setNewFeed(makeNewFeed(articles, compareCreatedDatesForTop, qty as number)));
   }, 500);
 };
 

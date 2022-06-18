@@ -17,9 +17,9 @@ const deleteArticleThunk: AppThunk = (slug: string) => async (dispatch, getState
     const { status } = await deleteArticle(slug);
     if (status === 204) {
       const articles = getState().view.feed ?? [];
-        dispatch(setViewFeed(articles?.filter((item) => item.slug !== slug)));
-        dispatch(clearViewArticle());
-        dispatch(articleDeleteSucceeded());
+      dispatch(setViewFeed(articles?.filter((item) => item.slug !== slug)));
+      dispatch(clearViewArticle());
+      dispatch(articleDeleteSucceeded());
     }
   } catch (error) {
     dispatch(articleDeleteFailed(makeErrorObject(error as AxiosError<TAPIError>)));
