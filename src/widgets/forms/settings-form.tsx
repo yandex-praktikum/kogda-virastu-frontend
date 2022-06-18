@@ -147,7 +147,7 @@ const SettingsForm: FC = () => {
           && <InviteCodeSuccess>{intl.messages.textSuccesCode as string}</InviteCodeSuccess>}
         </InviteButtonContainer>
         <TagsTitle>
-          Теги
+          <FormattedMessage id='tagsTitle' />
         </TagsTitle>
         <TagsContainer>
           {

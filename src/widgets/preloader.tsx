@@ -7,7 +7,6 @@ const PreloaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 
 const rotation = keyframes`

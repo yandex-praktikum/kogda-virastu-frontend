@@ -9,6 +9,7 @@ import {
   PROFILES_ROUTE,
   JWT,
   INVITE_ROUTE,
+  ADMIN_USERS_ROUTE,
 } from './api.constants';
 
 import {
@@ -39,4 +40,5 @@ export {
   headerHeightAtBreakpoint,
   footerHeightAtBreakpoint,
   INVITE_ROUTE,
+  ADMIN_USERS_ROUTE,
 };

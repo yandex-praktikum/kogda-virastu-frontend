@@ -5,6 +5,7 @@ const en: TVocabulary = {
   userLogin: 'Login',
   newArticle: 'New post',
   settings: 'Settings',
+  adminPanel: 'Admin panel',
   exitProfile: 'Exit',
   mainTitle: 'When I grow up',
   mainSubtitle: 'What it’s like to be a junior in a turbulent world',
@@ -48,6 +49,12 @@ const en: TVocabulary = {
   generateСode: 'Generate code',
   textCode: 'Copy the invitation',
   textSuccesCode: 'Link copied to clipboard',
+  popupMessage: 'You have subscribed to the tag #',
+  userList: 'User List',
+  tagsTitle: 'Tags',
+  user: 'User',
+  admin: 'Admin',
+  makeAdmin: 'Make admin',
 };
 
 export default en;

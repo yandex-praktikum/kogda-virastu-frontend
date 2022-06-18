@@ -37,6 +37,8 @@ type TAPIState = {
   isTagsFollowFetching: boolean,
   isInviteFetching: boolean,
   isVisible: boolean,
+  isAllUsersFetching: boolean,
+  isUserRolesFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -75,6 +77,8 @@ const initialState : TAPIState = {
   isTagsFollowFetching: false,
   isInviteFetching: false,
   isVisible: false,
+  isAllUsersFetching: false,
+  isUserRolesFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -369,6 +373,24 @@ const apiSlice = createSlice({
     inviteGetFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isInviteFetching: false, errorObject: action.payload,
     }),
+    allUsersFetchRequested: (state) => ({
+      ...state, isAllUsersFetching: true,
+    }),
+    allUsersFetchSucceeded: (state) => ({
+      ...state, isAllUsersFetching: false,
+    }),
+    allUsersFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isAllUsersFetching: false, errorObject: action.payload,
+    }),
+    userRolesFetchRequested: (state) => ({
+      ...state, isUserRolesFetching: true,
+    }),
+    userRolesFetchSucceeded: (state) => ({
+      ...state, isUserRolesFetching: false,
+    }),
+    userRolesFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserRolesFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -464,6 +486,12 @@ export const {
   tagsFollowFetchSucceeded,
   tagsFollowFetchFailed,
   tagFollowVisible,
+  allUsersFetchRequested,
+  allUsersFetchSucceeded,
+  allUsersFetchFailed,
+  userRolesFetchRequested,
+  userRolesFetchSucceeded,
+  userRolesFetchFailed,
 } = apiSlice.actions;
 
 export default apiReducer;
