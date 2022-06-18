@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from '../services/hooks';
 import { TArticle } from '../types/types';
 import BriefPostAnnounceWidget from './brief-post-announce-widget';
@@ -47,6 +47,12 @@ const ItemWrapper = styled.li`
   margin-inline-start: 0;
   margin-inline-end: 0;
   padding-inline-start: 0;
+
+  .link {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+  }
 `;
 
 const TopAnnounceWidget: FC<TTopAnnounceWidgetProps> = ({ caption }) => {
@@ -71,15 +77,17 @@ const TopAnnounceWidget: FC<TTopAnnounceWidgetProps> = ({ caption }) => {
             return (
               <ItemWrapper key={slug}>
                 {!!index && <Divider distance={24} />}
-                <BriefPostAnnounceWidget
-                  username={username}
-                  nickname={nickname ?? username}
-                  image={image}
-                  title={title}
-                  date={new Date(createdAt)}
-                  isLiked={favorited}
-                  likesCount={favoritesCount}
-                  onLikeClick={nope} />
+                <Link className='link' to={`/article/${slug}`}>
+                  <BriefPostAnnounceWidget
+                    username={username}
+                    nickname={nickname ?? username}
+                    image={image}
+                    title={title}
+                    date={new Date(createdAt)}
+                    isLiked={favorited}
+                    likesCount={favoritesCount}
+                    onLikeClick={nope} />
+                </Link>
               </ItemWrapper>
             );
           })}

@@ -1,5 +1,4 @@
 import React, { useEffect, FC } from 'react';
-import { batch } from 'react-redux';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
@@ -98,16 +97,17 @@ const Main: FC = () => {
   const { articles } = useSelector((state) => state.all);
 
   useEffect(() => {
-    batch(() => {
-      dispatch(setNewPostsThunk());
-    });
-  }, [dispatch]);
-
-  useEffect(() => {
     if (articles && articles.length > 0) {
       dispatch(setTopLikedThunk());
     }
   }, [dispatch, articles]);
+
+  useEffect(() => {
+    if (articles && articles?.length > 0) {
+      dispatch(setNewPostsThunk());
+    }
+  }, [dispatch, articles]);
+
   return (
     <MainSection>
       <MainContainer>
