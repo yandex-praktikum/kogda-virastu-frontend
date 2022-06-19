@@ -5,6 +5,7 @@ import {
   LOGIN_ROUTE,
   REGISTER_ROUTE,
   USER_ROUTE,
+  INVITE_ROUTE,
   ARTICLES_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
@@ -25,6 +26,7 @@ import {
   TAPIPatchUserData,
   TAPIPatchArticleData,
   TAPITag,
+  TAPIInviteCode,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -35,6 +37,7 @@ import {
   IFetchComments,
   IFetchTags,
   IFetchUser,
+  IGetInviteCode,
   ILikeArticle,
   ILoginUser,
   IPatchArticle,
@@ -177,6 +180,19 @@ export const loginUser : ILoginUser = (
     data: loginData,
   };
   return blogAPI(requestConfig);
+};
+
+export const fetchInviteCode : IGetInviteCode = () : AxiosPromise<TAPIInviteCode> => {
+  // const inviteCodeData : TAPIInviteCode = {
+  //   id,
+  // };
+  const requestConfig : AxiosRequestConfig = {
+    url: INVITE_ROUTE,
+    // headers: { token },
+    method: 'post',
+    // data: { id },
+  };
+  return blogAPI(injectBearerToken(requestConfig));
 };
 
 export const patchCurrentUser : IPatchUser = (

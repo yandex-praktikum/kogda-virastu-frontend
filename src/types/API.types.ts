@@ -9,6 +9,7 @@ import {
   TAPITags,
   TAPIUser,
   TAPITag,
+  TAPIInviteCode,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -17,6 +18,10 @@ export interface IRegisterUser {
 
 export interface ILoginUser {
   (email: string, password: string) : AxiosPromise<TAPIAuth>;
+}
+
+export interface IGetInviteCode {
+  () : AxiosPromise<TAPIInviteCode>;
 }
 
 export interface IFetchUser {
@@ -94,5 +99,5 @@ export type {
   TAPIProfile,
   TAPITags,
   TAPIUser,
-  TAPITag
+  TAPITag,
 };

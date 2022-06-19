@@ -414,6 +414,15 @@ const apiSlice = createSlice({
     subscribeTagsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isSubscribeTagsFetching: false, errorObject: action.payload,
     }),
+    inviteCodeFetchRequested: (state) => ({
+      ...state, isInviteCodeFetching: true,
+    }),
+    inviteCodeFetchSucceeded: (state) => ({
+      ...state, isinviteCodeFetching: false,
+    }),
+    inviteCodeFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteCodeFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -520,5 +529,8 @@ export const {
   subscribeTagsFetchRequested,
   subscribeTagsFetchSucceeded,
   subscribeTagsFetchFailed,
+  inviteCodeFetchRequested,
+  inviteCodeFetchSucceeded,
+  inviteCodeFetchFailed,
 } = apiSlice.actions;
 export default apiReducer;

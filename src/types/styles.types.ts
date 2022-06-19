@@ -143,7 +143,10 @@ export type TFieldInput = {
   value: string;
   placeholder?: string;
   error?: boolean;
+  minLength?: number;
+  maxLength?: number;
   disabled?: boolean;
+  required?: boolean;
   errorText?: string;
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
