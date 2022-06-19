@@ -77,7 +77,7 @@ export type TAPITags = {
 };
 
 export type TAPITopTags = {
-  topTags: TTopTags;
+  tags: TTopTags;
 };
 
 export type TAPIComment = {

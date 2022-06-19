@@ -6,8 +6,8 @@ import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getAllTopTagsThunk, getPublicFeedThunk,
-  getUserThunk,
+  deleteArticleThunk, getAllTopTagsThunk, getPublicFeedThunk,
+  getUserThunk, getAllTopPostsThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -42,9 +42,8 @@ const App = () => {
   const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
   useEffect(() => {
     batch(() => {
-      dispatch(getAllPostsThunk());
-      // dispatch(getAllTagsThunk());
-      // dispatch(getAllTopTagsThunk());
+      dispatch(getAllTopPostsThunk());
+      dispatch(getAllTopTagsThunk());
       dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {

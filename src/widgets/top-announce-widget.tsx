@@ -48,6 +48,7 @@ const ItemWrapper = styled.li`
 `;
 
 const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
+  const { articles } = useSelector((state) => state.all);
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
   return (
     <TopAnnounce>

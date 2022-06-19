@@ -14,10 +14,10 @@ import { makeErrorObject } from '../services/helpers';
 const getAllTopTagsThunk : AppThunk = () => async (dispatch) => {
   try {
     dispatch(tagsFetchRequested());
-    const { data: { topTags } } = await fetchTopTags();
-    // dispatch(setAllTopTags(topTags));
+    const { data: { tags } } = await fetchTopTags();
+    dispatch(setAllTopTags(tags));
     batch(() => {
-      dispatch(setAllTopTags(topTags));
+      dispatch(setAllTopTags(tags));
       dispatch(tagsFetchSucceeded());
     });
   } catch (error) {

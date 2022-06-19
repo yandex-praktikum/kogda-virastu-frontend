@@ -6,6 +6,7 @@ import {
   REGISTER_ROUTE,
   USER_ROUTE,
   ARTICLES_ROUTE,
+  TOP_ARTICLES_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
@@ -246,6 +247,20 @@ export const fetchPublicFeed : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchTopFeed : IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  // const {
+  //   limit, offset, tag, author, favorited,
+  // } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: TOP_ARTICLES_ROUTE,
+    // params: makeParams(limit, offset, tag, author, favorited),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const fetchPrivateFeed : IFetchArticles = (
   queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
@@ -319,14 +334,6 @@ export const deleteLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TA
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}/favorite`,
     method: 'delete',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
-export const fetchTags : IFetchTags = () : AxiosPromise<TAPITags> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: TAGS_ROUTE,
-    method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

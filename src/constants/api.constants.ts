@@ -5,6 +5,7 @@ export const REGISTER_ROUTE = '/users';
 export const LOGIN_ROUTE = '/users/login';
 export const USER_ROUTE = '/user';
 export const ARTICLES_ROUTE = '/articles';
+export const TOP_ARTICLES_ROUTE = '/articles/top';
 export const FEED_ROUTE = `${ARTICLES_ROUTE}/feed`;
 export const TAGS_ROUTE = '/tags';
 export const TOP_TAGS_ROUTE = '/tags/top';

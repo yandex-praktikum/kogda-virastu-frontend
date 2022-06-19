@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { nanoid } from '@reduxjs/toolkit';
 import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
@@ -62,7 +63,7 @@ const PopularTags: FC = () => {
           {
             popularTags.map((tag) => (
               <Tag
-                key={tag}
+                key={nanoid()}
                 tag={tag}
                 pointer
                 handleClick={handleClick}
