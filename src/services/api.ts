@@ -10,6 +10,7 @@ import {
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+  UPLOAD_IMAGE_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -27,6 +28,7 @@ import {
   TAPIPatchArticleData,
   TAPITag,
   TAPIInviteCode,
+  TAPIImageUrl,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -47,6 +49,7 @@ import {
   IProfile,
   IRegisterUser,
   ITag,
+  IUploadImage,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -131,7 +134,14 @@ export const jwt = {
 
 const injectBearerToken = (requestConfig : AxiosRequestConfig) : AxiosRequestConfig => {
   if (jwt.test()) {
-    return { ...requestConfig, headers: { ...defaultRequestConfig.headers, Authorization: `Bearer ${jwt.get()}` } };
+    return {
+      ...requestConfig,
+      headers: {
+        ...defaultRequestConfig.headers,
+        ...requestConfig.headers,
+        Authorization: `Bearer ${jwt.get()}`,
+      },
+    };
   }
   return requestConfig;
 };
@@ -303,6 +313,19 @@ export const postArticle : IPostArticle = (
     url: ARTICLES_ROUTE,
     method: 'post',
     data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const uploadImage: IUploadImage = (file: File) : AxiosPromise<TAPIImageUrl> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: UPLOAD_IMAGE_ROUTE,
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    data: { file },
   };
 
   return blogAPI(injectBearerToken(requestConfig));
