@@ -11,11 +11,8 @@ import {
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
-<<<<<<< HEAD
   TOP_TAGS_ROUTE,
-=======
   UPLOAD_IMAGE_ROUTE,
->>>>>>> develop
 } from '../constants';
 import {
   TAPINewUser,
