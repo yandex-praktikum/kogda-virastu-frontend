@@ -8,7 +8,6 @@ import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
-import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk,
@@ -22,8 +21,7 @@ import {
 import {
   DeletePostButton,
   EditPostButton,
-  PublishButton,
-  DeclineButton,
+  ModerationArticleButtonActions,
   PublishedButton,
   SetPendingButton,
 } from '../ui-lib';
@@ -38,11 +36,6 @@ type TArticleProps = {
 type TArticleActionsProps = {
   onClickEdit: MouseEventHandler<HTMLButtonElement>;
   onClickDelete: MouseEventHandler<HTMLButtonElement>;
-};
-
-type TModerationArticleActionsProps = {
-  onClickPublish: MouseEventHandler<HTMLButtonElement>;
-  onClickDecline: MouseEventHandler<HTMLButtonElement>;
 };
 
 type TPublishedArticleActionsProps = {
@@ -154,14 +147,14 @@ const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }
   </ArticleActionsContainer>
 );
 
-const ModerationArticleActions: FC<TModerationArticleActionsProps> = ({
-  onClickPublish, onClickDecline,
-}) => (
-  <ArticleActionsContainer>
-    <PublishButton onClick={onClickPublish} />
-    <DeclineButton onClick={onClickDecline} />
-  </ArticleActionsContainer>
-);
+// const ModerationArticleActions: FC<TModerationArticleActionsProps> = ({
+//   onClickPublish, onClickDecline,
+// }) => (
+//   <ArticleActionsContainer>
+//     <PublishButton onClick={onClickPublish} />
+//     <DeclineButton onClick={onClickDecline} />
+//   </ArticleActionsContainer>
+// );
 
 const PublishedArticleActions: FC<TPublishedArticleActionsProps> = ({ onClickSetPending }) => (
   <ArticleActionsContainer>
@@ -233,7 +226,11 @@ const Article: FC<TArticleProps> = ({ slug }) => {
         <ArticleActions onClickDelete={onClickDelete} onClickEdit={onClickEdit} />
       )}
       {pending && admin && (
-        <ModerationArticleActions onClickPublish={onClickPublish} onClickDecline={onClickDecline} />
+        <ArticleActionsContainer>
+          <ModerationArticleButtonActions
+            onClickPublish={onClickPublish}
+            onClickDecline={onClickDecline} />
+        </ArticleActionsContainer>
       )}
       {published && admin && !isAuthor && (
         <PublishedArticleActions onClickSetPending={onClickSetPending} />

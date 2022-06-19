@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -156,7 +156,7 @@ export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false 
   );
 };
 
-export const PublishButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+const PublishButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
     <RegularText size='large' weight={400} sansSerif>
       <FormattedMessage id='publish' />
@@ -164,12 +164,26 @@ export const PublishButton : FC<TButtonProps> = ({ onClick, disabled = false }) 
   </BasicNormalButton>
 );
 
-export const DeclineButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+const DeclineButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
   <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
     <RegularText size='large' weight={400} sansSerif>
       <FormattedMessage id='decline' />
     </RegularText>
   </BasicNormalButton>
+);
+
+type TModerationArticleActionsProps = {
+  onClickPublish: MouseEventHandler<HTMLButtonElement>;
+  onClickDecline: MouseEventHandler<HTMLButtonElement>;
+};
+
+export const ModerationArticleButtonActions: FC<TModerationArticleActionsProps> = ({
+  onClickPublish, onClickDecline,
+}) => (
+  <>
+    <PublishButton onClick={onClickPublish} />
+    <DeclineButton onClick={onClickDecline} />
+  </>
 );
 
 export const PublishedButton : FC<TButtonProps> = ({ onClick, disabled = true }) => (
