@@ -318,7 +318,7 @@ export const deleteLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TA
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchTags : IFetchPopularTags = () : AxiosPromise<TAPIPopularTags> => {
+export const fetchPopularTags : IFetchPopularTags = () : AxiosPromise<TAPIPopularTags> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/top`,
     method: 'get',

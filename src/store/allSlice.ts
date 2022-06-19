@@ -34,7 +34,7 @@ const allSlice = createSlice({
     setAllArticlesCount: (state, action: PayloadAction<number>) => ({
       ...state, articlesCount: action.payload,
     }),
-    setAllTags: (state, action: PayloadAction<TPopularTags>) => ({
+    setPopularTags: (state, action: PayloadAction<TPopularTags>) => ({
       ...state, tags: action.payload,
     }),
     clearArticles: (state) => ({ ...state, articles: null }),
@@ -53,7 +53,7 @@ const allReducer = allSlice.reducer;
 export const {
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setPopularTags,
   clearArticles,
   clearTags,
   clearAll,

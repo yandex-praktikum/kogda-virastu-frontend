@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
+  deleteArticleThunk, getAllPostsThunk, getPopularTagsThunk, getPublicFeedThunk, getUserThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -43,15 +43,15 @@ const App = () => {
   const onConfirmClose : IGenericVoidHandler = () => dispatch(closeConfirm());
 
   useEffect(() => {
-    batch(() => {
-      dispatch(getAllPostsThunk());
-      dispatch(getAllTagsThunk());
-      dispatch(getTagsFollowThunk());
-    });
     if (jwt.test()) {
       batch(() => {
         dispatch(getUserThunk());
         dispatch(getPublicFeedThunk());
+      });
+      batch(() => {
+        dispatch(getAllPostsThunk());
+        dispatch(getPopularTagsThunk());
+        dispatch(getTagsFollowThunk());
       });
     }
   }, [dispatch, username, nickname]);

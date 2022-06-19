@@ -30,7 +30,7 @@ const PopularTags: FC = () => {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => state.all);
   const { selectedTags } = useSelector((state) => state.view);
-  const [popularTags, setPopularTags] = useState<TTags>([]);
+  const [popularTags, setPopularTags] = useState<TTags | null>(null);
 
   useEffect(() => {
     const popTags = tags && tags.map((tag) => tag.name);
