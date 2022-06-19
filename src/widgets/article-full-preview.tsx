@@ -155,7 +155,7 @@ const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) =
     <ContentContainer image={article.link}>
       <ArticleName>{article.title}</ArticleName>
       {article.link && <ArticleImage src={article.link} />}
-      <Article image={article.link}>{parse(article.body)}</Article>
+      <Article image={article.link}>{parse(article.body ? article.body : '')}</Article>
       <BarTagsWrapper image={article.link}>
         <BarTags
           rowReverse

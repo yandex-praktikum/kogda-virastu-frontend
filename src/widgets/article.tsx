@@ -134,6 +134,8 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
 
+  console.log(article?.body);
+
   const onClickDelete = () => {
     if (article) {
       dispatch(openConfirm());
@@ -184,7 +186,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{parse(article.body)}</ArticleBody>
+      <ArticleBody>{parse(article.body ? article.body : '')}</ArticleBody>
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );
