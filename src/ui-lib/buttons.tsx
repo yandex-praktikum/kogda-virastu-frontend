@@ -30,12 +30,13 @@ type TBasicButtonProps = {
 };
 
 export const BasicNormalButton = styled.button<TBasicButtonProps>`
- // width: 100%;
+  // width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
   box-sizing: border-box;
   display: flex;
+  cursor: pointer;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
@@ -59,6 +60,7 @@ const BasicInvertedButton = styled.button<TBasicButtonProps>`
   border-width: 0;
   box-sizing: border-box;
   display: flex;
+  cursor: pointer;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
@@ -133,7 +135,6 @@ export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false 
       onMouseUp,
     },
   } = useMouseEvents({});
-
   return (
     <BasicInvertedButton
       colorScheme='red'
@@ -154,6 +155,23 @@ export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false 
     </BasicInvertedButton>
   );
 };
+
+export const PublishButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={400} sansSerif>
+      <FormattedMessage id='publish' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
+export const DeclineButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={400} sansSerif>
+      <FormattedMessage id='decline' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
 export const OpenMenuButton: FC<TAvatarButtonProps> = ({
   onClick,
   disabled = false,

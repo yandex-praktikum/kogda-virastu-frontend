@@ -282,7 +282,7 @@ export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIAr
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const postModerationArticle : IPatchArticle = (
+export const publishArticle : IPatchArticle = (
   slug: string,
   articleData: TAPIPatchArticleData,
 ) : AxiosPromise<TAPIArticle> => {
@@ -292,6 +292,23 @@ export const postModerationArticle : IPatchArticle = (
 
   const requestConfig : AxiosRequestConfig = {
     url: `${MODERATION_ARTICLE_ROUTE}/${slug}/publish`,
+    method: 'post',
+    data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/decline`,
     method: 'post',
     data: postData,
   };

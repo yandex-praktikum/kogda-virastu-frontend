@@ -7,7 +7,6 @@ export type TUser = {
   nickname?: string;
   friendInvite?: string,
   confirmPassword?: null | string,
-  roles?: Array<string>,
   _id?: string,
 };
 

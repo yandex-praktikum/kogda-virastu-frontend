@@ -5,12 +5,12 @@ import {
   articlePostSucceeded,
   articlePostFailed,
 } from '../store';
-import { postModerationArticle } from '../services/api';
+import { publishArticle } from '../services/api';
 import { makeErrorObject } from '../services/helpers';
 import makeTagList from '../services/helpers/make-tagList';
 import { TAPIError } from '../services/api.types';
 
-const postModerationArticleThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
+const publishArticleThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
   dispatch(articlePostRequested());
   const articleData = getState().forms.article ?? {};
   const {
@@ -18,7 +18,7 @@ const postModerationArticleThunk: AppThunk = (slug: string) => async (dispatch, 
   } = articleData;
   const tagList = makeTagList(articleData.tags || '');
   try {
-    await postModerationArticle(slug, {
+    await publishArticle(slug, {
       title,
       description,
       body,
@@ -33,4 +33,4 @@ const postModerationArticleThunk: AppThunk = (slug: string) => async (dispatch, 
   }
 };
 
-export default postModerationArticleThunk;
+export default publishArticleThunk;

@@ -16,6 +16,8 @@ const en: TVocabulary = {
   comments: 'Comments',
   editArticle: 'Edit article',
   deleteArticle: 'Delete article',
+  publish: 'Publish',
+  decline: 'Decline',
   sendComment: 'Send comment',
   articleName: 'Article title',
   articleAbout: 'About',

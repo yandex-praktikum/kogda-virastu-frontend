@@ -18,7 +18,8 @@ import getPendingFeedThunk from './get-pending-feed-thunk';
 import getUserThunk from './get-user-thunk';
 import patchArticleThunk from './patch-article-thunk';
 import postArticleThunk from './post-article-thunk';
-import postModerationArticleThunk from './post-moderation-article-thunk';
+import publishArticleThunk from './publish-article-thunk';
+import declineArticleThunk from './decline-article-thunk';
 import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
@@ -46,7 +47,8 @@ export {
   getUserThunk,
   patchArticleThunk,
   postArticleThunk,
-  postModerationArticleThunk,
+  publishArticleThunk,
+  declineArticleThunk,
   setTopLikedThunk,
   setNewPostsThunk,
   getAllPostsThunk,

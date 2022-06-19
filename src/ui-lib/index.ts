@@ -23,6 +23,8 @@ import {
 import {
   EditPostButton,
   DeletePostButton,
+  PublishButton,
+  DeclineButton,
   OpenMenuButton,
   FollowButton,
   UnfollowButton,
@@ -97,6 +99,8 @@ export {
   EyeNoIcon,
   EditPostButton,
   DeletePostButton,
+  PublishButton,
+  DeclineButton,
   OpenMenuButton,
   FollowButton,
   UnfollowButton,

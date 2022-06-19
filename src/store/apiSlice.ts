@@ -16,6 +16,8 @@ type TAPIState = {
   isPendingFeedFetching: boolean,
   isArticlePosting: boolean,
   isArticlePostingSucceeded: boolean,
+  isDeclineArticlePosting: boolean,
+  isDeclineArticleSucceeded: boolean,
   isArticleDeleting: boolean,
   isArticleRemoved: boolean,
   isArticlePatching: boolean,
@@ -57,6 +59,8 @@ const initialState : TAPIState = {
   isPendingFeedFetching: false,
   isArticlePosting: false,
   isArticlePostingSucceeded: false,
+  isDeclineArticlePosting: false,
+  isDeclineArticleSucceeded: false,
   isArticleDeleting: false,
   isArticleRemoved: false,
   isArticlePatching: false,
@@ -193,7 +197,7 @@ const apiSlice = createSlice({
       ...state, isPendingFeedFetching: false, errorObject: action.payload,
     }),
     articlePostRequested: (state) => ({
-      ...state, isArticlePosting: true, sArticlePostingSucceeded: false,
+      ...state, isArticlePosting: true, isArticlePostingSucceeded: false,
     }),
     articlePostSucceeded: (state) => ({
       ...state, isArticlePosting: false, isArticlePostingSucceeded: true,
@@ -208,6 +212,15 @@ const apiSlice = createSlice({
     }),
     articlePostFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePosting: false, errorObject: action.payload,
+    }),
+    declineArticleRequested: (state) => ({
+      ...state, isDeclineArticlePosting: true, isDeclineArticleSucceeded: false,
+    }),
+    declineArticleSucceeded: (state) => ({
+      ...state, isDeclineArticlePosting: false, isDeclineArticleSucceeded: true,
+    }),
+    declineArticleFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isDeclineArticlePosting: false, errorObject: action.payload,
     }),
     articleDeleteRequested: (state) => ({
       ...state, isArticleDeleting: true, isArticleRemoved: false,
@@ -442,6 +455,9 @@ export const {
   pendingFeedFailed,
   articlePostRequested,
   articlePostSucceeded,
+  declineArticleRequested,
+  declineArticleSucceeded,
+  declineArticleFailed,
   articlePostFailed,
   articleDeleteRequested,
   articleDeleteSucceeded,

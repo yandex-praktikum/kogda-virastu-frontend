@@ -16,6 +16,8 @@ const ru: TVocabulary = {
   comments: 'Комментарии',
   editArticle: 'Редактировать запись',
   deleteArticle: 'Удалить запись',
+  publish: 'Опубликовать',
+  decline: 'Отклонить',
   sendComment: 'Отправить комментарий',
   articleName: 'Название статьи',
   articleAbout: 'О чем статья',
