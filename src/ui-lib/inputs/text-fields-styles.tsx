@@ -47,6 +47,7 @@ export const LabelStyle = styled.label`
 
 const ErrorTextStyle = styled.span`
 margin: 0;
+align-self: flex-start;
 color: ${((props) => props.theme.inputField.errorColor)};
 font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
 font-family: ${({ theme: { labelInput: { family } } }) => family};

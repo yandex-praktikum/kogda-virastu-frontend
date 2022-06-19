@@ -1,11 +1,11 @@
 /* eslint-disable ternary/no-unreachable */
-import React, { FC, MouseEventHandler } from 'react';
+import React, { FC, MouseEventHandler, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import AuthorHeadingWidget from './author-heading-widget';
 import { TArticle } from '../types/types';
-import BarTags from './bar-tags';
+import BarTags, { MessageSubscriptionTag, MessageText } from './bar-tags';
 import { getPropOnCondition } from '../services/helpers';
 
 const ArticleCardContainer = styled.div`
@@ -65,7 +65,7 @@ const ContentContainer = styled.div<TElementWithImage>`
         }
         @media screen and (max-width: 600px) {                  // 'grid-row: 5/6 ' : 'grid-row: 4/5'
 
-        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
+        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))}
         margin-top: -8px;
     }
     }
@@ -85,6 +85,7 @@ height: 85px;
 `;
 
 const Article = styled.article<TElementWithImage>`
+position: relative;
 font-size: ${({ theme: { text18Sans: { size } } }) => `${size}px`};
 font-family: ${({ theme: { text18Sans: { family } } }) => family};
 line-height: ${({ theme: { text18Sans: { height } } }) => `${height}px`};
@@ -116,34 +117,45 @@ type TArticleFullPreview = {
   onLikeClick: MouseEventHandler,
 };
 
-const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => (
-
-  <ArticleCardContainer>
-    <AuthorHeadingWidget
-      username={article.author?.username}
-      nickname={article.author?.nickname ?? article.author?.username}
-      image={article.author.image}
-      date={new Date(article.createdAt)}
-      isLiked={article.favorited}
-      likesCount={article.favoritesCount}
-      onLikeClick={onLikeClick} />
-    <ContentContainer image={article.link}>
-      <ArticleName>{article.title}</ArticleName>
-      {article.link && <ArticleImage src={article.link} />}
-      <Article image={article.link}>
-        <div dangerouslySetInnerHTML={{ __html: article.body }} />
-      </Article>
-      <BarTagsWrapper image={article.link}>
-        <BarTags
-          isHasImage={!!article.link}
-          rowReverse
-          tagList={article.tagList} />
-      </BarTagsWrapper>
-      <Link className='link' to={`/article/${article.slug}`}>
-        <FormattedMessage id='articleEnter' />
-      </Link>
-    </ContentContainer>
-  </ArticleCardContainer>
-);
+const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => {
+  const [active, setActiveState] = useState(false);
+  const [tagText, setTagState] = useState('');
+  return (
+    <ArticleCardContainer>
+      <AuthorHeadingWidget
+        username={article.author?.username}
+        nickname={article.author?.nickname ?? article.author?.username}
+        image={article.author.image}
+        date={new Date(article.createdAt)}
+        isLiked={article.favorited}
+        likesCount={article.favoritesCount}
+        onLikeClick={onLikeClick} />
+      <ContentContainer image={article.link}>
+        <ArticleName>{article.title}</ArticleName>
+        {article.link && <ArticleImage src={article.link} />}
+        <Article image={article.link}>
+          <div dangerouslySetInnerHTML={{ __html: article.body }} />
+          <MessageSubscriptionTag active={active}>
+            <MessageText>
+              <FormattedMessage id='youSubscribedToTheTag' />
+              { tagText }
+            </MessageText>
+          </MessageSubscriptionTag>
+        </Article>
+        <BarTagsWrapper image={article.link}>
+          <BarTags
+            setTagState={setTagState}
+            setActiveState={setActiveState}
+            isHasImage={!!article.link}
+            rowReverse
+            tagList={article.tagList} />
+        </BarTagsWrapper>
+        <Link className='link' to={`/article/${article.slug}`}>
+          <FormattedMessage id='articleEnter' />
+        </Link>
+      </ContentContainer>
+    </ArticleCardContainer>
+  );
+};
 
 export default ArticleFullPreview;

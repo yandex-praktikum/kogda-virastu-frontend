@@ -29,6 +29,7 @@ const ru: TVocabulary = {
   userName: 'Имя пользователя',
   userEmail: 'Email',
   password: 'Пароль',
+  confirmPassword: 'Подтвердите пароль',
   urlImage: 'URL изображения профиля',
   newPassword: 'Новый пароль',
   refreshUser: 'Обновить настройки',
@@ -45,7 +46,14 @@ const ru: TVocabulary = {
   nickname: 'Отображаемое имя',
   tagsInForm: 'Теги',
   messageAboutMissingTags: 'У Вас нет подписок на теги',
+  publish: 'Опубликовать',
+  decline: 'Отклонить',
+  published: 'Опубликована',
+  removePublish: 'Снять с публикации',
   invationCode: 'Введите код регистрации',
+  invitionCode: 'Введите код регистрации',
+  generateInviteCode: 'Сгенерировать код',
+  youSubscribedToTheTag: 'Вы подписались на тег #',
 };
 
 export default ru;

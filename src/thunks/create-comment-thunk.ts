@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { batch } from 'react-redux';
 import { AppThunk } from '../store/store.types';
-import { postComment } from '../services/api';
+import { postComment, publishCommentsAdmin } from '../services/api';
 import {
   commentPostRequested,
   commentPostSucceeded,
@@ -18,6 +18,7 @@ const createCommentThunk: AppThunk = (slug: string) => async (dispatch, getState
     if (newComment) {
       dispatch(commentPostRequested());
       const { data: { comment } } = await postComment(slug, newComment);
+      await publishCommentsAdmin(slug, comment.id);
       batch(() => {
         dispatch(setViewCommentsFeed([comment]));
         dispatch(resetComment());

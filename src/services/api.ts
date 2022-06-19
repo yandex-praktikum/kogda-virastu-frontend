@@ -5,12 +5,17 @@ import {
   LOGIN_ROUTE,
   REGISTER_ROUTE,
   USER_ROUTE,
+  INVITE_ROUTE,
   ARTICLES_ROUTE,
   TOP_ARTICLES_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+<<<<<<< HEAD
   TOP_TAGS_ROUTE,
+=======
+  UPLOAD_IMAGE_ROUTE,
+>>>>>>> develop
 } from '../constants';
 import {
   TAPINewUser,
@@ -28,16 +33,20 @@ import {
   TAPIPatchUserData,
   TAPIPatchArticleData,
   TAPITag,
+  TAPIInviteCode,
+  TAPIImageUrl,
 } from './api.types';
 import {
   IDeleteArticle,
   IDeleteComment,
+  IFetchAdminComments,
   IFetchArticle,
   IFetchArticles,
   IFetchComments,
   IFetchTags,
   IFetchTopTags,
   IFetchUser,
+  IGetInviteCode,
   ILikeArticle,
   ILoginUser,
   IPatchArticle,
@@ -47,6 +56,7 @@ import {
   IProfile,
   IRegisterUser,
   ITag,
+  IUploadImage,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -131,7 +141,14 @@ export const jwt = {
 
 const injectBearerToken = (requestConfig : AxiosRequestConfig) : AxiosRequestConfig => {
   if (jwt.test()) {
-    return { ...requestConfig, headers: { ...defaultRequestConfig.headers, Authorization: `Bearer ${jwt.get()}` } };
+    return {
+      ...requestConfig,
+      headers: {
+        ...defaultRequestConfig.headers,
+        ...requestConfig.headers,
+        Authorization: `Bearer ${jwt.get()}`,
+      },
+    };
   }
   return requestConfig;
 };
@@ -180,6 +197,19 @@ export const loginUser : ILoginUser = (
     data: loginData,
   };
   return blogAPI(requestConfig);
+};
+
+export const fetchInviteCode : IGetInviteCode = () : AxiosPromise<TAPIInviteCode> => {
+  // const inviteCodeData : TAPIInviteCode = {
+  //   id,
+  // };
+  const requestConfig : AxiosRequestConfig = {
+    url: INVITE_ROUTE,
+    // headers: { token },
+    method: 'post',
+    // data: { id },
+  };
+  return blogAPI(injectBearerToken(requestConfig));
 };
 
 export const patchCurrentUser : IPatchUser = (
@@ -281,6 +311,18 @@ export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIAr
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchPendingArticle : IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  const { limit, offset, tag } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/state/pending`,
+    params: makeParams(limit, offset, tag),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const postArticle : IPostArticle = (
   articleData: TAPIPatchArticleData,
 ) : AxiosPromise<TAPIArticle> => {
@@ -292,6 +334,19 @@ export const postArticle : IPostArticle = (
     url: ARTICLES_ROUTE,
     method: 'post',
     data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const uploadImage: IUploadImage = (file: File) : AxiosPromise<TAPIImageUrl> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: UPLOAD_IMAGE_ROUTE,
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    data: { file },
   };
 
   return blogAPI(injectBearerToken(requestConfig));
@@ -322,6 +377,30 @@ export const patchArticle : IPatchArticle = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const publishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/publish`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/decline`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const removePublishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/hold`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const postLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}/favorite`,
@@ -349,6 +428,25 @@ export const fetchTopTags : IFetchTopTags = () : AxiosPromise<TAPITopTags> => {
 export const fetchComments : IFetchComments = (slug: string) : AxiosPromise<TAPIComments> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}/comments`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const publishCommentsAdmin : IFetchAdminComments = (
+  slug: string,
+  comment: string,
+) : AxiosPromise<TAPIComments> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/comments/${comment}/publish`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchCommentsAdmin : IFetchComments = (slug: string) : AxiosPromise<TAPIComments> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/comments/state/published`,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));

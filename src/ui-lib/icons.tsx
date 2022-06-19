@@ -21,6 +21,7 @@ import { ReactComponent as EyePic } from '../assets/images/icons/eye-icon.svg';
 import { ReactComponent as EyeNoPic } from '../assets/images/icons/eyeNo-icon.svg';
 import { ReactComponent as ArrowLeftPic } from '../assets/images/icons/arrow-left-icon.svg';
 import { ReactComponent as ArrowRightPic } from '../assets/images/icons/arrow-right-icon.svg';
+import { ReactComponent as PreloaderPic } from '../assets/images/icons/preloader.svg';
 
 import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
 import { blue, greySecondary } from '../constants/colors';
@@ -166,12 +167,26 @@ export const HomeIcon = styled(HomePic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
+export const PreloaderBox = styled(PreloaderPic)<TIconProps>`
+  width: 24px;
+  height: 32px;
+  display: flex;
+  cursor: pointer;
+  background-position: left;
+  align-self: start;
+  // margin-left: auto;
+  
+  color: ${({ color }) => color};
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
 
 export const ArrowLeft = styled(ArrowLeftPic)<TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
-  cursor: pointer;
+  cursor: ${({ color }) => { if (color === 'grey') return 'not-allowed'; return 'pointer'; }};
   margin-left: auto;
   color: ${({ color }) => color};
   & > path {
@@ -182,7 +197,7 @@ export const ArrowRight = styled(ArrowRightPic)<TIconProps>`
   width: 24px;
   height: 24px;
   display: block;
-  cursor: pointer;
+  cursor: ${({ color }) => { if (color === 'grey') return 'not-allowed'; return 'pointer'; }};
   margin-right: auto;
   color: ${({ color }) => color};
   & > path {

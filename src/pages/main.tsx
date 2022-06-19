@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/popular-tags';
+import Preloader from '../widgets/preloader';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
   desktopBreakpoint,
@@ -16,6 +17,7 @@ import {
   getPublicFeedThunk,
 } from '../thunks';
 import { FeedRibbon, Slider } from '../widgets';
+import { settingsResetUpdateSucceeded } from '../store';
 
 export const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 export const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
@@ -61,6 +63,7 @@ export const MainContainer = styled.div`
 export const LeftColumn = styled.div`
   overflow: hidden;
   min-width: 474px;
+  
 `;
 
 export const RightColumn = styled.aside`
@@ -80,6 +83,8 @@ export const RightColumn = styled.aside`
 `;
 
 const Main: FC = () => {
+  const posts = useSelector((state) => state.view.feed);
+  const { isPublicFeedFetching } = useSelector((state) => state.api);
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
@@ -87,6 +92,7 @@ const Main: FC = () => {
     batch(() => {
       dispatch(getPublicFeedThunk());
       dispatch(setNewPostsThunk());
+      dispatch(settingsResetUpdateSucceeded());
     });
   }, [dispatch]);
   useEffect(() => {

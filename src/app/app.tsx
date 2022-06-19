@@ -25,6 +25,8 @@ import { FeedRibbon, Modal } from '../widgets';
 import { IGenericVoidHandler } from '../types/widgets.types';
 import getSubscribeTagsThunk from '../thunks/get-subscribe-tags-thunk';
 import MainSubscribe from '../pages/main-subscribe';
+import MainModeration from '../pages/main-moderation';
+import getPendingPostsThunk from '../thunks/get-pending-posts-thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +46,7 @@ const App = () => {
     batch(() => {
       dispatch(getAllTopPostsThunk());
       dispatch(getAllTopTagsThunk());
+      dispatch(getPendingPostsThunk());
       dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {
@@ -60,7 +63,6 @@ const App = () => {
       dispatch(setLanguage(language));
     }
   }, [dispatch, langNames]);
-
   return (
     <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
       <ThemeProvider theme={
@@ -71,6 +73,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/article' element={<MainSubscribe />} />
+          <Route path='/moderation' element={<MainModeration />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Register />} />
           <Route path='/editArticle' element={<Editor />} />

@@ -20,6 +20,7 @@ import {
   EyeNoIcon,
   ArrowLeft,
   ArrowRight,
+  PreloaderBox,
 } from './icons';
 
 import {
@@ -45,6 +46,7 @@ import {
   FieldLogin,
   FieldEmail,
   FieldPassword,
+  ConfirmPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTags,
@@ -110,6 +112,7 @@ export {
   FieldLogin,
   FieldEmail,
   FieldPassword,
+  ConfirmPassword,
   FieldNick,
   InvitionCode,
   FieldNameArticle,
@@ -131,4 +134,5 @@ export {
   FieldTextComment,
   ArrowLeft,
   ArrowRight,
+  PreloaderBox,
 };
