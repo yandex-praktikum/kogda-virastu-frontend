@@ -6,7 +6,8 @@ import { batch } from 'react-redux';
 import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 import {
-  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getPublicFeedThunk, getUserThunk,
+  deleteArticleThunk, getAllPostsThunk, getAllTagsThunk, getAllTopTagsThunk, getPublicFeedThunk,
+  getUserThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -42,7 +43,8 @@ const App = () => {
   useEffect(() => {
     batch(() => {
       dispatch(getAllPostsThunk());
-      dispatch(getAllTagsThunk());
+      // dispatch(getAllTagsThunk());
+      // dispatch(getAllTopTagsThunk());
       dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {

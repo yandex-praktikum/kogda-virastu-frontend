@@ -1,5 +1,5 @@
 import {
-  TArticle, TComment, TProfile, TTags, TUser, TTag,
+  TArticle, TComment, TProfile, TTags, TUser, TTag, TTopTags,
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -74,6 +74,10 @@ export type TAPIPatchArticleData = {
 
 export type TAPITags = {
   tags: TTags;
+};
+
+export type TAPITopTags = {
+  topTags: TTopTags;
 };
 
 export type TAPIComment = {

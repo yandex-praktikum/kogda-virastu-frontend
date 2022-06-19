@@ -9,6 +9,7 @@ import {
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+  TOP_TAGS_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -18,6 +19,7 @@ import {
   TAPIParamsObject,
   TAPIArticle,
   TAPITags,
+  TAPITopTags,
   TAPIComments,
   TAPIComment,
   TAPIProfile,
@@ -33,6 +35,7 @@ import {
   IFetchArticles,
   IFetchComments,
   IFetchTags,
+  IFetchTopTags,
   IFetchUser,
   ILikeArticle,
   ILoginUser,
@@ -323,6 +326,14 @@ export const deleteLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TA
 export const fetchTags : IFetchTags = () : AxiosPromise<TAPITags> => {
   const requestConfig : AxiosRequestConfig = {
     url: TAGS_ROUTE,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchTopTags : IFetchTopTags = () : AxiosPromise<TAPITopTags> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: TOP_TAGS_ROUTE,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));

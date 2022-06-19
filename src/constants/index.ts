@@ -6,6 +6,7 @@ import {
   ARTICLES_ROUTE,
   FEED_ROUTE,
   TAGS_ROUTE,
+  TOP_TAGS_ROUTE,
   PROFILES_ROUTE,
   JWT,
 } from './api.constants';
@@ -28,6 +29,7 @@ export {
   ARTICLES_ROUTE,
   FEED_ROUTE,
   TAGS_ROUTE,
+  TOP_TAGS_ROUTE,
   PROFILES_ROUTE,
   JWT,
   mobileBreakpoint,

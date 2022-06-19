@@ -1,4 +1,5 @@
 import getAllTagsThunk from './get-all-tags-thunk';
+import getAllTopTagsThunk from './get-all-top-tags-thunk';
 import addLikeThunk from './add-like-thunk';
 import createCommentThunk from './create-comment-thunk';
 import deleteLikeThunk from './delete-like-thunk';
@@ -28,6 +29,7 @@ export {
   getPrivateFeedThunk,
   getPublicFeedThunk,
   getAllTagsThunk,
+  getAllTopTagsThunk,
   deleteLikeThunk,
   addLikeThunk,
   getUserProfileThunk,
