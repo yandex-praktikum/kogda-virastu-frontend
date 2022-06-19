@@ -29,6 +29,7 @@ import {
 import {
   IDeleteArticle,
   IDeleteComment,
+  IFetchAdminComments,
   IFetchArticle,
   IFetchArticles,
   IFetchComments,
@@ -263,6 +264,18 @@ export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIAr
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchPendingArticle : IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  const { limit, offset, tag } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/state/pending`,
+    params: makeParams(limit, offset, tag),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const postArticle : IPostArticle = (
   articleData: TAPIPatchArticleData,
 ) : AxiosPromise<TAPIArticle> => {
@@ -355,6 +368,25 @@ export const fetchTags : IFetchTags = () : AxiosPromise<TAPITags> => {
 export const fetchComments : IFetchComments = (slug: string) : AxiosPromise<TAPIComments> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}/comments`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const publishCommentsAdmin : IFetchAdminComments = (
+  slug: string,
+  comment: string,
+) : AxiosPromise<TAPIComments> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/comments/${comment}/publish`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchCommentsAdmin : IFetchComments = (slug: string) : AxiosPromise<TAPIComments> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/comments/state/published`,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));

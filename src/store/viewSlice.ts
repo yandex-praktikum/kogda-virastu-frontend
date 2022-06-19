@@ -7,11 +7,13 @@ import {
 type TViewState = {
   feed: TArticles | null;
   feedCount: number;
+  pendingFeed: Array<TArticle> | null;
   article: TArticle | null;
   tagsList: TTags | null;
   selectedTags: TTags | null;
   tag: string | null,
   commentsFeed: TComments | null;
+  commentsFeedAdmin: TComments | null;
   comment: TComment | null;
   page: number;
   perPage: number;
@@ -25,11 +27,13 @@ type TViewState = {
 const initialState: TViewState = {
   feed: null,
   feedCount: 0,
+  pendingFeed: null,
   article: null,
   tagsList: null,
   selectedTags: null,
   tag: null,
   commentsFeed: null,
+  commentsFeedAdmin: null,
   comment: null,
   page: 1,
   perPage: 10,
@@ -46,6 +50,9 @@ const viewSlice = createSlice({
   reducers: {
     setViewFeed: (state, action: PayloadAction<TArticles>) => ({
       ...state, feed: action.payload,
+    }),
+    setViewPendingFeed: (state, action: PayloadAction<TArticles>) => ({
+      ...state, pendingFeed: action.payload,
     }),
     clearViewFeed: (state) => ({
       ...state, feed: null,
@@ -85,6 +92,9 @@ const viewSlice = createSlice({
     }),
     setViewCommentsFeed: (state, action: PayloadAction<TComments>) => ({
       ...state, commentsFeed: action.payload,
+    }),
+    setViewCommentsFeedAdmin: (state, action: PayloadAction<TComments>) => ({
+      ...state, commentsFeedAdmin: action.payload,
     }),
     clearViewCommentsFeed: (state) => ({
       ...state, commentsFeed: [],
@@ -128,6 +138,7 @@ const viewSlice = createSlice({
 export const {
   clearPage,
   setViewFeed,
+  setViewPendingFeed,
   clearViewFeed,
   setFeedCount,
   setViewTags,
@@ -137,6 +148,7 @@ export const {
   setSelectedTags,
   clearSelectedTags,
   setViewCommentsFeed,
+  setViewCommentsFeedAdmin,
   clearViewCommentsFeed,
   selectViewComment,
   clearViewComment,

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -147,13 +147,12 @@ export const RejectAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = f
   );
 };
 
-export const PublishedAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = true }) => {
+export const PublishedAdminPostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = true }) => {
   const theme = useTheme();
   return (
     <PublishNormalButton
       colorScheme='blue'
-      disabled={disabled}
-      onClick={onClick}>
+      disabled={disabled}>
       <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='published' />
       </RegularText>

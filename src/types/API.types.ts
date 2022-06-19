@@ -68,6 +68,10 @@ export interface IFetchComments {
   (slug: string) : AxiosPromise<TAPIComments>;
 }
 
+export interface IFetchAdminComments {
+  (slug: string, comment: string) : AxiosPromise<TAPIComments>;
+}
+
 export interface IPostComment {
   (slug: string, body: string) : AxiosPromise<TAPIComment>;
 }
