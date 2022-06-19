@@ -18,6 +18,8 @@ const en: TVocabulary = {
   deleteArticle: 'Delete article',
   publish: 'Publish',
   decline: 'Decline',
+  published: 'Published',
+  setPending: 'Take off publication',
   sendComment: 'Send comment',
   articleName: 'Article title',
   articleAbout: 'About',

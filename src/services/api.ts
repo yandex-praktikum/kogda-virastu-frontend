@@ -316,6 +316,23 @@ export const declineArticle : IPatchArticle = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const setPendingArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/hold`,
+    method: 'post',
+    data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const postArticle : IPostArticle = (
   articleData: TAPIPatchArticleData,
 ) : AxiosPromise<TAPIArticle> => {

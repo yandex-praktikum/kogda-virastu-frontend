@@ -18,6 +18,8 @@ const ru: TVocabulary = {
   deleteArticle: 'Удалить запись',
   publish: 'Опубликовать',
   decline: 'Отклонить',
+  published: 'Опубликована',
+  setPending: 'Снять с публикации',
   sendComment: 'Отправить комментарий',
   articleName: 'Название статьи',
   articleAbout: 'О чем статья',

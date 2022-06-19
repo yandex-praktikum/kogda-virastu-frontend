@@ -16,6 +16,7 @@ import {
   publishArticleThunk,
   getArticleThunk,
   declineArticleThunk,
+  setPendingArticleThunk,
   getPendingFeedThunk,
 } from '../thunks';
 import {
@@ -23,6 +24,8 @@ import {
   EditPostButton,
   PublishButton,
   DeclineButton,
+  PublishedButton,
+  SetPendingButton,
 } from '../ui-lib';
 import { openConfirm } from '../store';
 import BarTags from './bar-tags';
@@ -40,6 +43,10 @@ type TArticleActionsProps = {
 type TModerationArticleActionsProps = {
   onClickPublish: MouseEventHandler<HTMLButtonElement>;
   onClickDecline: MouseEventHandler<HTMLButtonElement>;
+};
+
+type TPublishedArticleActionsProps = {
+  onClickSetPending: MouseEventHandler<HTMLButtonElement>;
 };
 
 const ArticleContainer = styled.div`
@@ -156,6 +163,13 @@ const ModerationArticleActions: FC<TModerationArticleActionsProps> = ({
   </ArticleActionsContainer>
 );
 
+const PublishedArticleActions: FC<TPublishedArticleActionsProps> = ({ onClickSetPending }) => (
+  <ArticleActionsContainer>
+    <PublishedButton />
+    <SetPendingButton onClick={onClickSetPending} />
+  </ArticleActionsContainer>
+);
+
 const Article: FC<TArticleProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -166,6 +180,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
   const pending = article?.state === 'pending';
+  const published = article?.state === 'published';
   const admin = currentUser?.roles?.filter((role) => role === 'admin').toString();
 
   const onClickDelete = () => {
@@ -195,6 +210,11 @@ const Article: FC<TArticleProps> = ({ slug }) => {
     // dispatch(getPendingFeedThunk());//доработать переход на таб модерации после отклонения статьи
   };
 
+  const onClickSetPending = () => {
+    dispatch(setPendingArticleThunk(slug));
+    navigate('/');
+  };
+
   const onClickLike = (ev: React.MouseEvent) => {
     ev.preventDefault();
     if (article?.favorited) {
@@ -214,6 +234,9 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       )}
       {pending && admin && (
         <ModerationArticleActions onClickPublish={onClickPublish} onClickDecline={onClickDecline} />
+      )}
+      {published && admin && !isAuthor && (
+        <PublishedArticleActions onClickSetPending={onClickSetPending} />
       )}
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleAuthorContainer>

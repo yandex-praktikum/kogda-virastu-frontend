@@ -20,6 +20,7 @@ import patchArticleThunk from './patch-article-thunk';
 import postArticleThunk from './post-article-thunk';
 import publishArticleThunk from './publish-article-thunk';
 import declineArticleThunk from './decline-article-thunk';
+import setPendingArticleThunk from './set-pending-article-thunk';
 import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
@@ -49,6 +50,7 @@ export {
   postArticleThunk,
   publishArticleThunk,
   declineArticleThunk,
+  setPendingArticleThunk,
   setTopLikedThunk,
   setNewPostsThunk,
   getAllPostsThunk,

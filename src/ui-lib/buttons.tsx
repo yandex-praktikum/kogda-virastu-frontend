@@ -172,6 +172,22 @@ export const DeclineButton : FC<TButtonProps> = ({ onClick, disabled = false }) 
   </BasicNormalButton>
 );
 
+export const PublishedButton : FC<TButtonProps> = ({ onClick, disabled = true }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={400} sansSerif>
+      <FormattedMessage id='published' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
+export const SetPendingButton : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='red' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={400} sansSerif>
+      <FormattedMessage id='setPending' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
 export const OpenMenuButton: FC<TAvatarButtonProps> = ({
   onClick,
   disabled = false,
