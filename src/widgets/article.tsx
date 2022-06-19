@@ -29,13 +29,12 @@ type TArticleActionsProps = {
   onClickDelete: MouseEventHandler<HTMLButtonElement>;
 };
 
-type TArticleAdminPublishActions = {
+export type TArticleAdminPublishActions = {
   onClickPublish: MouseEventHandler<HTMLButtonElement>;
   onClickReject: MouseEventHandler<HTMLButtonElement>;
 };
 
 type TArticleAdminPublishedActions = {
-  onClickPublished: MouseEventHandler<HTMLButtonElement>;
   onClickRemove: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -130,7 +129,7 @@ const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }
   </ArticleActionsContainer>
 );
 
-const ArticleAdminPublishActions: FC<TArticleAdminPublishActions> = ({
+export const ArticleAdminPublishActions: FC<TArticleAdminPublishActions> = ({
   onClickPublish,
   onClickReject,
 }) => (
@@ -141,11 +140,10 @@ const ArticleAdminPublishActions: FC<TArticleAdminPublishActions> = ({
 );
 
 const ArticleAdminPublishedActions: FC<TArticleAdminPublishedActions> = ({
-  onClickPublished,
   onClickRemove,
 }) => (
   <ArticleActionsContainer>
-    <PublishedAdminPostButton onClick={onClickPublished} />
+    <PublishedAdminPostButton />
     <RemovePublicationAdminPostButton onClick={onClickRemove} />
   </ArticleActionsContainer>
 );
@@ -177,25 +175,22 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const onClickReject = () => {
     if (article && slug) {
       dispatch(declineArticleAdminThunk(slug));
-      navigate(`/`);
+      navigate(-1);
     }
   };
 
   const onClickPublish = () => {
     if (article && slug) {
       dispatch(publishArticleAdminThunk(slug));
-      navigate(`/`);
+      navigate(-1);
     }
   };
 
   const onClickRemovePublish = () => {
     if (article && slug) {
       dispatch(removePublishArticleAdminThunk(slug));
-      navigate(`/`);
+      navigate('/');
     }
-  };
-
-  const onClickPublished = () => {
   };
 
   const onClickLike = (ev: React.MouseEvent) => {
@@ -224,7 +219,6 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       )}
       {isAdmin && !isPending && (
         <ArticleAdminPublishedActions
-          onClickPublished={onClickPublished}
           onClickRemove={onClickRemovePublish} />
       )}
       <ArticleTitle>{article.title}</ArticleTitle>

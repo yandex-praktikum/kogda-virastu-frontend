@@ -25,6 +25,7 @@ import { IGenericVoidHandler } from '../types/widgets.types';
 import getSubscribeTagsThunk from '../thunks/get-subscribe-tags-thunk';
 import MainSubscribe from '../pages/main-subscribe';
 import MainModeration from '../pages/main-moderation';
+import getPendingPostsThunk from '../thunks/get-pending-posts-thunk';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
     batch(() => {
       dispatch(getAllPostsThunk());
       dispatch(getAllTagsThunk());
+      dispatch(getPendingPostsThunk());
       dispatch(getSubscribeTagsThunk());
     });
     if (jwt.test()) {

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -127,7 +127,7 @@ export const PublishAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = 
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Опубликовать' />
+        <FormattedMessage id='publish' />
       </RegularText>
     </PublishNormalButton>
   );
@@ -141,21 +141,20 @@ export const RejectAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = f
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Отклонить' />
+        <FormattedMessage id='decline' />
       </RegularText>
     </PublishNormalButton>
   );
 };
 
-export const PublishedAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = true }) => {
+export const PublishedAdminPostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = true }) => {
   const theme = useTheme();
   return (
     <PublishNormalButton
       colorScheme='blue'
-      disabled={disabled}
-      onClick={onClick}>
+      disabled={disabled}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Опубликована' />
+        <FormattedMessage id='published' />
       </RegularText>
     </PublishNormalButton>
   );
@@ -172,7 +171,7 @@ export const RemovePublicationAdminPostButton: FC<TButtonProps> = ({
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
-        <FormattedMessage id='Снять с публикации' />
+        <FormattedMessage id='removePublish' />
       </RegularText>
     </PublishNormalButton>
   );

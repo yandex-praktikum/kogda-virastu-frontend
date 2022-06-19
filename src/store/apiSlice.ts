@@ -29,6 +29,7 @@ type TAPIState = {
   isLikeArticleDeleting: boolean,
   isTagsFetching: boolean,
   isCommentsFetching: boolean,
+  isCommentsAdminFetching: boolean,
   isCommentPosting: boolean,
   isCommentDeleting: boolean,
   isProfileFetching: boolean,
@@ -38,6 +39,7 @@ type TAPIState = {
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
   isAllPostsRequested: boolean,
+  isPendingPostsRequested: boolean,
   isTagSubscribed: boolean,
   isUnsubscribeTagDeleting: boolean,
   isSubscribeTagsFetching: boolean,
@@ -71,6 +73,7 @@ const initialState : TAPIState = {
   isLikeArticleDeleting: false,
   isTagsFetching: false,
   isCommentsFetching: false,
+  isCommentsAdminFetching: false,
   isCommentPosting: false,
   isCommentDeleting: false,
   isProfileFetching: false,
@@ -80,6 +83,7 @@ const initialState : TAPIState = {
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
   isAllPostsRequested: false,
+  isPendingPostsRequested: false,
   isTagSubscribed: false,
   isUnsubscribeTagDeleting: false,
   isSubscribeTagsFetching: false,
@@ -115,6 +119,15 @@ const apiSlice = createSlice({
     }),
     allPostsRequestFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserRegistering: false, errorObject: action.payload,
+    }),
+    pendingPostsRequested: (state) => ({
+      ...state, isPendingPostsRequested: true,
+    }),
+    pendingPostsRequestSucceeded: (state) => ({
+      ...state, isPendingPostsRequested: false,
+    }),
+    pendingPostsRequestFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, errorObject: action.payload,
     }),
     userRegistrationRequested: (state) => ({
       ...state, isUserRegistering: true,
@@ -299,6 +312,15 @@ const apiSlice = createSlice({
     commentsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isCommentsFetching: false, errorObject: action.payload,
     }),
+    commentsAdminFetchRequested: (state) => ({
+      ...state, isCommentsAdminFetching: true,
+    }),
+    commentsAdminFetchSucceeded: (state) => ({
+      ...state, isCommentsAdminFetching: false,
+    }),
+    commentsAdminFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isCommentsAdminFetching: false, errorObject: action.payload,
+    }),
     commentPostRequested: (state) => ({
       ...state, isCommentPosting: true,
     }),
@@ -463,6 +485,9 @@ export const {
   commentsFetchRequested,
   commentsFetchSucceeded,
   commentsFetchFailed,
+  commentsAdminFetchRequested,
+  commentsAdminFetchSucceeded,
+  commentsAdminFetchFailed,
   commentPostRequested,
   commentPostSucceeded,
   commentPostFailed,
@@ -485,6 +510,9 @@ export const {
   allPostsRequested,
   allPostsRequestSucceeded,
   allPostsRequestFailed,
+  pendingPostsRequested,
+  pendingPostsRequestSucceeded,
+  pendingPostsRequestFailed,
   setArticleFetchNotFound,
   clearArticleFetchNotFound,
   clearProfileFetchNotFound,
