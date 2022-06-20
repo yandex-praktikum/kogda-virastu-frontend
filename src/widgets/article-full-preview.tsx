@@ -9,6 +9,9 @@ import { TArticle } from '../types/types';
 import BarTags from './bar-tags';
 // import { Divider } from '../ui-lib';
 import { getPropOnCondition } from '../services/helpers';
+import { useSelector, useDispatch } from '../services/hooks';
+import { ModerationArticleButtonActions } from '../ui-lib/index';
+import { publishArticleThunk, declineArticleThunk, getPendingFeedThunk } from '../thunks/index';
 
 const ArticleCardContainer = styled.div`
   width: 100%;
@@ -50,6 +53,20 @@ const ArticleName = styled.h2`
     grid-column: 1/1;
 }
 
+`;
+
+const ArticleActionsContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 16px;
+  // justify-content: space-between;
+  && > button {
+    margin-right: 16px;
+    // width:233px;
+    @media screen  and (max-width:725px) {
+      width:175px;
+    }
+  }
 `;
 
 type TElementWithImage = {
@@ -141,32 +158,53 @@ type TArticleFullPreview = {
   onLikeClick: MouseEventHandler,
 };
 
-const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => (
+const ArticleFullPreview: FC<TArticleFullPreview> = ({ article, onLikeClick }) => {
+  const dispatch = useDispatch();
+  const { feedType } = useSelector((state) => state.view);
 
-  <ArticleCardContainer>
-    <AuthorHeadingWidget
-      username={article.author?.username}
-      nickname={article.author?.nickname ?? article.author?.username}
-      image={article.author.image}
-      date={new Date(article.createdAt)}
-      isLiked={article.favorited}
-      likesCount={article.favoritesCount}
-      onLikeClick={onLikeClick} />
-    <ContentContainer image={article.link}>
-      <ArticleName>{article.title}</ArticleName>
-      {article.link && <ArticleImage src={article.link} />}
-      <Article image={article.link}>{parse(article.body ? article.body : '')}</Article>
-      <BarTagsWrapper image={article.link}>
-        <BarTags
-          rowReverse
-          tagList={article.tagList} />
-      </BarTagsWrapper>
-      <Link className='link' to={`/article/${article.slug}`}>
-        <FormattedMessage id='articleEnter' />
-      </Link>
-    </ContentContainer>
-    {/* <Divider distance={0} /> */}
-  </ArticleCardContainer>
-);
+  const onClickPublish = () => {
+    dispatch(publishArticleThunk(article.slug));
+    dispatch(getPendingFeedThunk());
+  };
+
+  const onClickDecline = () => {
+    dispatch(declineArticleThunk(article.slug));
+    dispatch(getPendingFeedThunk());
+  };
+
+  return (
+    <ArticleCardContainer>
+      <AuthorHeadingWidget
+        username={article.author?.username}
+        nickname={article.author?.nickname ?? article.author?.username}
+        image={article.author.image}
+        date={new Date(article.createdAt)}
+        isLiked={article.favorited}
+        likesCount={article.favoritesCount}
+        onLikeClick={onLikeClick} />
+      <ContentContainer image={article.link}>
+        <ArticleName>{article.title}</ArticleName>
+        {article.link && <ArticleImage src={article.link} />}
+        <Article image={article.link}>{parse(article.body ? article.body : '')}</Article>
+        <BarTagsWrapper image={article.link}>
+          <BarTags
+            rowReverse
+            tagList={article.tagList} />
+        </BarTagsWrapper>
+        <Link className='link' to={`/article/${article.slug}`}>
+          <FormattedMessage id='articleEnter' />
+        </Link>
+        {feedType === 'moderation' && (
+        <ArticleActionsContainer>
+          <ModerationArticleButtonActions
+            onClickPublish={onClickPublish}
+            onClickDecline={onClickDecline} />
+        </ArticleActionsContainer>
+        )}
+      </ContentContainer>
+      {/* <Divider distance={0} /> */}
+    </ArticleCardContainer>
+  );
+};
 
 export default ArticleFullPreview;

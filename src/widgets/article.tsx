@@ -1,13 +1,30 @@
-import React, { FC, MouseEventHandler } from 'react';
+import React, {
+  FC,
+  MouseEventHandler,
+  useState,
+  useEffect,
+} from 'react';
 import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
-  addLikeThunk, deleteLikeThunk,
+  addLikeThunk,
+  deleteLikeThunk,
+  publishArticleThunk,
+  getArticleThunk,
+  declineArticleThunk,
+  setPendingArticleThunk,
+  getPendingFeedThunk,
 } from '../thunks';
-import { DeletePostButton, EditPostButton } from '../ui-lib';
+import {
+  DeletePostButton,
+  EditPostButton,
+  ModerationArticleButtonActions,
+  PublishedButton,
+  SetPendingButton,
+} from '../ui-lib';
 import { openConfirm } from '../store';
 import BarTags from './bar-tags';
 import Likes from './likes';
@@ -19,6 +36,10 @@ type TArticleProps = {
 type TArticleActionsProps = {
   onClickEdit: MouseEventHandler<HTMLButtonElement>;
   onClickDelete: MouseEventHandler<HTMLButtonElement>;
+};
+
+type TPublishedArticleActionsProps = {
+  onClickSetPending: MouseEventHandler<HTMLButtonElement>;
 };
 
 const ArticleContainer = styled.div`
@@ -47,7 +68,7 @@ const ArticleActionsContainer = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   && > button {
-    width:233px;
+    // width:233px;
     @media screen  and (max-width:725px) {
       width:175px;
     }
@@ -126,13 +147,34 @@ const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }
   </ArticleActionsContainer>
 );
 
+// const ModerationArticleActions: FC<TModerationArticleActionsProps> = ({
+//   onClickPublish, onClickDecline,
+// }) => (
+//   <ArticleActionsContainer>
+//     <PublishButton onClick={onClickPublish} />
+//     <DeclineButton onClick={onClickDecline} />
+//   </ArticleActionsContainer>
+// );
+
+const PublishedArticleActions: FC<TPublishedArticleActionsProps> = ({ onClickSetPending }) => (
+  <ArticleActionsContainer>
+    <PublishedButton />
+    <SetPendingButton onClick={onClickSetPending} />
+  </ArticleActionsContainer>
+);
+
 const Article: FC<TArticleProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [articlePublished, setArticlePublished] = useState(false);
+
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
+  const pending = article?.state === 'pending';
+  const published = article?.state === 'published';
+  const admin = currentUser?.roles?.filter((role) => role === 'admin').toString();
 
   const onClickDelete = () => {
     if (article) {
@@ -144,6 +186,26 @@ const Article: FC<TArticleProps> = ({ slug }) => {
     if (article && slug) {
       navigate(`/editArticle/${slug}`);
     }
+  };
+
+  const onClickPublish = () => {
+    dispatch(publishArticleThunk(slug));
+    setArticlePublished(true);
+  };
+
+  useEffect(() => {
+    dispatch(getArticleThunk(slug));
+  }, [articlePublished, dispatch, slug]);
+
+  const onClickDecline = () => {
+    dispatch(declineArticleThunk(slug));
+    navigate('/');
+    // dispatch(getPendingFeedThunk());//доработать переход на таб модерации после отклонения статьи
+  };
+
+  const onClickSetPending = () => {
+    dispatch(setPendingArticleThunk(slug));
+    navigate('/');
   };
 
   const onClickLike = (ev: React.MouseEvent) => {
@@ -160,8 +222,18 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   }
   return (
     <ArticleContainer>
-      {isAuthor && (
+      {isAuthor && !pending && (
         <ArticleActions onClickDelete={onClickDelete} onClickEdit={onClickEdit} />
+      )}
+      {pending && admin && (
+        <ArticleActionsContainer>
+          <ModerationArticleButtonActions
+            onClickPublish={onClickPublish}
+            onClickDecline={onClickDecline} />
+        </ArticleActionsContainer>
+      )}
+      {published && admin && !isAuthor && (
+        <PublishedArticleActions onClickSetPending={onClickSetPending} />
       )}
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleAuthorContainer>
