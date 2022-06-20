@@ -15,7 +15,6 @@ import {
   setFormProfile,
   setPasswordProfile,
   setConfirmPasswordProfile,
-  setInviteCode,
 } from '../../store';
 
 import { patchCurrentUserThunk, getInviteThunk } from '../../thunks';
@@ -30,8 +29,6 @@ import {
   TagsTitle,
   InviteButtonContainer,
   InviteCodeText,
-  FormLoginLink,
-  InviteCodeLink,
   InviteCodeSuccess,
 } from './forms-styles';
 
@@ -116,8 +113,9 @@ const SettingsForm: FC = () => {
     e.stopPropagation();
     dispatch(deleteTagFollowThunk(tag));
   };
+
   const copyCode = () => {
-    navigator.clipboard.writeText(`/registration?=${profile.friendInvite || ''}`)
+    navigator.clipboard.writeText(`http://localhost:4100/registration?=${profile.friendInvite || ''}`)
       .then(() => setCodeSuccess(true))
       .then(() => setTimeout(() => setCodeSuccess(false), 5000))
       .catch(() => {});
@@ -149,7 +147,7 @@ const SettingsForm: FC = () => {
           && <InviteCodeSuccess>{intl.messages.textSuccesCode as string}</InviteCodeSuccess>}
         </InviteButtonContainer>
         <TagsTitle>
-          Теги
+          <FormattedMessage id='tagsTitle' />
         </TagsTitle>
         <TagsContainer>
           {

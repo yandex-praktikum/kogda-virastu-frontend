@@ -10,6 +10,7 @@ import {
   PROFILES_ROUTE,
   TAGS_ROUTE,
   INVITE_ROUTE,
+  ADMIN_USERS_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -25,8 +26,12 @@ import {
   TAPIComment,
   TAPIProfile,
   TAPIAuth,
-  TAPIPatchUserData, TAPIPatchArticleData,
+  TAPIPatchUserData,
+  TAPIPatchArticleData,
   TAPIInvite,
+  TAPIUsers,
+  TAPIRolesData,
+  TAPIUser,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -47,6 +52,8 @@ import {
   IRegisterUser,
   ITag,
   IInvite,
+  IFetchAllUsers,
+  IPatchUserRoles,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -409,6 +416,26 @@ export const fetchInviteCode : IInvite = () : AxiosPromise<TAPIInvite> => {
   const requestConfig: AxiosRequestConfig = {
     url: INVITE_ROUTE,
     method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchAllUsers : IFetchAllUsers = () : AxiosPromise<TAPIUsers> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: ADMIN_USERS_ROUTE,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const patchUserRoles : IPatchUserRoles = (
+  slug: string,
+  data: TAPIRolesData,
+) : AxiosPromise<TAPIUser> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${ADMIN_USERS_ROUTE}/${slug}/roles`,
+    method: 'patch',
+    data,
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

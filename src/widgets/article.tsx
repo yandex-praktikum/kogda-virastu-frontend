@@ -2,6 +2,7 @@ import React, { FC, MouseEventHandler } from 'react';
 import { FormattedDate } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import parse from 'html-react-parser';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk, deleteLikeThunk,
@@ -89,18 +90,33 @@ const ArticleImage = styled.img`
   height: 100%;
 `;
 
-const ArticleBody = styled.p`
-  font-family: ${({ theme: { text18: { family } } }) => family};
-  font-size: ${({ theme: { text18: { size } } }) => size}px ;
-  line-height: ${({ theme: { text18: { height } } }) => height}px;
-  font-weight: ${({ theme: { text18: { weight } } }) => weight};
-  margin: 0;
-  @media screen and (max-width:768px) {
-    font-family: ${({ theme: { text16: { family } } }) => family};
-    font-size: ${({ theme: { text16: { size } } }) => size}px ;
-    line-height: ${({ theme: { text16: { height } } }) => height}px;
-    font-weight: ${({ theme: { text16: { weight } } }) => weight};
- }
+const ArticleBody = styled.div`
+  p {
+    margin: 0;
+    font-family: ${({ theme: { text18: { family } } }) => family};
+    font-size: ${({ theme: { text18: { size } } }) => size}px ;
+    line-height: ${({ theme: { text18: { height } } }) => height}px;
+    font-weight: ${({ theme: { text18: { weight } } }) => weight};
+    @media screen and (max-width:768px) {
+      font-family: ${({ theme: { text16: { family } } }) => family};
+      font-size: ${({ theme: { text16: { size } } }) => size}px ;
+      line-height: ${({ theme: { text16: { height } } }) => height}px;
+      font-weight: ${({ theme: { text16: { weight } } }) => weight}
+    }
+  }
+
+  li {
+      font-family: ${({ theme: { text18: { family } } }) => family};
+      font-size: ${({ theme: { text18: { size } } }) => size}px ;
+      line-height: ${({ theme: { text18: { height } } }) => height}px;
+      font-weight: ${({ theme: { text18: { weight } } }) => weight};
+      @media screen and (max-width:768px) {
+        font-family: ${({ theme: { text16: { family } } }) => family};
+        font-size: ${({ theme: { text16: { size } } }) => size}px ;
+        line-height: ${({ theme: { text16: { height } } }) => height}px;
+        font-weight: ${({ theme: { text16: { weight } } }) => weight}
+      }
+    }
 `;
 
 const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }) => (
@@ -168,7 +184,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
       {article.link && (
         <ArticleImage src={article.link} />
       )}
-      <ArticleBody>{article.body}</ArticleBody>
+      <ArticleBody>{parse(article.body ? article.body : '')}</ArticleBody>
       <BarTags tagList={article.tagList} />
     </ArticleContainer>
   );

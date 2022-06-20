@@ -23,9 +23,9 @@ import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
 import { Modal } from '../widgets';
-
 import { IGenericVoidHandler } from '../types/widgets.types';
 import getTagsFollowThunk from '../thunks/get-tags-follow-thunk';
+import AdminPanel from '../pages/admin';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -79,6 +79,7 @@ const App = () => {
           <Route path='/profile/:username' element={<Profile />} />
           <Route path='/settings' element={<Settings />} />
           <Route path='/article/:slug' element={<ArticlePage />} />
+          <Route path='/admin' element={<AdminPanel />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />

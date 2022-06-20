@@ -1,5 +1,6 @@
 import React, { FC, MouseEvent, useState } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from '../services/hooks';
 import Tag from './tag';
@@ -12,7 +13,6 @@ type TBarTags = {
 };
 
 type TLists = {
-  isHasImage?: boolean,
   rowReverse?: boolean;
 };
 
@@ -36,7 +36,6 @@ const Lists = styled.ul<TLists>`
     padding:0;
     @media screen and (max-width:768px) {
         max-width:453px;
-        ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
      }
      
      @media screen and (max-width:600px) {
@@ -48,7 +47,6 @@ const Lists = styled.ul<TLists>`
 `;
 
 Lists.defaultProps = {
-  isHasImage: false,
   rowReverse: false,
 };
 
@@ -58,7 +56,7 @@ const List = styled.li`
 
 const fade = keyframes`
   from {
-    opacity: 1;
+    opacity: .9;
   }
 
   to {
@@ -69,7 +67,8 @@ const fade = keyframes`
 const MessageContainer = styled.div<TMessageContainer>`
   padding: 0 16px;
   min-height: 32px;
-  background-color: rgba(10, 10, 11, 0.9);
+  background-color: ${({ theme }) => theme.primaryText};
+  opacity: .9;
   display: flex;
   max-width: 270px;
   justify-content: center;
@@ -89,14 +88,13 @@ const MessageContainer = styled.div<TMessageContainer>`
   }
 `;
 
-const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowReverse = false }) => {
+const BarTags: FC<TBarTags & TLists> = ({ tagList, rowReverse = false }) => {
   const { tagsFollow } = useSelector((state) => state.view);
   const { isVisible } = useSelector((state) => state.api);
   const dispatch = useDispatch();
   const pointer = !rowReverse;
   const theme = useTheme();
   const [tagName, setTagName] = useState('');
-
   const handleClickTag = (e: MouseEvent<HTMLButtonElement>, tag: string, isActive: boolean) => {
     e.preventDefault();
     if (pointer) {
@@ -110,7 +108,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
   };
 
   return (
-    <Lists isHasImage={isHasImage} rowReverse={rowReverse}>
+    <Lists rowReverse={rowReverse}>
       {tagList.map((tag) => (
         <List key={nanoid(10)}>
           <Tag
@@ -128,7 +126,7 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
                 color={theme.button.blue.font}
                 align='center'
                 sansSerif>
-                Вы подписались на тег #
+                <FormattedMessage id='popupMessage' />
                 {tagName}
               </RegularText>
             </MessageContainer>
@@ -140,7 +138,6 @@ const BarTags: FC<TBarTags & TLists> = ({ tagList, isHasImage = false, rowRevers
 };
 
 BarTags.defaultProps = {
-  isHasImage: false,
   rowReverse: false,
 };
 

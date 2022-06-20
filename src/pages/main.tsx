@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from '../services/hooks';
 import {
   setTopLikedThunk, setNewPostsThunk, getPublicFeedThunk,
 } from '../thunks';
-import { FeedRibbon, Slider } from '../widgets';
+import { FeedRibbon, Slider, Preloader } from '../widgets';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
 import FeedFilter from '../widgets/feed-filter';
 
@@ -88,10 +88,12 @@ const RightColumn = styled.aside`
     }
   }
 `;
-const Main : FC = () => {
+const Main: FC = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const { articles } = useSelector((state) => state.all);
+  const { isLoggedIn } = useSelector((state) => state.system);
+
   useEffect(() => {
     batch(() => {
       dispatch(getPublicFeedThunk());
@@ -104,11 +106,17 @@ const Main : FC = () => {
       dispatch(setTopLikedThunk());
     }
   }, [dispatch, articles]);
+
+  if (!articles) {
+    return (
+      <Preloader />
+    );
+  }
   return (
     <MainSection>
       <MainContainer>
         <LeftColumn>
-          <FeedFilter />
+          {isLoggedIn && <FeedFilter />}
           <FeedRibbon />
         </LeftColumn>
         <RightColumn>
