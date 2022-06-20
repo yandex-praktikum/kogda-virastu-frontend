@@ -40,7 +40,7 @@ import {
 import {
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setPopularTags,
   clearArticles,
   clearTags,
   clearAll,
@@ -234,7 +234,7 @@ export {
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setPopularTags,
   clearArticles,
   clearTags,
   clearAll,

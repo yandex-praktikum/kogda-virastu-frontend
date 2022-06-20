@@ -9,6 +9,7 @@ import {
   TAPIPatchArticleData,
   TAPIProfile,
   TAPITags,
+  TAPIPopularTags,
   TAPIUser,
   TAPITag,
   TAPIInvite,
@@ -71,6 +72,10 @@ export interface ILikeArticle {
 
 export interface IFetchTags {
   () : AxiosPromise<TAPITags>
+}
+
+export interface IFetchPopularTags {
+  () : AxiosPromise<TAPIPopularTags>
 }
 
 export interface IFetchComments {

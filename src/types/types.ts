@@ -24,6 +24,13 @@ export type TProfile = {
   nickname?: string;
 };
 
+type TPopularTag = {
+  count: number,
+  name: string,
+};
+
+export type TPopularTags = Array<TPopularTag>;
+
 export type TTags = Array<string>;
 
 export type TArticle = {
