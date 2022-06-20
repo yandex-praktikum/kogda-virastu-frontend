@@ -6,6 +6,8 @@ import {
   REGISTER_ROUTE,
   USER_ROUTE,
   ARTICLES_ROUTE,
+  MODERATION_ARTICLE_ROUTE,
+  PENDING_FEED_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
@@ -260,11 +262,76 @@ export const fetchPrivateFeed : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchPendingFeed: IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  const {
+    limit, offset, tag, author,
+  } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: PENDING_FEED_ROUTE,
+    params: makeParams(limit, offset, tag, author),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}`,
     method: 'get',
   };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const publishArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/publish`,
+    method: 'post',
+    data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/decline`,
+    method: 'post',
+    data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const setPendingArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/hold`,
+    method: 'post',
+    data: postData,
+  };
+
   return blogAPI(injectBearerToken(requestConfig));
 };
 

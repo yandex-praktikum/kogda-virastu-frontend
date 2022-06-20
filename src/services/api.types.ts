@@ -17,12 +17,12 @@ export type TAPIAuth = {
   user: {
     email: string;
     username: string;
+    roles?: Array<string>,
     bio?: string;
     image?: string;
     token: string;
     nickname: string,
     invite?: string,
-    roles?: Array<string>,
   };
 };
 
