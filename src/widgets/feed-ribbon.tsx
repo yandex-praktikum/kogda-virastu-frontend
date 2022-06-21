@@ -197,7 +197,6 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         dispatch(addLikeThunk(post.slug));
       }
     };
-
     return (
       <React.Fragment key={post.slug}>
         <ItemWrapper>
