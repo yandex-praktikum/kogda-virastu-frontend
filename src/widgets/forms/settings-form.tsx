@@ -1,7 +1,6 @@
 import React, {
   ChangeEventHandler, FC, FormEventHandler, useEffect, MouseEventHandler, useState,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from '../../services/hooks';
@@ -51,11 +50,10 @@ const SettingsForm: FC = () => {
     bio, email, image, username, password, nickname, confirmPassword,
   } = useSelector((state) => state.forms.profile);
   const profile = useSelector((state) => state.profile);
-  const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
+  const { isSettingsPatching } = useSelector((state) => state.api);
   const { tagsFollow } = useSelector((state) => state.view);
   const dispatch = useDispatch();
   const theme = useTheme();
-  const navigate = useNavigate();
   const intl = useIntl();
   const [codeSuccess, setCodeSuccess] = useState(false);
   const inputIcon = document.getElementById('file-input');
@@ -69,13 +67,6 @@ const SettingsForm: FC = () => {
       image: profile.image || '',
     }));
   }, [dispatch, profile]);
-
-  useEffect(() => {
-    if (isSettingsUpdateSucceeded) {
-      navigate('/');
-    }
-    //  return () => { dispatch(settingsResetUpdateSucceeded()); };
-  }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const onIconClick = () => {
     inputIcon?.click();
