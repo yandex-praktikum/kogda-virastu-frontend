@@ -4,7 +4,7 @@ import React, {
 import styled from 'styled-components';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
-import { Divider, RegularText } from '../ui-lib';
+import { Divider } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
@@ -85,6 +85,10 @@ const SecondButtonContainer = styled.div`
 @media screen and (max-width: 890px) {
   margin-top: 16px;
   }
+
+@media screen and (max-width: 765px) {
+  margin: 0;
+  }
 `;
 
 const activeStyle = {
@@ -109,12 +113,17 @@ const Links = styled.div`
   display: flex;
   padding: 0;
 
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
   @media screen and (max-width: 1100px) {
     padding-left: 5%;
   }
 
   @media screen and (max-width: 769px) {
     padding: 0;
+    overflow-x: auto;
   }
 `;
 
@@ -171,15 +180,15 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const onClickReject = async (slug: string) => {
+  const onClickReject = (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    await dispatch(declineArticleAdminThunk(slug));
+    dispatch(declineArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
-  const onClickPublish = async (slug: string) => {
+  const onClickPublish = (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    await dispatch(publishArticleAdminThunk(slug));
+    dispatch(publishArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
@@ -201,7 +210,6 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         dispatch(addLikeThunk(post.slug));
       }
     };
-
     return (
       <React.Fragment key={post.slug}>
         <ItemWrapper>
@@ -230,12 +238,25 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
 
   return (
     <>
+<<<<<<< HEAD
       {(pathname === '/'
       || pathname === '/article'
       || pathname === '/moderation') && (
         <Links>
           <NavLink to='/' style={activeLink}>
             Все посты
+=======
+      <Links>
+        <NavLink to='/' style={activeLink}>
+          Все&nbsp;посты
+        </NavLink>
+        <NavLink to='/article' style={activeLink}>
+          Мои&nbsp;подписки
+        </NavLink>
+        {isAdmin && (
+          <NavLink to='/moderation' style={activeLink}>
+            На&nbsp;модерации
+>>>>>>> c5b270962e0e3bdac45b02b24c93dcd9fbc72e02
           </NavLink>
           <NavLink to='/article' style={activeLink}>
             Мои подписки

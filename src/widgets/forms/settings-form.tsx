@@ -1,5 +1,5 @@
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useEffect, useState,
+  FC, ChangeEventHandler, FormEventHandler, FocusEventHandler, useEffect, useState, useRef,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
@@ -9,6 +9,7 @@ import { TagSetForm } from '../tag';
 import { LabelStyle } from '../../ui-lib/inputs/text-fields-styles';
 import unsubscribeTagThunk from '../../thunks/unsubscribe-tag-thunk';
 import Preloader from '../preloader';
+import getSubscribeTagsThunk from '../../thunks/get-subscribe-tags-thunk';
 
 import {
   setUsernameProfile,
@@ -56,18 +57,16 @@ const TagListForm = styled.div`
   padding-bottom: 30px;
 `;
 const ContainerTags = styled.div`
-     width: 100%;
-     margin: 0;
-     padding: 0;
-    position: relative;
-     display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
   flex-flow: column nowrap;
-  // justify-content: space-between;
-  // align-items: center;
-     @media screen and (max-width:768px) {
-        font-size: 16px;
-     }
- `;
+  @media screen and (max-width:768px) {
+    font-size: 16px;
+  }
+`;
 const CopyButton = styled.button`
   visibility: hidden;
   margin-top: 5px;
@@ -90,17 +89,15 @@ const Invite = styled.span`
   align-self: center;
 `;
 const ContainerCopyLink = styled.div`
-     width: 100%;
-     margin: 0;
-     padding: 0;
-     display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
   flex-flow: column nowrap;
-  // justify-content: space-between;
-  // align-items: center;
-     @media screen and (max-width:768px) {
-        font-size: 16px;
-     }
- `;
+  @media screen and (max-width:768px) {
+    font-size: 16px;
+  }
+`;
 
 const SettingsForm: FC = () => {
   const {
@@ -112,6 +109,7 @@ const SettingsForm: FC = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.profile);
   useEffect(() => {
+    dispatch(getSubscribeTagsThunk());
     dispatch(setFormProfile({
       username: profile.username || '',
       email: profile.email || '',
@@ -134,6 +132,7 @@ const SettingsForm: FC = () => {
   const { isSettingsPatching, isSettingsUpdateSucceeded } = useSelector((state) => state.api);
 
   const passwordConfirmation = password && confirmPassword ? password !== confirmPassword : false;
+  const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isSettingsUpdateSucceeded) {
@@ -143,14 +142,27 @@ const SettingsForm: FC = () => {
   }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
   const [copied, setCopied] = useState<boolean>(false);
+  const [selectedFileName, setSelectedFileName] = useState<string>('');
 
   const submitForm : FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    if (!passwordConfirmation) dispatch(patchCurrentUserThunk());
+
+    if (!passwordConfirmation) {
+      const files = fileInput.current?.files;
+      const file = files && files.length ? files[0] : null;
+      dispatch(patchCurrentUserThunk(file));
+    }
   };
 
   const changeImage : ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setImageProfile(evt.target.value));
+  };
+
+  const onFocusImage: FocusEventHandler<HTMLInputElement> = () => {
+    if (fileInput.current) {
+      setSelectedFileName('');
+      fileInput.current.value = '';
+    }
   };
 
   const changeUsername : ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -194,6 +206,11 @@ const SettingsForm: FC = () => {
   }
   const link = `${window.location.origin}/registration?=${invitionCode ?? ''}`;
 
+  const onSelectFile = () => {
+    const files = fileInput.current?.files;
+    const fileName = (files && files.length && files[0].name) || '';
+    setSelectedFileName(`Выбран файл: ${fileName}`);
+  };
   if (tagsFollow) {
     return (
       <FormContainer>
@@ -202,7 +219,12 @@ const SettingsForm: FC = () => {
         </FormTitle>
         <Form onSubmit={submitForm}>
           <InputFieldset rowGap={16}>
-            <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+            <FieldProfileImage
+              value={selectedFileName || image || ''}
+              onChange={changeImage}
+              onFocus={onFocusImage}
+              fileInputRef={fileInput}
+              onSelectFile={onSelectFile} />
             <FieldLogin value={username ?? ''} onChange={changeUsername} />
             <FieldNick value={nickname ?? ''} onChange={changeNickname} />
             <FieldAboutUser
@@ -253,8 +275,8 @@ const SettingsForm: FC = () => {
     );
   }
   return (
-    // <Preloader />
-    <div>.......Loading Tags SettingsForm...</div>
+    <Preloader />
+    // <div>.......Loading Tags SettingsForm...</div>
   );
 };
 

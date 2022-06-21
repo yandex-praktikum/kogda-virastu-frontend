@@ -1,10 +1,31 @@
-import React, { FC, useState } from 'react';
+import React, {
+  FC, useState, FocusEventHandler,
+} from 'react';
 import { useIntl } from 'react-intl';
 import InputField from './input-field-config';
 import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
-import { TFieldInput } from '../../types/styles.types';
+import { TFieldInput, TFileInput } from '../../types/styles.types';
 
-export const FieldUrl: FC<TFieldInput> = ({
+export const FileInput: FC<TFileInput> = ({
+  fileInputRef,
+  onSelectFile,
+}) => (
+  <label htmlFor='upload-img' style={{ display: 'flex' }}>
+    <PaperClipIcon color='grey' />
+    <input
+      type='file'
+      name='FieldUploadImg'
+      id='upload-img'
+      multiple
+      onChange={onSelectFile}
+      ref={fileInputRef}
+      style={{ display: 'none' }} />
+  </label>
+);
+
+export const FieldUrl: FC<TFieldInput & TFileInput & {
+  onFocus: FocusEventHandler<HTMLInputElement>
+}> = ({
   value,
   onFocus = undefined,
   onBlur = undefined,
@@ -13,13 +34,15 @@ export const FieldUrl: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  fileInputRef,
+  onSelectFile,
 }) => {
   const intl = useIntl();
   return (
     <InputField
       placeholder={placeholder}
       name='FieldURL'
-      type='url'
+      type='text'
       errorText={errorText}
       error={error}
       onFocus={onFocus}
@@ -27,11 +50,13 @@ export const FieldUrl: FC<TFieldInput> = ({
       value={value}
       onChange={onChange}
       labelText={intl.messages.articleImage as string}
-      icon={<PaperClipIcon color='grey' />}
+      icon={<FileInput fileInputRef={fileInputRef} onSelectFile={onSelectFile} />}
       disabled={disabled} />
   );
 };
-export const FieldProfileImage: FC<TFieldInput> = ({
+export const FieldProfileImage: FC<TFieldInput & TFileInput & {
+  onFocus: FocusEventHandler<HTMLInputElement>
+}> = ({
   value,
   onFocus = undefined,
   onBlur = undefined,
@@ -40,13 +65,15 @@ export const FieldProfileImage: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  fileInputRef,
+  onSelectFile,
 }) => {
   const intl = useIntl();
   return (
     <InputField
       placeholder={placeholder}
       name='FieldProfileImage'
-      type='url'
+      type='text'
       errorText={errorText}
       error={error}
       onBlur={onBlur}
@@ -54,7 +81,7 @@ export const FieldProfileImage: FC<TFieldInput> = ({
       value={value}
       onChange={onChange}
       labelText={intl.messages.urlImage as string}
-      icon={<PaperClipIcon color='grey' />}
+      icon={<FileInput fileInputRef={fileInputRef} onSelectFile={onSelectFile} />}
       disabled={disabled} />
   );
 };
