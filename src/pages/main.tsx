@@ -48,7 +48,7 @@ const MainContainer = styled.div`
       padding: 0 24px;
       gap: 0 calc(40px - ${tabletToMobileGapStep} * (${tabletBreakpoint}px - 100vw)) ;
       width: calc(720px - ${tabletToMobileMainWidthStop} * (${tabletBreakpoint}px - 100vw));
-  }
+    }
   @media screen and (max-width: 765px) {
     flex-direction: column-reverse;
     gap: 0;

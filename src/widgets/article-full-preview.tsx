@@ -18,12 +18,13 @@ const ArticleCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 360px;
+  margin-right: 30px;
 
   @media screen and (max-width: 1300px) {
-    max-width: 320px;
+    max-width: 300px;
   }
   @media screen and (max-width: 1030px) {
-    max-width: 226px;
+    max-width: 200px;
   }
   @media screen and (max-width: 765px) {
     width: 100%;
@@ -52,7 +53,6 @@ const ArticleName = styled.h2`
  @media screen and (max-width: 320px) {
     grid-column: 1/1;
 }
-
 `;
 
 const ArticleActionsContainer = styled.div`
