@@ -238,28 +238,15 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
 
   return (
     <>
-<<<<<<< HEAD
       {(pathname === '/'
       || pathname === '/article'
       || pathname === '/moderation') && (
         <Links>
           <NavLink to='/' style={activeLink}>
-            Все посты
-=======
-      <Links>
-        <NavLink to='/' style={activeLink}>
-          Все&nbsp;посты
-        </NavLink>
-        <NavLink to='/article' style={activeLink}>
-          Мои&nbsp;подписки
-        </NavLink>
-        {isAdmin && (
-          <NavLink to='/moderation' style={activeLink}>
-            На&nbsp;модерации
->>>>>>> c5b270962e0e3bdac45b02b24c93dcd9fbc72e02
+            Все&nbsp;посты
           </NavLink>
           <NavLink to='/article' style={activeLink}>
-            Мои подписки
+            Мои&nbsp;подписки
           </NavLink>
           {isAdmin && (
             <NavLink to='/moderation' style={activeLink}>
