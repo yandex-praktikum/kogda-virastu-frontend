@@ -55,6 +55,9 @@ interface IInputInterface {
 
 interface IInputUpload extends IInputInterface {
   onChangeUpload?: ChangeEventHandler<HTMLInputElement>;
+  imageRef?: {
+    current: any
+  }
 
 }
 
@@ -85,7 +88,7 @@ export const InputField: FC<IInputInterface> = ({
 
 export const InputFieldWithUpload: FC<IInputUpload> = ({
   type, placeholder, value, name, error = false, icon = null, errorText = '', onChange, onIconClick, onBlur, onFocus,
-  disabled = false, labelText = '', onChangeUpload,
+  disabled = false, labelText = '', onChangeUpload, imageRef,
 }: IInputUpload) => (
   <ContainerInput>
     <LabelStyle>
@@ -106,7 +109,8 @@ export const InputFieldWithUpload: FC<IInputUpload> = ({
         error={error}
         type='file'
         id='file-input'
-        onChange={onChangeUpload} />
+        onChange={onChangeUpload}
+        ref={imageRef} />
       {icon}
     </ContainerIcon>
     {error && <ErrorText errorText={errorText} />}
@@ -125,4 +129,5 @@ InputFieldWithUpload.defaultProps = {
   onBlur: undefined,
   onFocus: undefined,
   onChangeUpload: undefined,
+  imageRef: undefined,
 };
