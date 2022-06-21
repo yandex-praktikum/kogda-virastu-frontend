@@ -50,7 +50,6 @@ const ItemWrapper = styled.li`
 
 const TopAnnounceWidget : FC<TTopAnnounceWidgetProps> = ({ caption }) => {
   const topArticles = useSelector((state) => state.view.topFeed) ?? [];
-  // console.log('TopAnnounceWidget', topArticles);
   return (
     <TopAnnounce>
       <HeaderThreeText paddingCSS='padding-bottom: 24px;'>
