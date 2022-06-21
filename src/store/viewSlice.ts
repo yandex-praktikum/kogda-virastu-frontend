@@ -32,7 +32,7 @@ const initialState: TViewState = {
   tagsList: null,
   selectedTags: null,
   tag: null,
-  commentsFeed: null,
+  commentsFeed: [],
   commentsFeedAdmin: null,
   comment: null,
   page: 1,

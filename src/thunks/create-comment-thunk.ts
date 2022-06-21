@@ -11,6 +11,7 @@ import {
 } from '../store';
 import { TAPIError } from '../services/api.types';
 import { makeErrorObject } from '../services/helpers';
+import getComments from './get-comments-thunk';
 
 const createCommentThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
   const newComment = getState().forms.comment.comment ?? '';
@@ -23,6 +24,7 @@ const createCommentThunk: AppThunk = (slug: string) => async (dispatch, getState
         dispatch(setViewCommentsFeed([comment]));
         dispatch(resetComment());
         dispatch(commentPostSucceeded());
+        dispatch(getComments(slug));
       });
     }
   } catch (error) {

@@ -2,7 +2,7 @@ import React, {
   FC, MouseEventHandler, useEffect, useState,
 } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
 import { Divider, RegularText } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
@@ -124,6 +124,7 @@ type TFeedRibbon = {
 
 const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   const [mobileScreen, setMobileScreen] = useState(false);
+  const { pathname } = useLocation();
   const resizeHandler = () => {
     if (window.screen.width > 765) {
       setMobileScreen(true);
@@ -146,6 +147,14 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   const { isPublicFeedFetching } = useSelector((state) => state.api);
   const currentUser = useSelector((state) => state.profile);
   const isAdmin = currentUser.roles && currentUser.roles[1] === 'admin';
+
+  const sortPendingPosts = pendingPosts
+  && pendingPosts?.length !== 0
+  && [...pendingPosts]?.sort((a: TArticle, b: TArticle) => {
+    if (a.createdAt > b.createdAt) return -1;
+    if (a.createdAt < b.createdAt) return 1;
+    return 0;
+  });
 
   if (posts) {
     posts.filter((post) => post.tagList.some((tag) => tags.includes(tag)));
@@ -201,10 +210,12 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
             <ButtonsContainer>
               <FirstButtonContainer>
                 <PublishAdminPostButton
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                   onClick={() => onClickPublish(post.slug)} />
               </FirstButtonContainer>
               <SecondButtonContainer>
                 <RejectAdminPostButton
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                   onClick={() => onClickReject(post.slug)} />
               </SecondButtonContainer>
             </ButtonsContainer>
@@ -219,24 +230,28 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
 
   return (
     <>
-      <Links>
-        <NavLink to='/' style={activeLink}>
-          Все посты
-        </NavLink>
-        <NavLink to='/article' style={activeLink}>
-          Мои подписки
-        </NavLink>
-        {isAdmin && (
-          <NavLink to='/moderation' style={activeLink}>
-            На модерации
+      {(pathname === '/'
+      || pathname === '/article'
+      || pathname === '/moderation') && (
+        <Links>
+          <NavLink to='/' style={activeLink}>
+            Все посты
           </NavLink>
-        )}
-      </Links>
+          <NavLink to='/article' style={activeLink}>
+            Мои подписки
+          </NavLink>
+          {isAdmin && (
+            <NavLink to='/moderation' style={activeLink}>
+              На модерации
+            </NavLink>
+          )}
+        </Links>
+      )}
       <ScrollRibbon>
         <RibbonWrapper>
           {type === 'all' && renderArticle(allPosts)}
           {type === 'subscribe' && renderArticle(authorPosts)}
-          {type === 'moderation' && pendingPosts && renderArticle(pendingPosts)}
+          {type === 'moderation' && sortPendingPosts && renderArticle(sortPendingPosts)}
         </RibbonWrapper>
       </ScrollRibbon>
     </>

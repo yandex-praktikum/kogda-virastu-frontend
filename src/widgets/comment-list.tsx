@@ -29,7 +29,6 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
   const { commentsFeedAdmin: commentsAdmin } = useSelector((store) => store.view);
   const currentUser = useSelector((state) => state.profile);
 
-  console.log(commentsAdmin);
   const onDeleteClick = (commentId: string) => {
     dispatch(deleteCommentThunk(slug, commentId));
   };
@@ -42,12 +41,12 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
       {comments.map((comment) => (
         <Item key={comment.id}>
           <Comment
-            username={comment.author.username}
+            username={comment.author?.username}
             createAt={new Date(comment.createdAt)}
-            nickname={comment.author.nickname ?? comment.author.username}
-            image={comment.author.image}
+            nickname={comment.author?.nickname ?? comment.author?.username}
+            image={comment.author?.image}
             body={comment.body}
-            isAuthor={comment.author.username === currentUser.username}
+            isAuthor={comment.author?.username === currentUser.username}
             onDeleteClick={onDeleteClick}
             commentId={comment.id} />
         </Item>

@@ -52,7 +52,7 @@ export type TComment = {
   author: TProfile;
 };
 
-export type TComments = Array<TComment>;
+export type TComments = ReadonlyArray<TComment>;
 
 export enum FeedTypes {
   public = 'public',
