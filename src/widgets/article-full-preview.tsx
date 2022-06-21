@@ -65,7 +65,7 @@ const ContentContainer = styled.div<TElementWithImage>`
         }
         @media screen and (max-width: 600px) {                  // 'grid-row: 5/6 ' : 'grid-row: 4/5'
 
-        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))};
+        ${({ image }) => (getPropOnCondition(!!image, 'grid-row: 5/6', 'grid-row: 4/5 '))}
         margin-top: -8px;
     }
     }

@@ -1,16 +1,19 @@
 import React, {
   FC, MouseEventHandler, useEffect, useState,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
-import { Divider, RegularText } from '../ui-lib';
+import { Divider } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
 import { TArticle } from '../services/types';
+import declineArticleAdminThunk from '../thunks/decline-article-admin-thunk';
+import publishArticleAdminThunk from '../thunks/publish-article-admin-thunk';
 import Preloader from './preloader';
+import getPendingPostsThunk from '../thunks/get-pending-posts-thunk';
+import { PublishAdminPostButton, RejectAdminPostButton } from '../ui-lib/buttons';
 
 const RibbonWrapper = styled.ul`
   box-sizing: border-box;
@@ -63,6 +66,27 @@ const ItemWrapper = styled.li`
     max-width: max-content;
   }
 `;
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+`;
+
+const FirstButtonContainer = styled.div`
+margin-right: 16px;
+
+@media screen and (max-width: 840px) {
+    margin-bottom: 16px;
+  }
+`;
+
+const SecondButtonContainer = styled.div`
+
+@media screen and (max-width: 890px) {
+  margin-top: 16px;
+  }
+`;
+
 const activeStyle = {
   fontFamily: 'Alegreya Sans',
   fontSize: '18px',
@@ -85,12 +109,17 @@ const Links = styled.div`
   display: flex;
   padding: 0;
 
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
   @media screen and (max-width: 1100px) {
     padding-left: 5%;
   }
 
   @media screen and (max-width: 769px) {
     padding: 0;
+    overflow-x: auto;
   }
 `;
 
@@ -116,6 +145,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }, []);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
+  const pendingPosts = useSelector((state) => state.view.pendingFeed);
   const { tagsFollow } = useSelector((state) => state.view);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
   const { isPublicFeedFetching } = useSelector((state) => state.api);
@@ -137,6 +167,18 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
+  const onClickReject = (slug: string) => {
+    // eslint-disable-next-line @typescript-eslint/await-thenable
+    dispatch(declineArticleAdminThunk(slug));
+    dispatch(getPendingPostsThunk());
+  };
+
+  const onClickPublish = (slug: string) => {
+    // eslint-disable-next-line @typescript-eslint/await-thenable
+    dispatch(publishArticleAdminThunk(slug));
+    dispatch(getPendingPostsThunk());
+  };
+
   const allPosts = posts.filter(
     (post) => post.tagList.find(
       (tag) => tags.includes(tag) || !tags || tags.length < 1,
@@ -146,7 +188,6 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     (post) => post.author.following
     || post.tagList.some((tag) => tagsFollow?.includes(tag)),
   );
-  const moderationPosts = posts.filter((post) => post.state === 'pending');
 
   const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
     const onClick: MouseEventHandler = () => {
@@ -160,6 +201,18 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
       <React.Fragment key={post.slug}>
         <ItemWrapper>
           <ArticleFullPreview article={post} onLikeClick={onClick} />
+          {isAdmin && post.state === 'pending' && (
+            <ButtonsContainer>
+              <FirstButtonContainer>
+                <PublishAdminPostButton
+                  onClick={() => onClickPublish(post.slug)} />
+              </FirstButtonContainer>
+              <SecondButtonContainer>
+                <RejectAdminPostButton
+                  onClick={() => onClickReject(post.slug)} />
+              </SecondButtonContainer>
+            </ButtonsContainer>
+          )}
         </ItemWrapper>
         {i % 2 && i !== arr.length - 1 && mobileScreen ? (
           <Divider distance={0} />
@@ -172,14 +225,14 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     <>
       <Links>
         <NavLink to='/' style={activeLink}>
-          Все посты
+          Все&nbsp;посты
         </NavLink>
         <NavLink to='/article' style={activeLink}>
-          Мои подписки
+          Мои&nbsp;подписки
         </NavLink>
         {isAdmin && (
           <NavLink to='/moderation' style={activeLink}>
-            На модерации
+            На&nbsp;модерации
           </NavLink>
         )}
       </Links>
@@ -187,7 +240,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         <RibbonWrapper>
           {type === 'all' && renderArticle(allPosts)}
           {type === 'subscribe' && renderArticle(authorPosts)}
-          {type === 'moderation' && renderArticle(moderationPosts)}
+          {type === 'moderation' && pendingPosts && renderArticle(pendingPosts)}
         </RibbonWrapper>
       </ScrollRibbon>
     </>

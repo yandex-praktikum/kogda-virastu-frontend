@@ -1,5 +1,5 @@
 import {
-  ChangeEventHandler, FocusEventHandler, MouseEventHandler,
+  ChangeEventHandler, FocusEventHandler, MouseEventHandler, RefObject,
 } from 'react';
 
 export type TColorSet = {
@@ -152,3 +152,8 @@ export type TFieldInput = {
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
 };
+
+export type TFileInput = {
+  fileInputRef: RefObject<HTMLInputElement>
+  onSelectFile: ChangeEventHandler<HTMLInputElement>
+}

@@ -35,6 +35,7 @@ export type TVocabulary = {
   publishArticle: 'Опубликовать запись',
   pageMessage: 'Страница не найдена. Чтобы читать блог, перейдите на Главную',
   publishComment: 'Опубликовать комментарий',
+  publish: 'Опубликовать',
   loading: 'Подождите, данные загружаются...',
   footerMessage: 'Сделано студентами Яндекс Практикума. Команда Red.Types Lakers',
   aboutUser: 'Расскажите о себе',
