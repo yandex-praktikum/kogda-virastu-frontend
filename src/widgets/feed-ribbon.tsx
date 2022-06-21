@@ -4,7 +4,7 @@ import React, {
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from '../services/hooks';
-import { Divider, RegularText } from '../ui-lib';
+import { Divider } from '../ui-lib';
 import ScrollRibbon from './scroll-ribbon';
 import ArticleFullPreview from './article-full-preview';
 import { addLikeThunk, deleteLikeThunk } from '../thunks';
@@ -109,12 +109,17 @@ const Links = styled.div`
   display: flex;
   padding: 0;
 
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
   @media screen and (max-width: 1100px) {
     padding-left: 5%;
   }
 
   @media screen and (max-width: 769px) {
     padding: 0;
+    overflow-x: auto;
   }
 `;
 
@@ -162,15 +167,15 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const onClickReject = async (slug: string) => {
+  const onClickReject = (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    await dispatch(declineArticleAdminThunk(slug));
+    dispatch(declineArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
-  const onClickPublish = async (slug: string) => {
+  const onClickPublish = (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    await dispatch(publishArticleAdminThunk(slug));
+    dispatch(publishArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
@@ -221,14 +226,14 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     <>
       <Links>
         <NavLink to='/' style={activeLink}>
-          Все посты
+          Все&nbsp;посты
         </NavLink>
         <NavLink to='/article' style={activeLink}>
-          Мои подписки
+          Мои&nbsp;подписки
         </NavLink>
         {isAdmin && (
           <NavLink to='/moderation' style={activeLink}>
-            На модерации
+            На&nbsp;модерации
           </NavLink>
         )}
       </Links>

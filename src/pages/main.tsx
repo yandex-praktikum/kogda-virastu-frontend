@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import TopAnnounceWidget from '../widgets/top-announce-widget';
 import PopularTags from '../widgets/popular-tags';
-import Preloader from '../widgets/preloader';
 import { useSelector, useDispatch } from '../services/hooks';
 import {
   desktopBreakpoint,
@@ -55,15 +54,17 @@ export const MainContainer = styled.div`
     gap: 40px;
   }
 
-  @media screen and (max-width: ${mobileViewThreshold}px) {
+  @media screen and (max-width: 420px) {
     padding: 0 20px;
-    width: 280px;
+    max-width: 280px;
   }
 `;
 export const LeftColumn = styled.div`
   overflow: hidden;
-  min-width: 474px;
-  
+
+  @media screen and (max-width: 420px) {
+    max-width: 280px;
+  }
 `;
 
 export const RightColumn = styled.aside`
