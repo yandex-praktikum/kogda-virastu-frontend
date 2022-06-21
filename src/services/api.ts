@@ -6,6 +6,8 @@ import {
   REGISTER_ROUTE,
   USER_ROUTE,
   ARTICLES_ROUTE,
+  MODERATION_ARTICLE_ROUTE,
+  PENDING_FEED_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
@@ -21,6 +23,7 @@ import {
   TAPIParamsObject,
   TAPIArticle,
   TAPITags,
+  TAPIPopularTags,
   TAPITag,
   TAPIComments,
   TAPIComment,
@@ -42,6 +45,7 @@ import {
   IFetchArticles,
   IFetchComments,
   IFetchTags,
+  IFetchPopularTags,
   IFetchUser,
   ILikeArticle,
   ILoginUser,
@@ -262,11 +266,76 @@ export const fetchPrivateFeed : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchPendingFeed: IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  const {
+    limit, offset, tag, author,
+  } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: PENDING_FEED_ROUTE,
+    params: makeParams(limit, offset, tag, author),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const fetchArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${ARTICLES_ROUTE}/${slug}`,
     method: 'get',
   };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const publishArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/publish`,
+    method: 'post',
+    data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/decline`,
+    method: 'post',
+    data: postData,
+  };
+
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const setPendingArticle : IPatchArticle = (
+  slug: string,
+  articleData: TAPIPatchArticleData,
+) : AxiosPromise<TAPIArticle> => {
+  const postData = {
+    article: makeArticlePatchData(articleData),
+  };
+
+  const requestConfig : AxiosRequestConfig = {
+    url: `${MODERATION_ARTICLE_ROUTE}/${slug}/hold`,
+    method: 'post',
+    data: postData,
+  };
+
   return blogAPI(injectBearerToken(requestConfig));
 };
 
@@ -327,9 +396,25 @@ export const deleteLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TA
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchTags : IFetchTags = () : AxiosPromise<TAPITags> => {
+export const fetchPopularTags : IFetchPopularTags = () : AxiosPromise<TAPIPopularTags> => {
   const requestConfig : AxiosRequestConfig = {
-    url: TAGS_ROUTE,
+    url: `${TAGS_ROUTE}/top`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const deleteTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/${tag}/follow`,
+    method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const fetchTagsFollow : IFetchTags = () : AxiosPromise<TAPITags> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${TAGS_ROUTE}/follow`,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
@@ -394,22 +479,6 @@ export const postTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/${tag}/follow`,
     method: 'post',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
-export const deleteTagFollow : ITag = (tag: string) : AxiosPromise<TAPITag> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: `${TAGS_ROUTE}/${tag}/follow`,
-    method: 'delete',
-  };
-  return blogAPI(injectBearerToken(requestConfig));
-};
-
-export const fetchTagsFollow : IFetchTags = () : AxiosPromise<TAPITags> => {
-  const requestConfig : AxiosRequestConfig = {
-    url: `${TAGS_ROUTE}/follow`,
-    method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

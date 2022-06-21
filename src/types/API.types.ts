@@ -9,6 +9,7 @@ import {
   TAPIPatchArticleData,
   TAPIProfile,
   TAPITags,
+  TAPIPopularTags,
   TAPIUser,
   TAPITag,
   TAPIInvite,
@@ -19,7 +20,11 @@ import {
 } from '../services/api.types';
 
 export interface IRegisterUser {
-  (username: string, email: string, password: string, nickname?: string, invite?: string) : AxiosPromise<TAPIAuth>;
+  (username: string,
+    email: string,
+    password: string,
+    nickname?: string,
+    invite?: string,) : AxiosPromise<TAPIAuth>;
 }
 
 export interface ILoginUser {
@@ -69,6 +74,10 @@ export interface ILikeArticle {
 
 export interface IFetchTags {
   () : AxiosPromise<TAPITags>
+}
+
+export interface IFetchPopularTags {
+  () : AxiosPromise<TAPIPopularTags>
 }
 
 export interface IFetchComments {

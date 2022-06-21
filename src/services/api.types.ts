@@ -1,5 +1,5 @@
 import {
-  TArticle, TComment, TProfile, TTags, TUser, TTag, TInvite
+  TArticle, TComment, TProfile, TTags, TUser, TTag, TInvite, TPopularTags,
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -17,12 +17,12 @@ export type TAPIAuth = {
   user: {
     email: string;
     username: string;
+    roles?: Array<string>,
     bio?: string;
     image?: string;
     token: string;
     nickname: string,
     invite?: string,
-    roles?: Array<string>,
   };
 };
 
@@ -77,6 +77,10 @@ export type TAPIPatchArticleData = {
 
 export type TAPITags = {
   tags: TTags;
+};
+
+export type TAPIPopularTags = {
+  tags: TPopularTags;
 };
 
 export type TAPIComment = {

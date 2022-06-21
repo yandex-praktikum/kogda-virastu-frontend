@@ -72,7 +72,7 @@ export type TFontProperties = {
 };
 
 export type TButtonProps = {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 };
 
