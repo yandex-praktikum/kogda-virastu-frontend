@@ -13,6 +13,10 @@ import {
 } from '../store';
 import ProfilePageLayout from '../layouts/profile-page-layout';
 
+const FeedConteiner = styled.div`
+  margin: 0 auto;
+`;
+
 const Profile: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,15 +40,6 @@ const Profile: FC = () => {
   const { isProfileNotFound } = useSelector((state) => state.api);
   const totalCount = useSelector((state) => state.all.articlesCount);
   const { username } = useParams<{ username: string }>();
-
-  const FeedConteiner = styled.div`
-  margin: 0 auto;
-
-
-   /*  @media screen and (max-width:320px) {
-        width:280px;
-    } */
-`;
 
   useEffect(() => {
     batch(() => {
