@@ -85,6 +85,10 @@ const SecondButtonContainer = styled.div`
 @media screen and (max-width: 890px) {
   margin-top: 16px;
   }
+
+@media screen and (max-width: 765px) {
+  margin: 0;
+  }
 `;
 
 const activeStyle = {

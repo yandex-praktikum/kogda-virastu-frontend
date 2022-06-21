@@ -8,7 +8,7 @@ const ProfilePageLayout = styled.section`
     background-color: transparent;
     padding-bottom: 155px;
     @media screen and (max-width: 768px){
-        padding-bottom: 100px;
+        padding-bottom: 0 20px 100px;
     }
 `;
 
