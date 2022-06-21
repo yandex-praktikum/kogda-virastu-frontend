@@ -13,5 +13,7 @@ export const TAGS_ROUTE = '/tags';
 export const PROFILES_ROUTE = '/profiles';
 export const INVITE_ROUTE = '/user/invites/new';
 export const ADMIN_USERS_ROUTE = '/admin/users';
+export const UPLOAD_ROUTE = '/upload';
+export const BASE_ROOT = 'http://localhost:3000';
 
 export const JWT = 'JWT-RT-BLG';

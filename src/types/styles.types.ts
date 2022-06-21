@@ -138,7 +138,7 @@ export type TDividerProps = {
   distance: number;
 };
 
-export type TInputFieldType = 'text' | 'email' | 'password' | 'url';
+export type TInputFieldType = 'text' | 'email' | 'password' | 'url' | 'file';
 
 export type TFieldInput = {
   value: string;
@@ -151,4 +151,6 @@ export type TFieldInput = {
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  onIconClick?: MouseEventHandler;
+  onChangeUpload?: ChangeEventHandler<HTMLInputElement>;
 };

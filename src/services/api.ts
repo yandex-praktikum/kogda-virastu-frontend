@@ -13,6 +13,7 @@ import {
   TAGS_ROUTE,
   INVITE_ROUTE,
   ADMIN_USERS_ROUTE,
+  UPLOAD_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -34,6 +35,8 @@ import {
   TAPIUsers,
   TAPIRolesData,
   TAPIUser,
+  TAPIUploadImage,
+  TFile,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -56,6 +59,7 @@ import {
   IInvite,
   IFetchAllUsers,
   IPatchUserRoles,
+  IPostImageUpload,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -505,4 +509,25 @@ export const patchUserRoles : IPatchUserRoles = (
     data,
   };
   return blogAPI(injectBearerToken(requestConfig));
+};
+
+const uploadRequestConfig : AxiosRequestConfig = {
+  baseURL: API_ROOT,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+};
+const injectBearerTokenUpload = (requestConfig : AxiosRequestConfig) : AxiosRequestConfig => {
+  if (jwt.test()) {
+    return { ...requestConfig, headers: { ...uploadRequestConfig.headers, Authorization: `Bearer ${jwt.get()}` } };
+  }
+  return requestConfig;
+};
+export const postImageUpload : IPostImageUpload = (data: TFile) : AxiosPromise<TAPIUploadImage> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `${UPLOAD_ROUTE}`,
+    method: 'post',
+    data,
+  };
+  return blogAPI(injectBearerTokenUpload(requestConfig));
 };

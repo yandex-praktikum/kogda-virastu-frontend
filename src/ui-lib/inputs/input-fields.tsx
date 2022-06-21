@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import InputField from './input-field-config';
+import { InputField, InputFieldWithUpload } from './input-field-config';
 import { PaperClipIcon, EyeIcon, EyeNoIcon } from '../icons';
 import { TFieldInput } from '../../types/styles.types';
 import { useSelector, useDispatch } from '../../services/hooks';
@@ -16,10 +16,12 @@ export const FieldUrl: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  onIconClick = undefined,
+  onChangeUpload = undefined,
 }) => {
   const intl = useIntl();
   return (
-    <InputField
+    <InputFieldWithUpload
       placeholder={placeholder}
       name='FieldURL'
       type='url'
@@ -31,7 +33,9 @@ export const FieldUrl: FC<TFieldInput> = ({
       onChange={onChange}
       labelText={intl.messages.articleImage as string}
       icon={<PaperClipIcon color='grey' />}
-      disabled={disabled} />
+      onIconClick={onIconClick}
+      disabled={disabled}
+      onChangeUpload={onChangeUpload} />
   );
 };
 export const FieldProfileImage: FC<TFieldInput> = ({
@@ -43,10 +47,12 @@ export const FieldProfileImage: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  onIconClick = undefined,
+  onChangeUpload = undefined,
 }) => {
   const intl = useIntl();
   return (
-    <InputField
+    <InputFieldWithUpload
       placeholder={placeholder}
       name='FieldProfileImage'
       type='url'
@@ -58,7 +64,9 @@ export const FieldProfileImage: FC<TFieldInput> = ({
       onChange={onChange}
       labelText={intl.messages.urlImage as string}
       icon={<PaperClipIcon color='grey' />}
-      disabled={disabled} />
+      onIconClick={onIconClick}
+      disabled={disabled}
+      onChangeUpload={onChangeUpload} />
   );
 };
 export const FieldLogin: FC<TFieldInput> = ({
