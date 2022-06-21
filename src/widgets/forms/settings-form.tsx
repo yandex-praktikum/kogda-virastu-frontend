@@ -17,7 +17,7 @@ import {
   setConfirmPasswordProfile,
 } from '../../store';
 
-import { patchCurrentUserThunk, getInviteThunk } from '../../thunks';
+import { patchCurrentUserThunk, getInviteThunk, avatarImageUploadThunk } from '../../thunks';
 
 import {
   ButtonContainer,
@@ -58,6 +58,7 @@ const SettingsForm: FC = () => {
   const navigate = useNavigate();
   const intl = useIntl();
   const [codeSuccess, setCodeSuccess] = useState(false);
+  const inputIcon = document.getElementById('file-input');
 
   useEffect(() => {
     dispatch(setFormProfile({
@@ -76,6 +77,10 @@ const SettingsForm: FC = () => {
     //  return () => { dispatch(settingsResetUpdateSucceeded()); };
   }, [dispatch, isSettingsUpdateSucceeded, navigate]);
 
+  const onIconClick = () => {
+    inputIcon?.click();
+  };
+
   const submitForm: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     dispatch(patchCurrentUserThunk());
@@ -83,6 +88,11 @@ const SettingsForm: FC = () => {
 
   const changeImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setImageProfile(evt.target.value));
+  };
+
+  const changeUploadImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const file = evt.target.files?.[0];
+    dispatch(avatarImageUploadThunk(file));
   };
 
   const changeUsername: ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -128,7 +138,7 @@ const SettingsForm: FC = () => {
       </FormTitle>
       <Form onSubmit={submitForm}>
         <InputFieldset rowGap={16}>
-          <FieldProfileImage value={image ?? ''} onChange={changeImage} />
+          <FieldProfileImage value={image ?? ''} onChange={changeImage} onIconClick={onIconClick} onChangeUpload={changeUploadImage} />
           <FieldLogin value={username ?? ''} onChange={changeUsername} />
           <FieldNick value={nickname ?? ''} onChange={changeNickname} />
           <FieldAboutUser

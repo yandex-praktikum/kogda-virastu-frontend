@@ -114,3 +114,11 @@ export type TAPIUsers = {
 export type TAPIRolesData = {
   roles?: Array<string>;
 };
+
+export type TAPIUploadImage = {
+  url: string;
+}
+
+export type TFile = {
+  file: File
+};

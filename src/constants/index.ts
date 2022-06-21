@@ -10,6 +10,8 @@ import {
   JWT,
   INVITE_ROUTE,
   ADMIN_USERS_ROUTE,
+  UPLOAD_ROUTE,
+  BASE_ROOT,
 } from './api.constants';
 
 import {
@@ -41,4 +43,6 @@ export {
   footerHeightAtBreakpoint,
   INVITE_ROUTE,
   ADMIN_USERS_ROUTE,
+  UPLOAD_ROUTE,
+  BASE_ROOT,
 };

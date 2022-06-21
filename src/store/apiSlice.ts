@@ -39,6 +39,7 @@ type TAPIState = {
   isVisible: boolean,
   isAllUsersFetching: boolean,
   isUserRolesFetching: boolean,
+  isUploadFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -79,6 +80,7 @@ const initialState : TAPIState = {
   isVisible: false,
   isAllUsersFetching: false,
   isUserRolesFetching: false,
+  isUploadFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -391,6 +393,15 @@ const apiSlice = createSlice({
     userRolesFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserRolesFetching: false, errorObject: action.payload,
     }),
+    uploadFetchRequested: (state) => ({
+      ...state, isUploadFetching: true,
+    }),
+    uploadFetchSucceeded: (state) => ({
+      ...state, isUploadFetching: false,
+    }),
+    uploadFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUploadFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -492,6 +503,9 @@ export const {
   userRolesFetchRequested,
   userRolesFetchSucceeded,
   userRolesFetchFailed,
+  uploadFetchRequested,
+  uploadFetchSucceeded,
+  uploadFetchFailed,
 } = apiSlice.actions;
 
 export default apiReducer;

@@ -24,6 +24,7 @@ import {
   getArticleThunk,
   patchArticleThunk,
   postArticleThunk,
+  postImageUploadThunk,
 } from '../../thunks';
 import {
   ButtonContainer,
@@ -96,6 +97,7 @@ const EditorForm: FC = () => {
   const initialArticle = useSelector((state) => state.view.article);
   const [isPosted, setPostRequested] = useState(false);
   const [isRemoving, setRemoveState] = useState(false);
+  const inputIcon = document.getElementById('file-input');
 
   useEffect(() => {
     if (initialArticle?.tagList) {
@@ -155,6 +157,15 @@ const EditorForm: FC = () => {
     dispatch(setTags(evt.target.value));
   };
 
+  const onIconClick = () => {
+    inputIcon?.click();
+  };
+
+  const changeUploadImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const file = evt.target.files?.[0];
+    dispatch(postImageUploadThunk(file));
+  };
+
   const onChangeImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
     dispatch(setImage(evt.target.value));
   };
@@ -209,8 +220,9 @@ const EditorForm: FC = () => {
             onChange={onChangeDescription} />
           <FieldUrl
             value={link === '' ? '' : link || initialArticle?.link || ''}
-            onChange={onChangeImage} />
-
+            onChange={onChangeImage}
+            onIconClick={onIconClick}
+            onChangeUpload={changeUploadImage} />
           <Editor>
             <CKEditor
               config={{

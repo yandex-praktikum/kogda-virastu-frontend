@@ -22,6 +22,8 @@ import setNewPostsThunk from './set-new-posts-thunk';
 import getAllPostsThunk from './get-all-posts-thunk';
 import getInviteThunk from './get-invite-thunk';
 import patchUserRolesThunk from './patch-user-roles-thunk';
+import avatarImageUploadThunk from './avatar-image-upload';
+import postImageUploadThunk from './post-image-upload';
 
 export {
   createCommentThunk,
@@ -48,4 +50,6 @@ export {
   getAllPostsThunk,
   getInviteThunk,
   patchUserRolesThunk,
+  avatarImageUploadThunk,
+  postImageUploadThunk,
 };

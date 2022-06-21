@@ -14,6 +14,8 @@ import {
   TAPIInvite,
   TAPIUsers,
   TAPIRolesData,
+  TAPIUploadImage,
+  TFile
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -99,6 +101,10 @@ export interface IFetchAllUsers {
 
 export interface IPatchUserRoles {
   (slug: string, data: TAPIRolesData) : AxiosPromise<TAPIUser>;
+}
+
+export interface IPostImageUpload {
+  (data: TFile) : AxiosPromise<TAPIUploadImage>
 }
 
 export type {
