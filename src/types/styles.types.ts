@@ -153,4 +153,7 @@ export type TFieldInput = {
   onChange: ChangeEventHandler<HTMLInputElement>;
   onIconClick?: MouseEventHandler;
   onChangeUpload?: ChangeEventHandler<HTMLInputElement>;
+  imageRef?: {
+    current: any
+  };
 };

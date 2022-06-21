@@ -1,5 +1,5 @@
 import React, {
-  useEffect, FC, ChangeEventHandler, FormEventHandler, useState,
+  useEffect, FC, ChangeEventHandler, FormEventHandler, useState, useRef,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -98,6 +98,7 @@ const EditorForm: FC = () => {
   const [isPosted, setPostRequested] = useState(false);
   const [isRemoving, setRemoveState] = useState(false);
   const inputIcon = document.getElementById('file-input');
+  const imageRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialArticle?.tagList) {
@@ -158,7 +159,8 @@ const EditorForm: FC = () => {
   };
 
   const onIconClick = () => {
-    inputIcon?.click();
+    imageRef.current?.click();
+    // inputIcon?.click();
   };
 
   const changeUploadImage: ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -222,7 +224,8 @@ const EditorForm: FC = () => {
             value={link === '' ? '' : link || initialArticle?.link || ''}
             onChange={onChangeImage}
             onIconClick={onIconClick}
-            onChangeUpload={changeUploadImage} />
+            onChangeUpload={changeUploadImage}
+            imageRef={imageRef} />
           <Editor>
             <CKEditor
               config={{

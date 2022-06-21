@@ -18,6 +18,7 @@ export const FieldUrl: FC<TFieldInput> = ({
   disabled = false,
   onIconClick = undefined,
   onChangeUpload = undefined,
+  imageRef,
 }) => {
   const intl = useIntl();
   return (
@@ -35,7 +36,8 @@ export const FieldUrl: FC<TFieldInput> = ({
       icon={<PaperClipIcon color='grey' />}
       onIconClick={onIconClick}
       disabled={disabled}
-      onChangeUpload={onChangeUpload} />
+      onChangeUpload={onChangeUpload}
+      imageRef={imageRef} />
   );
 };
 export const FieldProfileImage: FC<TFieldInput> = ({
