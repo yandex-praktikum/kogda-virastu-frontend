@@ -19,6 +19,12 @@ type TAPIState = {
   isArticleRemoved: boolean,
   isArticlePatching: boolean,
   isArticlePatchingSucceeded: boolean,
+  isArticlePublishing: boolean,
+  isArticlePublishingSucceeded: boolean,
+  isArticleDeclining: boolean,
+  isArticleDecliningSucceeded: boolean,
+  isArticleRemovePublishing: boolean,
+  isArticleRemovePublishingSucceeded: boolean,
   isLikeArticlePosting: boolean,
   isLikeArticleDeleting: boolean,
   isTagsFetching: boolean,
@@ -55,6 +61,12 @@ const initialState : TAPIState = {
   isArticleRemoved: false,
   isArticlePatching: false,
   isArticlePatchingSucceeded: false,
+  isArticlePublishing: false,
+  isArticlePublishingSucceeded: false,
+  isArticleDeclining: false,
+  isArticleDecliningSucceeded: false,
+  isArticleRemovePublishing: false,
+  isArticleRemovePublishingSucceeded: false,
   isLikeArticlePosting: false,
   isLikeArticleDeleting: false,
   isTagsFetching: false,
@@ -224,6 +236,33 @@ const apiSlice = createSlice({
     articlePatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePatching: false, errorObject: action.payload,
     }),
+    articlePublishRequested: (state) => ({
+      ...state, isArticlePublishing: true,
+    }),
+    articlePublishSucceeded: (state) => ({
+      ...state, isArticlePublishing: false, isArticlePublishingSucceeded: true,
+    }),
+    articlePublishFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticlePublishing: false, errorObject: action.payload,
+    }),
+    articleDeclineRequested: (state) => ({
+      ...state, isArticleDeclining: true,
+    }),
+    articleDeclineSucceeded: (state) => ({
+      ...state, isArticleDeclining: false, isArticleDecliningSucceeded: true,
+    }),
+    articleDeclineFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticleDeclining: false, errorObject: action.payload,
+    }),
+    articleRemovePublishRequested: (state) => ({
+      ...state, isArticleRemovePublishing: true,
+    }),
+    articleRemovePublishSucceeded: (state) => ({
+      ...state, isArticleRemovePublishing: false, isArticleRemovePublishingSucceeded: true,
+    }),
+    articleRemovePublishFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticleRemovePublishing: false, errorObject: action.payload,
+    }),
     likeArticlePostRequested: (state) => ({
       ...state, isLikeArticlePosting: true,
     }),
@@ -353,6 +392,15 @@ const apiSlice = createSlice({
     subscribeTagsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isSubscribeTagsFetching: false, errorObject: action.payload,
     }),
+    inviteCodeFetchRequested: (state) => ({
+      ...state, isInviteCodeFetching: true,
+    }),
+    inviteCodeFetchSucceeded: (state) => ({
+      ...state, isinviteCodeFetching: false,
+    }),
+    inviteCodeFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteCodeFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -394,6 +442,15 @@ export const {
   articlePatchRequested,
   articlePatchSucceeded,
   articlePatchFailed,
+  articlePublishRequested,
+  articlePublishSucceeded,
+  articlePublishFailed,
+  articleDeclineRequested,
+  articleDeclineSucceeded,
+  articleDeclineFailed,
+  articleRemovePublishRequested,
+  articleRemovePublishSucceeded,
+  articleRemovePublishFailed,
   likeArticlePostRequested,
   likeArticlePostSucceeded,
   likeArticlePostFailed,
@@ -444,5 +501,8 @@ export const {
   subscribeTagsFetchRequested,
   subscribeTagsFetchSucceeded,
   subscribeTagsFetchFailed,
+  inviteCodeFetchRequested,
+  inviteCodeFetchSucceeded,
+  inviteCodeFetchFailed,
 } = apiSlice.actions;
 export default apiReducer;

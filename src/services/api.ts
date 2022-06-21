@@ -5,6 +5,7 @@ import {
   LOGIN_ROUTE,
   REGISTER_ROUTE,
   USER_ROUTE,
+  INVITE_ROUTE,
   ARTICLES_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
@@ -25,6 +26,7 @@ import {
   TAPIPatchUserData,
   TAPIPatchArticleData,
   TAPITag,
+  TAPIInviteCode,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -34,6 +36,7 @@ import {
   IFetchComments,
   IFetchTags,
   IFetchUser,
+  IGetInviteCode,
   ILikeArticle,
   ILoginUser,
   IPatchArticle,
@@ -178,6 +181,19 @@ export const loginUser : ILoginUser = (
   return blogAPI(requestConfig);
 };
 
+export const fetchInviteCode : IGetInviteCode = () : AxiosPromise<TAPIInviteCode> => {
+  // const inviteCodeData : TAPIInviteCode = {
+  //   id,
+  // };
+  const requestConfig : AxiosRequestConfig = {
+    url: INVITE_ROUTE,
+    // headers: { token },
+    method: 'post',
+    // data: { id },
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const patchCurrentUser : IPatchUser = (
   user: TAPIPatchUserData,
 ) : AxiosPromise<TAPIAuth> => {
@@ -301,6 +317,30 @@ export const patchArticle : IPatchArticle = (
     data: patchData,
   };
 
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const publishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/publish`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const declineArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/decline`,
+    method: 'post',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const removePublishArticle : IFetchArticle = (slug: string) : AxiosPromise<TAPIArticle> => {
+  const requestConfig : AxiosRequestConfig = {
+    url: `admin${ARTICLES_ROUTE}/${slug}/hold`,
+    method: 'post',
+  };
   return blogAPI(injectBearerToken(requestConfig));
 };
 

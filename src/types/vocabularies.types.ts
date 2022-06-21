@@ -27,6 +27,7 @@ export type TVocabulary = {
   userName: 'Имя пользователя',
   userEmail: 'Email',
   password: 'Пароль',
+  confirmPassword: 'Подтвердите пароль',
   urlImage: 'URL изображения профиля',
   newPassword: 'Новый пароль',
   refreshUser: 'Обновить настройки',
@@ -43,8 +44,10 @@ export type TVocabulary = {
   nickname: 'Отображаемое имя',
   tagsInForm: 'Теги',
   messageAboutMissingTags: 'У Вас нет подписок на теги',
-  invationCode: 'Введите код регистрации',
+  invitionCode: 'Введите код регистрации',
   youSubscribedToTheTag: 'Вы подписались на тег #',
+  generateInviteCode: 'Сгенерировать код',
+  404: 'ошибка 404',
 };
 
 export type TAddTVocabulary = {

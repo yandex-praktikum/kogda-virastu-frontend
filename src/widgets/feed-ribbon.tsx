@@ -1,8 +1,5 @@
 import React, {
-  FC,
-  MouseEventHandler,
-  useEffect,
-  useState,
+  FC, MouseEventHandler, useEffect, useState,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
@@ -119,9 +116,12 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
   }, []);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.view.feed);
-  const { isPublicFeedFetching } = useSelector((state) => state.api);
   const { tagsFollow } = useSelector((state) => state.view);
   const tags = useSelector((state) => state.view.selectedTags) ?? [];
+  const { isPublicFeedFetching } = useSelector((state) => state.api);
+  const currentUser = useSelector((state) => state.profile);
+  const isAdmin = currentUser.roles && currentUser.roles[1] === 'admin';
+
   if (posts) {
     posts.filter((post) => post.tagList.some((tag) => tags.includes(tag)));
   }
@@ -137,12 +137,17 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const allPosts = posts?.filter(
-    (post) => post.tagList.find((tag) => tags.includes(tag) || !tags || tags.length < 1),
+  const allPosts = posts.filter(
+    (post) => post.tagList.find(
+      (tag) => tags.includes(tag) || !tags || tags.length < 1,
+    ) && post.state === 'published',
   );
-  const authorPosts = posts?.filter(
-    (post) => post.author.following || post.tagList.some((tag) => tagsFollow?.includes(tag)),
+  const authorPosts = posts.filter(
+    (post) => post.author.following
+    || post.tagList.some((tag) => tagsFollow?.includes(tag)),
   );
+  const moderationPosts = posts.filter((post) => post.state === 'pending');
+
   const renderArticle = (arr: Array<TArticle>) => arr.map((post, i) => {
     const onClick: MouseEventHandler = () => {
       if (post.favorited) {
@@ -172,11 +177,17 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
         <NavLink to='/article' style={activeLink}>
           Мои подписки
         </NavLink>
+        {isAdmin && (
+          <NavLink to='/moderation' style={activeLink}>
+            На модерации
+          </NavLink>
+        )}
       </Links>
       <ScrollRibbon>
         <RibbonWrapper>
           {type === 'all' && renderArticle(allPosts)}
           {type === 'subscribe' && renderArticle(authorPosts)}
+          {type === 'moderation' && renderArticle(moderationPosts)}
         </RibbonWrapper>
       </ScrollRibbon>
     </>

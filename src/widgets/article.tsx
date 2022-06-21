@@ -6,10 +6,19 @@ import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk, deleteLikeThunk,
 } from '../thunks';
-import { DeletePostButton, EditPostButton } from '../ui-lib';
+import { DeletePostButton, EditPostButton, PublishPostButton } from '../ui-lib';
 import { openConfirm } from '../store';
 import BarTags, { MessageSubscriptionTag, MessageText } from './bar-tags';
 import Likes from './likes';
+import {
+  PublishAdminPostButton,
+  PublishedAdminPostButton,
+  RejectAdminPostButton,
+  RemovePublicationAdminPostButton,
+} from '../ui-lib/buttons';
+import publishArticleAdminThunk from '../thunks/publish-article-admin-thunk';
+import declineArticleAdminThunk from '../thunks/decline-article-admin-thunk';
+import removePublishArticleAdminThunk from '../thunks/remove-article-publish-admin-thunk';
 
 type TArticleProps = {
   slug: string;
@@ -18,6 +27,16 @@ type TArticleProps = {
 type TArticleActionsProps = {
   onClickEdit: MouseEventHandler<HTMLButtonElement>;
   onClickDelete: MouseEventHandler<HTMLButtonElement>;
+};
+
+type TArticleAdminPublishActions = {
+  onClickPublish: MouseEventHandler<HTMLButtonElement>;
+  onClickReject: MouseEventHandler<HTMLButtonElement>;
+};
+
+type TArticleAdminPublishedActions = {
+  onClickPublished: MouseEventHandler<HTMLButtonElement>;
+  onClickRemove: MouseEventHandler<HTMLButtonElement>;
 };
 
 const ArticleContainer = styled.div`
@@ -46,7 +65,7 @@ const ArticleActionsContainer = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   && > button {
-    width:233px;
+    /* width:233px; */
     @media screen  and (max-width:725px) {
       width:175px;
     }
@@ -111,6 +130,26 @@ const ArticleActions: FC<TArticleActionsProps> = ({ onClickEdit, onClickDelete }
   </ArticleActionsContainer>
 );
 
+const ArticleAdminPublishActions: FC<TArticleAdminPublishActions> = ({
+  onClickPublish,
+  onClickReject,
+}) => (
+  <ArticleActionsContainer>
+    <PublishAdminPostButton onClick={onClickPublish} />
+    <RejectAdminPostButton onClick={onClickReject} />
+  </ArticleActionsContainer>
+);
+
+const ArticleAdminPublishedActions: FC<TArticleAdminPublishedActions> = ({
+  onClickPublished,
+  onClickRemove,
+}) => (
+  <ArticleActionsContainer>
+    <PublishedAdminPostButton onClick={onClickPublished} />
+    <RemovePublicationAdminPostButton onClick={onClickRemove} />
+  </ArticleActionsContainer>
+);
+
 const Article: FC<TArticleProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -120,7 +159,9 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   const { article } = useSelector((state) => state.view);
   const currentUser = useSelector((state) => state.profile);
   const isAuthor = article?.author.username === currentUser.username;
-  // console.log('article ===', article);
+  const isAdmin = currentUser.roles && currentUser.roles[1] === 'admin';
+  const isPending = article?.state === 'pending';
+
   const onClickDelete = () => {
     if (article) {
       dispatch(openConfirm());
@@ -131,6 +172,30 @@ const Article: FC<TArticleProps> = ({ slug }) => {
     if (article && slug) {
       navigate(`/editArticle/${slug}`);
     }
+  };
+
+  const onClickReject = () => {
+    if (article && slug) {
+      dispatch(declineArticleAdminThunk(slug));
+      navigate('/');
+    }
+  };
+
+  const onClickPublish = () => {
+    if (article && slug) {
+      dispatch(publishArticleAdminThunk(slug));
+      navigate('/');
+    }
+  };
+
+  const onClickRemovePublish = () => {
+    if (article && slug) {
+      dispatch(removePublishArticleAdminThunk(slug));
+      navigate('/');
+    }
+  };
+
+  const onClickPublished = () => {
   };
 
   const onClickLike = (ev: React.MouseEvent) => {
@@ -147,12 +212,26 @@ const Article: FC<TArticleProps> = ({ slug }) => {
   }
   return (
     <ArticleContainer>
-      {isAuthor && (
-        <ArticleActions onClickDelete={onClickDelete} onClickEdit={onClickEdit} />
+      {isAuthor && !isPending && (
+        <ArticleActions
+          onClickDelete={onClickDelete}
+          onClickEdit={onClickEdit} />
+      )}
+      {isAdmin && isPending && (
+        <ArticleAdminPublishActions
+          onClickPublish={onClickPublish}
+          onClickReject={onClickReject} />
+      )}
+      {isAdmin && !isPending && (
+        <ArticleAdminPublishedActions
+          onClickPublished={onClickPublished}
+          onClickRemove={onClickRemovePublish} />
       )}
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleAuthorContainer>
-        <ArticleAuthor>{article.author.nickname ?? article.author.username}</ArticleAuthor>
+        <ArticleAuthor>
+          {article.author.nickname ?? article.author.username}
+        </ArticleAuthor>
         <ArticleCreateDate>
           <FormattedDate
             value={article.createdAt}
@@ -168,9 +247,7 @@ const Article: FC<TArticleProps> = ({ slug }) => {
             favorite={article.favorited} />
         </ArticleLikeWrapper>
       </ArticleAuthorContainer>
-      {article.link && (
-        <ArticleImage src={article.link} />
-      )}
+      {article.link && <ArticleImage src={article.link} />}
       <ArticleBody>
         <div dangerouslySetInnerHTML={{ __html: article.body }} />
         <MessageSubscriptionTag active={active}>

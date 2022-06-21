@@ -1,3 +1,4 @@
+import { string } from 'prop-types';
 import {
   TArticle, TComment, TProfile, TTags, TUser, TTag,
 } from '../types/types';
@@ -19,7 +20,8 @@ export type TAPIAuth = {
     bio?: string;
     image?: string;
     token: string;
-    nickname: string
+    nickname: string;
+    roles: Array<string>;
   };
 };
 
@@ -28,6 +30,10 @@ export type TAPILoginUser = {
     email: string;
     password: string;
   }
+};
+
+export type TAPIInviteCode = {
+  code: string;
 };
 
 export type TAPIUser = {

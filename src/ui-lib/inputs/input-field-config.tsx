@@ -17,7 +17,7 @@ const ContainerInput = styled.div`
      padding: 0;
     position: relative;
      display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
      @media screen and (max-width:768px) {
@@ -38,9 +38,12 @@ interface IInputInterface {
   value: string;
   name: string;
   error: boolean;
+  minLength?: number;
+  maxLength?: number;
   icon?: React.ReactNode;
   errorText: string;
   disabled: boolean;
+  required?: boolean;
   labelText: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onIconClick?: MouseEventHandler;
@@ -50,7 +53,7 @@ interface IInputInterface {
 
 const InputField :FC<IInputInterface> = ({
   type, placeholder, value, name, error = false, icon = null, errorText = '', onChange, onIconClick, onBlur, onFocus,
-  disabled = false, labelText = '',
+  disabled = false, labelText = '', minLength, maxLength, required,
 }: IInputInterface) => (
   <ContainerInput>
     <LabelStyle>
@@ -60,6 +63,9 @@ const InputField :FC<IInputInterface> = ({
         error={error}
         type={type}
         placeholder={placeholder}
+        minLength={minLength}
+        maxLength={maxLength}
+        required={required}
         value={value}
         name={name}
         onChange={onChange}
@@ -76,8 +82,11 @@ const InputField :FC<IInputInterface> = ({
 InputField.defaultProps = {
   icon: undefined,
   onIconClick: undefined,
+  minLength: undefined,
+  maxLength: undefined,
   onBlur: undefined,
   onFocus: undefined,
+  required: undefined,
 };
 
 export default InputField;

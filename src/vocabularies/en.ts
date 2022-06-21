@@ -29,6 +29,7 @@ const en: TAddTVocabulary = {
   userName: 'User Name',
   userEmail: 'Email',
   password: 'Password',
+  confirmPassword: 'Confirm password',
   urlImage: 'User avatar URL',
   newPassword: 'New password',
   refreshUser: 'Update settings',
@@ -44,9 +45,11 @@ const en: TAddTVocabulary = {
   npPageLink: 'Main',
   nickname: 'Display name',
   tagsInForm: 'Tags',
-  invationCode: 'Введите код регистрации',
   messageAboutMissingTags: '&nbsp;&nbsp;You don\'t have subscriptions to tags',
+  invitionCode: 'Enter registration code',
+  generateInviteCode: 'Generate code',
   youSubscribedToTheTag: 'You subscribed to the tag #',
+  404: 'error 404',
 };
 
 export default en;

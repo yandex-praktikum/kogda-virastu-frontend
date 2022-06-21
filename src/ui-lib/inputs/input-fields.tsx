@@ -67,6 +67,7 @@ export const FieldLogin: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  required = false,
 }) => {
   const intl = useIntl();
   return (
@@ -76,10 +77,13 @@ export const FieldLogin: FC<TFieldInput> = ({
       type='text'
       errorText={errorText}
       error={error}
+      minLength={3}
+      maxLength={40}
       onBlur={onBlur}
       onFocus={onFocus}
       value={value}
       onChange={onChange}
+      required={required}
       labelText={intl.messages.userName as string}
       disabled={disabled} />
   );
@@ -93,6 +97,7 @@ export const FieldNick: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  required = false,
 }) => {
   const intl = useIntl();
   return (
@@ -102,11 +107,14 @@ export const FieldNick: FC<TFieldInput> = ({
       type='text'
       errorText={errorText}
       error={error}
+      minLength={3}
+      maxLength={40}
       onBlur={onBlur}
       onFocus={onFocus}
       value={value}
       onChange={onChange}
       disabled={disabled}
+      required={required}
       labelText={intl.messages.nickname as string} />
   );
 };
@@ -119,12 +127,13 @@ export const InvitionCode: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  required = false,
 }) => {
   const intl = useIntl();
   return (
     <InputField
       placeholder={placeholder}
-      name='InvationCode'
+      name='InvitionCode'
       type='text'
       errorText={errorText}
       error={error}
@@ -133,7 +142,8 @@ export const InvitionCode: FC<TFieldInput> = ({
       value={value}
       onChange={onChange}
       disabled={disabled}
-      labelText={intl.messages.invationCode as string} />
+      required={required}
+      labelText={intl.messages.invitionCode as string} />
   );
 };
 export const FieldEmail: FC<TFieldInput> = ({
@@ -145,6 +155,7 @@ export const FieldEmail: FC<TFieldInput> = ({
   error = false,
   errorText = '',
   disabled = false,
+  required = false,
 }) => {
   const intl = useIntl();
   return (
@@ -159,6 +170,7 @@ export const FieldEmail: FC<TFieldInput> = ({
       value={value}
       onChange={onChange}
       disabled={disabled}
+      required={required}
       labelText={intl.messages.userEmail as string} />
   );
 };
@@ -173,6 +185,58 @@ export const FieldPassword: FC<TFieldInput & { label?: string, name?: string }> 
   error = false,
   errorText = '',
   disabled = false,
+  required = false,
+}) => {
+  const intl = useIntl();
+  const [passwordState,
+    setPasswordState] = useState<'password' | 'text'>('password');
+  const [passwordIcon, setPasswordIcon] = useState(<EyeNoIcon color='grey' />);
+  const onIconClick = () => {
+    if (passwordState === 'password') {
+      setPasswordState('text');
+      setPasswordIcon(<EyeIcon color='grey' />);
+    } else {
+      setPasswordState('password');
+      setPasswordIcon(<EyeNoIcon color='grey' />);
+    }
+  };
+  return (
+    <InputField
+      placeholder={placeholder}
+      name={name}
+      type={passwordState}
+      errorText={errorText}
+      error={error}
+      minLength={6}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      disabled={disabled}
+      required={required}
+      value={value}
+      onChange={onChange}
+      labelText={label || intl.messages.password as string}
+      icon={passwordIcon}
+      onIconClick={onIconClick} />
+  );
+};
+
+FieldPassword.defaultProps = {
+  label: undefined,
+  name: 'FieldPassword',
+};
+
+export const ConfirmPassword: FC<TFieldInput & { label?: string, name?: string }> = ({
+  name = 'ConfirmPassword',
+  label = undefined,
+  value,
+  onFocus = undefined,
+  onBlur = undefined,
+  onChange,
+  placeholder = '',
+  error = false,
+  errorText = 'Пароль не соответствует!',
+  disabled = false,
+  required = false,
 }) => {
   const intl = useIntl();
   const [passwordState,
@@ -197,17 +261,18 @@ export const FieldPassword: FC<TFieldInput & { label?: string, name?: string }> 
       onBlur={onBlur}
       onFocus={onFocus}
       disabled={disabled}
+      required={required}
       value={value}
       onChange={onChange}
-      labelText={label || intl.messages.password as string}
+      labelText={label || intl.messages.confirmPassword as string}
       icon={passwordIcon}
       onIconClick={onIconClick} />
   );
 };
 
-FieldPassword.defaultProps = {
+ConfirmPassword.defaultProps = {
   label: undefined,
-  name: 'FieldPassword',
+  name: 'ConfirmPassword',
 };
 
 export const FieldDescriptionArticle: FC<TFieldInput> = ({
