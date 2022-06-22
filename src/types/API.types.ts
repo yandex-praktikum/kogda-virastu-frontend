@@ -9,6 +9,7 @@ import {
   TAPITags,
   TAPIUser,
   TAPITag,
+  TAPITopTags,
   TAPIInviteCode,
   TAPIImageUrl
 } from '../services/api.types';
@@ -70,6 +71,10 @@ export interface IFetchTags {
   () : AxiosPromise<TAPITags>
 }
 
+export interface IFetchTopTags {
+  () : AxiosPromise<TAPITopTags>
+}
+
 export interface IFetchComments {
   (slug: string) : AxiosPromise<TAPIComments>;
 }
@@ -106,4 +111,5 @@ export type {
   TAPITags,
   TAPIUser,
   TAPITag,
+  TAPITopTags,
 };

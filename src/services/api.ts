@@ -7,9 +7,11 @@ import {
   USER_ROUTE,
   INVITE_ROUTE,
   ARTICLES_ROUTE,
+  TOP_ARTICLES_ROUTE,
   FEED_ROUTE, JWT,
   PROFILES_ROUTE,
   TAGS_ROUTE,
+  TOP_TAGS_ROUTE,
   UPLOAD_IMAGE_ROUTE,
 } from '../constants';
 import {
@@ -20,6 +22,7 @@ import {
   TAPIParamsObject,
   TAPIArticle,
   TAPITags,
+  TAPITopTags,
   TAPIComments,
   TAPIComment,
   TAPIProfile,
@@ -38,6 +41,7 @@ import {
   IFetchArticles,
   IFetchComments,
   IFetchTags,
+  IFetchTopTags,
   IFetchUser,
   IGetInviteCode,
   ILikeArticle,
@@ -270,6 +274,20 @@ export const fetchPublicFeed : IFetchArticles = (
   return blogAPI(injectBearerToken(requestConfig));
 };
 
+export const fetchTopFeed : IFetchArticles = (
+  queryParams?: TAPIParamsObject,
+) : AxiosPromise<TAPIArticles> => {
+  // const {
+  //   limit, offset, tag, author, favorited,
+  // } = queryParams ?? {};
+  const requestConfig : AxiosRequestConfig = {
+    url: TOP_ARTICLES_ROUTE,
+    // params: makeParams(limit, offset, tag, author, favorited),
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
 export const fetchPrivateFeed : IFetchArticles = (
   queryParams?: TAPIParamsObject,
 ) : AxiosPromise<TAPIArticles> => {
@@ -396,9 +414,9 @@ export const deleteLikeArticle : ILikeArticle = (slug: string) : AxiosPromise<TA
   return blogAPI(injectBearerToken(requestConfig));
 };
 
-export const fetchTags : IFetchTags = () : AxiosPromise<TAPITags> => {
+export const fetchTopTags : IFetchTopTags = () : AxiosPromise<TAPITopTags> => {
   const requestConfig : AxiosRequestConfig = {
-    url: TAGS_ROUTE,
+    url: TOP_TAGS_ROUTE,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));
