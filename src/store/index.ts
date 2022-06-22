@@ -49,7 +49,7 @@ import {
 import {
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setAllTopTags,
   clearArticles,
   clearTags,
   clearAll,
@@ -227,7 +227,7 @@ export {
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setAllTopTags,
   clearArticles,
   clearTags,
   clearAll,
